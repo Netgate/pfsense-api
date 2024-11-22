@@ -7648,6 +7648,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - system
+      summary: Get system log configuration
+      description: ""
+      operationId: GetSyslogConfig
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SyslogConfiguration'
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /system/logs/reset:
     post:
       tags:
@@ -14139,8 +14158,6 @@ components:
           type: string
         descr:
           type: string
-        type:
-          type: string
         subnet:
           type: string
         id:
@@ -16036,7 +16053,9 @@ components:
     VLANInterface:
       type: object
       properties:
-        if:
+        if_device:
+          type: string
+        if_assigned_name:
           type: string
         tag:
           type: integer
@@ -16068,6 +16087,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VLANInterface'
+        vlan_capable_ifs:
+          type: array
+          items:
+            $ref: '#/components/schemas/VLANCapableInterface'
     WirelessInterface:
       type: object
       properties:
@@ -19013,6 +19036,8 @@ components:
         logall:
           type: boolean
         system:
+          type: boolean
+        pfnet_controller:
           type: boolean
         resolver:
           type: boolean

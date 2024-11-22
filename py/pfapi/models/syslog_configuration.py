@@ -32,6 +32,7 @@ class SyslogConfiguration:
         hostapd (Union[Unset, bool]):
         logall (Union[Unset, bool]):
         system (Union[Unset, bool]):
+        pfnet_controller (Union[Unset, bool]):
         resolver (Union[Unset, bool]):
         ppp (Union[Unset, bool]):
         routing (Union[Unset, bool]):
@@ -68,6 +69,7 @@ class SyslogConfiguration:
     hostapd: Union[Unset, bool] = UNSET
     logall: Union[Unset, bool] = UNSET
     system: Union[Unset, bool] = UNSET
+    pfnet_controller: Union[Unset, bool] = UNSET
     resolver: Union[Unset, bool] = UNSET
     ppp: Union[Unset, bool] = UNSET
     routing: Union[Unset, bool] = UNSET
@@ -124,6 +126,8 @@ class SyslogConfiguration:
         logall = self.logall
 
         system = self.system
+
+        pfnet_controller = self.pfnet_controller
 
         resolver = self.resolver
 
@@ -196,6 +200,8 @@ class SyslogConfiguration:
             field_dict["logall"] = logall
         if system is not UNSET:
             field_dict["system"] = system
+        if pfnet_controller is not UNSET:
+            field_dict["pfnet_controller"] = pfnet_controller
         if resolver is not UNSET:
             field_dict["resolver"] = resolver
         if ppp is not UNSET:
@@ -270,6 +276,8 @@ class SyslogConfiguration:
 
         system = d.pop("system", UNSET)
 
+        pfnet_controller = d.pop("pfnet_controller", UNSET)
+
         resolver = d.pop("resolver", UNSET)
 
         ppp = d.pop("ppp", UNSET)
@@ -319,6 +327,7 @@ class SyslogConfiguration:
             hostapd=hostapd,
             logall=logall,
             system=system,
+            pfnet_controller=pfnet_controller,
             resolver=resolver,
             ppp=ppp,
             routing=routing,

@@ -21,7 +21,6 @@ class VirtualIP:
         password_confirm (Union[Unset, str]):
         uniqid (Union[Unset, str]):
         descr (Union[Unset, str]):
-        type (Union[Unset, str]):
         subnet (Union[Unset, str]):
         id (Union[Unset, str]):
         carp_mode (Union[Unset, str]):
@@ -36,7 +35,6 @@ class VirtualIP:
     password_confirm: Union[Unset, str] = UNSET
     uniqid: Union[Unset, str] = UNSET
     descr: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
     subnet: Union[Unset, str] = UNSET
     id: Union[Unset, str] = UNSET
     carp_mode: Union[Unset, str] = UNSET
@@ -60,8 +58,6 @@ class VirtualIP:
         uniqid = self.uniqid
 
         descr = self.descr
-
-        type = self.type
 
         subnet = self.subnet
 
@@ -90,8 +86,6 @@ class VirtualIP:
             field_dict["uniqid"] = uniqid
         if descr is not UNSET:
             field_dict["descr"] = descr
-        if type is not UNSET:
-            field_dict["type"] = type
         if subnet is not UNSET:
             field_dict["subnet"] = subnet
         if id is not UNSET:
@@ -122,8 +116,6 @@ class VirtualIP:
 
         descr = d.pop("descr", UNSET)
 
-        type = d.pop("type", UNSET)
-
         subnet = d.pop("subnet", UNSET)
 
         id = d.pop("id", UNSET)
@@ -140,7 +132,6 @@ class VirtualIP:
             password_confirm=password_confirm,
             uniqid=uniqid,
             descr=descr,
-            type=type,
             subnet=subnet,
             id=id,
             carp_mode=carp_mode,

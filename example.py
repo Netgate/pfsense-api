@@ -31,7 +31,9 @@ from pfapi.api.aliases import firewall_get_aliases
 
 ###########################################
 
-CONTROLLER_URL = "https://10.100.0.38:8443"
+CONTROLLER_URL = os.getenv("CONTROLLER")
+if not CONTROLLER_URL:
+	CONTROLLER_URL = "https://10.100.0.38:8443"
 USER = "admin"
 PASSWORD = os.getenv("PASSWORD")
 if not PASSWORD:
@@ -98,7 +100,9 @@ elif isinstance(resp, Error):
 resp = get_controlled_devices.sync(client=client)
 for device in resp.devices:
 	print("=============================================================")
-	print(device.name, "\tState:", device.state,"\tAlias:", device.alias, "\tTags:", device.tags, "\tVPN address:", device.auth.vpn_address)
+	print(device.name, device.address, "\tState:", device.state,"\tAlias:", device.alias, "\tTags:", device.tags)
+	if device.auth:
+		print("\tVPN address:", device.auth.vpn_address)
 	if device.state != "online":
 		# Skip querying offline device
 		print("device is offline, skipping...")

@@ -12,14 +12,16 @@ T = TypeVar("T", bound="VLANInterface")
 class VLANInterface:
     """
     Attributes:
-        if_ (Union[Unset, str]):
+        if_device (Union[Unset, str]):
+        if_assigned_name (Union[Unset, str]):
         tag (Union[Unset, int]):
         pcp (Union[Unset, int]):
         descr (Union[Unset, str]):
         vlanif (Union[Unset, str]):
     """
 
-    if_: Union[Unset, str] = UNSET
+    if_device: Union[Unset, str] = UNSET
+    if_assigned_name: Union[Unset, str] = UNSET
     tag: Union[Unset, int] = UNSET
     pcp: Union[Unset, int] = UNSET
     descr: Union[Unset, str] = UNSET
@@ -27,7 +29,9 @@ class VLANInterface:
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        if_ = self.if_
+        if_device = self.if_device
+
+        if_assigned_name = self.if_assigned_name
 
         tag = self.tag
 
@@ -40,8 +44,10 @@ class VLANInterface:
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if if_ is not UNSET:
-            field_dict["if"] = if_
+        if if_device is not UNSET:
+            field_dict["if_device"] = if_device
+        if if_assigned_name is not UNSET:
+            field_dict["if_assigned_name"] = if_assigned_name
         if tag is not UNSET:
             field_dict["tag"] = tag
         if pcp is not UNSET:
@@ -56,7 +62,9 @@ class VLANInterface:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        if_ = d.pop("if", UNSET)
+        if_device = d.pop("if_device", UNSET)
+
+        if_assigned_name = d.pop("if_assigned_name", UNSET)
 
         tag = d.pop("tag", UNSET)
 
@@ -67,7 +75,8 @@ class VLANInterface:
         vlanif = d.pop("vlanif", UNSET)
 
         vlan_interface = cls(
-            if_=if_,
+            if_device=if_device,
+            if_assigned_name=if_assigned_name,
             tag=tag,
             pcp=pcp,
             descr=descr,
