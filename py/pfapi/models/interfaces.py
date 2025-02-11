@@ -16,25 +16,25 @@ T = TypeVar("T", bound="Interfaces")
 class Interfaces:
     """
     Attributes:
-        interface (Union[Unset, List['Interface']]):
+        interfaces (Union[Unset, List['Interface']]):
     """
 
-    interface: Union[Unset, List["Interface"]] = UNSET
+    interfaces: Union[Unset, List["Interface"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        interface: Union[Unset, List[Dict[str, Any]]] = UNSET
-        if not isinstance(self.interface, Unset):
-            interface = []
-            for interface_item_data in self.interface:
-                interface_item = interface_item_data.to_dict()
-                interface.append(interface_item)
+        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.interfaces, Unset):
+            interfaces = []
+            for interfaces_item_data in self.interfaces:
+                interfaces_item = interfaces_item_data.to_dict()
+                interfaces.append(interfaces_item)
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if interface is not UNSET:
-            field_dict["interface"] = interface
+        if interfaces is not UNSET:
+            field_dict["interfaces"] = interfaces
 
         return field_dict
 
@@ -43,15 +43,15 @@ class Interfaces:
         from ..models.interface import Interface
 
         d = src_dict.copy()
-        interface = []
-        _interface = d.pop("interface", UNSET)
-        for interface_item_data in _interface or []:
-            interface_item = Interface.from_dict(interface_item_data)
+        interfaces = []
+        _interfaces = d.pop("interfaces", UNSET)
+        for interfaces_item_data in _interfaces or []:
+            interfaces_item = Interface.from_dict(interfaces_item_data)
 
-            interface.append(interface_item)
+            interfaces.append(interfaces_item)
 
         interfaces = cls(
-            interface=interface,
+            interfaces=interfaces,
         )
 
         interfaces.additional_properties = d

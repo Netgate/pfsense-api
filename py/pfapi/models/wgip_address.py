@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="WGIPAddress")
 
@@ -12,14 +10,14 @@ T = TypeVar("T", bound="WGIPAddress")
 class WGIPAddress:
     """
     Attributes:
-        address (Union[Unset, str]):
-        mask (Union[Unset, str]):
-        descr (Union[Unset, str]):
+        address (str):
+        mask (str):
+        descr (str):
     """
 
-    address: Union[Unset, str] = UNSET
-    mask: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
+    address: str
+    mask: str
+    descr: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,24 +29,24 @@ class WGIPAddress:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if address is not UNSET:
-            field_dict["address"] = address
-        if mask is not UNSET:
-            field_dict["mask"] = mask
-        if descr is not UNSET:
-            field_dict["descr"] = descr
+        field_dict.update(
+            {
+                "address": address,
+                "mask": mask,
+                "descr": descr,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        address = d.pop("address", UNSET)
+        address = d.pop("address")
 
-        mask = d.pop("mask", UNSET)
+        mask = d.pop("mask")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
         wgip_address = cls(
             address=address,

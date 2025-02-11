@@ -29,9 +29,10 @@ from .auth_test_result import AuthTestResult
 from .boot_envs import BootEnvs
 from .boot_envs_envs import BootEnvsEnvs
 from .bootenv import Bootenv
+from .bridge_capable_interface import BridgeCapableInterface
 from .bridge_interface import BridgeInterface
-from .bridge_interface_paths import BridgeInterfacePaths
-from .bridge_interface_priorities import BridgeInterfacePriorities
+from .bridge_interface_ifpathcost import BridgeInterfaceIfpathcost
+from .bridge_interface_ifpriority import BridgeInterfaceIfpriority
 from .bridge_interfaces import BridgeInterfaces
 from .ca_cert_method_existing import CaCertMethodExisting
 from .ca_cert_method_new import CaCertMethodNew
@@ -52,12 +53,15 @@ from .cert_authorities import CertAuthorities
 from .cert_authority import CertAuthority
 from .cert_config import CertConfig
 from .cert_info import CertInfo
+from .cert_key_export_opts import CertKeyExportOpts
 from .cert_method_existing_pem import CertMethodExistingPEM
 from .cert_method_existing_pkcs_12 import CertMethodExistingPkcs12
 from .cert_method_new import CertMethodNew
 from .cert_method_sign_csr import CertMethodSignCSR
 from .cert_method_signing_request import CertMethodSigningRequest
 from .cert_opts import CertOpts
+from .cert_pkcs_12_export_opts import CertPkcs12ExportOpts
+from .cert_pkcs_12_export_opts_encryption import CertPkcs12ExportOptsEncryption
 from .certificate_detailed import CertificateDetailed
 from .certs_config import CertsConfig
 from .check_ip_service import CheckIPService
@@ -84,9 +88,7 @@ from .controller_descrip import ControllerDescrip
 from .controller_descrip_host_os import ControllerDescripHostOs
 from .controller_identity import ControllerIdentity
 from .controller_info import ControllerInfo
-from .controller_service import ControllerService
 from .controller_service_action import ControllerServiceAction
-from .controller_service_config import ControllerServiceConfig
 from .controller_stats import ControllerStats
 from .controller_summary import ControllerSummary
 from .controller_upgrade_info import ControllerUpgradeInfo
@@ -96,14 +98,20 @@ from .controllers_list import ControllersList
 from .create_bootenv import CreateBootenv
 from .create_controlled_device_cert import CreateControlledDeviceCert
 from .create_u_pn_pacl import CreateUPnPACL
+from .crl_cert import CRLCert
 from .crl_config import CRLConfig
 from .crl_config_pkgs import CRLConfigPkgs
 from .crl_entries import CRLEntries
+from .crl_method_internal_update import CRLMethodInternalUpdate
+from .crl_method_internal_update_revoke_reason import CRLMethodInternalUpdateRevokeReason
+from .crl_method_new import CRLMethodNew
+from .crl_method_x509 import CRLMethodX509
 from .crl_package_info import CRLPackageInfo
 from .delete_bootenvs import DeleteBootenvs
 from .delete_controlled_device_cert_request import DeleteControlledDeviceCertRequest
 from .delete_firewall_rule import DeleteFirewallRule
 from .device_basic_info import DeviceBasicInfo
+from .device_controller_info import DeviceControllerInfo
 from .device_identity import DeviceIdentity
 from .device_network_port import DeviceNetworkPort
 from .device_pkg_install_request import DevicePkgInstallRequest
@@ -117,8 +125,10 @@ from .device_public_key_option import DevicePublicKeyOption
 from .device_service_basic import DeviceServiceBasic
 from .device_tag_option import DeviceTagOption
 from .device_vpn import DeviceVpn
+from .dhcp_6_advanced_options import Dhcp6AdvancedOptions
 from .dhcp_address_pool import DhcpAddressPool
 from .dhcp_address_pools import DhcpAddressPools
+from .dhcp_advanced_options import DhcpAdvancedOptions
 from .dhcp_global_settings import DhcpGlobalSettings
 from .dhcp_global_settings_ipv_6_duid_type import DhcpGlobalSettingsIpv6DuidType
 from .dhcp_high_availability_advance_config import DhcpHighAvailabilityAdvanceConfig
@@ -181,6 +191,7 @@ from .dns_forwarder_host import DNSForwarderHost
 from .dns_forwarder_update_req import DNSForwarderUpdateReq
 from .dns_resolver_config import DNSResolverConfig
 from .dns_resolver_config_info import DNSResolverConfigInfo
+from .dns_resolver_config_info_interfaces import DNSResolverConfigInfoInterfaces
 from .dns_resolver_status import DNSResolverStatus
 from .dns_resolver_status_speed import DNSResolverStatusSpeed
 from .dns_resolver_status_stats import DNSResolverStatusStats
@@ -218,6 +229,7 @@ from .fw_addr_alias import FWAddrAlias
 from .fw_addr_port import FWAddrPort
 from .fw_alias import FWAlias
 from .fw_alias_req import FWAliasReq
+from .fw_alias_type import FWAliasType
 from .fw_aliases import FWAliases
 from .fw_bogon_rule import FWBogonRule
 from .fw_bogon_state import FWBogonState
@@ -228,6 +240,7 @@ from .fw_filter_rule import FWFilterRule
 from .fw_firewall_interfaces import FWFirewallInterfaces
 from .fw_ignored_input import FwIgnoredInput
 from .fw_rule_item_order import FWRuleItemOrder
+from .fw_rule_list import FWRuleList
 from .fw_rule_order import FWRuleOrder
 from .fw_rule_state import FWRuleState
 from .fw_rule_states import FWRuleStates
@@ -258,13 +271,18 @@ from .gateway_status import GatewayStatus
 from .gateway_v_address import GatewayVAddress
 from .gateways import Gateways
 from .gateways_status import GatewaysStatus
+from .gif_capable_interface import GIFCapableInterface
 from .gif_interface import GIFInterface
 from .gif_interfaces import GIFInterfaces
+from .gre_capable_interface import GRECapableInterface
 from .gre_interface import GREInterface
 from .gre_interfaces import GREInterfaces
 from .group_add_req import GroupAddReq
 from .group_status import GroupStatus
 from .group_update_req import GroupUpdateReq
+from .ha_pfsync import HAPfsync
+from .ha_sync_opts import HASyncOpts
+from .haxmlrpc_sync import HAXMLRPCSync
 from .hw_device import HWDevice
 from .hw_devices import HWDevices
 from .if_stats import IfStats
@@ -317,6 +335,9 @@ from .ip_sec_child_sas import IPSecChildSAS
 from .ip_sec_client import IPSecClient
 from .ip_sec_client_config import IPSecClientConfig
 from .ip_sec_config import IPSecConfig
+from .ip_sec_connect_req import IPSecConnectReq
+from .ip_sec_disconnect_req import IPSecDisconnectReq
+from .ip_sec_disconnect_req_phase import IPSecDisconnectReqPhase
 from .ip_sec_ikesa import IPSecIKESA
 from .ip_sec_logging import IPSecLogging
 from .ip_sec_mobile_key import IPSecMobileKey
@@ -324,6 +345,8 @@ from .ip_sec_mobile_keys import IPSecMobileKeys
 from .ip_sec_phase_list import IPSecPhaseList
 from .ip_sec_phases import IPSecPhases
 from .ip_sec_pool import IPSecPool
+from .ip_sec_pool_lease import IPSecPoolLease
+from .ip_sec_psk import IPSecPSK
 from .ip_sec_sad import IPSecSAD
 from .ip_sec_spd import IPSecSPD
 from .ip_sec_status import IPSecStatus
@@ -335,7 +358,11 @@ from .l2tp_config import L2TPConfig
 from .l2tp_radius import L2TPRadius
 from .l2tp_settings import L2TPSettings
 from .l2tp_user import L2TPUser
+from .lagg_capable_interface import LAGGCapableInterface
+from .lagg_capable_interfaces import LAGGCapableInterfaces
 from .lagg_interface import LAGGInterface
+from .lagg_interface_lacptimeout import LAGGInterfaceLacptimeout
+from .lagg_interface_proto import LAGGInterfaceProto
 from .lagg_interfaces import LAGGInterfaces
 from .ldap_auth_server import LdapAuthServer
 from .lease_interface import LeaseInterface
@@ -362,21 +389,41 @@ from .nat1_to_1_update_result import NAT1To1UpdateResult
 from .nat_addr_port import NATAddrPort
 from .nat_auto_addr import NATAutoAddr
 from .nat_auto_rule import NATAutoRule
+from .nat_npt_addr import NATNptAddr
 from .nat_npt_rule import NATNptRule
 from .nat_npt_rules import NATNptRules
 from .nat_npt_update_result import NATNptUpdateResult
+from .nat_out_mode_update_response import NATOutModeUpdateResponse
 from .nat_out_update_response import NATOutUpdateResponse
+from .nat_outbound_mode import NATOutboundMode
 from .nat_outbound_rule import NATOutboundRule
 from .nat_outbound_rules import NATOutboundRules
 from .nat_rule import NATRule
+from .nat_rule_order import NATRuleOrder
 from .nat_rules import NATRules
-from .nat_source import NATSource
 from .nat_update_result import NATUpdateResult
 from .ndp_entry import NDPEntry
 from .ndp_table import NDPTable
+from .net_if import NetIf
+from .net_if_addr import NetIfAddr
+from .net_if_assign_owner_req import NetIfAssignOwnerReq
+from .net_if_assign_owner_req_owner_type import NetIfAssignOwnerReqOwnerType
+from .net_if_dev_config import NetIfDevConfig
+from .net_if_dhcp import NetIfDhcp
+from .net_if_info import NetIfInfo
+from .net_if_ipv_6rd import NetIfIpv6RD
+from .net_if_options import NetIfOptions
+from .net_if_owner import NetIfOwner
+from .net_if_owner_container import NetIfOwnerContainer
+from .net_if_owner_host import NetIfOwnerHost
+from .net_if_owner_vm import NetIfOwnerVM
+from .net_if_owner_vpp import NetIfOwnerVPP
+from .net_ifs import NetIfs
 from .new_ca_cert_req import NewCaCertReq
 from .new_cert_req import NewCertReq
+from .new_crl_req import NewCRLReq
 from .new_interface_result import NewInterfaceResult
+from .nexus_controller_info import NexusControllerInfo
 from .ntp_access_restrictions import NtpAccessRestrictions
 from .ntp_acls import NtpAcls
 from .ntp_gps_flags import NtpGpsFlags
@@ -431,9 +478,14 @@ from .physical_interface import PhysicalInterface
 from .pp_po_e_config import PPPoEConfig
 from .pp_po_e_config_req import PPPoEConfigReq
 from .pp_po_e_server import PPPoEServer
+from .ppp_capable_interface import PPPCapableInterface
+from .ppp_capable_interfaces import PPPCapableInterfaces
 from .ppp_interface import PPPInterface
+from .ppp_interface_pppoe_pr_preset_val import PPPInterfacePppoePrPresetVal
+from .ppp_interface_pppoe_reset_type import PPPInterfacePppoeResetType
+from .ppp_interface_type import PPPInterfaceType
 from .ppp_interfaces import PPPInterfaces
-from .ppp_interfaces_modems import PPPInterfacesModems
+from .ppp_link_interface import PPPLinkInterface
 from .provider_country import ProviderCountry
 from .provider_country_setting import ProviderCountrySetting
 from .provider_plan_setting import ProviderPlanSetting
@@ -489,6 +541,8 @@ from .status_summary import StatusSummary
 from .std_log import StdLog
 from .std_logs import StdLogs
 from .storage_stats import StorageStats
+from .sys_firmware_info import SysFirmwareInfo
+from .sys_firmware_upgrade_opt import SysFirmwareUpgradeOpt
 from .sys_net_if import SysNetIf
 from .sysinfo import Sysinfo
 from .sysinfo_fs import SysinfoFs
@@ -532,12 +586,14 @@ from .ui_states import UIStates
 from .update_bootenv import UpdateBootenv
 from .update_ca_cert_req import UpdateCaCertReq
 from .update_cert_req import UpdateCertReq
+from .update_crl_req import UpdateCRLReq
 from .update_pkcs12_cert_req import UpdatePKCS12CertReq
 from .update_proxy_req import UpdateProxyReq
 from .user import User
 from .user_add_req import UserAddReq
 from .user_auth_settings import UserAuthSettings
 from .user_auth_settings_req import UserAuthSettingsReq
+from .user_generic import UserGeneric
 from .user_group import UserGroup
 from .user_groups import UserGroups
 from .user_privilege import UserPrivilege
@@ -545,6 +601,8 @@ from .user_privileges import UserPrivileges
 from .user_update_req import UserUpdateReq
 from .users import Users
 from .users_config import UsersConfig
+from .users_config_generic import UsersConfigGeneric
+from .users_generic import UsersGeneric
 from .virtual_i_ps import VirtualIPs
 from .virtual_ip import VirtualIP
 from .virtual_ip_result import VirtualIPResult
@@ -603,9 +661,10 @@ __all__ = (
     "Bootenv",
     "BootEnvs",
     "BootEnvsEnvs",
+    "BridgeCapableInterface",
     "BridgeInterface",
-    "BridgeInterfacePaths",
-    "BridgeInterfacePriorities",
+    "BridgeInterfaceIfpathcost",
+    "BridgeInterfaceIfpriority",
     "BridgeInterfaces",
     "CaCertMethodExisting",
     "CaCertMethodNew",
@@ -627,12 +686,15 @@ __all__ = (
     "CertConfig",
     "CertificateDetailed",
     "CertInfo",
+    "CertKeyExportOpts",
     "CertMethodExistingPEM",
     "CertMethodExistingPkcs12",
     "CertMethodNew",
     "CertMethodSignCSR",
     "CertMethodSigningRequest",
     "CertOpts",
+    "CertPkcs12ExportOpts",
+    "CertPkcs12ExportOptsEncryption",
     "CertsConfig",
     "CheckIPService",
     "ConsoleClient",
@@ -658,9 +720,7 @@ __all__ = (
     "ControllerDescripHostOs",
     "ControllerIdentity",
     "ControllerInfo",
-    "ControllerService",
     "ControllerServiceAction",
-    "ControllerServiceConfig",
     "ControllersList",
     "ControllerStats",
     "ControllerSummary",
@@ -670,14 +730,20 @@ __all__ = (
     "CreateBootenv",
     "CreateControlledDeviceCert",
     "CreateUPnPACL",
+    "CRLCert",
     "CRLConfig",
     "CRLConfigPkgs",
     "CRLEntries",
+    "CRLMethodInternalUpdate",
+    "CRLMethodInternalUpdateRevokeReason",
+    "CRLMethodNew",
+    "CRLMethodX509",
     "CRLPackageInfo",
     "DeleteBootenvs",
     "DeleteControlledDeviceCertRequest",
     "DeleteFirewallRule",
     "DeviceBasicInfo",
+    "DeviceControllerInfo",
     "DeviceIdentity",
     "DeviceNetworkPort",
     "DevicePkgInstallRequest",
@@ -691,8 +757,10 @@ __all__ = (
     "DeviceServiceBasic",
     "DeviceTagOption",
     "DeviceVpn",
+    "Dhcp6AdvancedOptions",
     "DhcpAddressPool",
     "DhcpAddressPools",
+    "DhcpAdvancedOptions",
     "Dhcpd",
     "DhcpdConfig",
     "DhcpdLan",
@@ -757,6 +825,7 @@ __all__ = (
     "DNSForwarderUpdateReq",
     "DNSResolverConfig",
     "DNSResolverConfigInfo",
+    "DNSResolverConfigInfoInterfaces",
     "DNSResolverStatus",
     "DNSResolverStatusSpeed",
     "DNSResolverStatusStats",
@@ -793,6 +862,7 @@ __all__ = (
     "FWAlias",
     "FWAliases",
     "FWAliasReq",
+    "FWAliasType",
     "FWBogonRule",
     "FWBogonState",
     "FwBulkCopy",
@@ -802,6 +872,7 @@ __all__ = (
     "FWFirewallInterfaces",
     "FwIgnoredInput",
     "FWRuleItemOrder",
+    "FWRuleList",
     "FWRuleOrder",
     "FWRules",
     "FWRulesAliases",
@@ -832,13 +903,18 @@ __all__ = (
     "GatewaysStatus",
     "GatewayStatus",
     "GatewayVAddress",
+    "GIFCapableInterface",
     "GIFInterface",
     "GIFInterfaces",
+    "GRECapableInterface",
     "GREInterface",
     "GREInterfaces",
     "GroupAddReq",
     "GroupStatus",
     "GroupUpdateReq",
+    "HAPfsync",
+    "HASyncOpts",
+    "HAXMLRPCSync",
     "HWDevice",
     "HWDevices",
     "IfStats",
@@ -891,6 +967,9 @@ __all__ = (
     "IPSecClient",
     "IPSecClientConfig",
     "IPSecConfig",
+    "IPSecConnectReq",
+    "IPSecDisconnectReq",
+    "IPSecDisconnectReqPhase",
     "IPSecIKESA",
     "IPSecLogging",
     "IPSecMobileKey",
@@ -898,6 +977,8 @@ __all__ = (
     "IPSecPhaseList",
     "IPSecPhases",
     "IPSecPool",
+    "IPSecPoolLease",
+    "IPSecPSK",
     "IPSecSAD",
     "IPSecSPD",
     "IPSecStatus",
@@ -909,7 +990,11 @@ __all__ = (
     "L2TPRadius",
     "L2TPSettings",
     "L2TPUser",
+    "LAGGCapableInterface",
+    "LAGGCapableInterfaces",
     "LAGGInterface",
+    "LAGGInterfaceLacptimeout",
+    "LAGGInterfaceProto",
     "LAGGInterfaces",
     "LdapAuthServer",
     "LeaseInterface",
@@ -936,21 +1021,41 @@ __all__ = (
     "NATAddrPort",
     "NATAutoAddr",
     "NATAutoRule",
+    "NATNptAddr",
     "NATNptRule",
     "NATNptRules",
     "NATNptUpdateResult",
+    "NATOutboundMode",
     "NATOutboundRule",
     "NATOutboundRules",
+    "NATOutModeUpdateResponse",
     "NATOutUpdateResponse",
     "NATRule",
+    "NATRuleOrder",
     "NATRules",
-    "NATSource",
     "NATUpdateResult",
     "NDPEntry",
     "NDPTable",
+    "NetIf",
+    "NetIfAddr",
+    "NetIfAssignOwnerReq",
+    "NetIfAssignOwnerReqOwnerType",
+    "NetIfDevConfig",
+    "NetIfDhcp",
+    "NetIfInfo",
+    "NetIfIpv6RD",
+    "NetIfOptions",
+    "NetIfOwner",
+    "NetIfOwnerContainer",
+    "NetIfOwnerHost",
+    "NetIfOwnerVM",
+    "NetIfOwnerVPP",
+    "NetIfs",
     "NewCaCertReq",
     "NewCertReq",
+    "NewCRLReq",
     "NewInterfaceResult",
+    "NexusControllerInfo",
     "NtpAccessRestrictions",
     "NtpAcls",
     "NtpGpsFlags",
@@ -1002,9 +1107,14 @@ __all__ = (
     "Phase2LocalId",
     "Phase2RemoteId",
     "PhysicalInterface",
+    "PPPCapableInterface",
+    "PPPCapableInterfaces",
     "PPPInterface",
+    "PPPInterfacePppoePrPresetVal",
+    "PPPInterfacePppoeResetType",
     "PPPInterfaces",
-    "PPPInterfacesModems",
+    "PPPInterfaceType",
+    "PPPLinkInterface",
     "PPPoEConfig",
     "PPPoEConfigReq",
     "PPPoEServer",
@@ -1063,6 +1173,8 @@ __all__ = (
     "StdLog",
     "StdLogs",
     "StorageStats",
+    "SysFirmwareInfo",
+    "SysFirmwareUpgradeOpt",
     "Sysinfo",
     "SysinfoFs",
     "SysinfoUpdate",
@@ -1102,6 +1214,7 @@ __all__ = (
     "UpdateBootenv",
     "UpdateCaCertReq",
     "UpdateCertReq",
+    "UpdateCRLReq",
     "UpdatePKCS12CertReq",
     "UpdateProxyReq",
     "UPnPConfig",
@@ -1112,12 +1225,15 @@ __all__ = (
     "UserAddReq",
     "UserAuthSettings",
     "UserAuthSettingsReq",
+    "UserGeneric",
     "UserGroup",
     "UserGroups",
     "UserPrivilege",
     "UserPrivileges",
     "Users",
     "UsersConfig",
+    "UsersConfigGeneric",
+    "UsersGeneric",
     "UserUpdateReq",
     "VirtualIP",
     "VirtualIPResult",

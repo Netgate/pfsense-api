@@ -12,30 +12,30 @@ T = TypeVar("T", bound="DhcpRelayConfig")
 class DhcpRelayConfig:
     """
     Attributes:
-        enable (Union[Unset, bool]):
+        enable (bool):
+        carp_status_vip (str):
+        append_circuit_agent_ids (bool):
         interfaces (Union[Unset, List[str]]):
-        carp_status_vip (Union[Unset, str]):
-        append_circuit_agent_ids (Union[Unset, bool]):
         upstream_servers (Union[Unset, List[str]]):
     """
 
-    enable: Union[Unset, bool] = UNSET
+    enable: bool
+    carp_status_vip: str
+    append_circuit_agent_ids: bool
     interfaces: Union[Unset, List[str]] = UNSET
-    carp_status_vip: Union[Unset, str] = UNSET
-    append_circuit_agent_ids: Union[Unset, bool] = UNSET
     upstream_servers: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         enable = self.enable
 
-        interfaces: Union[Unset, List[str]] = UNSET
-        if not isinstance(self.interfaces, Unset):
-            interfaces = self.interfaces
-
         carp_status_vip = self.carp_status_vip
 
         append_circuit_agent_ids = self.append_circuit_agent_ids
+
+        interfaces: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.interfaces, Unset):
+            interfaces = self.interfaces
 
         upstream_servers: Union[Unset, List[str]] = UNSET
         if not isinstance(self.upstream_servers, Unset):
@@ -43,15 +43,15 @@ class DhcpRelayConfig:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if enable is not UNSET:
-            field_dict["enable"] = enable
+        field_dict.update(
+            {
+                "enable": enable,
+                "carp_status_vip": carp_status_vip,
+                "append_circuit_agent_ids": append_circuit_agent_ids,
+            }
+        )
         if interfaces is not UNSET:
             field_dict["interfaces"] = interfaces
-        if carp_status_vip is not UNSET:
-            field_dict["carp_status_vip"] = carp_status_vip
-        if append_circuit_agent_ids is not UNSET:
-            field_dict["append_circuit_agent_ids"] = append_circuit_agent_ids
         if upstream_servers is not UNSET:
             field_dict["upstream_servers"] = upstream_servers
 
@@ -60,21 +60,21 @@ class DhcpRelayConfig:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        enable = d.pop("enable", UNSET)
+        enable = d.pop("enable")
+
+        carp_status_vip = d.pop("carp_status_vip")
+
+        append_circuit_agent_ids = d.pop("append_circuit_agent_ids")
 
         interfaces = cast(List[str], d.pop("interfaces", UNSET))
-
-        carp_status_vip = d.pop("carp_status_vip", UNSET)
-
-        append_circuit_agent_ids = d.pop("append_circuit_agent_ids", UNSET)
 
         upstream_servers = cast(List[str], d.pop("upstream_servers", UNSET))
 
         dhcp_relay_config = cls(
             enable=enable,
-            interfaces=interfaces,
             carp_status_vip=carp_status_vip,
             append_circuit_agent_ids=append_circuit_agent_ids,
+            interfaces=interfaces,
             upstream_servers=upstream_servers,
         )
 

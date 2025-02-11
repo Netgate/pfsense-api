@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="InterfaceFriendlyName")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="InterfaceFriendlyName")
 class InterfaceFriendlyName:
     """
     Attributes:
-        if_ (Union[Unset, str]):
-        name (Union[Unset, str]):
+        if_ (str):
+        name (str):
     """
 
-    if_: Union[Unset, str] = UNSET
-    name: Union[Unset, str] = UNSET
+    if_: str
+    name: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class InterfaceFriendlyName:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if if_ is not UNSET:
-            field_dict["if"] = if_
-        if name is not UNSET:
-            field_dict["name"] = name
+        field_dict.update(
+            {
+                "if": if_,
+                "name": name,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        if_ = d.pop("if", UNSET)
+        if_ = d.pop("if")
 
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
         interface_friendly_name = cls(
             if_=if_,

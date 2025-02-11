@@ -1,9 +1,13 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.ip_sec_pool_lease import IPSecPoolLease
+
 
 T = TypeVar("T", bound="IPSecPool")
 
@@ -12,24 +16,20 @@ T = TypeVar("T", bound="IPSecPool")
 class IPSecPool:
     """
     Attributes:
-        name (Union[Unset, str]):
-        base (Union[Unset, str]):
-        online (Union[Unset, str]):
-        offline (Union[Unset, str]):
-        size (Union[Unset, str]):
-        host (Union[Unset, str]):
-        status (Union[Unset, str]):
-        id (Union[Unset, str]):
+        name (str):
+        base (str):
+        online (str):
+        offline (str):
+        size (str):
+        lease (Union[Unset, List['IPSecPoolLease']]):
     """
 
-    name: Union[Unset, str] = UNSET
-    base: Union[Unset, str] = UNSET
-    online: Union[Unset, str] = UNSET
-    offline: Union[Unset, str] = UNSET
-    size: Union[Unset, str] = UNSET
-    host: Union[Unset, str] = UNSET
-    status: Union[Unset, str] = UNSET
-    id: Union[Unset, str] = UNSET
+    name: str
+    base: str
+    online: str
+    offline: str
+    size: str
+    lease: Union[Unset, List["IPSecPoolLease"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -43,52 +43,50 @@ class IPSecPool:
 
         size = self.size
 
-        host = self.host
-
-        status = self.status
-
-        id = self.id
+        lease: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.lease, Unset):
+            lease = []
+            for lease_item_data in self.lease:
+                lease_item = lease_item_data.to_dict()
+                lease.append(lease_item)
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if base is not UNSET:
-            field_dict["base"] = base
-        if online is not UNSET:
-            field_dict["online"] = online
-        if offline is not UNSET:
-            field_dict["offline"] = offline
-        if size is not UNSET:
-            field_dict["size"] = size
-        if host is not UNSET:
-            field_dict["host"] = host
-        if status is not UNSET:
-            field_dict["status"] = status
-        if id is not UNSET:
-            field_dict["id"] = id
+        field_dict.update(
+            {
+                "name": name,
+                "base": base,
+                "online": online,
+                "offline": offline,
+                "size": size,
+            }
+        )
+        if lease is not UNSET:
+            field_dict["lease"] = lease
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+        from ..models.ip_sec_pool_lease import IPSecPoolLease
+
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        base = d.pop("base", UNSET)
+        base = d.pop("base")
 
-        online = d.pop("online", UNSET)
+        online = d.pop("online")
 
-        offline = d.pop("offline", UNSET)
+        offline = d.pop("offline")
 
-        size = d.pop("size", UNSET)
+        size = d.pop("size")
 
-        host = d.pop("host", UNSET)
+        lease = []
+        _lease = d.pop("lease", UNSET)
+        for lease_item_data in _lease or []:
+            lease_item = IPSecPoolLease.from_dict(lease_item_data)
 
-        status = d.pop("status", UNSET)
-
-        id = d.pop("id", UNSET)
+            lease.append(lease_item)
 
         ip_sec_pool = cls(
             name=name,
@@ -96,9 +94,7 @@ class IPSecPool:
             online=online,
             offline=offline,
             size=size,
-            host=host,
-            status=status,
-            id=id,
+            lease=lease,
         )
 
         ip_sec_pool.additional_properties = d

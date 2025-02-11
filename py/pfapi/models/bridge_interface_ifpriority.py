@@ -3,14 +3,14 @@ from typing import Any, Dict, List, Type, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="BridgeInterfacePriorities")
+T = TypeVar("T", bound="BridgeInterfaceIfpriority")
 
 
 @_attrs_define
-class BridgeInterfacePriorities:
+class BridgeInterfaceIfpriority:
     """ """
 
-    additional_properties: Dict[str, str] = _attrs_field(init=False, factory=dict)
+    additional_properties: Dict[str, int] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         field_dict: Dict[str, Any] = {}
@@ -21,19 +21,19 @@ class BridgeInterfacePriorities:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        bridge_interface_priorities = cls()
+        bridge_interface_ifpriority = cls()
 
-        bridge_interface_priorities.additional_properties = d
-        return bridge_interface_priorities
+        bridge_interface_ifpriority.additional_properties = d
+        return bridge_interface_ifpriority
 
     @property
     def additional_keys(self) -> List[str]:
         return list(self.additional_properties.keys())
 
-    def __getitem__(self, key: str) -> str:
+    def __getitem__(self, key: str) -> int:
         return self.additional_properties[key]
 
-    def __setitem__(self, key: str, value: str) -> None:
+    def __setitem__(self, key: str, value: int) -> None:
         self.additional_properties[key] = value
 
     def __delitem__(self, key: str) -> None:

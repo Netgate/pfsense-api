@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ControllerSummary")
 
@@ -14,28 +12,24 @@ class ControllerSummary:
     controller using Netgard.
 
         Attributes:
-            mode_active (Union[Unset, bool]):
-            name (Union[Unset, str]):
-            key (Union[Unset, str]):
-            vpn_pubkey (Union[Unset, str]):
-            vpn_listenaddr (Union[Unset, str]):
-            vpn_address (Union[Unset, str]):
-            vpn_prefix (Union[Unset, str]):
-            vpn_netkey (Union[Unset, str]):
-            vpn_listenaddr4 (Union[Unset, str]):
-            vpn_listenaddr6 (Union[Unset, str]):
+            mode_active (bool):
+            name (str):
+            key (str):
+            vpn_pubkey (str):
+            vpn_listenaddr (str):
+            vpn_address (str):
+            vpn_prefix (str):
+            vpn_netkey (str):
     """
 
-    mode_active: Union[Unset, bool] = UNSET
-    name: Union[Unset, str] = UNSET
-    key: Union[Unset, str] = UNSET
-    vpn_pubkey: Union[Unset, str] = UNSET
-    vpn_listenaddr: Union[Unset, str] = UNSET
-    vpn_address: Union[Unset, str] = UNSET
-    vpn_prefix: Union[Unset, str] = UNSET
-    vpn_netkey: Union[Unset, str] = UNSET
-    vpn_listenaddr4: Union[Unset, str] = UNSET
-    vpn_listenaddr6: Union[Unset, str] = UNSET
+    mode_active: bool
+    name: str
+    key: str
+    vpn_pubkey: str
+    vpn_listenaddr: str
+    vpn_address: str
+    vpn_prefix: str
+    vpn_netkey: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -55,58 +49,41 @@ class ControllerSummary:
 
         vpn_netkey = self.vpn_netkey
 
-        vpn_listenaddr4 = self.vpn_listenaddr4
-
-        vpn_listenaddr6 = self.vpn_listenaddr6
-
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if mode_active is not UNSET:
-            field_dict["mode_active"] = mode_active
-        if name is not UNSET:
-            field_dict["name"] = name
-        if key is not UNSET:
-            field_dict["key"] = key
-        if vpn_pubkey is not UNSET:
-            field_dict["vpn_pubkey"] = vpn_pubkey
-        if vpn_listenaddr is not UNSET:
-            field_dict["vpn_listenaddr"] = vpn_listenaddr
-        if vpn_address is not UNSET:
-            field_dict["vpn_address"] = vpn_address
-        if vpn_prefix is not UNSET:
-            field_dict["vpn_prefix"] = vpn_prefix
-        if vpn_netkey is not UNSET:
-            field_dict["vpn_netkey"] = vpn_netkey
-        if vpn_listenaddr4 is not UNSET:
-            field_dict["vpn_listenaddr4"] = vpn_listenaddr4
-        if vpn_listenaddr6 is not UNSET:
-            field_dict["vpn_listenaddr6"] = vpn_listenaddr6
+        field_dict.update(
+            {
+                "mode_active": mode_active,
+                "name": name,
+                "key": key,
+                "vpn_pubkey": vpn_pubkey,
+                "vpn_listenaddr": vpn_listenaddr,
+                "vpn_address": vpn_address,
+                "vpn_prefix": vpn_prefix,
+                "vpn_netkey": vpn_netkey,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        mode_active = d.pop("mode_active", UNSET)
+        mode_active = d.pop("mode_active")
 
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        key = d.pop("key", UNSET)
+        key = d.pop("key")
 
-        vpn_pubkey = d.pop("vpn_pubkey", UNSET)
+        vpn_pubkey = d.pop("vpn_pubkey")
 
-        vpn_listenaddr = d.pop("vpn_listenaddr", UNSET)
+        vpn_listenaddr = d.pop("vpn_listenaddr")
 
-        vpn_address = d.pop("vpn_address", UNSET)
+        vpn_address = d.pop("vpn_address")
 
-        vpn_prefix = d.pop("vpn_prefix", UNSET)
+        vpn_prefix = d.pop("vpn_prefix")
 
-        vpn_netkey = d.pop("vpn_netkey", UNSET)
-
-        vpn_listenaddr4 = d.pop("vpn_listenaddr4", UNSET)
-
-        vpn_listenaddr6 = d.pop("vpn_listenaddr6", UNSET)
+        vpn_netkey = d.pop("vpn_netkey")
 
         controller_summary = cls(
             mode_active=mode_active,
@@ -117,8 +94,6 @@ class ControllerSummary:
             vpn_address=vpn_address,
             vpn_prefix=vpn_prefix,
             vpn_netkey=vpn_netkey,
-            vpn_listenaddr4=vpn_listenaddr4,
-            vpn_listenaddr6=vpn_listenaddr6,
         )
 
         controller_summary.additional_properties = d

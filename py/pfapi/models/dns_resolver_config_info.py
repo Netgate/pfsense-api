@@ -7,6 +7,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.dns_resolver_config import DNSResolverConfig
+    from ..models.dns_resolver_config_info_interfaces import DNSResolverConfigInfoInterfaces
     from ..models.service_certificate import ServiceCertificate
 
 
@@ -17,26 +18,22 @@ T = TypeVar("T", bound="DNSResolverConfigInfo")
 class DNSResolverConfigInfo:
     """
     Attributes:
-        config (Union[Unset, DNSResolverConfig]):
-        interfaces (Union[Unset, List[str]]):
+        config (DNSResolverConfig):
+        interfaces (DNSResolverConfigInfoInterfaces):
         certs (Union[Unset, List['ServiceCertificate']]):
         scripts (Union[Unset, List[str]]):
     """
 
-    config: Union[Unset, "DNSResolverConfig"] = UNSET
-    interfaces: Union[Unset, List[str]] = UNSET
+    config: "DNSResolverConfig"
+    interfaces: "DNSResolverConfigInfoInterfaces"
     certs: Union[Unset, List["ServiceCertificate"]] = UNSET
     scripts: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        config: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.config, Unset):
-            config = self.config.to_dict()
+        config = self.config.to_dict()
 
-        interfaces: Union[Unset, List[str]] = UNSET
-        if not isinstance(self.interfaces, Unset):
-            interfaces = self.interfaces
+        interfaces = self.interfaces.to_dict()
 
         certs: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.certs, Unset):
@@ -51,11 +48,12 @@ class DNSResolverConfigInfo:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if config is not UNSET:
-            field_dict["config"] = config
-        if interfaces is not UNSET:
-            field_dict["interfaces"] = interfaces
+        field_dict.update(
+            {
+                "config": config,
+                "interfaces": interfaces,
+            }
+        )
         if certs is not UNSET:
             field_dict["certs"] = certs
         if scripts is not UNSET:
@@ -66,17 +64,13 @@ class DNSResolverConfigInfo:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         from ..models.dns_resolver_config import DNSResolverConfig
+        from ..models.dns_resolver_config_info_interfaces import DNSResolverConfigInfoInterfaces
         from ..models.service_certificate import ServiceCertificate
 
         d = src_dict.copy()
-        _config = d.pop("config", UNSET)
-        config: Union[Unset, DNSResolverConfig]
-        if isinstance(_config, Unset):
-            config = UNSET
-        else:
-            config = DNSResolverConfig.from_dict(_config)
+        config = DNSResolverConfig.from_dict(d.pop("config"))
 
-        interfaces = cast(List[str], d.pop("interfaces", UNSET))
+        interfaces = DNSResolverConfigInfoInterfaces.from_dict(d.pop("interfaces"))
 
         certs = []
         _certs = d.pop("certs", UNSET)

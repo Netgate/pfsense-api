@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DNSForwarderAlias")
 
@@ -12,14 +10,14 @@ T = TypeVar("T", bound="DNSForwarderAlias")
 class DNSForwarderAlias:
     """
     Attributes:
-        host (Union[Unset, str]):
-        domain (Union[Unset, str]):
-        description (Union[Unset, str]):
+        host (str):
+        domain (str):
+        description (str):
     """
 
-    host: Union[Unset, str] = UNSET
-    domain: Union[Unset, str] = UNSET
-    description: Union[Unset, str] = UNSET
+    host: str
+    domain: str
+    description: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,24 +29,24 @@ class DNSForwarderAlias:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if host is not UNSET:
-            field_dict["host"] = host
-        if domain is not UNSET:
-            field_dict["domain"] = domain
-        if description is not UNSET:
-            field_dict["description"] = description
+        field_dict.update(
+            {
+                "host": host,
+                "domain": domain,
+                "description": description,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        host = d.pop("host", UNSET)
+        host = d.pop("host")
 
-        domain = d.pop("domain", UNSET)
+        domain = d.pop("domain")
 
-        description = d.pop("description", UNSET)
+        description = d.pop("description")
 
         dns_forwarder_alias = cls(
             host=host,

@@ -16,17 +16,17 @@ T = TypeVar("T", bound="DNSForwarderHost")
 class DNSForwarderHost:
     """
     Attributes:
-        host (Union[Unset, str]):
-        domain (Union[Unset, str]):
-        ip (Union[Unset, str]):
-        descr (Union[Unset, str]):
+        host (str):
+        domain (str):
+        ip (str):
+        descr (str):
         aliases (Union[Unset, List['DNSForwarderAlias']]):
     """
 
-    host: Union[Unset, str] = UNSET
-    domain: Union[Unset, str] = UNSET
-    ip: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
+    host: str
+    domain: str
+    ip: str
+    descr: str
     aliases: Union[Unset, List["DNSForwarderAlias"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -48,15 +48,14 @@ class DNSForwarderHost:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if host is not UNSET:
-            field_dict["host"] = host
-        if domain is not UNSET:
-            field_dict["domain"] = domain
-        if ip is not UNSET:
-            field_dict["ip"] = ip
-        if descr is not UNSET:
-            field_dict["descr"] = descr
+        field_dict.update(
+            {
+                "host": host,
+                "domain": domain,
+                "ip": ip,
+                "descr": descr,
+            }
+        )
         if aliases is not UNSET:
             field_dict["aliases"] = aliases
 
@@ -67,13 +66,13 @@ class DNSForwarderHost:
         from ..models.dns_forwarder_alias import DNSForwarderAlias
 
         d = src_dict.copy()
-        host = d.pop("host", UNSET)
+        host = d.pop("host")
 
-        domain = d.pop("domain", UNSET)
+        domain = d.pop("domain")
 
-        ip = d.pop("ip", UNSET)
+        ip = d.pop("ip")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
         aliases = []
         _aliases = d.pop("aliases", UNSET)

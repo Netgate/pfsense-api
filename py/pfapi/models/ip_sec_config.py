@@ -1,9 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.ip_sec_bypass_rules import IPSecBypassRules
@@ -17,50 +15,48 @@ T = TypeVar("T", bound="IPSecConfig")
 class IPSecConfig:
     """
     Attributes:
-        logging (Union[Unset, IPSecLogging]):
-        async_crypto (Union[Unset, bool]):
-        uniqueids (Union[Unset, str]):
-        filtermode (Union[Unset, str]):
-        bypassrules (Union[Unset, IPSecBypassRules]):
-        pkcs11support (Union[Unset, bool]):
-        enableinterfacesuse (Union[Unset, bool]):
-        unityplugin (Union[Unset, bool]):
-        strictcrlpolicy (Union[Unset, bool]):
-        makebeforebreak (Union[Unset, bool]):
-        ipsecbypass (Union[Unset, bool]):
-        acceptunencryptedmainmode (Union[Unset, bool]):
-        maxexchange (Union[Unset, int]):
-        port_nat_t (Union[Unset, int]):
-        port (Union[Unset, int]):
-        compression (Union[Unset, bool]):
-        noshuntlaninterfaces (Union[Unset, bool]):
-        maxmss (Union[Unset, str]):
+        logging (IPSecLogging):
+        async_crypto (bool):
+        uniqueids (str):
+        filtermode (str):
+        bypassrules (IPSecBypassRules):
+        pkcs11support (bool):
+        enableinterfacesuse (bool):
+        unityplugin (bool):
+        strictcrlpolicy (bool):
+        makebeforebreak (bool):
+        ipsecbypass (bool):
+        acceptunencryptedmainmode (bool):
+        maxexchange (int):
+        port_nat_t (int):
+        port (int):
+        compression (bool):
+        noshuntlaninterfaces (bool):
+        maxmss (str):
     """
 
-    logging: Union[Unset, "IPSecLogging"] = UNSET
-    async_crypto: Union[Unset, bool] = UNSET
-    uniqueids: Union[Unset, str] = UNSET
-    filtermode: Union[Unset, str] = UNSET
-    bypassrules: Union[Unset, "IPSecBypassRules"] = UNSET
-    pkcs11support: Union[Unset, bool] = UNSET
-    enableinterfacesuse: Union[Unset, bool] = UNSET
-    unityplugin: Union[Unset, bool] = UNSET
-    strictcrlpolicy: Union[Unset, bool] = UNSET
-    makebeforebreak: Union[Unset, bool] = UNSET
-    ipsecbypass: Union[Unset, bool] = UNSET
-    acceptunencryptedmainmode: Union[Unset, bool] = UNSET
-    maxexchange: Union[Unset, int] = UNSET
-    port_nat_t: Union[Unset, int] = UNSET
-    port: Union[Unset, int] = UNSET
-    compression: Union[Unset, bool] = UNSET
-    noshuntlaninterfaces: Union[Unset, bool] = UNSET
-    maxmss: Union[Unset, str] = UNSET
+    logging: "IPSecLogging"
+    async_crypto: bool
+    uniqueids: str
+    filtermode: str
+    bypassrules: "IPSecBypassRules"
+    pkcs11support: bool
+    enableinterfacesuse: bool
+    unityplugin: bool
+    strictcrlpolicy: bool
+    makebeforebreak: bool
+    ipsecbypass: bool
+    acceptunencryptedmainmode: bool
+    maxexchange: int
+    port_nat_t: int
+    port: int
+    compression: bool
+    noshuntlaninterfaces: bool
+    maxmss: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        logging: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.logging, Unset):
-            logging = self.logging.to_dict()
+        logging = self.logging.to_dict()
 
         async_crypto = self.async_crypto
 
@@ -68,9 +64,7 @@ class IPSecConfig:
 
         filtermode = self.filtermode
 
-        bypassrules: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.bypassrules, Unset):
-            bypassrules = self.bypassrules.to_dict()
+        bypassrules = self.bypassrules.to_dict()
 
         pkcs11support = self.pkcs11support
 
@@ -100,43 +94,28 @@ class IPSecConfig:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if logging is not UNSET:
-            field_dict["logging"] = logging
-        if async_crypto is not UNSET:
-            field_dict["async_crypto"] = async_crypto
-        if uniqueids is not UNSET:
-            field_dict["uniqueids"] = uniqueids
-        if filtermode is not UNSET:
-            field_dict["filtermode"] = filtermode
-        if bypassrules is not UNSET:
-            field_dict["bypassrules"] = bypassrules
-        if pkcs11support is not UNSET:
-            field_dict["pkcs11support"] = pkcs11support
-        if enableinterfacesuse is not UNSET:
-            field_dict["enableinterfacesuse"] = enableinterfacesuse
-        if unityplugin is not UNSET:
-            field_dict["unityplugin"] = unityplugin
-        if strictcrlpolicy is not UNSET:
-            field_dict["strictcrlpolicy"] = strictcrlpolicy
-        if makebeforebreak is not UNSET:
-            field_dict["makebeforebreak"] = makebeforebreak
-        if ipsecbypass is not UNSET:
-            field_dict["ipsecbypass"] = ipsecbypass
-        if acceptunencryptedmainmode is not UNSET:
-            field_dict["acceptunencryptedmainmode"] = acceptunencryptedmainmode
-        if maxexchange is not UNSET:
-            field_dict["maxexchange"] = maxexchange
-        if port_nat_t is not UNSET:
-            field_dict["port_nat_t"] = port_nat_t
-        if port is not UNSET:
-            field_dict["port"] = port
-        if compression is not UNSET:
-            field_dict["compression"] = compression
-        if noshuntlaninterfaces is not UNSET:
-            field_dict["noshuntlaninterfaces"] = noshuntlaninterfaces
-        if maxmss is not UNSET:
-            field_dict["maxmss"] = maxmss
+        field_dict.update(
+            {
+                "logging": logging,
+                "async_crypto": async_crypto,
+                "uniqueids": uniqueids,
+                "filtermode": filtermode,
+                "bypassrules": bypassrules,
+                "pkcs11support": pkcs11support,
+                "enableinterfacesuse": enableinterfacesuse,
+                "unityplugin": unityplugin,
+                "strictcrlpolicy": strictcrlpolicy,
+                "makebeforebreak": makebeforebreak,
+                "ipsecbypass": ipsecbypass,
+                "acceptunencryptedmainmode": acceptunencryptedmainmode,
+                "maxexchange": maxexchange,
+                "port_nat_t": port_nat_t,
+                "port": port,
+                "compression": compression,
+                "noshuntlaninterfaces": noshuntlaninterfaces,
+                "maxmss": maxmss,
+            }
+        )
 
         return field_dict
 
@@ -146,51 +125,41 @@ class IPSecConfig:
         from ..models.ip_sec_logging import IPSecLogging
 
         d = src_dict.copy()
-        _logging = d.pop("logging", UNSET)
-        logging: Union[Unset, IPSecLogging]
-        if isinstance(_logging, Unset):
-            logging = UNSET
-        else:
-            logging = IPSecLogging.from_dict(_logging)
+        logging = IPSecLogging.from_dict(d.pop("logging"))
 
-        async_crypto = d.pop("async_crypto", UNSET)
+        async_crypto = d.pop("async_crypto")
 
-        uniqueids = d.pop("uniqueids", UNSET)
+        uniqueids = d.pop("uniqueids")
 
-        filtermode = d.pop("filtermode", UNSET)
+        filtermode = d.pop("filtermode")
 
-        _bypassrules = d.pop("bypassrules", UNSET)
-        bypassrules: Union[Unset, IPSecBypassRules]
-        if isinstance(_bypassrules, Unset):
-            bypassrules = UNSET
-        else:
-            bypassrules = IPSecBypassRules.from_dict(_bypassrules)
+        bypassrules = IPSecBypassRules.from_dict(d.pop("bypassrules"))
 
-        pkcs11support = d.pop("pkcs11support", UNSET)
+        pkcs11support = d.pop("pkcs11support")
 
-        enableinterfacesuse = d.pop("enableinterfacesuse", UNSET)
+        enableinterfacesuse = d.pop("enableinterfacesuse")
 
-        unityplugin = d.pop("unityplugin", UNSET)
+        unityplugin = d.pop("unityplugin")
 
-        strictcrlpolicy = d.pop("strictcrlpolicy", UNSET)
+        strictcrlpolicy = d.pop("strictcrlpolicy")
 
-        makebeforebreak = d.pop("makebeforebreak", UNSET)
+        makebeforebreak = d.pop("makebeforebreak")
 
-        ipsecbypass = d.pop("ipsecbypass", UNSET)
+        ipsecbypass = d.pop("ipsecbypass")
 
-        acceptunencryptedmainmode = d.pop("acceptunencryptedmainmode", UNSET)
+        acceptunencryptedmainmode = d.pop("acceptunencryptedmainmode")
 
-        maxexchange = d.pop("maxexchange", UNSET)
+        maxexchange = d.pop("maxexchange")
 
-        port_nat_t = d.pop("port_nat_t", UNSET)
+        port_nat_t = d.pop("port_nat_t")
 
-        port = d.pop("port", UNSET)
+        port = d.pop("port")
 
-        compression = d.pop("compression", UNSET)
+        compression = d.pop("compression")
 
-        noshuntlaninterfaces = d.pop("noshuntlaninterfaces", UNSET)
+        noshuntlaninterfaces = d.pop("noshuntlaninterfaces")
 
-        maxmss = d.pop("maxmss", UNSET)
+        maxmss = d.pop("maxmss")
 
         ip_sec_config = cls(
             logging=logging,

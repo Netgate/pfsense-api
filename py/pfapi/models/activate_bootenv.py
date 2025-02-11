@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ActivateBootenv")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="ActivateBootenv")
 class ActivateBootenv:
     """
     Attributes:
-        name (Union[Unset, str]):
-        temp (Union[Unset, bool]):
+        name (str):
+        temp (bool):
     """
 
-    name: Union[Unset, str] = UNSET
-    temp: Union[Unset, bool] = UNSET
+    name: str
+    temp: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class ActivateBootenv:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if temp is not UNSET:
-            field_dict["temp"] = temp
+        field_dict.update(
+            {
+                "name": name,
+                "temp": temp,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        temp = d.pop("temp", UNSET)
+        temp = d.pop("temp")
 
         activate_bootenv = cls(
             name=name,

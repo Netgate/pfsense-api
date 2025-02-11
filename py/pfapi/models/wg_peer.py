@@ -1,9 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.wgip_addresses import WGIPAddresses
@@ -18,26 +16,26 @@ class WGPeer:
     enabled = "yes", "no"
 
         Attributes:
-            enabled (Union[Unset, bool]):
-            tun (Union[Unset, str]):
-            descr (Union[Unset, str]):
-            endpoint (Union[Unset, str]):
-            port (Union[Unset, str]):
-            persistentkeepalive (Union[Unset, str]):
-            publickey (Union[Unset, str]):
-            presharedkey (Union[Unset, str]):
-            allowedips (Union[Unset, WGIPAddresses]):
+            enabled (bool):
+            tun (str):
+            descr (str):
+            endpoint (str):
+            port (str):
+            persistentkeepalive (str):
+            publickey (str):
+            presharedkey (str):
+            allowedips (WGIPAddresses):
     """
 
-    enabled: Union[Unset, bool] = UNSET
-    tun: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    endpoint: Union[Unset, str] = UNSET
-    port: Union[Unset, str] = UNSET
-    persistentkeepalive: Union[Unset, str] = UNSET
-    publickey: Union[Unset, str] = UNSET
-    presharedkey: Union[Unset, str] = UNSET
-    allowedips: Union[Unset, "WGIPAddresses"] = UNSET
+    enabled: bool
+    tun: str
+    descr: str
+    endpoint: str
+    port: str
+    persistentkeepalive: str
+    publickey: str
+    presharedkey: str
+    allowedips: "WGIPAddresses"
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -57,31 +55,23 @@ class WGPeer:
 
         presharedkey = self.presharedkey
 
-        allowedips: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.allowedips, Unset):
-            allowedips = self.allowedips.to_dict()
+        allowedips = self.allowedips.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if enabled is not UNSET:
-            field_dict["enabled"] = enabled
-        if tun is not UNSET:
-            field_dict["tun"] = tun
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if endpoint is not UNSET:
-            field_dict["endpoint"] = endpoint
-        if port is not UNSET:
-            field_dict["port"] = port
-        if persistentkeepalive is not UNSET:
-            field_dict["persistentkeepalive"] = persistentkeepalive
-        if publickey is not UNSET:
-            field_dict["publickey"] = publickey
-        if presharedkey is not UNSET:
-            field_dict["presharedkey"] = presharedkey
-        if allowedips is not UNSET:
-            field_dict["allowedips"] = allowedips
+        field_dict.update(
+            {
+                "enabled": enabled,
+                "tun": tun,
+                "descr": descr,
+                "endpoint": endpoint,
+                "port": port,
+                "persistentkeepalive": persistentkeepalive,
+                "publickey": publickey,
+                "presharedkey": presharedkey,
+                "allowedips": allowedips,
+            }
+        )
 
         return field_dict
 
@@ -90,28 +80,23 @@ class WGPeer:
         from ..models.wgip_addresses import WGIPAddresses
 
         d = src_dict.copy()
-        enabled = d.pop("enabled", UNSET)
+        enabled = d.pop("enabled")
 
-        tun = d.pop("tun", UNSET)
+        tun = d.pop("tun")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
-        endpoint = d.pop("endpoint", UNSET)
+        endpoint = d.pop("endpoint")
 
-        port = d.pop("port", UNSET)
+        port = d.pop("port")
 
-        persistentkeepalive = d.pop("persistentkeepalive", UNSET)
+        persistentkeepalive = d.pop("persistentkeepalive")
 
-        publickey = d.pop("publickey", UNSET)
+        publickey = d.pop("publickey")
 
-        presharedkey = d.pop("presharedkey", UNSET)
+        presharedkey = d.pop("presharedkey")
 
-        _allowedips = d.pop("allowedips", UNSET)
-        allowedips: Union[Unset, WGIPAddresses]
-        if isinstance(_allowedips, Unset):
-            allowedips = UNSET
-        else:
-            allowedips = WGIPAddresses.from_dict(_allowedips)
+        allowedips = WGIPAddresses.from_dict(d.pop("allowedips"))
 
         wg_peer = cls(
             enabled=enabled,

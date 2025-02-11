@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DNSForwarderDomain")
 
@@ -12,16 +10,16 @@ T = TypeVar("T", bound="DNSForwarderDomain")
 class DNSForwarderDomain:
     """
     Attributes:
-        domain (Union[Unset, str]):
-        ip (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        idx (Union[Unset, int]):
+        domain (str):
+        ip (str):
+        descr (str):
+        idx (int):
     """
 
-    domain: Union[Unset, str] = UNSET
-    ip: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    idx: Union[Unset, int] = UNSET
+    domain: str
+    ip: str
+    descr: str
+    idx: int
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -35,28 +33,27 @@ class DNSForwarderDomain:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if domain is not UNSET:
-            field_dict["domain"] = domain
-        if ip is not UNSET:
-            field_dict["ip"] = ip
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if idx is not UNSET:
-            field_dict["idx"] = idx
+        field_dict.update(
+            {
+                "domain": domain,
+                "ip": ip,
+                "descr": descr,
+                "idx": idx,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        domain = d.pop("domain", UNSET)
+        domain = d.pop("domain")
 
-        ip = d.pop("ip", UNSET)
+        ip = d.pop("ip")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
-        idx = d.pop("idx", UNSET)
+        idx = d.pop("idx")
 
         dns_forwarder_domain = cls(
             domain=domain,

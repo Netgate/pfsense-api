@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="IPSecBypassRule")
 
@@ -12,16 +10,16 @@ T = TypeVar("T", bound="IPSecBypassRule")
 class IPSecBypassRule:
     """
     Attributes:
-        source (Union[Unset, str]):
-        sourcemask (Union[Unset, str]):
-        destination (Union[Unset, str]):
-        dstmask (Union[Unset, str]):
+        source (str):
+        sourcemask (str):
+        destination (str):
+        dstmask (str):
     """
 
-    source: Union[Unset, str] = UNSET
-    sourcemask: Union[Unset, str] = UNSET
-    destination: Union[Unset, str] = UNSET
-    dstmask: Union[Unset, str] = UNSET
+    source: str
+    sourcemask: str
+    destination: str
+    dstmask: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -35,28 +33,27 @@ class IPSecBypassRule:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if source is not UNSET:
-            field_dict["source"] = source
-        if sourcemask is not UNSET:
-            field_dict["sourcemask"] = sourcemask
-        if destination is not UNSET:
-            field_dict["destination"] = destination
-        if dstmask is not UNSET:
-            field_dict["dstmask"] = dstmask
+        field_dict.update(
+            {
+                "source": source,
+                "sourcemask": sourcemask,
+                "destination": destination,
+                "dstmask": dstmask,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        source = d.pop("source", UNSET)
+        source = d.pop("source")
 
-        sourcemask = d.pop("sourcemask", UNSET)
+        sourcemask = d.pop("sourcemask")
 
-        destination = d.pop("destination", UNSET)
+        destination = d.pop("destination")
 
-        dstmask = d.pop("dstmask", UNSET)
+        dstmask = d.pop("dstmask")
 
         ip_sec_bypass_rule = cls(
             source=source,

@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ControllerUpgradeRequest")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="ControllerUpgradeRequest")
 class ControllerUpgradeRequest:
     """
     Attributes:
-        version (Union[Unset, str]):
-        restart (Union[Unset, bool]):
+        version (str):
+        restart (bool):
     """
 
-    version: Union[Unset, str] = UNSET
-    restart: Union[Unset, bool] = UNSET
+    version: str
+    restart: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class ControllerUpgradeRequest:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if version is not UNSET:
-            field_dict["version"] = version
-        if restart is not UNSET:
-            field_dict["restart"] = restart
+        field_dict.update(
+            {
+                "version": version,
+                "restart": restart,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        version = d.pop("version", UNSET)
+        version = d.pop("version")
 
-        restart = d.pop("restart", UNSET)
+        restart = d.pop("restart")
 
         controller_upgrade_request = cls(
             version=version,

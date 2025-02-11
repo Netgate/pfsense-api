@@ -18,65 +18,67 @@ T = TypeVar("T", bound="Sysinfo")
 class Sysinfo:
     """
     Attributes:
-        hostname (Union[Unset, str]):
+        hostname (str):
+        serial (str):
+        version (str): controller version
+        device_id (str):
+        crypto_id (str):
+        product (str):
+        product_version (str):
+        product_build (str):
+        os_name (str):
+        os_version (str):
+        bios_vendor (str):
+        bios_type (str):
+        bios_date (str):
+        bios_version (str):
+        cpu_model (str):
+        cpu_cores (int):
+        cpu_features (str):
+        cpu_load (int):
+        uptime (int):
+        time (str):
+        mem_total (int):
+        mem_used (int):
+        loadavg (List[int]):
+        vendor (str):
+        model (str):
+        hw_uuid (str):
+        mim_devices (int):
         address (Union[Unset, List[str]]):
-        serial (Union[Unset, str]):
-        version (Union[Unset, str]):
-        device_id (Union[Unset, str]):
-        crypto_id (Union[Unset, str]):
-        product (Union[Unset, str]):
-        product_version (Union[Unset, str]):
-        product_build (Union[Unset, str]):
-        os_name (Union[Unset, str]):
-        os_version (Union[Unset, str]):
-        bios_vendor (Union[Unset, str]):
-        bios_type (Union[Unset, str]):
-        bios_date (Union[Unset, str]):
-        bios_version (Union[Unset, str]):
-        cpu_model (Union[Unset, str]):
-        cpu_cores (Union[Unset, int]):
-        cpu_features (Union[Unset, str]):
-        cpu_load (Union[Unset, int]):
-        uptime (Union[Unset, int]):
-        time (Union[Unset, str]):
-        mem_total (Union[Unset, int]):
-        mem_used (Union[Unset, int]):
-        loadavg (Union[Unset, List[int]]):
-        vendor (Union[Unset, str]):
-        model (Union[Unset, str]):
-        hw_uuid (Union[Unset, str]):
         filesystems (Union[Unset, List['SysinfoFs']]):
         network_ports (Union[Unset, List['SysNetIf']]):
         services (Union[Unset, List['DeviceServiceBasic']]):
     """
 
-    hostname: Union[Unset, str] = UNSET
+    hostname: str
+    serial: str
+    version: str
+    device_id: str
+    crypto_id: str
+    product: str
+    product_version: str
+    product_build: str
+    os_name: str
+    os_version: str
+    bios_vendor: str
+    bios_type: str
+    bios_date: str
+    bios_version: str
+    cpu_model: str
+    cpu_cores: int
+    cpu_features: str
+    cpu_load: int
+    uptime: int
+    time: str
+    mem_total: int
+    mem_used: int
+    loadavg: List[int]
+    vendor: str
+    model: str
+    hw_uuid: str
+    mim_devices: int
     address: Union[Unset, List[str]] = UNSET
-    serial: Union[Unset, str] = UNSET
-    version: Union[Unset, str] = UNSET
-    device_id: Union[Unset, str] = UNSET
-    crypto_id: Union[Unset, str] = UNSET
-    product: Union[Unset, str] = UNSET
-    product_version: Union[Unset, str] = UNSET
-    product_build: Union[Unset, str] = UNSET
-    os_name: Union[Unset, str] = UNSET
-    os_version: Union[Unset, str] = UNSET
-    bios_vendor: Union[Unset, str] = UNSET
-    bios_type: Union[Unset, str] = UNSET
-    bios_date: Union[Unset, str] = UNSET
-    bios_version: Union[Unset, str] = UNSET
-    cpu_model: Union[Unset, str] = UNSET
-    cpu_cores: Union[Unset, int] = UNSET
-    cpu_features: Union[Unset, str] = UNSET
-    cpu_load: Union[Unset, int] = UNSET
-    uptime: Union[Unset, int] = UNSET
-    time: Union[Unset, str] = UNSET
-    mem_total: Union[Unset, int] = UNSET
-    mem_used: Union[Unset, int] = UNSET
-    loadavg: Union[Unset, List[int]] = UNSET
-    vendor: Union[Unset, str] = UNSET
-    model: Union[Unset, str] = UNSET
-    hw_uuid: Union[Unset, str] = UNSET
     filesystems: Union[Unset, List["SysinfoFs"]] = UNSET
     network_ports: Union[Unset, List["SysNetIf"]] = UNSET
     services: Union[Unset, List["DeviceServiceBasic"]] = UNSET
@@ -84,10 +86,6 @@ class Sysinfo:
 
     def to_dict(self) -> Dict[str, Any]:
         hostname = self.hostname
-
-        address: Union[Unset, List[str]] = UNSET
-        if not isinstance(self.address, Unset):
-            address = self.address
 
         serial = self.serial
 
@@ -131,15 +129,19 @@ class Sysinfo:
 
         mem_used = self.mem_used
 
-        loadavg: Union[Unset, List[int]] = UNSET
-        if not isinstance(self.loadavg, Unset):
-            loadavg = self.loadavg
+        loadavg = self.loadavg
 
         vendor = self.vendor
 
         model = self.model
 
         hw_uuid = self.hw_uuid
+
+        mim_devices = self.mim_devices
+
+        address: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.address, Unset):
+            address = self.address
 
         filesystems: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.filesystems, Unset):
@@ -164,61 +166,39 @@ class Sysinfo:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if hostname is not UNSET:
-            field_dict["hostname"] = hostname
+        field_dict.update(
+            {
+                "hostname": hostname,
+                "serial": serial,
+                "version": version,
+                "device_id": device_id,
+                "crypto_id": crypto_id,
+                "product": product,
+                "product_version": product_version,
+                "product_build": product_build,
+                "os_name": os_name,
+                "os_version": os_version,
+                "bios_vendor": bios_vendor,
+                "bios_type": bios_type,
+                "bios_date": bios_date,
+                "bios_version": bios_version,
+                "cpu_model": cpu_model,
+                "cpu_cores": cpu_cores,
+                "cpu_features": cpu_features,
+                "cpu_load": cpu_load,
+                "uptime": uptime,
+                "time": time,
+                "mem_total": mem_total,
+                "mem_used": mem_used,
+                "loadavg": loadavg,
+                "vendor": vendor,
+                "model": model,
+                "hw_uuid": hw_uuid,
+                "mim_devices": mim_devices,
+            }
+        )
         if address is not UNSET:
             field_dict["address"] = address
-        if serial is not UNSET:
-            field_dict["serial"] = serial
-        if version is not UNSET:
-            field_dict["version"] = version
-        if device_id is not UNSET:
-            field_dict["device_id"] = device_id
-        if crypto_id is not UNSET:
-            field_dict["crypto_id"] = crypto_id
-        if product is not UNSET:
-            field_dict["product"] = product
-        if product_version is not UNSET:
-            field_dict["product_version"] = product_version
-        if product_build is not UNSET:
-            field_dict["product_build"] = product_build
-        if os_name is not UNSET:
-            field_dict["os_name"] = os_name
-        if os_version is not UNSET:
-            field_dict["os_version"] = os_version
-        if bios_vendor is not UNSET:
-            field_dict["bios_vendor"] = bios_vendor
-        if bios_type is not UNSET:
-            field_dict["bios_type"] = bios_type
-        if bios_date is not UNSET:
-            field_dict["bios_date"] = bios_date
-        if bios_version is not UNSET:
-            field_dict["bios_version"] = bios_version
-        if cpu_model is not UNSET:
-            field_dict["cpu_model"] = cpu_model
-        if cpu_cores is not UNSET:
-            field_dict["cpu_cores"] = cpu_cores
-        if cpu_features is not UNSET:
-            field_dict["cpu_features"] = cpu_features
-        if cpu_load is not UNSET:
-            field_dict["cpu_load"] = cpu_load
-        if uptime is not UNSET:
-            field_dict["uptime"] = uptime
-        if time is not UNSET:
-            field_dict["time"] = time
-        if mem_total is not UNSET:
-            field_dict["mem_total"] = mem_total
-        if mem_used is not UNSET:
-            field_dict["mem_used"] = mem_used
-        if loadavg is not UNSET:
-            field_dict["loadavg"] = loadavg
-        if vendor is not UNSET:
-            field_dict["vendor"] = vendor
-        if model is not UNSET:
-            field_dict["model"] = model
-        if hw_uuid is not UNSET:
-            field_dict["hw_uuid"] = hw_uuid
         if filesystems is not UNSET:
             field_dict["filesystems"] = filesystems
         if network_ports is not UNSET:
@@ -235,59 +215,61 @@ class Sysinfo:
         from ..models.sysinfo_fs import SysinfoFs
 
         d = src_dict.copy()
-        hostname = d.pop("hostname", UNSET)
+        hostname = d.pop("hostname")
+
+        serial = d.pop("serial")
+
+        version = d.pop("version")
+
+        device_id = d.pop("device_id")
+
+        crypto_id = d.pop("crypto_id")
+
+        product = d.pop("product")
+
+        product_version = d.pop("product_version")
+
+        product_build = d.pop("product_build")
+
+        os_name = d.pop("os_name")
+
+        os_version = d.pop("os_version")
+
+        bios_vendor = d.pop("bios_vendor")
+
+        bios_type = d.pop("bios_type")
+
+        bios_date = d.pop("bios_date")
+
+        bios_version = d.pop("bios_version")
+
+        cpu_model = d.pop("cpu_model")
+
+        cpu_cores = d.pop("cpu_cores")
+
+        cpu_features = d.pop("cpu_features")
+
+        cpu_load = d.pop("cpu_load")
+
+        uptime = d.pop("uptime")
+
+        time = d.pop("time")
+
+        mem_total = d.pop("mem_total")
+
+        mem_used = d.pop("mem_used")
+
+        loadavg = cast(List[int], d.pop("loadavg"))
+
+        vendor = d.pop("vendor")
+
+        model = d.pop("model")
+
+        hw_uuid = d.pop("hw_uuid")
+
+        mim_devices = d.pop("mim_devices")
 
         address = cast(List[str], d.pop("address", UNSET))
-
-        serial = d.pop("serial", UNSET)
-
-        version = d.pop("version", UNSET)
-
-        device_id = d.pop("device_id", UNSET)
-
-        crypto_id = d.pop("crypto_id", UNSET)
-
-        product = d.pop("product", UNSET)
-
-        product_version = d.pop("product_version", UNSET)
-
-        product_build = d.pop("product_build", UNSET)
-
-        os_name = d.pop("os_name", UNSET)
-
-        os_version = d.pop("os_version", UNSET)
-
-        bios_vendor = d.pop("bios_vendor", UNSET)
-
-        bios_type = d.pop("bios_type", UNSET)
-
-        bios_date = d.pop("bios_date", UNSET)
-
-        bios_version = d.pop("bios_version", UNSET)
-
-        cpu_model = d.pop("cpu_model", UNSET)
-
-        cpu_cores = d.pop("cpu_cores", UNSET)
-
-        cpu_features = d.pop("cpu_features", UNSET)
-
-        cpu_load = d.pop("cpu_load", UNSET)
-
-        uptime = d.pop("uptime", UNSET)
-
-        time = d.pop("time", UNSET)
-
-        mem_total = d.pop("mem_total", UNSET)
-
-        mem_used = d.pop("mem_used", UNSET)
-
-        loadavg = cast(List[int], d.pop("loadavg", UNSET))
-
-        vendor = d.pop("vendor", UNSET)
-
-        model = d.pop("model", UNSET)
-
-        hw_uuid = d.pop("hw_uuid", UNSET)
 
         filesystems = []
         _filesystems = d.pop("filesystems", UNSET)
@@ -312,7 +294,6 @@ class Sysinfo:
 
         sysinfo = cls(
             hostname=hostname,
-            address=address,
             serial=serial,
             version=version,
             device_id=device_id,
@@ -338,6 +319,8 @@ class Sysinfo:
             vendor=vendor,
             model=model,
             hw_uuid=hw_uuid,
+            mim_devices=mim_devices,
+            address=address,
             filesystems=filesystems,
             network_ports=network_ports,
             services=services,

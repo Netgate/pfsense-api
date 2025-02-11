@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CertAltName")
 
@@ -15,12 +13,12 @@ class CertAltName:
     - value:   string that applies to the type
 
         Attributes:
-            type (Union[Unset, str]):
-            value (Union[Unset, str]):
+            type (str):
+            value (str):
     """
 
-    type: Union[Unset, str] = UNSET
-    value: Union[Unset, str] = UNSET
+    type: str
+    value: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -30,20 +28,21 @@ class CertAltName:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if type is not UNSET:
-            field_dict["type"] = type
-        if value is not UNSET:
-            field_dict["value"] = value
+        field_dict.update(
+            {
+                "type": type,
+                "value": value,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        type = d.pop("type", UNSET)
+        type = d.pop("type")
 
-        value = d.pop("value", UNSET)
+        value = d.pop("value")
 
         cert_alt_name = cls(
             type=type,

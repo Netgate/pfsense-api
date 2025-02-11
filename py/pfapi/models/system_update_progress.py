@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from typing import Any, Dict, List, Type, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SystemUpdateProgress")
 
@@ -12,26 +10,24 @@ T = TypeVar("T", bound="SystemUpdateProgress")
 class SystemUpdateProgress:
     """
     Attributes:
-        messages (Union[Unset, List[str]]):
-        completed (Union[Unset, int]):
-        started_timestamp (Union[Unset, int]):
-        ended_timestamp (Union[Unset, int]):
-        started_time (Union[Unset, str]):
-        ended_time (Union[Unset, str]):
+        messages (List[str]):
+        completed (int):
+        started_timestamp (int):
+        ended_timestamp (int):
+        started_time (str):
+        ended_time (str):
     """
 
-    messages: Union[Unset, List[str]] = UNSET
-    completed: Union[Unset, int] = UNSET
-    started_timestamp: Union[Unset, int] = UNSET
-    ended_timestamp: Union[Unset, int] = UNSET
-    started_time: Union[Unset, str] = UNSET
-    ended_time: Union[Unset, str] = UNSET
+    messages: List[str]
+    completed: int
+    started_timestamp: int
+    ended_timestamp: int
+    started_time: str
+    ended_time: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        messages: Union[Unset, List[str]] = UNSET
-        if not isinstance(self.messages, Unset):
-            messages = self.messages
+        messages = self.messages
 
         completed = self.completed
 
@@ -45,36 +41,33 @@ class SystemUpdateProgress:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if messages is not UNSET:
-            field_dict["messages"] = messages
-        if completed is not UNSET:
-            field_dict["completed"] = completed
-        if started_timestamp is not UNSET:
-            field_dict["started_timestamp"] = started_timestamp
-        if ended_timestamp is not UNSET:
-            field_dict["ended_timestamp"] = ended_timestamp
-        if started_time is not UNSET:
-            field_dict["started_time"] = started_time
-        if ended_time is not UNSET:
-            field_dict["ended_time"] = ended_time
+        field_dict.update(
+            {
+                "messages": messages,
+                "completed": completed,
+                "started_timestamp": started_timestamp,
+                "ended_timestamp": ended_timestamp,
+                "started_time": started_time,
+                "ended_time": ended_time,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        messages = cast(List[str], d.pop("messages", UNSET))
+        messages = cast(List[str], d.pop("messages"))
 
-        completed = d.pop("completed", UNSET)
+        completed = d.pop("completed")
 
-        started_timestamp = d.pop("started_timestamp", UNSET)
+        started_timestamp = d.pop("started_timestamp")
 
-        ended_timestamp = d.pop("ended_timestamp", UNSET)
+        ended_timestamp = d.pop("ended_timestamp")
 
-        started_time = d.pop("started_time", UNSET)
+        started_time = d.pop("started_time")
 
-        ended_time = d.pop("ended_time", UNSET)
+        ended_time = d.pop("ended_time")
 
         system_update_progress = cls(
             messages=messages,

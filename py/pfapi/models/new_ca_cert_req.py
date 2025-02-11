@@ -22,9 +22,9 @@ class NewCaCertReq:
     - one of: method_internal (self-signed), mehod_existing (import), or method_intermediate (signed by another CA)
 
         Attributes:
-            name (Union[Unset, str]):
-            trust (Union[Unset, bool]):
-            randomize_serial (Union[Unset, bool]):
+            name (str):
+            trust (bool):
+            randomize_serial (bool):
             method_internal (Union[Unset, CaCertMethodNew]): Options for creating/updating an internal CA certificate.
                 The values for internal and intermediate certificates are the same,
                 with the exception that the intermediate certificate is signed by
@@ -67,9 +67,9 @@ class NewCaCertReq:
                 - caref:        signing CA reference ID
     """
 
-    name: Union[Unset, str] = UNSET
-    trust: Union[Unset, bool] = UNSET
-    randomize_serial: Union[Unset, bool] = UNSET
+    name: str
+    trust: bool
+    randomize_serial: bool
     method_internal: Union[Unset, "CaCertMethodNew"] = UNSET
     method_existing: Union[Unset, "CaCertMethodExisting"] = UNSET
     method_intermediate: Union[Unset, "CaCertMethodNew"] = UNSET
@@ -96,13 +96,13 @@ class NewCaCertReq:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if trust is not UNSET:
-            field_dict["trust"] = trust
-        if randomize_serial is not UNSET:
-            field_dict["randomize_serial"] = randomize_serial
+        field_dict.update(
+            {
+                "name": name,
+                "trust": trust,
+                "randomize_serial": randomize_serial,
+            }
+        )
         if method_internal is not UNSET:
             field_dict["method_internal"] = method_internal
         if method_existing is not UNSET:
@@ -118,11 +118,11 @@ class NewCaCertReq:
         from ..models.ca_cert_method_new import CaCertMethodNew
 
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        trust = d.pop("trust", UNSET)
+        trust = d.pop("trust")
 
-        randomize_serial = d.pop("randomize_serial", UNSET)
+        randomize_serial = d.pop("randomize_serial")
 
         _method_internal = d.pop("method_internal", UNSET)
         method_internal: Union[Unset, CaCertMethodNew]

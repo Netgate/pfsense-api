@@ -64,7 +64,7 @@ def sync_detailed(
     client: Union[AuthenticatedClient, Client],
     body: NATOutboundRule,
 ) -> Response[Union[Error, NATOutboundRules]]:
-    """Create NAT outbound rule
+    """Create NAT Outbound Rule
 
     Args:
         body (NATOutboundRule):
@@ -93,7 +93,7 @@ def sync(
     client: Union[AuthenticatedClient, Client],
     body: NATOutboundRule,
 ) -> Optional[Union[Error, NATOutboundRules]]:
-    """Create NAT outbound rule
+    """Create NAT Outbound Rule
 
     Args:
         body (NATOutboundRule):
@@ -117,7 +117,7 @@ async def asyncio_detailed(
     client: Union[AuthenticatedClient, Client],
     body: NATOutboundRule,
 ) -> Response[Union[Error, NATOutboundRules]]:
-    """Create NAT outbound rule
+    """Create NAT Outbound Rule
 
     Args:
         body (NATOutboundRule):
@@ -144,7 +144,7 @@ async def asyncio(
     client: Union[AuthenticatedClient, Client],
     body: NATOutboundRule,
 ) -> Optional[Union[Error, NATOutboundRules]]:
-    """Create NAT outbound rule
+    """Create NAT Outbound Rule
 
     Args:
         body (NATOutboundRule):

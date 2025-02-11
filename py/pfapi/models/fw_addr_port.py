@@ -12,22 +12,22 @@ T = TypeVar("T", bound="FWAddrPort")
 class FWAddrPort:
     """
     Attributes:
-        label (Union[Unset, str]):
-        address (Union[Unset, str]):
-        network (Union[Unset, str]):
-        port (Union[Unset, str]):
-        not_ (Union[Unset, bool]):
+        label (str):
+        address (str):
+        network (str):
+        port (str):
+        not_ (bool):
+        alias_id (str):
         any_ (Union[Unset, bool]):
-        alias_id (Union[Unset, str]):
     """
 
-    label: Union[Unset, str] = UNSET
-    address: Union[Unset, str] = UNSET
-    network: Union[Unset, str] = UNSET
-    port: Union[Unset, str] = UNSET
-    not_: Union[Unset, bool] = UNSET
+    label: str
+    address: str
+    network: str
+    port: str
+    not_: bool
+    alias_id: str
     any_: Union[Unset, bool] = UNSET
-    alias_id: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -41,46 +41,43 @@ class FWAddrPort:
 
         not_ = self.not_
 
-        any_ = self.any_
-
         alias_id = self.alias_id
+
+        any_ = self.any_
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if label is not UNSET:
-            field_dict["label"] = label
-        if address is not UNSET:
-            field_dict["address"] = address
-        if network is not UNSET:
-            field_dict["network"] = network
-        if port is not UNSET:
-            field_dict["port"] = port
-        if not_ is not UNSET:
-            field_dict["not"] = not_
+        field_dict.update(
+            {
+                "label": label,
+                "address": address,
+                "network": network,
+                "port": port,
+                "not": not_,
+                "alias_id": alias_id,
+            }
+        )
         if any_ is not UNSET:
             field_dict["any"] = any_
-        if alias_id is not UNSET:
-            field_dict["alias_id"] = alias_id
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        label = d.pop("label", UNSET)
+        label = d.pop("label")
 
-        address = d.pop("address", UNSET)
+        address = d.pop("address")
 
-        network = d.pop("network", UNSET)
+        network = d.pop("network")
 
-        port = d.pop("port", UNSET)
+        port = d.pop("port")
 
-        not_ = d.pop("not", UNSET)
+        not_ = d.pop("not")
+
+        alias_id = d.pop("alias_id")
 
         any_ = d.pop("any", UNSET)
-
-        alias_id = d.pop("alias_id", UNSET)
 
         fw_addr_port = cls(
             label=label,
@@ -88,8 +85,8 @@ class FWAddrPort:
             network=network,
             port=port,
             not_=not_,
-            any_=any_,
             alias_id=alias_id,
+            any_=any_,
         )
 
         fw_addr_port.additional_properties = d

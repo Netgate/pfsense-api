@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="L2TPUser")
 
@@ -12,14 +10,14 @@ T = TypeVar("T", bound="L2TPUser")
 class L2TPUser:
     """
     Attributes:
-        name (Union[Unset, str]):
-        ip (Union[Unset, str]):
-        password (Union[Unset, str]):
+        name (str):
+        ip (str):
+        password (str):
     """
 
-    name: Union[Unset, str] = UNSET
-    ip: Union[Unset, str] = UNSET
-    password: Union[Unset, str] = UNSET
+    name: str
+    ip: str
+    password: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,24 +29,24 @@ class L2TPUser:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if ip is not UNSET:
-            field_dict["ip"] = ip
-        if password is not UNSET:
-            field_dict["password"] = password
+        field_dict.update(
+            {
+                "name": name,
+                "ip": ip,
+                "password": password,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        ip = d.pop("ip", UNSET)
+        ip = d.pop("ip")
 
-        password = d.pop("password", UNSET)
+        password = d.pop("password")
 
         l2tp_user = cls(
             name=name,

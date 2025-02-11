@@ -16,17 +16,17 @@ T = TypeVar("T", bound="DNSACL")
 class DNSACL:
     """
     Attributes:
-        aclid (Union[Unset, str]):
-        aclname (Union[Unset, str]):
-        aclaction (Union[Unset, str]):
-        description (Union[Unset, str]):
+        aclid (str):
+        aclname (str):
+        aclaction (str):
+        description (str):
         row (Union[Unset, List['DNSACLNetwork']]):
     """
 
-    aclid: Union[Unset, str] = UNSET
-    aclname: Union[Unset, str] = UNSET
-    aclaction: Union[Unset, str] = UNSET
-    description: Union[Unset, str] = UNSET
+    aclid: str
+    aclname: str
+    aclaction: str
+    description: str
     row: Union[Unset, List["DNSACLNetwork"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -48,15 +48,14 @@ class DNSACL:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if aclid is not UNSET:
-            field_dict["aclid"] = aclid
-        if aclname is not UNSET:
-            field_dict["aclname"] = aclname
-        if aclaction is not UNSET:
-            field_dict["aclaction"] = aclaction
-        if description is not UNSET:
-            field_dict["description"] = description
+        field_dict.update(
+            {
+                "aclid": aclid,
+                "aclname": aclname,
+                "aclaction": aclaction,
+                "description": description,
+            }
+        )
         if row is not UNSET:
             field_dict["row"] = row
 
@@ -67,13 +66,13 @@ class DNSACL:
         from ..models.dnsacl_network import DNSACLNetwork
 
         d = src_dict.copy()
-        aclid = d.pop("aclid", UNSET)
+        aclid = d.pop("aclid")
 
-        aclname = d.pop("aclname", UNSET)
+        aclname = d.pop("aclname")
 
-        aclaction = d.pop("aclaction", UNSET)
+        aclaction = d.pop("aclaction")
 
-        description = d.pop("description", UNSET)
+        description = d.pop("description")
 
         row = []
         _row = d.pop("row", UNSET)

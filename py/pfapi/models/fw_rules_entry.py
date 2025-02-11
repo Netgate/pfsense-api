@@ -1,9 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.filter_separator import FilterSeparator
@@ -17,30 +15,27 @@ T = TypeVar("T", bound="FwRulesEntry")
 class FwRulesEntry:
     """
     Attributes:
-        rule (Union[Unset, FWFilterRule]):
-        separator (Union[Unset, FilterSeparator]):
+        rule (FWFilterRule):
+        separator (FilterSeparator):
     """
 
-    rule: Union[Unset, "FWFilterRule"] = UNSET
-    separator: Union[Unset, "FilterSeparator"] = UNSET
+    rule: "FWFilterRule"
+    separator: "FilterSeparator"
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        rule: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.rule, Unset):
-            rule = self.rule.to_dict()
+        rule = self.rule.to_dict()
 
-        separator: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.separator, Unset):
-            separator = self.separator.to_dict()
+        separator = self.separator.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if rule is not UNSET:
-            field_dict["rule"] = rule
-        if separator is not UNSET:
-            field_dict["separator"] = separator
+        field_dict.update(
+            {
+                "rule": rule,
+                "separator": separator,
+            }
+        )
 
         return field_dict
 
@@ -50,19 +45,9 @@ class FwRulesEntry:
         from ..models.fw_filter_rule import FWFilterRule
 
         d = src_dict.copy()
-        _rule = d.pop("rule", UNSET)
-        rule: Union[Unset, FWFilterRule]
-        if isinstance(_rule, Unset):
-            rule = UNSET
-        else:
-            rule = FWFilterRule.from_dict(_rule)
+        rule = FWFilterRule.from_dict(d.pop("rule"))
 
-        _separator = d.pop("separator", UNSET)
-        separator: Union[Unset, FilterSeparator]
-        if isinstance(_separator, Unset):
-            separator = UNSET
-        else:
-            separator = FilterSeparator.from_dict(_separator)
+        separator = FilterSeparator.from_dict(d.pop("separator"))
 
         fw_rules_entry = cls(
             rule=rule,

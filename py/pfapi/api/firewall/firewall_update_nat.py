@@ -6,21 +6,21 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.nat_npt_rule import NATNptRule
-from ...models.nat_npt_update_result import NATNptUpdateResult
+from ...models.nat_rule import NATRule
+from ...models.nat_update_result import NATUpdateResult
 from ...types import Response
 
 
 def _get_kwargs(
     id: str,
     *,
-    body: NATNptRule,
+    body: NATRule,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
     _kwargs: Dict[str, Any] = {
         "method": "put",
-        "url": f"/firewall/nat/npt/{id}",
+        "url": f"/firewall/nat/port-forward/{id}",
     }
 
     _body = body.to_dict()
@@ -34,9 +34,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, NATNptUpdateResult]]:
+) -> Optional[Union[Error, NATUpdateResult]]:
     if response.status_code == 200:
-        response_200 = NATNptUpdateResult.from_dict(response.json())
+        response_200 = NATUpdateResult.from_dict(response.json())
 
         return response_200
     if response.status_code == 400:
@@ -51,7 +51,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, NATNptUpdateResult]]:
+) -> Response[Union[Error, NATUpdateResult]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -64,20 +64,20 @@ def sync_detailed(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: NATNptRule,
-) -> Response[Union[Error, NATNptUpdateResult]]:
-    """Update NAT NPt rule
+    body: NATRule,
+) -> Response[Union[Error, NATUpdateResult]]:
+    """Update NAT rule
 
     Args:
         id (str):
-        body (NATNptRule):
+        body (NATRule):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, NATNptUpdateResult]]
+        Response[Union[Error, NATUpdateResult]]
     """
 
     kwargs = _get_kwargs(
@@ -96,20 +96,20 @@ def sync(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: NATNptRule,
-) -> Optional[Union[Error, NATNptUpdateResult]]:
-    """Update NAT NPt rule
+    body: NATRule,
+) -> Optional[Union[Error, NATUpdateResult]]:
+    """Update NAT rule
 
     Args:
         id (str):
-        body (NATNptRule):
+        body (NATRule):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, NATNptUpdateResult]
+        Union[Error, NATUpdateResult]
     """
 
     return sync_detailed(
@@ -123,20 +123,20 @@ async def asyncio_detailed(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: NATNptRule,
-) -> Response[Union[Error, NATNptUpdateResult]]:
-    """Update NAT NPt rule
+    body: NATRule,
+) -> Response[Union[Error, NATUpdateResult]]:
+    """Update NAT rule
 
     Args:
         id (str):
-        body (NATNptRule):
+        body (NATRule):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, NATNptUpdateResult]]
+        Response[Union[Error, NATUpdateResult]]
     """
 
     kwargs = _get_kwargs(
@@ -153,20 +153,20 @@ async def asyncio(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: NATNptRule,
-) -> Optional[Union[Error, NATNptUpdateResult]]:
-    """Update NAT NPt rule
+    body: NATRule,
+) -> Optional[Union[Error, NATUpdateResult]]:
+    """Update NAT rule
 
     Args:
         id (str):
-        body (NATNptRule):
+        body (NATRule):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, NATNptUpdateResult]
+        Union[Error, NATUpdateResult]
     """
 
     return (

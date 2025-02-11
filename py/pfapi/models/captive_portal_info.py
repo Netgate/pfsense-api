@@ -18,22 +18,22 @@ T = TypeVar("T", bound="CaptivePortalInfo")
 class CaptivePortalInfo:
     """
     Attributes:
-        config (Union[Unset, CaptivePortalConfig]):
+        config (CaptivePortalConfig):
+        vouch (Voucher):
         interfaces (Union[Unset, List[str]]):
         certificates (Union[Unset, List['ServiceCertificate']]):
-        vouch (Union[Unset, Voucher]):
     """
 
-    config: Union[Unset, "CaptivePortalConfig"] = UNSET
+    config: "CaptivePortalConfig"
+    vouch: "Voucher"
     interfaces: Union[Unset, List[str]] = UNSET
     certificates: Union[Unset, List["ServiceCertificate"]] = UNSET
-    vouch: Union[Unset, "Voucher"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        config: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.config, Unset):
-            config = self.config.to_dict()
+        config = self.config.to_dict()
+
+        vouch = self.vouch.to_dict()
 
         interfaces: Union[Unset, List[str]] = UNSET
         if not isinstance(self.interfaces, Unset):
@@ -46,21 +46,18 @@ class CaptivePortalInfo:
                 certificates_item = certificates_item_data.to_dict()
                 certificates.append(certificates_item)
 
-        vouch: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.vouch, Unset):
-            vouch = self.vouch.to_dict()
-
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if config is not UNSET:
-            field_dict["config"] = config
+        field_dict.update(
+            {
+                "config": config,
+                "vouch": vouch,
+            }
+        )
         if interfaces is not UNSET:
             field_dict["interfaces"] = interfaces
         if certificates is not UNSET:
             field_dict["certificates"] = certificates
-        if vouch is not UNSET:
-            field_dict["vouch"] = vouch
 
         return field_dict
 
@@ -71,12 +68,9 @@ class CaptivePortalInfo:
         from ..models.voucher import Voucher
 
         d = src_dict.copy()
-        _config = d.pop("config", UNSET)
-        config: Union[Unset, CaptivePortalConfig]
-        if isinstance(_config, Unset):
-            config = UNSET
-        else:
-            config = CaptivePortalConfig.from_dict(_config)
+        config = CaptivePortalConfig.from_dict(d.pop("config"))
+
+        vouch = Voucher.from_dict(d.pop("vouch"))
 
         interfaces = cast(List[str], d.pop("interfaces", UNSET))
 
@@ -87,18 +81,11 @@ class CaptivePortalInfo:
 
             certificates.append(certificates_item)
 
-        _vouch = d.pop("vouch", UNSET)
-        vouch: Union[Unset, Voucher]
-        if isinstance(_vouch, Unset):
-            vouch = UNSET
-        else:
-            vouch = Voucher.from_dict(_vouch)
-
         captive_portal_info = cls(
             config=config,
+            vouch=vouch,
             interfaces=interfaces,
             certificates=certificates,
-            vouch=vouch,
         )
 
         captive_portal_info.additional_properties = d

@@ -19,14 +19,15 @@ T = TypeVar("T", bound="FWFilterRule")
 class FWFilterRule:
     """
     Attributes:
+        disabled (bool):
+        interface (str):
+        ipprotocol (str):
+        protocol (str):
         id (Union[Unset, str]):
-        disabled (Union[Unset, bool]):
         readonly (Union[Unset, bool]):
         gateway (Union[Unset, str]):
         tracker (Union[Unset, str]):
         type (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        ipprotocol (Union[Unset, str]):
         tag (Union[Unset, str]):
         tagged (Union[Unset, str]):
         max_ (Union[Unset, str]):
@@ -37,7 +38,6 @@ class FWFilterRule:
         statetype (Union[Unset, str]):
         state (Union[Unset, FWRuleState]):
         os (Union[Unset, str]):
-        protocol (Union[Unset, str]):
         floating (Union[Unset, bool]):
         direction (Union[Unset, str]):
         quick (Union[Unset, bool]):
@@ -71,14 +71,15 @@ class FWFilterRule:
         created (Union[Unset, FWUserTimestamp]):
     """
 
+    disabled: bool
+    interface: str
+    ipprotocol: str
+    protocol: str
     id: Union[Unset, str] = UNSET
-    disabled: Union[Unset, bool] = UNSET
     readonly: Union[Unset, bool] = UNSET
     gateway: Union[Unset, str] = UNSET
     tracker: Union[Unset, str] = UNSET
     type: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    ipprotocol: Union[Unset, str] = UNSET
     tag: Union[Unset, str] = UNSET
     tagged: Union[Unset, str] = UNSET
     max_: Union[Unset, str] = UNSET
@@ -89,7 +90,6 @@ class FWFilterRule:
     statetype: Union[Unset, str] = UNSET
     state: Union[Unset, "FWRuleState"] = UNSET
     os: Union[Unset, str] = UNSET
-    protocol: Union[Unset, str] = UNSET
     floating: Union[Unset, bool] = UNSET
     direction: Union[Unset, str] = UNSET
     quick: Union[Unset, bool] = UNSET
@@ -124,9 +124,15 @@ class FWFilterRule:
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        id = self.id
-
         disabled = self.disabled
+
+        interface = self.interface
+
+        ipprotocol = self.ipprotocol
+
+        protocol = self.protocol
+
+        id = self.id
 
         readonly = self.readonly
 
@@ -135,10 +141,6 @@ class FWFilterRule:
         tracker = self.tracker
 
         type = self.type
-
-        interface = self.interface
-
-        ipprotocol = self.ipprotocol
 
         tag = self.tag
 
@@ -161,8 +163,6 @@ class FWFilterRule:
             state = self.state.to_dict()
 
         os = self.os
-
-        protocol = self.protocol
 
         floating = self.floating
 
@@ -240,11 +240,16 @@ class FWFilterRule:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update(
+            {
+                "disabled": disabled,
+                "interface": interface,
+                "ipprotocol": ipprotocol,
+                "protocol": protocol,
+            }
+        )
         if id is not UNSET:
             field_dict["id"] = id
-        if disabled is not UNSET:
-            field_dict["disabled"] = disabled
         if readonly is not UNSET:
             field_dict["readonly"] = readonly
         if gateway is not UNSET:
@@ -253,10 +258,6 @@ class FWFilterRule:
             field_dict["tracker"] = tracker
         if type is not UNSET:
             field_dict["type"] = type
-        if interface is not UNSET:
-            field_dict["interface"] = interface
-        if ipprotocol is not UNSET:
-            field_dict["ipprotocol"] = ipprotocol
         if tag is not UNSET:
             field_dict["tag"] = tag
         if tagged is not UNSET:
@@ -277,8 +278,6 @@ class FWFilterRule:
             field_dict["state"] = state
         if os is not UNSET:
             field_dict["os"] = os
-        if protocol is not UNSET:
-            field_dict["protocol"] = protocol
         if floating is not UNSET:
             field_dict["floating"] = floating
         if direction is not UNSET:
@@ -352,9 +351,15 @@ class FWFilterRule:
         from ..models.tcp_flags import TCPFlags
 
         d = src_dict.copy()
-        id = d.pop("id", UNSET)
+        disabled = d.pop("disabled")
 
-        disabled = d.pop("disabled", UNSET)
+        interface = d.pop("interface")
+
+        ipprotocol = d.pop("ipprotocol")
+
+        protocol = d.pop("protocol")
+
+        id = d.pop("id", UNSET)
 
         readonly = d.pop("readonly", UNSET)
 
@@ -363,10 +368,6 @@ class FWFilterRule:
         tracker = d.pop("tracker", UNSET)
 
         type = d.pop("type", UNSET)
-
-        interface = d.pop("interface", UNSET)
-
-        ipprotocol = d.pop("ipprotocol", UNSET)
 
         tag = d.pop("tag", UNSET)
 
@@ -392,8 +393,6 @@ class FWFilterRule:
             state = FWRuleState.from_dict(_state)
 
         os = d.pop("os", UNSET)
-
-        protocol = d.pop("protocol", UNSET)
 
         floating = d.pop("floating", UNSET)
 
@@ -488,14 +487,15 @@ class FWFilterRule:
             created = FWUserTimestamp.from_dict(_created)
 
         fw_filter_rule = cls(
-            id=id,
             disabled=disabled,
+            interface=interface,
+            ipprotocol=ipprotocol,
+            protocol=protocol,
+            id=id,
             readonly=readonly,
             gateway=gateway,
             tracker=tracker,
             type=type,
-            interface=interface,
-            ipprotocol=ipprotocol,
             tag=tag,
             tagged=tagged,
             max_=max_,
@@ -506,7 +506,6 @@ class FWFilterRule:
             statetype=statetype,
             state=state,
             os=os,
-            protocol=protocol,
             floating=floating,
             direction=direction,
             quick=quick,

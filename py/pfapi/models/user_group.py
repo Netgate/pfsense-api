@@ -12,18 +12,22 @@ T = TypeVar("T", bound="UserGroup")
 class UserGroup:
     """
     Attributes:
-        name (Union[Unset, str]):
-        description (Union[Unset, str]):
-        scope (Union[Unset, str]):
-        gid (Union[Unset, int]):
+        name (str):
+        description (str):
+        scope (str):
+        gid (int):
         member (Union[Unset, List[int]]):
+        members (Union[Unset, List[int]]):
+        privs (Union[Unset, List[str]]):
     """
 
-    name: Union[Unset, str] = UNSET
-    description: Union[Unset, str] = UNSET
-    scope: Union[Unset, str] = UNSET
-    gid: Union[Unset, int] = UNSET
+    name: str
+    description: str
+    scope: str
+    gid: int
     member: Union[Unset, List[int]] = UNSET
+    members: Union[Unset, List[int]] = UNSET
+    privs: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -39,34 +43,49 @@ class UserGroup:
         if not isinstance(self.member, Unset):
             member = self.member
 
+        members: Union[Unset, List[int]] = UNSET
+        if not isinstance(self.members, Unset):
+            members = self.members
+
+        privs: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.privs, Unset):
+            privs = self.privs
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if description is not UNSET:
-            field_dict["description"] = description
-        if scope is not UNSET:
-            field_dict["scope"] = scope
-        if gid is not UNSET:
-            field_dict["gid"] = gid
+        field_dict.update(
+            {
+                "name": name,
+                "description": description,
+                "scope": scope,
+                "gid": gid,
+            }
+        )
         if member is not UNSET:
             field_dict["member"] = member
+        if members is not UNSET:
+            field_dict["members"] = members
+        if privs is not UNSET:
+            field_dict["privs"] = privs
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        description = d.pop("description", UNSET)
+        description = d.pop("description")
 
-        scope = d.pop("scope", UNSET)
+        scope = d.pop("scope")
 
-        gid = d.pop("gid", UNSET)
+        gid = d.pop("gid")
 
         member = cast(List[int], d.pop("member", UNSET))
+
+        members = cast(List[int], d.pop("members", UNSET))
+
+        privs = cast(List[str], d.pop("privs", UNSET))
 
         user_group = cls(
             name=name,
@@ -74,6 +93,8 @@ class UserGroup:
             scope=scope,
             gid=gid,
             member=member,
+            members=members,
+            privs=privs,
         )
 
         user_group.additional_properties = d

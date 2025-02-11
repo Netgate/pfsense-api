@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="TestPortRequest")
 
@@ -12,20 +10,20 @@ T = TypeVar("T", bound="TestPortRequest")
 class TestPortRequest:
     """
     Attributes:
-        host (Union[Unset, str]):
-        src_port (Union[Unset, str]):
-        src_ip (Union[Unset, str]):
-        port (Union[Unset, int]):
-        show_text (Union[Unset, bool]):
-        ip_proto (Union[Unset, str]):
+        host (str):
+        src_port (str):
+        src_ip (str):
+        port (int):
+        show_text (bool):
+        ip_proto (str):
     """
 
-    host: Union[Unset, str] = UNSET
-    src_port: Union[Unset, str] = UNSET
-    src_ip: Union[Unset, str] = UNSET
-    port: Union[Unset, int] = UNSET
-    show_text: Union[Unset, bool] = UNSET
-    ip_proto: Union[Unset, str] = UNSET
+    host: str
+    src_port: str
+    src_ip: str
+    port: int
+    show_text: bool
+    ip_proto: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -43,36 +41,33 @@ class TestPortRequest:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if host is not UNSET:
-            field_dict["host"] = host
-        if src_port is not UNSET:
-            field_dict["src_port"] = src_port
-        if src_ip is not UNSET:
-            field_dict["src_ip"] = src_ip
-        if port is not UNSET:
-            field_dict["port"] = port
-        if show_text is not UNSET:
-            field_dict["show_text"] = show_text
-        if ip_proto is not UNSET:
-            field_dict["ip_proto"] = ip_proto
+        field_dict.update(
+            {
+                "host": host,
+                "src_port": src_port,
+                "src_ip": src_ip,
+                "port": port,
+                "show_text": show_text,
+                "ip_proto": ip_proto,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        host = d.pop("host", UNSET)
+        host = d.pop("host")
 
-        src_port = d.pop("src_port", UNSET)
+        src_port = d.pop("src_port")
 
-        src_ip = d.pop("src_ip", UNSET)
+        src_ip = d.pop("src_ip")
 
-        port = d.pop("port", UNSET)
+        port = d.pop("port")
 
-        show_text = d.pop("show_text", UNSET)
+        show_text = d.pop("show_text")
 
-        ip_proto = d.pop("ip_proto", UNSET)
+        ip_proto = d.pop("ip_proto")
 
         test_port_request = cls(
             host=host,

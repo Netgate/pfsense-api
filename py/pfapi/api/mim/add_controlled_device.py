@@ -23,7 +23,7 @@ def _get_kwargs(
     }
 
     _body: Dict[str, Any]
-    if isinstance(body, ControlledDevice):
+    if isinstance(body, DeviceIdentity):
         _body = body.to_dict()
     else:
         _body = body.to_dict()

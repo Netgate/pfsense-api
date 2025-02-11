@@ -12,26 +12,28 @@ T = TypeVar("T", bound="GroupAddReq")
 class GroupAddReq:
     """
     Attributes:
-        name (Union[Unset, str]):
+        name (str):
+        scope (str):
         description (Union[Unset, str]):
-        scope (Union[Unset, str]):
         gid (Union[Unset, int]):
         members (Union[Unset, List[int]]):
+        privs (Union[Unset, List[str]]):
     """
 
-    name: Union[Unset, str] = UNSET
+    name: str
+    scope: str
     description: Union[Unset, str] = UNSET
-    scope: Union[Unset, str] = UNSET
     gid: Union[Unset, int] = UNSET
     members: Union[Unset, List[int]] = UNSET
+    privs: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         name = self.name
 
-        description = self.description
-
         scope = self.scope
+
+        description = self.description
 
         gid = self.gid
 
@@ -39,41 +41,51 @@ class GroupAddReq:
         if not isinstance(self.members, Unset):
             members = self.members
 
+        privs: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.privs, Unset):
+            privs = self.privs
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
+        field_dict.update(
+            {
+                "name": name,
+                "scope": scope,
+            }
+        )
         if description is not UNSET:
             field_dict["description"] = description
-        if scope is not UNSET:
-            field_dict["scope"] = scope
         if gid is not UNSET:
             field_dict["gid"] = gid
         if members is not UNSET:
             field_dict["members"] = members
+        if privs is not UNSET:
+            field_dict["privs"] = privs
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
+
+        scope = d.pop("scope")
 
         description = d.pop("description", UNSET)
-
-        scope = d.pop("scope", UNSET)
 
         gid = d.pop("gid", UNSET)
 
         members = cast(List[int], d.pop("members", UNSET))
 
+        privs = cast(List[str], d.pop("privs", UNSET))
+
         group_add_req = cls(
             name=name,
-            description=description,
             scope=scope,
+            description=description,
             gid=gid,
             members=members,
+            privs=privs,
         )
 
         group_add_req.additional_properties = d

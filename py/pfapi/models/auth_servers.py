@@ -18,17 +18,27 @@ T = TypeVar("T", bound="AuthServers")
 class AuthServers:
     """
     Attributes:
+        active_type (str):
+        active_name (str):
+        local (LocalServer):
         ldap (Union[Unset, List['LdapAuthServer']]):
         radius (Union[Unset, List['RadiusAuthServer']]):
-        local (Union[Unset, LocalServer]):
     """
 
+    active_type: str
+    active_name: str
+    local: "LocalServer"
     ldap: Union[Unset, List["LdapAuthServer"]] = UNSET
     radius: Union[Unset, List["RadiusAuthServer"]] = UNSET
-    local: Union[Unset, "LocalServer"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
+        active_type = self.active_type
+
+        active_name = self.active_name
+
+        local = self.local.to_dict()
+
         ldap: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.ldap, Unset):
             ldap = []
@@ -43,19 +53,19 @@ class AuthServers:
                 radius_item = radius_item_data.to_dict()
                 radius.append(radius_item)
 
-        local: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.local, Unset):
-            local = self.local.to_dict()
-
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update(
+            {
+                "active_type": active_type,
+                "active_name": active_name,
+                "local": local,
+            }
+        )
         if ldap is not UNSET:
             field_dict["ldap"] = ldap
         if radius is not UNSET:
             field_dict["radius"] = radius
-        if local is not UNSET:
-            field_dict["local"] = local
 
         return field_dict
 
@@ -66,6 +76,12 @@ class AuthServers:
         from ..models.radius_auth_server import RadiusAuthServer
 
         d = src_dict.copy()
+        active_type = d.pop("active_type")
+
+        active_name = d.pop("active_name")
+
+        local = LocalServer.from_dict(d.pop("local"))
+
         ldap = []
         _ldap = d.pop("ldap", UNSET)
         for ldap_item_data in _ldap or []:
@@ -80,17 +96,12 @@ class AuthServers:
 
             radius.append(radius_item)
 
-        _local = d.pop("local", UNSET)
-        local: Union[Unset, LocalServer]
-        if isinstance(_local, Unset):
-            local = UNSET
-        else:
-            local = LocalServer.from_dict(_local)
-
         auth_servers = cls(
+            active_type=active_type,
+            active_name=active_name,
+            local=local,
             ldap=ldap,
             radius=radius,
-            local=local,
         )
 
         auth_servers.additional_properties = d

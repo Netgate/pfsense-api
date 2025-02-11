@@ -16,36 +16,36 @@ T = TypeVar("T", bound="NATAutoRule")
 class NATAutoRule:
     """
     Attributes:
-        idx (Union[Unset, int]):
-        interface (Union[Unset, str]):
-        dstport (Union[Unset, str]):
-        target (Union[Unset, str]):
+        id (str):
+        interface (str):
+        dstport (str):
+        target (str):
+        dstaddr (str):
+        dstany (bool):
+        srcany (bool):
+        srcaddr (str):
+        staticnatport (bool):
+        descr (str):
         destination (Union[Unset, NATAutoAddr]):
-        dstaddr (Union[Unset, str]):
         source (Union[Unset, NATAutoAddr]):
-        dstany (Union[Unset, bool]):
-        srcany (Union[Unset, bool]):
-        srcaddr (Union[Unset, str]):
-        staticnatport (Union[Unset, bool]):
-        descr (Union[Unset, str]):
     """
 
-    idx: Union[Unset, int] = UNSET
-    interface: Union[Unset, str] = UNSET
-    dstport: Union[Unset, str] = UNSET
-    target: Union[Unset, str] = UNSET
+    id: str
+    interface: str
+    dstport: str
+    target: str
+    dstaddr: str
+    dstany: bool
+    srcany: bool
+    srcaddr: str
+    staticnatport: bool
+    descr: str
     destination: Union[Unset, "NATAutoAddr"] = UNSET
-    dstaddr: Union[Unset, str] = UNSET
     source: Union[Unset, "NATAutoAddr"] = UNSET
-    dstany: Union[Unset, bool] = UNSET
-    srcany: Union[Unset, bool] = UNSET
-    srcaddr: Union[Unset, str] = UNSET
-    staticnatport: Union[Unset, bool] = UNSET
-    descr: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        idx = self.idx
+        id = self.id
 
         interface = self.interface
 
@@ -53,15 +53,7 @@ class NATAutoRule:
 
         target = self.target
 
-        destination: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.destination, Unset):
-            destination = self.destination.to_dict()
-
         dstaddr = self.dstaddr
-
-        source: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.source, Unset):
-            source = self.source.to_dict()
 
         dstany = self.dstany
 
@@ -73,33 +65,34 @@ class NATAutoRule:
 
         descr = self.descr
 
+        destination: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.destination, Unset):
+            destination = self.destination.to_dict()
+
+        source: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.source, Unset):
+            source = self.source.to_dict()
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if idx is not UNSET:
-            field_dict["idx"] = idx
-        if interface is not UNSET:
-            field_dict["interface"] = interface
-        if dstport is not UNSET:
-            field_dict["dstport"] = dstport
-        if target is not UNSET:
-            field_dict["target"] = target
+        field_dict.update(
+            {
+                "id": id,
+                "interface": interface,
+                "dstport": dstport,
+                "target": target,
+                "dstaddr": dstaddr,
+                "dstany": dstany,
+                "srcany": srcany,
+                "srcaddr": srcaddr,
+                "staticnatport": staticnatport,
+                "descr": descr,
+            }
+        )
         if destination is not UNSET:
             field_dict["destination"] = destination
-        if dstaddr is not UNSET:
-            field_dict["dstaddr"] = dstaddr
         if source is not UNSET:
             field_dict["source"] = source
-        if dstany is not UNSET:
-            field_dict["dstany"] = dstany
-        if srcany is not UNSET:
-            field_dict["srcany"] = srcany
-        if srcaddr is not UNSET:
-            field_dict["srcaddr"] = srcaddr
-        if staticnatport is not UNSET:
-            field_dict["staticnatport"] = staticnatport
-        if descr is not UNSET:
-            field_dict["descr"] = descr
 
         return field_dict
 
@@ -108,13 +101,25 @@ class NATAutoRule:
         from ..models.nat_auto_addr import NATAutoAddr
 
         d = src_dict.copy()
-        idx = d.pop("idx", UNSET)
+        id = d.pop("id")
 
-        interface = d.pop("interface", UNSET)
+        interface = d.pop("interface")
 
-        dstport = d.pop("dstport", UNSET)
+        dstport = d.pop("dstport")
 
-        target = d.pop("target", UNSET)
+        target = d.pop("target")
+
+        dstaddr = d.pop("dstaddr")
+
+        dstany = d.pop("dstany")
+
+        srcany = d.pop("srcany")
+
+        srcaddr = d.pop("srcaddr")
+
+        staticnatport = d.pop("staticnatport")
+
+        descr = d.pop("descr")
 
         _destination = d.pop("destination", UNSET)
         destination: Union[Unset, NATAutoAddr]
@@ -123,8 +128,6 @@ class NATAutoRule:
         else:
             destination = NATAutoAddr.from_dict(_destination)
 
-        dstaddr = d.pop("dstaddr", UNSET)
-
         _source = d.pop("source", UNSET)
         source: Union[Unset, NATAutoAddr]
         if isinstance(_source, Unset):
@@ -132,29 +135,19 @@ class NATAutoRule:
         else:
             source = NATAutoAddr.from_dict(_source)
 
-        dstany = d.pop("dstany", UNSET)
-
-        srcany = d.pop("srcany", UNSET)
-
-        srcaddr = d.pop("srcaddr", UNSET)
-
-        staticnatport = d.pop("staticnatport", UNSET)
-
-        descr = d.pop("descr", UNSET)
-
         nat_auto_rule = cls(
-            idx=idx,
+            id=id,
             interface=interface,
             dstport=dstport,
             target=target,
-            destination=destination,
             dstaddr=dstaddr,
-            source=source,
             dstany=dstany,
             srcany=srcany,
             srcaddr=srcaddr,
             staticnatport=staticnatport,
             descr=descr,
+            destination=destination,
+            source=source,
         )
 
         nat_auto_rule.additional_properties = d

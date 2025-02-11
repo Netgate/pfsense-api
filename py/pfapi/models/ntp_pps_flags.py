@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="NtpPpsFlags")
 
@@ -12,14 +10,14 @@ T = TypeVar("T", bound="NtpPpsFlags")
 class NtpPpsFlags:
     """
     Attributes:
-        enable_falling_edge_pps_signal_processing (Union[Unset, bool]):
-        enable_kernel_pps_clock_disciple (Union[Unset, bool]):
-        record_a_timestamp_once_for_each_second (Union[Unset, bool]):
+        enable_falling_edge_pps_signal_processing (bool):
+        enable_kernel_pps_clock_disciple (bool):
+        record_a_timestamp_once_for_each_second (bool):
     """
 
-    enable_falling_edge_pps_signal_processing: Union[Unset, bool] = UNSET
-    enable_kernel_pps_clock_disciple: Union[Unset, bool] = UNSET
-    record_a_timestamp_once_for_each_second: Union[Unset, bool] = UNSET
+    enable_falling_edge_pps_signal_processing: bool
+    enable_kernel_pps_clock_disciple: bool
+    record_a_timestamp_once_for_each_second: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,24 +29,24 @@ class NtpPpsFlags:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if enable_falling_edge_pps_signal_processing is not UNSET:
-            field_dict["enable_falling_edge_pps_signal_processing"] = enable_falling_edge_pps_signal_processing
-        if enable_kernel_pps_clock_disciple is not UNSET:
-            field_dict["enable_kernel_pps_clock_disciple"] = enable_kernel_pps_clock_disciple
-        if record_a_timestamp_once_for_each_second is not UNSET:
-            field_dict["record_a_timestamp_once_for_each_second"] = record_a_timestamp_once_for_each_second
+        field_dict.update(
+            {
+                "enable_falling_edge_pps_signal_processing": enable_falling_edge_pps_signal_processing,
+                "enable_kernel_pps_clock_disciple": enable_kernel_pps_clock_disciple,
+                "record_a_timestamp_once_for_each_second": record_a_timestamp_once_for_each_second,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        enable_falling_edge_pps_signal_processing = d.pop("enable_falling_edge_pps_signal_processing", UNSET)
+        enable_falling_edge_pps_signal_processing = d.pop("enable_falling_edge_pps_signal_processing")
 
-        enable_kernel_pps_clock_disciple = d.pop("enable_kernel_pps_clock_disciple", UNSET)
+        enable_kernel_pps_clock_disciple = d.pop("enable_kernel_pps_clock_disciple")
 
-        record_a_timestamp_once_for_each_second = d.pop("record_a_timestamp_once_for_each_second", UNSET)
+        record_a_timestamp_once_for_each_second = d.pop("record_a_timestamp_once_for_each_second")
 
         ntp_pps_flags = cls(
             enable_falling_edge_pps_signal_processing=enable_falling_edge_pps_signal_processing,

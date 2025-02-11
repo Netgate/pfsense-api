@@ -12,16 +12,16 @@ T = TypeVar("T", bound="UserAuthSettingsReq")
 class UserAuthSettingsReq:
     """
     Attributes:
-        authentication_server (Union[Unset, str]):
-        save_and_test (Union[Unset, bool]):
+        authentication_server (str):
+        save_and_test (bool):
         session_timeout (Union[Unset, int]):
         password_hash (Union[Unset, str]):
         shell_auth (Union[Unset, bool]):
         auth_refresh_time (Union[Unset, int]):
     """
 
-    authentication_server: Union[Unset, str] = UNSET
-    save_and_test: Union[Unset, bool] = UNSET
+    authentication_server: str
+    save_and_test: bool
     session_timeout: Union[Unset, int] = UNSET
     password_hash: Union[Unset, str] = UNSET
     shell_auth: Union[Unset, bool] = UNSET
@@ -43,11 +43,12 @@ class UserAuthSettingsReq:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if authentication_server is not UNSET:
-            field_dict["authentication_server"] = authentication_server
-        if save_and_test is not UNSET:
-            field_dict["save_and_test"] = save_and_test
+        field_dict.update(
+            {
+                "authentication_server": authentication_server,
+                "save_and_test": save_and_test,
+            }
+        )
         if session_timeout is not UNSET:
             field_dict["session_timeout"] = session_timeout
         if password_hash is not UNSET:
@@ -62,9 +63,9 @@ class UserAuthSettingsReq:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        authentication_server = d.pop("authentication_server", UNSET)
+        authentication_server = d.pop("authentication_server")
 
-        save_and_test = d.pop("save_and_test", UNSET)
+        save_and_test = d.pop("save_and_test")
 
         session_timeout = d.pop("session_timeout", UNSET)
 

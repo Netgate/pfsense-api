@@ -15,13 +15,13 @@ class CertMethodExistingPkcs12:
     it can be included as pkcs12_b64 directly within this structure.
 
         Attributes:
-            password (Union[Unset, str]):
-            intermediates (Union[Unset, bool]):
+            password (str):
+            intermediates (bool):
             pkcs12_b64 (Union[Unset, str]):
     """
 
-    password: Union[Unset, str] = UNSET
-    intermediates: Union[Unset, bool] = UNSET
+    password: str
+    intermediates: bool
     pkcs12_b64: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -34,11 +34,12 @@ class CertMethodExistingPkcs12:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if password is not UNSET:
-            field_dict["password"] = password
-        if intermediates is not UNSET:
-            field_dict["intermediates"] = intermediates
+        field_dict.update(
+            {
+                "password": password,
+                "intermediates": intermediates,
+            }
+        )
         if pkcs12_b64 is not UNSET:
             field_dict["pkcs12_b64"] = pkcs12_b64
 
@@ -47,9 +48,9 @@ class CertMethodExistingPkcs12:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        password = d.pop("password", UNSET)
+        password = d.pop("password")
 
-        intermediates = d.pop("intermediates", UNSET)
+        intermediates = d.pop("intermediates")
 
         pkcs12_b64 = d.pop("pkcs12_b64", UNSET)
 

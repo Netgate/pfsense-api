@@ -16,31 +16,31 @@ T = TypeVar("T", bound="SoftwarePackage")
 class SoftwarePackage:
     """
     Attributes:
-        name (Union[Unset, str]):
-        id (Union[Unset, str]):
-        category (Union[Unset, str]):
-        description (Union[Unset, str]):
-        local_version (Union[Unset, str]):
-        avail_version (Union[Unset, str]):
+        name (str):
+        id (str):
+        category (str):
+        description (str):
+        local_version (str):
+        avail_version (str):
+        filename (str):
+        checksum (str):
+        os_type (str):
+        os_version (str):
         dependencies (Union[Unset, List[str]]):
-        filename (Union[Unset, str]):
-        checksum (Union[Unset, str]):
-        os_type (Union[Unset, str]):
-        os_version (Union[Unset, str]):
         installed_on (Union[Unset, List['DeviceBasicInfo']]):
     """
 
-    name: Union[Unset, str] = UNSET
-    id: Union[Unset, str] = UNSET
-    category: Union[Unset, str] = UNSET
-    description: Union[Unset, str] = UNSET
-    local_version: Union[Unset, str] = UNSET
-    avail_version: Union[Unset, str] = UNSET
+    name: str
+    id: str
+    category: str
+    description: str
+    local_version: str
+    avail_version: str
+    filename: str
+    checksum: str
+    os_type: str
+    os_version: str
     dependencies: Union[Unset, List[str]] = UNSET
-    filename: Union[Unset, str] = UNSET
-    checksum: Union[Unset, str] = UNSET
-    os_type: Union[Unset, str] = UNSET
-    os_version: Union[Unset, str] = UNSET
     installed_on: Union[Unset, List["DeviceBasicInfo"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -57,10 +57,6 @@ class SoftwarePackage:
 
         avail_version = self.avail_version
 
-        dependencies: Union[Unset, List[str]] = UNSET
-        if not isinstance(self.dependencies, Unset):
-            dependencies = self.dependencies
-
         filename = self.filename
 
         checksum = self.checksum
@@ -68,6 +64,10 @@ class SoftwarePackage:
         os_type = self.os_type
 
         os_version = self.os_version
+
+        dependencies: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.dependencies, Unset):
+            dependencies = self.dependencies
 
         installed_on: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.installed_on, Unset):
@@ -78,29 +78,22 @@ class SoftwarePackage:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if id is not UNSET:
-            field_dict["id"] = id
-        if category is not UNSET:
-            field_dict["category"] = category
-        if description is not UNSET:
-            field_dict["description"] = description
-        if local_version is not UNSET:
-            field_dict["local_version"] = local_version
-        if avail_version is not UNSET:
-            field_dict["avail_version"] = avail_version
+        field_dict.update(
+            {
+                "name": name,
+                "id": id,
+                "category": category,
+                "description": description,
+                "local_version": local_version,
+                "avail_version": avail_version,
+                "filename": filename,
+                "checksum": checksum,
+                "os_type": os_type,
+                "os_version": os_version,
+            }
+        )
         if dependencies is not UNSET:
             field_dict["dependencies"] = dependencies
-        if filename is not UNSET:
-            field_dict["filename"] = filename
-        if checksum is not UNSET:
-            field_dict["checksum"] = checksum
-        if os_type is not UNSET:
-            field_dict["os_type"] = os_type
-        if os_version is not UNSET:
-            field_dict["os_version"] = os_version
         if installed_on is not UNSET:
             field_dict["installed_on"] = installed_on
 
@@ -111,27 +104,27 @@ class SoftwarePackage:
         from ..models.device_basic_info import DeviceBasicInfo
 
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        id = d.pop("id", UNSET)
+        id = d.pop("id")
 
-        category = d.pop("category", UNSET)
+        category = d.pop("category")
 
-        description = d.pop("description", UNSET)
+        description = d.pop("description")
 
-        local_version = d.pop("local_version", UNSET)
+        local_version = d.pop("local_version")
 
-        avail_version = d.pop("avail_version", UNSET)
+        avail_version = d.pop("avail_version")
+
+        filename = d.pop("filename")
+
+        checksum = d.pop("checksum")
+
+        os_type = d.pop("os_type")
+
+        os_version = d.pop("os_version")
 
         dependencies = cast(List[str], d.pop("dependencies", UNSET))
-
-        filename = d.pop("filename", UNSET)
-
-        checksum = d.pop("checksum", UNSET)
-
-        os_type = d.pop("os_type", UNSET)
-
-        os_version = d.pop("os_version", UNSET)
 
         installed_on = []
         _installed_on = d.pop("installed_on", UNSET)
@@ -147,11 +140,11 @@ class SoftwarePackage:
             description=description,
             local_version=local_version,
             avail_version=avail_version,
-            dependencies=dependencies,
             filename=filename,
             checksum=checksum,
             os_type=os_type,
             os_version=os_version,
+            dependencies=dependencies,
             installed_on=installed_on,
         )
 

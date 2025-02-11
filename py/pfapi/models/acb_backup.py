@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ACBBackup")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="ACBBackup")
 class ACBBackup:
     """
     Attributes:
-        timestamp (Union[Unset, str]):
-        reason (Union[Unset, str]):
+        timestamp (str):
+        reason (str):
     """
 
-    timestamp: Union[Unset, str] = UNSET
-    reason: Union[Unset, str] = UNSET
+    timestamp: str
+    reason: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class ACBBackup:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if timestamp is not UNSET:
-            field_dict["timestamp"] = timestamp
-        if reason is not UNSET:
-            field_dict["reason"] = reason
+        field_dict.update(
+            {
+                "timestamp": timestamp,
+                "reason": reason,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        timestamp = d.pop("timestamp", UNSET)
+        timestamp = d.pop("timestamp")
 
-        reason = d.pop("reason", UNSET)
+        reason = d.pop("reason")
 
         acb_backup = cls(
             timestamp=timestamp,

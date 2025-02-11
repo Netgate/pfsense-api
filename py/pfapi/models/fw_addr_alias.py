@@ -13,18 +13,20 @@ class FWAddrAlias:
     """System or user-defined alias details about the network defined in FWAddrPort.network
 
     Attributes:
-        alias_type (Union[Unset, str]):
-        label (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        table (Union[Unset, str]):
-        values (Union[Unset, List[str]]):
+        alias_type (str): system, host, port, network, url
+        label (str): alias label e.g. LAN__NETWORK, alias.name
+        descr (str): description about the alias
+        table (str): firewall table, if applicable
+        values (List[str]):
+        truncated (Union[Unset, bool]): indicates whether the value list is truncated
     """
 
-    alias_type: Union[Unset, str] = UNSET
-    label: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    table: Union[Unset, str] = UNSET
-    values: Union[Unset, List[str]] = UNSET
+    alias_type: str
+    label: str
+    descr: str
+    table: str
+    values: List[str]
+    truncated: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -36,38 +38,40 @@ class FWAddrAlias:
 
         table = self.table
 
-        values: Union[Unset, List[str]] = UNSET
-        if not isinstance(self.values, Unset):
-            values = self.values
+        values = self.values
+
+        truncated = self.truncated
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if alias_type is not UNSET:
-            field_dict["alias_type"] = alias_type
-        if label is not UNSET:
-            field_dict["label"] = label
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if table is not UNSET:
-            field_dict["table"] = table
-        if values is not UNSET:
-            field_dict["values"] = values
+        field_dict.update(
+            {
+                "alias_type": alias_type,
+                "label": label,
+                "descr": descr,
+                "table": table,
+                "values": values,
+            }
+        )
+        if truncated is not UNSET:
+            field_dict["truncated"] = truncated
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        alias_type = d.pop("alias_type", UNSET)
+        alias_type = d.pop("alias_type")
 
-        label = d.pop("label", UNSET)
+        label = d.pop("label")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
-        table = d.pop("table", UNSET)
+        table = d.pop("table")
 
-        values = cast(List[str], d.pop("values", UNSET))
+        values = cast(List[str], d.pop("values"))
+
+        truncated = d.pop("truncated", UNSET)
 
         fw_addr_alias = cls(
             alias_type=alias_type,
@@ -75,6 +79,7 @@ class FWAddrAlias:
             descr=descr,
             table=table,
             values=values,
+            truncated=truncated,
         )
 
         fw_addr_alias.additional_properties = d

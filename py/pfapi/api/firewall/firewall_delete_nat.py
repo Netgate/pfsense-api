@@ -11,11 +11,11 @@ from ...types import Response
 
 
 def _get_kwargs(
-    ids: str,
+    id: str,
 ) -> Dict[str, Any]:
     _kwargs: Dict[str, Any] = {
         "method": "delete",
-        "url": f"/firewall/nat/{ids}",
+        "url": f"/firewall/nat/port-forward/{id}",
     }
 
     return _kwargs
@@ -50,14 +50,14 @@ def _build_response(
 
 
 def sync_detailed(
-    ids: str,
+    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Response[Union[Error, PfsenseResult]]:
     """Delete NAT rules
 
     Args:
-        ids (str):
+        id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -68,7 +68,7 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
-        ids=ids,
+        id=id,
     )
 
     response = client.get_httpx_client().request(
@@ -79,14 +79,14 @@ def sync_detailed(
 
 
 def sync(
-    ids: str,
+    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Optional[Union[Error, PfsenseResult]]:
     """Delete NAT rules
 
     Args:
-        ids (str):
+        id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -97,20 +97,20 @@ def sync(
     """
 
     return sync_detailed(
-        ids=ids,
+        id=id,
         client=client,
     ).parsed
 
 
 async def asyncio_detailed(
-    ids: str,
+    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Response[Union[Error, PfsenseResult]]:
     """Delete NAT rules
 
     Args:
-        ids (str):
+        id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -121,7 +121,7 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
-        ids=ids,
+        id=id,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -130,14 +130,14 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    ids: str,
+    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Optional[Union[Error, PfsenseResult]]:
     """Delete NAT rules
 
     Args:
-        ids (str):
+        id (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -149,7 +149,7 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
-            ids=ids,
+            id=id,
             client=client,
         )
     ).parsed

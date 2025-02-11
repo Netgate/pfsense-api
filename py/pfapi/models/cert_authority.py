@@ -1,9 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.cert_info import CertInfo
@@ -16,28 +14,28 @@ T = TypeVar("T", bound="CertAuthority")
 class CertAuthority:
     """
     Attributes:
-        name (Union[Unset, str]):
-        refid (Union[Unset, str]):
-        internal (Union[Unset, bool]):
-        issuer (Union[Unset, str]):
-        certificates (Union[Unset, int]):
-        inuse (Union[Unset, List[str]]):
-        trust (Union[Unset, bool]):
-        randomize_serial (Union[Unset, bool]):
-        next_serial (Union[Unset, int]):
-        info (Union[Unset, CertInfo]):
+        name (str):
+        refid (str):
+        internal (bool):
+        issuer (str):
+        certificates (int):
+        inuse (List[str]):
+        trust (bool):
+        randomize_serial (bool):
+        next_serial (int):
+        info (CertInfo):
     """
 
-    name: Union[Unset, str] = UNSET
-    refid: Union[Unset, str] = UNSET
-    internal: Union[Unset, bool] = UNSET
-    issuer: Union[Unset, str] = UNSET
-    certificates: Union[Unset, int] = UNSET
-    inuse: Union[Unset, List[str]] = UNSET
-    trust: Union[Unset, bool] = UNSET
-    randomize_serial: Union[Unset, bool] = UNSET
-    next_serial: Union[Unset, int] = UNSET
-    info: Union[Unset, "CertInfo"] = UNSET
+    name: str
+    refid: str
+    internal: bool
+    issuer: str
+    certificates: int
+    inuse: List[str]
+    trust: bool
+    randomize_serial: bool
+    next_serial: int
+    info: "CertInfo"
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -51,9 +49,7 @@ class CertAuthority:
 
         certificates = self.certificates
 
-        inuse: Union[Unset, List[str]] = UNSET
-        if not isinstance(self.inuse, Unset):
-            inuse = self.inuse
+        inuse = self.inuse
 
         trust = self.trust
 
@@ -61,33 +57,24 @@ class CertAuthority:
 
         next_serial = self.next_serial
 
-        info: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.info, Unset):
-            info = self.info.to_dict()
+        info = self.info.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if refid is not UNSET:
-            field_dict["refid"] = refid
-        if internal is not UNSET:
-            field_dict["internal"] = internal
-        if issuer is not UNSET:
-            field_dict["issuer"] = issuer
-        if certificates is not UNSET:
-            field_dict["certificates"] = certificates
-        if inuse is not UNSET:
-            field_dict["inuse"] = inuse
-        if trust is not UNSET:
-            field_dict["trust"] = trust
-        if randomize_serial is not UNSET:
-            field_dict["randomize_serial"] = randomize_serial
-        if next_serial is not UNSET:
-            field_dict["next_serial"] = next_serial
-        if info is not UNSET:
-            field_dict["info"] = info
+        field_dict.update(
+            {
+                "name": name,
+                "refid": refid,
+                "internal": internal,
+                "issuer": issuer,
+                "certificates": certificates,
+                "inuse": inuse,
+                "trust": trust,
+                "randomize_serial": randomize_serial,
+                "next_serial": next_serial,
+                "info": info,
+            }
+        )
 
         return field_dict
 
@@ -96,30 +83,25 @@ class CertAuthority:
         from ..models.cert_info import CertInfo
 
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        refid = d.pop("refid", UNSET)
+        refid = d.pop("refid")
 
-        internal = d.pop("internal", UNSET)
+        internal = d.pop("internal")
 
-        issuer = d.pop("issuer", UNSET)
+        issuer = d.pop("issuer")
 
-        certificates = d.pop("certificates", UNSET)
+        certificates = d.pop("certificates")
 
-        inuse = cast(List[str], d.pop("inuse", UNSET))
+        inuse = cast(List[str], d.pop("inuse"))
 
-        trust = d.pop("trust", UNSET)
+        trust = d.pop("trust")
 
-        randomize_serial = d.pop("randomize_serial", UNSET)
+        randomize_serial = d.pop("randomize_serial")
 
-        next_serial = d.pop("next_serial", UNSET)
+        next_serial = d.pop("next_serial")
 
-        _info = d.pop("info", UNSET)
-        info: Union[Unset, CertInfo]
-        if isinstance(_info, Unset):
-            info = UNSET
-        else:
-            info = CertInfo.from_dict(_info)
+        info = CertInfo.from_dict(d.pop("info"))
 
         cert_authority = cls(
             name=name,

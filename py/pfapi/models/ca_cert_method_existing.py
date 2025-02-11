@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CaCertMethodExisting")
 
@@ -13,14 +11,14 @@ class CaCertMethodExisting:
     """Existing PEM certificate and key, either in PEM format or base64-encoded
 
     Attributes:
-        cert (Union[Unset, str]):
-        private_key (Union[Unset, str]):
-        next_serial (Union[Unset, int]):
+        cert (str):
+        private_key (str):
+        next_serial (int):
     """
 
-    cert: Union[Unset, str] = UNSET
-    private_key: Union[Unset, str] = UNSET
-    next_serial: Union[Unset, int] = UNSET
+    cert: str
+    private_key: str
+    next_serial: int
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -32,24 +30,24 @@ class CaCertMethodExisting:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if cert is not UNSET:
-            field_dict["cert"] = cert
-        if private_key is not UNSET:
-            field_dict["private_key"] = private_key
-        if next_serial is not UNSET:
-            field_dict["next_serial"] = next_serial
+        field_dict.update(
+            {
+                "cert": cert,
+                "private_key": private_key,
+                "next_serial": next_serial,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        cert = d.pop("cert", UNSET)
+        cert = d.pop("cert")
 
-        private_key = d.pop("private_key", UNSET)
+        private_key = d.pop("private_key")
 
-        next_serial = d.pop("next_serial", UNSET)
+        next_serial = d.pop("next_serial")
 
         ca_cert_method_existing = cls(
             cert=cert,

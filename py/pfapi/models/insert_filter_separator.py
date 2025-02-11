@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="InsertFilterSeparator")
 
@@ -12,16 +10,16 @@ T = TypeVar("T", bound="InsertFilterSeparator")
 class InsertFilterSeparator:
     """
     Attributes:
-        after (Union[Unset, bool]):
-        color (Union[Unset, str]):
-        rule (Union[Unset, str]):
-        text (Union[Unset, str]):
+        after (bool):
+        color (str):
+        rule (str):
+        text (str):
     """
 
-    after: Union[Unset, bool] = UNSET
-    color: Union[Unset, str] = UNSET
-    rule: Union[Unset, str] = UNSET
-    text: Union[Unset, str] = UNSET
+    after: bool
+    color: str
+    rule: str
+    text: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -35,28 +33,27 @@ class InsertFilterSeparator:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if after is not UNSET:
-            field_dict["after"] = after
-        if color is not UNSET:
-            field_dict["color"] = color
-        if rule is not UNSET:
-            field_dict["rule"] = rule
-        if text is not UNSET:
-            field_dict["text"] = text
+        field_dict.update(
+            {
+                "after": after,
+                "color": color,
+                "rule": rule,
+                "text": text,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        after = d.pop("after", UNSET)
+        after = d.pop("after")
 
-        color = d.pop("color", UNSET)
+        color = d.pop("color")
 
-        rule = d.pop("rule", UNSET)
+        rule = d.pop("rule")
 
-        text = d.pop("text", UNSET)
+        text = d.pop("text")
 
         insert_filter_separator = cls(
             after=after,

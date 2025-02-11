@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="PFlowOptions")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="PFlowOptions")
 class PFlowOptions:
     """
     Attributes:
-        enable (Union[Unset, bool]):
-        default (Union[Unset, bool]):
+        enable (bool):
+        default (bool):
     """
 
-    enable: Union[Unset, bool] = UNSET
-    default: Union[Unset, bool] = UNSET
+    enable: bool
+    default: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class PFlowOptions:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if enable is not UNSET:
-            field_dict["enable"] = enable
-        if default is not UNSET:
-            field_dict["default"] = default
+        field_dict.update(
+            {
+                "enable": enable,
+                "default": default,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        enable = d.pop("enable", UNSET)
+        enable = d.pop("enable")
 
-        default = d.pop("default", UNSET)
+        default = d.pop("default")
 
         p_flow_options = cls(
             enable=enable,

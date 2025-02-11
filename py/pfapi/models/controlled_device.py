@@ -18,31 +18,31 @@ class ControlledDevice:
     """Parameters for adding the device
 
     Attributes:
-        name (Union[Unset, str]):
-        alias (Union[Unset, str]):
+        name (str):
+        alias (str):
+        device_type (str):
+        address (str):
+        address6 (str):
+        primary_auth (str):
+        auth (ControlledDeviceAuth):
+        state (str): current device state: active, error, offline, rebooting, pending (pending auth)
         device_id (Union[Unset, str]):
-        device_type (Union[Unset, str]):
         tags (Union[Unset, List[str]]):
-        address (Union[Unset, str]):
-        address6 (Union[Unset, str]):
-        primary_auth (Union[Unset, str]):
-        auth (Union[Unset, ControlledDeviceAuth]):
-        state (Union[Unset, str]):
-        device_cert (Union[Unset, str]):
-        device_key (Union[Unset, str]):
+        device_cert (Union[Unset, str]): recorded value of device certificate
+        device_key (Union[Unset, str]): public key of device
         device_info (Union[Unset, ControlledDeviceInfo]): Additional information about the device
     """
 
-    name: Union[Unset, str] = UNSET
-    alias: Union[Unset, str] = UNSET
+    name: str
+    alias: str
+    device_type: str
+    address: str
+    address6: str
+    primary_auth: str
+    auth: "ControlledDeviceAuth"
+    state: str
     device_id: Union[Unset, str] = UNSET
-    device_type: Union[Unset, str] = UNSET
     tags: Union[Unset, List[str]] = UNSET
-    address: Union[Unset, str] = UNSET
-    address6: Union[Unset, str] = UNSET
-    primary_auth: Union[Unset, str] = UNSET
-    auth: Union[Unset, "ControlledDeviceAuth"] = UNSET
-    state: Union[Unset, str] = UNSET
     device_cert: Union[Unset, str] = UNSET
     device_key: Union[Unset, str] = UNSET
     device_info: Union[Unset, "ControlledDeviceInfo"] = UNSET
@@ -53,13 +53,7 @@ class ControlledDevice:
 
         alias = self.alias
 
-        device_id = self.device_id
-
         device_type = self.device_type
-
-        tags: Union[Unset, List[str]] = UNSET
-        if not isinstance(self.tags, Unset):
-            tags = self.tags
 
         address = self.address
 
@@ -67,11 +61,15 @@ class ControlledDevice:
 
         primary_auth = self.primary_auth
 
-        auth: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.auth, Unset):
-            auth = self.auth.to_dict()
+        auth = self.auth.to_dict()
 
         state = self.state
+
+        device_id = self.device_id
+
+        tags: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.tags, Unset):
+            tags = self.tags
 
         device_cert = self.device_cert
 
@@ -83,27 +81,22 @@ class ControlledDevice:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if alias is not UNSET:
-            field_dict["alias"] = alias
+        field_dict.update(
+            {
+                "name": name,
+                "alias": alias,
+                "device_type": device_type,
+                "address": address,
+                "address6": address6,
+                "primary_auth": primary_auth,
+                "auth": auth,
+                "state": state,
+            }
+        )
         if device_id is not UNSET:
             field_dict["device_id"] = device_id
-        if device_type is not UNSET:
-            field_dict["device_type"] = device_type
         if tags is not UNSET:
             field_dict["tags"] = tags
-        if address is not UNSET:
-            field_dict["address"] = address
-        if address6 is not UNSET:
-            field_dict["address6"] = address6
-        if primary_auth is not UNSET:
-            field_dict["primary_auth"] = primary_auth
-        if auth is not UNSET:
-            field_dict["auth"] = auth
-        if state is not UNSET:
-            field_dict["state"] = state
         if device_cert is not UNSET:
             field_dict["device_cert"] = device_cert
         if device_key is not UNSET:
@@ -119,30 +112,25 @@ class ControlledDevice:
         from ..models.controlled_device_info import ControlledDeviceInfo
 
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        alias = d.pop("alias", UNSET)
+        alias = d.pop("alias")
+
+        device_type = d.pop("device_type")
+
+        address = d.pop("address")
+
+        address6 = d.pop("address6")
+
+        primary_auth = d.pop("primary_auth")
+
+        auth = ControlledDeviceAuth.from_dict(d.pop("auth"))
+
+        state = d.pop("state")
 
         device_id = d.pop("device_id", UNSET)
 
-        device_type = d.pop("device_type", UNSET)
-
         tags = cast(List[str], d.pop("tags", UNSET))
-
-        address = d.pop("address", UNSET)
-
-        address6 = d.pop("address6", UNSET)
-
-        primary_auth = d.pop("primary_auth", UNSET)
-
-        _auth = d.pop("auth", UNSET)
-        auth: Union[Unset, ControlledDeviceAuth]
-        if isinstance(_auth, Unset):
-            auth = UNSET
-        else:
-            auth = ControlledDeviceAuth.from_dict(_auth)
-
-        state = d.pop("state", UNSET)
 
         device_cert = d.pop("device_cert", UNSET)
 
@@ -158,14 +146,14 @@ class ControlledDevice:
         controlled_device = cls(
             name=name,
             alias=alias,
-            device_id=device_id,
             device_type=device_type,
-            tags=tags,
             address=address,
             address6=address6,
             primary_auth=primary_auth,
             auth=auth,
             state=state,
+            device_id=device_id,
+            tags=tags,
             device_cert=device_cert,
             device_key=device_key,
             device_info=device_info,

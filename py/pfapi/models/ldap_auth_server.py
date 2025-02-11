@@ -12,55 +12,61 @@ T = TypeVar("T", bound="LdapAuthServer")
 class LdapAuthServer:
     """
     Attributes:
-        type (Union[Unset, str]):
-        name (Union[Unset, str]):
-        host (Union[Unset, str]):
-        port (Union[Unset, int]):
-        transport (Union[Unset, str]):
-        timeout (Union[Unset, int]):
-        search_scope (Union[Unset, str]):
-        base_dn (Union[Unset, str]):
-        auth_containers (Union[Unset, str]):
-        extended_query (Union[Unset, str]):
-        bind_user_dn (Union[Unset, str]):
-        bind_password (Union[Unset, str]):
-        user_naming_attrib (Union[Unset, str]):
-        group_naming_attrib (Union[Unset, str]):
-        group_member_attrib (Union[Unset, str]):
-        rfc2307 (Union[Unset, bool]):
-        rfc2307_group_class (Union[Unset, str]):
-        rfc2307_use_userdn (Union[Unset, bool]):
-        shell_group_dn (Union[Unset, str]):
-        username_alterations (Union[Unset, bool]):
-        utf8_encode (Union[Unset, bool]):
-        unauthenticated_bind (Union[Unset, bool]):
-        caref (Union[Unset, str]):
-        certref (Union[Unset, str]):
+        type (str):
+        name (str):
+        host (str):
+        version (int): protocol version (3 default)
+        port (int): 636 assumes "tls" encryption
+        transport (str): "starttls", "tls", "none"
+        timeout (int): seconds to timeout operation
+        search_scope (str): "one", "subtree"
+        base_dn (str): root base dn, e.g. dc=domain,dc=com
+        auth_containers (str): semicolon separated list of search containers, prepended to base_dn
+        extended_query (str): optional extra restriction for filtering username query, e.g.:
+            - memberOf=CN=Pfnet,CN=Users,DC=example,DC=com
+            - &(objectClass=posixGroup)(cn=Pfnet)(memberUid=*)
+        bind_user_dn (str): for authenticated binding, the user-DN
+        bind_password (str): for authenticated binding, the password (base64-encoded)
+        user_naming_attrib (str): user naming attribute, e.g. "uid"
+        group_naming_attrib (str): group naming attribute, e.g. "cn"
+        group_member_attrib (str): e.g. "memberOf", "member"
+        rfc2307 (bool): use RFC2307 style group membership
+        rfc2307_group_class (str): object class for groups in rfc2307 mode, e.g. groupOfNames, posixGroup, group
+        rfc2307_use_userdn (bool): use user-DN for querying user record
+        shell_group_dn (str): group DN required for shell access
+        username_alterations (bool): "true" to keep username verbatim (unstripped user@host)
+        utf8_encode (bool): encodings are in utf-8
+        unauthenticated_bind (bool): bind without password
+        no_strip_at (bool): don't strip @<domain>
+        caref (Union[Unset, str]): server's CA, ref
+        certref (Union[Unset, str]): client certificate for secure transport
         refid (Union[Unset, str]):
     """
 
-    type: Union[Unset, str] = UNSET
-    name: Union[Unset, str] = UNSET
-    host: Union[Unset, str] = UNSET
-    port: Union[Unset, int] = UNSET
-    transport: Union[Unset, str] = UNSET
-    timeout: Union[Unset, int] = UNSET
-    search_scope: Union[Unset, str] = UNSET
-    base_dn: Union[Unset, str] = UNSET
-    auth_containers: Union[Unset, str] = UNSET
-    extended_query: Union[Unset, str] = UNSET
-    bind_user_dn: Union[Unset, str] = UNSET
-    bind_password: Union[Unset, str] = UNSET
-    user_naming_attrib: Union[Unset, str] = UNSET
-    group_naming_attrib: Union[Unset, str] = UNSET
-    group_member_attrib: Union[Unset, str] = UNSET
-    rfc2307: Union[Unset, bool] = UNSET
-    rfc2307_group_class: Union[Unset, str] = UNSET
-    rfc2307_use_userdn: Union[Unset, bool] = UNSET
-    shell_group_dn: Union[Unset, str] = UNSET
-    username_alterations: Union[Unset, bool] = UNSET
-    utf8_encode: Union[Unset, bool] = UNSET
-    unauthenticated_bind: Union[Unset, bool] = UNSET
+    type: str
+    name: str
+    host: str
+    version: int
+    port: int
+    transport: str
+    timeout: int
+    search_scope: str
+    base_dn: str
+    auth_containers: str
+    extended_query: str
+    bind_user_dn: str
+    bind_password: str
+    user_naming_attrib: str
+    group_naming_attrib: str
+    group_member_attrib: str
+    rfc2307: bool
+    rfc2307_group_class: str
+    rfc2307_use_userdn: bool
+    shell_group_dn: str
+    username_alterations: bool
+    utf8_encode: bool
+    unauthenticated_bind: bool
+    no_strip_at: bool
     caref: Union[Unset, str] = UNSET
     certref: Union[Unset, str] = UNSET
     refid: Union[Unset, str] = UNSET
@@ -72,6 +78,8 @@ class LdapAuthServer:
         name = self.name
 
         host = self.host
+
+        version = self.version
 
         port = self.port
 
@@ -111,6 +119,8 @@ class LdapAuthServer:
 
         unauthenticated_bind = self.unauthenticated_bind
 
+        no_strip_at = self.no_strip_at
+
         caref = self.caref
 
         certref = self.certref
@@ -119,51 +129,34 @@ class LdapAuthServer:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if type is not UNSET:
-            field_dict["type"] = type
-        if name is not UNSET:
-            field_dict["name"] = name
-        if host is not UNSET:
-            field_dict["host"] = host
-        if port is not UNSET:
-            field_dict["port"] = port
-        if transport is not UNSET:
-            field_dict["transport"] = transport
-        if timeout is not UNSET:
-            field_dict["timeout"] = timeout
-        if search_scope is not UNSET:
-            field_dict["search_scope"] = search_scope
-        if base_dn is not UNSET:
-            field_dict["base_dn"] = base_dn
-        if auth_containers is not UNSET:
-            field_dict["auth_containers"] = auth_containers
-        if extended_query is not UNSET:
-            field_dict["extended_query"] = extended_query
-        if bind_user_dn is not UNSET:
-            field_dict["bind_user_dn"] = bind_user_dn
-        if bind_password is not UNSET:
-            field_dict["bind_password"] = bind_password
-        if user_naming_attrib is not UNSET:
-            field_dict["user_naming_attrib"] = user_naming_attrib
-        if group_naming_attrib is not UNSET:
-            field_dict["group_naming_attrib"] = group_naming_attrib
-        if group_member_attrib is not UNSET:
-            field_dict["group_member_attrib"] = group_member_attrib
-        if rfc2307 is not UNSET:
-            field_dict["rfc2307"] = rfc2307
-        if rfc2307_group_class is not UNSET:
-            field_dict["rfc2307_group_class"] = rfc2307_group_class
-        if rfc2307_use_userdn is not UNSET:
-            field_dict["rfc2307_use_userdn"] = rfc2307_use_userdn
-        if shell_group_dn is not UNSET:
-            field_dict["shell_group_dn"] = shell_group_dn
-        if username_alterations is not UNSET:
-            field_dict["username_alterations"] = username_alterations
-        if utf8_encode is not UNSET:
-            field_dict["utf8_encode"] = utf8_encode
-        if unauthenticated_bind is not UNSET:
-            field_dict["unauthenticated_bind"] = unauthenticated_bind
+        field_dict.update(
+            {
+                "type": type,
+                "name": name,
+                "host": host,
+                "version": version,
+                "port": port,
+                "transport": transport,
+                "timeout": timeout,
+                "search_scope": search_scope,
+                "base_dn": base_dn,
+                "auth_containers": auth_containers,
+                "extended_query": extended_query,
+                "bind_user_dn": bind_user_dn,
+                "bind_password": bind_password,
+                "user_naming_attrib": user_naming_attrib,
+                "group_naming_attrib": group_naming_attrib,
+                "group_member_attrib": group_member_attrib,
+                "rfc2307": rfc2307,
+                "rfc2307_group_class": rfc2307_group_class,
+                "rfc2307_use_userdn": rfc2307_use_userdn,
+                "shell_group_dn": shell_group_dn,
+                "username_alterations": username_alterations,
+                "utf8_encode": utf8_encode,
+                "unauthenticated_bind": unauthenticated_bind,
+                "no_strip_at": no_strip_at,
+            }
+        )
         if caref is not UNSET:
             field_dict["caref"] = caref
         if certref is not UNSET:
@@ -176,49 +169,53 @@ class LdapAuthServer:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        type = d.pop("type", UNSET)
+        type = d.pop("type")
 
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        host = d.pop("host", UNSET)
+        host = d.pop("host")
 
-        port = d.pop("port", UNSET)
+        version = d.pop("version")
 
-        transport = d.pop("transport", UNSET)
+        port = d.pop("port")
 
-        timeout = d.pop("timeout", UNSET)
+        transport = d.pop("transport")
 
-        search_scope = d.pop("search_scope", UNSET)
+        timeout = d.pop("timeout")
 
-        base_dn = d.pop("base_dn", UNSET)
+        search_scope = d.pop("search_scope")
 
-        auth_containers = d.pop("auth_containers", UNSET)
+        base_dn = d.pop("base_dn")
 
-        extended_query = d.pop("extended_query", UNSET)
+        auth_containers = d.pop("auth_containers")
 
-        bind_user_dn = d.pop("bind_user_dn", UNSET)
+        extended_query = d.pop("extended_query")
 
-        bind_password = d.pop("bind_password", UNSET)
+        bind_user_dn = d.pop("bind_user_dn")
 
-        user_naming_attrib = d.pop("user_naming_attrib", UNSET)
+        bind_password = d.pop("bind_password")
 
-        group_naming_attrib = d.pop("group_naming_attrib", UNSET)
+        user_naming_attrib = d.pop("user_naming_attrib")
 
-        group_member_attrib = d.pop("group_member_attrib", UNSET)
+        group_naming_attrib = d.pop("group_naming_attrib")
 
-        rfc2307 = d.pop("rfc2307", UNSET)
+        group_member_attrib = d.pop("group_member_attrib")
 
-        rfc2307_group_class = d.pop("rfc2307_group_class", UNSET)
+        rfc2307 = d.pop("rfc2307")
 
-        rfc2307_use_userdn = d.pop("rfc2307_use_userdn", UNSET)
+        rfc2307_group_class = d.pop("rfc2307_group_class")
 
-        shell_group_dn = d.pop("shell_group_dn", UNSET)
+        rfc2307_use_userdn = d.pop("rfc2307_use_userdn")
 
-        username_alterations = d.pop("username_alterations", UNSET)
+        shell_group_dn = d.pop("shell_group_dn")
 
-        utf8_encode = d.pop("utf8_encode", UNSET)
+        username_alterations = d.pop("username_alterations")
 
-        unauthenticated_bind = d.pop("unauthenticated_bind", UNSET)
+        utf8_encode = d.pop("utf8_encode")
+
+        unauthenticated_bind = d.pop("unauthenticated_bind")
+
+        no_strip_at = d.pop("no_strip_at")
 
         caref = d.pop("caref", UNSET)
 
@@ -230,6 +227,7 @@ class LdapAuthServer:
             type=type,
             name=name,
             host=host,
+            version=version,
             port=port,
             transport=transport,
             timeout=timeout,
@@ -249,6 +247,7 @@ class LdapAuthServer:
             username_alterations=username_alterations,
             utf8_encode=utf8_encode,
             unauthenticated_bind=unauthenticated_bind,
+            no_strip_at=no_strip_at,
             caref=caref,
             certref=certref,
             refid=refid,

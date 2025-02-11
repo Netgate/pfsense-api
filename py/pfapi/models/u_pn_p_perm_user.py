@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="UPnPPermUser")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="UPnPPermUser")
 class UPnPPermUser:
     """
     Attributes:
-        id (Union[Unset, str]):
-        permuser (Union[Unset, str]):
+        id (str):
+        permuser (str):
     """
 
-    id: Union[Unset, str] = UNSET
-    permuser: Union[Unset, str] = UNSET
+    id: str
+    permuser: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class UPnPPermUser:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if id is not UNSET:
-            field_dict["id"] = id
-        if permuser is not UNSET:
-            field_dict["permuser"] = permuser
+        field_dict.update(
+            {
+                "id": id,
+                "permuser": permuser,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        id = d.pop("id", UNSET)
+        id = d.pop("id")
 
-        permuser = d.pop("permuser", UNSET)
+        permuser = d.pop("permuser")
 
         u_pn_p_perm_user = cls(
             id=id,

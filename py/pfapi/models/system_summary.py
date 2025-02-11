@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SystemSummary")
 
@@ -12,16 +10,16 @@ T = TypeVar("T", bound="SystemSummary")
 class SystemSummary:
     """
     Attributes:
-        name (Union[Unset, str]):
-        os (Union[Unset, str]):
-        arch (Union[Unset, str]):
-        api_version (Union[Unset, str]):
+        name (str):
+        os (str):
+        arch (str):
+        api_version (str):
     """
 
-    name: Union[Unset, str] = UNSET
-    os: Union[Unset, str] = UNSET
-    arch: Union[Unset, str] = UNSET
-    api_version: Union[Unset, str] = UNSET
+    name: str
+    os: str
+    arch: str
+    api_version: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -35,28 +33,27 @@ class SystemSummary:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if os is not UNSET:
-            field_dict["os"] = os
-        if arch is not UNSET:
-            field_dict["arch"] = arch
-        if api_version is not UNSET:
-            field_dict["api_version"] = api_version
+        field_dict.update(
+            {
+                "name": name,
+                "os": os,
+                "arch": arch,
+                "api_version": api_version,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        os = d.pop("os", UNSET)
+        os = d.pop("os")
 
-        arch = d.pop("arch", UNSET)
+        arch = d.pop("arch")
 
-        api_version = d.pop("api_version", UNSET)
+        api_version = d.pop("api_version")
 
         system_summary = cls(
             name=name,

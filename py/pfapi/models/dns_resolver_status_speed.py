@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DNSResolverStatusSpeed")
 
@@ -12,30 +10,30 @@ T = TypeVar("T", bound="DNSResolverStatusSpeed")
 class DNSResolverStatusSpeed:
     """
     Attributes:
-        server (Union[Unset, str]):
-        zone (Union[Unset, str]):
-        ttl (Union[Unset, int]):
-        expired (Union[Unset, bool]):
-        ping (Union[Unset, int]):
-        var (Union[Unset, int]):
-        rtt (Union[Unset, int]):
-        rto (Union[Unset, int]):
-        timeout_a (Union[Unset, int]):
-        timeout_aaaa (Union[Unset, int]):
-        timeout_other (Union[Unset, int]):
+        server (str):
+        zone (str):
+        ttl (int):
+        expired (bool):
+        ping (int):
+        var (int):
+        rtt (int):
+        rto (int):
+        timeout_a (int):
+        timeout_aaaa (int):
+        timeout_other (int):
     """
 
-    server: Union[Unset, str] = UNSET
-    zone: Union[Unset, str] = UNSET
-    ttl: Union[Unset, int] = UNSET
-    expired: Union[Unset, bool] = UNSET
-    ping: Union[Unset, int] = UNSET
-    var: Union[Unset, int] = UNSET
-    rtt: Union[Unset, int] = UNSET
-    rto: Union[Unset, int] = UNSET
-    timeout_a: Union[Unset, int] = UNSET
-    timeout_aaaa: Union[Unset, int] = UNSET
-    timeout_other: Union[Unset, int] = UNSET
+    server: str
+    zone: str
+    ttl: int
+    expired: bool
+    ping: int
+    var: int
+    rtt: int
+    rto: int
+    timeout_a: int
+    timeout_aaaa: int
+    timeout_other: int
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -63,56 +61,48 @@ class DNSResolverStatusSpeed:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if server is not UNSET:
-            field_dict["server"] = server
-        if zone is not UNSET:
-            field_dict["zone"] = zone
-        if ttl is not UNSET:
-            field_dict["ttl"] = ttl
-        if expired is not UNSET:
-            field_dict["expired"] = expired
-        if ping is not UNSET:
-            field_dict["ping"] = ping
-        if var is not UNSET:
-            field_dict["var"] = var
-        if rtt is not UNSET:
-            field_dict["rtt"] = rtt
-        if rto is not UNSET:
-            field_dict["rto"] = rto
-        if timeout_a is not UNSET:
-            field_dict["timeout_a"] = timeout_a
-        if timeout_aaaa is not UNSET:
-            field_dict["timeout_aaaa"] = timeout_aaaa
-        if timeout_other is not UNSET:
-            field_dict["timeout_other"] = timeout_other
+        field_dict.update(
+            {
+                "server": server,
+                "zone": zone,
+                "ttl": ttl,
+                "expired": expired,
+                "ping": ping,
+                "var": var,
+                "rtt": rtt,
+                "rto": rto,
+                "timeout_a": timeout_a,
+                "timeout_aaaa": timeout_aaaa,
+                "timeout_other": timeout_other,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        server = d.pop("server", UNSET)
+        server = d.pop("server")
 
-        zone = d.pop("zone", UNSET)
+        zone = d.pop("zone")
 
-        ttl = d.pop("ttl", UNSET)
+        ttl = d.pop("ttl")
 
-        expired = d.pop("expired", UNSET)
+        expired = d.pop("expired")
 
-        ping = d.pop("ping", UNSET)
+        ping = d.pop("ping")
 
-        var = d.pop("var", UNSET)
+        var = d.pop("var")
 
-        rtt = d.pop("rtt", UNSET)
+        rtt = d.pop("rtt")
 
-        rto = d.pop("rto", UNSET)
+        rto = d.pop("rto")
 
-        timeout_a = d.pop("timeout_a", UNSET)
+        timeout_a = d.pop("timeout_a")
 
-        timeout_aaaa = d.pop("timeout_aaaa", UNSET)
+        timeout_aaaa = d.pop("timeout_aaaa")
 
-        timeout_other = d.pop("timeout_other", UNSET)
+        timeout_other = d.pop("timeout_other")
 
         dns_resolver_status_speed = cls(
             server=server,

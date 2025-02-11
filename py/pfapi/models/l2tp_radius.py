@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="L2TPRadius")
 
@@ -12,18 +10,18 @@ T = TypeVar("T", bound="L2TPRadius")
 class L2TPRadius:
     """
     Attributes:
-        server (Union[Unset, str]):
-        secret (Union[Unset, str]):
-        enable (Union[Unset, bool]):
-        accounting (Union[Unset, bool]):
-        radiusissueips (Union[Unset, bool]):
+        server (str):
+        secret (str):
+        enable (bool):
+        accounting (bool):
+        radiusissueips (bool):
     """
 
-    server: Union[Unset, str] = UNSET
-    secret: Union[Unset, str] = UNSET
-    enable: Union[Unset, bool] = UNSET
-    accounting: Union[Unset, bool] = UNSET
-    radiusissueips: Union[Unset, bool] = UNSET
+    server: str
+    secret: str
+    enable: bool
+    accounting: bool
+    radiusissueips: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -39,32 +37,30 @@ class L2TPRadius:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if server is not UNSET:
-            field_dict["server"] = server
-        if secret is not UNSET:
-            field_dict["secret"] = secret
-        if enable is not UNSET:
-            field_dict["enable"] = enable
-        if accounting is not UNSET:
-            field_dict["accounting"] = accounting
-        if radiusissueips is not UNSET:
-            field_dict["radiusissueips"] = radiusissueips
+        field_dict.update(
+            {
+                "server": server,
+                "secret": secret,
+                "enable": enable,
+                "accounting": accounting,
+                "radiusissueips": radiusissueips,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        server = d.pop("server", UNSET)
+        server = d.pop("server")
 
-        secret = d.pop("secret", UNSET)
+        secret = d.pop("secret")
 
-        enable = d.pop("enable", UNSET)
+        enable = d.pop("enable")
 
-        accounting = d.pop("accounting", UNSET)
+        accounting = d.pop("accounting")
 
-        radiusissueips = d.pop("radiusissueips", UNSET)
+        radiusissueips = d.pop("radiusissueips")
 
         l2tp_radius = cls(
             server=server,

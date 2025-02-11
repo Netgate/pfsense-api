@@ -12,27 +12,27 @@ T = TypeVar("T", bound="RadiusAuthServer")
 class RadiusAuthServer:
     """
     Attributes:
-        type (Union[Unset, str]):
-        name (Union[Unset, str]):
-        host (Union[Unset, str]):
-        protocol (Union[Unset, str]):
-        nasip_attribute (Union[Unset, str]):
-        secret (Union[Unset, str]):
-        timeout (Union[Unset, int]):
-        auth_port (Union[Unset, int]):
-        acct_port (Union[Unset, int]):
+        type (str):
+        name (str):
+        host (str):
+        protocol (str): pap, chap_md5, mschapv1, mschapv2
+        nasip_attribute (str):
+        secret (str):
+        timeout (int):
+        auth_port (int):
+        acct_port (int):
         refid (Union[Unset, str]):
     """
 
-    type: Union[Unset, str] = UNSET
-    name: Union[Unset, str] = UNSET
-    host: Union[Unset, str] = UNSET
-    protocol: Union[Unset, str] = UNSET
-    nasip_attribute: Union[Unset, str] = UNSET
-    secret: Union[Unset, str] = UNSET
-    timeout: Union[Unset, int] = UNSET
-    auth_port: Union[Unset, int] = UNSET
-    acct_port: Union[Unset, int] = UNSET
+    type: str
+    name: str
+    host: str
+    protocol: str
+    nasip_attribute: str
+    secret: str
+    timeout: int
+    auth_port: int
+    acct_port: int
     refid: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -59,25 +59,19 @@ class RadiusAuthServer:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if type is not UNSET:
-            field_dict["type"] = type
-        if name is not UNSET:
-            field_dict["name"] = name
-        if host is not UNSET:
-            field_dict["host"] = host
-        if protocol is not UNSET:
-            field_dict["protocol"] = protocol
-        if nasip_attribute is not UNSET:
-            field_dict["nasip_attribute"] = nasip_attribute
-        if secret is not UNSET:
-            field_dict["secret"] = secret
-        if timeout is not UNSET:
-            field_dict["timeout"] = timeout
-        if auth_port is not UNSET:
-            field_dict["auth_port"] = auth_port
-        if acct_port is not UNSET:
-            field_dict["acct_port"] = acct_port
+        field_dict.update(
+            {
+                "type": type,
+                "name": name,
+                "host": host,
+                "protocol": protocol,
+                "nasip_attribute": nasip_attribute,
+                "secret": secret,
+                "timeout": timeout,
+                "auth_port": auth_port,
+                "acct_port": acct_port,
+            }
+        )
         if refid is not UNSET:
             field_dict["refid"] = refid
 
@@ -86,23 +80,23 @@ class RadiusAuthServer:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        type = d.pop("type", UNSET)
+        type = d.pop("type")
 
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        host = d.pop("host", UNSET)
+        host = d.pop("host")
 
-        protocol = d.pop("protocol", UNSET)
+        protocol = d.pop("protocol")
 
-        nasip_attribute = d.pop("nasip_attribute", UNSET)
+        nasip_attribute = d.pop("nasip_attribute")
 
-        secret = d.pop("secret", UNSET)
+        secret = d.pop("secret")
 
-        timeout = d.pop("timeout", UNSET)
+        timeout = d.pop("timeout")
 
-        auth_port = d.pop("auth_port", UNSET)
+        auth_port = d.pop("auth_port")
 
-        acct_port = d.pop("acct_port", UNSET)
+        acct_port = d.pop("acct_port")
 
         refid = d.pop("refid", UNSET)
 

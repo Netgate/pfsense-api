@@ -17,9 +17,11 @@ class UserGroups:
     """
     Attributes:
         groups (Union[Unset, List['UserGroup']]):
+        errmsg (Union[Unset, str]): errors in group modify operations
     """
 
     groups: Union[Unset, List["UserGroup"]] = UNSET
+    errmsg: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -30,11 +32,15 @@ class UserGroups:
                 groups_item = groups_item_data.to_dict()
                 groups.append(groups_item)
 
+        errmsg = self.errmsg
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if groups is not UNSET:
             field_dict["groups"] = groups
+        if errmsg is not UNSET:
+            field_dict["errmsg"] = errmsg
 
         return field_dict
 
@@ -50,8 +56,11 @@ class UserGroups:
 
             groups.append(groups_item)
 
+        errmsg = d.pop("errmsg", UNSET)
+
         user_groups = cls(
             groups=groups,
+            errmsg=errmsg,
         )
 
         user_groups.additional_properties = d

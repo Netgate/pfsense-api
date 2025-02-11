@@ -17,32 +17,32 @@ T = TypeVar("T", bound="DNSForwarderConfig")
 class DNSForwarderConfig:
     """
     Attributes:
-        enable (Union[Unset, bool]):
-        regdhcp (Union[Unset, bool]):
-        regdhcpstatic (Union[Unset, bool]):
-        dhcpfirst (Union[Unset, bool]):
-        strict_order (Union[Unset, bool]):
-        domain_needed (Union[Unset, bool]):
-        no_private_reverse (Union[Unset, bool]):
-        port (Union[Unset, int]):
-        interface (Union[Unset, str]):
-        strictbind (Union[Unset, bool]):
-        custom_options (Union[Unset, str]):
+        enable (bool):
+        regdhcp (bool):
+        regdhcpstatic (bool):
+        dhcpfirst (bool):
+        strict_order (bool):
+        domain_needed (bool):
+        no_private_reverse (bool):
+        port (str):
+        interface (str):
+        strictbind (bool):
+        custom_options (str):
         hosts (Union[Unset, List['DNSForwarderHost']]):
         domainoverrides (Union[Unset, List['DNSForwarderDomain']]):
     """
 
-    enable: Union[Unset, bool] = UNSET
-    regdhcp: Union[Unset, bool] = UNSET
-    regdhcpstatic: Union[Unset, bool] = UNSET
-    dhcpfirst: Union[Unset, bool] = UNSET
-    strict_order: Union[Unset, bool] = UNSET
-    domain_needed: Union[Unset, bool] = UNSET
-    no_private_reverse: Union[Unset, bool] = UNSET
-    port: Union[Unset, int] = UNSET
-    interface: Union[Unset, str] = UNSET
-    strictbind: Union[Unset, bool] = UNSET
-    custom_options: Union[Unset, str] = UNSET
+    enable: bool
+    regdhcp: bool
+    regdhcpstatic: bool
+    dhcpfirst: bool
+    strict_order: bool
+    domain_needed: bool
+    no_private_reverse: bool
+    port: str
+    interface: str
+    strictbind: bool
+    custom_options: str
     hosts: Union[Unset, List["DNSForwarderHost"]] = UNSET
     domainoverrides: Union[Unset, List["DNSForwarderDomain"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -86,29 +86,21 @@ class DNSForwarderConfig:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if enable is not UNSET:
-            field_dict["enable"] = enable
-        if regdhcp is not UNSET:
-            field_dict["regdhcp"] = regdhcp
-        if regdhcpstatic is not UNSET:
-            field_dict["regdhcpstatic"] = regdhcpstatic
-        if dhcpfirst is not UNSET:
-            field_dict["dhcpfirst"] = dhcpfirst
-        if strict_order is not UNSET:
-            field_dict["strict_order"] = strict_order
-        if domain_needed is not UNSET:
-            field_dict["domain_needed"] = domain_needed
-        if no_private_reverse is not UNSET:
-            field_dict["no_private_reverse"] = no_private_reverse
-        if port is not UNSET:
-            field_dict["port"] = port
-        if interface is not UNSET:
-            field_dict["interface"] = interface
-        if strictbind is not UNSET:
-            field_dict["strictbind"] = strictbind
-        if custom_options is not UNSET:
-            field_dict["custom_options"] = custom_options
+        field_dict.update(
+            {
+                "enable": enable,
+                "regdhcp": regdhcp,
+                "regdhcpstatic": regdhcpstatic,
+                "dhcpfirst": dhcpfirst,
+                "strict_order": strict_order,
+                "domain_needed": domain_needed,
+                "no_private_reverse": no_private_reverse,
+                "port": port,
+                "interface": interface,
+                "strictbind": strictbind,
+                "custom_options": custom_options,
+            }
+        )
         if hosts is not UNSET:
             field_dict["hosts"] = hosts
         if domainoverrides is not UNSET:
@@ -122,27 +114,27 @@ class DNSForwarderConfig:
         from ..models.dns_forwarder_host import DNSForwarderHost
 
         d = src_dict.copy()
-        enable = d.pop("enable", UNSET)
+        enable = d.pop("enable")
 
-        regdhcp = d.pop("regdhcp", UNSET)
+        regdhcp = d.pop("regdhcp")
 
-        regdhcpstatic = d.pop("regdhcpstatic", UNSET)
+        regdhcpstatic = d.pop("regdhcpstatic")
 
-        dhcpfirst = d.pop("dhcpfirst", UNSET)
+        dhcpfirst = d.pop("dhcpfirst")
 
-        strict_order = d.pop("strict_order", UNSET)
+        strict_order = d.pop("strict_order")
 
-        domain_needed = d.pop("domain_needed", UNSET)
+        domain_needed = d.pop("domain_needed")
 
-        no_private_reverse = d.pop("no_private_reverse", UNSET)
+        no_private_reverse = d.pop("no_private_reverse")
 
-        port = d.pop("port", UNSET)
+        port = d.pop("port")
 
-        interface = d.pop("interface", UNSET)
+        interface = d.pop("interface")
 
-        strictbind = d.pop("strictbind", UNSET)
+        strictbind = d.pop("strictbind")
 
-        custom_options = d.pop("custom_options", UNSET)
+        custom_options = d.pop("custom_options")
 
         hosts = []
         _hosts = d.pop("hosts", UNSET)

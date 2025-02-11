@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DiagPingRequest")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="DiagPingRequest")
 class DiagPingRequest:
     """
     Attributes:
-        host (Union[Unset, str]):
-        count (Union[Unset, int]):
+        host (str):
+        count (int):
     """
 
-    host: Union[Unset, str] = UNSET
-    count: Union[Unset, int] = UNSET
+    host: str
+    count: int
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class DiagPingRequest:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if host is not UNSET:
-            field_dict["host"] = host
-        if count is not UNSET:
-            field_dict["count"] = count
+        field_dict.update(
+            {
+                "host": host,
+                "count": count,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        host = d.pop("host", UNSET)
+        host = d.pop("host")
 
-        count = d.pop("count", UNSET)
+        count = d.pop("count")
 
         diag_ping_request = cls(
             host=host,

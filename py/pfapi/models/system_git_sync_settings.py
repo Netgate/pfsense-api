@@ -12,34 +12,30 @@ T = TypeVar("T", bound="SystemGitSyncSettings")
 class SystemGitSyncSettings:
     """
     Attributes:
-        sync_on_upgrade (Union[Unset, bool]):
-        repo_url (Union[Unset, str]):
+        sync_on_upgrade (bool):
+        repo_url (str):
+        minimal (bool):
+        diff (bool):
+        show_files (bool):
+        show_command (bool):
+        dry_run (bool):
         branches (Union[Unset, List[str]]):
-        minimal (Union[Unset, bool]):
-        diff (Union[Unset, bool]):
-        show_files (Union[Unset, bool]):
-        show_command (Union[Unset, bool]):
-        dry_run (Union[Unset, bool]):
     """
 
-    sync_on_upgrade: Union[Unset, bool] = UNSET
-    repo_url: Union[Unset, str] = UNSET
+    sync_on_upgrade: bool
+    repo_url: str
+    minimal: bool
+    diff: bool
+    show_files: bool
+    show_command: bool
+    dry_run: bool
     branches: Union[Unset, List[str]] = UNSET
-    minimal: Union[Unset, bool] = UNSET
-    diff: Union[Unset, bool] = UNSET
-    show_files: Union[Unset, bool] = UNSET
-    show_command: Union[Unset, bool] = UNSET
-    dry_run: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         sync_on_upgrade = self.sync_on_upgrade
 
         repo_url = self.repo_url
-
-        branches: Union[Unset, List[str]] = UNSET
-        if not isinstance(self.branches, Unset):
-            branches = self.branches
 
         minimal = self.minimal
 
@@ -51,56 +47,56 @@ class SystemGitSyncSettings:
 
         dry_run = self.dry_run
 
+        branches: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.branches, Unset):
+            branches = self.branches
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if sync_on_upgrade is not UNSET:
-            field_dict["sync_on_upgrade"] = sync_on_upgrade
-        if repo_url is not UNSET:
-            field_dict["repo_url"] = repo_url
+        field_dict.update(
+            {
+                "sync_on_upgrade": sync_on_upgrade,
+                "repo_url": repo_url,
+                "minimal": minimal,
+                "diff": diff,
+                "show_files": show_files,
+                "show_command": show_command,
+                "dry_run": dry_run,
+            }
+        )
         if branches is not UNSET:
             field_dict["branches"] = branches
-        if minimal is not UNSET:
-            field_dict["minimal"] = minimal
-        if diff is not UNSET:
-            field_dict["diff"] = diff
-        if show_files is not UNSET:
-            field_dict["show_files"] = show_files
-        if show_command is not UNSET:
-            field_dict["show_command"] = show_command
-        if dry_run is not UNSET:
-            field_dict["dry_run"] = dry_run
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        sync_on_upgrade = d.pop("sync_on_upgrade", UNSET)
+        sync_on_upgrade = d.pop("sync_on_upgrade")
 
-        repo_url = d.pop("repo_url", UNSET)
+        repo_url = d.pop("repo_url")
+
+        minimal = d.pop("minimal")
+
+        diff = d.pop("diff")
+
+        show_files = d.pop("show_files")
+
+        show_command = d.pop("show_command")
+
+        dry_run = d.pop("dry_run")
 
         branches = cast(List[str], d.pop("branches", UNSET))
-
-        minimal = d.pop("minimal", UNSET)
-
-        diff = d.pop("diff", UNSET)
-
-        show_files = d.pop("show_files", UNSET)
-
-        show_command = d.pop("show_command", UNSET)
-
-        dry_run = d.pop("dry_run", UNSET)
 
         system_git_sync_settings = cls(
             sync_on_upgrade=sync_on_upgrade,
             repo_url=repo_url,
-            branches=branches,
             minimal=minimal,
             diff=diff,
             show_files=show_files,
             show_command=show_command,
             dry_run=dry_run,
+            branches=branches,
         )
 
         system_git_sync_settings.additional_properties = d

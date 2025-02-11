@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="FilterLogTCPInfo")
 
@@ -13,20 +11,20 @@ class FilterLogTCPInfo:
     """proto_id = 6
 
     Attributes:
-        tcp_flags (Union[Unset, str]):
-        seq (Union[Unset, str]):
-        ack (Union[Unset, int]):
-        window (Union[Unset, int]):
-        urg (Union[Unset, int]):
-        options (Union[Unset, str]):
+        tcp_flags (str):
+        seq (str):
+        ack (int):
+        window (int):
+        urg (int):
+        options (str):
     """
 
-    tcp_flags: Union[Unset, str] = UNSET
-    seq: Union[Unset, str] = UNSET
-    ack: Union[Unset, int] = UNSET
-    window: Union[Unset, int] = UNSET
-    urg: Union[Unset, int] = UNSET
-    options: Union[Unset, str] = UNSET
+    tcp_flags: str
+    seq: str
+    ack: int
+    window: int
+    urg: int
+    options: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -44,36 +42,33 @@ class FilterLogTCPInfo:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if tcp_flags is not UNSET:
-            field_dict["tcp_flags"] = tcp_flags
-        if seq is not UNSET:
-            field_dict["seq"] = seq
-        if ack is not UNSET:
-            field_dict["ack"] = ack
-        if window is not UNSET:
-            field_dict["window"] = window
-        if urg is not UNSET:
-            field_dict["urg"] = urg
-        if options is not UNSET:
-            field_dict["options"] = options
+        field_dict.update(
+            {
+                "tcp_flags": tcp_flags,
+                "seq": seq,
+                "ack": ack,
+                "window": window,
+                "urg": urg,
+                "options": options,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        tcp_flags = d.pop("tcp_flags", UNSET)
+        tcp_flags = d.pop("tcp_flags")
 
-        seq = d.pop("seq", UNSET)
+        seq = d.pop("seq")
 
-        ack = d.pop("ack", UNSET)
+        ack = d.pop("ack")
 
-        window = d.pop("window", UNSET)
+        window = d.pop("window")
 
-        urg = d.pop("urg", UNSET)
+        urg = d.pop("urg")
 
-        options = d.pop("options", UNSET)
+        options = d.pop("options")
 
         filter_log_tcp_info = cls(
             tcp_flags=tcp_flags,

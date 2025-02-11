@@ -7,7 +7,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
 from ...models.fw_ignored_input import FwIgnoredInput
-from ...models.fw_toggle_result import FWToggleResult
+from ...models.result import Result
 from ...types import Response
 
 
@@ -20,7 +20,7 @@ def _get_kwargs(
 
     _kwargs: Dict[str, Any] = {
         "method": "put",
-        "url": f"/firewall/nat/toggle/{id}",
+        "url": f"/firewall/nat/port-forward/toggle/{id}",
     }
 
     _body = body.to_dict()
@@ -34,9 +34,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, FWToggleResult]]:
+) -> Optional[Union[Error, Result]]:
     if response.status_code == 200:
-        response_200 = FWToggleResult.from_dict(response.json())
+        response_200 = Result.from_dict(response.json())
 
         return response_200
     if response.status_code == 400:
@@ -51,7 +51,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, FWToggleResult]]:
+) -> Response[Union[Error, Result]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -65,7 +65,7 @@ def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
     body: FwIgnoredInput,
-) -> Response[Union[Error, FWToggleResult]]:
+) -> Response[Union[Error, Result]]:
     """Toggle NAT Rule
 
     Args:
@@ -77,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, FWToggleResult]]
+        Response[Union[Error, Result]]
     """
 
     kwargs = _get_kwargs(
@@ -97,7 +97,7 @@ def sync(
     *,
     client: Union[AuthenticatedClient, Client],
     body: FwIgnoredInput,
-) -> Optional[Union[Error, FWToggleResult]]:
+) -> Optional[Union[Error, Result]]:
     """Toggle NAT Rule
 
     Args:
@@ -109,7 +109,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, FWToggleResult]
+        Union[Error, Result]
     """
 
     return sync_detailed(
@@ -124,7 +124,7 @@ async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
     body: FwIgnoredInput,
-) -> Response[Union[Error, FWToggleResult]]:
+) -> Response[Union[Error, Result]]:
     """Toggle NAT Rule
 
     Args:
@@ -136,7 +136,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, FWToggleResult]]
+        Response[Union[Error, Result]]
     """
 
     kwargs = _get_kwargs(
@@ -154,7 +154,7 @@ async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
     body: FwIgnoredInput,
-) -> Optional[Union[Error, FWToggleResult]]:
+) -> Optional[Union[Error, Result]]:
     """Toggle NAT Rule
 
     Args:
@@ -166,7 +166,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, FWToggleResult]
+        Union[Error, Result]
     """
 
     return (

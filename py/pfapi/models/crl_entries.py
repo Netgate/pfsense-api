@@ -17,9 +17,11 @@ class CRLEntries:
     """
     Attributes:
         crls (Union[Unset, List['CRLConfig']]):
+        refid (Union[Unset, str]): for new and update CRL functions, the refid of the CRL that was changed
     """
 
     crls: Union[Unset, List["CRLConfig"]] = UNSET
+    refid: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -30,11 +32,15 @@ class CRLEntries:
                 crls_item = crls_item_data.to_dict()
                 crls.append(crls_item)
 
+        refid = self.refid
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if crls is not UNSET:
             field_dict["crls"] = crls
+        if refid is not UNSET:
+            field_dict["refid"] = refid
 
         return field_dict
 
@@ -50,8 +56,11 @@ class CRLEntries:
 
             crls.append(crls_item)
 
+        refid = d.pop("refid", UNSET)
+
         crl_entries = cls(
             crls=crls,
+            refid=refid,
         )
 
         crl_entries.additional_properties = d

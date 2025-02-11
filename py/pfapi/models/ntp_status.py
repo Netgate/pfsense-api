@@ -16,13 +16,13 @@ T = TypeVar("T", bound="NtpStatus")
 class NtpStatus:
     """
     Attributes:
-        enabled (Union[Unset, bool]):
-        query_enabled (Union[Unset, bool]):
+        enabled (bool):
+        query_enabled (bool):
         servers (Union[Unset, List['NtpServerInfo']]):
     """
 
-    enabled: Union[Unset, bool] = UNSET
-    query_enabled: Union[Unset, bool] = UNSET
+    enabled: bool
+    query_enabled: bool
     servers: Union[Unset, List["NtpServerInfo"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -40,11 +40,12 @@ class NtpStatus:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if enabled is not UNSET:
-            field_dict["enabled"] = enabled
-        if query_enabled is not UNSET:
-            field_dict["query_enabled"] = query_enabled
+        field_dict.update(
+            {
+                "enabled": enabled,
+                "query_enabled": query_enabled,
+            }
+        )
         if servers is not UNSET:
             field_dict["servers"] = servers
 
@@ -55,9 +56,9 @@ class NtpStatus:
         from ..models.ntp_server_info import NtpServerInfo
 
         d = src_dict.copy()
-        enabled = d.pop("enabled", UNSET)
+        enabled = d.pop("enabled")
 
-        query_enabled = d.pop("query_enabled", UNSET)
+        query_enabled = d.pop("query_enabled")
 
         servers = []
         _servers = d.pop("servers", UNSET)

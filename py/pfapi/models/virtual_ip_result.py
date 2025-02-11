@@ -12,10 +12,10 @@ T = TypeVar("T", bound="VirtualIPResult")
 class VirtualIPResult:
     """
     Attributes:
-        id (Union[Unset, int]):
+        id (Union[Unset, str]):
     """
 
-    id: Union[Unset, int] = UNSET
+    id: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:

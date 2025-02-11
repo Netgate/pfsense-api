@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="Tier")
 
@@ -12,14 +10,14 @@ T = TypeVar("T", bound="Tier")
 class Tier:
     """
     Attributes:
-        name (Union[Unset, str]):
-        status (Union[Unset, str]):
-        display (Union[Unset, str]):
+        name (str):
+        status (str):
+        display (str):
     """
 
-    name: Union[Unset, str] = UNSET
-    status: Union[Unset, str] = UNSET
-    display: Union[Unset, str] = UNSET
+    name: str
+    status: str
+    display: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,24 +29,24 @@ class Tier:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if status is not UNSET:
-            field_dict["status"] = status
-        if display is not UNSET:
-            field_dict["display"] = display
+        field_dict.update(
+            {
+                "name": name,
+                "status": status,
+                "display": display,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        status = d.pop("status", UNSET)
+        status = d.pop("status")
 
-        display = d.pop("display", UNSET)
+        display = d.pop("display")
 
         tier = cls(
             name=name,

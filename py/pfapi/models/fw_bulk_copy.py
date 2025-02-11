@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from typing import Any, Dict, List, Type, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="FwBulkCopy")
 
@@ -12,37 +10,36 @@ T = TypeVar("T", bound="FwBulkCopy")
 class FwBulkCopy:
     """
     Attributes:
-        iface (Union[Unset, str]):
-        rules (Union[Unset, List[str]]):
+        iface (str):
+        rules (List[str]):
     """
 
-    iface: Union[Unset, str] = UNSET
-    rules: Union[Unset, List[str]] = UNSET
+    iface: str
+    rules: List[str]
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         iface = self.iface
 
-        rules: Union[Unset, List[str]] = UNSET
-        if not isinstance(self.rules, Unset):
-            rules = self.rules
+        rules = self.rules
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if iface is not UNSET:
-            field_dict["iface"] = iface
-        if rules is not UNSET:
-            field_dict["rules"] = rules
+        field_dict.update(
+            {
+                "iface": iface,
+                "rules": rules,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        iface = d.pop("iface", UNSET)
+        iface = d.pop("iface")
 
-        rules = cast(List[str], d.pop("rules", UNSET))
+        rules = cast(List[str], d.pop("rules"))
 
         fw_bulk_copy = cls(
             iface=iface,

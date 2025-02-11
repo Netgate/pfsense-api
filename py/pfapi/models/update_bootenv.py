@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="UpdateBootenv")
 
@@ -12,16 +10,16 @@ T = TypeVar("T", bound="UpdateBootenv")
 class UpdateBootenv:
     """
     Attributes:
-        old_name (Union[Unset, str]):
-        name (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        protect (Union[Unset, bool]):
+        old_name (str):
+        name (str):
+        descr (str):
+        protect (bool):
     """
 
-    old_name: Union[Unset, str] = UNSET
-    name: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    protect: Union[Unset, bool] = UNSET
+    old_name: str
+    name: str
+    descr: str
+    protect: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -35,28 +33,27 @@ class UpdateBootenv:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if old_name is not UNSET:
-            field_dict["old_name"] = old_name
-        if name is not UNSET:
-            field_dict["name"] = name
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if protect is not UNSET:
-            field_dict["protect"] = protect
+        field_dict.update(
+            {
+                "old_name": old_name,
+                "name": name,
+                "descr": descr,
+                "protect": protect,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        old_name = d.pop("old_name", UNSET)
+        old_name = d.pop("old_name")
 
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
-        protect = d.pop("protect", UNSET)
+        protect = d.pop("protect")
 
         update_bootenv = cls(
             old_name=old_name,

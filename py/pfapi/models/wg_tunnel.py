@@ -1,9 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.wgip_addresses import WGIPAddresses
@@ -18,24 +16,24 @@ class WGTunnel:
     enabled = "yes", "no"
 
         Attributes:
-            name (Union[Unset, str]):
-            descr (Union[Unset, str]):
-            enabled (Union[Unset, bool]):
-            listenport (Union[Unset, str]):
-            privatekey (Union[Unset, str]):
-            publickey (Union[Unset, str]):
-            mtu (Union[Unset, str]):
-            addresses (Union[Unset, WGIPAddresses]):
+            name (str):
+            descr (str):
+            enabled (bool):
+            listenport (str):
+            privatekey (str):
+            publickey (str):
+            mtu (str):
+            addresses (WGIPAddresses):
     """
 
-    name: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    enabled: Union[Unset, bool] = UNSET
-    listenport: Union[Unset, str] = UNSET
-    privatekey: Union[Unset, str] = UNSET
-    publickey: Union[Unset, str] = UNSET
-    mtu: Union[Unset, str] = UNSET
-    addresses: Union[Unset, "WGIPAddresses"] = UNSET
+    name: str
+    descr: str
+    enabled: bool
+    listenport: str
+    privatekey: str
+    publickey: str
+    mtu: str
+    addresses: "WGIPAddresses"
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -53,29 +51,22 @@ class WGTunnel:
 
         mtu = self.mtu
 
-        addresses: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.addresses, Unset):
-            addresses = self.addresses.to_dict()
+        addresses = self.addresses.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if enabled is not UNSET:
-            field_dict["enabled"] = enabled
-        if listenport is not UNSET:
-            field_dict["listenport"] = listenport
-        if privatekey is not UNSET:
-            field_dict["privatekey"] = privatekey
-        if publickey is not UNSET:
-            field_dict["publickey"] = publickey
-        if mtu is not UNSET:
-            field_dict["mtu"] = mtu
-        if addresses is not UNSET:
-            field_dict["addresses"] = addresses
+        field_dict.update(
+            {
+                "name": name,
+                "descr": descr,
+                "enabled": enabled,
+                "listenport": listenport,
+                "privatekey": privatekey,
+                "publickey": publickey,
+                "mtu": mtu,
+                "addresses": addresses,
+            }
+        )
 
         return field_dict
 
@@ -84,26 +75,21 @@ class WGTunnel:
         from ..models.wgip_addresses import WGIPAddresses
 
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
-        enabled = d.pop("enabled", UNSET)
+        enabled = d.pop("enabled")
 
-        listenport = d.pop("listenport", UNSET)
+        listenport = d.pop("listenport")
 
-        privatekey = d.pop("privatekey", UNSET)
+        privatekey = d.pop("privatekey")
 
-        publickey = d.pop("publickey", UNSET)
+        publickey = d.pop("publickey")
 
-        mtu = d.pop("mtu", UNSET)
+        mtu = d.pop("mtu")
 
-        _addresses = d.pop("addresses", UNSET)
-        addresses: Union[Unset, WGIPAddresses]
-        if isinstance(_addresses, Unset):
-            addresses = UNSET
-        else:
-            addresses = WGIPAddresses.from_dict(_addresses)
+        addresses = WGIPAddresses.from_dict(d.pop("addresses"))
 
         wg_tunnel = cls(
             name=name,

@@ -16,13 +16,13 @@ T = TypeVar("T", bound="MeshStats")
 class MeshStats:
     """
     Attributes:
-        devices_total (Union[Unset, int]):
-        devices_online (Union[Unset, int]):
+        devices_total (int):
+        devices_online (int):
         vpn_conns (Union[Unset, List['MeshVpnConns']]):
     """
 
-    devices_total: Union[Unset, int] = UNSET
-    devices_online: Union[Unset, int] = UNSET
+    devices_total: int
+    devices_online: int
     vpn_conns: Union[Unset, List["MeshVpnConns"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -40,11 +40,12 @@ class MeshStats:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if devices_total is not UNSET:
-            field_dict["devices_total"] = devices_total
-        if devices_online is not UNSET:
-            field_dict["devices_online"] = devices_online
+        field_dict.update(
+            {
+                "devices_total": devices_total,
+                "devices_online": devices_online,
+            }
+        )
         if vpn_conns is not UNSET:
             field_dict["vpn_conns"] = vpn_conns
 
@@ -55,9 +56,9 @@ class MeshStats:
         from ..models.mesh_vpn_conns import MeshVpnConns
 
         d = src_dict.copy()
-        devices_total = d.pop("devices_total", UNSET)
+        devices_total = d.pop("devices_total")
 
-        devices_online = d.pop("devices_online", UNSET)
+        devices_online = d.pop("devices_online")
 
         vpn_conns = []
         _vpn_conns = d.pop("vpn_conns", UNSET)

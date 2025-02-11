@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="AllowedHost")
 
@@ -12,20 +10,20 @@ T = TypeVar("T", bound="AllowedHost")
 class AllowedHost:
     """
     Attributes:
-        hostname (Union[Unset, str]):
-        sn (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        dir_ (Union[Unset, str]):
-        bw_up (Union[Unset, str]):
-        bw_down (Union[Unset, str]):
+        hostname (str):
+        sn (str):
+        descr (str):
+        dir_ (str):
+        bw_up (str):
+        bw_down (str):
     """
 
-    hostname: Union[Unset, str] = UNSET
-    sn: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    dir_: Union[Unset, str] = UNSET
-    bw_up: Union[Unset, str] = UNSET
-    bw_down: Union[Unset, str] = UNSET
+    hostname: str
+    sn: str
+    descr: str
+    dir_: str
+    bw_up: str
+    bw_down: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -43,36 +41,33 @@ class AllowedHost:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if hostname is not UNSET:
-            field_dict["hostname"] = hostname
-        if sn is not UNSET:
-            field_dict["sn"] = sn
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if dir_ is not UNSET:
-            field_dict["dir"] = dir_
-        if bw_up is not UNSET:
-            field_dict["bw_up"] = bw_up
-        if bw_down is not UNSET:
-            field_dict["bw_down"] = bw_down
+        field_dict.update(
+            {
+                "hostname": hostname,
+                "sn": sn,
+                "descr": descr,
+                "dir": dir_,
+                "bw_up": bw_up,
+                "bw_down": bw_down,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        hostname = d.pop("hostname", UNSET)
+        hostname = d.pop("hostname")
 
-        sn = d.pop("sn", UNSET)
+        sn = d.pop("sn")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
-        dir_ = d.pop("dir", UNSET)
+        dir_ = d.pop("dir")
 
-        bw_up = d.pop("bw_up", UNSET)
+        bw_up = d.pop("bw_up")
 
-        bw_down = d.pop("bw_down", UNSET)
+        bw_down = d.pop("bw_down")
 
         allowed_host = cls(
             hostname=hostname,

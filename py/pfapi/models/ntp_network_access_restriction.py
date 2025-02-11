@@ -1,9 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.ntp_access_restrictions import NtpAccessRestrictions
@@ -16,14 +14,14 @@ T = TypeVar("T", bound="NtpNetworkAccessRestriction")
 class NtpNetworkAccessRestriction:
     """
     Attributes:
-        network (Union[Unset, str]):
-        mask (Union[Unset, int]):
-        restrictions (Union[Unset, NtpAccessRestrictions]):
+        network (str):
+        mask (int):
+        restrictions (NtpAccessRestrictions):
     """
 
-    network: Union[Unset, str] = UNSET
-    mask: Union[Unset, int] = UNSET
-    restrictions: Union[Unset, "NtpAccessRestrictions"] = UNSET
+    network: str
+    mask: int
+    restrictions: "NtpAccessRestrictions"
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,19 +29,17 @@ class NtpNetworkAccessRestriction:
 
         mask = self.mask
 
-        restrictions: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.restrictions, Unset):
-            restrictions = self.restrictions.to_dict()
+        restrictions = self.restrictions.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if network is not UNSET:
-            field_dict["network"] = network
-        if mask is not UNSET:
-            field_dict["mask"] = mask
-        if restrictions is not UNSET:
-            field_dict["restrictions"] = restrictions
+        field_dict.update(
+            {
+                "network": network,
+                "mask": mask,
+                "restrictions": restrictions,
+            }
+        )
 
         return field_dict
 
@@ -52,16 +48,11 @@ class NtpNetworkAccessRestriction:
         from ..models.ntp_access_restrictions import NtpAccessRestrictions
 
         d = src_dict.copy()
-        network = d.pop("network", UNSET)
+        network = d.pop("network")
 
-        mask = d.pop("mask", UNSET)
+        mask = d.pop("mask")
 
-        _restrictions = d.pop("restrictions", UNSET)
-        restrictions: Union[Unset, NtpAccessRestrictions]
-        if isinstance(_restrictions, Unset):
-            restrictions = UNSET
-        else:
-            restrictions = NtpAccessRestrictions.from_dict(_restrictions)
+        restrictions = NtpAccessRestrictions.from_dict(d.pop("restrictions"))
 
         ntp_network_access_restriction = cls(
             network=network,

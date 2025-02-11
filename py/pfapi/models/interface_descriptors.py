@@ -16,9 +16,7 @@ T = TypeVar("T", bound="InterfaceDescriptors")
 class InterfaceDescriptors:
     """
     Attributes:
-        descriptors (Union[Unset, InterfaceDescriptorsInfo]): Each of these should have strict definition for different
-            types of
-            interfaces, ie GIFInterface, GREInterface, LAGGInterface, etc.
+        descriptors (Union[Unset, InterfaceDescriptorsInfo]): Mapping of interface names to their descriptions.
     """
 
     descriptors: Union[Unset, "InterfaceDescriptorsInfo"] = UNSET

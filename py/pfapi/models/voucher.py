@@ -16,31 +16,31 @@ T = TypeVar("T", bound="Voucher")
 class Voucher:
     """
     Attributes:
-        charset (Union[Unset, str]):
-        rollbits (Union[Unset, int]):
-        ticketbits (Union[Unset, int]):
-        checksumbits (Union[Unset, int]):
-        magic (Union[Unset, int]):
-        exponent (Union[Unset, int]):
-        publickey (Union[Unset, str]):
-        privatekey (Union[Unset, str]):
-        descrmsgnoaccess (Union[Unset, str]):
-        descrmsgexpired (Union[Unset, str]):
-        enable (Union[Unset, bool]):
+        charset (str):
+        rollbits (int):
+        ticketbits (int):
+        checksumbits (int):
+        magic (int):
+        exponent (int):
+        publickey (str):
+        privatekey (str):
+        descrmsgnoaccess (str):
+        descrmsgexpired (str):
+        enable (bool):
         roll (Union[Unset, List['VoucherRoll']]):
     """
 
-    charset: Union[Unset, str] = UNSET
-    rollbits: Union[Unset, int] = UNSET
-    ticketbits: Union[Unset, int] = UNSET
-    checksumbits: Union[Unset, int] = UNSET
-    magic: Union[Unset, int] = UNSET
-    exponent: Union[Unset, int] = UNSET
-    publickey: Union[Unset, str] = UNSET
-    privatekey: Union[Unset, str] = UNSET
-    descrmsgnoaccess: Union[Unset, str] = UNSET
-    descrmsgexpired: Union[Unset, str] = UNSET
-    enable: Union[Unset, bool] = UNSET
+    charset: str
+    rollbits: int
+    ticketbits: int
+    checksumbits: int
+    magic: int
+    exponent: int
+    publickey: str
+    privatekey: str
+    descrmsgnoaccess: str
+    descrmsgexpired: str
+    enable: bool
     roll: Union[Unset, List["VoucherRoll"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -76,29 +76,21 @@ class Voucher:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if charset is not UNSET:
-            field_dict["charset"] = charset
-        if rollbits is not UNSET:
-            field_dict["rollbits"] = rollbits
-        if ticketbits is not UNSET:
-            field_dict["ticketbits"] = ticketbits
-        if checksumbits is not UNSET:
-            field_dict["checksumbits"] = checksumbits
-        if magic is not UNSET:
-            field_dict["magic"] = magic
-        if exponent is not UNSET:
-            field_dict["exponent"] = exponent
-        if publickey is not UNSET:
-            field_dict["publickey"] = publickey
-        if privatekey is not UNSET:
-            field_dict["privatekey"] = privatekey
-        if descrmsgnoaccess is not UNSET:
-            field_dict["descrmsgnoaccess"] = descrmsgnoaccess
-        if descrmsgexpired is not UNSET:
-            field_dict["descrmsgexpired"] = descrmsgexpired
-        if enable is not UNSET:
-            field_dict["enable"] = enable
+        field_dict.update(
+            {
+                "charset": charset,
+                "rollbits": rollbits,
+                "ticketbits": ticketbits,
+                "checksumbits": checksumbits,
+                "magic": magic,
+                "exponent": exponent,
+                "publickey": publickey,
+                "privatekey": privatekey,
+                "descrmsgnoaccess": descrmsgnoaccess,
+                "descrmsgexpired": descrmsgexpired,
+                "enable": enable,
+            }
+        )
         if roll is not UNSET:
             field_dict["roll"] = roll
 
@@ -109,27 +101,27 @@ class Voucher:
         from ..models.voucher_roll import VoucherRoll
 
         d = src_dict.copy()
-        charset = d.pop("charset", UNSET)
+        charset = d.pop("charset")
 
-        rollbits = d.pop("rollbits", UNSET)
+        rollbits = d.pop("rollbits")
 
-        ticketbits = d.pop("ticketbits", UNSET)
+        ticketbits = d.pop("ticketbits")
 
-        checksumbits = d.pop("checksumbits", UNSET)
+        checksumbits = d.pop("checksumbits")
 
-        magic = d.pop("magic", UNSET)
+        magic = d.pop("magic")
 
-        exponent = d.pop("exponent", UNSET)
+        exponent = d.pop("exponent")
 
-        publickey = d.pop("publickey", UNSET)
+        publickey = d.pop("publickey")
 
-        privatekey = d.pop("privatekey", UNSET)
+        privatekey = d.pop("privatekey")
 
-        descrmsgnoaccess = d.pop("descrmsgnoaccess", UNSET)
+        descrmsgnoaccess = d.pop("descrmsgnoaccess")
 
-        descrmsgexpired = d.pop("descrmsgexpired", UNSET)
+        descrmsgexpired = d.pop("descrmsgexpired")
 
-        enable = d.pop("enable", UNSET)
+        enable = d.pop("enable")
 
         roll = []
         _roll = d.pop("roll", UNSET)

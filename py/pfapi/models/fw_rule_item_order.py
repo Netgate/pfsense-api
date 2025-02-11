@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="FWRuleItemOrder")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="FWRuleItemOrder")
 class FWRuleItemOrder:
     """
     Attributes:
-        id (Union[Unset, str]):
-        rule (Union[Unset, bool]):
+        id (str):
+        rule (bool):
     """
 
-    id: Union[Unset, str] = UNSET
-    rule: Union[Unset, bool] = UNSET
+    id: str
+    rule: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class FWRuleItemOrder:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if id is not UNSET:
-            field_dict["id"] = id
-        if rule is not UNSET:
-            field_dict["rule"] = rule
+        field_dict.update(
+            {
+                "id": id,
+                "rule": rule,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        id = d.pop("id", UNSET)
+        id = d.pop("id")
 
-        rule = d.pop("rule", UNSET)
+        rule = d.pop("rule")
 
         fw_rule_item_order = cls(
             id=id,

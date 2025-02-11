@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="UserPrivilege")
 
@@ -12,16 +10,16 @@ T = TypeVar("T", bound="UserPrivilege")
 class UserPrivilege:
     """
     Attributes:
-        value (Union[Unset, str]):
-        text (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        warn (Union[Unset, str]):
+        value (str):
+        text (str):
+        descr (str):
+        warn (str):
     """
 
-    value: Union[Unset, str] = UNSET
-    text: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    warn: Union[Unset, str] = UNSET
+    value: str
+    text: str
+    descr: str
+    warn: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -35,28 +33,27 @@ class UserPrivilege:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if value is not UNSET:
-            field_dict["value"] = value
-        if text is not UNSET:
-            field_dict["text"] = text
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if warn is not UNSET:
-            field_dict["warn"] = warn
+        field_dict.update(
+            {
+                "value": value,
+                "text": text,
+                "descr": descr,
+                "warn": warn,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        value = d.pop("value", UNSET)
+        value = d.pop("value")
 
-        text = d.pop("text", UNSET)
+        text = d.pop("text")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
-        warn = d.pop("warn", UNSET)
+        warn = d.pop("warn")
 
         user_privilege = cls(
             value=value,

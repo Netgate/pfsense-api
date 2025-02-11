@@ -19,23 +19,26 @@ T = TypeVar("T", bound="StdLogs")
 class StdLogs:
     """
     Attributes:
-        logfile (Union[Unset, str]):
+        logfile (str):
+        filter_summary (FilterLogSummary): Summary of filter log entries. These are dictionaries of keys to counts
+        alerts (Result):
         logs (Union[Unset, List['StdLog']]):
         filter_logs (Union[Unset, List['FilterLog']]):
-        filter_summary (Union[Unset, FilterLogSummary]): Summary of filter log entries. These are dictionaries of keys
-            to counts
-        alerts (Union[Unset, Result]):
     """
 
-    logfile: Union[Unset, str] = UNSET
+    logfile: str
+    filter_summary: "FilterLogSummary"
+    alerts: "Result"
     logs: Union[Unset, List["StdLog"]] = UNSET
     filter_logs: Union[Unset, List["FilterLog"]] = UNSET
-    filter_summary: Union[Unset, "FilterLogSummary"] = UNSET
-    alerts: Union[Unset, "Result"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         logfile = self.logfile
+
+        filter_summary = self.filter_summary.to_dict()
+
+        alerts = self.alerts.to_dict()
 
         logs: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.logs, Unset):
@@ -51,27 +54,19 @@ class StdLogs:
                 filter_logs_item = filter_logs_item_data.to_dict()
                 filter_logs.append(filter_logs_item)
 
-        filter_summary: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.filter_summary, Unset):
-            filter_summary = self.filter_summary.to_dict()
-
-        alerts: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.alerts, Unset):
-            alerts = self.alerts.to_dict()
-
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if logfile is not UNSET:
-            field_dict["logfile"] = logfile
+        field_dict.update(
+            {
+                "logfile": logfile,
+                "filter_summary": filter_summary,
+                "alerts": alerts,
+            }
+        )
         if logs is not UNSET:
             field_dict["logs"] = logs
         if filter_logs is not UNSET:
             field_dict["filter_logs"] = filter_logs
-        if filter_summary is not UNSET:
-            field_dict["filter_summary"] = filter_summary
-        if alerts is not UNSET:
-            field_dict["alerts"] = alerts
 
         return field_dict
 
@@ -83,7 +78,11 @@ class StdLogs:
         from ..models.std_log import StdLog
 
         d = src_dict.copy()
-        logfile = d.pop("logfile", UNSET)
+        logfile = d.pop("logfile")
+
+        filter_summary = FilterLogSummary.from_dict(d.pop("filter_summary"))
+
+        alerts = Result.from_dict(d.pop("alerts"))
 
         logs = []
         _logs = d.pop("logs", UNSET)
@@ -99,26 +98,12 @@ class StdLogs:
 
             filter_logs.append(filter_logs_item)
 
-        _filter_summary = d.pop("filter_summary", UNSET)
-        filter_summary: Union[Unset, FilterLogSummary]
-        if isinstance(_filter_summary, Unset):
-            filter_summary = UNSET
-        else:
-            filter_summary = FilterLogSummary.from_dict(_filter_summary)
-
-        _alerts = d.pop("alerts", UNSET)
-        alerts: Union[Unset, Result]
-        if isinstance(_alerts, Unset):
-            alerts = UNSET
-        else:
-            alerts = Result.from_dict(_alerts)
-
         std_logs = cls(
             logfile=logfile,
-            logs=logs,
-            filter_logs=filter_logs,
             filter_summary=filter_summary,
             alerts=alerts,
+            logs=logs,
+            filter_logs=filter_logs,
         )
 
         std_logs.additional_properties = d

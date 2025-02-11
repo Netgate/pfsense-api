@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CaptivePortalName")
 
@@ -12,16 +10,16 @@ T = TypeVar("T", bound="CaptivePortalName")
 class CaptivePortalName:
     """
     Attributes:
-        zone (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        users (Union[Unset, int]):
+        zone (str):
+        interface (str):
+        descr (str):
+        users (int):
     """
 
-    zone: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    users: Union[Unset, int] = UNSET
+    zone: str
+    interface: str
+    descr: str
+    users: int
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -35,28 +33,27 @@ class CaptivePortalName:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if zone is not UNSET:
-            field_dict["zone"] = zone
-        if interface is not UNSET:
-            field_dict["interface"] = interface
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if users is not UNSET:
-            field_dict["users"] = users
+        field_dict.update(
+            {
+                "zone": zone,
+                "interface": interface,
+                "descr": descr,
+                "users": users,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        zone = d.pop("zone", UNSET)
+        zone = d.pop("zone")
 
-        interface = d.pop("interface", UNSET)
+        interface = d.pop("interface")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
-        users = d.pop("users", UNSET)
+        users = d.pop("users")
 
         captive_portal_name = cls(
             zone=zone,

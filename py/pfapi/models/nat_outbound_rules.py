@@ -7,6 +7,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.fw_alias import FWAlias
+    from ..models.fw_system_alias import FWSystemAlias
     from ..models.nat_auto_rule import NATAutoRule
     from ..models.nat_outbound_rule import NATOutboundRule
     from ..models.simple_interface import SimpleInterface
@@ -24,6 +25,7 @@ class NATOutboundRules:
         locallist (Union[Unset, List['SimpleInterface']]):
         mode (Union[Unset, str]):
         aliases (Union[Unset, List['FWAlias']]):
+        sysaliases (Union[Unset, List['FWSystemAlias']]):
         rules (Union[Unset, List['NATOutboundRule']]):
         automatic_rules (Union[Unset, List['NATAutoRule']]):
         srclist (Union[Unset, List['SimpleInterface']]):
@@ -34,6 +36,7 @@ class NATOutboundRules:
     locallist: Union[Unset, List["SimpleInterface"]] = UNSET
     mode: Union[Unset, str] = UNSET
     aliases: Union[Unset, List["FWAlias"]] = UNSET
+    sysaliases: Union[Unset, List["FWSystemAlias"]] = UNSET
     rules: Union[Unset, List["NATOutboundRule"]] = UNSET
     automatic_rules: Union[Unset, List["NATAutoRule"]] = UNSET
     srclist: Union[Unset, List["SimpleInterface"]] = UNSET
@@ -70,6 +73,13 @@ class NATOutboundRules:
                 aliases_item = aliases_item_data.to_dict()
                 aliases.append(aliases_item)
 
+        sysaliases: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.sysaliases, Unset):
+            sysaliases = []
+            for sysaliases_item_data in self.sysaliases:
+                sysaliases_item = sysaliases_item_data.to_dict()
+                sysaliases.append(sysaliases_item)
+
         rules: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.rules, Unset):
             rules = []
@@ -104,6 +114,8 @@ class NATOutboundRules:
             field_dict["mode"] = mode
         if aliases is not UNSET:
             field_dict["aliases"] = aliases
+        if sysaliases is not UNSET:
+            field_dict["sysaliases"] = sysaliases
         if rules is not UNSET:
             field_dict["rules"] = rules
         if automatic_rules is not UNSET:
@@ -116,6 +128,7 @@ class NATOutboundRules:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         from ..models.fw_alias import FWAlias
+        from ..models.fw_system_alias import FWSystemAlias
         from ..models.nat_auto_rule import NATAutoRule
         from ..models.nat_outbound_rule import NATOutboundRule
         from ..models.simple_interface import SimpleInterface
@@ -151,6 +164,13 @@ class NATOutboundRules:
 
             aliases.append(aliases_item)
 
+        sysaliases = []
+        _sysaliases = d.pop("sysaliases", UNSET)
+        for sysaliases_item_data in _sysaliases or []:
+            sysaliases_item = FWSystemAlias.from_dict(sysaliases_item_data)
+
+            sysaliases.append(sysaliases_item)
+
         rules = []
         _rules = d.pop("rules", UNSET)
         for rules_item_data in _rules or []:
@@ -178,6 +198,7 @@ class NATOutboundRules:
             locallist=locallist,
             mode=mode,
             aliases=aliases,
+            sysaliases=sysaliases,
             rules=rules,
             automatic_rules=automatic_rules,
             srclist=srclist,

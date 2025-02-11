@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="PacketCaptureRequest")
 
@@ -16,30 +14,30 @@ class PacketCaptureRequest:
     detail = "full", "high", "medium", "normal"
 
         Attributes:
-            action (Union[Unset, str]):
-            host (Union[Unset, str]):
-            interface (Union[Unset, str]):
-            promiscuous (Union[Unset, bool]):
-            count (Union[Unset, int]):
-            snaplen (Union[Unset, int]):
-            port (Union[Unset, str]):
-            detail (Union[Unset, str]):
-            fam (Union[Unset, str]):
-            proto (Union[Unset, str]):
-            dnsquery (Union[Unset, bool]):
+            action (str):
+            host (str):
+            interface (str):
+            promiscuous (bool):
+            count (int):
+            snaplen (int):
+            port (str):
+            detail (str):
+            fam (str):
+            proto (str):
+            dnsquery (bool):
     """
 
-    action: Union[Unset, str] = UNSET
-    host: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    promiscuous: Union[Unset, bool] = UNSET
-    count: Union[Unset, int] = UNSET
-    snaplen: Union[Unset, int] = UNSET
-    port: Union[Unset, str] = UNSET
-    detail: Union[Unset, str] = UNSET
-    fam: Union[Unset, str] = UNSET
-    proto: Union[Unset, str] = UNSET
-    dnsquery: Union[Unset, bool] = UNSET
+    action: str
+    host: str
+    interface: str
+    promiscuous: bool
+    count: int
+    snaplen: int
+    port: str
+    detail: str
+    fam: str
+    proto: str
+    dnsquery: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -67,56 +65,48 @@ class PacketCaptureRequest:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if action is not UNSET:
-            field_dict["action"] = action
-        if host is not UNSET:
-            field_dict["host"] = host
-        if interface is not UNSET:
-            field_dict["interface"] = interface
-        if promiscuous is not UNSET:
-            field_dict["promiscuous"] = promiscuous
-        if count is not UNSET:
-            field_dict["count"] = count
-        if snaplen is not UNSET:
-            field_dict["snaplen"] = snaplen
-        if port is not UNSET:
-            field_dict["port"] = port
-        if detail is not UNSET:
-            field_dict["detail"] = detail
-        if fam is not UNSET:
-            field_dict["fam"] = fam
-        if proto is not UNSET:
-            field_dict["proto"] = proto
-        if dnsquery is not UNSET:
-            field_dict["dnsquery"] = dnsquery
+        field_dict.update(
+            {
+                "action": action,
+                "host": host,
+                "interface": interface,
+                "promiscuous": promiscuous,
+                "count": count,
+                "snaplen": snaplen,
+                "port": port,
+                "detail": detail,
+                "fam": fam,
+                "proto": proto,
+                "dnsquery": dnsquery,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        action = d.pop("action", UNSET)
+        action = d.pop("action")
 
-        host = d.pop("host", UNSET)
+        host = d.pop("host")
 
-        interface = d.pop("interface", UNSET)
+        interface = d.pop("interface")
 
-        promiscuous = d.pop("promiscuous", UNSET)
+        promiscuous = d.pop("promiscuous")
 
-        count = d.pop("count", UNSET)
+        count = d.pop("count")
 
-        snaplen = d.pop("snaplen", UNSET)
+        snaplen = d.pop("snaplen")
 
-        port = d.pop("port", UNSET)
+        port = d.pop("port")
 
-        detail = d.pop("detail", UNSET)
+        detail = d.pop("detail")
 
-        fam = d.pop("fam", UNSET)
+        fam = d.pop("fam")
 
-        proto = d.pop("proto", UNSET)
+        proto = d.pop("proto")
 
-        dnsquery = d.pop("dnsquery", UNSET)
+        dnsquery = d.pop("dnsquery")
 
         packet_capture_request = cls(
             action=action,

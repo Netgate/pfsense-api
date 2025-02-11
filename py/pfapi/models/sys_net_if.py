@@ -13,32 +13,32 @@ class SysNetIf:
     """network interface on the device
 
     Attributes:
-        name (Union[Unset, str]):
-        identity (Union[Unset, str]):
-        device (Union[Unset, str]):
-        assigned (Union[Unset, str]):
-        link_speed (Union[Unset, int]):
-        phy_speed (Union[Unset, int]):
-        state (Union[Unset, str]):
-        vlan (Union[Unset, int]):
-        device_info (Union[Unset, str]):
-        is_physical (Union[Unset, bool]):
+        name (str): device name of the device
+        identity (str): interface identity, e.g. wan, lan, opt1
+        device (str): device driver name, e..g vtnet1
+        assigned (str): user assigned name of the device, WAN, LAN, LANOPT
+        link_speed (int): bps speed negotiated
+        phy_speed (int): bps max speed of port
+        state (str): on, off, error
+        vlan (int): vlan number, if VLAN
+        device_info (str): device hardware, model name
+        is_physical (bool): device is a physical port
+        label (str): description (user-defined name) of device
         addresses (Union[Unset, List[str]]):
-        label (Union[Unset, str]):
     """
 
-    name: Union[Unset, str] = UNSET
-    identity: Union[Unset, str] = UNSET
-    device: Union[Unset, str] = UNSET
-    assigned: Union[Unset, str] = UNSET
-    link_speed: Union[Unset, int] = UNSET
-    phy_speed: Union[Unset, int] = UNSET
-    state: Union[Unset, str] = UNSET
-    vlan: Union[Unset, int] = UNSET
-    device_info: Union[Unset, str] = UNSET
-    is_physical: Union[Unset, bool] = UNSET
+    name: str
+    identity: str
+    device: str
+    assigned: str
+    link_speed: int
+    phy_speed: int
+    state: str
+    vlan: int
+    device_info: str
+    is_physical: bool
+    label: str
     addresses: Union[Unset, List[str]] = UNSET
-    label: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -62,68 +62,60 @@ class SysNetIf:
 
         is_physical = self.is_physical
 
+        label = self.label
+
         addresses: Union[Unset, List[str]] = UNSET
         if not isinstance(self.addresses, Unset):
             addresses = self.addresses
 
-        label = self.label
-
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if identity is not UNSET:
-            field_dict["identity"] = identity
-        if device is not UNSET:
-            field_dict["device"] = device
-        if assigned is not UNSET:
-            field_dict["assigned"] = assigned
-        if link_speed is not UNSET:
-            field_dict["link_speed"] = link_speed
-        if phy_speed is not UNSET:
-            field_dict["phy_speed"] = phy_speed
-        if state is not UNSET:
-            field_dict["state"] = state
-        if vlan is not UNSET:
-            field_dict["vlan"] = vlan
-        if device_info is not UNSET:
-            field_dict["device_info"] = device_info
-        if is_physical is not UNSET:
-            field_dict["is_physical"] = is_physical
+        field_dict.update(
+            {
+                "name": name,
+                "identity": identity,
+                "device": device,
+                "assigned": assigned,
+                "link_speed": link_speed,
+                "phy_speed": phy_speed,
+                "state": state,
+                "vlan": vlan,
+                "device_info": device_info,
+                "is_physical": is_physical,
+                "label": label,
+            }
+        )
         if addresses is not UNSET:
             field_dict["addresses"] = addresses
-        if label is not UNSET:
-            field_dict["label"] = label
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        identity = d.pop("identity", UNSET)
+        identity = d.pop("identity")
 
-        device = d.pop("device", UNSET)
+        device = d.pop("device")
 
-        assigned = d.pop("assigned", UNSET)
+        assigned = d.pop("assigned")
 
-        link_speed = d.pop("link_speed", UNSET)
+        link_speed = d.pop("link_speed")
 
-        phy_speed = d.pop("phy_speed", UNSET)
+        phy_speed = d.pop("phy_speed")
 
-        state = d.pop("state", UNSET)
+        state = d.pop("state")
 
-        vlan = d.pop("vlan", UNSET)
+        vlan = d.pop("vlan")
 
-        device_info = d.pop("device_info", UNSET)
+        device_info = d.pop("device_info")
 
-        is_physical = d.pop("is_physical", UNSET)
+        is_physical = d.pop("is_physical")
+
+        label = d.pop("label")
 
         addresses = cast(List[str], d.pop("addresses", UNSET))
-
-        label = d.pop("label", UNSET)
 
         sys_net_if = cls(
             name=name,
@@ -136,8 +128,8 @@ class SysNetIf:
             vlan=vlan,
             device_info=device_info,
             is_physical=is_physical,
-            addresses=addresses,
             label=label,
+            addresses=addresses,
         )
 
         sys_net_if.additional_properties = d

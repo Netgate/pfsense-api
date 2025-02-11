@@ -53,6 +53,16 @@ def sync_detailed(
 ) -> Response[Union[Error, UserPrivileges]]:
     """Get definitions of user privileges
 
+     In pfSense, the user privileges are applied to the user's login to the
+    legacy user interface. When pfSense acts as a Multi-instance Management
+    Controller, MIM privileges are defined by the group's name.
+
+    When the Controller runs as a separate entity, group privileges are used
+    as roles in Multi-instance management and define the entitlements of the
+    user belonging to the group. Apart from the superuser (or admin) role,
+    all roles can be made granular with read, modify and delete attributes.
+    A role without these attributes is considered to be granted them all.
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
@@ -76,6 +86,16 @@ def sync(
 ) -> Optional[Union[Error, UserPrivileges]]:
     """Get definitions of user privileges
 
+     In pfSense, the user privileges are applied to the user's login to the
+    legacy user interface. When pfSense acts as a Multi-instance Management
+    Controller, MIM privileges are defined by the group's name.
+
+    When the Controller runs as a separate entity, group privileges are used
+    as roles in Multi-instance management and define the entitlements of the
+    user belonging to the group. Apart from the superuser (or admin) role,
+    all roles can be made granular with read, modify and delete attributes.
+    A role without these attributes is considered to be granted them all.
+
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
@@ -94,6 +114,16 @@ async def asyncio_detailed(
     client: Union[AuthenticatedClient, Client],
 ) -> Response[Union[Error, UserPrivileges]]:
     """Get definitions of user privileges
+
+     In pfSense, the user privileges are applied to the user's login to the
+    legacy user interface. When pfSense acts as a Multi-instance Management
+    Controller, MIM privileges are defined by the group's name.
+
+    When the Controller runs as a separate entity, group privileges are used
+    as roles in Multi-instance management and define the entitlements of the
+    user belonging to the group. Apart from the superuser (or admin) role,
+    all roles can be made granular with read, modify and delete attributes.
+    A role without these attributes is considered to be granted them all.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -115,6 +145,16 @@ async def asyncio(
     client: Union[AuthenticatedClient, Client],
 ) -> Optional[Union[Error, UserPrivileges]]:
     """Get definitions of user privileges
+
+     In pfSense, the user privileges are applied to the user's login to the
+    legacy user interface. When pfSense acts as a Multi-instance Management
+    Controller, MIM privileges are defined by the group's name.
+
+    When the Controller runs as a separate entity, group privileges are used
+    as roles in Multi-instance management and define the entitlements of the
+    user belonging to the group. Apart from the superuser (or admin) role,
+    all roles can be made granular with read, modify and delete attributes.
+    A role without these attributes is considered to be granted them all.
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

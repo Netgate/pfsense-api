@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="FWSystemAlias")
 
@@ -12,24 +10,26 @@ T = TypeVar("T", bound="FWSystemAlias")
 class FWSystemAlias:
     """
     Attributes:
-        name (Union[Unset, str]):
-        type (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        address (Union[Unset, str]):
-        url (Union[Unset, str]):
-        table (Union[Unset, str]):
-        if_ident (Union[Unset, str]):
-        if_assigned_name (Union[Unset, str]):
+        name (str):
+        type (str):
+        descr (str):
+        address (str):
+        url (str):
+        table (str):
+        if_ident (str):
+        if_assigned_name (str):
+        truncated (bool):
     """
 
-    name: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    address: Union[Unset, str] = UNSET
-    url: Union[Unset, str] = UNSET
-    table: Union[Unset, str] = UNSET
-    if_ident: Union[Unset, str] = UNSET
-    if_assigned_name: Union[Unset, str] = UNSET
+    name: str
+    type: str
+    descr: str
+    address: str
+    url: str
+    table: str
+    if_ident: str
+    if_assigned_name: str
+    truncated: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -49,46 +49,46 @@ class FWSystemAlias:
 
         if_assigned_name = self.if_assigned_name
 
+        truncated = self.truncated
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if type is not UNSET:
-            field_dict["type"] = type
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if address is not UNSET:
-            field_dict["address"] = address
-        if url is not UNSET:
-            field_dict["url"] = url
-        if table is not UNSET:
-            field_dict["table"] = table
-        if if_ident is not UNSET:
-            field_dict["if_ident"] = if_ident
-        if if_assigned_name is not UNSET:
-            field_dict["if_assigned_name"] = if_assigned_name
+        field_dict.update(
+            {
+                "name": name,
+                "type": type,
+                "descr": descr,
+                "address": address,
+                "url": url,
+                "table": table,
+                "if_ident": if_ident,
+                "if_assigned_name": if_assigned_name,
+                "truncated": truncated,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        type = d.pop("type", UNSET)
+        type = d.pop("type")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
-        address = d.pop("address", UNSET)
+        address = d.pop("address")
 
-        url = d.pop("url", UNSET)
+        url = d.pop("url")
 
-        table = d.pop("table", UNSET)
+        table = d.pop("table")
 
-        if_ident = d.pop("if_ident", UNSET)
+        if_ident = d.pop("if_ident")
 
-        if_assigned_name = d.pop("if_assigned_name", UNSET)
+        if_assigned_name = d.pop("if_assigned_name")
+
+        truncated = d.pop("truncated")
 
         fw_system_alias = cls(
             name=name,
@@ -99,6 +99,7 @@ class FWSystemAlias:
             table=table,
             if_ident=if_ident,
             if_assigned_name=if_assigned_name,
+            truncated=truncated,
         )
 
         fw_system_alias.additional_properties = d

@@ -16,13 +16,13 @@ T = TypeVar("T", bound="CARPStatus")
 class CARPStatus:
     """
     Attributes:
-        enabled (Union[Unset, bool]):
-        maintenancemode_enabled (Union[Unset, bool]):
+        enabled (bool):
+        maintenancemode_enabled (bool):
         vips (Union[Unset, List['CARPVIPStatus']]):
     """
 
-    enabled: Union[Unset, bool] = UNSET
-    maintenancemode_enabled: Union[Unset, bool] = UNSET
+    enabled: bool
+    maintenancemode_enabled: bool
     vips: Union[Unset, List["CARPVIPStatus"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -40,11 +40,12 @@ class CARPStatus:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if enabled is not UNSET:
-            field_dict["enabled"] = enabled
-        if maintenancemode_enabled is not UNSET:
-            field_dict["maintenancemode_enabled"] = maintenancemode_enabled
+        field_dict.update(
+            {
+                "enabled": enabled,
+                "maintenancemode_enabled": maintenancemode_enabled,
+            }
+        )
         if vips is not UNSET:
             field_dict["vips"] = vips
 
@@ -55,9 +56,9 @@ class CARPStatus:
         from ..models.carpvip_status import CARPVIPStatus
 
         d = src_dict.copy()
-        enabled = d.pop("enabled", UNSET)
+        enabled = d.pop("enabled")
 
-        maintenancemode_enabled = d.pop("maintenancemode_enabled", UNSET)
+        maintenancemode_enabled = d.pop("maintenancemode_enabled")
 
         vips = []
         _vips = d.pop("vips", UNSET)

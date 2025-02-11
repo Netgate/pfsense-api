@@ -12,13 +12,13 @@ T = TypeVar("T", bound="LoginCredentials")
 class LoginCredentials:
     """
     Attributes:
-        username (Union[Unset, str]):
-        password (Union[Unset, str]):
+        username (str):
+        password (str):
         secondfactor (Union[Unset, str]):
     """
 
-    username: Union[Unset, str] = UNSET
-    password: Union[Unset, str] = UNSET
+    username: str
+    password: str
     secondfactor: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -31,11 +31,12 @@ class LoginCredentials:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if username is not UNSET:
-            field_dict["username"] = username
-        if password is not UNSET:
-            field_dict["password"] = password
+        field_dict.update(
+            {
+                "username": username,
+                "password": password,
+            }
+        )
         if secondfactor is not UNSET:
             field_dict["secondfactor"] = secondfactor
 
@@ -44,9 +45,9 @@ class LoginCredentials:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        username = d.pop("username", UNSET)
+        username = d.pop("username")
 
-        password = d.pop("password", UNSET)
+        password = d.pop("password")
 
         secondfactor = d.pop("secondfactor", UNSET)
 

@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="OsSocket")
 
@@ -12,22 +10,22 @@ T = TypeVar("T", bound="OsSocket")
 class OsSocket:
     """
     Attributes:
-        user (Union[Unset, str]):
-        command (Union[Unset, str]):
-        fd (Union[Unset, str]):
-        pid (Union[Unset, str]):
-        proto (Union[Unset, str]):
-        local (Union[Unset, str]):
-        foreign (Union[Unset, str]):
+        user (str):
+        command (str):
+        fd (str):
+        pid (str):
+        proto (str):
+        local (str):
+        foreign (str):
     """
 
-    user: Union[Unset, str] = UNSET
-    command: Union[Unset, str] = UNSET
-    fd: Union[Unset, str] = UNSET
-    pid: Union[Unset, str] = UNSET
-    proto: Union[Unset, str] = UNSET
-    local: Union[Unset, str] = UNSET
-    foreign: Union[Unset, str] = UNSET
+    user: str
+    command: str
+    fd: str
+    pid: str
+    proto: str
+    local: str
+    foreign: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -47,40 +45,36 @@ class OsSocket:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if user is not UNSET:
-            field_dict["user"] = user
-        if command is not UNSET:
-            field_dict["command"] = command
-        if fd is not UNSET:
-            field_dict["fd"] = fd
-        if pid is not UNSET:
-            field_dict["pid"] = pid
-        if proto is not UNSET:
-            field_dict["proto"] = proto
-        if local is not UNSET:
-            field_dict["local"] = local
-        if foreign is not UNSET:
-            field_dict["foreign"] = foreign
+        field_dict.update(
+            {
+                "user": user,
+                "command": command,
+                "fd": fd,
+                "pid": pid,
+                "proto": proto,
+                "local": local,
+                "foreign": foreign,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        user = d.pop("user", UNSET)
+        user = d.pop("user")
 
-        command = d.pop("command", UNSET)
+        command = d.pop("command")
 
-        fd = d.pop("fd", UNSET)
+        fd = d.pop("fd")
 
-        pid = d.pop("pid", UNSET)
+        pid = d.pop("pid")
 
-        proto = d.pop("proto", UNSET)
+        proto = d.pop("proto")
 
-        local = d.pop("local", UNSET)
+        local = d.pop("local")
 
-        foreign = d.pop("foreign", UNSET)
+        foreign = d.pop("foreign")
 
         os_socket = cls(
             user=user,

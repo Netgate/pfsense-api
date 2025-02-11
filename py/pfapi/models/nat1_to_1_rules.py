@@ -7,6 +7,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.fw_alias import FWAlias
+    from ..models.fw_system_alias import FWSystemAlias
     from ..models.nat1_to_1_rule import NAT1To1Rule
     from ..models.simple_interface import SimpleInterface
 
@@ -21,12 +22,14 @@ class NAT1To1Rules:
         destlist (Union[Unset, List['SimpleInterface']]):
         interfacelist (Union[Unset, List['SimpleInterface']]):
         aliases (Union[Unset, List['FWAlias']]):
+        sysaliases (Union[Unset, List['FWSystemAlias']]):
         rules (Union[Unset, List['NAT1To1Rule']]):
     """
 
     destlist: Union[Unset, List["SimpleInterface"]] = UNSET
     interfacelist: Union[Unset, List["SimpleInterface"]] = UNSET
     aliases: Union[Unset, List["FWAlias"]] = UNSET
+    sysaliases: Union[Unset, List["FWSystemAlias"]] = UNSET
     rules: Union[Unset, List["NAT1To1Rule"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -52,6 +55,13 @@ class NAT1To1Rules:
                 aliases_item = aliases_item_data.to_dict()
                 aliases.append(aliases_item)
 
+        sysaliases: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.sysaliases, Unset):
+            sysaliases = []
+            for sysaliases_item_data in self.sysaliases:
+                sysaliases_item = sysaliases_item_data.to_dict()
+                sysaliases.append(sysaliases_item)
+
         rules: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.rules, Unset):
             rules = []
@@ -68,6 +78,8 @@ class NAT1To1Rules:
             field_dict["interfacelist"] = interfacelist
         if aliases is not UNSET:
             field_dict["aliases"] = aliases
+        if sysaliases is not UNSET:
+            field_dict["sysaliases"] = sysaliases
         if rules is not UNSET:
             field_dict["rules"] = rules
 
@@ -76,6 +88,7 @@ class NAT1To1Rules:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         from ..models.fw_alias import FWAlias
+        from ..models.fw_system_alias import FWSystemAlias
         from ..models.nat1_to_1_rule import NAT1To1Rule
         from ..models.simple_interface import SimpleInterface
 
@@ -101,6 +114,13 @@ class NAT1To1Rules:
 
             aliases.append(aliases_item)
 
+        sysaliases = []
+        _sysaliases = d.pop("sysaliases", UNSET)
+        for sysaliases_item_data in _sysaliases or []:
+            sysaliases_item = FWSystemAlias.from_dict(sysaliases_item_data)
+
+            sysaliases.append(sysaliases_item)
+
         rules = []
         _rules = d.pop("rules", UNSET)
         for rules_item_data in _rules or []:
@@ -112,6 +132,7 @@ class NAT1To1Rules:
             destlist=destlist,
             interfacelist=interfacelist,
             aliases=aliases,
+            sysaliases=sysaliases,
             rules=rules,
         )
 

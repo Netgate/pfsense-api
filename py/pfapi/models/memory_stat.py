@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="MemoryStat")
 
@@ -12,14 +10,14 @@ T = TypeVar("T", bound="MemoryStat")
 class MemoryStat:
     """
     Attributes:
-        total (Union[Unset, int]):
-        reserved (Union[Unset, int]):
-        used (Union[Unset, int]):
+        total (int):
+        reserved (int):
+        used (int):
     """
 
-    total: Union[Unset, int] = UNSET
-    reserved: Union[Unset, int] = UNSET
-    used: Union[Unset, int] = UNSET
+    total: int
+    reserved: int
+    used: int
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,24 +29,24 @@ class MemoryStat:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if total is not UNSET:
-            field_dict["total"] = total
-        if reserved is not UNSET:
-            field_dict["reserved"] = reserved
-        if used is not UNSET:
-            field_dict["used"] = used
+        field_dict.update(
+            {
+                "total": total,
+                "reserved": reserved,
+                "used": used,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        total = d.pop("total", UNSET)
+        total = d.pop("total")
 
-        reserved = d.pop("reserved", UNSET)
+        reserved = d.pop("reserved")
 
-        used = d.pop("used", UNSET)
+        used = d.pop("used")
 
         memory_stat = cls(
             total=total,

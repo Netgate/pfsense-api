@@ -13,7 +13,7 @@ from ...types import Response
 def _get_kwargs() -> Dict[str, Any]:
     _kwargs: Dict[str, Any] = {
         "method": "get",
-        "url": "/firewall/nat",
+        "url": "/firewall/nat/port-forward",
     }
 
     return _kwargs

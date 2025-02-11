@@ -1,9 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.radius import Radius
@@ -16,34 +14,34 @@ T = TypeVar("T", bound="PPPoEServer")
 class PPPoEServer:
     """
     Attributes:
-        remoteip (Union[Unset, str]):
-        localip (Union[Unset, str]):
-        mode (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        n_pppoe_units (Union[Unset, str]):
-        n_pppoe_maxlogin (Union[Unset, str]):
-        pppoe_subnet (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        radius (Union[Unset, Radius]):
-        dns1 (Union[Unset, str]):
-        dns2 (Union[Unset, str]):
-        pppoeid (Union[Unset, str]):
-        username (Union[Unset, str]):
+        remoteip (str):
+        localip (str):
+        mode (str):
+        interface (str):
+        n_pppoe_units (str):
+        n_pppoe_maxlogin (str):
+        pppoe_subnet (str):
+        descr (str):
+        radius (Radius):
+        dns1 (str):
+        dns2 (str):
+        pppoeid (str):
+        username (str):
     """
 
-    remoteip: Union[Unset, str] = UNSET
-    localip: Union[Unset, str] = UNSET
-    mode: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    n_pppoe_units: Union[Unset, str] = UNSET
-    n_pppoe_maxlogin: Union[Unset, str] = UNSET
-    pppoe_subnet: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    radius: Union[Unset, "Radius"] = UNSET
-    dns1: Union[Unset, str] = UNSET
-    dns2: Union[Unset, str] = UNSET
-    pppoeid: Union[Unset, str] = UNSET
-    username: Union[Unset, str] = UNSET
+    remoteip: str
+    localip: str
+    mode: str
+    interface: str
+    n_pppoe_units: str
+    n_pppoe_maxlogin: str
+    pppoe_subnet: str
+    descr: str
+    radius: "Radius"
+    dns1: str
+    dns2: str
+    pppoeid: str
+    username: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -63,9 +61,7 @@ class PPPoEServer:
 
         descr = self.descr
 
-        radius: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.radius, Unset):
-            radius = self.radius.to_dict()
+        radius = self.radius.to_dict()
 
         dns1 = self.dns1
 
@@ -77,33 +73,23 @@ class PPPoEServer:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if remoteip is not UNSET:
-            field_dict["remoteip"] = remoteip
-        if localip is not UNSET:
-            field_dict["localip"] = localip
-        if mode is not UNSET:
-            field_dict["mode"] = mode
-        if interface is not UNSET:
-            field_dict["interface"] = interface
-        if n_pppoe_units is not UNSET:
-            field_dict["n_pppoe_units"] = n_pppoe_units
-        if n_pppoe_maxlogin is not UNSET:
-            field_dict["n_pppoe_maxlogin"] = n_pppoe_maxlogin
-        if pppoe_subnet is not UNSET:
-            field_dict["pppoe_subnet"] = pppoe_subnet
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if radius is not UNSET:
-            field_dict["radius"] = radius
-        if dns1 is not UNSET:
-            field_dict["dns1"] = dns1
-        if dns2 is not UNSET:
-            field_dict["dns2"] = dns2
-        if pppoeid is not UNSET:
-            field_dict["pppoeid"] = pppoeid
-        if username is not UNSET:
-            field_dict["username"] = username
+        field_dict.update(
+            {
+                "remoteip": remoteip,
+                "localip": localip,
+                "mode": mode,
+                "interface": interface,
+                "n_pppoe_units": n_pppoe_units,
+                "n_pppoe_maxlogin": n_pppoe_maxlogin,
+                "pppoe_subnet": pppoe_subnet,
+                "descr": descr,
+                "radius": radius,
+                "dns1": dns1,
+                "dns2": dns2,
+                "pppoeid": pppoeid,
+                "username": username,
+            }
+        )
 
         return field_dict
 
@@ -112,36 +98,31 @@ class PPPoEServer:
         from ..models.radius import Radius
 
         d = src_dict.copy()
-        remoteip = d.pop("remoteip", UNSET)
+        remoteip = d.pop("remoteip")
 
-        localip = d.pop("localip", UNSET)
+        localip = d.pop("localip")
 
-        mode = d.pop("mode", UNSET)
+        mode = d.pop("mode")
 
-        interface = d.pop("interface", UNSET)
+        interface = d.pop("interface")
 
-        n_pppoe_units = d.pop("n_pppoe_units", UNSET)
+        n_pppoe_units = d.pop("n_pppoe_units")
 
-        n_pppoe_maxlogin = d.pop("n_pppoe_maxlogin", UNSET)
+        n_pppoe_maxlogin = d.pop("n_pppoe_maxlogin")
 
-        pppoe_subnet = d.pop("pppoe_subnet", UNSET)
+        pppoe_subnet = d.pop("pppoe_subnet")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
-        _radius = d.pop("radius", UNSET)
-        radius: Union[Unset, Radius]
-        if isinstance(_radius, Unset):
-            radius = UNSET
-        else:
-            radius = Radius.from_dict(_radius)
+        radius = Radius.from_dict(d.pop("radius"))
 
-        dns1 = d.pop("dns1", UNSET)
+        dns1 = d.pop("dns1")
 
-        dns2 = d.pop("dns2", UNSET)
+        dns2 = d.pop("dns2")
 
-        pppoeid = d.pop("pppoeid", UNSET)
+        pppoeid = d.pop("pppoeid")
 
-        username = d.pop("username", UNSET)
+        username = d.pop("username")
 
         pp_po_e_server = cls(
             remoteip=remoteip,

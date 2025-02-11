@@ -12,28 +12,28 @@ T = TypeVar("T", bound="InterfaceSimple")
 class InterfaceSimple:
     """
     Attributes:
-        name (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        if_ (Union[Unset, str]):
-        ipaddr (Union[Unset, str]):
-        ipaddrv6 (Union[Unset, str]):
-        mac (Union[Unset, str]):
-        tag (Union[Unset, int]):
-        member (Union[Unset, str]):
+        name (str):
+        descr (str):
+        if_ (str):
+        ipaddr (str):
+        ipaddrv6 (str):
+        mac (str):
+        tag (int):
+        member (str):
+        enable (bool):
         addresses (Union[Unset, List[str]]):
-        enable (Union[Unset, bool]):
     """
 
-    name: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    if_: Union[Unset, str] = UNSET
-    ipaddr: Union[Unset, str] = UNSET
-    ipaddrv6: Union[Unset, str] = UNSET
-    mac: Union[Unset, str] = UNSET
-    tag: Union[Unset, int] = UNSET
-    member: Union[Unset, str] = UNSET
+    name: str
+    descr: str
+    if_: str
+    ipaddr: str
+    ipaddrv6: str
+    mac: str
+    tag: int
+    member: str
+    enable: bool
     addresses: Union[Unset, List[str]] = UNSET
-    enable: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -53,60 +53,54 @@ class InterfaceSimple:
 
         member = self.member
 
+        enable = self.enable
+
         addresses: Union[Unset, List[str]] = UNSET
         if not isinstance(self.addresses, Unset):
             addresses = self.addresses
 
-        enable = self.enable
-
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if if_ is not UNSET:
-            field_dict["if"] = if_
-        if ipaddr is not UNSET:
-            field_dict["ipaddr"] = ipaddr
-        if ipaddrv6 is not UNSET:
-            field_dict["ipaddrv6"] = ipaddrv6
-        if mac is not UNSET:
-            field_dict["mac"] = mac
-        if tag is not UNSET:
-            field_dict["tag"] = tag
-        if member is not UNSET:
-            field_dict["member"] = member
+        field_dict.update(
+            {
+                "name": name,
+                "descr": descr,
+                "if": if_,
+                "ipaddr": ipaddr,
+                "ipaddrv6": ipaddrv6,
+                "mac": mac,
+                "tag": tag,
+                "member": member,
+                "enable": enable,
+            }
+        )
         if addresses is not UNSET:
             field_dict["addresses"] = addresses
-        if enable is not UNSET:
-            field_dict["enable"] = enable
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
-        if_ = d.pop("if", UNSET)
+        if_ = d.pop("if")
 
-        ipaddr = d.pop("ipaddr", UNSET)
+        ipaddr = d.pop("ipaddr")
 
-        ipaddrv6 = d.pop("ipaddrv6", UNSET)
+        ipaddrv6 = d.pop("ipaddrv6")
 
-        mac = d.pop("mac", UNSET)
+        mac = d.pop("mac")
 
-        tag = d.pop("tag", UNSET)
+        tag = d.pop("tag")
 
-        member = d.pop("member", UNSET)
+        member = d.pop("member")
+
+        enable = d.pop("enable")
 
         addresses = cast(List[str], d.pop("addresses", UNSET))
-
-        enable = d.pop("enable", UNSET)
 
         interface_simple = cls(
             name=name,
@@ -117,8 +111,8 @@ class InterfaceSimple:
             mac=mac,
             tag=tag,
             member=member,
-            addresses=addresses,
             enable=enable,
+            addresses=addresses,
         )
 
         interface_simple.additional_properties = d

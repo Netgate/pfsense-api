@@ -18,15 +18,15 @@ T = TypeVar("T", bound="Event")
 class Event:
     """
     Attributes:
-        event_type (Union[Unset, str]):
-        event_id (Union[Unset, int]): ID is microsecond timestamp
+        event_type (str):
+        event_id (int): ID is microsecond timestamp
         firewall (Union[Unset, FirewallEvent]):
         interface (Union[Unset, InterfaceEvent]):
         system (Union[Unset, SystemEvent]): changes to the system that is informational or impacts operation
     """
 
-    event_type: Union[Unset, str] = UNSET
-    event_id: Union[Unset, int] = UNSET
+    event_type: str
+    event_id: int
     firewall: Union[Unset, "FirewallEvent"] = UNSET
     interface: Union[Unset, "InterfaceEvent"] = UNSET
     system: Union[Unset, "SystemEvent"] = UNSET
@@ -51,11 +51,12 @@ class Event:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if event_type is not UNSET:
-            field_dict["event_type"] = event_type
-        if event_id is not UNSET:
-            field_dict["event_id"] = event_id
+        field_dict.update(
+            {
+                "event_type": event_type,
+                "event_id": event_id,
+            }
+        )
         if firewall is not UNSET:
             field_dict["firewall"] = firewall
         if interface is not UNSET:
@@ -72,9 +73,9 @@ class Event:
         from ..models.system_event import SystemEvent
 
         d = src_dict.copy()
-        event_type = d.pop("event_type", UNSET)
+        event_type = d.pop("event_type")
 
-        event_id = d.pop("event_id", UNSET)
+        event_id = d.pop("event_id")
 
         _firewall = d.pop("firewall", UNSET)
         firewall: Union[Unset, FirewallEvent]

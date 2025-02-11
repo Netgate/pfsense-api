@@ -12,26 +12,30 @@ T = TypeVar("T", bound="UserAddReq")
 class UserAddReq:
     """
     Attributes:
-        username (Union[Unset, str]):
+        username (str):
+        full_name (str):
+        uid (Union[Unset, int]):
         password (Union[Unset, str]):
-        full_name (Union[Unset, str]):
         groups (Union[Unset, List[str]]):
         cert_refids (Union[Unset, List[str]]):
         authorized_keys (Union[Unset, str]):
         privs (Union[Unset, List[str]]):
+        scope (Union[Unset, str]):
         keep_cmd_history (Union[Unset, bool]):
         expiration (Union[Unset, int]):
         disabled (Union[Unset, bool]):
         ipsec_psk (Union[Unset, str]):
     """
 
-    username: Union[Unset, str] = UNSET
+    username: str
+    full_name: str
+    uid: Union[Unset, int] = UNSET
     password: Union[Unset, str] = UNSET
-    full_name: Union[Unset, str] = UNSET
     groups: Union[Unset, List[str]] = UNSET
     cert_refids: Union[Unset, List[str]] = UNSET
     authorized_keys: Union[Unset, str] = UNSET
     privs: Union[Unset, List[str]] = UNSET
+    scope: Union[Unset, str] = UNSET
     keep_cmd_history: Union[Unset, bool] = UNSET
     expiration: Union[Unset, int] = UNSET
     disabled: Union[Unset, bool] = UNSET
@@ -41,9 +45,11 @@ class UserAddReq:
     def to_dict(self) -> Dict[str, Any]:
         username = self.username
 
-        password = self.password
-
         full_name = self.full_name
+
+        uid = self.uid
+
+        password = self.password
 
         groups: Union[Unset, List[str]] = UNSET
         if not isinstance(self.groups, Unset):
@@ -59,6 +65,8 @@ class UserAddReq:
         if not isinstance(self.privs, Unset):
             privs = self.privs
 
+        scope = self.scope
+
         keep_cmd_history = self.keep_cmd_history
 
         expiration = self.expiration
@@ -69,13 +77,16 @@ class UserAddReq:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if username is not UNSET:
-            field_dict["username"] = username
+        field_dict.update(
+            {
+                "username": username,
+                "full_name": full_name,
+            }
+        )
+        if uid is not UNSET:
+            field_dict["uid"] = uid
         if password is not UNSET:
             field_dict["password"] = password
-        if full_name is not UNSET:
-            field_dict["full_name"] = full_name
         if groups is not UNSET:
             field_dict["groups"] = groups
         if cert_refids is not UNSET:
@@ -84,6 +95,8 @@ class UserAddReq:
             field_dict["authorized_keys"] = authorized_keys
         if privs is not UNSET:
             field_dict["privs"] = privs
+        if scope is not UNSET:
+            field_dict["scope"] = scope
         if keep_cmd_history is not UNSET:
             field_dict["keep_cmd_history"] = keep_cmd_history
         if expiration is not UNSET:
@@ -98,11 +111,13 @@ class UserAddReq:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        username = d.pop("username", UNSET)
+        username = d.pop("username")
+
+        full_name = d.pop("full_name")
+
+        uid = d.pop("uid", UNSET)
 
         password = d.pop("password", UNSET)
-
-        full_name = d.pop("full_name", UNSET)
 
         groups = cast(List[str], d.pop("groups", UNSET))
 
@@ -111,6 +126,8 @@ class UserAddReq:
         authorized_keys = d.pop("authorized_keys", UNSET)
 
         privs = cast(List[str], d.pop("privs", UNSET))
+
+        scope = d.pop("scope", UNSET)
 
         keep_cmd_history = d.pop("keep_cmd_history", UNSET)
 
@@ -122,12 +139,14 @@ class UserAddReq:
 
         user_add_req = cls(
             username=username,
-            password=password,
             full_name=full_name,
+            uid=uid,
+            password=password,
             groups=groups,
             cert_refids=cert_refids,
             authorized_keys=authorized_keys,
             privs=privs,
+            scope=scope,
             keep_cmd_history=keep_cmd_history,
             expiration=expiration,
             disabled=disabled,

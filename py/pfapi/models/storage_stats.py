@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="StorageStats")
 
@@ -12,16 +10,16 @@ T = TypeVar("T", bound="StorageStats")
 class StorageStats:
     """
     Attributes:
-        volume (Union[Unset, str]):
-        device (Union[Unset, str]):
-        capacity (Union[Unset, int]):
-        used (Union[Unset, int]):
+        volume (str): volume name or directory
+        device (str): device partition
+        capacity (int):
+        used (int):
     """
 
-    volume: Union[Unset, str] = UNSET
-    device: Union[Unset, str] = UNSET
-    capacity: Union[Unset, int] = UNSET
-    used: Union[Unset, int] = UNSET
+    volume: str
+    device: str
+    capacity: int
+    used: int
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -35,28 +33,27 @@ class StorageStats:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if volume is not UNSET:
-            field_dict["volume"] = volume
-        if device is not UNSET:
-            field_dict["device"] = device
-        if capacity is not UNSET:
-            field_dict["capacity"] = capacity
-        if used is not UNSET:
-            field_dict["used"] = used
+        field_dict.update(
+            {
+                "volume": volume,
+                "device": device,
+                "capacity": capacity,
+                "used": used,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        volume = d.pop("volume", UNSET)
+        volume = d.pop("volume")
 
-        device = d.pop("device", UNSET)
+        device = d.pop("device")
 
-        capacity = d.pop("capacity", UNSET)
+        capacity = d.pop("capacity")
 
-        used = d.pop("used", UNSET)
+        used = d.pop("used")
 
         storage_stats = cls(
             volume=volume,

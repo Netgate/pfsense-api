@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="NtpAccessRestrictions")
 
@@ -12,20 +10,20 @@ T = TypeVar("T", bound="NtpAccessRestrictions")
 class NtpAccessRestrictions:
     """
     Attributes:
-        kod (Union[Unset, bool]):
-        nomodify (Union[Unset, bool]):
-        noquery (Union[Unset, bool]):
-        noserve (Union[Unset, bool]):
-        nopeer (Union[Unset, bool]):
-        notrap (Union[Unset, bool]):
+        kod (bool):
+        nomodify (bool):
+        noquery (bool):
+        noserve (bool):
+        nopeer (bool):
+        notrap (bool):
     """
 
-    kod: Union[Unset, bool] = UNSET
-    nomodify: Union[Unset, bool] = UNSET
-    noquery: Union[Unset, bool] = UNSET
-    noserve: Union[Unset, bool] = UNSET
-    nopeer: Union[Unset, bool] = UNSET
-    notrap: Union[Unset, bool] = UNSET
+    kod: bool
+    nomodify: bool
+    noquery: bool
+    noserve: bool
+    nopeer: bool
+    notrap: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -43,36 +41,33 @@ class NtpAccessRestrictions:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if kod is not UNSET:
-            field_dict["kod"] = kod
-        if nomodify is not UNSET:
-            field_dict["nomodify"] = nomodify
-        if noquery is not UNSET:
-            field_dict["noquery"] = noquery
-        if noserve is not UNSET:
-            field_dict["noserve"] = noserve
-        if nopeer is not UNSET:
-            field_dict["nopeer"] = nopeer
-        if notrap is not UNSET:
-            field_dict["notrap"] = notrap
+        field_dict.update(
+            {
+                "kod": kod,
+                "nomodify": nomodify,
+                "noquery": noquery,
+                "noserve": noserve,
+                "nopeer": nopeer,
+                "notrap": notrap,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        kod = d.pop("kod", UNSET)
+        kod = d.pop("kod")
 
-        nomodify = d.pop("nomodify", UNSET)
+        nomodify = d.pop("nomodify")
 
-        noquery = d.pop("noquery", UNSET)
+        noquery = d.pop("noquery")
 
-        noserve = d.pop("noserve", UNSET)
+        noserve = d.pop("noserve")
 
-        nopeer = d.pop("nopeer", UNSET)
+        nopeer = d.pop("nopeer")
 
-        notrap = d.pop("notrap", UNSET)
+        notrap = d.pop("notrap")
 
         ntp_access_restrictions = cls(
             kod=kod,

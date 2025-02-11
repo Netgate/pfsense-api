@@ -19,17 +19,17 @@ T = TypeVar("T", bound="IPSecStatusOverview")
 class IPSecStatusOverview:
     """
     Attributes:
-        enabled (Union[Unset, bool]):
-        daemon_running (Union[Unset, bool]):
-        status (Union[Unset, IPSecStatus]):
+        enabled (bool):
+        daemon_running (bool):
+        status (IPSecStatus):
         lease (Union[Unset, List['IPSecPool']]):
         sads (Union[Unset, List['IPSecSAD']]):
         spds (Union[Unset, List['IPSecSPD']]):
     """
 
-    enabled: Union[Unset, bool] = UNSET
-    daemon_running: Union[Unset, bool] = UNSET
-    status: Union[Unset, "IPSecStatus"] = UNSET
+    enabled: bool
+    daemon_running: bool
+    status: "IPSecStatus"
     lease: Union[Unset, List["IPSecPool"]] = UNSET
     sads: Union[Unset, List["IPSecSAD"]] = UNSET
     spds: Union[Unset, List["IPSecSPD"]] = UNSET
@@ -40,9 +40,7 @@ class IPSecStatusOverview:
 
         daemon_running = self.daemon_running
 
-        status: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.status, Unset):
-            status = self.status.to_dict()
+        status = self.status.to_dict()
 
         lease: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.lease, Unset):
@@ -67,13 +65,13 @@ class IPSecStatusOverview:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if enabled is not UNSET:
-            field_dict["enabled"] = enabled
-        if daemon_running is not UNSET:
-            field_dict["daemon_running"] = daemon_running
-        if status is not UNSET:
-            field_dict["status"] = status
+        field_dict.update(
+            {
+                "enabled": enabled,
+                "daemon_running": daemon_running,
+                "status": status,
+            }
+        )
         if lease is not UNSET:
             field_dict["lease"] = lease
         if sads is not UNSET:
@@ -91,16 +89,11 @@ class IPSecStatusOverview:
         from ..models.ip_sec_status import IPSecStatus
 
         d = src_dict.copy()
-        enabled = d.pop("enabled", UNSET)
+        enabled = d.pop("enabled")
 
-        daemon_running = d.pop("daemon_running", UNSET)
+        daemon_running = d.pop("daemon_running")
 
-        _status = d.pop("status", UNSET)
-        status: Union[Unset, IPSecStatus]
-        if isinstance(_status, Unset):
-            status = UNSET
-        else:
-            status = IPSecStatus.from_dict(_status)
+        status = IPSecStatus.from_dict(d.pop("status"))
 
         lease = []
         _lease = d.pop("lease", UNSET)

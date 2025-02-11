@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="GatewayPriority")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="GatewayPriority")
 class GatewayPriority:
     """
     Attributes:
-        priority (Union[Unset, str]):
-        priority_descr (Union[Unset, str]):
+        priority (str):
+        priority_descr (str):
     """
 
-    priority: Union[Unset, str] = UNSET
-    priority_descr: Union[Unset, str] = UNSET
+    priority: str
+    priority_descr: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class GatewayPriority:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if priority is not UNSET:
-            field_dict["priority"] = priority
-        if priority_descr is not UNSET:
-            field_dict["priority_descr"] = priority_descr
+        field_dict.update(
+            {
+                "priority": priority,
+                "priority_descr": priority_descr,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        priority = d.pop("priority", UNSET)
+        priority = d.pop("priority")
 
-        priority_descr = d.pop("priority_descr", UNSET)
+        priority_descr = d.pop("priority_descr")
 
         gateway_priority = cls(
             priority=priority,

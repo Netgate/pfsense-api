@@ -6,37 +6,24 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.nat_rule import NATRule
-from ...models.nat_update_result import NATUpdateResult
+from ...models.ip_sec_psk import IPSecPSK
 from ...types import Response
 
 
-def _get_kwargs(
-    ids: str,
-    *,
-    body: NATRule,
-) -> Dict[str, Any]:
-    headers: Dict[str, Any] = {}
-
+def _get_kwargs() -> Dict[str, Any]:
     _kwargs: Dict[str, Any] = {
-        "method": "put",
-        "url": f"/firewall/nat/{ids}",
+        "method": "get",
+        "url": "/vpn/ipsec/genpsk",
     }
 
-    _body = body.to_dict()
-
-    _kwargs["json"] = _body
-    headers["Content-Type"] = "application/json"
-
-    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, NATUpdateResult]]:
+) -> Optional[Union[Error, IPSecPSK]]:
     if response.status_code == 200:
-        response_200 = NATUpdateResult.from_dict(response.json())
+        response_200 = IPSecPSK.from_dict(response.json())
 
         return response_200
     if response.status_code == 400:
@@ -51,7 +38,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, NATUpdateResult]]:
+) -> Response[Union[Error, IPSecPSK]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -61,29 +48,20 @@ def _build_response(
 
 
 def sync_detailed(
-    ids: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: NATRule,
-) -> Response[Union[Error, NATUpdateResult]]:
-    """Update NAT rule
-
-    Args:
-        ids (str):
-        body (NATRule):
+) -> Response[Union[Error, IPSecPSK]]:
+    """Generate new Pre-Shared Key
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, NATUpdateResult]]
+        Response[Union[Error, IPSecPSK]]
     """
 
-    kwargs = _get_kwargs(
-        ids=ids,
-        body=body,
-    )
+    kwargs = _get_kwargs()
 
     response = client.get_httpx_client().request(
         **kwargs,
@@ -93,56 +71,39 @@ def sync_detailed(
 
 
 def sync(
-    ids: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: NATRule,
-) -> Optional[Union[Error, NATUpdateResult]]:
-    """Update NAT rule
-
-    Args:
-        ids (str):
-        body (NATRule):
+) -> Optional[Union[Error, IPSecPSK]]:
+    """Generate new Pre-Shared Key
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, NATUpdateResult]
+        Union[Error, IPSecPSK]
     """
 
     return sync_detailed(
-        ids=ids,
         client=client,
-        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
-    ids: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: NATRule,
-) -> Response[Union[Error, NATUpdateResult]]:
-    """Update NAT rule
-
-    Args:
-        ids (str):
-        body (NATRule):
+) -> Response[Union[Error, IPSecPSK]]:
+    """Generate new Pre-Shared Key
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, NATUpdateResult]]
+        Response[Union[Error, IPSecPSK]]
     """
 
-    kwargs = _get_kwargs(
-        ids=ids,
-        body=body,
-    )
+    kwargs = _get_kwargs()
 
     response = await client.get_async_httpx_client().request(**kwargs)
 
@@ -150,29 +111,21 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    ids: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: NATRule,
-) -> Optional[Union[Error, NATUpdateResult]]:
-    """Update NAT rule
-
-    Args:
-        ids (str):
-        body (NATRule):
+) -> Optional[Union[Error, IPSecPSK]]:
+    """Generate new Pre-Shared Key
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, NATUpdateResult]
+        Union[Error, IPSecPSK]
     """
 
     return (
         await asyncio_detailed(
-            ids=ids,
             client=client,
-            body=body,
         )
     ).parsed

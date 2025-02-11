@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="IPSecSAD")
 
@@ -12,24 +10,24 @@ T = TypeVar("T", bound="IPSecSAD")
 class IPSecSAD:
     """
     Attributes:
-        src (Union[Unset, str]):
-        dst (Union[Unset, str]):
-        proto (Union[Unset, str]):
-        spi (Union[Unset, str]):
-        reqid (Union[Unset, str]):
-        ealgo (Union[Unset, str]):
-        aalgo (Union[Unset, str]):
-        data (Union[Unset, str]):
+        src (str):
+        dst (str):
+        proto (str):
+        spi (str):
+        reqid (str):
+        ealgo (str):
+        aalgo (str):
+        data (str):
     """
 
-    src: Union[Unset, str] = UNSET
-    dst: Union[Unset, str] = UNSET
-    proto: Union[Unset, str] = UNSET
-    spi: Union[Unset, str] = UNSET
-    reqid: Union[Unset, str] = UNSET
-    ealgo: Union[Unset, str] = UNSET
-    aalgo: Union[Unset, str] = UNSET
-    data: Union[Unset, str] = UNSET
+    src: str
+    dst: str
+    proto: str
+    spi: str
+    reqid: str
+    ealgo: str
+    aalgo: str
+    data: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -51,44 +49,39 @@ class IPSecSAD:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if src is not UNSET:
-            field_dict["src"] = src
-        if dst is not UNSET:
-            field_dict["dst"] = dst
-        if proto is not UNSET:
-            field_dict["proto"] = proto
-        if spi is not UNSET:
-            field_dict["spi"] = spi
-        if reqid is not UNSET:
-            field_dict["reqid"] = reqid
-        if ealgo is not UNSET:
-            field_dict["ealgo"] = ealgo
-        if aalgo is not UNSET:
-            field_dict["aalgo"] = aalgo
-        if data is not UNSET:
-            field_dict["data"] = data
+        field_dict.update(
+            {
+                "src": src,
+                "dst": dst,
+                "proto": proto,
+                "spi": spi,
+                "reqid": reqid,
+                "ealgo": ealgo,
+                "aalgo": aalgo,
+                "data": data,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        src = d.pop("src", UNSET)
+        src = d.pop("src")
 
-        dst = d.pop("dst", UNSET)
+        dst = d.pop("dst")
 
-        proto = d.pop("proto", UNSET)
+        proto = d.pop("proto")
 
-        spi = d.pop("spi", UNSET)
+        spi = d.pop("spi")
 
-        reqid = d.pop("reqid", UNSET)
+        reqid = d.pop("reqid")
 
-        ealgo = d.pop("ealgo", UNSET)
+        ealgo = d.pop("ealgo")
 
-        aalgo = d.pop("aalgo", UNSET)
+        aalgo = d.pop("aalgo")
 
-        data = d.pop("data", UNSET)
+        data = d.pop("data")
 
         ip_sec_sad = cls(
             src=src,

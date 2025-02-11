@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DiagUploadResult")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="DiagUploadResult")
 class DiagUploadResult:
     """
     Attributes:
-        result (Union[Unset, str]):
-        location (Union[Unset, str]):
+        result (str):
+        location (str):
     """
 
-    result: Union[Unset, str] = UNSET
-    location: Union[Unset, str] = UNSET
+    result: str
+    location: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class DiagUploadResult:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if result is not UNSET:
-            field_dict["result"] = result
-        if location is not UNSET:
-            field_dict["location"] = location
+        field_dict.update(
+            {
+                "result": result,
+                "location": location,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        result = d.pop("result", UNSET)
+        result = d.pop("result")
 
-        location = d.pop("location", UNSET)
+        location = d.pop("location")
 
         diag_upload_result = cls(
             result=result,

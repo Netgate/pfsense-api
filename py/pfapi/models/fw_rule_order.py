@@ -16,16 +16,16 @@ T = TypeVar("T", bound="FWRuleOrder")
 class FWRuleOrder:
     """
     Attributes:
-        rule (Union[Unset, List[int]]):
+        rule (Union[Unset, List[str]]):
         separator (Union[Unset, List['Separator']]):
     """
 
-    rule: Union[Unset, List[int]] = UNSET
+    rule: Union[Unset, List[str]] = UNSET
     separator: Union[Unset, List["Separator"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        rule: Union[Unset, List[int]] = UNSET
+        rule: Union[Unset, List[str]] = UNSET
         if not isinstance(self.rule, Unset):
             rule = self.rule
 
@@ -51,7 +51,7 @@ class FWRuleOrder:
         from ..models.separator import Separator
 
         d = src_dict.copy()
-        rule = cast(List[int], d.pop("rule", UNSET))
+        rule = cast(List[str], d.pop("rule", UNSET))
 
         separator = []
         _separator = d.pop("separator", UNSET)

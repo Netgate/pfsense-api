@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SimpleInterface")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="SimpleInterface")
 class SimpleInterface:
     """
     Attributes:
-        text (Union[Unset, str]):
-        value (Union[Unset, str]):
+        text (str):
+        value (str):
     """
 
-    text: Union[Unset, str] = UNSET
-    value: Union[Unset, str] = UNSET
+    text: str
+    value: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class SimpleInterface:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if text is not UNSET:
-            field_dict["text"] = text
-        if value is not UNSET:
-            field_dict["value"] = value
+        field_dict.update(
+            {
+                "text": text,
+                "value": value,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        text = d.pop("text", UNSET)
+        text = d.pop("text")
 
-        value = d.pop("value", UNSET)
+        value = d.pop("value")
 
         simple_interface = cls(
             text=text,

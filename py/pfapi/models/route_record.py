@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="RouteRecord")
 
@@ -12,22 +10,22 @@ T = TypeVar("T", bound="RouteRecord")
 class RouteRecord:
     """
     Attributes:
-        dest (Union[Unset, str]):
-        gw (Union[Unset, str]):
-        flag (Union[Unset, str]):
-        uses (Union[Unset, str]):
-        mtu (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        exp (Union[Unset, str]):
+        dest (str):
+        gw (str):
+        flag (str):
+        uses (str):
+        mtu (str):
+        interface (str):
+        exp (str):
     """
 
-    dest: Union[Unset, str] = UNSET
-    gw: Union[Unset, str] = UNSET
-    flag: Union[Unset, str] = UNSET
-    uses: Union[Unset, str] = UNSET
-    mtu: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    exp: Union[Unset, str] = UNSET
+    dest: str
+    gw: str
+    flag: str
+    uses: str
+    mtu: str
+    interface: str
+    exp: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -47,40 +45,36 @@ class RouteRecord:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if dest is not UNSET:
-            field_dict["dest"] = dest
-        if gw is not UNSET:
-            field_dict["gw"] = gw
-        if flag is not UNSET:
-            field_dict["flag"] = flag
-        if uses is not UNSET:
-            field_dict["uses"] = uses
-        if mtu is not UNSET:
-            field_dict["mtu"] = mtu
-        if interface is not UNSET:
-            field_dict["interface"] = interface
-        if exp is not UNSET:
-            field_dict["exp"] = exp
+        field_dict.update(
+            {
+                "dest": dest,
+                "gw": gw,
+                "flag": flag,
+                "uses": uses,
+                "mtu": mtu,
+                "interface": interface,
+                "exp": exp,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        dest = d.pop("dest", UNSET)
+        dest = d.pop("dest")
 
-        gw = d.pop("gw", UNSET)
+        gw = d.pop("gw")
 
-        flag = d.pop("flag", UNSET)
+        flag = d.pop("flag")
 
-        uses = d.pop("uses", UNSET)
+        uses = d.pop("uses")
 
-        mtu = d.pop("mtu", UNSET)
+        mtu = d.pop("mtu")
 
-        interface = d.pop("interface", UNSET)
+        interface = d.pop("interface")
 
-        exp = d.pop("exp", UNSET)
+        exp = d.pop("exp")
 
         route_record = cls(
             dest=dest,

@@ -1,9 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.fw_alias import FWAlias
@@ -16,28 +14,27 @@ T = TypeVar("T", bound="FWUpdateAliasreq")
 class FWUpdateAliasreq:
     """
     Attributes:
-        alias (Union[Unset, FWAlias]):
-        id (Union[Unset, str]):
+        alias (FWAlias):
+        id (str):
     """
 
-    alias: Union[Unset, "FWAlias"] = UNSET
-    id: Union[Unset, str] = UNSET
+    alias: "FWAlias"
+    id: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        alias: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.alias, Unset):
-            alias = self.alias.to_dict()
+        alias = self.alias.to_dict()
 
         id = self.id
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if alias is not UNSET:
-            field_dict["alias"] = alias
-        if id is not UNSET:
-            field_dict["id"] = id
+        field_dict.update(
+            {
+                "alias": alias,
+                "id": id,
+            }
+        )
 
         return field_dict
 
@@ -46,14 +43,9 @@ class FWUpdateAliasreq:
         from ..models.fw_alias import FWAlias
 
         d = src_dict.copy()
-        _alias = d.pop("alias", UNSET)
-        alias: Union[Unset, FWAlias]
-        if isinstance(_alias, Unset):
-            alias = UNSET
-        else:
-            alias = FWAlias.from_dict(_alias)
+        alias = FWAlias.from_dict(d.pop("alias"))
 
-        id = d.pop("id", UNSET)
+        id = d.pop("id")
 
         fw_update_aliasreq = cls(
             alias=alias,

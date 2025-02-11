@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SystemCert")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="SystemCert")
 class SystemCert:
     """
     Attributes:
-        id (Union[Unset, str]):
-        descr (Union[Unset, str]):
+        id (str):
+        descr (str):
     """
 
-    id: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
+    id: str
+    descr: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class SystemCert:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if id is not UNSET:
-            field_dict["id"] = id
-        if descr is not UNSET:
-            field_dict["descr"] = descr
+        field_dict.update(
+            {
+                "id": id,
+                "descr": descr,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        id = d.pop("id", UNSET)
+        id = d.pop("id")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
         system_cert = cls(
             id=id,

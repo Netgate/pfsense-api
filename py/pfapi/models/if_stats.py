@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="IfStats")
 
@@ -12,14 +10,14 @@ T = TypeVar("T", bound="IfStats")
 class IfStats:
     """
     Attributes:
-        time (Union[Unset, int]):
-        bytesin (Union[Unset, int]):
-        bytesout (Union[Unset, int]):
+        time (int):
+        bytesin (int):
+        bytesout (int):
     """
 
-    time: Union[Unset, int] = UNSET
-    bytesin: Union[Unset, int] = UNSET
-    bytesout: Union[Unset, int] = UNSET
+    time: int
+    bytesin: int
+    bytesout: int
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,24 +29,24 @@ class IfStats:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if time is not UNSET:
-            field_dict["time"] = time
-        if bytesin is not UNSET:
-            field_dict["bytesin"] = bytesin
-        if bytesout is not UNSET:
-            field_dict["bytesout"] = bytesout
+        field_dict.update(
+            {
+                "time": time,
+                "bytesin": bytesin,
+                "bytesout": bytesout,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        time = d.pop("time", UNSET)
+        time = d.pop("time")
 
-        bytesin = d.pop("bytesin", UNSET)
+        bytesin = d.pop("bytesin")
 
-        bytesout = d.pop("bytesout", UNSET)
+        bytesout = d.pop("bytesout")
 
         if_stats = cls(
             time=time,

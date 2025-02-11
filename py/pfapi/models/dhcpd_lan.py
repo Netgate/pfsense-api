@@ -1,9 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.dhcp_range import DhcpRange
@@ -16,14 +14,14 @@ T = TypeVar("T", bound="DhcpdLan")
 class DhcpdLan:
     """
     Attributes:
-        text (Union[Unset, str]):
-        enable (Union[Unset, str]):
-        range_ (Union[Unset, DhcpRange]):
+        text (str):
+        enable (str):
+        range_ (DhcpRange):
     """
 
-    text: Union[Unset, str] = UNSET
-    enable: Union[Unset, str] = UNSET
-    range_: Union[Unset, "DhcpRange"] = UNSET
+    text: str
+    enable: str
+    range_: "DhcpRange"
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,19 +29,17 @@ class DhcpdLan:
 
         enable = self.enable
 
-        range_: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.range_, Unset):
-            range_ = self.range_.to_dict()
+        range_ = self.range_.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if text is not UNSET:
-            field_dict["text"] = text
-        if enable is not UNSET:
-            field_dict["enable"] = enable
-        if range_ is not UNSET:
-            field_dict["range"] = range_
+        field_dict.update(
+            {
+                "text": text,
+                "enable": enable,
+                "range": range_,
+            }
+        )
 
         return field_dict
 
@@ -52,16 +48,11 @@ class DhcpdLan:
         from ..models.dhcp_range import DhcpRange
 
         d = src_dict.copy()
-        text = d.pop("text", UNSET)
+        text = d.pop("text")
 
-        enable = d.pop("enable", UNSET)
+        enable = d.pop("enable")
 
-        _range_ = d.pop("range", UNSET)
-        range_: Union[Unset, DhcpRange]
-        if isinstance(_range_, Unset):
-            range_ = UNSET
-        else:
-            range_ = DhcpRange.from_dict(_range_)
+        range_ = DhcpRange.from_dict(d.pop("range"))
 
         dhcpd_lan = cls(
             text=text,

@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="NATAutoAddr")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="NATAutoAddr")
 class NATAutoAddr:
     """
     Attributes:
-        network (Union[Unset, str]):
-        any_ (Union[Unset, bool]):
+        network (str):
+        any_ (bool):
     """
 
-    network: Union[Unset, str] = UNSET
-    any_: Union[Unset, bool] = UNSET
+    network: str
+    any_: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class NATAutoAddr:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if network is not UNSET:
-            field_dict["network"] = network
-        if any_ is not UNSET:
-            field_dict["any"] = any_
+        field_dict.update(
+            {
+                "network": network,
+                "any": any_,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        network = d.pop("network", UNSET)
+        network = d.pop("network")
 
-        any_ = d.pop("any", UNSET)
+        any_ = d.pop("any")
 
         nat_auto_addr = cls(
             network=network,

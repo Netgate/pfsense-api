@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CheckIPService")
 
@@ -12,22 +10,24 @@ T = TypeVar("T", bound="CheckIPService")
 class CheckIPService:
     """
     Attributes:
-        enable (Union[Unset, bool]):
-        name (Union[Unset, str]):
-        url (Union[Unset, str]):
-        username (Union[Unset, str]):
-        password (Union[Unset, str]):
-        verifysslpeer (Union[Unset, bool]):
-        descr (Union[Unset, str]):
+        enable (bool):
+        name (str):
+        url (str):
+        username (str):
+        password (str):
+        verifysslpeer (bool):
+        curl_proxy (bool):
+        descr (str):
     """
 
-    enable: Union[Unset, bool] = UNSET
-    name: Union[Unset, str] = UNSET
-    url: Union[Unset, str] = UNSET
-    username: Union[Unset, str] = UNSET
-    password: Union[Unset, str] = UNSET
-    verifysslpeer: Union[Unset, bool] = UNSET
-    descr: Union[Unset, str] = UNSET
+    enable: bool
+    name: str
+    url: str
+    username: str
+    password: str
+    verifysslpeer: bool
+    curl_proxy: bool
+    descr: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -43,44 +43,45 @@ class CheckIPService:
 
         verifysslpeer = self.verifysslpeer
 
+        curl_proxy = self.curl_proxy
+
         descr = self.descr
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if enable is not UNSET:
-            field_dict["enable"] = enable
-        if name is not UNSET:
-            field_dict["name"] = name
-        if url is not UNSET:
-            field_dict["url"] = url
-        if username is not UNSET:
-            field_dict["username"] = username
-        if password is not UNSET:
-            field_dict["password"] = password
-        if verifysslpeer is not UNSET:
-            field_dict["verifysslpeer"] = verifysslpeer
-        if descr is not UNSET:
-            field_dict["descr"] = descr
+        field_dict.update(
+            {
+                "enable": enable,
+                "name": name,
+                "url": url,
+                "username": username,
+                "password": password,
+                "verifysslpeer": verifysslpeer,
+                "curl_proxy": curl_proxy,
+                "descr": descr,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        enable = d.pop("enable", UNSET)
+        enable = d.pop("enable")
 
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        url = d.pop("url", UNSET)
+        url = d.pop("url")
 
-        username = d.pop("username", UNSET)
+        username = d.pop("username")
 
-        password = d.pop("password", UNSET)
+        password = d.pop("password")
 
-        verifysslpeer = d.pop("verifysslpeer", UNSET)
+        verifysslpeer = d.pop("verifysslpeer")
 
-        descr = d.pop("descr", UNSET)
+        curl_proxy = d.pop("curl_proxy")
+
+        descr = d.pop("descr")
 
         check_ip_service = cls(
             enable=enable,
@@ -89,6 +90,7 @@ class CheckIPService:
             username=username,
             password=password,
             verifysslpeer=verifysslpeer,
+            curl_proxy=curl_proxy,
             descr=descr,
         )
 

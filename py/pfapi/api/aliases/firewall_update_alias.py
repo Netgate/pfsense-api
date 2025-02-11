@@ -12,7 +12,7 @@ from ...types import Response
 
 
 def _get_kwargs(
-    index: str,
+    id: str,
     *,
     body: FWUpdateAliasreq,
 ) -> Dict[str, Any]:
@@ -20,7 +20,7 @@ def _get_kwargs(
 
     _kwargs: Dict[str, Any] = {
         "method": "put",
-        "url": f"/aliases/{index}",
+        "url": f"/aliases/{id}",
     }
 
     _body = body.to_dict()
@@ -61,7 +61,7 @@ def _build_response(
 
 
 def sync_detailed(
-    index: str,
+    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: FWUpdateAliasreq,
@@ -69,7 +69,7 @@ def sync_detailed(
     """Update firewall alias
 
     Args:
-        index (str):
+        id (str):
         body (FWUpdateAliasreq):
 
     Raises:
@@ -81,7 +81,7 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
-        index=index,
+        id=id,
         body=body,
     )
 
@@ -93,7 +93,7 @@ def sync_detailed(
 
 
 def sync(
-    index: str,
+    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: FWUpdateAliasreq,
@@ -101,7 +101,7 @@ def sync(
     """Update firewall alias
 
     Args:
-        index (str):
+        id (str):
         body (FWUpdateAliasreq):
 
     Raises:
@@ -113,14 +113,14 @@ def sync(
     """
 
     return sync_detailed(
-        index=index,
+        id=id,
         client=client,
         body=body,
     ).parsed
 
 
 async def asyncio_detailed(
-    index: str,
+    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: FWUpdateAliasreq,
@@ -128,7 +128,7 @@ async def asyncio_detailed(
     """Update firewall alias
 
     Args:
-        index (str):
+        id (str):
         body (FWUpdateAliasreq):
 
     Raises:
@@ -140,7 +140,7 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
-        index=index,
+        id=id,
         body=body,
     )
 
@@ -150,7 +150,7 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    index: str,
+    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: FWUpdateAliasreq,
@@ -158,7 +158,7 @@ async def asyncio(
     """Update firewall alias
 
     Args:
-        index (str):
+        id (str):
         body (FWUpdateAliasreq):
 
     Raises:
@@ -171,7 +171,7 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
-            index=index,
+            id=id,
             client=client,
             body=body,
         )

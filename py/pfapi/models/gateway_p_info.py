@@ -16,18 +16,28 @@ T = TypeVar("T", bound="GatewayPInfo")
 class GatewayPInfo:
     """
     Attributes:
-        name (Union[Unset, str]):
+        name (str):
+        descr (str):
+        ipprotocol (str): inet or inet6
+        gateway (str): gateway address
         vaddress (Union[Unset, List['GatewayVAddress']]):
-        descr (Union[Unset, str]):
     """
 
-    name: Union[Unset, str] = UNSET
+    name: str
+    descr: str
+    ipprotocol: str
+    gateway: str
     vaddress: Union[Unset, List["GatewayVAddress"]] = UNSET
-    descr: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         name = self.name
+
+        descr = self.descr
+
+        ipprotocol = self.ipprotocol
+
+        gateway = self.gateway
 
         vaddress: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.vaddress, Unset):
@@ -36,17 +46,18 @@ class GatewayPInfo:
                 vaddress_item = vaddress_item_data.to_dict()
                 vaddress.append(vaddress_item)
 
-        descr = self.descr
-
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
+        field_dict.update(
+            {
+                "name": name,
+                "descr": descr,
+                "ipprotocol": ipprotocol,
+                "gateway": gateway,
+            }
+        )
         if vaddress is not UNSET:
             field_dict["vaddress"] = vaddress
-        if descr is not UNSET:
-            field_dict["descr"] = descr
 
         return field_dict
 
@@ -55,7 +66,13 @@ class GatewayPInfo:
         from ..models.gateway_v_address import GatewayVAddress
 
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
+
+        descr = d.pop("descr")
+
+        ipprotocol = d.pop("ipprotocol")
+
+        gateway = d.pop("gateway")
 
         vaddress = []
         _vaddress = d.pop("vaddress", UNSET)
@@ -64,12 +81,12 @@ class GatewayPInfo:
 
             vaddress.append(vaddress_item)
 
-        descr = d.pop("descr", UNSET)
-
         gateway_p_info = cls(
             name=name,
-            vaddress=vaddress,
             descr=descr,
+            ipprotocol=ipprotocol,
+            gateway=gateway,
+            vaddress=vaddress,
         )
 
         gateway_p_info.additional_properties = d

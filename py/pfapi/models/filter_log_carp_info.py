@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="FilterLogCARPInfo")
 
@@ -12,20 +10,20 @@ T = TypeVar("T", bound="FilterLogCARPInfo")
 class FilterLogCARPInfo:
     """
     Attributes:
-        type (Union[Unset, str]):
-        ttl (Union[Unset, int]):
-        vhid (Union[Unset, int]):
-        version (Union[Unset, int]):
-        adv_skew (Union[Unset, int]):
-        adv_base (Union[Unset, int]):
+        type (str):
+        ttl (int):
+        vhid (int):
+        version (int):
+        adv_skew (int):
+        adv_base (int):
     """
 
-    type: Union[Unset, str] = UNSET
-    ttl: Union[Unset, int] = UNSET
-    vhid: Union[Unset, int] = UNSET
-    version: Union[Unset, int] = UNSET
-    adv_skew: Union[Unset, int] = UNSET
-    adv_base: Union[Unset, int] = UNSET
+    type: str
+    ttl: int
+    vhid: int
+    version: int
+    adv_skew: int
+    adv_base: int
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -43,36 +41,33 @@ class FilterLogCARPInfo:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if type is not UNSET:
-            field_dict["type"] = type
-        if ttl is not UNSET:
-            field_dict["ttl"] = ttl
-        if vhid is not UNSET:
-            field_dict["vhid"] = vhid
-        if version is not UNSET:
-            field_dict["version"] = version
-        if adv_skew is not UNSET:
-            field_dict["adv_skew"] = adv_skew
-        if adv_base is not UNSET:
-            field_dict["adv_base"] = adv_base
+        field_dict.update(
+            {
+                "type": type,
+                "ttl": ttl,
+                "vhid": vhid,
+                "version": version,
+                "adv_skew": adv_skew,
+                "adv_base": adv_base,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        type = d.pop("type", UNSET)
+        type = d.pop("type")
 
-        ttl = d.pop("ttl", UNSET)
+        ttl = d.pop("ttl")
 
-        vhid = d.pop("vhid", UNSET)
+        vhid = d.pop("vhid")
 
-        version = d.pop("version", UNSET)
+        version = d.pop("version")
 
-        adv_skew = d.pop("adv_skew", UNSET)
+        adv_skew = d.pop("adv_skew")
 
-        adv_base = d.pop("adv_base", UNSET)
+        adv_base = d.pop("adv_base")
 
         filter_log_carp_info = cls(
             type=type,

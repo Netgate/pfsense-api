@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="PhysicalInterface")
 
@@ -13,20 +11,20 @@ class PhysicalInterface:
     """a physical interface port
 
     Attributes:
-        name (Union[Unset, str]):
-        mac (Union[Unset, str]):
-        up (Union[Unset, bool]):
-        ipaddr (Union[Unset, str]):
-        friendly (Union[Unset, str]):
-        dmesg (Union[Unset, str]):
+        name (str):
+        mac (str):
+        up (bool):
+        ipaddr (str):
+        friendly (str):
+        dmesg (str):
     """
 
-    name: Union[Unset, str] = UNSET
-    mac: Union[Unset, str] = UNSET
-    up: Union[Unset, bool] = UNSET
-    ipaddr: Union[Unset, str] = UNSET
-    friendly: Union[Unset, str] = UNSET
-    dmesg: Union[Unset, str] = UNSET
+    name: str
+    mac: str
+    up: bool
+    ipaddr: str
+    friendly: str
+    dmesg: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -44,36 +42,33 @@ class PhysicalInterface:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if mac is not UNSET:
-            field_dict["mac"] = mac
-        if up is not UNSET:
-            field_dict["up"] = up
-        if ipaddr is not UNSET:
-            field_dict["ipaddr"] = ipaddr
-        if friendly is not UNSET:
-            field_dict["friendly"] = friendly
-        if dmesg is not UNSET:
-            field_dict["dmesg"] = dmesg
+        field_dict.update(
+            {
+                "name": name,
+                "mac": mac,
+                "up": up,
+                "ipaddr": ipaddr,
+                "friendly": friendly,
+                "dmesg": dmesg,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        mac = d.pop("mac", UNSET)
+        mac = d.pop("mac")
 
-        up = d.pop("up", UNSET)
+        up = d.pop("up")
 
-        ipaddr = d.pop("ipaddr", UNSET)
+        ipaddr = d.pop("ipaddr")
 
-        friendly = d.pop("friendly", UNSET)
+        friendly = d.pop("friendly")
 
-        dmesg = d.pop("dmesg", UNSET)
+        dmesg = d.pop("dmesg")
 
         physical_interface = cls(
             name=name,

@@ -7,6 +7,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.fw_alias import FWAlias
+    from ..models.fw_system_alias import FWSystemAlias
     from ..models.nat_rule import NATRule
     from ..models.separator import Separator
     from ..models.simple_interface import SimpleInterface
@@ -23,6 +24,7 @@ class NATRules:
         interfacelist (Union[Unset, List['SimpleInterface']]):
         locallist (Union[Unset, List['SimpleInterface']]):
         aliases (Union[Unset, List['FWAlias']]):
+        sysaliases (Union[Unset, List['FWSystemAlias']]):
         rules (Union[Unset, List['NATRule']]):
         separators (Union[Unset, List['Separator']]):
         srclist (Union[Unset, List['SimpleInterface']]):
@@ -32,6 +34,7 @@ class NATRules:
     interfacelist: Union[Unset, List["SimpleInterface"]] = UNSET
     locallist: Union[Unset, List["SimpleInterface"]] = UNSET
     aliases: Union[Unset, List["FWAlias"]] = UNSET
+    sysaliases: Union[Unset, List["FWSystemAlias"]] = UNSET
     rules: Union[Unset, List["NATRule"]] = UNSET
     separators: Union[Unset, List["Separator"]] = UNSET
     srclist: Union[Unset, List["SimpleInterface"]] = UNSET
@@ -66,6 +69,13 @@ class NATRules:
                 aliases_item = aliases_item_data.to_dict()
                 aliases.append(aliases_item)
 
+        sysaliases: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.sysaliases, Unset):
+            sysaliases = []
+            for sysaliases_item_data in self.sysaliases:
+                sysaliases_item = sysaliases_item_data.to_dict()
+                sysaliases.append(sysaliases_item)
+
         rules: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.rules, Unset):
             rules = []
@@ -98,6 +108,8 @@ class NATRules:
             field_dict["locallist"] = locallist
         if aliases is not UNSET:
             field_dict["aliases"] = aliases
+        if sysaliases is not UNSET:
+            field_dict["sysaliases"] = sysaliases
         if rules is not UNSET:
             field_dict["rules"] = rules
         if separators is not UNSET:
@@ -110,6 +122,7 @@ class NATRules:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         from ..models.fw_alias import FWAlias
+        from ..models.fw_system_alias import FWSystemAlias
         from ..models.nat_rule import NATRule
         from ..models.separator import Separator
         from ..models.simple_interface import SimpleInterface
@@ -143,6 +156,13 @@ class NATRules:
 
             aliases.append(aliases_item)
 
+        sysaliases = []
+        _sysaliases = d.pop("sysaliases", UNSET)
+        for sysaliases_item_data in _sysaliases or []:
+            sysaliases_item = FWSystemAlias.from_dict(sysaliases_item_data)
+
+            sysaliases.append(sysaliases_item)
+
         rules = []
         _rules = d.pop("rules", UNSET)
         for rules_item_data in _rules or []:
@@ -169,6 +189,7 @@ class NATRules:
             interfacelist=interfacelist,
             locallist=locallist,
             aliases=aliases,
+            sysaliases=sysaliases,
             rules=rules,
             separators=separators,
             srclist=srclist,

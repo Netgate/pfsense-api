@@ -3,6 +3,7 @@ from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.fw_alias_type import FWAliasType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
@@ -16,20 +17,22 @@ T = TypeVar("T", bound="FWAlias")
 class FWAlias:
     """
     Attributes:
-        name (Union[Unset, str]):
-        address (Union[Unset, str]):
+        name (str):
+        address (str):
+        type (FWAliasType):
+        truncated (bool):
         targets (Union[Unset, List['FWTarget']]):
         descr (Union[Unset, str]):
-        type (Union[Unset, str]):
         detail (Union[Unset, str]):
         updatefreq (Union[Unset, str]):
     """
 
-    name: Union[Unset, str] = UNSET
-    address: Union[Unset, str] = UNSET
+    name: str
+    address: str
+    type: FWAliasType
+    truncated: bool
     targets: Union[Unset, List["FWTarget"]] = UNSET
     descr: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
     detail: Union[Unset, str] = UNSET
     updatefreq: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -38,6 +41,10 @@ class FWAlias:
         name = self.name
 
         address = self.address
+
+        type = self.type.value
+
+        truncated = self.truncated
 
         targets: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.targets, Unset):
@@ -48,25 +55,24 @@ class FWAlias:
 
         descr = self.descr
 
-        type = self.type
-
         detail = self.detail
 
         updatefreq = self.updatefreq
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if address is not UNSET:
-            field_dict["address"] = address
+        field_dict.update(
+            {
+                "name": name,
+                "address": address,
+                "type": type,
+                "truncated": truncated,
+            }
+        )
         if targets is not UNSET:
             field_dict["targets"] = targets
         if descr is not UNSET:
             field_dict["descr"] = descr
-        if type is not UNSET:
-            field_dict["type"] = type
         if detail is not UNSET:
             field_dict["detail"] = detail
         if updatefreq is not UNSET:
@@ -79,9 +85,13 @@ class FWAlias:
         from ..models.fw_target import FWTarget
 
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        address = d.pop("address", UNSET)
+        address = d.pop("address")
+
+        type = FWAliasType(d.pop("type"))
+
+        truncated = d.pop("truncated")
 
         targets = []
         _targets = d.pop("targets", UNSET)
@@ -92,8 +102,6 @@ class FWAlias:
 
         descr = d.pop("descr", UNSET)
 
-        type = d.pop("type", UNSET)
-
         detail = d.pop("detail", UNSET)
 
         updatefreq = d.pop("updatefreq", UNSET)
@@ -101,9 +109,10 @@ class FWAlias:
         fw_alias = cls(
             name=name,
             address=address,
+            type=type,
+            truncated=truncated,
             targets=targets,
             descr=descr,
-            type=type,
             detail=detail,
             updatefreq=updatefreq,
         )

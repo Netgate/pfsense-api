@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="IfStatsBandwidth")
 
@@ -12,14 +10,14 @@ T = TypeVar("T", bound="IfStatsBandwidth")
 class IfStatsBandwidth:
     """
     Attributes:
-        host (Union[Unset, str]):
-        bitsin (Union[Unset, str]):
-        bitsout (Union[Unset, str]):
+        host (str):
+        bitsin (str):
+        bitsout (str):
     """
 
-    host: Union[Unset, str] = UNSET
-    bitsin: Union[Unset, str] = UNSET
-    bitsout: Union[Unset, str] = UNSET
+    host: str
+    bitsin: str
+    bitsout: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,24 +29,24 @@ class IfStatsBandwidth:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if host is not UNSET:
-            field_dict["host"] = host
-        if bitsin is not UNSET:
-            field_dict["bitsin"] = bitsin
-        if bitsout is not UNSET:
-            field_dict["bitsout"] = bitsout
+        field_dict.update(
+            {
+                "host": host,
+                "bitsin": bitsin,
+                "bitsout": bitsout,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        host = d.pop("host", UNSET)
+        host = d.pop("host")
 
-        bitsin = d.pop("bitsin", UNSET)
+        bitsin = d.pop("bitsin")
 
-        bitsout = d.pop("bitsout", UNSET)
+        bitsout = d.pop("bitsout")
 
         if_stats_bandwidth = cls(
             host=host,

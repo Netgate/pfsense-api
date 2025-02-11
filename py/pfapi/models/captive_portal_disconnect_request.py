@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CaptivePortalDisconnectRequest")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="CaptivePortalDisconnectRequest")
 class CaptivePortalDisconnectRequest:
     """
     Attributes:
-        all_ (Union[Unset, bool]):
-        session_id (Union[Unset, str]):
+        all_ (bool):
+        session_id (str):
     """
 
-    all_: Union[Unset, bool] = UNSET
-    session_id: Union[Unset, str] = UNSET
+    all_: bool
+    session_id: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class CaptivePortalDisconnectRequest:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if all_ is not UNSET:
-            field_dict["all"] = all_
-        if session_id is not UNSET:
-            field_dict["session_id"] = session_id
+        field_dict.update(
+            {
+                "all": all_,
+                "session_id": session_id,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        all_ = d.pop("all", UNSET)
+        all_ = d.pop("all")
 
-        session_id = d.pop("session_id", UNSET)
+        session_id = d.pop("session_id")
 
         captive_portal_disconnect_request = cls(
             all_=all_,

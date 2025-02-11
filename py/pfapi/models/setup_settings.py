@@ -16,33 +16,25 @@ T = TypeVar("T", bound="SetupSettings")
 class SetupSettings:
     """
     Attributes:
-        hostname (Union[Unset, str]):
-        domain (Union[Unset, str]):
-        timezone (Union[Unset, int]):
-        timeservers (Union[Unset, str]):
-        disablefwd (Union[Unset, bool]):
-        dnsoveride (Union[Unset, bool]):
-        lang (Union[Unset, str]):
-        logincolor (Union[Unset, str]):
-        fixednav (Union[Unset, bool]):
-        showhost (Union[Unset, bool]):
-        dark (Union[Unset, bool]):
-        loginmsg (Union[Unset, str]):
+        hostname (str):
+        domain (str):
+        dnsoveride (bool):
+        dnsresolution (str): DNS resolution behavior, options - not-specified (default), local, remote
+        timezone (str):
+        timeservers (str): space separated list of time servers
+        lang (str):
+        login_message (str): message to display when user authenticates
         dnsservers (Union[Unset, List['SetupDNSSetting']]):
     """
 
-    hostname: Union[Unset, str] = UNSET
-    domain: Union[Unset, str] = UNSET
-    timezone: Union[Unset, int] = UNSET
-    timeservers: Union[Unset, str] = UNSET
-    disablefwd: Union[Unset, bool] = UNSET
-    dnsoveride: Union[Unset, bool] = UNSET
-    lang: Union[Unset, str] = UNSET
-    logincolor: Union[Unset, str] = UNSET
-    fixednav: Union[Unset, bool] = UNSET
-    showhost: Union[Unset, bool] = UNSET
-    dark: Union[Unset, bool] = UNSET
-    loginmsg: Union[Unset, str] = UNSET
+    hostname: str
+    domain: str
+    dnsoveride: bool
+    dnsresolution: str
+    timezone: str
+    timeservers: str
+    lang: str
+    login_message: str
     dnsservers: Union[Unset, List["SetupDNSSetting"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -51,25 +43,17 @@ class SetupSettings:
 
         domain = self.domain
 
+        dnsoveride = self.dnsoveride
+
+        dnsresolution = self.dnsresolution
+
         timezone = self.timezone
 
         timeservers = self.timeservers
 
-        disablefwd = self.disablefwd
-
-        dnsoveride = self.dnsoveride
-
         lang = self.lang
 
-        logincolor = self.logincolor
-
-        fixednav = self.fixednav
-
-        showhost = self.showhost
-
-        dark = self.dark
-
-        loginmsg = self.loginmsg
+        login_message = self.login_message
 
         dnsservers: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.dnsservers, Unset):
@@ -80,31 +64,18 @@ class SetupSettings:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if hostname is not UNSET:
-            field_dict["hostname"] = hostname
-        if domain is not UNSET:
-            field_dict["domain"] = domain
-        if timezone is not UNSET:
-            field_dict["timezone"] = timezone
-        if timeservers is not UNSET:
-            field_dict["timeservers"] = timeservers
-        if disablefwd is not UNSET:
-            field_dict["disablefwd"] = disablefwd
-        if dnsoveride is not UNSET:
-            field_dict["dnsoveride"] = dnsoveride
-        if lang is not UNSET:
-            field_dict["lang"] = lang
-        if logincolor is not UNSET:
-            field_dict["logincolor"] = logincolor
-        if fixednav is not UNSET:
-            field_dict["fixednav"] = fixednav
-        if showhost is not UNSET:
-            field_dict["showhost"] = showhost
-        if dark is not UNSET:
-            field_dict["dark"] = dark
-        if loginmsg is not UNSET:
-            field_dict["loginmsg"] = loginmsg
+        field_dict.update(
+            {
+                "hostname": hostname,
+                "domain": domain,
+                "dnsoveride": dnsoveride,
+                "dnsresolution": dnsresolution,
+                "timezone": timezone,
+                "timeservers": timeservers,
+                "lang": lang,
+                "login_message": login_message,
+            }
+        )
         if dnsservers is not UNSET:
             field_dict["dnsservers"] = dnsservers
 
@@ -115,29 +86,21 @@ class SetupSettings:
         from ..models.setup_dns_setting import SetupDNSSetting
 
         d = src_dict.copy()
-        hostname = d.pop("hostname", UNSET)
+        hostname = d.pop("hostname")
 
-        domain = d.pop("domain", UNSET)
+        domain = d.pop("domain")
 
-        timezone = d.pop("timezone", UNSET)
+        dnsoveride = d.pop("dnsoveride")
 
-        timeservers = d.pop("timeservers", UNSET)
+        dnsresolution = d.pop("dnsresolution")
 
-        disablefwd = d.pop("disablefwd", UNSET)
+        timezone = d.pop("timezone")
 
-        dnsoveride = d.pop("dnsoveride", UNSET)
+        timeservers = d.pop("timeservers")
 
-        lang = d.pop("lang", UNSET)
+        lang = d.pop("lang")
 
-        logincolor = d.pop("logincolor", UNSET)
-
-        fixednav = d.pop("fixednav", UNSET)
-
-        showhost = d.pop("showhost", UNSET)
-
-        dark = d.pop("dark", UNSET)
-
-        loginmsg = d.pop("loginmsg", UNSET)
+        login_message = d.pop("login_message")
 
         dnsservers = []
         _dnsservers = d.pop("dnsservers", UNSET)
@@ -149,16 +112,12 @@ class SetupSettings:
         setup_settings = cls(
             hostname=hostname,
             domain=domain,
+            dnsoveride=dnsoveride,
+            dnsresolution=dnsresolution,
             timezone=timezone,
             timeservers=timeservers,
-            disablefwd=disablefwd,
-            dnsoveride=dnsoveride,
             lang=lang,
-            logincolor=logincolor,
-            fixednav=fixednav,
-            showhost=showhost,
-            dark=dark,
-            loginmsg=loginmsg,
+            login_message=login_message,
             dnsservers=dnsservers,
         )
 

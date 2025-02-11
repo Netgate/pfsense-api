@@ -184,7 +184,7 @@ for pfip in pfsense_addresses:
 		# Add the device to the controller
 		#
 
-		controlledDev = ControlledDevice.from_dict(device_info)
+		controlledDev = DeviceIdentity.from_dict(device_info)
 		addDevResp = add_controlled_device.sync(client=client, body=controlledDev)
 		if isinstance(addDevResp, ControlledDevice):
 			print("Successfully added device {}, ID: {}".format(pfip, addDevResp.device_id))

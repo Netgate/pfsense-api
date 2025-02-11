@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DiagState")
 
@@ -12,24 +10,24 @@ T = TypeVar("T", bound="DiagState")
 class DiagState:
     """
     Attributes:
-        interface (Union[Unset, str]):
-        proto (Union[Unset, str]):
-        src (Union[Unset, str]):
-        dst (Union[Unset, str]):
-        display (Union[Unset, str]):
-        state (Union[Unset, str]):
-        packet (Union[Unset, str]):
-        bytes_ (Union[Unset, str]):
+        interface (str):
+        proto (str):
+        src (str):
+        dst (str):
+        display (str):
+        state (str):
+        packet (str):
+        bytes_ (str):
     """
 
-    interface: Union[Unset, str] = UNSET
-    proto: Union[Unset, str] = UNSET
-    src: Union[Unset, str] = UNSET
-    dst: Union[Unset, str] = UNSET
-    display: Union[Unset, str] = UNSET
-    state: Union[Unset, str] = UNSET
-    packet: Union[Unset, str] = UNSET
-    bytes_: Union[Unset, str] = UNSET
+    interface: str
+    proto: str
+    src: str
+    dst: str
+    display: str
+    state: str
+    packet: str
+    bytes_: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -51,44 +49,39 @@ class DiagState:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if interface is not UNSET:
-            field_dict["interface"] = interface
-        if proto is not UNSET:
-            field_dict["proto"] = proto
-        if src is not UNSET:
-            field_dict["src"] = src
-        if dst is not UNSET:
-            field_dict["dst"] = dst
-        if display is not UNSET:
-            field_dict["display"] = display
-        if state is not UNSET:
-            field_dict["state"] = state
-        if packet is not UNSET:
-            field_dict["packet"] = packet
-        if bytes_ is not UNSET:
-            field_dict["bytes"] = bytes_
+        field_dict.update(
+            {
+                "interface": interface,
+                "proto": proto,
+                "src": src,
+                "dst": dst,
+                "display": display,
+                "state": state,
+                "packet": packet,
+                "bytes": bytes_,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        interface = d.pop("interface", UNSET)
+        interface = d.pop("interface")
 
-        proto = d.pop("proto", UNSET)
+        proto = d.pop("proto")
 
-        src = d.pop("src", UNSET)
+        src = d.pop("src")
 
-        dst = d.pop("dst", UNSET)
+        dst = d.pop("dst")
 
-        display = d.pop("display", UNSET)
+        display = d.pop("display")
 
-        state = d.pop("state", UNSET)
+        state = d.pop("state")
 
-        packet = d.pop("packet", UNSET)
+        packet = d.pop("packet")
 
-        bytes_ = d.pop("bytes", UNSET)
+        bytes_ = d.pop("bytes")
 
         diag_state = cls(
             interface=interface,

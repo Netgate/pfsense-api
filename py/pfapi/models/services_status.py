@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ServicesStatus")
 
@@ -12,16 +10,16 @@ T = TypeVar("T", bound="ServicesStatus")
 class ServicesStatus:
     """
     Attributes:
-        name (Union[Unset, str]):
-        description (Union[Unset, str]):
-        enabled (Union[Unset, bool]):
-        status (Union[Unset, bool]):
+        name (str):
+        description (str):
+        enabled (bool):
+        running (bool):
     """
 
-    name: Union[Unset, str] = UNSET
-    description: Union[Unset, str] = UNSET
-    enabled: Union[Unset, bool] = UNSET
-    status: Union[Unset, bool] = UNSET
+    name: str
+    description: str
+    enabled: bool
+    running: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,38 +29,37 @@ class ServicesStatus:
 
         enabled = self.enabled
 
-        status = self.status
+        running = self.running
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if description is not UNSET:
-            field_dict["description"] = description
-        if enabled is not UNSET:
-            field_dict["enabled"] = enabled
-        if status is not UNSET:
-            field_dict["status"] = status
+        field_dict.update(
+            {
+                "name": name,
+                "description": description,
+                "enabled": enabled,
+                "running": running,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        description = d.pop("description", UNSET)
+        description = d.pop("description")
 
-        enabled = d.pop("enabled", UNSET)
+        enabled = d.pop("enabled")
 
-        status = d.pop("status", UNSET)
+        running = d.pop("running")
 
         services_status = cls(
             name=name,
             description=description,
             enabled=enabled,
-            status=status,
+            running=running,
         )
 
         services_status.additional_properties = d

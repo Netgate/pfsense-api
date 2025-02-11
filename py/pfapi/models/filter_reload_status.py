@@ -12,13 +12,13 @@ T = TypeVar("T", bound="FilterReloadStatus")
 class FilterReloadStatus:
     """
     Attributes:
-        ongoing (Union[Unset, bool]):
-        done (Union[Unset, bool]):
+        ongoing (bool):
+        done (bool):
         status_lines (Union[Unset, List[str]]):
     """
 
-    ongoing: Union[Unset, bool] = UNSET
-    done: Union[Unset, bool] = UNSET
+    ongoing: bool
+    done: bool
     status_lines: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -33,11 +33,12 @@ class FilterReloadStatus:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if ongoing is not UNSET:
-            field_dict["ongoing"] = ongoing
-        if done is not UNSET:
-            field_dict["done"] = done
+        field_dict.update(
+            {
+                "ongoing": ongoing,
+                "done": done,
+            }
+        )
         if status_lines is not UNSET:
             field_dict["status_lines"] = status_lines
 
@@ -46,9 +47,9 @@ class FilterReloadStatus:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        ongoing = d.pop("ongoing", UNSET)
+        ongoing = d.pop("ongoing")
 
-        done = d.pop("done", UNSET)
+        done = d.pop("done")
 
         status_lines = cast(List[str], d.pop("status_lines", UNSET))
 

@@ -1,11 +1,10 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
 if TYPE_CHECKING:
+    from ..models.ppp_capable_interfaces import PPPCapableInterfaces
     from ..models.ppp_interface import PPPInterface
 
 
@@ -16,42 +15,51 @@ T = TypeVar("T", bound="PPPInterfaces")
 class PPPInterfaces:
     """
     Attributes:
-        interfaces (Union[Unset, List['PPPInterface']]):
+        interfaces (List['PPPInterface']):
+        ppp_capable_ifs (PPPCapableInterfaces):
     """
 
-    interfaces: Union[Unset, List["PPPInterface"]] = UNSET
+    interfaces: List["PPPInterface"]
+    ppp_capable_ifs: "PPPCapableInterfaces"
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
-        if not isinstance(self.interfaces, Unset):
-            interfaces = []
-            for interfaces_item_data in self.interfaces:
-                interfaces_item = interfaces_item_data.to_dict()
-                interfaces.append(interfaces_item)
+        interfaces = []
+        for interfaces_item_data in self.interfaces:
+            interfaces_item = interfaces_item_data.to_dict()
+            interfaces.append(interfaces_item)
+
+        ppp_capable_ifs = self.ppp_capable_ifs.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if interfaces is not UNSET:
-            field_dict["interfaces"] = interfaces
+        field_dict.update(
+            {
+                "interfaces": interfaces,
+                "ppp_capable_ifs": ppp_capable_ifs,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+        from ..models.ppp_capable_interfaces import PPPCapableInterfaces
         from ..models.ppp_interface import PPPInterface
 
         d = src_dict.copy()
         interfaces = []
-        _interfaces = d.pop("interfaces", UNSET)
-        for interfaces_item_data in _interfaces or []:
+        _interfaces = d.pop("interfaces")
+        for interfaces_item_data in _interfaces:
             interfaces_item = PPPInterface.from_dict(interfaces_item_data)
 
             interfaces.append(interfaces_item)
 
+        ppp_capable_ifs = PPPCapableInterfaces.from_dict(d.pop("ppp_capable_ifs"))
+
         ppp_interfaces = cls(
             interfaces=interfaces,
+            ppp_capable_ifs=ppp_capable_ifs,
         )
 
         ppp_interfaces.additional_properties = d

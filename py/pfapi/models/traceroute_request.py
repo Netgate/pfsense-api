@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="TracerouteRequest")
 
@@ -12,20 +10,20 @@ T = TypeVar("T", bound="TracerouteRequest")
 class TracerouteRequest:
     """
     Attributes:
-        host (Union[Unset, str]):
-        hops (Union[Unset, int]):
-        icmp (Union[Unset, bool]):
-        proto (Union[Unset, str]):
-        rev (Union[Unset, bool]):
-        src (Union[Unset, str]):
+        host (str):
+        hops (int):
+        icmp (bool):
+        proto (str):
+        rev (bool):
+        src (str):
     """
 
-    host: Union[Unset, str] = UNSET
-    hops: Union[Unset, int] = UNSET
-    icmp: Union[Unset, bool] = UNSET
-    proto: Union[Unset, str] = UNSET
-    rev: Union[Unset, bool] = UNSET
-    src: Union[Unset, str] = UNSET
+    host: str
+    hops: int
+    icmp: bool
+    proto: str
+    rev: bool
+    src: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -43,36 +41,33 @@ class TracerouteRequest:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if host is not UNSET:
-            field_dict["host"] = host
-        if hops is not UNSET:
-            field_dict["hops"] = hops
-        if icmp is not UNSET:
-            field_dict["icmp"] = icmp
-        if proto is not UNSET:
-            field_dict["proto"] = proto
-        if rev is not UNSET:
-            field_dict["rev"] = rev
-        if src is not UNSET:
-            field_dict["src"] = src
+        field_dict.update(
+            {
+                "host": host,
+                "hops": hops,
+                "icmp": icmp,
+                "proto": proto,
+                "rev": rev,
+                "src": src,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        host = d.pop("host", UNSET)
+        host = d.pop("host")
 
-        hops = d.pop("hops", UNSET)
+        hops = d.pop("hops")
 
-        icmp = d.pop("icmp", UNSET)
+        icmp = d.pop("icmp")
 
-        proto = d.pop("proto", UNSET)
+        proto = d.pop("proto")
 
-        rev = d.pop("rev", UNSET)
+        rev = d.pop("rev")
 
-        src = d.pop("src", UNSET)
+        src = d.pop("src")
 
         traceroute_request = cls(
             host=host,

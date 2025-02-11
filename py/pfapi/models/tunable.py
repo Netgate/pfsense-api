@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="Tunable")
 
@@ -12,16 +10,16 @@ T = TypeVar("T", bound="Tunable")
 class Tunable:
     """
     Attributes:
-        tunable (Union[Unset, str]):
-        value (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        modified (Union[Unset, bool]):
+        tunable (str):
+        value (str):
+        descr (str):
+        modified (bool):
     """
 
-    tunable: Union[Unset, str] = UNSET
-    value: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    modified: Union[Unset, bool] = UNSET
+    tunable: str
+    value: str
+    descr: str
+    modified: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -35,28 +33,27 @@ class Tunable:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if tunable is not UNSET:
-            field_dict["tunable"] = tunable
-        if value is not UNSET:
-            field_dict["value"] = value
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if modified is not UNSET:
-            field_dict["modified"] = modified
+        field_dict.update(
+            {
+                "tunable": tunable,
+                "value": value,
+                "descr": descr,
+                "modified": modified,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        tunable = d.pop("tunable", UNSET)
+        tunable = d.pop("tunable")
 
-        value = d.pop("value", UNSET)
+        value = d.pop("value")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
-        modified = d.pop("modified", UNSET)
+        modified = d.pop("modified")
 
         tunable = cls(
             tunable=tunable,

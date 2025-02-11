@@ -6,21 +6,20 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.nat1_to_1_rule import NAT1To1Rule
-from ...models.nat1_to_1_update_result import NAT1To1UpdateResult
+from ...models.nat_out_mode_update_response import NATOutModeUpdateResponse
+from ...models.nat_outbound_mode import NATOutboundMode
 from ...types import Response
 
 
 def _get_kwargs(
-    id: str,
     *,
-    body: NAT1To1Rule,
+    body: NATOutboundMode,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
     _kwargs: Dict[str, Any] = {
-        "method": "put",
-        "url": f"/firewall/nat/onetoone/{id}",
+        "method": "post",
+        "url": "/firewall/nat/outbound/mode",
     }
 
     _body = body.to_dict()
@@ -34,9 +33,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, NAT1To1UpdateResult]]:
+) -> Optional[Union[Error, NATOutModeUpdateResponse]]:
     if response.status_code == 200:
-        response_200 = NAT1To1UpdateResult.from_dict(response.json())
+        response_200 = NATOutModeUpdateResponse.from_dict(response.json())
 
         return response_200
     if response.status_code == 400:
@@ -51,7 +50,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, NAT1To1UpdateResult]]:
+) -> Response[Union[Error, NATOutModeUpdateResponse]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -61,27 +60,24 @@ def _build_response(
 
 
 def sync_detailed(
-    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: NAT1To1Rule,
-) -> Response[Union[Error, NAT1To1UpdateResult]]:
-    """Update NAT 1:1 rule
+    body: NATOutboundMode,
+) -> Response[Union[Error, NATOutModeUpdateResponse]]:
+    """Update NAT Outbound Mode
 
     Args:
-        id (str):
-        body (NAT1To1Rule):
+        body (NATOutboundMode):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, NAT1To1UpdateResult]]
+        Response[Union[Error, NATOutModeUpdateResponse]]
     """
 
     kwargs = _get_kwargs(
-        id=id,
         body=body,
     )
 
@@ -93,54 +89,48 @@ def sync_detailed(
 
 
 def sync(
-    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: NAT1To1Rule,
-) -> Optional[Union[Error, NAT1To1UpdateResult]]:
-    """Update NAT 1:1 rule
+    body: NATOutboundMode,
+) -> Optional[Union[Error, NATOutModeUpdateResponse]]:
+    """Update NAT Outbound Mode
 
     Args:
-        id (str):
-        body (NAT1To1Rule):
+        body (NATOutboundMode):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, NAT1To1UpdateResult]
+        Union[Error, NATOutModeUpdateResponse]
     """
 
     return sync_detailed(
-        id=id,
         client=client,
         body=body,
     ).parsed
 
 
 async def asyncio_detailed(
-    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: NAT1To1Rule,
-) -> Response[Union[Error, NAT1To1UpdateResult]]:
-    """Update NAT 1:1 rule
+    body: NATOutboundMode,
+) -> Response[Union[Error, NATOutModeUpdateResponse]]:
+    """Update NAT Outbound Mode
 
     Args:
-        id (str):
-        body (NAT1To1Rule):
+        body (NATOutboundMode):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, NAT1To1UpdateResult]]
+        Response[Union[Error, NATOutModeUpdateResponse]]
     """
 
     kwargs = _get_kwargs(
-        id=id,
         body=body,
     )
 
@@ -150,28 +140,25 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: NAT1To1Rule,
-) -> Optional[Union[Error, NAT1To1UpdateResult]]:
-    """Update NAT 1:1 rule
+    body: NATOutboundMode,
+) -> Optional[Union[Error, NATOutModeUpdateResponse]]:
+    """Update NAT Outbound Mode
 
     Args:
-        id (str):
-        body (NAT1To1Rule):
+        body (NATOutboundMode):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, NAT1To1UpdateResult]
+        Union[Error, NATOutModeUpdateResponse]
     """
 
     return (
         await asyncio_detailed(
-            id=id,
             client=client,
             body=body,
         )

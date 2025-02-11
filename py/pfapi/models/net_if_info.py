@@ -3,37 +3,61 @@ from typing import Any, Dict, List, Type, TypeVar
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-T = TypeVar("T", bound="ControllerServiceConfig")
+T = TypeVar("T", bound="NetIfInfo")
 
 
 @_attrs_define
-class ControllerServiceConfig:
-    """ """
+class NetIfInfo:
+    """Information about the interface as identified on the host
 
-    additional_properties: Dict[str, str] = _attrs_field(init=False, factory=dict)
+    Attributes:
+        media (str):
+        state (str):
+    """
+
+    media: str
+    state: str
+    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
+        media = self.media
+
+        state = self.state
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
+        field_dict.update(
+            {
+                "media": media,
+                "state": state,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        controller_service_config = cls()
+        media = d.pop("media")
 
-        controller_service_config.additional_properties = d
-        return controller_service_config
+        state = d.pop("state")
+
+        net_if_info = cls(
+            media=media,
+            state=state,
+        )
+
+        net_if_info.additional_properties = d
+        return net_if_info
 
     @property
     def additional_keys(self) -> List[str]:
         return list(self.additional_properties.keys())
 
-    def __getitem__(self, key: str) -> str:
+    def __getitem__(self, key: str) -> Any:
         return self.additional_properties[key]
 
-    def __setitem__(self, key: str, value: str) -> None:
+    def __setitem__(self, key: str, value: Any) -> None:
         self.additional_properties[key] = value
 
     def __delitem__(self, key: str) -> None:

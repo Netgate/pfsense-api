@@ -6,20 +6,20 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.fw_rule_order import FWRuleOrder
+from ...models.nat_rule_order import NATRuleOrder
 from ...models.pfsense_result import PfsenseResult
 from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: FWRuleOrder,
+    body: NATRuleOrder,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
     _kwargs: Dict[str, Any] = {
         "method": "post",
-        "url": "/firewall/nat/onetoone/order",
+        "url": "/firewall/nat/onetoone/reorder",
     }
 
     _body = body.to_dict()
@@ -62,12 +62,12 @@ def _build_response(
 def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FWRuleOrder,
+    body: NATRuleOrder,
 ) -> Response[Union[Error, PfsenseResult]]:
     """Reorder 1:1 NAT rules
 
     Args:
-        body (FWRuleOrder):
+        body (NATRuleOrder):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -91,12 +91,12 @@ def sync_detailed(
 def sync(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FWRuleOrder,
+    body: NATRuleOrder,
 ) -> Optional[Union[Error, PfsenseResult]]:
     """Reorder 1:1 NAT rules
 
     Args:
-        body (FWRuleOrder):
+        body (NATRuleOrder):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -115,12 +115,12 @@ def sync(
 async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FWRuleOrder,
+    body: NATRuleOrder,
 ) -> Response[Union[Error, PfsenseResult]]:
     """Reorder 1:1 NAT rules
 
     Args:
-        body (FWRuleOrder):
+        body (NATRuleOrder):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -142,12 +142,12 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FWRuleOrder,
+    body: NATRuleOrder,
 ) -> Optional[Union[Error, PfsenseResult]]:
     """Reorder 1:1 NAT rules
 
     Args:
-        body (FWRuleOrder):
+        body (NATRuleOrder):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

@@ -16,19 +16,25 @@ T = TypeVar("T", bound="IGMPProxies")
 class IGMPProxies:
     """
     Attributes:
+        enable (bool):
+        verbose (bool):
+        interfaces (str):
         igmpentry (Union[Unset, List['IGMPProxy']]):
-        enable (Union[Unset, bool]):
-        verbose (Union[Unset, bool]):
-        interfaces (Union[Unset, str]):
     """
 
+    enable: bool
+    verbose: bool
+    interfaces: str
     igmpentry: Union[Unset, List["IGMPProxy"]] = UNSET
-    enable: Union[Unset, bool] = UNSET
-    verbose: Union[Unset, bool] = UNSET
-    interfaces: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
+        enable = self.enable
+
+        verbose = self.verbose
+
+        interfaces = self.interfaces
+
         igmpentry: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.igmpentry, Unset):
             igmpentry = []
@@ -36,23 +42,17 @@ class IGMPProxies:
                 igmpentry_item = igmpentry_item_data.to_dict()
                 igmpentry.append(igmpentry_item)
 
-        enable = self.enable
-
-        verbose = self.verbose
-
-        interfaces = self.interfaces
-
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
+        field_dict.update(
+            {
+                "enable": enable,
+                "verbose": verbose,
+                "interfaces": interfaces,
+            }
+        )
         if igmpentry is not UNSET:
             field_dict["igmpentry"] = igmpentry
-        if enable is not UNSET:
-            field_dict["enable"] = enable
-        if verbose is not UNSET:
-            field_dict["verbose"] = verbose
-        if interfaces is not UNSET:
-            field_dict["interfaces"] = interfaces
 
         return field_dict
 
@@ -61,6 +61,12 @@ class IGMPProxies:
         from ..models.igmp_proxy import IGMPProxy
 
         d = src_dict.copy()
+        enable = d.pop("enable")
+
+        verbose = d.pop("verbose")
+
+        interfaces = d.pop("interfaces")
+
         igmpentry = []
         _igmpentry = d.pop("igmpentry", UNSET)
         for igmpentry_item_data in _igmpentry or []:
@@ -68,17 +74,11 @@ class IGMPProxies:
 
             igmpentry.append(igmpentry_item)
 
-        enable = d.pop("enable", UNSET)
-
-        verbose = d.pop("verbose", UNSET)
-
-        interfaces = d.pop("interfaces", UNSET)
-
         igmp_proxies = cls(
-            igmpentry=igmpentry,
             enable=enable,
             verbose=verbose,
             interfaces=interfaces,
+            igmpentry=igmpentry,
         )
 
         igmp_proxies.additional_properties = d

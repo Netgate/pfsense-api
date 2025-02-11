@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="FWUserTimestamp")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="FWUserTimestamp")
 class FWUserTimestamp:
     """
     Attributes:
-        time (Union[Unset, str]):
-        username (Union[Unset, str]):
+        time (str):
+        username (str):
     """
 
-    time: Union[Unset, str] = UNSET
-    username: Union[Unset, str] = UNSET
+    time: str
+    username: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class FWUserTimestamp:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if time is not UNSET:
-            field_dict["time"] = time
-        if username is not UNSET:
-            field_dict["username"] = username
+        field_dict.update(
+            {
+                "time": time,
+                "username": username,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        time = d.pop("time", UNSET)
+        time = d.pop("time")
 
-        username = d.pop("username", UNSET)
+        username = d.pop("username")
 
         fw_user_timestamp = cls(
             time=time,

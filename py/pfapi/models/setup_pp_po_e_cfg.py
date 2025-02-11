@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SetupPPPoECfg")
 
@@ -12,23 +10,27 @@ T = TypeVar("T", bound="SetupPPPoECfg")
 class SetupPPPoECfg:
     """
     Attributes:
-        username (Union[Unset, str]):
-        password (Union[Unset, str]):
-        dod (Union[Unset, bool]):
-        idletimeout (Union[Unset, str]):
-        provider (Union[Unset, str]):
-        localip (Union[Unset, str]):
+        service_name (str):
+        username (str):
+        password (str):
+        dod (bool):
+        idletimeout (str):
+        provider (str):
+        localip (str):
     """
 
-    username: Union[Unset, str] = UNSET
-    password: Union[Unset, str] = UNSET
-    dod: Union[Unset, bool] = UNSET
-    idletimeout: Union[Unset, str] = UNSET
-    provider: Union[Unset, str] = UNSET
-    localip: Union[Unset, str] = UNSET
+    service_name: str
+    username: str
+    password: str
+    dod: bool
+    idletimeout: str
+    provider: str
+    localip: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
+        service_name = self.service_name
+
         username = self.username
 
         password = self.password
@@ -43,38 +45,39 @@ class SetupPPPoECfg:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if username is not UNSET:
-            field_dict["username"] = username
-        if password is not UNSET:
-            field_dict["password"] = password
-        if dod is not UNSET:
-            field_dict["dod"] = dod
-        if idletimeout is not UNSET:
-            field_dict["idletimeout"] = idletimeout
-        if provider is not UNSET:
-            field_dict["provider"] = provider
-        if localip is not UNSET:
-            field_dict["localip"] = localip
+        field_dict.update(
+            {
+                "service_name": service_name,
+                "username": username,
+                "password": password,
+                "dod": dod,
+                "idletimeout": idletimeout,
+                "provider": provider,
+                "localip": localip,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        username = d.pop("username", UNSET)
+        service_name = d.pop("service_name")
 
-        password = d.pop("password", UNSET)
+        username = d.pop("username")
 
-        dod = d.pop("dod", UNSET)
+        password = d.pop("password")
 
-        idletimeout = d.pop("idletimeout", UNSET)
+        dod = d.pop("dod")
 
-        provider = d.pop("provider", UNSET)
+        idletimeout = d.pop("idletimeout")
 
-        localip = d.pop("localip", UNSET)
+        provider = d.pop("provider")
+
+        localip = d.pop("localip")
 
         setup_pp_po_e_cfg = cls(
+            service_name=service_name,
             username=username,
             password=password,
             dod=dod,

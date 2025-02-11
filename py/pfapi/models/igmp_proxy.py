@@ -12,22 +12,24 @@ T = TypeVar("T", bound="IGMPProxy")
 class IGMPProxy:
     """
     Attributes:
-        ifname (Union[Unset, str]):
+        ifname (str):
+        address (str):
         threshold (Union[Unset, str]):
         descr (Union[Unset, str]):
         type (Union[Unset, str]):
-        address (Union[Unset, str]):
     """
 
-    ifname: Union[Unset, str] = UNSET
+    ifname: str
+    address: str
     threshold: Union[Unset, str] = UNSET
     descr: Union[Unset, str] = UNSET
     type: Union[Unset, str] = UNSET
-    address: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         ifname = self.ifname
+
+        address = self.address
 
         threshold = self.threshold
 
@@ -35,28 +37,29 @@ class IGMPProxy:
 
         type = self.type
 
-        address = self.address
-
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if ifname is not UNSET:
-            field_dict["ifname"] = ifname
+        field_dict.update(
+            {
+                "ifname": ifname,
+                "address": address,
+            }
+        )
         if threshold is not UNSET:
             field_dict["threshold"] = threshold
         if descr is not UNSET:
             field_dict["descr"] = descr
         if type is not UNSET:
             field_dict["type"] = type
-        if address is not UNSET:
-            field_dict["address"] = address
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        ifname = d.pop("ifname", UNSET)
+        ifname = d.pop("ifname")
+
+        address = d.pop("address")
 
         threshold = d.pop("threshold", UNSET)
 
@@ -64,14 +67,12 @@ class IGMPProxy:
 
         type = d.pop("type", UNSET)
 
-        address = d.pop("address", UNSET)
-
         igmp_proxy = cls(
             ifname=ifname,
+            address=address,
             threshold=threshold,
             descr=descr,
             type=type,
-            address=address,
         )
 
         igmp_proxy.additional_properties = d

@@ -12,17 +12,17 @@ T = TypeVar("T", bound="ControllerBackup")
 class ControllerBackup:
     """
     Attributes:
-        time (Union[Unset, int]):
-        id (Union[Unset, str]):
-        label (Union[Unset, str]):
-        description (Union[Unset, str]):
+        time (int):
+        id (str):
+        label (str):
+        description (str):
         acb_id (Union[Unset, str]):
     """
 
-    time: Union[Unset, int] = UNSET
-    id: Union[Unset, str] = UNSET
-    label: Union[Unset, str] = UNSET
-    description: Union[Unset, str] = UNSET
+    time: int
+    id: str
+    label: str
+    description: str
     acb_id: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -39,15 +39,14 @@ class ControllerBackup:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if time is not UNSET:
-            field_dict["time"] = time
-        if id is not UNSET:
-            field_dict["id"] = id
-        if label is not UNSET:
-            field_dict["label"] = label
-        if description is not UNSET:
-            field_dict["description"] = description
+        field_dict.update(
+            {
+                "time": time,
+                "id": id,
+                "label": label,
+                "description": description,
+            }
+        )
         if acb_id is not UNSET:
             field_dict["acb_id"] = acb_id
 
@@ -56,13 +55,13 @@ class ControllerBackup:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        time = d.pop("time", UNSET)
+        time = d.pop("time")
 
-        id = d.pop("id", UNSET)
+        id = d.pop("id")
 
-        label = d.pop("label", UNSET)
+        label = d.pop("label")
 
-        description = d.pop("description", UNSET)
+        description = d.pop("description")
 
         acb_id = d.pop("acb_id", UNSET)
 

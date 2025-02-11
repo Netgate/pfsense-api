@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="PassthruMac")
 
@@ -12,18 +10,18 @@ T = TypeVar("T", bound="PassthruMac")
 class PassthruMac:
     """
     Attributes:
-        action (Union[Unset, str]):
-        mac (Union[Unset, str]):
-        bw_up (Union[Unset, str]):
-        bw_down (Union[Unset, str]):
-        descr (Union[Unset, str]):
+        action (str):
+        mac (str):
+        bw_up (str):
+        bw_down (str):
+        descr (str):
     """
 
-    action: Union[Unset, str] = UNSET
-    mac: Union[Unset, str] = UNSET
-    bw_up: Union[Unset, str] = UNSET
-    bw_down: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
+    action: str
+    mac: str
+    bw_up: str
+    bw_down: str
+    descr: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -39,32 +37,30 @@ class PassthruMac:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if action is not UNSET:
-            field_dict["action"] = action
-        if mac is not UNSET:
-            field_dict["mac"] = mac
-        if bw_up is not UNSET:
-            field_dict["bw_up"] = bw_up
-        if bw_down is not UNSET:
-            field_dict["bw_down"] = bw_down
-        if descr is not UNSET:
-            field_dict["descr"] = descr
+        field_dict.update(
+            {
+                "action": action,
+                "mac": mac,
+                "bw_up": bw_up,
+                "bw_down": bw_down,
+                "descr": descr,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        action = d.pop("action", UNSET)
+        action = d.pop("action")
 
-        mac = d.pop("mac", UNSET)
+        mac = d.pop("mac")
 
-        bw_up = d.pop("bw_up", UNSET)
+        bw_up = d.pop("bw_up")
 
-        bw_down = d.pop("bw_down", UNSET)
+        bw_down = d.pop("bw_down")
 
-        descr = d.pop("descr", UNSET)
+        descr = d.pop("descr")
 
         passthru_mac = cls(
             action=action,

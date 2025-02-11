@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DynDNSConfig")
 
@@ -12,53 +10,63 @@ T = TypeVar("T", bound="DynDNSConfig")
 class DynDNSConfig:
     """
     Attributes:
-        type (Union[Unset, str]):
-        username (Union[Unset, str]):
-        password (Union[Unset, str]):
-        host (Union[Unset, str]):
-        domainname (Union[Unset, str]):
-        mx (Union[Unset, int]):
-        wildcard (Union[Unset, bool]):
-        verboselog (Union[Unset, bool]):
-        curl_ipresolve_v4 (Union[Unset, bool]):
-        curl_ssl_verifypeer (Union[Unset, bool]):
-        enable (Union[Unset, bool]):
-        interface (Union[Unset, str]):
-        zoneid (Union[Unset, str]):
-        ttl (Union[Unset, str]):
-        updateurl (Union[Unset, str]):
-        resultmatch (Union[Unset, str]):
-        requestif (Union[Unset, str]):
-        proxied (Union[Unset, bool]):
-        descr (Union[Unset, str]):
-        id (Union[Unset, str]):
-        ip (Union[Unset, str]):
+        enable (bool):
+        type (str):
+        username (str):
+        password (str):
+        host (str):
+        domainname (str):
+        mx (str):
+        wildcard (bool):
+        verboselog (bool):
+        curl_ipresolve_v4 (bool):
+        curl_ssl_verifypeer (bool):
+        curl_proxy (bool):
+        maxcacheage (str):
+        interface (str):
+        zoneid (str):
+        ttl (str):
+        updateurl (str):
+        resultmatch (str):
+        requestif (str):
+        proxied (bool):
+        descr (str):
+        id (str):
+        status (str):
+        ipv4 (str):
+        ipv6 (str):
     """
 
-    type: Union[Unset, str] = UNSET
-    username: Union[Unset, str] = UNSET
-    password: Union[Unset, str] = UNSET
-    host: Union[Unset, str] = UNSET
-    domainname: Union[Unset, str] = UNSET
-    mx: Union[Unset, int] = UNSET
-    wildcard: Union[Unset, bool] = UNSET
-    verboselog: Union[Unset, bool] = UNSET
-    curl_ipresolve_v4: Union[Unset, bool] = UNSET
-    curl_ssl_verifypeer: Union[Unset, bool] = UNSET
-    enable: Union[Unset, bool] = UNSET
-    interface: Union[Unset, str] = UNSET
-    zoneid: Union[Unset, str] = UNSET
-    ttl: Union[Unset, str] = UNSET
-    updateurl: Union[Unset, str] = UNSET
-    resultmatch: Union[Unset, str] = UNSET
-    requestif: Union[Unset, str] = UNSET
-    proxied: Union[Unset, bool] = UNSET
-    descr: Union[Unset, str] = UNSET
-    id: Union[Unset, str] = UNSET
-    ip: Union[Unset, str] = UNSET
+    enable: bool
+    type: str
+    username: str
+    password: str
+    host: str
+    domainname: str
+    mx: str
+    wildcard: bool
+    verboselog: bool
+    curl_ipresolve_v4: bool
+    curl_ssl_verifypeer: bool
+    curl_proxy: bool
+    maxcacheage: str
+    interface: str
+    zoneid: str
+    ttl: str
+    updateurl: str
+    resultmatch: str
+    requestif: str
+    proxied: bool
+    descr: str
+    id: str
+    status: str
+    ipv4: str
+    ipv6: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
+        enable = self.enable
+
         type = self.type
 
         username = self.username
@@ -79,7 +87,9 @@ class DynDNSConfig:
 
         curl_ssl_verifypeer = self.curl_ssl_verifypeer
 
-        enable = self.enable
+        curl_proxy = self.curl_proxy
+
+        maxcacheage = self.maxcacheage
 
         interface = self.interface
 
@@ -99,102 +109,101 @@ class DynDNSConfig:
 
         id = self.id
 
-        ip = self.ip
+        status = self.status
+
+        ipv4 = self.ipv4
+
+        ipv6 = self.ipv6
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if type is not UNSET:
-            field_dict["type"] = type
-        if username is not UNSET:
-            field_dict["username"] = username
-        if password is not UNSET:
-            field_dict["password"] = password
-        if host is not UNSET:
-            field_dict["host"] = host
-        if domainname is not UNSET:
-            field_dict["domainname"] = domainname
-        if mx is not UNSET:
-            field_dict["mx"] = mx
-        if wildcard is not UNSET:
-            field_dict["wildcard"] = wildcard
-        if verboselog is not UNSET:
-            field_dict["verboselog"] = verboselog
-        if curl_ipresolve_v4 is not UNSET:
-            field_dict["curl_ipresolve_v4"] = curl_ipresolve_v4
-        if curl_ssl_verifypeer is not UNSET:
-            field_dict["curl_ssl_verifypeer"] = curl_ssl_verifypeer
-        if enable is not UNSET:
-            field_dict["enable"] = enable
-        if interface is not UNSET:
-            field_dict["interface"] = interface
-        if zoneid is not UNSET:
-            field_dict["zoneid"] = zoneid
-        if ttl is not UNSET:
-            field_dict["ttl"] = ttl
-        if updateurl is not UNSET:
-            field_dict["updateurl"] = updateurl
-        if resultmatch is not UNSET:
-            field_dict["resultmatch"] = resultmatch
-        if requestif is not UNSET:
-            field_dict["requestif"] = requestif
-        if proxied is not UNSET:
-            field_dict["proxied"] = proxied
-        if descr is not UNSET:
-            field_dict["descr"] = descr
-        if id is not UNSET:
-            field_dict["id"] = id
-        if ip is not UNSET:
-            field_dict["ip"] = ip
+        field_dict.update(
+            {
+                "enable": enable,
+                "type": type,
+                "username": username,
+                "password": password,
+                "host": host,
+                "domainname": domainname,
+                "mx": mx,
+                "wildcard": wildcard,
+                "verboselog": verboselog,
+                "curl_ipresolve_v4": curl_ipresolve_v4,
+                "curl_ssl_verifypeer": curl_ssl_verifypeer,
+                "curl_proxy": curl_proxy,
+                "maxcacheage": maxcacheage,
+                "interface": interface,
+                "zoneid": zoneid,
+                "ttl": ttl,
+                "updateurl": updateurl,
+                "resultmatch": resultmatch,
+                "requestif": requestif,
+                "proxied": proxied,
+                "descr": descr,
+                "id": id,
+                "status": status,
+                "ipv4": ipv4,
+                "ipv6": ipv6,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        type = d.pop("type", UNSET)
+        enable = d.pop("enable")
 
-        username = d.pop("username", UNSET)
+        type = d.pop("type")
 
-        password = d.pop("password", UNSET)
+        username = d.pop("username")
 
-        host = d.pop("host", UNSET)
+        password = d.pop("password")
 
-        domainname = d.pop("domainname", UNSET)
+        host = d.pop("host")
 
-        mx = d.pop("mx", UNSET)
+        domainname = d.pop("domainname")
 
-        wildcard = d.pop("wildcard", UNSET)
+        mx = d.pop("mx")
 
-        verboselog = d.pop("verboselog", UNSET)
+        wildcard = d.pop("wildcard")
 
-        curl_ipresolve_v4 = d.pop("curl_ipresolve_v4", UNSET)
+        verboselog = d.pop("verboselog")
 
-        curl_ssl_verifypeer = d.pop("curl_ssl_verifypeer", UNSET)
+        curl_ipresolve_v4 = d.pop("curl_ipresolve_v4")
 
-        enable = d.pop("enable", UNSET)
+        curl_ssl_verifypeer = d.pop("curl_ssl_verifypeer")
 
-        interface = d.pop("interface", UNSET)
+        curl_proxy = d.pop("curl_proxy")
 
-        zoneid = d.pop("zoneid", UNSET)
+        maxcacheage = d.pop("maxcacheage")
 
-        ttl = d.pop("ttl", UNSET)
+        interface = d.pop("interface")
 
-        updateurl = d.pop("updateurl", UNSET)
+        zoneid = d.pop("zoneid")
 
-        resultmatch = d.pop("resultmatch", UNSET)
+        ttl = d.pop("ttl")
 
-        requestif = d.pop("requestif", UNSET)
+        updateurl = d.pop("updateurl")
 
-        proxied = d.pop("proxied", UNSET)
+        resultmatch = d.pop("resultmatch")
 
-        descr = d.pop("descr", UNSET)
+        requestif = d.pop("requestif")
 
-        id = d.pop("id", UNSET)
+        proxied = d.pop("proxied")
 
-        ip = d.pop("ip", UNSET)
+        descr = d.pop("descr")
+
+        id = d.pop("id")
+
+        status = d.pop("status")
+
+        ipv4 = d.pop("ipv4")
+
+        ipv6 = d.pop("ipv6")
 
         dyn_dns_config = cls(
+            enable=enable,
             type=type,
             username=username,
             password=password,
@@ -205,7 +214,8 @@ class DynDNSConfig:
             verboselog=verboselog,
             curl_ipresolve_v4=curl_ipresolve_v4,
             curl_ssl_verifypeer=curl_ssl_verifypeer,
-            enable=enable,
+            curl_proxy=curl_proxy,
+            maxcacheage=maxcacheage,
             interface=interface,
             zoneid=zoneid,
             ttl=ttl,
@@ -215,7 +225,9 @@ class DynDNSConfig:
             proxied=proxied,
             descr=descr,
             id=id,
-            ip=ip,
+            status=status,
+            ipv4=ipv4,
+            ipv6=ipv6,
         )
 
         dyn_dns_config.additional_properties = d

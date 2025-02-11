@@ -1,9 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.setup_pp_po_e_cfg import SetupPPPoECfg
@@ -16,44 +14,44 @@ T = TypeVar("T", bound="SetupWizardOptions")
 class SetupWizardOptions:
     """
     Attributes:
-        hostname (Union[Unset, str]):
-        domain (Union[Unset, str]):
-        pridns (Union[Unset, str]):
-        secdns (Union[Unset, str]):
-        dnsovrd (Union[Unset, bool]):
-        tz (Union[Unset, str]):
-        timesvrs (Union[Unset, str]):
-        wantype (Union[Unset, str]):
-        wanip (Union[Unset, str]):
-        gw (Union[Unset, str]):
-        spoofmac (Union[Unset, str]):
-        mtu (Union[Unset, str]):
-        mss (Union[Unset, str]):
-        dhcphost (Union[Unset, str]):
-        lanip (Union[Unset, str]):
-        bogons (Union[Unset, bool]):
-        rfc1918 (Union[Unset, bool]):
-        pppoe (Union[Unset, SetupPPPoECfg]):
+        hostname (str):
+        domain (str):
+        pridns (str):
+        secdns (str):
+        dnsoverride (bool):
+        tz (str):
+        timeservers (str):
+        wantype (str):
+        wanip (str):
+        gw (str):
+        spoofmac (str):
+        mtu (str):
+        mss (str):
+        dhcphost (str):
+        lanip (str):
+        bogons (bool):
+        rfc1918 (bool):
+        pppoe (SetupPPPoECfg):
     """
 
-    hostname: Union[Unset, str] = UNSET
-    domain: Union[Unset, str] = UNSET
-    pridns: Union[Unset, str] = UNSET
-    secdns: Union[Unset, str] = UNSET
-    dnsovrd: Union[Unset, bool] = UNSET
-    tz: Union[Unset, str] = UNSET
-    timesvrs: Union[Unset, str] = UNSET
-    wantype: Union[Unset, str] = UNSET
-    wanip: Union[Unset, str] = UNSET
-    gw: Union[Unset, str] = UNSET
-    spoofmac: Union[Unset, str] = UNSET
-    mtu: Union[Unset, str] = UNSET
-    mss: Union[Unset, str] = UNSET
-    dhcphost: Union[Unset, str] = UNSET
-    lanip: Union[Unset, str] = UNSET
-    bogons: Union[Unset, bool] = UNSET
-    rfc1918: Union[Unset, bool] = UNSET
-    pppoe: Union[Unset, "SetupPPPoECfg"] = UNSET
+    hostname: str
+    domain: str
+    pridns: str
+    secdns: str
+    dnsoverride: bool
+    tz: str
+    timeservers: str
+    wantype: str
+    wanip: str
+    gw: str
+    spoofmac: str
+    mtu: str
+    mss: str
+    dhcphost: str
+    lanip: str
+    bogons: bool
+    rfc1918: bool
+    pppoe: "SetupPPPoECfg"
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -65,11 +63,11 @@ class SetupWizardOptions:
 
         secdns = self.secdns
 
-        dnsovrd = self.dnsovrd
+        dnsoverride = self.dnsoverride
 
         tz = self.tz
 
-        timesvrs = self.timesvrs
+        timeservers = self.timeservers
 
         wantype = self.wantype
 
@@ -91,49 +89,32 @@ class SetupWizardOptions:
 
         rfc1918 = self.rfc1918
 
-        pppoe: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.pppoe, Unset):
-            pppoe = self.pppoe.to_dict()
+        pppoe = self.pppoe.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if hostname is not UNSET:
-            field_dict["hostname"] = hostname
-        if domain is not UNSET:
-            field_dict["domain"] = domain
-        if pridns is not UNSET:
-            field_dict["pridns"] = pridns
-        if secdns is not UNSET:
-            field_dict["secdns"] = secdns
-        if dnsovrd is not UNSET:
-            field_dict["dnsovrd"] = dnsovrd
-        if tz is not UNSET:
-            field_dict["tz"] = tz
-        if timesvrs is not UNSET:
-            field_dict["timesvrs"] = timesvrs
-        if wantype is not UNSET:
-            field_dict["wantype"] = wantype
-        if wanip is not UNSET:
-            field_dict["wanip"] = wanip
-        if gw is not UNSET:
-            field_dict["gw"] = gw
-        if spoofmac is not UNSET:
-            field_dict["spoofmac"] = spoofmac
-        if mtu is not UNSET:
-            field_dict["mtu"] = mtu
-        if mss is not UNSET:
-            field_dict["mss"] = mss
-        if dhcphost is not UNSET:
-            field_dict["dhcphost"] = dhcphost
-        if lanip is not UNSET:
-            field_dict["lanip"] = lanip
-        if bogons is not UNSET:
-            field_dict["bogons"] = bogons
-        if rfc1918 is not UNSET:
-            field_dict["rfc1918"] = rfc1918
-        if pppoe is not UNSET:
-            field_dict["pppoe"] = pppoe
+        field_dict.update(
+            {
+                "hostname": hostname,
+                "domain": domain,
+                "pridns": pridns,
+                "secdns": secdns,
+                "dnsoverride": dnsoverride,
+                "tz": tz,
+                "timeservers": timeservers,
+                "wantype": wantype,
+                "wanip": wanip,
+                "gw": gw,
+                "spoofmac": spoofmac,
+                "mtu": mtu,
+                "mss": mss,
+                "dhcphost": dhcphost,
+                "lanip": lanip,
+                "bogons": bogons,
+                "rfc1918": rfc1918,
+                "pppoe": pppoe,
+            }
+        )
 
         return field_dict
 
@@ -142,55 +123,50 @@ class SetupWizardOptions:
         from ..models.setup_pp_po_e_cfg import SetupPPPoECfg
 
         d = src_dict.copy()
-        hostname = d.pop("hostname", UNSET)
+        hostname = d.pop("hostname")
 
-        domain = d.pop("domain", UNSET)
+        domain = d.pop("domain")
 
-        pridns = d.pop("pridns", UNSET)
+        pridns = d.pop("pridns")
 
-        secdns = d.pop("secdns", UNSET)
+        secdns = d.pop("secdns")
 
-        dnsovrd = d.pop("dnsovrd", UNSET)
+        dnsoverride = d.pop("dnsoverride")
 
-        tz = d.pop("tz", UNSET)
+        tz = d.pop("tz")
 
-        timesvrs = d.pop("timesvrs", UNSET)
+        timeservers = d.pop("timeservers")
 
-        wantype = d.pop("wantype", UNSET)
+        wantype = d.pop("wantype")
 
-        wanip = d.pop("wanip", UNSET)
+        wanip = d.pop("wanip")
 
-        gw = d.pop("gw", UNSET)
+        gw = d.pop("gw")
 
-        spoofmac = d.pop("spoofmac", UNSET)
+        spoofmac = d.pop("spoofmac")
 
-        mtu = d.pop("mtu", UNSET)
+        mtu = d.pop("mtu")
 
-        mss = d.pop("mss", UNSET)
+        mss = d.pop("mss")
 
-        dhcphost = d.pop("dhcphost", UNSET)
+        dhcphost = d.pop("dhcphost")
 
-        lanip = d.pop("lanip", UNSET)
+        lanip = d.pop("lanip")
 
-        bogons = d.pop("bogons", UNSET)
+        bogons = d.pop("bogons")
 
-        rfc1918 = d.pop("rfc1918", UNSET)
+        rfc1918 = d.pop("rfc1918")
 
-        _pppoe = d.pop("pppoe", UNSET)
-        pppoe: Union[Unset, SetupPPPoECfg]
-        if isinstance(_pppoe, Unset):
-            pppoe = UNSET
-        else:
-            pppoe = SetupPPPoECfg.from_dict(_pppoe)
+        pppoe = SetupPPPoECfg.from_dict(d.pop("pppoe"))
 
         setup_wizard_options = cls(
             hostname=hostname,
             domain=domain,
             pridns=pridns,
             secdns=secdns,
-            dnsovrd=dnsovrd,
+            dnsoverride=dnsoverride,
             tz=tz,
-            timesvrs=timesvrs,
+            timeservers=timeservers,
             wantype=wantype,
             wanip=wanip,
             gw=gw,

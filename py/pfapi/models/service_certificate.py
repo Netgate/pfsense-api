@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ServiceCertificate")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="ServiceCertificate")
 class ServiceCertificate:
     """
     Attributes:
-        name (Union[Unset, str]):
-        ident (Union[Unset, str]):
+        name (str):
+        ident (str):
     """
 
-    name: Union[Unset, str] = UNSET
-    ident: Union[Unset, str] = UNSET
+    name: str
+    ident: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class ServiceCertificate:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if name is not UNSET:
-            field_dict["name"] = name
-        if ident is not UNSET:
-            field_dict["ident"] = ident
+        field_dict.update(
+            {
+                "name": name,
+                "ident": ident,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name", UNSET)
+        name = d.pop("name")
 
-        ident = d.pop("ident", UNSET)
+        ident = d.pop("ident")
 
         service_certificate = cls(
             name=name,

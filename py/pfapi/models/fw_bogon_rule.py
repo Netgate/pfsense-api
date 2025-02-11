@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="FWBogonRule")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="FWBogonRule")
 class FWBogonRule:
     """
     Attributes:
-        interface (Union[Unset, str]):
-        enabled (Union[Unset, bool]):
+        interface (str):
+        enabled (bool):
     """
 
-    interface: Union[Unset, str] = UNSET
-    enabled: Union[Unset, bool] = UNSET
+    interface: str
+    enabled: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class FWBogonRule:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if interface is not UNSET:
-            field_dict["interface"] = interface
-        if enabled is not UNSET:
-            field_dict["enabled"] = enabled
+        field_dict.update(
+            {
+                "interface": interface,
+                "enabled": enabled,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        interface = d.pop("interface", UNSET)
+        interface = d.pop("interface")
 
-        enabled = d.pop("enabled", UNSET)
+        enabled = d.pop("enabled")
 
         fw_bogon_rule = cls(
             interface=interface,

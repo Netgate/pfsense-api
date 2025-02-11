@@ -64,7 +64,7 @@ def sync_detailed(
     client: Union[AuthenticatedClient, Client],
     body: NATNptRule,
 ) -> Response[Union[Error, NATNptRules]]:
-    """Create 1:1 NAT NPt rule
+    """Create NAT NPt rule
 
     Args:
         body (NATNptRule):
@@ -93,7 +93,7 @@ def sync(
     client: Union[AuthenticatedClient, Client],
     body: NATNptRule,
 ) -> Optional[Union[Error, NATNptRules]]:
-    """Create 1:1 NAT NPt rule
+    """Create NAT NPt rule
 
     Args:
         body (NATNptRule):
@@ -117,7 +117,7 @@ async def asyncio_detailed(
     client: Union[AuthenticatedClient, Client],
     body: NATNptRule,
 ) -> Response[Union[Error, NATNptRules]]:
-    """Create 1:1 NAT NPt rule
+    """Create NAT NPt rule
 
     Args:
         body (NATNptRule):
@@ -144,7 +144,7 @@ async def asyncio(
     client: Union[AuthenticatedClient, Client],
     body: NATNptRule,
 ) -> Optional[Union[Error, NATNptRules]]:
-    """Create 1:1 NAT NPt rule
+    """Create NAT NPt rule
 
     Args:
         body (NATNptRule):

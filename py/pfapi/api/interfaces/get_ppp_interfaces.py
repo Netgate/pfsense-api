@@ -6,7 +6,7 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.ppp_interfaces_modems import PPPInterfacesModems
+from ...models.ppp_interfaces import PPPInterfaces
 from ...types import Response
 
 
@@ -21,9 +21,9 @@ def _get_kwargs() -> Dict[str, Any]:
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, PPPInterfacesModems]]:
+) -> Optional[Union[Error, PPPInterfaces]]:
     if response.status_code == 200:
-        response_200 = PPPInterfacesModems.from_dict(response.json())
+        response_200 = PPPInterfaces.from_dict(response.json())
 
         return response_200
     if response.status_code == 400:
@@ -38,7 +38,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, PPPInterfacesModems]]:
+) -> Response[Union[Error, PPPInterfaces]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -50,7 +50,7 @@ def _build_response(
 def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, PPPInterfacesModems]]:
+) -> Response[Union[Error, PPPInterfaces]]:
     """Get interfaces
 
     Raises:
@@ -58,7 +58,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, PPPInterfacesModems]]
+        Response[Union[Error, PPPInterfaces]]
     """
 
     kwargs = _get_kwargs()
@@ -73,7 +73,7 @@ def sync_detailed(
 def sync(
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, PPPInterfacesModems]]:
+) -> Optional[Union[Error, PPPInterfaces]]:
     """Get interfaces
 
     Raises:
@@ -81,7 +81,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, PPPInterfacesModems]
+        Union[Error, PPPInterfaces]
     """
 
     return sync_detailed(
@@ -92,7 +92,7 @@ def sync(
 async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, PPPInterfacesModems]]:
+) -> Response[Union[Error, PPPInterfaces]]:
     """Get interfaces
 
     Raises:
@@ -100,7 +100,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, PPPInterfacesModems]]
+        Response[Union[Error, PPPInterfaces]]
     """
 
     kwargs = _get_kwargs()
@@ -113,7 +113,7 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, PPPInterfacesModems]]:
+) -> Optional[Union[Error, PPPInterfaces]]:
     """Get interfaces
 
     Raises:
@@ -121,7 +121,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, PPPInterfacesModems]
+        Union[Error, PPPInterfaces]
     """
 
     return (

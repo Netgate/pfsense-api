@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="FilterLogVersion6Info")
 
@@ -12,14 +10,14 @@ T = TypeVar("T", bound="FilterLogVersion6Info")
 class FilterLogVersion6Info:
     """
     Attributes:
-        class_ (Union[Unset, str]):
-        flow_label (Union[Unset, str]):
-        hlim (Union[Unset, str]):
+        class_ (str):
+        flow_label (str):
+        hlim (str):
     """
 
-    class_: Union[Unset, str] = UNSET
-    flow_label: Union[Unset, str] = UNSET
-    hlim: Union[Unset, str] = UNSET
+    class_: str
+    flow_label: str
+    hlim: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,24 +29,24 @@ class FilterLogVersion6Info:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if class_ is not UNSET:
-            field_dict["class"] = class_
-        if flow_label is not UNSET:
-            field_dict["flow_label"] = flow_label
-        if hlim is not UNSET:
-            field_dict["hlim"] = hlim
+        field_dict.update(
+            {
+                "class": class_,
+                "flow_label": flow_label,
+                "hlim": hlim,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        class_ = d.pop("class", UNSET)
+        class_ = d.pop("class")
 
-        flow_label = d.pop("flow_label", UNSET)
+        flow_label = d.pop("flow_label")
 
-        hlim = d.pop("hlim", UNSET)
+        hlim = d.pop("hlim")
 
         filter_log_version_6_info = cls(
             class_=class_,

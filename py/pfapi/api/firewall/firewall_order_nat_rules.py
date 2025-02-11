@@ -19,7 +19,7 @@ def _get_kwargs(
 
     _kwargs: Dict[str, Any] = {
         "method": "post",
-        "url": "/firewall/nat/order",
+        "url": "/firewall/nat/port-forward/reorder",
     }
 
     _body = body.to_dict()

@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="GatewayDefaults")
 
@@ -12,12 +10,12 @@ T = TypeVar("T", bound="GatewayDefaults")
 class GatewayDefaults:
     """
     Attributes:
-        defaultgw4 (Union[Unset, str]):
-        defaultgw6 (Union[Unset, str]):
+        defaultgw4 (str):
+        defaultgw6 (str):
     """
 
-    defaultgw4: Union[Unset, str] = UNSET
-    defaultgw6: Union[Unset, str] = UNSET
+    defaultgw4: str
+    defaultgw6: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -27,20 +25,21 @@ class GatewayDefaults:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if defaultgw4 is not UNSET:
-            field_dict["defaultgw4"] = defaultgw4
-        if defaultgw6 is not UNSET:
-            field_dict["defaultgw6"] = defaultgw6
+        field_dict.update(
+            {
+                "defaultgw4": defaultgw4,
+                "defaultgw6": defaultgw6,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        defaultgw4 = d.pop("defaultgw4", UNSET)
+        defaultgw4 = d.pop("defaultgw4")
 
-        defaultgw6 = d.pop("defaultgw6", UNSET)
+        defaultgw6 = d.pop("defaultgw6")
 
         gateway_defaults = cls(
             defaultgw4=defaultgw4,

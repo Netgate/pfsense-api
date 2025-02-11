@@ -16,28 +16,26 @@ T = TypeVar("T", bound="MonitoringDataResult")
 class MonitoringDataResult:
     """
     Attributes:
-        request (Union[Unset, MonitoringDataRequest]):
+        request (MonitoringDataRequest):
+        data_format (str):
         dataseries (Union[Unset, List[str]]):
-        data_format (Union[Unset, str]):
         data (Union[Unset, List[str]]):
     """
 
-    request: Union[Unset, "MonitoringDataRequest"] = UNSET
+    request: "MonitoringDataRequest"
+    data_format: str
     dataseries: Union[Unset, List[str]] = UNSET
-    data_format: Union[Unset, str] = UNSET
     data: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        request: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.request, Unset):
-            request = self.request.to_dict()
+        request = self.request.to_dict()
+
+        data_format = self.data_format
 
         dataseries: Union[Unset, List[str]] = UNSET
         if not isinstance(self.dataseries, Unset):
             dataseries = self.dataseries
-
-        data_format = self.data_format
 
         data: Union[Unset, List[str]] = UNSET
         if not isinstance(self.data, Unset):
@@ -45,13 +43,14 @@ class MonitoringDataResult:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if request is not UNSET:
-            field_dict["request"] = request
+        field_dict.update(
+            {
+                "request": request,
+                "data_format": data_format,
+            }
+        )
         if dataseries is not UNSET:
             field_dict["dataseries"] = dataseries
-        if data_format is not UNSET:
-            field_dict["data_format"] = data_format
         if data is not UNSET:
             field_dict["data"] = data
 
@@ -62,23 +61,18 @@ class MonitoringDataResult:
         from ..models.monitoring_data_request import MonitoringDataRequest
 
         d = src_dict.copy()
-        _request = d.pop("request", UNSET)
-        request: Union[Unset, MonitoringDataRequest]
-        if isinstance(_request, Unset):
-            request = UNSET
-        else:
-            request = MonitoringDataRequest.from_dict(_request)
+        request = MonitoringDataRequest.from_dict(d.pop("request"))
+
+        data_format = d.pop("data_format")
 
         dataseries = cast(List[str], d.pop("dataseries", UNSET))
-
-        data_format = d.pop("data_format", UNSET)
 
         data = cast(List[str], d.pop("data", UNSET))
 
         monitoring_data_result = cls(
             request=request,
-            dataseries=dataseries,
             data_format=data_format,
+            dataseries=dataseries,
             data=data,
         )
 

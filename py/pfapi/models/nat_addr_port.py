@@ -13,37 +13,37 @@ class NATAddrPort:
     """
     Attributes:
         address (Union[Unset, str]):
-        network (Union[Unset, str]):
+        type (Union[Unset, str]):
         port (Union[Unset, str]):
-        any_ (Union[Unset, bool]):
+        not_ (Union[Unset, bool]):
     """
 
     address: Union[Unset, str] = UNSET
-    network: Union[Unset, str] = UNSET
+    type: Union[Unset, str] = UNSET
     port: Union[Unset, str] = UNSET
-    any_: Union[Unset, bool] = UNSET
+    not_: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         address = self.address
 
-        network = self.network
+        type = self.type
 
         port = self.port
 
-        any_ = self.any_
+        not_ = self.not_
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if address is not UNSET:
             field_dict["address"] = address
-        if network is not UNSET:
-            field_dict["network"] = network
+        if type is not UNSET:
+            field_dict["type"] = type
         if port is not UNSET:
             field_dict["port"] = port
-        if any_ is not UNSET:
-            field_dict["any"] = any_
+        if not_ is not UNSET:
+            field_dict["not"] = not_
 
         return field_dict
 
@@ -52,17 +52,17 @@ class NATAddrPort:
         d = src_dict.copy()
         address = d.pop("address", UNSET)
 
-        network = d.pop("network", UNSET)
+        type = d.pop("type", UNSET)
 
         port = d.pop("port", UNSET)
 
-        any_ = d.pop("any", UNSET)
+        not_ = d.pop("not", UNSET)
 
         nat_addr_port = cls(
             address=address,
-            network=network,
+            type=type,
             port=port,
-            any_=any_,
+            not_=not_,
         )
 
         nat_addr_port.additional_properties = d

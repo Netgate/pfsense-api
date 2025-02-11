@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="NtpServer")
 
@@ -12,16 +10,16 @@ T = TypeVar("T", bound="NtpServer")
 class NtpServer:
     """
     Attributes:
-        addr (Union[Unset, str]):
-        type (Union[Unset, str]):
-        prefer (Union[Unset, bool]):
-        no_select (Union[Unset, bool]):
+        addr (str):
+        type (str):
+        prefer (bool):
+        no_select (bool):
     """
 
-    addr: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
-    prefer: Union[Unset, bool] = UNSET
-    no_select: Union[Unset, bool] = UNSET
+    addr: str
+    type: str
+    prefer: bool
+    no_select: bool
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -35,28 +33,27 @@ class NtpServer:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if addr is not UNSET:
-            field_dict["addr"] = addr
-        if type is not UNSET:
-            field_dict["type"] = type
-        if prefer is not UNSET:
-            field_dict["prefer"] = prefer
-        if no_select is not UNSET:
-            field_dict["no_select"] = no_select
+        field_dict.update(
+            {
+                "addr": addr,
+                "type": type,
+                "prefer": prefer,
+                "no_select": no_select,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        addr = d.pop("addr", UNSET)
+        addr = d.pop("addr")
 
-        type = d.pop("type", UNSET)
+        type = d.pop("type")
 
-        prefer = d.pop("prefer", UNSET)
+        prefer = d.pop("prefer")
 
-        no_select = d.pop("no_select", UNSET)
+        no_select = d.pop("no_select")
 
         ntp_server = cls(
             addr=addr,

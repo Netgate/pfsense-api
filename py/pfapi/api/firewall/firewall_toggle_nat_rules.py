@@ -6,26 +6,36 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.pfsense_result import PfsenseResult
+from ...models.fw_bulk_toggle import FwBulkToggle
+from ...models.result import Result
 from ...types import Response
 
 
 def _get_kwargs(
-    ids: str,
+    *,
+    body: FwBulkToggle,
 ) -> Dict[str, Any]:
+    headers: Dict[str, Any] = {}
+
     _kwargs: Dict[str, Any] = {
-        "method": "delete",
-        "url": f"/firewall/nat/outbound/{ids}",
+        "method": "put",
+        "url": "/firewall/nat/port-forward/toggle",
     }
 
+    _body = body.to_dict()
+
+    _kwargs["json"] = _body
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, PfsenseResult]]:
+) -> Optional[Union[Error, Result]]:
     if response.status_code == 200:
-        response_200 = PfsenseResult.from_dict(response.json())
+        response_200 = Result.from_dict(response.json())
 
         return response_200
     if response.status_code == 400:
@@ -40,7 +50,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, PfsenseResult]]:
+) -> Response[Union[Error, Result]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -50,25 +60,25 @@ def _build_response(
 
 
 def sync_detailed(
-    ids: str,
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, PfsenseResult]]:
-    """Delete NAT out rules
+    body: FwBulkToggle,
+) -> Response[Union[Error, Result]]:
+    """Toggle NAT Rules
 
     Args:
-        ids (str):
+        body (FwBulkToggle):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, PfsenseResult]]
+        Response[Union[Error, Result]]
     """
 
     kwargs = _get_kwargs(
-        ids=ids,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -79,49 +89,49 @@ def sync_detailed(
 
 
 def sync(
-    ids: str,
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, PfsenseResult]]:
-    """Delete NAT out rules
+    body: FwBulkToggle,
+) -> Optional[Union[Error, Result]]:
+    """Toggle NAT Rules
 
     Args:
-        ids (str):
+        body (FwBulkToggle):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, PfsenseResult]
+        Union[Error, Result]
     """
 
     return sync_detailed(
-        ids=ids,
         client=client,
+        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
-    ids: str,
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, PfsenseResult]]:
-    """Delete NAT out rules
+    body: FwBulkToggle,
+) -> Response[Union[Error, Result]]:
+    """Toggle NAT Rules
 
     Args:
-        ids (str):
+        body (FwBulkToggle):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, PfsenseResult]]
+        Response[Union[Error, Result]]
     """
 
     kwargs = _get_kwargs(
-        ids=ids,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -130,26 +140,26 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    ids: str,
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, PfsenseResult]]:
-    """Delete NAT out rules
+    body: FwBulkToggle,
+) -> Optional[Union[Error, Result]]:
+    """Toggle NAT Rules
 
     Args:
-        ids (str):
+        body (FwBulkToggle):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, PfsenseResult]
+        Union[Error, Result]
     """
 
     return (
         await asyncio_detailed(
-            ids=ids,
             client=client,
+            body=body,
         )
     ).parsed

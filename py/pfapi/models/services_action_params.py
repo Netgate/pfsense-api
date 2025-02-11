@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ServicesActionParams")
 
@@ -14,18 +12,18 @@ class ServicesActionParams:
     action = "start", "stop", "restart"
 
         Attributes:
-            service (Union[Unset, str]):
-            action (Union[Unset, str]):
-            vpnid (Union[Unset, str]):
-            mode (Union[Unset, str]):
-            zone (Union[Unset, str]):
+            service (str):
+            action (str):
+            vpnid (str):
+            mode (str):
+            zone (str):
     """
 
-    service: Union[Unset, str] = UNSET
-    action: Union[Unset, str] = UNSET
-    vpnid: Union[Unset, str] = UNSET
-    mode: Union[Unset, str] = UNSET
-    zone: Union[Unset, str] = UNSET
+    service: str
+    action: str
+    vpnid: str
+    mode: str
+    zone: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -41,32 +39,30 @@ class ServicesActionParams:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if service is not UNSET:
-            field_dict["service"] = service
-        if action is not UNSET:
-            field_dict["action"] = action
-        if vpnid is not UNSET:
-            field_dict["vpnid"] = vpnid
-        if mode is not UNSET:
-            field_dict["mode"] = mode
-        if zone is not UNSET:
-            field_dict["zone"] = zone
+        field_dict.update(
+            {
+                "service": service,
+                "action": action,
+                "vpnid": vpnid,
+                "mode": mode,
+                "zone": zone,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        service = d.pop("service", UNSET)
+        service = d.pop("service")
 
-        action = d.pop("action", UNSET)
+        action = d.pop("action")
 
-        vpnid = d.pop("vpnid", UNSET)
+        vpnid = d.pop("vpnid")
 
-        mode = d.pop("mode", UNSET)
+        mode = d.pop("mode")
 
-        zone = d.pop("zone", UNSET)
+        zone = d.pop("zone")
 
         services_action_params = cls(
             service=service,

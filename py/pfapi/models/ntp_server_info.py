@@ -1,9 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
-
-from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="NtpServerInfo")
 
@@ -12,30 +10,30 @@ T = TypeVar("T", bound="NtpServerInfo")
 class NtpServerInfo:
     """
     Attributes:
-        status (Union[Unset, str]):
-        server (Union[Unset, str]):
-        refid (Union[Unset, str]):
-        stratum (Union[Unset, str]):
-        type (Union[Unset, str]):
-        when (Union[Unset, str]):
-        poll (Union[Unset, str]):
-        reach (Union[Unset, str]):
-        delay (Union[Unset, str]):
-        offset (Union[Unset, str]):
-        jitter (Union[Unset, str]):
+        status (str):
+        server (str):
+        refid (str):
+        stratum (str):
+        type (str):
+        when (str):
+        poll (str):
+        reach (str):
+        delay (str):
+        offset (str):
+        jitter (str):
     """
 
-    status: Union[Unset, str] = UNSET
-    server: Union[Unset, str] = UNSET
-    refid: Union[Unset, str] = UNSET
-    stratum: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
-    when: Union[Unset, str] = UNSET
-    poll: Union[Unset, str] = UNSET
-    reach: Union[Unset, str] = UNSET
-    delay: Union[Unset, str] = UNSET
-    offset: Union[Unset, str] = UNSET
-    jitter: Union[Unset, str] = UNSET
+    status: str
+    server: str
+    refid: str
+    stratum: str
+    type: str
+    when: str
+    poll: str
+    reach: str
+    delay: str
+    offset: str
+    jitter: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -63,56 +61,48 @@ class NtpServerInfo:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if status is not UNSET:
-            field_dict["status"] = status
-        if server is not UNSET:
-            field_dict["server"] = server
-        if refid is not UNSET:
-            field_dict["refid"] = refid
-        if stratum is not UNSET:
-            field_dict["stratum"] = stratum
-        if type is not UNSET:
-            field_dict["type"] = type
-        if when is not UNSET:
-            field_dict["when"] = when
-        if poll is not UNSET:
-            field_dict["poll"] = poll
-        if reach is not UNSET:
-            field_dict["reach"] = reach
-        if delay is not UNSET:
-            field_dict["delay"] = delay
-        if offset is not UNSET:
-            field_dict["offset"] = offset
-        if jitter is not UNSET:
-            field_dict["jitter"] = jitter
+        field_dict.update(
+            {
+                "status": status,
+                "server": server,
+                "refid": refid,
+                "stratum": stratum,
+                "type": type,
+                "when": when,
+                "poll": poll,
+                "reach": reach,
+                "delay": delay,
+                "offset": offset,
+                "jitter": jitter,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        status = d.pop("status", UNSET)
+        status = d.pop("status")
 
-        server = d.pop("server", UNSET)
+        server = d.pop("server")
 
-        refid = d.pop("refid", UNSET)
+        refid = d.pop("refid")
 
-        stratum = d.pop("stratum", UNSET)
+        stratum = d.pop("stratum")
 
-        type = d.pop("type", UNSET)
+        type = d.pop("type")
 
-        when = d.pop("when", UNSET)
+        when = d.pop("when")
 
-        poll = d.pop("poll", UNSET)
+        poll = d.pop("poll")
 
-        reach = d.pop("reach", UNSET)
+        reach = d.pop("reach")
 
-        delay = d.pop("delay", UNSET)
+        delay = d.pop("delay")
 
-        offset = d.pop("offset", UNSET)
+        offset = d.pop("offset")
 
-        jitter = d.pop("jitter", UNSET)
+        jitter = d.pop("jitter")
 
         ntp_server_info = cls(
             status=status,

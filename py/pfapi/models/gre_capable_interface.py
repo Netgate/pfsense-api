@@ -1,54 +1,53 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, Unset
-
-T = TypeVar("T", bound="NATSource")
+T = TypeVar("T", bound="GRECapableInterface")
 
 
 @_attrs_define
-class NATSource:
+class GRECapableInterface:
     """
     Attributes:
-        address (Union[Unset, str]):
-        not_ (Union[Unset, bool]):
+        if_identity (str):
+        if_assigned_name (str):
     """
 
-    address: Union[Unset, str] = UNSET
-    not_: Union[Unset, bool] = UNSET
+    if_identity: str
+    if_assigned_name: str
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        address = self.address
+        if_identity = self.if_identity
 
-        not_ = self.not_
+        if_assigned_name = self.if_assigned_name
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if address is not UNSET:
-            field_dict["address"] = address
-        if not_ is not UNSET:
-            field_dict["not"] = not_
+        field_dict.update(
+            {
+                "if_identity": if_identity,
+                "if_assigned_name": if_assigned_name,
+            }
+        )
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        address = d.pop("address", UNSET)
+        if_identity = d.pop("if_identity")
 
-        not_ = d.pop("not", UNSET)
+        if_assigned_name = d.pop("if_assigned_name")
 
-        nat_source = cls(
-            address=address,
-            not_=not_,
+        gre_capable_interface = cls(
+            if_identity=if_identity,
+            if_assigned_name=if_assigned_name,
         )
 
-        nat_source.additional_properties = d
-        return nat_source
+        gre_capable_interface.additional_properties = d
+        return gre_capable_interface
 
     @property
     def additional_keys(self) -> List[str]:
