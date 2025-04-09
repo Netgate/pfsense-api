@@ -19,9 +19,9 @@ class UpdateCertReq:
     importing a new certificate.
 
         Attributes:
-            name (str):
-            descr (str):
-            description (str):
+            name (Union[Unset, str]):
+            descr (Union[Unset, str]):
+            description (Union[Unset, str]):
             method_existing_pem (Union[Unset, CertMethodExistingPEM]): Existing PEM certificate and key, either in
                 PEM/pkcs12 format or base64-encoded
             method_existing_pkcs12 (Union[Unset, CertMethodExistingPkcs12]): Existing PKCS12 certificate and key; the PKCS12
@@ -30,9 +30,9 @@ class UpdateCertReq:
                 it can be included as pkcs12_b64 directly within this structure.
     """
 
-    name: str
-    descr: str
-    description: str
+    name: Union[Unset, str] = UNSET
+    descr: Union[Unset, str] = UNSET
+    description: Union[Unset, str] = UNSET
     method_existing_pem: Union[Unset, "CertMethodExistingPEM"] = UNSET
     method_existing_pkcs12: Union[Unset, "CertMethodExistingPkcs12"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -54,13 +54,13 @@ class UpdateCertReq:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "descr": descr,
-                "description": description,
-            }
-        )
+        field_dict.update({})
+        if name is not UNSET:
+            field_dict["name"] = name
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if description is not UNSET:
+            field_dict["description"] = description
         if method_existing_pem is not UNSET:
             field_dict["method_existing_pem"] = method_existing_pem
         if method_existing_pkcs12 is not UNSET:
@@ -74,11 +74,11 @@ class UpdateCertReq:
         from ..models.cert_method_existing_pkcs_12 import CertMethodExistingPkcs12
 
         d = src_dict.copy()
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
-        description = d.pop("description")
+        description = d.pop("description", UNSET)
 
         _method_existing_pem = d.pop("method_existing_pem", UNSET)
         method_existing_pem: Union[Unset, CertMethodExistingPEM]

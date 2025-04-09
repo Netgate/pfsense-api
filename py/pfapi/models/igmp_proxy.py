@@ -1,4 +1,4 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,17 +13,19 @@ class IGMPProxy:
     """
     Attributes:
         ifname (str):
-        address (str):
-        threshold (Union[Unset, str]):
+        address (List[str]):
+        threshold (Union[Unset, int]):
         descr (Union[Unset, str]):
         type (Union[Unset, str]):
+        id (Union[Unset, str]): record ID, read-only
     """
 
     ifname: str
-    address: str
-    threshold: Union[Unset, str] = UNSET
+    address: List[str]
+    threshold: Union[Unset, int] = UNSET
     descr: Union[Unset, str] = UNSET
     type: Union[Unset, str] = UNSET
+    id: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -36,6 +38,8 @@ class IGMPProxy:
         descr = self.descr
 
         type = self.type
+
+        id = self.id
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -51,6 +55,8 @@ class IGMPProxy:
             field_dict["descr"] = descr
         if type is not UNSET:
             field_dict["type"] = type
+        if id is not UNSET:
+            field_dict["id"] = id
 
         return field_dict
 
@@ -59,7 +65,7 @@ class IGMPProxy:
         d = src_dict.copy()
         ifname = d.pop("ifname")
 
-        address = d.pop("address")
+        address = cast(List[str], d.pop("address"))
 
         threshold = d.pop("threshold", UNSET)
 
@@ -67,12 +73,15 @@ class IGMPProxy:
 
         type = d.pop("type", UNSET)
 
+        id = d.pop("id", UNSET)
+
         igmp_proxy = cls(
             ifname=ifname,
             address=address,
             threshold=threshold,
             descr=descr,
             type=type,
+            id=id,
         )
 
         igmp_proxy.additional_properties = d

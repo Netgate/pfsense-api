@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="Separator")
 
@@ -10,18 +12,18 @@ T = TypeVar("T", bound="Separator")
 class Separator:
     """
     Attributes:
-        id (str):
-        row (str):
-        text (str):
-        color (str):
-        if_ (str):
+        id (Union[Unset, str]):
+        row (Union[Unset, str]):
+        text (Union[Unset, str]):
+        color (Union[Unset, str]):
+        if_ (Union[Unset, str]):
     """
 
-    id: str
-    row: str
-    text: str
-    color: str
-    if_: str
+    id: Union[Unset, str] = UNSET
+    row: Union[Unset, str] = UNSET
+    text: Union[Unset, str] = UNSET
+    color: Union[Unset, str] = UNSET
+    if_: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -37,30 +39,32 @@ class Separator:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "row": row,
-                "text": text,
-                "color": color,
-                "if": if_,
-            }
-        )
+        field_dict.update({})
+        if id is not UNSET:
+            field_dict["id"] = id
+        if row is not UNSET:
+            field_dict["row"] = row
+        if text is not UNSET:
+            field_dict["text"] = text
+        if color is not UNSET:
+            field_dict["color"] = color
+        if if_ is not UNSET:
+            field_dict["if"] = if_
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        id = d.pop("id")
+        id = d.pop("id", UNSET)
 
-        row = d.pop("row")
+        row = d.pop("row", UNSET)
 
-        text = d.pop("text")
+        text = d.pop("text", UNSET)
 
-        color = d.pop("color")
+        color = d.pop("color", UNSET)
 
-        if_ = d.pop("if")
+        if_ = d.pop("if", UNSET)
 
         separator = cls(
             id=id,

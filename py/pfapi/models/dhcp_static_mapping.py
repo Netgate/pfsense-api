@@ -16,14 +16,14 @@ T = TypeVar("T", bound="DhcpStaticMapping")
 class DhcpStaticMapping:
     """
     Attributes:
-        id (str):
-        early_dns_reg (str):
+        id (Union[Unset, str]):
         mac_address (Union[Unset, str]):
         client_identifier (Union[Unset, str]):
         ip_address (Union[Unset, str]):
         arp_table_static_entry (Union[Unset, bool]):
         hostname (Union[Unset, str]):
         description (Union[Unset, str]):
+        early_dns_reg (Union[Unset, str]):
         wins_servers (Union[Unset, List[str]]):
         dns_servers (Union[Unset, List[str]]):
         gateway (Union[Unset, str]):
@@ -39,14 +39,14 @@ class DhcpStaticMapping:
         rootpath (Union[Unset, str]):
     """
 
-    id: str
-    early_dns_reg: str
+    id: Union[Unset, str] = UNSET
     mac_address: Union[Unset, str] = UNSET
     client_identifier: Union[Unset, str] = UNSET
     ip_address: Union[Unset, str] = UNSET
     arp_table_static_entry: Union[Unset, bool] = UNSET
     hostname: Union[Unset, str] = UNSET
     description: Union[Unset, str] = UNSET
+    early_dns_reg: Union[Unset, str] = UNSET
     wins_servers: Union[Unset, List[str]] = UNSET
     dns_servers: Union[Unset, List[str]] = UNSET
     gateway: Union[Unset, str] = UNSET
@@ -65,8 +65,6 @@ class DhcpStaticMapping:
     def to_dict(self) -> Dict[str, Any]:
         id = self.id
 
-        early_dns_reg = self.early_dns_reg
-
         mac_address = self.mac_address
 
         client_identifier = self.client_identifier
@@ -78,6 +76,8 @@ class DhcpStaticMapping:
         hostname = self.hostname
 
         description = self.description
+
+        early_dns_reg = self.early_dns_reg
 
         wins_servers: Union[Unset, List[str]] = UNSET
         if not isinstance(self.wins_servers, Unset):
@@ -117,12 +117,9 @@ class DhcpStaticMapping:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "id": id,
-                "early_dns_reg": early_dns_reg,
-            }
-        )
+        field_dict.update({})
+        if id is not UNSET:
+            field_dict["id"] = id
         if mac_address is not UNSET:
             field_dict["mac_address"] = mac_address
         if client_identifier is not UNSET:
@@ -135,6 +132,8 @@ class DhcpStaticMapping:
             field_dict["hostname"] = hostname
         if description is not UNSET:
             field_dict["description"] = description
+        if early_dns_reg is not UNSET:
+            field_dict["early_dns_reg"] = early_dns_reg
         if wins_servers is not UNSET:
             field_dict["wins_servers"] = wins_servers
         if dns_servers is not UNSET:
@@ -169,9 +168,7 @@ class DhcpStaticMapping:
         from ..models.dhcp_network_booting import DhcpNetworkBooting
 
         d = src_dict.copy()
-        id = d.pop("id")
-
-        early_dns_reg = d.pop("early_dns_reg")
+        id = d.pop("id", UNSET)
 
         mac_address = d.pop("mac_address", UNSET)
 
@@ -184,6 +181,8 @@ class DhcpStaticMapping:
         hostname = d.pop("hostname", UNSET)
 
         description = d.pop("description", UNSET)
+
+        early_dns_reg = d.pop("early_dns_reg", UNSET)
 
         wins_servers = cast(List[str], d.pop("wins_servers", UNSET))
 
@@ -218,13 +217,13 @@ class DhcpStaticMapping:
 
         dhcp_static_mapping = cls(
             id=id,
-            early_dns_reg=early_dns_reg,
             mac_address=mac_address,
             client_identifier=client_identifier,
             ip_address=ip_address,
             arp_table_static_entry=arp_table_static_entry,
             hostname=hostname,
             description=description,
+            early_dns_reg=early_dns_reg,
             wins_servers=wins_servers,
             dns_servers=dns_servers,
             gateway=gateway,

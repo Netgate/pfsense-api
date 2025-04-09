@@ -6,15 +6,15 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
+from ...models.igmp_proxy import IGMPProxy
 from ...models.result import Result
-from ...models.update_proxy_req import UpdateProxyReq
 from ...types import Response
 
 
 def _get_kwargs(
     id: str,
     *,
-    body: UpdateProxyReq,
+    body: IGMPProxy,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
@@ -64,13 +64,13 @@ def sync_detailed(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: UpdateProxyReq,
+    body: IGMPProxy,
 ) -> Response[Union[Error, Result]]:
     """Update IGMP proxy
 
     Args:
         id (str):
-        body (UpdateProxyReq):
+        body (IGMPProxy):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -96,13 +96,13 @@ def sync(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: UpdateProxyReq,
+    body: IGMPProxy,
 ) -> Optional[Union[Error, Result]]:
     """Update IGMP proxy
 
     Args:
         id (str):
-        body (UpdateProxyReq):
+        body (IGMPProxy):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -123,13 +123,13 @@ async def asyncio_detailed(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: UpdateProxyReq,
+    body: IGMPProxy,
 ) -> Response[Union[Error, Result]]:
     """Update IGMP proxy
 
     Args:
         id (str):
-        body (UpdateProxyReq):
+        body (IGMPProxy):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -153,13 +153,13 @@ async def asyncio(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: UpdateProxyReq,
+    body: IGMPProxy,
 ) -> Optional[Union[Error, Result]]:
     """Update IGMP proxy
 
     Args:
         id (str):
-        body (UpdateProxyReq):
+        body (IGMPProxy):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

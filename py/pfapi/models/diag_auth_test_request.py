@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DiagAuthTestRequest")
 
@@ -10,48 +12,57 @@ T = TypeVar("T", bound="DiagAuthTestRequest")
 class DiagAuthTestRequest:
     """
     Attributes:
-        authtype (str):
-        username (str):
-        password (str):
+        authserver (Union[Unset, str]):
+        username (Union[Unset, str]):
+        password (Union[Unset, str]):
+        debug (Union[Unset, bool]):
     """
 
-    authtype: str
-    username: str
-    password: str
+    authserver: Union[Unset, str] = UNSET
+    username: Union[Unset, str] = UNSET
+    password: Union[Unset, str] = UNSET
+    debug: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        authtype = self.authtype
+        authserver = self.authserver
 
         username = self.username
 
         password = self.password
 
+        debug = self.debug
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "authtype": authtype,
-                "username": username,
-                "password": password,
-            }
-        )
+        field_dict.update({})
+        if authserver is not UNSET:
+            field_dict["authserver"] = authserver
+        if username is not UNSET:
+            field_dict["username"] = username
+        if password is not UNSET:
+            field_dict["password"] = password
+        if debug is not UNSET:
+            field_dict["debug"] = debug
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        authtype = d.pop("authtype")
+        authserver = d.pop("authserver", UNSET)
 
-        username = d.pop("username")
+        username = d.pop("username", UNSET)
 
-        password = d.pop("password")
+        password = d.pop("password", UNSET)
+
+        debug = d.pop("debug", UNSET)
 
         diag_auth_test_request = cls(
-            authtype=authtype,
+            authserver=authserver,
             username=username,
             password=password,
+            debug=debug,
         )
 
         diag_auth_test_request.additional_properties = d

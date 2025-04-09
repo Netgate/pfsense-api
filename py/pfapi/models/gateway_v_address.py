@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="GatewayVAddress")
 
@@ -11,11 +13,11 @@ class GatewayVAddress:
     """
     Attributes:
         vaddress (str):
-        descr (str):
+        descr (Union[Unset, str]):
     """
 
     vaddress: str
-    descr: str
+    descr: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -28,9 +30,10 @@ class GatewayVAddress:
         field_dict.update(
             {
                 "vaddress": vaddress,
-                "descr": descr,
             }
         )
+        if descr is not UNSET:
+            field_dict["descr"] = descr
 
         return field_dict
 
@@ -39,7 +42,7 @@ class GatewayVAddress:
         d = src_dict.copy()
         vaddress = d.pop("vaddress")
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
         gateway_v_address = cls(
             vaddress=vaddress,

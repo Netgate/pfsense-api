@@ -12,20 +12,20 @@ T = TypeVar("T", bound="ControllerBackupResult")
 class ControllerBackupResult:
     """
     Attributes:
-        time (int):
-        id (str):
-        label (str):
-        description (str):
-        messages (str):
+        time (Union[Unset, int]):
+        id (Union[Unset, str]):
+        label (Union[Unset, str]):
+        description (Union[Unset, str]):
         acb_id (Union[Unset, str]):
+        messages (Union[Unset, str]):
     """
 
-    time: int
-    id: str
-    label: str
-    description: str
-    messages: str
+    time: Union[Unset, int] = UNSET
+    id: Union[Unset, str] = UNSET
+    label: Union[Unset, str] = UNSET
+    description: Union[Unset, str] = UNSET
     acb_id: Union[Unset, str] = UNSET
+    messages: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -37,48 +37,50 @@ class ControllerBackupResult:
 
         description = self.description
 
-        messages = self.messages
-
         acb_id = self.acb_id
+
+        messages = self.messages
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "time": time,
-                "id": id,
-                "label": label,
-                "description": description,
-                "messages": messages,
-            }
-        )
+        field_dict.update({})
+        if time is not UNSET:
+            field_dict["time"] = time
+        if id is not UNSET:
+            field_dict["id"] = id
+        if label is not UNSET:
+            field_dict["label"] = label
+        if description is not UNSET:
+            field_dict["description"] = description
         if acb_id is not UNSET:
             field_dict["acb_id"] = acb_id
+        if messages is not UNSET:
+            field_dict["messages"] = messages
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        time = d.pop("time")
+        time = d.pop("time", UNSET)
 
-        id = d.pop("id")
+        id = d.pop("id", UNSET)
 
-        label = d.pop("label")
+        label = d.pop("label", UNSET)
 
-        description = d.pop("description")
-
-        messages = d.pop("messages")
+        description = d.pop("description", UNSET)
 
         acb_id = d.pop("acb_id", UNSET)
+
+        messages = d.pop("messages", UNSET)
 
         controller_backup_result = cls(
             time=time,
             id=id,
             label=label,
             description=description,
-            messages=messages,
             acb_id=acb_id,
+            messages=messages,
         )
 
         controller_backup_result.additional_properties = d

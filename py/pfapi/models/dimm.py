@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="Dimm")
 
@@ -10,14 +12,14 @@ T = TypeVar("T", bound="Dimm")
 class Dimm:
     """
     Attributes:
-        slot (str):
-        size (int):
-        type (str):
+        slot (Union[Unset, str]):
+        size (Union[Unset, int]):
+        type (Union[Unset, str]):
     """
 
-    slot: str
-    size: int
-    type: str
+    slot: Union[Unset, str] = UNSET
+    size: Union[Unset, int] = UNSET
+    type: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -29,24 +31,24 @@ class Dimm:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "slot": slot,
-                "size": size,
-                "type": type,
-            }
-        )
+        field_dict.update({})
+        if slot is not UNSET:
+            field_dict["slot"] = slot
+        if size is not UNSET:
+            field_dict["size"] = size
+        if type is not UNSET:
+            field_dict["type"] = type
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        slot = d.pop("slot")
+        slot = d.pop("slot", UNSET)
 
-        size = d.pop("size")
+        size = d.pop("size", UNSET)
 
-        type = d.pop("type")
+        type = d.pop("type", UNSET)
 
         dimm = cls(
             slot=slot,

@@ -1,7 +1,9 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.tunable import Tunable
@@ -14,27 +16,28 @@ T = TypeVar("T", bound="TunableRequest")
 class TunableRequest:
     """
     Attributes:
-        tunable (Tunable):
-        id (int):
+        tunable (Union[Unset, Tunable]):
+        id (Union[Unset, int]):
     """
 
-    tunable: "Tunable"
-    id: int
+    tunable: Union[Unset, "Tunable"] = UNSET
+    id: Union[Unset, int] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        tunable = self.tunable.to_dict()
+        tunable: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.tunable, Unset):
+            tunable = self.tunable.to_dict()
 
         id = self.id
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "tunable": tunable,
-                "id": id,
-            }
-        )
+        field_dict.update({})
+        if tunable is not UNSET:
+            field_dict["tunable"] = tunable
+        if id is not UNSET:
+            field_dict["id"] = id
 
         return field_dict
 
@@ -43,9 +46,14 @@ class TunableRequest:
         from ..models.tunable import Tunable
 
         d = src_dict.copy()
-        tunable = Tunable.from_dict(d.pop("tunable"))
+        _tunable = d.pop("tunable", UNSET)
+        tunable: Union[Unset, Tunable]
+        if isinstance(_tunable, Unset):
+            tunable = UNSET
+        else:
+            tunable = Tunable.from_dict(_tunable)
 
-        id = d.pop("id")
+        id = d.pop("id", UNSET)
 
         tunable_request = cls(
             tunable=tunable,

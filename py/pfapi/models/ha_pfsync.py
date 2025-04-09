@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="HAPfsync")
 
@@ -10,16 +12,16 @@ T = TypeVar("T", bound="HAPfsync")
 class HAPfsync:
     """
     Attributes:
-        enabled (bool): enable pfsync
-        sync_assigned_intf (str): assigned network interface for sync communication
-        hostid (str): max 8 character unique host identifier
-        peer_ip (str): optional - sync to this IP address; default is directed multicast
+        enabled (Union[Unset, bool]): enable pfsync
+        sync_assigned_intf (Union[Unset, str]): assigned network interface for sync communication
+        hostid (Union[Unset, str]): max 8 character unique host identifier
+        peer_ip (Union[Unset, str]): optional - sync to this IP address; default is directed multicast
     """
 
-    enabled: bool
-    sync_assigned_intf: str
-    hostid: str
-    peer_ip: str
+    enabled: Union[Unset, bool] = UNSET
+    sync_assigned_intf: Union[Unset, str] = UNSET
+    hostid: Union[Unset, str] = UNSET
+    peer_ip: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -33,27 +35,28 @@ class HAPfsync:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "enabled": enabled,
-                "sync_assigned_intf": sync_assigned_intf,
-                "hostid": hostid,
-                "peer_ip": peer_ip,
-            }
-        )
+        field_dict.update({})
+        if enabled is not UNSET:
+            field_dict["enabled"] = enabled
+        if sync_assigned_intf is not UNSET:
+            field_dict["sync_assigned_intf"] = sync_assigned_intf
+        if hostid is not UNSET:
+            field_dict["hostid"] = hostid
+        if peer_ip is not UNSET:
+            field_dict["peer_ip"] = peer_ip
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        enabled = d.pop("enabled")
+        enabled = d.pop("enabled", UNSET)
 
-        sync_assigned_intf = d.pop("sync_assigned_intf")
+        sync_assigned_intf = d.pop("sync_assigned_intf", UNSET)
 
-        hostid = d.pop("hostid")
+        hostid = d.pop("hostid", UNSET)
 
-        peer_ip = d.pop("peer_ip")
+        peer_ip = d.pop("peer_ip", UNSET)
 
         ha_pfsync = cls(
             enabled=enabled,

@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SystemEvent")
 
@@ -11,12 +13,12 @@ class SystemEvent:
     """changes to the system that is informational or impacts operation
 
     Attributes:
-        message (str): message to show to the user
-        level (str): debug, info, warning, error
+        message (Union[Unset, str]): message to show to the user
+        level (Union[Unset, str]): debug, info, warning, error
     """
 
-    message: str
-    level: str
+    message: Union[Unset, str] = UNSET
+    level: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -26,21 +28,20 @@ class SystemEvent:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "message": message,
-                "level": level,
-            }
-        )
+        field_dict.update({})
+        if message is not UNSET:
+            field_dict["message"] = message
+        if level is not UNSET:
+            field_dict["level"] = level
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        message = d.pop("message")
+        message = d.pop("message", UNSET)
 
-        level = d.pop("level")
+        level = d.pop("level", UNSET)
 
         system_event = cls(
             message=message,

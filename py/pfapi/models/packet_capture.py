@@ -1,7 +1,9 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.pcap_interface import PcapInterface
@@ -14,21 +16,27 @@ T = TypeVar("T", bound="PacketCapture")
 class PacketCapture:
     """
     Attributes:
-        capture (str):
-        starttime (str):
-        endtime (str):
-        running (bool):
-        interfaces (List['PcapInterface']):
+        filename (Union[Unset, str]):
+        capture (Union[Unset, str]):
+        starttime (Union[Unset, str]):
+        endtime (Union[Unset, str]):
+        running (Union[Unset, bool]):
+        command (Union[Unset, str]):
+        interfaces (Union[Unset, List['PcapInterface']]):
     """
 
-    capture: str
-    starttime: str
-    endtime: str
-    running: bool
-    interfaces: List["PcapInterface"]
+    filename: Union[Unset, str] = UNSET
+    capture: Union[Unset, str] = UNSET
+    starttime: Union[Unset, str] = UNSET
+    endtime: Union[Unset, str] = UNSET
+    running: Union[Unset, bool] = UNSET
+    command: Union[Unset, str] = UNSET
+    interfaces: Union[Unset, List["PcapInterface"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
+        filename = self.filename
+
         capture = self.capture
 
         starttime = self.starttime
@@ -37,22 +45,32 @@ class PacketCapture:
 
         running = self.running
 
-        interfaces = []
-        for interfaces_item_data in self.interfaces:
-            interfaces_item = interfaces_item_data.to_dict()
-            interfaces.append(interfaces_item)
+        command = self.command
+
+        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.interfaces, Unset):
+            interfaces = []
+            for interfaces_item_data in self.interfaces:
+                interfaces_item = interfaces_item_data.to_dict()
+                interfaces.append(interfaces_item)
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "capture": capture,
-                "starttime": starttime,
-                "endtime": endtime,
-                "running": running,
-                "interfaces": interfaces,
-            }
-        )
+        field_dict.update({})
+        if filename is not UNSET:
+            field_dict["filename"] = filename
+        if capture is not UNSET:
+            field_dict["capture"] = capture
+        if starttime is not UNSET:
+            field_dict["starttime"] = starttime
+        if endtime is not UNSET:
+            field_dict["endtime"] = endtime
+        if running is not UNSET:
+            field_dict["running"] = running
+        if command is not UNSET:
+            field_dict["command"] = command
+        if interfaces is not UNSET:
+            field_dict["interfaces"] = interfaces
 
         return field_dict
 
@@ -61,26 +79,32 @@ class PacketCapture:
         from ..models.pcap_interface import PcapInterface
 
         d = src_dict.copy()
-        capture = d.pop("capture")
+        filename = d.pop("filename", UNSET)
 
-        starttime = d.pop("starttime")
+        capture = d.pop("capture", UNSET)
 
-        endtime = d.pop("endtime")
+        starttime = d.pop("starttime", UNSET)
 
-        running = d.pop("running")
+        endtime = d.pop("endtime", UNSET)
+
+        running = d.pop("running", UNSET)
+
+        command = d.pop("command", UNSET)
 
         interfaces = []
-        _interfaces = d.pop("interfaces")
-        for interfaces_item_data in _interfaces:
+        _interfaces = d.pop("interfaces", UNSET)
+        for interfaces_item_data in _interfaces or []:
             interfaces_item = PcapInterface.from_dict(interfaces_item_data)
 
             interfaces.append(interfaces_item)
 
         packet_capture = cls(
+            filename=filename,
             capture=capture,
             starttime=starttime,
             endtime=endtime,
             running=running,
+            command=command,
             interfaces=interfaces,
         )
 

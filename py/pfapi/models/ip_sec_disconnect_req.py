@@ -1,9 +1,10 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..models.ip_sec_disconnect_req_phase import IPSecDisconnectReqPhase
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="IPSecDisconnectReq")
 
@@ -12,18 +13,20 @@ T = TypeVar("T", bound="IPSecDisconnectReq")
 class IPSecDisconnectReq:
     """
     Attributes:
-        phase (IPSecDisconnectReqPhase):
-        conid (str):
-        uniqueid (str):
+        phase (Union[Unset, IPSecDisconnectReqPhase]):
+        conid (Union[Unset, str]):
+        uniqueid (Union[Unset, str]):
     """
 
-    phase: IPSecDisconnectReqPhase
-    conid: str
-    uniqueid: str
+    phase: Union[Unset, IPSecDisconnectReqPhase] = UNSET
+    conid: Union[Unset, str] = UNSET
+    uniqueid: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        phase = self.phase.value
+        phase: Union[Unset, str] = UNSET
+        if not isinstance(self.phase, Unset):
+            phase = self.phase.value
 
         conid = self.conid
 
@@ -31,24 +34,29 @@ class IPSecDisconnectReq:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "phase": phase,
-                "conid": conid,
-                "uniqueid": uniqueid,
-            }
-        )
+        field_dict.update({})
+        if phase is not UNSET:
+            field_dict["phase"] = phase
+        if conid is not UNSET:
+            field_dict["conid"] = conid
+        if uniqueid is not UNSET:
+            field_dict["uniqueid"] = uniqueid
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        phase = IPSecDisconnectReqPhase(d.pop("phase"))
+        _phase = d.pop("phase", UNSET)
+        phase: Union[Unset, IPSecDisconnectReqPhase]
+        if isinstance(_phase, Unset):
+            phase = UNSET
+        else:
+            phase = IPSecDisconnectReqPhase(_phase)
 
-        conid = d.pop("conid")
+        conid = d.pop("conid", UNSET)
 
-        uniqueid = d.pop("uniqueid")
+        uniqueid = d.pop("uniqueid", UNSET)
 
         ip_sec_disconnect_req = cls(
             phase=phase,

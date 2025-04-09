@@ -7,7 +7,7 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.adv_network_setting import AdvNetworkSetting
 from ...models.error import Error
-from ...models.pfsense_result import PfsenseResult
+from ...models.set_adv_networking_response import SetAdvNetworkingResponse
 from ...types import Response
 
 
@@ -33,9 +33,9 @@ def _get_kwargs(
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, PfsenseResult]]:
+) -> Optional[Union[Error, SetAdvNetworkingResponse]]:
     if response.status_code == 200:
-        response_200 = PfsenseResult.from_dict(response.json())
+        response_200 = SetAdvNetworkingResponse.from_dict(response.json())
 
         return response_200
     if response.status_code == 400:
@@ -50,7 +50,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, PfsenseResult]]:
+) -> Response[Union[Error, SetAdvNetworkingResponse]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -63,7 +63,7 @@ def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
     body: AdvNetworkSetting,
-) -> Response[Union[Error, PfsenseResult]]:
+) -> Response[Union[Error, SetAdvNetworkingResponse]]:
     """Set Advanced Network
 
     Args:
@@ -74,7 +74,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, PfsenseResult]]
+        Response[Union[Error, SetAdvNetworkingResponse]]
     """
 
     kwargs = _get_kwargs(
@@ -92,7 +92,7 @@ def sync(
     *,
     client: Union[AuthenticatedClient, Client],
     body: AdvNetworkSetting,
-) -> Optional[Union[Error, PfsenseResult]]:
+) -> Optional[Union[Error, SetAdvNetworkingResponse]]:
     """Set Advanced Network
 
     Args:
@@ -103,7 +103,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, PfsenseResult]
+        Union[Error, SetAdvNetworkingResponse]
     """
 
     return sync_detailed(
@@ -116,7 +116,7 @@ async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
     body: AdvNetworkSetting,
-) -> Response[Union[Error, PfsenseResult]]:
+) -> Response[Union[Error, SetAdvNetworkingResponse]]:
     """Set Advanced Network
 
     Args:
@@ -127,7 +127,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, PfsenseResult]]
+        Response[Union[Error, SetAdvNetworkingResponse]]
     """
 
     kwargs = _get_kwargs(
@@ -143,7 +143,7 @@ async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
     body: AdvNetworkSetting,
-) -> Optional[Union[Error, PfsenseResult]]:
+) -> Optional[Union[Error, SetAdvNetworkingResponse]]:
     """Set Advanced Network
 
     Args:
@@ -154,7 +154,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, PfsenseResult]
+        Union[Error, SetAdvNetworkingResponse]
     """
 
     return (

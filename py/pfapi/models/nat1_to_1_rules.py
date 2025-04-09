@@ -24,6 +24,8 @@ class NAT1To1Rules:
         aliases (Union[Unset, List['FWAlias']]):
         sysaliases (Union[Unset, List['FWSystemAlias']]):
         rules (Union[Unset, List['NAT1To1Rule']]):
+        extlist (Union[Unset, List['SimpleInterface']]):
+        srclist (Union[Unset, List['SimpleInterface']]):
     """
 
     destlist: Union[Unset, List["SimpleInterface"]] = UNSET
@@ -31,6 +33,8 @@ class NAT1To1Rules:
     aliases: Union[Unset, List["FWAlias"]] = UNSET
     sysaliases: Union[Unset, List["FWSystemAlias"]] = UNSET
     rules: Union[Unset, List["NAT1To1Rule"]] = UNSET
+    extlist: Union[Unset, List["SimpleInterface"]] = UNSET
+    srclist: Union[Unset, List["SimpleInterface"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -69,6 +73,20 @@ class NAT1To1Rules:
                 rules_item = rules_item_data.to_dict()
                 rules.append(rules_item)
 
+        extlist: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.extlist, Unset):
+            extlist = []
+            for extlist_item_data in self.extlist:
+                extlist_item = extlist_item_data.to_dict()
+                extlist.append(extlist_item)
+
+        srclist: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.srclist, Unset):
+            srclist = []
+            for srclist_item_data in self.srclist:
+                srclist_item = srclist_item_data.to_dict()
+                srclist.append(srclist_item)
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -82,6 +100,10 @@ class NAT1To1Rules:
             field_dict["sysaliases"] = sysaliases
         if rules is not UNSET:
             field_dict["rules"] = rules
+        if extlist is not UNSET:
+            field_dict["extlist"] = extlist
+        if srclist is not UNSET:
+            field_dict["srclist"] = srclist
 
         return field_dict
 
@@ -128,12 +150,28 @@ class NAT1To1Rules:
 
             rules.append(rules_item)
 
+        extlist = []
+        _extlist = d.pop("extlist", UNSET)
+        for extlist_item_data in _extlist or []:
+            extlist_item = SimpleInterface.from_dict(extlist_item_data)
+
+            extlist.append(extlist_item)
+
+        srclist = []
+        _srclist = d.pop("srclist", UNSET)
+        for srclist_item_data in _srclist or []:
+            srclist_item = SimpleInterface.from_dict(srclist_item_data)
+
+            srclist.append(srclist_item)
+
         nat1_to_1_rules = cls(
             destlist=destlist,
             interfacelist=interfacelist,
             aliases=aliases,
             sysaliases=sysaliases,
             rules=rules,
+            extlist=extlist,
+            srclist=srclist,
         )
 
         nat1_to_1_rules.additional_properties = d

@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ProviderPlanSetting")
 
@@ -13,15 +15,15 @@ class ProviderPlanSetting:
         name (str):
         apn (str):
         username (str):
-        password (str):
-        number (str):
+        password (Union[Unset, str]):
+        number (Union[Unset, str]):
     """
 
     name: str
     apn: str
     username: str
-    password: str
-    number: str
+    password: Union[Unset, str] = UNSET
+    number: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -42,10 +44,12 @@ class ProviderPlanSetting:
                 "name": name,
                 "apn": apn,
                 "username": username,
-                "password": password,
-                "number": number,
             }
         )
+        if password is not UNSET:
+            field_dict["password"] = password
+        if number is not UNSET:
+            field_dict["number"] = number
 
         return field_dict
 
@@ -58,9 +62,9 @@ class ProviderPlanSetting:
 
         username = d.pop("username")
 
-        password = d.pop("password")
+        password = d.pop("password", UNSET)
 
-        number = d.pop("number")
+        number = d.pop("number", UNSET)
 
         provider_plan_setting = cls(
             name=name,

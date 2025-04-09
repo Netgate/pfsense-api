@@ -6,19 +6,19 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.fw_ignored_input import FwIgnoredInput
+from ...models.fw_rule_toggle import FwRuleToggle
 from ...models.result import Result
 from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: FwIgnoredInput,
+    body: FwRuleToggle,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
     _kwargs: Dict[str, Any] = {
-        "method": "put",
+        "method": "post",
         "url": "/firewall/nat/onetoone/toggle",
     }
 
@@ -62,12 +62,12 @@ def _build_response(
 def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FwIgnoredInput,
+    body: FwRuleToggle,
 ) -> Response[Union[Error, Result]]:
     """Toggle NAT 1:1 rules
 
     Args:
-        body (FwIgnoredInput):
+        body (FwRuleToggle):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -91,12 +91,12 @@ def sync_detailed(
 def sync(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FwIgnoredInput,
+    body: FwRuleToggle,
 ) -> Optional[Union[Error, Result]]:
     """Toggle NAT 1:1 rules
 
     Args:
-        body (FwIgnoredInput):
+        body (FwRuleToggle):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -115,12 +115,12 @@ def sync(
 async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FwIgnoredInput,
+    body: FwRuleToggle,
 ) -> Response[Union[Error, Result]]:
     """Toggle NAT 1:1 rules
 
     Args:
-        body (FwIgnoredInput):
+        body (FwRuleToggle):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -142,12 +142,12 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FwIgnoredInput,
+    body: FwRuleToggle,
 ) -> Optional[Union[Error, Result]]:
     """Toggle NAT 1:1 rules
 
     Args:
-        body (FwIgnoredInput):
+        body (FwRuleToggle):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

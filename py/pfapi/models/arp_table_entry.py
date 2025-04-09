@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ArpTableEntry")
 
@@ -10,20 +12,20 @@ T = TypeVar("T", bound="ArpTableEntry")
 class ArpTableEntry:
     """
     Attributes:
-        ip (str):
-        mac (str):
-        interface (str):
-        expires (str):
-        type (str):
-        dnsresolve (str):
+        ip (Union[Unset, str]):
+        mac (Union[Unset, str]):
+        interface (Union[Unset, str]):
+        expires (Union[Unset, str]):
+        type (Union[Unset, str]):
+        dnsresolve (Union[Unset, str]):
     """
 
-    ip: str
-    mac: str
-    interface: str
-    expires: str
-    type: str
-    dnsresolve: str
+    ip: Union[Unset, str] = UNSET
+    mac: Union[Unset, str] = UNSET
+    interface: Union[Unset, str] = UNSET
+    expires: Union[Unset, str] = UNSET
+    type: Union[Unset, str] = UNSET
+    dnsresolve: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -41,33 +43,36 @@ class ArpTableEntry:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "ip": ip,
-                "mac": mac,
-                "interface": interface,
-                "expires": expires,
-                "type": type,
-                "dnsresolve": dnsresolve,
-            }
-        )
+        field_dict.update({})
+        if ip is not UNSET:
+            field_dict["ip"] = ip
+        if mac is not UNSET:
+            field_dict["mac"] = mac
+        if interface is not UNSET:
+            field_dict["interface"] = interface
+        if expires is not UNSET:
+            field_dict["expires"] = expires
+        if type is not UNSET:
+            field_dict["type"] = type
+        if dnsresolve is not UNSET:
+            field_dict["dnsresolve"] = dnsresolve
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        ip = d.pop("ip")
+        ip = d.pop("ip", UNSET)
 
-        mac = d.pop("mac")
+        mac = d.pop("mac", UNSET)
 
-        interface = d.pop("interface")
+        interface = d.pop("interface", UNSET)
 
-        expires = d.pop("expires")
+        expires = d.pop("expires", UNSET)
 
-        type = d.pop("type")
+        type = d.pop("type", UNSET)
 
-        dnsresolve = d.pop("dnsresolve")
+        dnsresolve = d.pop("dnsresolve", UNSET)
 
         arp_table_entry = cls(
             ip=ip,

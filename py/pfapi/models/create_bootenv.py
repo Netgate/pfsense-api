@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CreateBootenv")
 
@@ -11,23 +13,23 @@ class CreateBootenv:
     """
     Attributes:
         name (str):
-        descr (str):
         from_ (str):
-        protect (bool):
+        descr (Union[Unset, str]):
+        protect (Union[Unset, bool]):
     """
 
     name: str
-    descr: str
     from_: str
-    protect: bool
+    descr: Union[Unset, str] = UNSET
+    protect: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         name = self.name
 
-        descr = self.descr
-
         from_ = self.from_
+
+        descr = self.descr
 
         protect = self.protect
 
@@ -36,11 +38,13 @@ class CreateBootenv:
         field_dict.update(
             {
                 "name": name,
-                "descr": descr,
                 "from": from_,
-                "protect": protect,
             }
         )
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if protect is not UNSET:
+            field_dict["protect"] = protect
 
         return field_dict
 
@@ -49,16 +53,16 @@ class CreateBootenv:
         d = src_dict.copy()
         name = d.pop("name")
 
-        descr = d.pop("descr")
-
         from_ = d.pop("from")
 
-        protect = d.pop("protect")
+        descr = d.pop("descr", UNSET)
+
+        protect = d.pop("protect", UNSET)
 
         create_bootenv = cls(
             name=name,
-            descr=descr,
             from_=from_,
+            descr=descr,
             protect=protect,
         )
 

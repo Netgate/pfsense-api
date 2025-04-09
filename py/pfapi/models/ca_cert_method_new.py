@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CaCertMethodNew")
 
@@ -29,36 +31,38 @@ class CaCertMethodNew:
     - caref:        signing CA reference ID
 
         Attributes:
-            key_type (str):
-            key_size (int):
-            key_opt (str):
-            digest_alg (str):
-            lifetime (int):
+            key_type (str): rsa, ecdsa
             cn (str):
-            country_code (str):
-            state (str):
-            city (str):
-            org (str):
-            ou (str):
-            caref (str):
+            key_size (Union[Unset, int]): rsa key size
+            key_opt (Union[Unset, str]): key options, eg ecdsa curve
+            digest_alg (Union[Unset, str]): sha1, sha224, sha256, sha384, sha512
+            lifetime (Union[Unset, int]): days til expiry
+            country_code (Union[Unset, str]):
+            state (Union[Unset, str]):
+            city (Union[Unset, str]):
+            org (Union[Unset, str]):
+            ou (Union[Unset, str]):
+            caref (Union[Unset, str]):
     """
 
     key_type: str
-    key_size: int
-    key_opt: str
-    digest_alg: str
-    lifetime: int
     cn: str
-    country_code: str
-    state: str
-    city: str
-    org: str
-    ou: str
-    caref: str
+    key_size: Union[Unset, int] = UNSET
+    key_opt: Union[Unset, str] = UNSET
+    digest_alg: Union[Unset, str] = UNSET
+    lifetime: Union[Unset, int] = UNSET
+    country_code: Union[Unset, str] = UNSET
+    state: Union[Unset, str] = UNSET
+    city: Union[Unset, str] = UNSET
+    org: Union[Unset, str] = UNSET
+    ou: Union[Unset, str] = UNSET
+    caref: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         key_type = self.key_type
+
+        cn = self.cn
 
         key_size = self.key_size
 
@@ -67,8 +71,6 @@ class CaCertMethodNew:
         digest_alg = self.digest_alg
 
         lifetime = self.lifetime
-
-        cn = self.cn
 
         country_code = self.country_code
 
@@ -87,19 +89,29 @@ class CaCertMethodNew:
         field_dict.update(
             {
                 "key_type": key_type,
-                "key_size": key_size,
-                "key_opt": key_opt,
-                "digest_alg": digest_alg,
-                "lifetime": lifetime,
                 "cn": cn,
-                "country_code": country_code,
-                "state": state,
-                "city": city,
-                "org": org,
-                "ou": ou,
-                "caref": caref,
             }
         )
+        if key_size is not UNSET:
+            field_dict["key_size"] = key_size
+        if key_opt is not UNSET:
+            field_dict["key_opt"] = key_opt
+        if digest_alg is not UNSET:
+            field_dict["digest_alg"] = digest_alg
+        if lifetime is not UNSET:
+            field_dict["lifetime"] = lifetime
+        if country_code is not UNSET:
+            field_dict["country_code"] = country_code
+        if state is not UNSET:
+            field_dict["state"] = state
+        if city is not UNSET:
+            field_dict["city"] = city
+        if org is not UNSET:
+            field_dict["org"] = org
+        if ou is not UNSET:
+            field_dict["ou"] = ou
+        if caref is not UNSET:
+            field_dict["caref"] = caref
 
         return field_dict
 
@@ -108,35 +120,35 @@ class CaCertMethodNew:
         d = src_dict.copy()
         key_type = d.pop("key_type")
 
-        key_size = d.pop("key_size")
-
-        key_opt = d.pop("key_opt")
-
-        digest_alg = d.pop("digest_alg")
-
-        lifetime = d.pop("lifetime")
-
         cn = d.pop("cn")
 
-        country_code = d.pop("country_code")
+        key_size = d.pop("key_size", UNSET)
 
-        state = d.pop("state")
+        key_opt = d.pop("key_opt", UNSET)
 
-        city = d.pop("city")
+        digest_alg = d.pop("digest_alg", UNSET)
 
-        org = d.pop("org")
+        lifetime = d.pop("lifetime", UNSET)
 
-        ou = d.pop("ou")
+        country_code = d.pop("country_code", UNSET)
 
-        caref = d.pop("caref")
+        state = d.pop("state", UNSET)
+
+        city = d.pop("city", UNSET)
+
+        org = d.pop("org", UNSET)
+
+        ou = d.pop("ou", UNSET)
+
+        caref = d.pop("caref", UNSET)
 
         ca_cert_method_new = cls(
             key_type=key_type,
+            cn=cn,
             key_size=key_size,
             key_opt=key_opt,
             digest_alg=digest_alg,
             lifetime=lifetime,
-            cn=cn,
             country_code=country_code,
             state=state,
             city=city,

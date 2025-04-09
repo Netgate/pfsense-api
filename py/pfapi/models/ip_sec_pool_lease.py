@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="IPSecPoolLease")
 
@@ -10,14 +12,14 @@ T = TypeVar("T", bound="IPSecPoolLease")
 class IPSecPoolLease:
     """
     Attributes:
-        host (str):
-        status (str):
-        id (str):
+        host (Union[Unset, str]):
+        status (Union[Unset, str]):
+        id (Union[Unset, str]):
     """
 
-    host: str
-    status: str
-    id: str
+    host: Union[Unset, str] = UNSET
+    status: Union[Unset, str] = UNSET
+    id: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -29,24 +31,24 @@ class IPSecPoolLease:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "host": host,
-                "status": status,
-                "id": id,
-            }
-        )
+        field_dict.update({})
+        if host is not UNSET:
+            field_dict["host"] = host
+        if status is not UNSET:
+            field_dict["status"] = status
+        if id is not UNSET:
+            field_dict["id"] = id
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        host = d.pop("host")
+        host = d.pop("host", UNSET)
 
-        status = d.pop("status")
+        status = d.pop("status", UNSET)
 
-        id = d.pop("id")
+        id = d.pop("id", UNSET)
 
         ip_sec_pool_lease = cls(
             host=host,

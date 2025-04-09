@@ -18,20 +18,20 @@ T = TypeVar("T", bound="IPSecClientConfig")
 class IPSecClientConfig:
     """
     Attributes:
-        client (IPSecClient):
-        auth_servers (AuthServers):
+        client (Union[Unset, IPSecClient]):
         user_groups (Union[Unset, List['UserGroup']]):
+        auth_servers (Union[Unset, AuthServers]):
     """
 
-    client: "IPSecClient"
-    auth_servers: "AuthServers"
+    client: Union[Unset, "IPSecClient"] = UNSET
     user_groups: Union[Unset, List["UserGroup"]] = UNSET
+    auth_servers: Union[Unset, "AuthServers"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        client = self.client.to_dict()
-
-        auth_servers = self.auth_servers.to_dict()
+        client: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.client, Unset):
+            client = self.client.to_dict()
 
         user_groups: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.user_groups, Unset):
@@ -40,16 +40,19 @@ class IPSecClientConfig:
                 user_groups_item = user_groups_item_data.to_dict()
                 user_groups.append(user_groups_item)
 
+        auth_servers: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.auth_servers, Unset):
+            auth_servers = self.auth_servers.to_dict()
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "client": client,
-                "auth_servers": auth_servers,
-            }
-        )
+        field_dict.update({})
+        if client is not UNSET:
+            field_dict["client"] = client
         if user_groups is not UNSET:
             field_dict["user_groups"] = user_groups
+        if auth_servers is not UNSET:
+            field_dict["auth_servers"] = auth_servers
 
         return field_dict
 
@@ -60,9 +63,12 @@ class IPSecClientConfig:
         from ..models.user_group import UserGroup
 
         d = src_dict.copy()
-        client = IPSecClient.from_dict(d.pop("client"))
-
-        auth_servers = AuthServers.from_dict(d.pop("auth_servers"))
+        _client = d.pop("client", UNSET)
+        client: Union[Unset, IPSecClient]
+        if isinstance(_client, Unset):
+            client = UNSET
+        else:
+            client = IPSecClient.from_dict(_client)
 
         user_groups = []
         _user_groups = d.pop("user_groups", UNSET)
@@ -71,10 +77,17 @@ class IPSecClientConfig:
 
             user_groups.append(user_groups_item)
 
+        _auth_servers = d.pop("auth_servers", UNSET)
+        auth_servers: Union[Unset, AuthServers]
+        if isinstance(_auth_servers, Unset):
+            auth_servers = UNSET
+        else:
+            auth_servers = AuthServers.from_dict(_auth_servers)
+
         ip_sec_client_config = cls(
             client=client,
-            auth_servers=auth_servers,
             user_groups=user_groups,
+            auth_servers=auth_servers,
         )
 
         ip_sec_client_config.additional_properties = d

@@ -12,7 +12,7 @@ T = TypeVar("T", bound="PfsenseResult")
 class PfsenseResult:
     """
     Attributes:
-        msg (Union[Unset, str]):
+        msg (str):
         alrt (Union[Unset, bool]):
         sb (Union[Unset, bool]):
         alrtoln (Union[Unset, bool]):
@@ -22,7 +22,7 @@ class PfsenseResult:
         message (Union[Unset, str]):
     """
 
-    msg: Union[Unset, str] = UNSET
+    msg: str
     alrt: Union[Unset, bool] = UNSET
     sb: Union[Unset, bool] = UNSET
     alrtoln: Union[Unset, bool] = UNSET
@@ -51,9 +51,11 @@ class PfsenseResult:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if msg is not UNSET:
-            field_dict["msg"] = msg
+        field_dict.update(
+            {
+                "msg": msg,
+            }
+        )
         if alrt is not UNSET:
             field_dict["alrt"] = alrt
         if sb is not UNSET:
@@ -74,7 +76,7 @@ class PfsenseResult:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        msg = d.pop("msg", UNSET)
+        msg = d.pop("msg")
 
         alrt = d.pop("alrt", UNSET)
 

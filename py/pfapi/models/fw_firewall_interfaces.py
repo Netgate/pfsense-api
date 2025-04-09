@@ -13,9 +13,15 @@ class FWFirewallInterfaces:
     """
     Attributes:
         interfaces (Union[Unset, List[str]]):
+        wan (Union[Unset, str]):
+        lan (Union[Unset, str]):
+        ethernet (Union[Unset, bool]): ethernet filter is enabled
     """
 
     interfaces: Union[Unset, List[str]] = UNSET
+    wan: Union[Unset, str] = UNSET
+    lan: Union[Unset, str] = UNSET
+    ethernet: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -23,11 +29,23 @@ class FWFirewallInterfaces:
         if not isinstance(self.interfaces, Unset):
             interfaces = self.interfaces
 
+        wan = self.wan
+
+        lan = self.lan
+
+        ethernet = self.ethernet
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if interfaces is not UNSET:
             field_dict["interfaces"] = interfaces
+        if wan is not UNSET:
+            field_dict["wan"] = wan
+        if lan is not UNSET:
+            field_dict["lan"] = lan
+        if ethernet is not UNSET:
+            field_dict["ethernet"] = ethernet
 
         return field_dict
 
@@ -36,8 +54,17 @@ class FWFirewallInterfaces:
         d = src_dict.copy()
         interfaces = cast(List[str], d.pop("interfaces", UNSET))
 
+        wan = d.pop("wan", UNSET)
+
+        lan = d.pop("lan", UNSET)
+
+        ethernet = d.pop("ethernet", UNSET)
+
         fw_firewall_interfaces = cls(
             interfaces=interfaces,
+            wan=wan,
+            lan=lan,
+            ethernet=ethernet,
         )
 
         fw_firewall_interfaces.additional_properties = d

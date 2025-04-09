@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar, cast
+from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="FwBulkToggle")
 
@@ -10,36 +12,37 @@ T = TypeVar("T", bound="FwBulkToggle")
 class FwBulkToggle:
     """
     Attributes:
-        rules (List[str]):
-        value (bool):
+        rules (Union[Unset, List[str]]):
+        value (Union[Unset, bool]):
     """
 
-    rules: List[str]
-    value: bool
+    rules: Union[Unset, List[str]] = UNSET
+    value: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        rules = self.rules
+        rules: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.rules, Unset):
+            rules = self.rules
 
         value = self.value
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "rules": rules,
-                "value": value,
-            }
-        )
+        field_dict.update({})
+        if rules is not UNSET:
+            field_dict["rules"] = rules
+        if value is not UNSET:
+            field_dict["value"] = value
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        rules = cast(List[str], d.pop("rules"))
+        rules = cast(List[str], d.pop("rules", UNSET))
 
-        value = d.pop("value")
+        value = d.pop("value", UNSET)
 
         fw_bulk_toggle = cls(
             rules=rules,

@@ -17,28 +17,28 @@ T = TypeVar("T", bound="IPSecWidget")
 class IPSecWidget:
     """
     Attributes:
-        phase1s_active (int):
-        phase1s_total (int):
-        phase2s_active (int):
-        phase2s_total (int):
-        total_active (int):
-        total_inactive (int):
-        mobile_users (int):
-        mobile_active (int):
-        mobile_total (int):
+        phase1s_active (Union[Unset, int]):
+        phase1s_total (Union[Unset, int]):
+        phase2s_active (Union[Unset, int]):
+        phase2s_total (Union[Unset, int]):
+        total_active (Union[Unset, int]):
+        total_inactive (Union[Unset, int]):
+        mobile_users (Union[Unset, int]):
+        mobile_active (Union[Unset, int]):
+        mobile_total (Union[Unset, int]):
         tunnels (Union[Unset, List['IPSecWidgetTunnel']]):
         mobile (Union[Unset, List['IPSecWidgetMobile']]):
     """
 
-    phase1s_active: int
-    phase1s_total: int
-    phase2s_active: int
-    phase2s_total: int
-    total_active: int
-    total_inactive: int
-    mobile_users: int
-    mobile_active: int
-    mobile_total: int
+    phase1s_active: Union[Unset, int] = UNSET
+    phase1s_total: Union[Unset, int] = UNSET
+    phase2s_active: Union[Unset, int] = UNSET
+    phase2s_total: Union[Unset, int] = UNSET
+    total_active: Union[Unset, int] = UNSET
+    total_inactive: Union[Unset, int] = UNSET
+    mobile_users: Union[Unset, int] = UNSET
+    mobile_active: Union[Unset, int] = UNSET
+    mobile_total: Union[Unset, int] = UNSET
     tunnels: Union[Unset, List["IPSecWidgetTunnel"]] = UNSET
     mobile: Union[Unset, List["IPSecWidgetMobile"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -78,19 +78,25 @@ class IPSecWidget:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "phase1s_active": phase1s_active,
-                "phase1s_total": phase1s_total,
-                "phase2s_active": phase2s_active,
-                "phase2s_total": phase2s_total,
-                "total_active": total_active,
-                "total_inactive": total_inactive,
-                "mobile_users": mobile_users,
-                "mobile_active": mobile_active,
-                "mobile_total": mobile_total,
-            }
-        )
+        field_dict.update({})
+        if phase1s_active is not UNSET:
+            field_dict["phase1s_active"] = phase1s_active
+        if phase1s_total is not UNSET:
+            field_dict["phase1s_total"] = phase1s_total
+        if phase2s_active is not UNSET:
+            field_dict["phase2s_active"] = phase2s_active
+        if phase2s_total is not UNSET:
+            field_dict["phase2s_total"] = phase2s_total
+        if total_active is not UNSET:
+            field_dict["total_active"] = total_active
+        if total_inactive is not UNSET:
+            field_dict["total_inactive"] = total_inactive
+        if mobile_users is not UNSET:
+            field_dict["mobile_users"] = mobile_users
+        if mobile_active is not UNSET:
+            field_dict["mobile_active"] = mobile_active
+        if mobile_total is not UNSET:
+            field_dict["mobile_total"] = mobile_total
         if tunnels is not UNSET:
             field_dict["tunnels"] = tunnels
         if mobile is not UNSET:
@@ -104,23 +110,23 @@ class IPSecWidget:
         from ..models.ip_sec_widget_tunnel import IPSecWidgetTunnel
 
         d = src_dict.copy()
-        phase1s_active = d.pop("phase1s_active")
+        phase1s_active = d.pop("phase1s_active", UNSET)
 
-        phase1s_total = d.pop("phase1s_total")
+        phase1s_total = d.pop("phase1s_total", UNSET)
 
-        phase2s_active = d.pop("phase2s_active")
+        phase2s_active = d.pop("phase2s_active", UNSET)
 
-        phase2s_total = d.pop("phase2s_total")
+        phase2s_total = d.pop("phase2s_total", UNSET)
 
-        total_active = d.pop("total_active")
+        total_active = d.pop("total_active", UNSET)
 
-        total_inactive = d.pop("total_inactive")
+        total_inactive = d.pop("total_inactive", UNSET)
 
-        mobile_users = d.pop("mobile_users")
+        mobile_users = d.pop("mobile_users", UNSET)
 
-        mobile_active = d.pop("mobile_active")
+        mobile_active = d.pop("mobile_active", UNSET)
 
-        mobile_total = d.pop("mobile_total")
+        mobile_total = d.pop("mobile_total", UNSET)
 
         tunnels = []
         _tunnels = d.pop("tunnels", UNSET)

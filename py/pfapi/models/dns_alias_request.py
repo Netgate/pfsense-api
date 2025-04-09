@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DnsAliasRequest")
 
@@ -10,12 +12,12 @@ T = TypeVar("T", bound="DnsAliasRequest")
 class DnsAliasRequest:
     """
     Attributes:
-        aliasname (str):
-        address (str):
+        aliasname (Union[Unset, str]):
+        address (Union[Unset, str]):
     """
 
-    aliasname: str
-    address: str
+    aliasname: Union[Unset, str] = UNSET
+    address: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,21 +27,20 @@ class DnsAliasRequest:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "aliasname": aliasname,
-                "address": address,
-            }
-        )
+        field_dict.update({})
+        if aliasname is not UNSET:
+            field_dict["aliasname"] = aliasname
+        if address is not UNSET:
+            field_dict["address"] = address
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        aliasname = d.pop("aliasname")
+        aliasname = d.pop("aliasname", UNSET)
 
-        address = d.pop("address")
+        address = d.pop("address", UNSET)
 
         dns_alias_request = cls(
             aliasname=aliasname,

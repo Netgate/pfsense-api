@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar, cast
+from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="NetIfDevConfig")
 
@@ -10,22 +12,22 @@ T = TypeVar("T", bound="NetIfDevConfig")
 class NetIfDevConfig:
     """
     Attributes:
-        device (str): original name of the device
-        bus_path (str): BUS path of the device
-        mac (str): original MAC address
-        parent_device (str): parent device
-        parent_path (str): parent device bus path
-        iftype (str): interface type
-        members (List[str]):
+        device (Union[Unset, str]): original name of the device
+        bus_path (Union[Unset, str]): BUS path of the device
+        mac (Union[Unset, str]): original MAC address
+        parent_device (Union[Unset, str]): parent device
+        parent_path (Union[Unset, str]): parent device bus path
+        iftype (Union[Unset, str]): interface type
+        members (Union[Unset, List[str]]):
     """
 
-    device: str
-    bus_path: str
-    mac: str
-    parent_device: str
-    parent_path: str
-    iftype: str
-    members: List[str]
+    device: Union[Unset, str] = UNSET
+    bus_path: Union[Unset, str] = UNSET
+    mac: Union[Unset, str] = UNSET
+    parent_device: Union[Unset, str] = UNSET
+    parent_path: Union[Unset, str] = UNSET
+    iftype: Union[Unset, str] = UNSET
+    members: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -41,40 +43,46 @@ class NetIfDevConfig:
 
         iftype = self.iftype
 
-        members = self.members
+        members: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.members, Unset):
+            members = self.members
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "device": device,
-                "bus_path": bus_path,
-                "mac": mac,
-                "parent_device": parent_device,
-                "parent_path": parent_path,
-                "iftype": iftype,
-                "members": members,
-            }
-        )
+        field_dict.update({})
+        if device is not UNSET:
+            field_dict["device"] = device
+        if bus_path is not UNSET:
+            field_dict["bus_path"] = bus_path
+        if mac is not UNSET:
+            field_dict["mac"] = mac
+        if parent_device is not UNSET:
+            field_dict["parent_device"] = parent_device
+        if parent_path is not UNSET:
+            field_dict["parent_path"] = parent_path
+        if iftype is not UNSET:
+            field_dict["iftype"] = iftype
+        if members is not UNSET:
+            field_dict["members"] = members
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        device = d.pop("device")
+        device = d.pop("device", UNSET)
 
-        bus_path = d.pop("bus_path")
+        bus_path = d.pop("bus_path", UNSET)
 
-        mac = d.pop("mac")
+        mac = d.pop("mac", UNSET)
 
-        parent_device = d.pop("parent_device")
+        parent_device = d.pop("parent_device", UNSET)
 
-        parent_path = d.pop("parent_path")
+        parent_path = d.pop("parent_path", UNSET)
 
-        iftype = d.pop("iftype")
+        iftype = d.pop("iftype", UNSET)
 
-        members = cast(List[str], d.pop("members"))
+        members = cast(List[str], d.pop("members", UNSET))
 
         net_if_dev_config = cls(
             device=device,

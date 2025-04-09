@@ -1,7 +1,9 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.ntp_acls import NtpAcls
@@ -17,37 +19,46 @@ T = TypeVar("T", bound="ServicesNtpConfig")
 class ServicesNtpConfig:
     """
     Attributes:
-        settings (NtpSettings):
-        acls (NtpAcls):
-        serial_gps (NtpSerialGps):
-        pps (NtpPps):
+        settings (Union[Unset, NtpSettings]):
+        acls (Union[Unset, NtpAcls]):
+        serial_gps (Union[Unset, NtpSerialGps]):
+        pps (Union[Unset, NtpPps]):
     """
 
-    settings: "NtpSettings"
-    acls: "NtpAcls"
-    serial_gps: "NtpSerialGps"
-    pps: "NtpPps"
+    settings: Union[Unset, "NtpSettings"] = UNSET
+    acls: Union[Unset, "NtpAcls"] = UNSET
+    serial_gps: Union[Unset, "NtpSerialGps"] = UNSET
+    pps: Union[Unset, "NtpPps"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        settings = self.settings.to_dict()
+        settings: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.settings, Unset):
+            settings = self.settings.to_dict()
 
-        acls = self.acls.to_dict()
+        acls: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.acls, Unset):
+            acls = self.acls.to_dict()
 
-        serial_gps = self.serial_gps.to_dict()
+        serial_gps: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.serial_gps, Unset):
+            serial_gps = self.serial_gps.to_dict()
 
-        pps = self.pps.to_dict()
+        pps: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.pps, Unset):
+            pps = self.pps.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "settings": settings,
-                "acls": acls,
-                "serial_gps": serial_gps,
-                "pps": pps,
-            }
-        )
+        field_dict.update({})
+        if settings is not UNSET:
+            field_dict["settings"] = settings
+        if acls is not UNSET:
+            field_dict["acls"] = acls
+        if serial_gps is not UNSET:
+            field_dict["serial_gps"] = serial_gps
+        if pps is not UNSET:
+            field_dict["pps"] = pps
 
         return field_dict
 
@@ -59,13 +70,33 @@ class ServicesNtpConfig:
         from ..models.ntp_settings import NtpSettings
 
         d = src_dict.copy()
-        settings = NtpSettings.from_dict(d.pop("settings"))
+        _settings = d.pop("settings", UNSET)
+        settings: Union[Unset, NtpSettings]
+        if isinstance(_settings, Unset):
+            settings = UNSET
+        else:
+            settings = NtpSettings.from_dict(_settings)
 
-        acls = NtpAcls.from_dict(d.pop("acls"))
+        _acls = d.pop("acls", UNSET)
+        acls: Union[Unset, NtpAcls]
+        if isinstance(_acls, Unset):
+            acls = UNSET
+        else:
+            acls = NtpAcls.from_dict(_acls)
 
-        serial_gps = NtpSerialGps.from_dict(d.pop("serial_gps"))
+        _serial_gps = d.pop("serial_gps", UNSET)
+        serial_gps: Union[Unset, NtpSerialGps]
+        if isinstance(_serial_gps, Unset):
+            serial_gps = UNSET
+        else:
+            serial_gps = NtpSerialGps.from_dict(_serial_gps)
 
-        pps = NtpPps.from_dict(d.pop("pps"))
+        _pps = d.pop("pps", UNSET)
+        pps: Union[Unset, NtpPps]
+        if isinstance(_pps, Unset):
+            pps = UNSET
+        else:
+            pps = NtpPps.from_dict(_pps)
 
         services_ntp_config = cls(
             settings=settings,

@@ -18,22 +18,26 @@ T = TypeVar("T", bound="DNSResolverConfigInfo")
 class DNSResolverConfigInfo:
     """
     Attributes:
-        config (DNSResolverConfig):
-        interfaces (DNSResolverConfigInfoInterfaces):
+        config (Union[Unset, DNSResolverConfig]):
+        interfaces (Union[Unset, DNSResolverConfigInfoInterfaces]):
         certs (Union[Unset, List['ServiceCertificate']]):
         scripts (Union[Unset, List[str]]):
     """
 
-    config: "DNSResolverConfig"
-    interfaces: "DNSResolverConfigInfoInterfaces"
+    config: Union[Unset, "DNSResolverConfig"] = UNSET
+    interfaces: Union[Unset, "DNSResolverConfigInfoInterfaces"] = UNSET
     certs: Union[Unset, List["ServiceCertificate"]] = UNSET
     scripts: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        config = self.config.to_dict()
+        config: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.config, Unset):
+            config = self.config.to_dict()
 
-        interfaces = self.interfaces.to_dict()
+        interfaces: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.interfaces, Unset):
+            interfaces = self.interfaces.to_dict()
 
         certs: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.certs, Unset):
@@ -48,12 +52,11 @@ class DNSResolverConfigInfo:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "config": config,
-                "interfaces": interfaces,
-            }
-        )
+        field_dict.update({})
+        if config is not UNSET:
+            field_dict["config"] = config
+        if interfaces is not UNSET:
+            field_dict["interfaces"] = interfaces
         if certs is not UNSET:
             field_dict["certs"] = certs
         if scripts is not UNSET:
@@ -68,9 +71,19 @@ class DNSResolverConfigInfo:
         from ..models.service_certificate import ServiceCertificate
 
         d = src_dict.copy()
-        config = DNSResolverConfig.from_dict(d.pop("config"))
+        _config = d.pop("config", UNSET)
+        config: Union[Unset, DNSResolverConfig]
+        if isinstance(_config, Unset):
+            config = UNSET
+        else:
+            config = DNSResolverConfig.from_dict(_config)
 
-        interfaces = DNSResolverConfigInfoInterfaces.from_dict(d.pop("interfaces"))
+        _interfaces = d.pop("interfaces", UNSET)
+        interfaces: Union[Unset, DNSResolverConfigInfoInterfaces]
+        if isinstance(_interfaces, Unset):
+            interfaces = UNSET
+        else:
+            interfaces = DNSResolverConfigInfoInterfaces.from_dict(_interfaces)
 
         certs = []
         _certs = d.pop("certs", UNSET)

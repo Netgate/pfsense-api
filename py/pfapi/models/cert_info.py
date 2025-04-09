@@ -14,33 +14,39 @@ class CertInfo:
     Attributes:
         issuer (str):
         serial (str):
-        sig_digest (str):
-        key_usage (str):
-        key_type (str):
-        key_size (int):
-        dn (str):
-        hash_ (str):
-        subject_key_id (str):
-        auth_key_id (str):
-        valid_from (str):
-        expires (str):
-        raw_data (str):
+        sig_digest (Union[Unset, str]):
+        dn (Union[Unset, str]):
+        san (Union[Unset, str]):
+        key_usage (Union[Unset, str]):
+        key_type (Union[Unset, str]):
+        key_size (Union[Unset, int]):
+        ext_key_usage (Union[Unset, str]):
+        hash_ (Union[Unset, str]):
+        subject_key_id (Union[Unset, str]):
+        auth_key_id (Union[Unset, str]):
+        valid_from (Union[Unset, str]):
+        expires (Union[Unset, str]):
+        raw_data (Union[Unset, str]):
+        cert_fingerprint (Union[Unset, str]): sha256 hash of the raw certificate
         private_key (Union[Unset, str]):
     """
 
     issuer: str
     serial: str
-    sig_digest: str
-    key_usage: str
-    key_type: str
-    key_size: int
-    dn: str
-    hash_: str
-    subject_key_id: str
-    auth_key_id: str
-    valid_from: str
-    expires: str
-    raw_data: str
+    sig_digest: Union[Unset, str] = UNSET
+    dn: Union[Unset, str] = UNSET
+    san: Union[Unset, str] = UNSET
+    key_usage: Union[Unset, str] = UNSET
+    key_type: Union[Unset, str] = UNSET
+    key_size: Union[Unset, int] = UNSET
+    ext_key_usage: Union[Unset, str] = UNSET
+    hash_: Union[Unset, str] = UNSET
+    subject_key_id: Union[Unset, str] = UNSET
+    auth_key_id: Union[Unset, str] = UNSET
+    valid_from: Union[Unset, str] = UNSET
+    expires: Union[Unset, str] = UNSET
+    raw_data: Union[Unset, str] = UNSET
+    cert_fingerprint: Union[Unset, str] = UNSET
     private_key: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -51,13 +57,17 @@ class CertInfo:
 
         sig_digest = self.sig_digest
 
+        dn = self.dn
+
+        san = self.san
+
         key_usage = self.key_usage
 
         key_type = self.key_type
 
         key_size = self.key_size
 
-        dn = self.dn
+        ext_key_usage = self.ext_key_usage
 
         hash_ = self.hash_
 
@@ -71,6 +81,8 @@ class CertInfo:
 
         raw_data = self.raw_data
 
+        cert_fingerprint = self.cert_fingerprint
+
         private_key = self.private_key
 
         field_dict: Dict[str, Any] = {}
@@ -79,19 +91,36 @@ class CertInfo:
             {
                 "issuer": issuer,
                 "serial": serial,
-                "sig_digest": sig_digest,
-                "key_usage": key_usage,
-                "key_type": key_type,
-                "key_size": key_size,
-                "dn": dn,
-                "hash": hash_,
-                "subject_key_id": subject_key_id,
-                "auth_key_id": auth_key_id,
-                "valid_from": valid_from,
-                "expires": expires,
-                "raw_data": raw_data,
             }
         )
+        if sig_digest is not UNSET:
+            field_dict["sig_digest"] = sig_digest
+        if dn is not UNSET:
+            field_dict["dn"] = dn
+        if san is not UNSET:
+            field_dict["san"] = san
+        if key_usage is not UNSET:
+            field_dict["key_usage"] = key_usage
+        if key_type is not UNSET:
+            field_dict["key_type"] = key_type
+        if key_size is not UNSET:
+            field_dict["key_size"] = key_size
+        if ext_key_usage is not UNSET:
+            field_dict["ext_key_usage"] = ext_key_usage
+        if hash_ is not UNSET:
+            field_dict["hash"] = hash_
+        if subject_key_id is not UNSET:
+            field_dict["subject_key_id"] = subject_key_id
+        if auth_key_id is not UNSET:
+            field_dict["auth_key_id"] = auth_key_id
+        if valid_from is not UNSET:
+            field_dict["valid_from"] = valid_from
+        if expires is not UNSET:
+            field_dict["expires"] = expires
+        if raw_data is not UNSET:
+            field_dict["raw_data"] = raw_data
+        if cert_fingerprint is not UNSET:
+            field_dict["cert_fingerprint"] = cert_fingerprint
         if private_key is not UNSET:
             field_dict["private_key"] = private_key
 
@@ -104,27 +133,33 @@ class CertInfo:
 
         serial = d.pop("serial")
 
-        sig_digest = d.pop("sig_digest")
+        sig_digest = d.pop("sig_digest", UNSET)
 
-        key_usage = d.pop("key_usage")
+        dn = d.pop("dn", UNSET)
 
-        key_type = d.pop("key_type")
+        san = d.pop("san", UNSET)
 
-        key_size = d.pop("key_size")
+        key_usage = d.pop("key_usage", UNSET)
 
-        dn = d.pop("dn")
+        key_type = d.pop("key_type", UNSET)
 
-        hash_ = d.pop("hash")
+        key_size = d.pop("key_size", UNSET)
 
-        subject_key_id = d.pop("subject_key_id")
+        ext_key_usage = d.pop("ext_key_usage", UNSET)
 
-        auth_key_id = d.pop("auth_key_id")
+        hash_ = d.pop("hash", UNSET)
 
-        valid_from = d.pop("valid_from")
+        subject_key_id = d.pop("subject_key_id", UNSET)
 
-        expires = d.pop("expires")
+        auth_key_id = d.pop("auth_key_id", UNSET)
 
-        raw_data = d.pop("raw_data")
+        valid_from = d.pop("valid_from", UNSET)
+
+        expires = d.pop("expires", UNSET)
+
+        raw_data = d.pop("raw_data", UNSET)
+
+        cert_fingerprint = d.pop("cert_fingerprint", UNSET)
 
         private_key = d.pop("private_key", UNSET)
 
@@ -132,16 +167,19 @@ class CertInfo:
             issuer=issuer,
             serial=serial,
             sig_digest=sig_digest,
+            dn=dn,
+            san=san,
             key_usage=key_usage,
             key_type=key_type,
             key_size=key_size,
-            dn=dn,
+            ext_key_usage=ext_key_usage,
             hash_=hash_,
             subject_key_id=subject_key_id,
             auth_key_id=auth_key_id,
             valid_from=valid_from,
             expires=expires,
             raw_data=raw_data,
+            cert_fingerprint=cert_fingerprint,
             private_key=private_key,
         )
 

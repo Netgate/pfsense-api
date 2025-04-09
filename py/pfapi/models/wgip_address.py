@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="WGIPAddress")
 
@@ -10,20 +12,16 @@ T = TypeVar("T", bound="WGIPAddress")
 class WGIPAddress:
     """
     Attributes:
-        address (str):
-        mask (str):
-        descr (str):
+        address (str): CIDR address/mask
+        descr (Union[Unset, str]):
     """
 
     address: str
-    mask: str
-    descr: str
+    descr: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         address = self.address
-
-        mask = self.mask
 
         descr = self.descr
 
@@ -32,10 +30,10 @@ class WGIPAddress:
         field_dict.update(
             {
                 "address": address,
-                "mask": mask,
-                "descr": descr,
             }
         )
+        if descr is not UNSET:
+            field_dict["descr"] = descr
 
         return field_dict
 
@@ -44,13 +42,10 @@ class WGIPAddress:
         d = src_dict.copy()
         address = d.pop("address")
 
-        mask = d.pop("mask")
-
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
         wgip_address = cls(
             address=address,
-            mask=mask,
             descr=descr,
         )
 

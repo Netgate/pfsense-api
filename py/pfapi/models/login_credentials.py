@@ -12,8 +12,8 @@ T = TypeVar("T", bound="LoginCredentials")
 class LoginCredentials:
     """
     Attributes:
-        username (str):
-        password (str):
+        username (str): base64 encoded
+        password (str): base64 encoded
         secondfactor (Union[Unset, str]):
     """
 

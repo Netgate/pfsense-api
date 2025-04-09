@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="IPSecWidgetTunnel")
 
@@ -10,16 +12,16 @@ T = TypeVar("T", bound="IPSecWidgetTunnel")
 class IPSecWidgetTunnel:
     """
     Attributes:
-        source (str):
-        destination (str):
-        description (str):
-        status (str):
+        source (Union[Unset, str]):
+        destination (Union[Unset, str]):
+        description (Union[Unset, str]):
+        status (Union[Unset, str]):
     """
 
-    source: str
-    destination: str
-    description: str
-    status: str
+    source: Union[Unset, str] = UNSET
+    destination: Union[Unset, str] = UNSET
+    description: Union[Unset, str] = UNSET
+    status: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -33,27 +35,28 @@ class IPSecWidgetTunnel:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "source": source,
-                "destination": destination,
-                "description": description,
-                "status": status,
-            }
-        )
+        field_dict.update({})
+        if source is not UNSET:
+            field_dict["source"] = source
+        if destination is not UNSET:
+            field_dict["destination"] = destination
+        if description is not UNSET:
+            field_dict["description"] = description
+        if status is not UNSET:
+            field_dict["status"] = status
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        source = d.pop("source")
+        source = d.pop("source", UNSET)
 
-        destination = d.pop("destination")
+        destination = d.pop("destination", UNSET)
 
-        description = d.pop("description")
+        description = d.pop("description", UNSET)
 
-        status = d.pop("status")
+        status = d.pop("status", UNSET)
 
         ip_sec_widget_tunnel = cls(
             source=source,

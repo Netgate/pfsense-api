@@ -16,8 +16,8 @@ T = TypeVar("T", bound="GroupStatus")
 class GroupStatus:
     """
     Attributes:
-        name (str):
-        descr (str):
+        name (Union[Unset, str]):
+        descr (Union[Unset, str]):
         tier1 (Union[Unset, List['Tier']]):
         tier2 (Union[Unset, List['Tier']]):
         tier3 (Union[Unset, List['Tier']]):
@@ -25,8 +25,8 @@ class GroupStatus:
         tier5 (Union[Unset, List['Tier']]):
     """
 
-    name: str
-    descr: str
+    name: Union[Unset, str] = UNSET
+    descr: Union[Unset, str] = UNSET
     tier1: Union[Unset, List["Tier"]] = UNSET
     tier2: Union[Unset, List["Tier"]] = UNSET
     tier3: Union[Unset, List["Tier"]] = UNSET
@@ -76,12 +76,11 @@ class GroupStatus:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "descr": descr,
-            }
-        )
+        field_dict.update({})
+        if name is not UNSET:
+            field_dict["name"] = name
+        if descr is not UNSET:
+            field_dict["descr"] = descr
         if tier1 is not UNSET:
             field_dict["tier1"] = tier1
         if tier2 is not UNSET:
@@ -100,9 +99,9 @@ class GroupStatus:
         from ..models.tier import Tier
 
         d = src_dict.copy()
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
         tier1 = []
         _tier1 = d.pop("tier1", UNSET)

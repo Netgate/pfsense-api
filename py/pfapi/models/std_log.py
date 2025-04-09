@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="StdLog")
 
@@ -10,16 +12,16 @@ T = TypeVar("T", bound="StdLog")
 class StdLog:
     """
     Attributes:
-        time (str):
-        proc (str):
-        pid (str):
-        msg (str):
+        time (Union[Unset, str]):
+        proc (Union[Unset, str]):
+        pid (Union[Unset, str]):
+        msg (Union[Unset, str]):
     """
 
-    time: str
-    proc: str
-    pid: str
-    msg: str
+    time: Union[Unset, str] = UNSET
+    proc: Union[Unset, str] = UNSET
+    pid: Union[Unset, str] = UNSET
+    msg: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -33,27 +35,28 @@ class StdLog:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "time": time,
-                "proc": proc,
-                "pid": pid,
-                "msg": msg,
-            }
-        )
+        field_dict.update({})
+        if time is not UNSET:
+            field_dict["time"] = time
+        if proc is not UNSET:
+            field_dict["proc"] = proc
+        if pid is not UNSET:
+            field_dict["pid"] = pid
+        if msg is not UNSET:
+            field_dict["msg"] = msg
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        time = d.pop("time")
+        time = d.pop("time", UNSET)
 
-        proc = d.pop("proc")
+        proc = d.pop("proc", UNSET)
 
-        pid = d.pop("pid")
+        pid = d.pop("pid", UNSET)
 
-        msg = d.pop("msg")
+        msg = d.pop("msg", UNSET)
 
         std_log = cls(
             time=time,

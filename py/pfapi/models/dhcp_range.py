@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DhcpRange")
 
@@ -10,12 +12,12 @@ T = TypeVar("T", bound="DhcpRange")
 class DhcpRange:
     """
     Attributes:
-        from_ (str):
-        to (str):
+        from_ (Union[Unset, str]):
+        to (Union[Unset, str]):
     """
 
-    from_: str
-    to: str
+    from_: Union[Unset, str] = UNSET
+    to: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,21 +27,20 @@ class DhcpRange:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "from": from_,
-                "to": to,
-            }
-        )
+        field_dict.update({})
+        if from_ is not UNSET:
+            field_dict["from"] = from_
+        if to is not UNSET:
+            field_dict["to"] = to
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        from_ = d.pop("from")
+        from_ = d.pop("from", UNSET)
 
-        to = d.pop("to")
+        to = d.pop("to", UNSET)
 
         dhcp_range = cls(
             from_=from_,

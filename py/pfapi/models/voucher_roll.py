@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="VoucherRoll")
 
@@ -11,23 +13,23 @@ class VoucherRoll:
     """
     Attributes:
         zone (str):
-        number (int):
-        minutes (int):
-        descr (str):
-        count (str):
-        used (str):
-        active (bool):
-        lastsync (int):
+        number (Union[Unset, int]):
+        minutes (Union[Unset, int]):
+        descr (Union[Unset, str]):
+        count (Union[Unset, str]):
+        used (Union[Unset, str]):
+        active (Union[Unset, bool]):
+        lastsync (Union[Unset, int]):
     """
 
     zone: str
-    number: int
-    minutes: int
-    descr: str
-    count: str
-    used: str
-    active: bool
-    lastsync: int
+    number: Union[Unset, int] = UNSET
+    minutes: Union[Unset, int] = UNSET
+    descr: Union[Unset, str] = UNSET
+    count: Union[Unset, str] = UNSET
+    used: Union[Unset, str] = UNSET
+    active: Union[Unset, bool] = UNSET
+    lastsync: Union[Unset, int] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -52,15 +54,22 @@ class VoucherRoll:
         field_dict.update(
             {
                 "zone": zone,
-                "number": number,
-                "minutes": minutes,
-                "descr": descr,
-                "count": count,
-                "used": used,
-                "active": active,
-                "lastsync": lastsync,
             }
         )
+        if number is not UNSET:
+            field_dict["number"] = number
+        if minutes is not UNSET:
+            field_dict["minutes"] = minutes
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if count is not UNSET:
+            field_dict["count"] = count
+        if used is not UNSET:
+            field_dict["used"] = used
+        if active is not UNSET:
+            field_dict["active"] = active
+        if lastsync is not UNSET:
+            field_dict["lastsync"] = lastsync
 
         return field_dict
 
@@ -69,19 +78,19 @@ class VoucherRoll:
         d = src_dict.copy()
         zone = d.pop("zone")
 
-        number = d.pop("number")
+        number = d.pop("number", UNSET)
 
-        minutes = d.pop("minutes")
+        minutes = d.pop("minutes", UNSET)
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
-        count = d.pop("count")
+        count = d.pop("count", UNSET)
 
-        used = d.pop("used")
+        used = d.pop("used", UNSET)
 
-        active = d.pop("active")
+        active = d.pop("active", UNSET)
 
-        lastsync = d.pop("lastsync")
+        lastsync = d.pop("lastsync", UNSET)
 
         voucher_roll = cls(
             zone=zone,

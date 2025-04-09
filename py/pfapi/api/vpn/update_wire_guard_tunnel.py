@@ -12,15 +12,15 @@ from ...types import Response
 
 
 def _get_kwargs(
-    id: str,
+    name: str,
     *,
     body: WGTunnel,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
     _kwargs: Dict[str, Any] = {
-        "method": "put",
-        "url": f"/vpn/wg/tunnel/{id}",
+        "method": "post",
+        "url": f"/vpn/wg/tunnel/{name}",
     }
 
     _body = body.to_dict()
@@ -61,7 +61,7 @@ def _build_response(
 
 
 def sync_detailed(
-    id: str,
+    name: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: WGTunnel,
@@ -69,7 +69,7 @@ def sync_detailed(
     """Update WireGuard Tunnel
 
     Args:
-        id (str):
+        name (str):
         body (WGTunnel): valid values:
             enabled = "yes", "no"
 
@@ -82,7 +82,7 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
-        id=id,
+        name=name,
         body=body,
     )
 
@@ -94,7 +94,7 @@ def sync_detailed(
 
 
 def sync(
-    id: str,
+    name: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: WGTunnel,
@@ -102,7 +102,7 @@ def sync(
     """Update WireGuard Tunnel
 
     Args:
-        id (str):
+        name (str):
         body (WGTunnel): valid values:
             enabled = "yes", "no"
 
@@ -115,14 +115,14 @@ def sync(
     """
 
     return sync_detailed(
-        id=id,
+        name=name,
         client=client,
         body=body,
     ).parsed
 
 
 async def asyncio_detailed(
-    id: str,
+    name: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: WGTunnel,
@@ -130,7 +130,7 @@ async def asyncio_detailed(
     """Update WireGuard Tunnel
 
     Args:
-        id (str):
+        name (str):
         body (WGTunnel): valid values:
             enabled = "yes", "no"
 
@@ -143,7 +143,7 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
-        id=id,
+        name=name,
         body=body,
     )
 
@@ -153,7 +153,7 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    id: str,
+    name: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: WGTunnel,
@@ -161,7 +161,7 @@ async def asyncio(
     """Update WireGuard Tunnel
 
     Args:
-        id (str):
+        name (str):
         body (WGTunnel): valid values:
             enabled = "yes", "no"
 
@@ -175,7 +175,7 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
-            id=id,
+            name=name,
             client=client,
             body=body,
         )

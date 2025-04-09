@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SysinfoUpdate")
 
@@ -10,12 +12,12 @@ T = TypeVar("T", bound="SysinfoUpdate")
 class SysinfoUpdate:
     """
     Attributes:
-        hostname (str):
-        time (str):
+        hostname (Union[Unset, str]):
+        time (Union[Unset, str]):
     """
 
-    hostname: str
-    time: str
+    hostname: Union[Unset, str] = UNSET
+    time: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,21 +27,20 @@ class SysinfoUpdate:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "hostname": hostname,
-                "time": time,
-            }
-        )
+        field_dict.update({})
+        if hostname is not UNSET:
+            field_dict["hostname"] = hostname
+        if time is not UNSET:
+            field_dict["time"] = time
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        hostname = d.pop("hostname")
+        hostname = d.pop("hostname", UNSET)
 
-        time = d.pop("time")
+        time = d.pop("time", UNSET)
 
         sysinfo_update = cls(
             hostname=hostname,

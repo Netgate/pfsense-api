@@ -13,9 +13,9 @@ class UserAddReq:
     """
     Attributes:
         username (str):
-        full_name (str):
         uid (Union[Unset, int]):
         password (Union[Unset, str]):
+        full_name (Union[Unset, str]):
         groups (Union[Unset, List[str]]):
         cert_refids (Union[Unset, List[str]]):
         authorized_keys (Union[Unset, str]):
@@ -28,9 +28,9 @@ class UserAddReq:
     """
 
     username: str
-    full_name: str
     uid: Union[Unset, int] = UNSET
     password: Union[Unset, str] = UNSET
+    full_name: Union[Unset, str] = UNSET
     groups: Union[Unset, List[str]] = UNSET
     cert_refids: Union[Unset, List[str]] = UNSET
     authorized_keys: Union[Unset, str] = UNSET
@@ -45,11 +45,11 @@ class UserAddReq:
     def to_dict(self) -> Dict[str, Any]:
         username = self.username
 
-        full_name = self.full_name
-
         uid = self.uid
 
         password = self.password
+
+        full_name = self.full_name
 
         groups: Union[Unset, List[str]] = UNSET
         if not isinstance(self.groups, Unset):
@@ -80,13 +80,14 @@ class UserAddReq:
         field_dict.update(
             {
                 "username": username,
-                "full_name": full_name,
             }
         )
         if uid is not UNSET:
             field_dict["uid"] = uid
         if password is not UNSET:
             field_dict["password"] = password
+        if full_name is not UNSET:
+            field_dict["full_name"] = full_name
         if groups is not UNSET:
             field_dict["groups"] = groups
         if cert_refids is not UNSET:
@@ -113,11 +114,11 @@ class UserAddReq:
         d = src_dict.copy()
         username = d.pop("username")
 
-        full_name = d.pop("full_name")
-
         uid = d.pop("uid", UNSET)
 
         password = d.pop("password", UNSET)
+
+        full_name = d.pop("full_name", UNSET)
 
         groups = cast(List[str], d.pop("groups", UNSET))
 
@@ -139,9 +140,9 @@ class UserAddReq:
 
         user_add_req = cls(
             username=username,
-            full_name=full_name,
             uid=uid,
             password=password,
+            full_name=full_name,
             groups=groups,
             cert_refids=cert_refids,
             authorized_keys=authorized_keys,

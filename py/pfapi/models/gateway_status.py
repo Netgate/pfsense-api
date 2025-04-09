@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="GatewayStatus")
 
@@ -12,24 +14,24 @@ class GatewayStatus:
     Attributes:
         name (str):
         gateway (str):
-        monitor (str):
-        descr (str):
-        delay (str):
-        stddev (str):
-        loss (str):
-        status (str):
-        display (str):
+        monitor (Union[Unset, str]):
+        descr (Union[Unset, str]):
+        delay (Union[Unset, str]):
+        stddev (Union[Unset, str]):
+        loss (Union[Unset, str]):
+        status (Union[Unset, str]):
+        display (Union[Unset, str]):
     """
 
     name: str
     gateway: str
-    monitor: str
-    descr: str
-    delay: str
-    stddev: str
-    loss: str
-    status: str
-    display: str
+    monitor: Union[Unset, str] = UNSET
+    descr: Union[Unset, str] = UNSET
+    delay: Union[Unset, str] = UNSET
+    stddev: Union[Unset, str] = UNSET
+    loss: Union[Unset, str] = UNSET
+    status: Union[Unset, str] = UNSET
+    display: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -57,15 +59,22 @@ class GatewayStatus:
             {
                 "name": name,
                 "gateway": gateway,
-                "monitor": monitor,
-                "descr": descr,
-                "delay": delay,
-                "stddev": stddev,
-                "loss": loss,
-                "status": status,
-                "display": display,
             }
         )
+        if monitor is not UNSET:
+            field_dict["monitor"] = monitor
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if delay is not UNSET:
+            field_dict["delay"] = delay
+        if stddev is not UNSET:
+            field_dict["stddev"] = stddev
+        if loss is not UNSET:
+            field_dict["loss"] = loss
+        if status is not UNSET:
+            field_dict["status"] = status
+        if display is not UNSET:
+            field_dict["display"] = display
 
         return field_dict
 
@@ -76,19 +85,19 @@ class GatewayStatus:
 
         gateway = d.pop("gateway")
 
-        monitor = d.pop("monitor")
+        monitor = d.pop("monitor", UNSET)
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
-        delay = d.pop("delay")
+        delay = d.pop("delay", UNSET)
 
-        stddev = d.pop("stddev")
+        stddev = d.pop("stddev", UNSET)
 
-        loss = d.pop("loss")
+        loss = d.pop("loss", UNSET)
 
-        status = d.pop("status")
+        status = d.pop("status", UNSET)
 
-        display = d.pop("display")
+        display = d.pop("display", UNSET)
 
         gateway_status = cls(
             name=name,

@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar, cast
+from typing import Any, Dict, List, Type, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="NexusControllerInfo")
 
@@ -10,18 +12,20 @@ T = TypeVar("T", bound="NexusControllerInfo")
 class NexusControllerInfo:
     """
     Attributes:
-        addresses (List[str]):
-        public_key (str):
-        vpn_addr (str):
+        addresses (Union[Unset, List[str]]):
+        public_key (Union[Unset, str]):
+        vpn_addr (Union[Unset, str]):
     """
 
-    addresses: List[str]
-    public_key: str
-    vpn_addr: str
+    addresses: Union[Unset, List[str]] = UNSET
+    public_key: Union[Unset, str] = UNSET
+    vpn_addr: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        addresses = self.addresses
+        addresses: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.addresses, Unset):
+            addresses = self.addresses
 
         public_key = self.public_key
 
@@ -29,24 +33,24 @@ class NexusControllerInfo:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "addresses": addresses,
-                "public_key": public_key,
-                "vpn_addr": vpn_addr,
-            }
-        )
+        field_dict.update({})
+        if addresses is not UNSET:
+            field_dict["addresses"] = addresses
+        if public_key is not UNSET:
+            field_dict["public_key"] = public_key
+        if vpn_addr is not UNSET:
+            field_dict["vpn_addr"] = vpn_addr
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        addresses = cast(List[str], d.pop("addresses"))
+        addresses = cast(List[str], d.pop("addresses", UNSET))
 
-        public_key = d.pop("public_key")
+        public_key = d.pop("public_key", UNSET)
 
-        vpn_addr = d.pop("vpn_addr")
+        vpn_addr = d.pop("vpn_addr", UNSET)
 
         nexus_controller_info = cls(
             addresses=addresses,

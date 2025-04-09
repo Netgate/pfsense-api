@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="NDPEntry")
 
@@ -10,22 +12,22 @@ T = TypeVar("T", bound="NDPEntry")
 class NDPEntry:
     """
     Attributes:
-        ipv6 (str):
-        mac (str):
-        iface (str):
-        hostname (str):
-        exp (str):
-        status (str):
-        flags (str):
+        ipv6 (Union[Unset, str]):
+        mac (Union[Unset, str]):
+        iface (Union[Unset, str]):
+        hostname (Union[Unset, str]):
+        exp (Union[Unset, str]):
+        status (Union[Unset, str]):
+        flags (Union[Unset, str]):
     """
 
-    ipv6: str
-    mac: str
-    iface: str
-    hostname: str
-    exp: str
-    status: str
-    flags: str
+    ipv6: Union[Unset, str] = UNSET
+    mac: Union[Unset, str] = UNSET
+    iface: Union[Unset, str] = UNSET
+    hostname: Union[Unset, str] = UNSET
+    exp: Union[Unset, str] = UNSET
+    status: Union[Unset, str] = UNSET
+    flags: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -45,36 +47,40 @@ class NDPEntry:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "ipv6": ipv6,
-                "mac": mac,
-                "iface": iface,
-                "hostname": hostname,
-                "exp": exp,
-                "status": status,
-                "flags": flags,
-            }
-        )
+        field_dict.update({})
+        if ipv6 is not UNSET:
+            field_dict["ipv6"] = ipv6
+        if mac is not UNSET:
+            field_dict["mac"] = mac
+        if iface is not UNSET:
+            field_dict["iface"] = iface
+        if hostname is not UNSET:
+            field_dict["hostname"] = hostname
+        if exp is not UNSET:
+            field_dict["exp"] = exp
+        if status is not UNSET:
+            field_dict["status"] = status
+        if flags is not UNSET:
+            field_dict["flags"] = flags
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        ipv6 = d.pop("ipv6")
+        ipv6 = d.pop("ipv6", UNSET)
 
-        mac = d.pop("mac")
+        mac = d.pop("mac", UNSET)
 
-        iface = d.pop("iface")
+        iface = d.pop("iface", UNSET)
 
-        hostname = d.pop("hostname")
+        hostname = d.pop("hostname", UNSET)
 
-        exp = d.pop("exp")
+        exp = d.pop("exp", UNSET)
 
-        status = d.pop("status")
+        status = d.pop("status", UNSET)
 
-        flags = d.pop("flags")
+        flags = d.pop("flags", UNSET)
 
         ndp_entry = cls(
             ipv6=ipv6,

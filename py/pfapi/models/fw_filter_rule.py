@@ -7,6 +7,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.fw_addr_port import FWAddrPort
+    from ..models.fw_filter_rule_nat import FWFilterRuleNAT
     from ..models.fw_rule_state import FWRuleState
     from ..models.fw_user_timestamp import FWUserTimestamp
     from ..models.tcp_flags import TCPFlags
@@ -19,15 +20,16 @@ T = TypeVar("T", bound="FWFilterRule")
 class FWFilterRule:
     """
     Attributes:
-        disabled (bool):
-        interface (str):
-        ipprotocol (str):
-        protocol (str):
         id (Union[Unset, str]):
+        disabled (Union[Unset, bool]):
         readonly (Union[Unset, bool]):
+        floating (Union[Unset, bool]): floating rule
+        ethernet (Union[Unset, bool]): ethernet rule
         gateway (Union[Unset, str]):
         tracker (Union[Unset, str]):
-        type (Union[Unset, str]):
+        type (Union[Unset, str]): pass, block, reject (non-ethernet), match (floating)
+        interface (Union[Unset, str]):
+        ipprotocol (Union[Unset, str]):
         tag (Union[Unset, str]):
         tagged (Union[Unset, str]):
         max_ (Union[Unset, str]):
@@ -35,10 +37,11 @@ class FWFilterRule:
         max_src_conn (Union[Unset, str]):
         max_src_states (Union[Unset, str]):
         statetimeout (Union[Unset, str]):
+        statepolicy (Union[Unset, str]): "" (global default), if-bound, floating
         statetype (Union[Unset, str]):
         state (Union[Unset, FWRuleState]):
         os (Union[Unset, str]):
-        floating (Union[Unset, bool]):
+        protocol (Union[Unset, str]):
         direction (Union[Unset, str]):
         quick (Union[Unset, bool]):
         log (Union[Unset, bool]):
@@ -46,7 +49,7 @@ class FWFilterRule:
         allowopts (Union[Unset, bool]):
         disablereplyto (Union[Unset, bool]):
         nottagged (Union[Unset, bool]):
-        pflow (Union[Unset, bool]):
+        pflow (Union[Unset, str]): "" (global default), "enabled", "disabled"
         max_src_conn_rate (Union[Unset, str]):
         max_src_conn_rates (Union[Unset, str]):
         tcpflags1 (Union[Unset, str]):
@@ -59,27 +62,33 @@ class FWFilterRule:
         nosync (Union[Unset, bool]):
         vlanprio (Union[Unset, str]):
         vlanprioset (Union[Unset, str]):
-        dnpipe (Union[Unset, str]):
-        pdnpipe (Union[Unset, str]):
-        ackqueue (Union[Unset, str]):
-        defaultqueue (Union[Unset, str]):
+        dnpipe (Union[Unset, str]): inbound pipe limiter
+        pdnpipe (Union[Unset, str]): outbound pipe limiter
+        ackqueue (Union[Unset, str]): acknowledgement shaper queue
+        defaultqueue (Union[Unset, str]): default shaper queue
+        bridgeto (Union[Unset, str]): ethernet rule, bridge to interface
         source (Union[Unset, FWAddrPort]):
         sched (Union[Unset, str]):
         destination (Union[Unset, FWAddrPort]):
         descr (Union[Unset, str]):
+        srcmac (Union[Unset, str]): source MAC address for ethernet rule
+        dstmac (Union[Unset, str]): destination MAC address for ethernet rule
+        nat (Union[Unset, FWFilterRuleNAT]):
         updated (Union[Unset, FWUserTimestamp]):
         created (Union[Unset, FWUserTimestamp]):
+        associated_rule_id (Union[Unset, str]):
     """
 
-    disabled: bool
-    interface: str
-    ipprotocol: str
-    protocol: str
     id: Union[Unset, str] = UNSET
+    disabled: Union[Unset, bool] = UNSET
     readonly: Union[Unset, bool] = UNSET
+    floating: Union[Unset, bool] = UNSET
+    ethernet: Union[Unset, bool] = UNSET
     gateway: Union[Unset, str] = UNSET
     tracker: Union[Unset, str] = UNSET
     type: Union[Unset, str] = UNSET
+    interface: Union[Unset, str] = UNSET
+    ipprotocol: Union[Unset, str] = UNSET
     tag: Union[Unset, str] = UNSET
     tagged: Union[Unset, str] = UNSET
     max_: Union[Unset, str] = UNSET
@@ -87,10 +96,11 @@ class FWFilterRule:
     max_src_conn: Union[Unset, str] = UNSET
     max_src_states: Union[Unset, str] = UNSET
     statetimeout: Union[Unset, str] = UNSET
+    statepolicy: Union[Unset, str] = UNSET
     statetype: Union[Unset, str] = UNSET
     state: Union[Unset, "FWRuleState"] = UNSET
     os: Union[Unset, str] = UNSET
-    floating: Union[Unset, bool] = UNSET
+    protocol: Union[Unset, str] = UNSET
     direction: Union[Unset, str] = UNSET
     quick: Union[Unset, bool] = UNSET
     log: Union[Unset, bool] = UNSET
@@ -98,7 +108,7 @@ class FWFilterRule:
     allowopts: Union[Unset, bool] = UNSET
     disablereplyto: Union[Unset, bool] = UNSET
     nottagged: Union[Unset, bool] = UNSET
-    pflow: Union[Unset, bool] = UNSET
+    pflow: Union[Unset, str] = UNSET
     max_src_conn_rate: Union[Unset, str] = UNSET
     max_src_conn_rates: Union[Unset, str] = UNSET
     tcpflags1: Union[Unset, str] = UNSET
@@ -115,32 +125,39 @@ class FWFilterRule:
     pdnpipe: Union[Unset, str] = UNSET
     ackqueue: Union[Unset, str] = UNSET
     defaultqueue: Union[Unset, str] = UNSET
+    bridgeto: Union[Unset, str] = UNSET
     source: Union[Unset, "FWAddrPort"] = UNSET
     sched: Union[Unset, str] = UNSET
     destination: Union[Unset, "FWAddrPort"] = UNSET
     descr: Union[Unset, str] = UNSET
+    srcmac: Union[Unset, str] = UNSET
+    dstmac: Union[Unset, str] = UNSET
+    nat: Union[Unset, "FWFilterRuleNAT"] = UNSET
     updated: Union[Unset, "FWUserTimestamp"] = UNSET
     created: Union[Unset, "FWUserTimestamp"] = UNSET
+    associated_rule_id: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        disabled = self.disabled
-
-        interface = self.interface
-
-        ipprotocol = self.ipprotocol
-
-        protocol = self.protocol
-
         id = self.id
 
+        disabled = self.disabled
+
         readonly = self.readonly
+
+        floating = self.floating
+
+        ethernet = self.ethernet
 
         gateway = self.gateway
 
         tracker = self.tracker
 
         type = self.type
+
+        interface = self.interface
+
+        ipprotocol = self.ipprotocol
 
         tag = self.tag
 
@@ -156,6 +173,8 @@ class FWFilterRule:
 
         statetimeout = self.statetimeout
 
+        statepolicy = self.statepolicy
+
         statetype = self.statetype
 
         state: Union[Unset, Dict[str, Any]] = UNSET
@@ -164,7 +183,7 @@ class FWFilterRule:
 
         os = self.os
 
-        floating = self.floating
+        protocol = self.protocol
 
         direction = self.direction
 
@@ -218,6 +237,8 @@ class FWFilterRule:
 
         defaultqueue = self.defaultqueue
 
+        bridgeto = self.bridgeto
+
         source: Union[Unset, Dict[str, Any]] = UNSET
         if not isinstance(self.source, Unset):
             source = self.source.to_dict()
@@ -230,6 +251,14 @@ class FWFilterRule:
 
         descr = self.descr
 
+        srcmac = self.srcmac
+
+        dstmac = self.dstmac
+
+        nat: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.nat, Unset):
+            nat = self.nat.to_dict()
+
         updated: Union[Unset, Dict[str, Any]] = UNSET
         if not isinstance(self.updated, Unset):
             updated = self.updated.to_dict()
@@ -238,26 +267,31 @@ class FWFilterRule:
         if not isinstance(self.created, Unset):
             created = self.created.to_dict()
 
+        associated_rule_id = self.associated_rule_id
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "disabled": disabled,
-                "interface": interface,
-                "ipprotocol": ipprotocol,
-                "protocol": protocol,
-            }
-        )
+        field_dict.update({})
         if id is not UNSET:
             field_dict["id"] = id
+        if disabled is not UNSET:
+            field_dict["disabled"] = disabled
         if readonly is not UNSET:
             field_dict["readonly"] = readonly
+        if floating is not UNSET:
+            field_dict["floating"] = floating
+        if ethernet is not UNSET:
+            field_dict["ethernet"] = ethernet
         if gateway is not UNSET:
             field_dict["gateway"] = gateway
         if tracker is not UNSET:
             field_dict["tracker"] = tracker
         if type is not UNSET:
             field_dict["type"] = type
+        if interface is not UNSET:
+            field_dict["interface"] = interface
+        if ipprotocol is not UNSET:
+            field_dict["ipprotocol"] = ipprotocol
         if tag is not UNSET:
             field_dict["tag"] = tag
         if tagged is not UNSET:
@@ -272,14 +306,16 @@ class FWFilterRule:
             field_dict["max_src_states"] = max_src_states
         if statetimeout is not UNSET:
             field_dict["statetimeout"] = statetimeout
+        if statepolicy is not UNSET:
+            field_dict["statepolicy"] = statepolicy
         if statetype is not UNSET:
             field_dict["statetype"] = statetype
         if state is not UNSET:
             field_dict["state"] = state
         if os is not UNSET:
             field_dict["os"] = os
-        if floating is not UNSET:
-            field_dict["floating"] = floating
+        if protocol is not UNSET:
+            field_dict["protocol"] = protocol
         if direction is not UNSET:
             field_dict["direction"] = direction
         if quick is not UNSET:
@@ -328,6 +364,8 @@ class FWFilterRule:
             field_dict["ackqueue"] = ackqueue
         if defaultqueue is not UNSET:
             field_dict["defaultqueue"] = defaultqueue
+        if bridgeto is not UNSET:
+            field_dict["bridgeto"] = bridgeto
         if source is not UNSET:
             field_dict["source"] = source
         if sched is not UNSET:
@@ -336,38 +374,49 @@ class FWFilterRule:
             field_dict["destination"] = destination
         if descr is not UNSET:
             field_dict["descr"] = descr
+        if srcmac is not UNSET:
+            field_dict["srcmac"] = srcmac
+        if dstmac is not UNSET:
+            field_dict["dstmac"] = dstmac
+        if nat is not UNSET:
+            field_dict["nat"] = nat
         if updated is not UNSET:
             field_dict["updated"] = updated
         if created is not UNSET:
             field_dict["created"] = created
+        if associated_rule_id is not UNSET:
+            field_dict["associated_rule_id"] = associated_rule_id
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         from ..models.fw_addr_port import FWAddrPort
+        from ..models.fw_filter_rule_nat import FWFilterRuleNAT
         from ..models.fw_rule_state import FWRuleState
         from ..models.fw_user_timestamp import FWUserTimestamp
         from ..models.tcp_flags import TCPFlags
 
         d = src_dict.copy()
-        disabled = d.pop("disabled")
-
-        interface = d.pop("interface")
-
-        ipprotocol = d.pop("ipprotocol")
-
-        protocol = d.pop("protocol")
-
         id = d.pop("id", UNSET)
 
+        disabled = d.pop("disabled", UNSET)
+
         readonly = d.pop("readonly", UNSET)
+
+        floating = d.pop("floating", UNSET)
+
+        ethernet = d.pop("ethernet", UNSET)
 
         gateway = d.pop("gateway", UNSET)
 
         tracker = d.pop("tracker", UNSET)
 
         type = d.pop("type", UNSET)
+
+        interface = d.pop("interface", UNSET)
+
+        ipprotocol = d.pop("ipprotocol", UNSET)
 
         tag = d.pop("tag", UNSET)
 
@@ -383,6 +432,8 @@ class FWFilterRule:
 
         statetimeout = d.pop("statetimeout", UNSET)
 
+        statepolicy = d.pop("statepolicy", UNSET)
+
         statetype = d.pop("statetype", UNSET)
 
         _state = d.pop("state", UNSET)
@@ -394,7 +445,7 @@ class FWFilterRule:
 
         os = d.pop("os", UNSET)
 
-        floating = d.pop("floating", UNSET)
+        protocol = d.pop("protocol", UNSET)
 
         direction = d.pop("direction", UNSET)
 
@@ -454,6 +505,8 @@ class FWFilterRule:
 
         defaultqueue = d.pop("defaultqueue", UNSET)
 
+        bridgeto = d.pop("bridgeto", UNSET)
+
         _source = d.pop("source", UNSET)
         source: Union[Unset, FWAddrPort]
         if isinstance(_source, Unset):
@@ -472,6 +525,17 @@ class FWFilterRule:
 
         descr = d.pop("descr", UNSET)
 
+        srcmac = d.pop("srcmac", UNSET)
+
+        dstmac = d.pop("dstmac", UNSET)
+
+        _nat = d.pop("nat", UNSET)
+        nat: Union[Unset, FWFilterRuleNAT]
+        if isinstance(_nat, Unset):
+            nat = UNSET
+        else:
+            nat = FWFilterRuleNAT.from_dict(_nat)
+
         _updated = d.pop("updated", UNSET)
         updated: Union[Unset, FWUserTimestamp]
         if isinstance(_updated, Unset):
@@ -486,16 +550,19 @@ class FWFilterRule:
         else:
             created = FWUserTimestamp.from_dict(_created)
 
+        associated_rule_id = d.pop("associated_rule_id", UNSET)
+
         fw_filter_rule = cls(
-            disabled=disabled,
-            interface=interface,
-            ipprotocol=ipprotocol,
-            protocol=protocol,
             id=id,
+            disabled=disabled,
             readonly=readonly,
+            floating=floating,
+            ethernet=ethernet,
             gateway=gateway,
             tracker=tracker,
             type=type,
+            interface=interface,
+            ipprotocol=ipprotocol,
             tag=tag,
             tagged=tagged,
             max_=max_,
@@ -503,10 +570,11 @@ class FWFilterRule:
             max_src_conn=max_src_conn,
             max_src_states=max_src_states,
             statetimeout=statetimeout,
+            statepolicy=statepolicy,
             statetype=statetype,
             state=state,
             os=os,
-            floating=floating,
+            protocol=protocol,
             direction=direction,
             quick=quick,
             log=log,
@@ -531,12 +599,17 @@ class FWFilterRule:
             pdnpipe=pdnpipe,
             ackqueue=ackqueue,
             defaultqueue=defaultqueue,
+            bridgeto=bridgeto,
             source=source,
             sched=sched,
             destination=destination,
             descr=descr,
+            srcmac=srcmac,
+            dstmac=dstmac,
+            nat=nat,
             updated=updated,
             created=created,
+            associated_rule_id=associated_rule_id,
         )
 
         fw_filter_rule.additional_properties = d

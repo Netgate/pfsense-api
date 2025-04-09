@@ -13,19 +13,25 @@ class DiagShellCommand:
     """
     Attributes:
         cmd (Union[Unset, str]):
+        timeout (Union[Unset, int]): number of seconds to wait for command before timing out, default 90, max 300
     """
 
     cmd: Union[Unset, str] = UNSET
+    timeout: Union[Unset, int] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         cmd = self.cmd
+
+        timeout = self.timeout
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if cmd is not UNSET:
             field_dict["cmd"] = cmd
+        if timeout is not UNSET:
+            field_dict["timeout"] = timeout
 
         return field_dict
 
@@ -34,8 +40,11 @@ class DiagShellCommand:
         d = src_dict.copy()
         cmd = d.pop("cmd", UNSET)
 
+        timeout = d.pop("timeout", UNSET)
+
         diag_shell_command = cls(
             cmd=cmd,
+            timeout=timeout,
         )
 
         diag_shell_command.additional_properties = d

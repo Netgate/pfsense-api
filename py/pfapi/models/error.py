@@ -17,17 +17,21 @@ class Error:
     """
     Attributes:
         errcode (Union[Unset, int]): Error code
+        errlevel (Union[Unset, str]): Error level - debug, info, error (default)
         errmsg (Union[Unset, str]): Error message
         alerts (Union[Unset, PfsenseResult]):
     """
 
     errcode: Union[Unset, int] = UNSET
+    errlevel: Union[Unset, str] = UNSET
     errmsg: Union[Unset, str] = UNSET
     alerts: Union[Unset, "PfsenseResult"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         errcode = self.errcode
+
+        errlevel = self.errlevel
 
         errmsg = self.errmsg
 
@@ -40,6 +44,8 @@ class Error:
         field_dict.update({})
         if errcode is not UNSET:
             field_dict["errcode"] = errcode
+        if errlevel is not UNSET:
+            field_dict["errlevel"] = errlevel
         if errmsg is not UNSET:
             field_dict["errmsg"] = errmsg
         if alerts is not UNSET:
@@ -54,6 +60,8 @@ class Error:
         d = src_dict.copy()
         errcode = d.pop("errcode", UNSET)
 
+        errlevel = d.pop("errlevel", UNSET)
+
         errmsg = d.pop("errmsg", UNSET)
 
         _alerts = d.pop("alerts", UNSET)
@@ -65,6 +73,7 @@ class Error:
 
         error = cls(
             errcode=errcode,
+            errlevel=errlevel,
             errmsg=errmsg,
             alerts=alerts,
         )

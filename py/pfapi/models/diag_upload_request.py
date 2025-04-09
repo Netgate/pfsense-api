@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DiagUploadRequest")
 
@@ -10,12 +12,12 @@ T = TypeVar("T", bound="DiagUploadRequest")
 class DiagUploadRequest:
     """
     Attributes:
-        filename (str):
-        contents (str):
+        filename (Union[Unset, str]):
+        contents (Union[Unset, str]):
     """
 
-    filename: str
-    contents: str
+    filename: Union[Unset, str] = UNSET
+    contents: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,21 +27,20 @@ class DiagUploadRequest:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "filename": filename,
-                "contents": contents,
-            }
-        )
+        field_dict.update({})
+        if filename is not UNSET:
+            field_dict["filename"] = filename
+        if contents is not UNSET:
+            field_dict["contents"] = contents
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        filename = d.pop("filename")
+        filename = d.pop("filename", UNSET)
 
-        contents = d.pop("contents")
+        contents = d.pop("contents", UNSET)
 
         diag_upload_request = cls(
             filename=filename,

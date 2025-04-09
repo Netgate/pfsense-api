@@ -11,11 +11,11 @@ from ...types import Response
 
 
 def _get_kwargs(
-    id: str,
+    pubkey: str,
 ) -> Dict[str, Any]:
     _kwargs: Dict[str, Any] = {
         "method": "delete",
-        "url": f"/vpn/wg/peer/{id}",
+        "url": f"/vpn/wg/peer/{pubkey}",
     }
 
     return _kwargs
@@ -50,14 +50,14 @@ def _build_response(
 
 
 def sync_detailed(
-    id: str,
+    pubkey: str,
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Response[Union[Error, PfsenseResult]]:
     """Delete WireGuard Peer
 
     Args:
-        id (str):
+        pubkey (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -68,7 +68,7 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
-        id=id,
+        pubkey=pubkey,
     )
 
     response = client.get_httpx_client().request(
@@ -79,14 +79,14 @@ def sync_detailed(
 
 
 def sync(
-    id: str,
+    pubkey: str,
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Optional[Union[Error, PfsenseResult]]:
     """Delete WireGuard Peer
 
     Args:
-        id (str):
+        pubkey (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -97,20 +97,20 @@ def sync(
     """
 
     return sync_detailed(
-        id=id,
+        pubkey=pubkey,
         client=client,
     ).parsed
 
 
 async def asyncio_detailed(
-    id: str,
+    pubkey: str,
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Response[Union[Error, PfsenseResult]]:
     """Delete WireGuard Peer
 
     Args:
-        id (str):
+        pubkey (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -121,7 +121,7 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
-        id=id,
+        pubkey=pubkey,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -130,14 +130,14 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    id: str,
+    pubkey: str,
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Optional[Union[Error, PfsenseResult]]:
     """Delete WireGuard Peer
 
     Args:
-        id (str):
+        pubkey (str):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -149,7 +149,7 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
-            id=id,
+            pubkey=pubkey,
             client=client,
         )
     ).parsed

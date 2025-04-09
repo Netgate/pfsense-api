@@ -25,9 +25,9 @@ class NewCertReq:
     - one of the method_xxxx
 
         Attributes:
-            name (str):
-            descr (str):
-            description (str):
+            name (Union[Unset, str]):
+            descr (Union[Unset, str]):
+            description (Union[Unset, str]):
             userid (Union[Unset, int]):
             method_internal (Union[Unset, CertMethodNew]): Options for creating/updating an internal certificate.
                 For key type, size and options, query /system/certopts for the
@@ -57,9 +57,9 @@ class NewCertReq:
                 An existing csr_refid or new CSR (base64 encoded "csr") must be provided.
     """
 
-    name: str
-    descr: str
-    description: str
+    name: Union[Unset, str] = UNSET
+    descr: Union[Unset, str] = UNSET
+    description: Union[Unset, str] = UNSET
     userid: Union[Unset, int] = UNSET
     method_internal: Union[Unset, "CertMethodNew"] = UNSET
     method_existing_pem: Union[Unset, "CertMethodExistingPEM"] = UNSET
@@ -99,13 +99,13 @@ class NewCertReq:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "descr": descr,
-                "description": description,
-            }
-        )
+        field_dict.update({})
+        if name is not UNSET:
+            field_dict["name"] = name
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if description is not UNSET:
+            field_dict["description"] = description
         if userid is not UNSET:
             field_dict["userid"] = userid
         if method_internal is not UNSET:
@@ -130,11 +130,11 @@ class NewCertReq:
         from ..models.cert_method_signing_request import CertMethodSigningRequest
 
         d = src_dict.copy()
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
-        description = d.pop("description")
+        description = d.pop("description", UNSET)
 
         userid = d.pop("userid", UNSET)
 

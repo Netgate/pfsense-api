@@ -5,17 +5,29 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
+from ...models.delete_bootenvs import DeleteBootenvs
 from ...models.error import Error
 from ...models.result import Result
 from ...types import Response
 
 
-def _get_kwargs() -> Dict[str, Any]:
+def _get_kwargs(
+    *,
+    body: DeleteBootenvs,
+) -> Dict[str, Any]:
+    headers: Dict[str, Any] = {}
+
     _kwargs: Dict[str, Any] = {
-        "method": "delete",
-        "url": "/system/bootenv",
+        "method": "post",
+        "url": "/system/bootenv/delete",
     }
 
+    _body = body.to_dict()
+
+    _kwargs["json"] = _body
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
@@ -50,8 +62,12 @@ def _build_response(
 def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
+    body: DeleteBootenvs,
 ) -> Response[Union[Error, Result]]:
-    """Deletes a bootenv by its name
+    """Delete multiple bootenvs by name
+
+    Args:
+        body (DeleteBootenvs):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -61,7 +77,9 @@ def sync_detailed(
         Response[Union[Error, Result]]
     """
 
-    kwargs = _get_kwargs()
+    kwargs = _get_kwargs(
+        body=body,
+    )
 
     response = client.get_httpx_client().request(
         **kwargs,
@@ -73,8 +91,12 @@ def sync_detailed(
 def sync(
     *,
     client: Union[AuthenticatedClient, Client],
+    body: DeleteBootenvs,
 ) -> Optional[Union[Error, Result]]:
-    """Deletes a bootenv by its name
+    """Delete multiple bootenvs by name
+
+    Args:
+        body (DeleteBootenvs):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -86,14 +108,19 @@ def sync(
 
     return sync_detailed(
         client=client,
+        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
+    body: DeleteBootenvs,
 ) -> Response[Union[Error, Result]]:
-    """Deletes a bootenv by its name
+    """Delete multiple bootenvs by name
+
+    Args:
+        body (DeleteBootenvs):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -103,7 +130,9 @@ async def asyncio_detailed(
         Response[Union[Error, Result]]
     """
 
-    kwargs = _get_kwargs()
+    kwargs = _get_kwargs(
+        body=body,
+    )
 
     response = await client.get_async_httpx_client().request(**kwargs)
 
@@ -113,8 +142,12 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
+    body: DeleteBootenvs,
 ) -> Optional[Union[Error, Result]]:
-    """Deletes a bootenv by its name
+    """Delete multiple bootenvs by name
+
+    Args:
+        body (DeleteBootenvs):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -127,5 +160,6 @@ async def asyncio(
     return (
         await asyncio_detailed(
             client=client,
+            body=body,
         )
     ).parsed

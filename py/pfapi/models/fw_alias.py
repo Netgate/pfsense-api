@@ -18,33 +18,29 @@ class FWAlias:
     """
     Attributes:
         name (str):
-        address (str):
-        type (FWAliasType):
-        truncated (bool):
+        address (Union[Unset, str]): space separated list of addresses
         targets (Union[Unset, List['FWTarget']]):
         descr (Union[Unset, str]):
+        type (Union[Unset, FWAliasType]): host, network, url, urltable, urltable_ports, port, or url_ports
         detail (Union[Unset, str]):
         updatefreq (Union[Unset, str]):
+        truncated (Union[Unset, bool]):
     """
 
     name: str
-    address: str
-    type: FWAliasType
-    truncated: bool
+    address: Union[Unset, str] = UNSET
     targets: Union[Unset, List["FWTarget"]] = UNSET
     descr: Union[Unset, str] = UNSET
+    type: Union[Unset, FWAliasType] = UNSET
     detail: Union[Unset, str] = UNSET
     updatefreq: Union[Unset, str] = UNSET
+    truncated: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         name = self.name
 
         address = self.address
-
-        type = self.type.value
-
-        truncated = self.truncated
 
         targets: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.targets, Unset):
@@ -55,28 +51,37 @@ class FWAlias:
 
         descr = self.descr
 
+        type: Union[Unset, str] = UNSET
+        if not isinstance(self.type, Unset):
+            type = self.type.value
+
         detail = self.detail
 
         updatefreq = self.updatefreq
+
+        truncated = self.truncated
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
                 "name": name,
-                "address": address,
-                "type": type,
-                "truncated": truncated,
             }
         )
+        if address is not UNSET:
+            field_dict["address"] = address
         if targets is not UNSET:
             field_dict["targets"] = targets
         if descr is not UNSET:
             field_dict["descr"] = descr
+        if type is not UNSET:
+            field_dict["type"] = type
         if detail is not UNSET:
             field_dict["detail"] = detail
         if updatefreq is not UNSET:
             field_dict["updatefreq"] = updatefreq
+        if truncated is not UNSET:
+            field_dict["truncated"] = truncated
 
         return field_dict
 
@@ -87,11 +92,7 @@ class FWAlias:
         d = src_dict.copy()
         name = d.pop("name")
 
-        address = d.pop("address")
-
-        type = FWAliasType(d.pop("type"))
-
-        truncated = d.pop("truncated")
+        address = d.pop("address", UNSET)
 
         targets = []
         _targets = d.pop("targets", UNSET)
@@ -102,19 +103,28 @@ class FWAlias:
 
         descr = d.pop("descr", UNSET)
 
+        _type = d.pop("type", UNSET)
+        type: Union[Unset, FWAliasType]
+        if isinstance(_type, Unset):
+            type = UNSET
+        else:
+            type = FWAliasType(_type)
+
         detail = d.pop("detail", UNSET)
 
         updatefreq = d.pop("updatefreq", UNSET)
 
+        truncated = d.pop("truncated", UNSET)
+
         fw_alias = cls(
             name=name,
             address=address,
-            type=type,
-            truncated=truncated,
             targets=targets,
             descr=descr,
+            type=type,
             detail=detail,
             updatefreq=updatefreq,
+            truncated=truncated,
         )
 
         fw_alias.additional_properties = d

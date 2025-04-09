@@ -7,6 +7,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.igmp_proxy import IGMPProxy
+    from ..models.simple_interface import SimpleInterface
 
 
 T = TypeVar("T", bound="IGMPProxies")
@@ -16,69 +17,80 @@ T = TypeVar("T", bound="IGMPProxies")
 class IGMPProxies:
     """
     Attributes:
-        enable (bool):
-        verbose (bool):
-        interfaces (str):
-        igmpentry (Union[Unset, List['IGMPProxy']]):
+        igmpentries (Union[Unset, List['IGMPProxy']]):
+        enable (Union[Unset, bool]):
+        verbose (Union[Unset, bool]):
+        interfaces (Union[Unset, List['SimpleInterface']]):
     """
 
-    enable: bool
-    verbose: bool
-    interfaces: str
-    igmpentry: Union[Unset, List["IGMPProxy"]] = UNSET
+    igmpentries: Union[Unset, List["IGMPProxy"]] = UNSET
+    enable: Union[Unset, bool] = UNSET
+    verbose: Union[Unset, bool] = UNSET
+    interfaces: Union[Unset, List["SimpleInterface"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
+        igmpentries: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.igmpentries, Unset):
+            igmpentries = []
+            for igmpentries_item_data in self.igmpentries:
+                igmpentries_item = igmpentries_item_data.to_dict()
+                igmpentries.append(igmpentries_item)
+
         enable = self.enable
 
         verbose = self.verbose
 
-        interfaces = self.interfaces
-
-        igmpentry: Union[Unset, List[Dict[str, Any]]] = UNSET
-        if not isinstance(self.igmpentry, Unset):
-            igmpentry = []
-            for igmpentry_item_data in self.igmpentry:
-                igmpentry_item = igmpentry_item_data.to_dict()
-                igmpentry.append(igmpentry_item)
+        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.interfaces, Unset):
+            interfaces = []
+            for interfaces_item_data in self.interfaces:
+                interfaces_item = interfaces_item_data.to_dict()
+                interfaces.append(interfaces_item)
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "enable": enable,
-                "verbose": verbose,
-                "interfaces": interfaces,
-            }
-        )
-        if igmpentry is not UNSET:
-            field_dict["igmpentry"] = igmpentry
+        field_dict.update({})
+        if igmpentries is not UNSET:
+            field_dict["igmpentries"] = igmpentries
+        if enable is not UNSET:
+            field_dict["enable"] = enable
+        if verbose is not UNSET:
+            field_dict["verbose"] = verbose
+        if interfaces is not UNSET:
+            field_dict["interfaces"] = interfaces
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         from ..models.igmp_proxy import IGMPProxy
+        from ..models.simple_interface import SimpleInterface
 
         d = src_dict.copy()
-        enable = d.pop("enable")
+        igmpentries = []
+        _igmpentries = d.pop("igmpentries", UNSET)
+        for igmpentries_item_data in _igmpentries or []:
+            igmpentries_item = IGMPProxy.from_dict(igmpentries_item_data)
 
-        verbose = d.pop("verbose")
+            igmpentries.append(igmpentries_item)
 
-        interfaces = d.pop("interfaces")
+        enable = d.pop("enable", UNSET)
 
-        igmpentry = []
-        _igmpentry = d.pop("igmpentry", UNSET)
-        for igmpentry_item_data in _igmpentry or []:
-            igmpentry_item = IGMPProxy.from_dict(igmpentry_item_data)
+        verbose = d.pop("verbose", UNSET)
 
-            igmpentry.append(igmpentry_item)
+        interfaces = []
+        _interfaces = d.pop("interfaces", UNSET)
+        for interfaces_item_data in _interfaces or []:
+            interfaces_item = SimpleInterface.from_dict(interfaces_item_data)
+
+            interfaces.append(interfaces_item)
 
         igmp_proxies = cls(
+            igmpentries=igmpentries,
             enable=enable,
             verbose=verbose,
             interfaces=interfaces,
-            igmpentry=igmpentry,
         )
 
         igmp_proxies.additional_properties = d

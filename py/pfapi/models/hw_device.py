@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="HWDevice")
 
@@ -10,18 +12,18 @@ T = TypeVar("T", bound="HWDevice")
 class HWDevice:
     """
     Attributes:
-        name (str):
-        location (str):
-        type (str):
-        vendor (str):
-        class_ (str):
+        name (Union[Unset, str]):
+        location (Union[Unset, str]):
+        type (Union[Unset, str]):
+        vendor (Union[Unset, str]):
+        class_ (Union[Unset, str]):
     """
 
-    name: str
-    location: str
-    type: str
-    vendor: str
-    class_: str
+    name: Union[Unset, str] = UNSET
+    location: Union[Unset, str] = UNSET
+    type: Union[Unset, str] = UNSET
+    vendor: Union[Unset, str] = UNSET
+    class_: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -37,30 +39,32 @@ class HWDevice:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "location": location,
-                "type": type,
-                "vendor": vendor,
-                "class": class_,
-            }
-        )
+        field_dict.update({})
+        if name is not UNSET:
+            field_dict["name"] = name
+        if location is not UNSET:
+            field_dict["location"] = location
+        if type is not UNSET:
+            field_dict["type"] = type
+        if vendor is not UNSET:
+            field_dict["vendor"] = vendor
+        if class_ is not UNSET:
+            field_dict["class"] = class_
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        location = d.pop("location")
+        location = d.pop("location", UNSET)
 
-        type = d.pop("type")
+        type = d.pop("type", UNSET)
 
-        vendor = d.pop("vendor")
+        vendor = d.pop("vendor", UNSET)
 
-        class_ = d.pop("class")
+        class_ = d.pop("class", UNSET)
 
         hw_device = cls(
             name=name,

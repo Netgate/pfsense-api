@@ -18,31 +18,31 @@ class DhcpHighAvailabilityConfig:
 
     Attributes:
         enable (bool):
-        role (str): primary or standby
-        local_name (str):
-        local_address (str): address:port
-        remote_name (str):
-        remote_address (str): address:port
-        advance_options (DhcpHighAvailabilityAdvanceConfig):
-        enable_tls (bool):
-        tls_server_cert_refid (str):
-        enable_mutual_tls (bool):
-        mutual_client_cert_refid (str):
+        role (Union[Unset, str]): primary or standby
+        local_name (Union[Unset, str]):
+        local_address (Union[Unset, str]): address:port
+        remote_name (Union[Unset, str]):
+        remote_address (Union[Unset, str]): address:port
+        advance_options (Union[Unset, DhcpHighAvailabilityAdvanceConfig]):
+        enable_tls (Union[Unset, bool]):
+        tls_server_cert_refid (Union[Unset, str]):
+        enable_mutual_tls (Union[Unset, bool]):
+        mutual_client_cert_refid (Union[Unset, str]):
         available_tls_server_certs (Union[Unset, List[str]]):
         available_mutual_client_certs (Union[Unset, List[str]]):
     """
 
     enable: bool
-    role: str
-    local_name: str
-    local_address: str
-    remote_name: str
-    remote_address: str
-    advance_options: "DhcpHighAvailabilityAdvanceConfig"
-    enable_tls: bool
-    tls_server_cert_refid: str
-    enable_mutual_tls: bool
-    mutual_client_cert_refid: str
+    role: Union[Unset, str] = UNSET
+    local_name: Union[Unset, str] = UNSET
+    local_address: Union[Unset, str] = UNSET
+    remote_name: Union[Unset, str] = UNSET
+    remote_address: Union[Unset, str] = UNSET
+    advance_options: Union[Unset, "DhcpHighAvailabilityAdvanceConfig"] = UNSET
+    enable_tls: Union[Unset, bool] = UNSET
+    tls_server_cert_refid: Union[Unset, str] = UNSET
+    enable_mutual_tls: Union[Unset, bool] = UNSET
+    mutual_client_cert_refid: Union[Unset, str] = UNSET
     available_tls_server_certs: Union[Unset, List[str]] = UNSET
     available_mutual_client_certs: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -60,7 +60,9 @@ class DhcpHighAvailabilityConfig:
 
         remote_address = self.remote_address
 
-        advance_options = self.advance_options.to_dict()
+        advance_options: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.advance_options, Unset):
+            advance_options = self.advance_options.to_dict()
 
         enable_tls = self.enable_tls
 
@@ -83,18 +85,28 @@ class DhcpHighAvailabilityConfig:
         field_dict.update(
             {
                 "enable": enable,
-                "role": role,
-                "local_name": local_name,
-                "local_address": local_address,
-                "remote_name": remote_name,
-                "remote_address": remote_address,
-                "advance_options": advance_options,
-                "enable_tls": enable_tls,
-                "tls_server_cert_refid": tls_server_cert_refid,
-                "enable_mutual_tls": enable_mutual_tls,
-                "mutual_client_cert_refid": mutual_client_cert_refid,
             }
         )
+        if role is not UNSET:
+            field_dict["role"] = role
+        if local_name is not UNSET:
+            field_dict["local_name"] = local_name
+        if local_address is not UNSET:
+            field_dict["local_address"] = local_address
+        if remote_name is not UNSET:
+            field_dict["remote_name"] = remote_name
+        if remote_address is not UNSET:
+            field_dict["remote_address"] = remote_address
+        if advance_options is not UNSET:
+            field_dict["advance_options"] = advance_options
+        if enable_tls is not UNSET:
+            field_dict["enable_tls"] = enable_tls
+        if tls_server_cert_refid is not UNSET:
+            field_dict["tls_server_cert_refid"] = tls_server_cert_refid
+        if enable_mutual_tls is not UNSET:
+            field_dict["enable_mutual_tls"] = enable_mutual_tls
+        if mutual_client_cert_refid is not UNSET:
+            field_dict["mutual_client_cert_refid"] = mutual_client_cert_refid
         if available_tls_server_certs is not UNSET:
             field_dict["available_tls_server_certs"] = available_tls_server_certs
         if available_mutual_client_certs is not UNSET:
@@ -109,25 +121,30 @@ class DhcpHighAvailabilityConfig:
         d = src_dict.copy()
         enable = d.pop("enable")
 
-        role = d.pop("role")
+        role = d.pop("role", UNSET)
 
-        local_name = d.pop("local_name")
+        local_name = d.pop("local_name", UNSET)
 
-        local_address = d.pop("local_address")
+        local_address = d.pop("local_address", UNSET)
 
-        remote_name = d.pop("remote_name")
+        remote_name = d.pop("remote_name", UNSET)
 
-        remote_address = d.pop("remote_address")
+        remote_address = d.pop("remote_address", UNSET)
 
-        advance_options = DhcpHighAvailabilityAdvanceConfig.from_dict(d.pop("advance_options"))
+        _advance_options = d.pop("advance_options", UNSET)
+        advance_options: Union[Unset, DhcpHighAvailabilityAdvanceConfig]
+        if isinstance(_advance_options, Unset):
+            advance_options = UNSET
+        else:
+            advance_options = DhcpHighAvailabilityAdvanceConfig.from_dict(_advance_options)
 
-        enable_tls = d.pop("enable_tls")
+        enable_tls = d.pop("enable_tls", UNSET)
 
-        tls_server_cert_refid = d.pop("tls_server_cert_refid")
+        tls_server_cert_refid = d.pop("tls_server_cert_refid", UNSET)
 
-        enable_mutual_tls = d.pop("enable_mutual_tls")
+        enable_mutual_tls = d.pop("enable_mutual_tls", UNSET)
 
-        mutual_client_cert_refid = d.pop("mutual_client_cert_refid")
+        mutual_client_cert_refid = d.pop("mutual_client_cert_refid", UNSET)
 
         available_tls_server_certs = cast(List[str], d.pop("available_tls_server_certs", UNSET))
 

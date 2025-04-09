@@ -17,14 +17,14 @@ T = TypeVar("T", bound="UpdateCRLReq")
 class UpdateCRLReq:
     """
     Attributes:
-        ca_refid (str): CA reference ID
-        descr (str): descriptive name
+        ca_refid (Union[Unset, str]): CA reference ID
+        descr (Union[Unset, str]): descriptive name
         method_internal (Union[Unset, CRLMethodInternalUpdate]):
         method_x509 (Union[Unset, CRLMethodX509]):
     """
 
-    ca_refid: str
-    descr: str
+    ca_refid: Union[Unset, str] = UNSET
+    descr: Union[Unset, str] = UNSET
     method_internal: Union[Unset, "CRLMethodInternalUpdate"] = UNSET
     method_x509: Union[Unset, "CRLMethodX509"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -44,12 +44,11 @@ class UpdateCRLReq:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "ca_refid": ca_refid,
-                "descr": descr,
-            }
-        )
+        field_dict.update({})
+        if ca_refid is not UNSET:
+            field_dict["ca_refid"] = ca_refid
+        if descr is not UNSET:
+            field_dict["descr"] = descr
         if method_internal is not UNSET:
             field_dict["method_internal"] = method_internal
         if method_x509 is not UNSET:
@@ -63,9 +62,9 @@ class UpdateCRLReq:
         from ..models.crl_method_x509 import CRLMethodX509
 
         d = src_dict.copy()
-        ca_refid = d.pop("ca_refid")
+        ca_refid = d.pop("ca_refid", UNSET)
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
         _method_internal = d.pop("method_internal", UNSET)
         method_internal: Union[Unset, CRLMethodInternalUpdate]

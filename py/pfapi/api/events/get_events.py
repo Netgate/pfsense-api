@@ -66,9 +66,9 @@ def sync_detailed(
 
      Detect system events or alerts that need to be attended to.
     Calling this function will block the client, and it should therefore
-    be placed on a a dedicated connection from other API requests.
+    be done on a dedicated connection from other API requests.
     Each event returned in the events list has an event_id, which
-    can be used as a tracker for retrieving the nest set of events.
+    can be used as a tracker for retrieving the next set of events.
 
     parameters:
       - last_id: the ID of the event that was last retrieved by the client.
@@ -104,9 +104,9 @@ def sync(
 
      Detect system events or alerts that need to be attended to.
     Calling this function will block the client, and it should therefore
-    be placed on a a dedicated connection from other API requests.
+    be done on a dedicated connection from other API requests.
     Each event returned in the events list has an event_id, which
-    can be used as a tracker for retrieving the nest set of events.
+    can be used as a tracker for retrieving the next set of events.
 
     parameters:
       - last_id: the ID of the event that was last retrieved by the client.
@@ -137,9 +137,9 @@ async def asyncio_detailed(
 
      Detect system events or alerts that need to be attended to.
     Calling this function will block the client, and it should therefore
-    be placed on a a dedicated connection from other API requests.
+    be done on a dedicated connection from other API requests.
     Each event returned in the events list has an event_id, which
-    can be used as a tracker for retrieving the nest set of events.
+    can be used as a tracker for retrieving the next set of events.
 
     parameters:
       - last_id: the ID of the event that was last retrieved by the client.
@@ -173,9 +173,9 @@ async def asyncio(
 
      Detect system events or alerts that need to be attended to.
     Calling this function will block the client, and it should therefore
-    be placed on a a dedicated connection from other API requests.
+    be done on a dedicated connection from other API requests.
     Each event returned in the events list has an event_id, which
-    can be used as a tracker for retrieving the nest set of events.
+    can be used as a tracker for retrieving the next set of events.
 
     parameters:
       - last_id: the ID of the event that was last retrieved by the client.

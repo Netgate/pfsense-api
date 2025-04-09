@@ -18,15 +18,15 @@ class DNSACL:
     Attributes:
         aclid (str):
         aclname (str):
-        aclaction (str):
-        description (str):
+        aclaction (Union[Unset, str]):
+        description (Union[Unset, str]):
         row (Union[Unset, List['DNSACLNetwork']]):
     """
 
     aclid: str
     aclname: str
-    aclaction: str
-    description: str
+    aclaction: Union[Unset, str] = UNSET
+    description: Union[Unset, str] = UNSET
     row: Union[Unset, List["DNSACLNetwork"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -52,10 +52,12 @@ class DNSACL:
             {
                 "aclid": aclid,
                 "aclname": aclname,
-                "aclaction": aclaction,
-                "description": description,
             }
         )
+        if aclaction is not UNSET:
+            field_dict["aclaction"] = aclaction
+        if description is not UNSET:
+            field_dict["description"] = description
         if row is not UNSET:
             field_dict["row"] = row
 
@@ -70,9 +72,9 @@ class DNSACL:
 
         aclname = d.pop("aclname")
 
-        aclaction = d.pop("aclaction")
+        aclaction = d.pop("aclaction", UNSET)
 
-        description = d.pop("description")
+        description = d.pop("description", UNSET)
 
         row = []
         _row = d.pop("row", UNSET)

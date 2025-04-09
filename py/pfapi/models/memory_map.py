@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="MemoryMap")
 
@@ -10,14 +12,14 @@ T = TypeVar("T", bound="MemoryMap")
 class MemoryMap:
     """
     Attributes:
-        offset (int):
-        size (int):
-        type (str):
+        offset (Union[Unset, int]):
+        size (Union[Unset, int]):
+        type (Union[Unset, str]):
     """
 
-    offset: int
-    size: int
-    type: str
+    offset: Union[Unset, int] = UNSET
+    size: Union[Unset, int] = UNSET
+    type: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -29,24 +31,24 @@ class MemoryMap:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "offset": offset,
-                "size": size,
-                "type": type,
-            }
-        )
+        field_dict.update({})
+        if offset is not UNSET:
+            field_dict["offset"] = offset
+        if size is not UNSET:
+            field_dict["size"] = size
+        if type is not UNSET:
+            field_dict["type"] = type
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        offset = d.pop("offset")
+        offset = d.pop("offset", UNSET)
 
-        size = d.pop("size")
+        size = d.pop("size", UNSET)
 
-        type = d.pop("type")
+        type = d.pop("type", UNSET)
 
         memory_map = cls(
             offset=offset,

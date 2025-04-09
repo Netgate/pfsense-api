@@ -16,19 +16,19 @@ T = TypeVar("T", bound="IPSecPool")
 class IPSecPool:
     """
     Attributes:
-        name (str):
-        base (str):
-        online (str):
-        offline (str):
-        size (str):
+        name (Union[Unset, str]):
+        base (Union[Unset, str]):
+        online (Union[Unset, str]):
+        offline (Union[Unset, str]):
+        size (Union[Unset, str]):
         lease (Union[Unset, List['IPSecPoolLease']]):
     """
 
-    name: str
-    base: str
-    online: str
-    offline: str
-    size: str
+    name: Union[Unset, str] = UNSET
+    base: Union[Unset, str] = UNSET
+    online: Union[Unset, str] = UNSET
+    offline: Union[Unset, str] = UNSET
+    size: Union[Unset, str] = UNSET
     lease: Union[Unset, List["IPSecPoolLease"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -52,15 +52,17 @@ class IPSecPool:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "base": base,
-                "online": online,
-                "offline": offline,
-                "size": size,
-            }
-        )
+        field_dict.update({})
+        if name is not UNSET:
+            field_dict["name"] = name
+        if base is not UNSET:
+            field_dict["base"] = base
+        if online is not UNSET:
+            field_dict["online"] = online
+        if offline is not UNSET:
+            field_dict["offline"] = offline
+        if size is not UNSET:
+            field_dict["size"] = size
         if lease is not UNSET:
             field_dict["lease"] = lease
 
@@ -71,15 +73,15 @@ class IPSecPool:
         from ..models.ip_sec_pool_lease import IPSecPoolLease
 
         d = src_dict.copy()
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        base = d.pop("base")
+        base = d.pop("base", UNSET)
 
-        online = d.pop("online")
+        online = d.pop("online", UNSET)
 
-        offline = d.pop("offline")
+        offline = d.pop("offline", UNSET)
 
-        size = d.pop("size")
+        size = d.pop("size", UNSET)
 
         lease = []
         _lease = d.pop("lease", UNSET)

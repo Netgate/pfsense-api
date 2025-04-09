@@ -17,20 +17,24 @@ T = TypeVar("T", bound="HASyncOpts")
 class HASyncOpts:
     """
     Attributes:
-        pfsync (HAPfsync):
-        xmlrpc (HAXMLRPCSync):
+        pfsync (Union[Unset, HAPfsync]):
+        xmlrpc (Union[Unset, HAXMLRPCSync]):
         avail_sync_interfaces (Union[Unset, List[str]]):
     """
 
-    pfsync: "HAPfsync"
-    xmlrpc: "HAXMLRPCSync"
+    pfsync: Union[Unset, "HAPfsync"] = UNSET
+    xmlrpc: Union[Unset, "HAXMLRPCSync"] = UNSET
     avail_sync_interfaces: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        pfsync = self.pfsync.to_dict()
+        pfsync: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.pfsync, Unset):
+            pfsync = self.pfsync.to_dict()
 
-        xmlrpc = self.xmlrpc.to_dict()
+        xmlrpc: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.xmlrpc, Unset):
+            xmlrpc = self.xmlrpc.to_dict()
 
         avail_sync_interfaces: Union[Unset, List[str]] = UNSET
         if not isinstance(self.avail_sync_interfaces, Unset):
@@ -38,12 +42,11 @@ class HASyncOpts:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "pfsync": pfsync,
-                "xmlrpc": xmlrpc,
-            }
-        )
+        field_dict.update({})
+        if pfsync is not UNSET:
+            field_dict["pfsync"] = pfsync
+        if xmlrpc is not UNSET:
+            field_dict["xmlrpc"] = xmlrpc
         if avail_sync_interfaces is not UNSET:
             field_dict["avail_sync_interfaces"] = avail_sync_interfaces
 
@@ -55,9 +58,19 @@ class HASyncOpts:
         from ..models.haxmlrpc_sync import HAXMLRPCSync
 
         d = src_dict.copy()
-        pfsync = HAPfsync.from_dict(d.pop("pfsync"))
+        _pfsync = d.pop("pfsync", UNSET)
+        pfsync: Union[Unset, HAPfsync]
+        if isinstance(_pfsync, Unset):
+            pfsync = UNSET
+        else:
+            pfsync = HAPfsync.from_dict(_pfsync)
 
-        xmlrpc = HAXMLRPCSync.from_dict(d.pop("xmlrpc"))
+        _xmlrpc = d.pop("xmlrpc", UNSET)
+        xmlrpc: Union[Unset, HAXMLRPCSync]
+        if isinstance(_xmlrpc, Unset):
+            xmlrpc = UNSET
+        else:
+            xmlrpc = HAXMLRPCSync.from_dict(_xmlrpc)
 
         avail_sync_interfaces = cast(List[str], d.pop("avail_sync_interfaces", UNSET))
 

@@ -15,17 +15,17 @@ class FWAddrAlias:
     Attributes:
         alias_type (str): system, host, port, network, url
         label (str): alias label e.g. LAN__NETWORK, alias.name
-        descr (str): description about the alias
-        table (str): firewall table, if applicable
-        values (List[str]):
+        descr (Union[Unset, str]): description about the alias
+        table (Union[Unset, str]): firewall table, if applicable
+        values (Union[Unset, List[str]]):
         truncated (Union[Unset, bool]): indicates whether the value list is truncated
     """
 
     alias_type: str
     label: str
-    descr: str
-    table: str
-    values: List[str]
+    descr: Union[Unset, str] = UNSET
+    table: Union[Unset, str] = UNSET
+    values: Union[Unset, List[str]] = UNSET
     truncated: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -38,7 +38,9 @@ class FWAddrAlias:
 
         table = self.table
 
-        values = self.values
+        values: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.values, Unset):
+            values = self.values
 
         truncated = self.truncated
 
@@ -48,11 +50,14 @@ class FWAddrAlias:
             {
                 "alias_type": alias_type,
                 "label": label,
-                "descr": descr,
-                "table": table,
-                "values": values,
             }
         )
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if table is not UNSET:
+            field_dict["table"] = table
+        if values is not UNSET:
+            field_dict["values"] = values
         if truncated is not UNSET:
             field_dict["truncated"] = truncated
 
@@ -65,11 +70,11 @@ class FWAddrAlias:
 
         label = d.pop("label")
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
-        table = d.pop("table")
+        table = d.pop("table", UNSET)
 
-        values = cast(List[str], d.pop("values"))
+        values = cast(List[str], d.pop("values", UNSET))
 
         truncated = d.pop("truncated", UNSET)
 

@@ -19,30 +19,30 @@ class CRLConfig:
     Attributes:
         refid (str):
         ca_refid (str):
-        descr (str):
-        method (str):
-        serial (int):
-        lifetime (int):
-        internal (bool):
-        inuse (bool):
-        is_ovpn_crl (bool):
-        text (str):
-        pkgs (CRLConfigPkgs):
+        descr (Union[Unset, str]):
+        method (Union[Unset, str]):
+        serial (Union[Unset, int]):
+        lifetime (Union[Unset, int]):
+        internal (Union[Unset, bool]):
+        inuse (Union[Unset, bool]):
+        is_ovpn_crl (Union[Unset, bool]):
+        text (Union[Unset, str]):
         cert (Union[Unset, List['CRLCert']]):
+        pkgs (Union[Unset, CRLConfigPkgs]):
     """
 
     refid: str
     ca_refid: str
-    descr: str
-    method: str
-    serial: int
-    lifetime: int
-    internal: bool
-    inuse: bool
-    is_ovpn_crl: bool
-    text: str
-    pkgs: "CRLConfigPkgs"
+    descr: Union[Unset, str] = UNSET
+    method: Union[Unset, str] = UNSET
+    serial: Union[Unset, int] = UNSET
+    lifetime: Union[Unset, int] = UNSET
+    internal: Union[Unset, bool] = UNSET
+    inuse: Union[Unset, bool] = UNSET
+    is_ovpn_crl: Union[Unset, bool] = UNSET
+    text: Union[Unset, str] = UNSET
     cert: Union[Unset, List["CRLCert"]] = UNSET
+    pkgs: Union[Unset, "CRLConfigPkgs"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -66,8 +66,6 @@ class CRLConfig:
 
         text = self.text
 
-        pkgs = self.pkgs.to_dict()
-
         cert: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.cert, Unset):
             cert = []
@@ -75,25 +73,38 @@ class CRLConfig:
                 cert_item = cert_item_data.to_dict()
                 cert.append(cert_item)
 
+        pkgs: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.pkgs, Unset):
+            pkgs = self.pkgs.to_dict()
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
                 "refid": refid,
                 "ca_refid": ca_refid,
-                "descr": descr,
-                "method": method,
-                "serial": serial,
-                "lifetime": lifetime,
-                "internal": internal,
-                "inuse": inuse,
-                "is_ovpn_crl": is_ovpn_crl,
-                "text": text,
-                "pkgs": pkgs,
             }
         )
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if method is not UNSET:
+            field_dict["method"] = method
+        if serial is not UNSET:
+            field_dict["serial"] = serial
+        if lifetime is not UNSET:
+            field_dict["lifetime"] = lifetime
+        if internal is not UNSET:
+            field_dict["internal"] = internal
+        if inuse is not UNSET:
+            field_dict["inuse"] = inuse
+        if is_ovpn_crl is not UNSET:
+            field_dict["is_ovpn_crl"] = is_ovpn_crl
+        if text is not UNSET:
+            field_dict["text"] = text
         if cert is not UNSET:
             field_dict["cert"] = cert
+        if pkgs is not UNSET:
+            field_dict["pkgs"] = pkgs
 
         return field_dict
 
@@ -107,23 +118,21 @@ class CRLConfig:
 
         ca_refid = d.pop("ca_refid")
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
-        method = d.pop("method")
+        method = d.pop("method", UNSET)
 
-        serial = d.pop("serial")
+        serial = d.pop("serial", UNSET)
 
-        lifetime = d.pop("lifetime")
+        lifetime = d.pop("lifetime", UNSET)
 
-        internal = d.pop("internal")
+        internal = d.pop("internal", UNSET)
 
-        inuse = d.pop("inuse")
+        inuse = d.pop("inuse", UNSET)
 
-        is_ovpn_crl = d.pop("is_ovpn_crl")
+        is_ovpn_crl = d.pop("is_ovpn_crl", UNSET)
 
-        text = d.pop("text")
-
-        pkgs = CRLConfigPkgs.from_dict(d.pop("pkgs"))
+        text = d.pop("text", UNSET)
 
         cert = []
         _cert = d.pop("cert", UNSET)
@@ -131,6 +140,13 @@ class CRLConfig:
             cert_item = CRLCert.from_dict(cert_item_data)
 
             cert.append(cert_item)
+
+        _pkgs = d.pop("pkgs", UNSET)
+        pkgs: Union[Unset, CRLConfigPkgs]
+        if isinstance(_pkgs, Unset):
+            pkgs = UNSET
+        else:
+            pkgs = CRLConfigPkgs.from_dict(_pkgs)
 
         crl_config = cls(
             refid=refid,
@@ -143,8 +159,8 @@ class CRLConfig:
             inuse=inuse,
             is_ovpn_crl=is_ovpn_crl,
             text=text,
-            pkgs=pkgs,
             cert=cert,
+            pkgs=pkgs,
         )
 
         crl_config.additional_properties = d

@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="UpdateBootenv")
 
@@ -11,15 +13,15 @@ class UpdateBootenv:
     """
     Attributes:
         old_name (str):
-        name (str):
-        descr (str):
-        protect (bool):
+        name (Union[Unset, str]):
+        descr (Union[Unset, str]):
+        protect (Union[Unset, bool]):
     """
 
     old_name: str
-    name: str
-    descr: str
-    protect: bool
+    name: Union[Unset, str] = UNSET
+    descr: Union[Unset, str] = UNSET
+    protect: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -36,11 +38,14 @@ class UpdateBootenv:
         field_dict.update(
             {
                 "old_name": old_name,
-                "name": name,
-                "descr": descr,
-                "protect": protect,
             }
         )
+        if name is not UNSET:
+            field_dict["name"] = name
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if protect is not UNSET:
+            field_dict["protect"] = protect
 
         return field_dict
 
@@ -49,11 +54,11 @@ class UpdateBootenv:
         d = src_dict.copy()
         old_name = d.pop("old_name")
 
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
-        protect = d.pop("protect")
+        protect = d.pop("protect", UNSET)
 
         update_bootenv = cls(
             old_name=old_name,

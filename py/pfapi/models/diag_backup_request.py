@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DiagBackupRequest")
 
@@ -10,22 +12,24 @@ T = TypeVar("T", bound="DiagBackupRequest")
 class DiagBackupRequest:
     """
     Attributes:
-        area (str):
-        nopkg (bool):
-        norrd (bool):
-        enc (bool):
-        pwd (str):
-        filename (str):
-        contents (str):
+        area (Union[Unset, str]):
+        nopkg (Union[Unset, bool]):
+        norrd (Union[Unset, bool]):
+        enc (Union[Unset, bool]): file is encrypted
+        pwd (Union[Unset, str]): password to decrypt file
+        filename (Union[Unset, str]):
+        contents (Union[Unset, str]):
+        reboot (Union[Unset, bool]): reboot system on applying
     """
 
-    area: str
-    nopkg: bool
-    norrd: bool
-    enc: bool
-    pwd: str
-    filename: str
-    contents: str
+    area: Union[Unset, str] = UNSET
+    nopkg: Union[Unset, bool] = UNSET
+    norrd: Union[Unset, bool] = UNSET
+    enc: Union[Unset, bool] = UNSET
+    pwd: Union[Unset, str] = UNSET
+    filename: Union[Unset, str] = UNSET
+    contents: Union[Unset, str] = UNSET
+    reboot: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -43,38 +47,48 @@ class DiagBackupRequest:
 
         contents = self.contents
 
+        reboot = self.reboot
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "area": area,
-                "nopkg": nopkg,
-                "norrd": norrd,
-                "enc": enc,
-                "pwd": pwd,
-                "filename": filename,
-                "contents": contents,
-            }
-        )
+        field_dict.update({})
+        if area is not UNSET:
+            field_dict["area"] = area
+        if nopkg is not UNSET:
+            field_dict["nopkg"] = nopkg
+        if norrd is not UNSET:
+            field_dict["norrd"] = norrd
+        if enc is not UNSET:
+            field_dict["enc"] = enc
+        if pwd is not UNSET:
+            field_dict["pwd"] = pwd
+        if filename is not UNSET:
+            field_dict["filename"] = filename
+        if contents is not UNSET:
+            field_dict["contents"] = contents
+        if reboot is not UNSET:
+            field_dict["reboot"] = reboot
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        area = d.pop("area")
+        area = d.pop("area", UNSET)
 
-        nopkg = d.pop("nopkg")
+        nopkg = d.pop("nopkg", UNSET)
 
-        norrd = d.pop("norrd")
+        norrd = d.pop("norrd", UNSET)
 
-        enc = d.pop("enc")
+        enc = d.pop("enc", UNSET)
 
-        pwd = d.pop("pwd")
+        pwd = d.pop("pwd", UNSET)
 
-        filename = d.pop("filename")
+        filename = d.pop("filename", UNSET)
 
-        contents = d.pop("contents")
+        contents = d.pop("contents", UNSET)
+
+        reboot = d.pop("reboot", UNSET)
 
         diag_backup_request = cls(
             area=area,
@@ -84,6 +98,7 @@ class DiagBackupRequest:
             pwd=pwd,
             filename=filename,
             contents=contents,
+            reboot=reboot,
         )
 
         diag_backup_request.additional_properties = d

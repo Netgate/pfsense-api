@@ -12,14 +12,15 @@ from ...types import Response
 
 
 def _get_kwargs(
+    name: str,
     *,
     body: UpdateBootenv,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
     _kwargs: Dict[str, Any] = {
-        "method": "patch",
-        "url": "/system/bootenv",
+        "method": "post",
+        "url": f"/system/bootenv/{name}",
     }
 
     _body = body.to_dict()
@@ -60,6 +61,7 @@ def _build_response(
 
 
 def sync_detailed(
+    name: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: UpdateBootenv,
@@ -67,6 +69,7 @@ def sync_detailed(
     """Updates a bootenv
 
     Args:
+        name (str):
         body (UpdateBootenv):
 
     Raises:
@@ -78,6 +81,7 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
+        name=name,
         body=body,
     )
 
@@ -89,6 +93,7 @@ def sync_detailed(
 
 
 def sync(
+    name: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: UpdateBootenv,
@@ -96,6 +101,7 @@ def sync(
     """Updates a bootenv
 
     Args:
+        name (str):
         body (UpdateBootenv):
 
     Raises:
@@ -107,12 +113,14 @@ def sync(
     """
 
     return sync_detailed(
+        name=name,
         client=client,
         body=body,
     ).parsed
 
 
 async def asyncio_detailed(
+    name: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: UpdateBootenv,
@@ -120,6 +128,7 @@ async def asyncio_detailed(
     """Updates a bootenv
 
     Args:
+        name (str):
         body (UpdateBootenv):
 
     Raises:
@@ -131,6 +140,7 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
+        name=name,
         body=body,
     )
 
@@ -140,6 +150,7 @@ async def asyncio_detailed(
 
 
 async def asyncio(
+    name: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: UpdateBootenv,
@@ -147,6 +158,7 @@ async def asyncio(
     """Updates a bootenv
 
     Args:
+        name (str):
         body (UpdateBootenv):
 
     Raises:
@@ -159,6 +171,7 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
+            name=name,
             client=client,
             body=body,
         )

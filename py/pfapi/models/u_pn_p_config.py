@@ -16,44 +16,44 @@ T = TypeVar("T", bound="UPnPConfig")
 class UPnPConfig:
     """
     Attributes:
-        enable (bool):
-        enable_upnp (bool):
-        enable_natpmp (bool):
-        ext_iface (str):
-        download (str):
-        upload (str):
-        overridewanip (str):
-        upnpqueue (str):
-        logpackets (bool):
-        sysuptime (bool):
-        permdefault (bool):
-        presentationurl (str):
-        modelnumber (str):
-        enable_stun (bool):
-        stun_host (str):
-        stun_port (str):
+        enable (Union[Unset, bool]):
+        enable_upnp (Union[Unset, bool]):
+        enable_natpmp (Union[Unset, bool]):
+        ext_iface (Union[Unset, str]):
         iface_array (Union[Unset, List[str]]):
+        download (Union[Unset, str]):
+        upload (Union[Unset, str]):
+        overridewanip (Union[Unset, str]):
+        upnpqueue (Union[Unset, str]):
+        logpackets (Union[Unset, bool]):
+        sysuptime (Union[Unset, bool]):
+        permdefault (Union[Unset, bool]):
         row (Union[Unset, List['UPnPPermUser']]):
+        presentationurl (Union[Unset, str]):
+        modelnumber (Union[Unset, str]):
+        enable_stun (Union[Unset, bool]):
+        stun_host (Union[Unset, str]):
+        stun_port (Union[Unset, str]):
     """
 
-    enable: bool
-    enable_upnp: bool
-    enable_natpmp: bool
-    ext_iface: str
-    download: str
-    upload: str
-    overridewanip: str
-    upnpqueue: str
-    logpackets: bool
-    sysuptime: bool
-    permdefault: bool
-    presentationurl: str
-    modelnumber: str
-    enable_stun: bool
-    stun_host: str
-    stun_port: str
+    enable: Union[Unset, bool] = UNSET
+    enable_upnp: Union[Unset, bool] = UNSET
+    enable_natpmp: Union[Unset, bool] = UNSET
+    ext_iface: Union[Unset, str] = UNSET
     iface_array: Union[Unset, List[str]] = UNSET
+    download: Union[Unset, str] = UNSET
+    upload: Union[Unset, str] = UNSET
+    overridewanip: Union[Unset, str] = UNSET
+    upnpqueue: Union[Unset, str] = UNSET
+    logpackets: Union[Unset, bool] = UNSET
+    sysuptime: Union[Unset, bool] = UNSET
+    permdefault: Union[Unset, bool] = UNSET
     row: Union[Unset, List["UPnPPermUser"]] = UNSET
+    presentationurl: Union[Unset, str] = UNSET
+    modelnumber: Union[Unset, str] = UNSET
+    enable_stun: Union[Unset, bool] = UNSET
+    stun_host: Union[Unset, str] = UNSET
+    stun_port: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -64,6 +64,10 @@ class UPnPConfig:
         enable_natpmp = self.enable_natpmp
 
         ext_iface = self.ext_iface
+
+        iface_array: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.iface_array, Unset):
+            iface_array = self.iface_array
 
         download = self.download
 
@@ -79,6 +83,13 @@ class UPnPConfig:
 
         permdefault = self.permdefault
 
+        row: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.row, Unset):
+            row = []
+            for row_item_data in self.row:
+                row_item = row_item_data.to_dict()
+                row.append(row_item)
+
         presentationurl = self.presentationurl
 
         modelnumber = self.modelnumber
@@ -89,43 +100,45 @@ class UPnPConfig:
 
         stun_port = self.stun_port
 
-        iface_array: Union[Unset, List[str]] = UNSET
-        if not isinstance(self.iface_array, Unset):
-            iface_array = self.iface_array
-
-        row: Union[Unset, List[Dict[str, Any]]] = UNSET
-        if not isinstance(self.row, Unset):
-            row = []
-            for row_item_data in self.row:
-                row_item = row_item_data.to_dict()
-                row.append(row_item)
-
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "enable": enable,
-                "enable_upnp": enable_upnp,
-                "enable_natpmp": enable_natpmp,
-                "ext_iface": ext_iface,
-                "download": download,
-                "upload": upload,
-                "overridewanip": overridewanip,
-                "upnpqueue": upnpqueue,
-                "logpackets": logpackets,
-                "sysuptime": sysuptime,
-                "permdefault": permdefault,
-                "presentationurl": presentationurl,
-                "modelnumber": modelnumber,
-                "enable_stun": enable_stun,
-                "stun_host": stun_host,
-                "stun_port": stun_port,
-            }
-        )
+        field_dict.update({})
+        if enable is not UNSET:
+            field_dict["enable"] = enable
+        if enable_upnp is not UNSET:
+            field_dict["enable_upnp"] = enable_upnp
+        if enable_natpmp is not UNSET:
+            field_dict["enable_natpmp"] = enable_natpmp
+        if ext_iface is not UNSET:
+            field_dict["ext_iface"] = ext_iface
         if iface_array is not UNSET:
             field_dict["iface_array"] = iface_array
+        if download is not UNSET:
+            field_dict["download"] = download
+        if upload is not UNSET:
+            field_dict["upload"] = upload
+        if overridewanip is not UNSET:
+            field_dict["overridewanip"] = overridewanip
+        if upnpqueue is not UNSET:
+            field_dict["upnpqueue"] = upnpqueue
+        if logpackets is not UNSET:
+            field_dict["logpackets"] = logpackets
+        if sysuptime is not UNSET:
+            field_dict["sysuptime"] = sysuptime
+        if permdefault is not UNSET:
+            field_dict["permdefault"] = permdefault
         if row is not UNSET:
             field_dict["row"] = row
+        if presentationurl is not UNSET:
+            field_dict["presentationurl"] = presentationurl
+        if modelnumber is not UNSET:
+            field_dict["modelnumber"] = modelnumber
+        if enable_stun is not UNSET:
+            field_dict["enable_stun"] = enable_stun
+        if stun_host is not UNSET:
+            field_dict["stun_host"] = stun_host
+        if stun_port is not UNSET:
+            field_dict["stun_port"] = stun_port
 
         return field_dict
 
@@ -134,39 +147,29 @@ class UPnPConfig:
         from ..models.u_pn_p_perm_user import UPnPPermUser
 
         d = src_dict.copy()
-        enable = d.pop("enable")
+        enable = d.pop("enable", UNSET)
 
-        enable_upnp = d.pop("enable_upnp")
+        enable_upnp = d.pop("enable_upnp", UNSET)
 
-        enable_natpmp = d.pop("enable_natpmp")
+        enable_natpmp = d.pop("enable_natpmp", UNSET)
 
-        ext_iface = d.pop("ext_iface")
-
-        download = d.pop("download")
-
-        upload = d.pop("upload")
-
-        overridewanip = d.pop("overridewanip")
-
-        upnpqueue = d.pop("upnpqueue")
-
-        logpackets = d.pop("logpackets")
-
-        sysuptime = d.pop("sysuptime")
-
-        permdefault = d.pop("permdefault")
-
-        presentationurl = d.pop("presentationurl")
-
-        modelnumber = d.pop("modelnumber")
-
-        enable_stun = d.pop("enable_stun")
-
-        stun_host = d.pop("stun_host")
-
-        stun_port = d.pop("stun_port")
+        ext_iface = d.pop("ext_iface", UNSET)
 
         iface_array = cast(List[str], d.pop("iface_array", UNSET))
+
+        download = d.pop("download", UNSET)
+
+        upload = d.pop("upload", UNSET)
+
+        overridewanip = d.pop("overridewanip", UNSET)
+
+        upnpqueue = d.pop("upnpqueue", UNSET)
+
+        logpackets = d.pop("logpackets", UNSET)
+
+        sysuptime = d.pop("sysuptime", UNSET)
+
+        permdefault = d.pop("permdefault", UNSET)
 
         row = []
         _row = d.pop("row", UNSET)
@@ -175,11 +178,22 @@ class UPnPConfig:
 
             row.append(row_item)
 
+        presentationurl = d.pop("presentationurl", UNSET)
+
+        modelnumber = d.pop("modelnumber", UNSET)
+
+        enable_stun = d.pop("enable_stun", UNSET)
+
+        stun_host = d.pop("stun_host", UNSET)
+
+        stun_port = d.pop("stun_port", UNSET)
+
         u_pn_p_config = cls(
             enable=enable,
             enable_upnp=enable_upnp,
             enable_natpmp=enable_natpmp,
             ext_iface=ext_iface,
+            iface_array=iface_array,
             download=download,
             upload=upload,
             overridewanip=overridewanip,
@@ -187,13 +201,12 @@ class UPnPConfig:
             logpackets=logpackets,
             sysuptime=sysuptime,
             permdefault=permdefault,
+            row=row,
             presentationurl=presentationurl,
             modelnumber=modelnumber,
             enable_stun=enable_stun,
             stun_host=stun_host,
             stun_port=stun_port,
-            iface_array=iface_array,
-            row=row,
         )
 
         u_pn_p_config.additional_properties = d

@@ -6,10 +6,10 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.allowed_host import AllowedHost
-    from ..models.allowed_ip import AllowedIP
+    from ..models.captive_allowed_host import CaptiveAllowedHost
+    from ..models.captive_allowed_ip import CaptiveAllowedIP
     from ..models.captive_element import CaptiveElement
-    from ..models.passthru_mac import PassthruMac
+    from ..models.captive_passthru_mac import CaptivePassthruMac
 
 
 T = TypeVar("T", bound="CaptivePortalConfig")
@@ -20,114 +20,122 @@ class CaptivePortalConfig:
     """
     Attributes:
         zone (str):
-        zoneid (str):
-        descr (str):
-        localauth_priv (bool):
-        interface (str):
-        maxproc (str):
-        maxprocperip (str):
-        timeout (str):
-        idletime (str):
-        trafficquota (str):
-        freelogins_count (str):
-        freelogins_resettimeout (str):
-        freelogins_updatetimeouts (bool):
-        logoutwin_enable (bool):
-        enable (bool):
-        auth_method (str):
-        auth_server (str):
-        auth_server2 (str):
-        radmac_secret (str):
-        radmac_fallback (bool):
-        radiussession_timeout (bool):
-        radiustraffic_quota (bool):
-        radiusperuserbw (bool):
-        radacct_enable (bool):
-        radacct_server (str):
-        reverseacct (bool):
-        includeidletime (bool):
-        reauthenticate (bool):
-        preservedb (bool):
-        reauthenticateacct (str):
-        httpslogin (bool):
-        httpsname (str):
-        preauthurl (str):
-        blockedmacsurl (str):
-        certref (str):
-        nohttpsforwards (bool):
-        nomacfilter (bool):
-        redirurl (str):
-        passthrumacadd (bool):
-        radmac_format (str):
-        radiusnasid (str):
-        customlogo (bool):
-        custombg (bool):
-        customhtml (bool):
-        termsconditions (str):
-        page (str):
-        noconcurrentlogins (str):
-        peruserbw (bool):
-        bwdefaultdn (str):
-        bwdefaultup (str):
-        passthrumac (Union[Unset, List['PassthruMac']]):
-        allowedip (Union[Unset, List['AllowedIP']]):
-        allowedhostname (Union[Unset, List['AllowedHost']]):
+        zoneid (Union[Unset, str]): optional, 0-57535
+        descr (Union[Unset, str]):
+        localauth_priv (Union[Unset, bool]):
+        interface (Union[Unset, str]):
+        maxproc (Union[Unset, str]):
+        maxprocperip (Union[Unset, str]):
+        timeout (Union[Unset, str]):
+        idletimeout (Union[Unset, str]):
+        trafficquota (Union[Unset, str]):
+        freelogins_count (Union[Unset, str]):
+        freelogins_resettimeout (Union[Unset, str]):
+        freelogins_updatetimeouts (Union[Unset, bool]):
+        logoutwin_enable (Union[Unset, bool]):
+        enable (Union[Unset, bool]):
+        auth_method (Union[Unset, str]):
+        auth_server (Union[Unset, str]):
+        auth_server2 (Union[Unset, str]):
+        radmac_secret (Union[Unset, str]):
+        radmac_fallback (Union[Unset, bool]):
+        radiussession_timeout (Union[Unset, bool]):
+        radiustraffic_quota (Union[Unset, bool]):
+        radiusperuserbw (Union[Unset, bool]):
+        radacct_enable (Union[Unset, bool]):
+        radacct_server (Union[Unset, str]):
+        reverseacct (Union[Unset, bool]):
+        includeidletime (Union[Unset, bool]):
+        reauthenticate (Union[Unset, bool]):
+        preservedb (Union[Unset, bool]):
+        reauthenticateacct (Union[Unset, str]):
+        httpslogin (Union[Unset, bool]):
+        httpsname (Union[Unset, str]):
+        preauthurl (Union[Unset, str]):
+        blockedmacsurl (Union[Unset, str]):
+        certref (Union[Unset, str]):
+        nohttpsforwards (Union[Unset, bool]):
+        nomacfilter (Union[Unset, bool]):
+        redirurl (Union[Unset, str]):
+        passthrumacadd (Union[Unset, bool]):
+        radmac_format (Union[Unset, str]):
+        radiusnasid (Union[Unset, str]):
+        customlogo (Union[Unset, bool]):
+        custombg (Union[Unset, bool]):
+        customhtml (Union[Unset, bool]):
+        termsconditions (Union[Unset, str]):
+        page (Union[Unset, str]):
+        noconcurrentlogins (Union[Unset, str]):
+        peruserbw (Union[Unset, bool]):
+        bwdefaultdn (Union[Unset, str]):
+        bwdefaultup (Union[Unset, str]):
+        enablebackwardsync (Union[Unset, bool]):
+        backwardsyncip (Union[Unset, str]):
+        backwardsyncuser (Union[Unset, str]):
+        backwardsyncpassword (Union[Unset, str]):
+        passthrumac (Union[Unset, List['CaptivePassthruMac']]):
+        allowedip (Union[Unset, List['CaptiveAllowedIP']]):
+        allowedhostname (Union[Unset, List['CaptiveAllowedHost']]):
         element (Union[Unset, List['CaptiveElement']]):
     """
 
     zone: str
-    zoneid: str
-    descr: str
-    localauth_priv: bool
-    interface: str
-    maxproc: str
-    maxprocperip: str
-    timeout: str
-    idletime: str
-    trafficquota: str
-    freelogins_count: str
-    freelogins_resettimeout: str
-    freelogins_updatetimeouts: bool
-    logoutwin_enable: bool
-    enable: bool
-    auth_method: str
-    auth_server: str
-    auth_server2: str
-    radmac_secret: str
-    radmac_fallback: bool
-    radiussession_timeout: bool
-    radiustraffic_quota: bool
-    radiusperuserbw: bool
-    radacct_enable: bool
-    radacct_server: str
-    reverseacct: bool
-    includeidletime: bool
-    reauthenticate: bool
-    preservedb: bool
-    reauthenticateacct: str
-    httpslogin: bool
-    httpsname: str
-    preauthurl: str
-    blockedmacsurl: str
-    certref: str
-    nohttpsforwards: bool
-    nomacfilter: bool
-    redirurl: str
-    passthrumacadd: bool
-    radmac_format: str
-    radiusnasid: str
-    customlogo: bool
-    custombg: bool
-    customhtml: bool
-    termsconditions: str
-    page: str
-    noconcurrentlogins: str
-    peruserbw: bool
-    bwdefaultdn: str
-    bwdefaultup: str
-    passthrumac: Union[Unset, List["PassthruMac"]] = UNSET
-    allowedip: Union[Unset, List["AllowedIP"]] = UNSET
-    allowedhostname: Union[Unset, List["AllowedHost"]] = UNSET
+    zoneid: Union[Unset, str] = UNSET
+    descr: Union[Unset, str] = UNSET
+    localauth_priv: Union[Unset, bool] = UNSET
+    interface: Union[Unset, str] = UNSET
+    maxproc: Union[Unset, str] = UNSET
+    maxprocperip: Union[Unset, str] = UNSET
+    timeout: Union[Unset, str] = UNSET
+    idletimeout: Union[Unset, str] = UNSET
+    trafficquota: Union[Unset, str] = UNSET
+    freelogins_count: Union[Unset, str] = UNSET
+    freelogins_resettimeout: Union[Unset, str] = UNSET
+    freelogins_updatetimeouts: Union[Unset, bool] = UNSET
+    logoutwin_enable: Union[Unset, bool] = UNSET
+    enable: Union[Unset, bool] = UNSET
+    auth_method: Union[Unset, str] = UNSET
+    auth_server: Union[Unset, str] = UNSET
+    auth_server2: Union[Unset, str] = UNSET
+    radmac_secret: Union[Unset, str] = UNSET
+    radmac_fallback: Union[Unset, bool] = UNSET
+    radiussession_timeout: Union[Unset, bool] = UNSET
+    radiustraffic_quota: Union[Unset, bool] = UNSET
+    radiusperuserbw: Union[Unset, bool] = UNSET
+    radacct_enable: Union[Unset, bool] = UNSET
+    radacct_server: Union[Unset, str] = UNSET
+    reverseacct: Union[Unset, bool] = UNSET
+    includeidletime: Union[Unset, bool] = UNSET
+    reauthenticate: Union[Unset, bool] = UNSET
+    preservedb: Union[Unset, bool] = UNSET
+    reauthenticateacct: Union[Unset, str] = UNSET
+    httpslogin: Union[Unset, bool] = UNSET
+    httpsname: Union[Unset, str] = UNSET
+    preauthurl: Union[Unset, str] = UNSET
+    blockedmacsurl: Union[Unset, str] = UNSET
+    certref: Union[Unset, str] = UNSET
+    nohttpsforwards: Union[Unset, bool] = UNSET
+    nomacfilter: Union[Unset, bool] = UNSET
+    redirurl: Union[Unset, str] = UNSET
+    passthrumacadd: Union[Unset, bool] = UNSET
+    radmac_format: Union[Unset, str] = UNSET
+    radiusnasid: Union[Unset, str] = UNSET
+    customlogo: Union[Unset, bool] = UNSET
+    custombg: Union[Unset, bool] = UNSET
+    customhtml: Union[Unset, bool] = UNSET
+    termsconditions: Union[Unset, str] = UNSET
+    page: Union[Unset, str] = UNSET
+    noconcurrentlogins: Union[Unset, str] = UNSET
+    peruserbw: Union[Unset, bool] = UNSET
+    bwdefaultdn: Union[Unset, str] = UNSET
+    bwdefaultup: Union[Unset, str] = UNSET
+    enablebackwardsync: Union[Unset, bool] = UNSET
+    backwardsyncip: Union[Unset, str] = UNSET
+    backwardsyncuser: Union[Unset, str] = UNSET
+    backwardsyncpassword: Union[Unset, str] = UNSET
+    passthrumac: Union[Unset, List["CaptivePassthruMac"]] = UNSET
+    allowedip: Union[Unset, List["CaptiveAllowedIP"]] = UNSET
+    allowedhostname: Union[Unset, List["CaptiveAllowedHost"]] = UNSET
     element: Union[Unset, List["CaptiveElement"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -148,7 +156,7 @@ class CaptivePortalConfig:
 
         timeout = self.timeout
 
-        idletime = self.idletime
+        idletimeout = self.idletimeout
 
         trafficquota = self.trafficquota
 
@@ -232,6 +240,14 @@ class CaptivePortalConfig:
 
         bwdefaultup = self.bwdefaultup
 
+        enablebackwardsync = self.enablebackwardsync
+
+        backwardsyncip = self.backwardsyncip
+
+        backwardsyncuser = self.backwardsyncuser
+
+        backwardsyncpassword = self.backwardsyncpassword
+
         passthrumac: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.passthrumac, Unset):
             passthrumac = []
@@ -265,57 +281,114 @@ class CaptivePortalConfig:
         field_dict.update(
             {
                 "zone": zone,
-                "zoneid": zoneid,
-                "descr": descr,
-                "localauth_priv": localauth_priv,
-                "interface": interface,
-                "maxproc": maxproc,
-                "maxprocperip": maxprocperip,
-                "timeout": timeout,
-                "idletime": idletime,
-                "trafficquota": trafficquota,
-                "freelogins_count": freelogins_count,
-                "freelogins_resettimeout": freelogins_resettimeout,
-                "freelogins_updatetimeouts": freelogins_updatetimeouts,
-                "logoutwin_enable": logoutwin_enable,
-                "enable": enable,
-                "auth_method": auth_method,
-                "auth_server": auth_server,
-                "auth_server2": auth_server2,
-                "radmac_secret": radmac_secret,
-                "radmac_fallback": radmac_fallback,
-                "radiussession_timeout": radiussession_timeout,
-                "radiustraffic_quota": radiustraffic_quota,
-                "radiusperuserbw": radiusperuserbw,
-                "radacct_enable": radacct_enable,
-                "radacct_server": radacct_server,
-                "reverseacct": reverseacct,
-                "includeidletime": includeidletime,
-                "reauthenticate": reauthenticate,
-                "preservedb": preservedb,
-                "reauthenticateacct": reauthenticateacct,
-                "httpslogin": httpslogin,
-                "httpsname": httpsname,
-                "preauthurl": preauthurl,
-                "blockedmacsurl": blockedmacsurl,
-                "certref": certref,
-                "nohttpsforwards": nohttpsforwards,
-                "nomacfilter": nomacfilter,
-                "redirurl": redirurl,
-                "passthrumacadd": passthrumacadd,
-                "radmac_format": radmac_format,
-                "radiusnasid": radiusnasid,
-                "customlogo": customlogo,
-                "custombg": custombg,
-                "customhtml": customhtml,
-                "termsconditions": termsconditions,
-                "page": page,
-                "noconcurrentlogins": noconcurrentlogins,
-                "peruserbw": peruserbw,
-                "bwdefaultdn": bwdefaultdn,
-                "bwdefaultup": bwdefaultup,
             }
         )
+        if zoneid is not UNSET:
+            field_dict["zoneid"] = zoneid
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if localauth_priv is not UNSET:
+            field_dict["localauth_priv"] = localauth_priv
+        if interface is not UNSET:
+            field_dict["interface"] = interface
+        if maxproc is not UNSET:
+            field_dict["maxproc"] = maxproc
+        if maxprocperip is not UNSET:
+            field_dict["maxprocperip"] = maxprocperip
+        if timeout is not UNSET:
+            field_dict["timeout"] = timeout
+        if idletimeout is not UNSET:
+            field_dict["idletimeout"] = idletimeout
+        if trafficquota is not UNSET:
+            field_dict["trafficquota"] = trafficquota
+        if freelogins_count is not UNSET:
+            field_dict["freelogins_count"] = freelogins_count
+        if freelogins_resettimeout is not UNSET:
+            field_dict["freelogins_resettimeout"] = freelogins_resettimeout
+        if freelogins_updatetimeouts is not UNSET:
+            field_dict["freelogins_updatetimeouts"] = freelogins_updatetimeouts
+        if logoutwin_enable is not UNSET:
+            field_dict["logoutwin_enable"] = logoutwin_enable
+        if enable is not UNSET:
+            field_dict["enable"] = enable
+        if auth_method is not UNSET:
+            field_dict["auth_method"] = auth_method
+        if auth_server is not UNSET:
+            field_dict["auth_server"] = auth_server
+        if auth_server2 is not UNSET:
+            field_dict["auth_server2"] = auth_server2
+        if radmac_secret is not UNSET:
+            field_dict["radmac_secret"] = radmac_secret
+        if radmac_fallback is not UNSET:
+            field_dict["radmac_fallback"] = radmac_fallback
+        if radiussession_timeout is not UNSET:
+            field_dict["radiussession_timeout"] = radiussession_timeout
+        if radiustraffic_quota is not UNSET:
+            field_dict["radiustraffic_quota"] = radiustraffic_quota
+        if radiusperuserbw is not UNSET:
+            field_dict["radiusperuserbw"] = radiusperuserbw
+        if radacct_enable is not UNSET:
+            field_dict["radacct_enable"] = radacct_enable
+        if radacct_server is not UNSET:
+            field_dict["radacct_server"] = radacct_server
+        if reverseacct is not UNSET:
+            field_dict["reverseacct"] = reverseacct
+        if includeidletime is not UNSET:
+            field_dict["includeidletime"] = includeidletime
+        if reauthenticate is not UNSET:
+            field_dict["reauthenticate"] = reauthenticate
+        if preservedb is not UNSET:
+            field_dict["preservedb"] = preservedb
+        if reauthenticateacct is not UNSET:
+            field_dict["reauthenticateacct"] = reauthenticateacct
+        if httpslogin is not UNSET:
+            field_dict["httpslogin"] = httpslogin
+        if httpsname is not UNSET:
+            field_dict["httpsname"] = httpsname
+        if preauthurl is not UNSET:
+            field_dict["preauthurl"] = preauthurl
+        if blockedmacsurl is not UNSET:
+            field_dict["blockedmacsurl"] = blockedmacsurl
+        if certref is not UNSET:
+            field_dict["certref"] = certref
+        if nohttpsforwards is not UNSET:
+            field_dict["nohttpsforwards"] = nohttpsforwards
+        if nomacfilter is not UNSET:
+            field_dict["nomacfilter"] = nomacfilter
+        if redirurl is not UNSET:
+            field_dict["redirurl"] = redirurl
+        if passthrumacadd is not UNSET:
+            field_dict["passthrumacadd"] = passthrumacadd
+        if radmac_format is not UNSET:
+            field_dict["radmac_format"] = radmac_format
+        if radiusnasid is not UNSET:
+            field_dict["radiusnasid"] = radiusnasid
+        if customlogo is not UNSET:
+            field_dict["customlogo"] = customlogo
+        if custombg is not UNSET:
+            field_dict["custombg"] = custombg
+        if customhtml is not UNSET:
+            field_dict["customhtml"] = customhtml
+        if termsconditions is not UNSET:
+            field_dict["termsconditions"] = termsconditions
+        if page is not UNSET:
+            field_dict["page"] = page
+        if noconcurrentlogins is not UNSET:
+            field_dict["noconcurrentlogins"] = noconcurrentlogins
+        if peruserbw is not UNSET:
+            field_dict["peruserbw"] = peruserbw
+        if bwdefaultdn is not UNSET:
+            field_dict["bwdefaultdn"] = bwdefaultdn
+        if bwdefaultup is not UNSET:
+            field_dict["bwdefaultup"] = bwdefaultup
+        if enablebackwardsync is not UNSET:
+            field_dict["enablebackwardsync"] = enablebackwardsync
+        if backwardsyncip is not UNSET:
+            field_dict["backwardsyncip"] = backwardsyncip
+        if backwardsyncuser is not UNSET:
+            field_dict["backwardsyncuser"] = backwardsyncuser
+        if backwardsyncpassword is not UNSET:
+            field_dict["backwardsyncpassword"] = backwardsyncpassword
         if passthrumac is not UNSET:
             field_dict["passthrumac"] = passthrumac
         if allowedip is not UNSET:
@@ -329,130 +402,138 @@ class CaptivePortalConfig:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.allowed_host import AllowedHost
-        from ..models.allowed_ip import AllowedIP
+        from ..models.captive_allowed_host import CaptiveAllowedHost
+        from ..models.captive_allowed_ip import CaptiveAllowedIP
         from ..models.captive_element import CaptiveElement
-        from ..models.passthru_mac import PassthruMac
+        from ..models.captive_passthru_mac import CaptivePassthruMac
 
         d = src_dict.copy()
         zone = d.pop("zone")
 
-        zoneid = d.pop("zoneid")
+        zoneid = d.pop("zoneid", UNSET)
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
-        localauth_priv = d.pop("localauth_priv")
+        localauth_priv = d.pop("localauth_priv", UNSET)
 
-        interface = d.pop("interface")
+        interface = d.pop("interface", UNSET)
 
-        maxproc = d.pop("maxproc")
+        maxproc = d.pop("maxproc", UNSET)
 
-        maxprocperip = d.pop("maxprocperip")
+        maxprocperip = d.pop("maxprocperip", UNSET)
 
-        timeout = d.pop("timeout")
+        timeout = d.pop("timeout", UNSET)
 
-        idletime = d.pop("idletime")
+        idletimeout = d.pop("idletimeout", UNSET)
 
-        trafficquota = d.pop("trafficquota")
+        trafficquota = d.pop("trafficquota", UNSET)
 
-        freelogins_count = d.pop("freelogins_count")
+        freelogins_count = d.pop("freelogins_count", UNSET)
 
-        freelogins_resettimeout = d.pop("freelogins_resettimeout")
+        freelogins_resettimeout = d.pop("freelogins_resettimeout", UNSET)
 
-        freelogins_updatetimeouts = d.pop("freelogins_updatetimeouts")
+        freelogins_updatetimeouts = d.pop("freelogins_updatetimeouts", UNSET)
 
-        logoutwin_enable = d.pop("logoutwin_enable")
+        logoutwin_enable = d.pop("logoutwin_enable", UNSET)
 
-        enable = d.pop("enable")
+        enable = d.pop("enable", UNSET)
 
-        auth_method = d.pop("auth_method")
+        auth_method = d.pop("auth_method", UNSET)
 
-        auth_server = d.pop("auth_server")
+        auth_server = d.pop("auth_server", UNSET)
 
-        auth_server2 = d.pop("auth_server2")
+        auth_server2 = d.pop("auth_server2", UNSET)
 
-        radmac_secret = d.pop("radmac_secret")
+        radmac_secret = d.pop("radmac_secret", UNSET)
 
-        radmac_fallback = d.pop("radmac_fallback")
+        radmac_fallback = d.pop("radmac_fallback", UNSET)
 
-        radiussession_timeout = d.pop("radiussession_timeout")
+        radiussession_timeout = d.pop("radiussession_timeout", UNSET)
 
-        radiustraffic_quota = d.pop("radiustraffic_quota")
+        radiustraffic_quota = d.pop("radiustraffic_quota", UNSET)
 
-        radiusperuserbw = d.pop("radiusperuserbw")
+        radiusperuserbw = d.pop("radiusperuserbw", UNSET)
 
-        radacct_enable = d.pop("radacct_enable")
+        radacct_enable = d.pop("radacct_enable", UNSET)
 
-        radacct_server = d.pop("radacct_server")
+        radacct_server = d.pop("radacct_server", UNSET)
 
-        reverseacct = d.pop("reverseacct")
+        reverseacct = d.pop("reverseacct", UNSET)
 
-        includeidletime = d.pop("includeidletime")
+        includeidletime = d.pop("includeidletime", UNSET)
 
-        reauthenticate = d.pop("reauthenticate")
+        reauthenticate = d.pop("reauthenticate", UNSET)
 
-        preservedb = d.pop("preservedb")
+        preservedb = d.pop("preservedb", UNSET)
 
-        reauthenticateacct = d.pop("reauthenticateacct")
+        reauthenticateacct = d.pop("reauthenticateacct", UNSET)
 
-        httpslogin = d.pop("httpslogin")
+        httpslogin = d.pop("httpslogin", UNSET)
 
-        httpsname = d.pop("httpsname")
+        httpsname = d.pop("httpsname", UNSET)
 
-        preauthurl = d.pop("preauthurl")
+        preauthurl = d.pop("preauthurl", UNSET)
 
-        blockedmacsurl = d.pop("blockedmacsurl")
+        blockedmacsurl = d.pop("blockedmacsurl", UNSET)
 
-        certref = d.pop("certref")
+        certref = d.pop("certref", UNSET)
 
-        nohttpsforwards = d.pop("nohttpsforwards")
+        nohttpsforwards = d.pop("nohttpsforwards", UNSET)
 
-        nomacfilter = d.pop("nomacfilter")
+        nomacfilter = d.pop("nomacfilter", UNSET)
 
-        redirurl = d.pop("redirurl")
+        redirurl = d.pop("redirurl", UNSET)
 
-        passthrumacadd = d.pop("passthrumacadd")
+        passthrumacadd = d.pop("passthrumacadd", UNSET)
 
-        radmac_format = d.pop("radmac_format")
+        radmac_format = d.pop("radmac_format", UNSET)
 
-        radiusnasid = d.pop("radiusnasid")
+        radiusnasid = d.pop("radiusnasid", UNSET)
 
-        customlogo = d.pop("customlogo")
+        customlogo = d.pop("customlogo", UNSET)
 
-        custombg = d.pop("custombg")
+        custombg = d.pop("custombg", UNSET)
 
-        customhtml = d.pop("customhtml")
+        customhtml = d.pop("customhtml", UNSET)
 
-        termsconditions = d.pop("termsconditions")
+        termsconditions = d.pop("termsconditions", UNSET)
 
-        page = d.pop("page")
+        page = d.pop("page", UNSET)
 
-        noconcurrentlogins = d.pop("noconcurrentlogins")
+        noconcurrentlogins = d.pop("noconcurrentlogins", UNSET)
 
-        peruserbw = d.pop("peruserbw")
+        peruserbw = d.pop("peruserbw", UNSET)
 
-        bwdefaultdn = d.pop("bwdefaultdn")
+        bwdefaultdn = d.pop("bwdefaultdn", UNSET)
 
-        bwdefaultup = d.pop("bwdefaultup")
+        bwdefaultup = d.pop("bwdefaultup", UNSET)
+
+        enablebackwardsync = d.pop("enablebackwardsync", UNSET)
+
+        backwardsyncip = d.pop("backwardsyncip", UNSET)
+
+        backwardsyncuser = d.pop("backwardsyncuser", UNSET)
+
+        backwardsyncpassword = d.pop("backwardsyncpassword", UNSET)
 
         passthrumac = []
         _passthrumac = d.pop("passthrumac", UNSET)
         for passthrumac_item_data in _passthrumac or []:
-            passthrumac_item = PassthruMac.from_dict(passthrumac_item_data)
+            passthrumac_item = CaptivePassthruMac.from_dict(passthrumac_item_data)
 
             passthrumac.append(passthrumac_item)
 
         allowedip = []
         _allowedip = d.pop("allowedip", UNSET)
         for allowedip_item_data in _allowedip or []:
-            allowedip_item = AllowedIP.from_dict(allowedip_item_data)
+            allowedip_item = CaptiveAllowedIP.from_dict(allowedip_item_data)
 
             allowedip.append(allowedip_item)
 
         allowedhostname = []
         _allowedhostname = d.pop("allowedhostname", UNSET)
         for allowedhostname_item_data in _allowedhostname or []:
-            allowedhostname_item = AllowedHost.from_dict(allowedhostname_item_data)
+            allowedhostname_item = CaptiveAllowedHost.from_dict(allowedhostname_item_data)
 
             allowedhostname.append(allowedhostname_item)
 
@@ -472,7 +553,7 @@ class CaptivePortalConfig:
             maxproc=maxproc,
             maxprocperip=maxprocperip,
             timeout=timeout,
-            idletime=idletime,
+            idletimeout=idletimeout,
             trafficquota=trafficquota,
             freelogins_count=freelogins_count,
             freelogins_resettimeout=freelogins_resettimeout,
@@ -514,6 +595,10 @@ class CaptivePortalConfig:
             peruserbw=peruserbw,
             bwdefaultdn=bwdefaultdn,
             bwdefaultup=bwdefaultup,
+            enablebackwardsync=enablebackwardsync,
+            backwardsyncip=backwardsyncip,
+            backwardsyncuser=backwardsyncuser,
+            backwardsyncpassword=backwardsyncpassword,
             passthrumac=passthrumac,
             allowedip=allowedip,
             allowedhostname=allowedhostname,

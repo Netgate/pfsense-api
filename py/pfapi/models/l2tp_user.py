@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="L2TPUser")
 
@@ -11,13 +13,13 @@ class L2TPUser:
     """
     Attributes:
         name (str):
-        ip (str):
-        password (str):
+        ip (Union[Unset, str]):
+        password (Union[Unset, str]):
     """
 
     name: str
-    ip: str
-    password: str
+    ip: Union[Unset, str] = UNSET
+    password: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -32,10 +34,12 @@ class L2TPUser:
         field_dict.update(
             {
                 "name": name,
-                "ip": ip,
-                "password": password,
             }
         )
+        if ip is not UNSET:
+            field_dict["ip"] = ip
+        if password is not UNSET:
+            field_dict["password"] = password
 
         return field_dict
 
@@ -44,9 +48,9 @@ class L2TPUser:
         d = src_dict.copy()
         name = d.pop("name")
 
-        ip = d.pop("ip")
+        ip = d.pop("ip", UNSET)
 
-        password = d.pop("password")
+        password = d.pop("password", UNSET)
 
         l2tp_user = cls(
             name=name,

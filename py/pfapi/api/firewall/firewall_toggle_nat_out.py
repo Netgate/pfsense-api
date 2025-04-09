@@ -6,7 +6,7 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.fw_ignored_input import FwIgnoredInput
+from ...models.fw_rule_toggle import FwRuleToggle
 from ...models.fw_toggle_result import FWToggleResult
 from ...types import Response
 
@@ -14,12 +14,12 @@ from ...types import Response
 def _get_kwargs(
     id: str,
     *,
-    body: FwIgnoredInput,
+    body: FwRuleToggle,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
     _kwargs: Dict[str, Any] = {
-        "method": "put",
+        "method": "post",
         "url": f"/firewall/nat/outbound/toggle/{id}",
     }
 
@@ -64,13 +64,13 @@ def sync_detailed(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FwIgnoredInput,
+    body: FwRuleToggle,
 ) -> Response[Union[Error, FWToggleResult]]:
     """Toggle NAT Outbound rule
 
     Args:
         id (str):
-        body (FwIgnoredInput):
+        body (FwRuleToggle):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -96,13 +96,13 @@ def sync(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FwIgnoredInput,
+    body: FwRuleToggle,
 ) -> Optional[Union[Error, FWToggleResult]]:
     """Toggle NAT Outbound rule
 
     Args:
         id (str):
-        body (FwIgnoredInput):
+        body (FwRuleToggle):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -123,13 +123,13 @@ async def asyncio_detailed(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FwIgnoredInput,
+    body: FwRuleToggle,
 ) -> Response[Union[Error, FWToggleResult]]:
     """Toggle NAT Outbound rule
 
     Args:
         id (str):
-        body (FwIgnoredInput):
+        body (FwRuleToggle):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -153,13 +153,13 @@ async def asyncio(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FwIgnoredInput,
+    body: FwRuleToggle,
 ) -> Optional[Union[Error, FWToggleResult]]:
     """Toggle NAT Outbound rule
 
     Args:
         id (str):
-        body (FwIgnoredInput):
+        body (FwRuleToggle):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="IPSecWidgetMobile")
 
@@ -10,14 +12,14 @@ T = TypeVar("T", bound="IPSecWidgetMobile")
 class IPSecWidgetMobile:
     """
     Attributes:
-        user (str):
-        ip (str):
-        status (str):
+        user (Union[Unset, str]):
+        ip (Union[Unset, str]):
+        status (Union[Unset, str]):
     """
 
-    user: str
-    ip: str
-    status: str
+    user: Union[Unset, str] = UNSET
+    ip: Union[Unset, str] = UNSET
+    status: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -29,24 +31,24 @@ class IPSecWidgetMobile:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "user": user,
-                "ip": ip,
-                "status": status,
-            }
-        )
+        field_dict.update({})
+        if user is not UNSET:
+            field_dict["user"] = user
+        if ip is not UNSET:
+            field_dict["ip"] = ip
+        if status is not UNSET:
+            field_dict["status"] = status
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        user = d.pop("user")
+        user = d.pop("user", UNSET)
 
-        ip = d.pop("ip")
+        ip = d.pop("ip", UNSET)
 
-        status = d.pop("status")
+        status = d.pop("status", UNSET)
 
         ip_sec_widget_mobile = cls(
             user=user,

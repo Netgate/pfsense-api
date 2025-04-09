@@ -12,15 +12,15 @@ T = TypeVar("T", bound="ControlledDeviceAuth")
 class ControlledDeviceAuth:
     """
     Attributes:
-        vpn_pubkey (str): MIM public key of device
-        vpn_address (str): IPv6 VPN address of device
-        vpn_listenaddr (str): Listening addresses of device's VPN service
+        vpn_pubkey (Union[Unset, str]): MIM public key of device
+        vpn_address (Union[Unset, str]): IPv6 VPN address of device
+        vpn_listenaddr (Union[Unset, str]): Listening addresses of device's VPN service
         cert (Union[Unset, str]): certificate
     """
 
-    vpn_pubkey: str
-    vpn_address: str
-    vpn_listenaddr: str
+    vpn_pubkey: Union[Unset, str] = UNSET
+    vpn_address: Union[Unset, str] = UNSET
+    vpn_listenaddr: Union[Unset, str] = UNSET
     cert: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -35,13 +35,13 @@ class ControlledDeviceAuth:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "vpn_pubkey": vpn_pubkey,
-                "vpn_address": vpn_address,
-                "vpn_listenaddr": vpn_listenaddr,
-            }
-        )
+        field_dict.update({})
+        if vpn_pubkey is not UNSET:
+            field_dict["vpn_pubkey"] = vpn_pubkey
+        if vpn_address is not UNSET:
+            field_dict["vpn_address"] = vpn_address
+        if vpn_listenaddr is not UNSET:
+            field_dict["vpn_listenaddr"] = vpn_listenaddr
         if cert is not UNSET:
             field_dict["cert"] = cert
 
@@ -50,11 +50,11 @@ class ControlledDeviceAuth:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        vpn_pubkey = d.pop("vpn_pubkey")
+        vpn_pubkey = d.pop("vpn_pubkey", UNSET)
 
-        vpn_address = d.pop("vpn_address")
+        vpn_address = d.pop("vpn_address", UNSET)
 
-        vpn_listenaddr = d.pop("vpn_listenaddr")
+        vpn_listenaddr = d.pop("vpn_listenaddr", UNSET)
 
         cert = d.pop("cert", UNSET)
 

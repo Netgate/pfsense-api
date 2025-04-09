@@ -17,8 +17,12 @@ from .adv_notification_setting import AdvNotificationSetting
 from .adv_notifications import AdvNotifications
 from .all_software_packages import AllSoftwarePackages
 from .all_software_packages_software_packages import AllSoftwarePackagesSoftwarePackages
-from .allowed_host import AllowedHost
-from .allowed_ip import AllowedIP
+from .altq_capable_interface import ALTQCapableInterface
+from .altq_child_queue import ALTQChildQueue
+from .altq_root_queue import ALTQRootQueue
+from .altq_root_queue_bandwidthtype import ALTQRootQueueBandwidthtype
+from .altq_root_queue_scheduler import ALTQRootQueueScheduler
+from .altq_root_queues import ALTQRootQueues
 from .apply_dirty_config_request import ApplyDirtyConfigRequest
 from .arp_table_entry import ArpTableEntry
 from .auth_server import AuthServer
@@ -36,9 +40,11 @@ from .bridge_interface_ifpriority import BridgeInterfaceIfpriority
 from .bridge_interfaces import BridgeInterfaces
 from .ca_cert_method_existing import CaCertMethodExisting
 from .ca_cert_method_new import CaCertMethodNew
+from .captive_allowed_host import CaptiveAllowedHost
+from .captive_allowed_ip import CaptiveAllowedIP
 from .captive_element import CaptiveElement
+from .captive_passthru_mac import CaptivePassthruMac
 from .captive_portal_config import CaptivePortalConfig
-from .captive_portal_config_req import CaptivePortalConfigReq
 from .captive_portal_disconnect_request import CaptivePortalDisconnectRequest
 from .captive_portal_info import CaptivePortalInfo
 from .captive_portal_name import CaptivePortalName
@@ -65,6 +71,8 @@ from .cert_pkcs_12_export_opts_encryption import CertPkcs12ExportOptsEncryption
 from .certificate_detailed import CertificateDetailed
 from .certs_config import CertsConfig
 from .check_ip_service import CheckIPService
+from .check_ip_services_list import CheckIPServicesList
+from .config_event import ConfigEvent
 from .console_client import ConsoleClient
 from .console_clients import ConsoleClients
 from .controlled_device import ControlledDevice
@@ -89,6 +97,7 @@ from .controller_descrip_host_os import ControllerDescripHostOs
 from .controller_identity import ControllerIdentity
 from .controller_info import ControllerInfo
 from .controller_service_action import ControllerServiceAction
+from .controller_service_action_action import ControllerServiceActionAction
 from .controller_stats import ControllerStats
 from .controller_summary import ControllerSummary
 from .controller_upgrade_info import ControllerUpgradeInfo
@@ -174,6 +183,10 @@ from .diag_shell_command import DiagShellCommand
 from .diag_socket_stats import DiagSocketStats
 from .diag_state import DiagState
 from .diag_states import DiagStates
+from .diag_table import DiagTable
+from .diag_table_action import DiagTableAction
+from .diag_table_detailed import DiagTableDetailed
+from .diag_tables import DiagTables
 from .diag_upload_request import DiagUploadRequest
 from .diag_upload_result import DiagUploadResult
 from .dimm import Dimm
@@ -186,12 +199,14 @@ from .dns_alias_request import DnsAliasRequest
 from .dns_forwarder_alias import DNSForwarderAlias
 from .dns_forwarder_config import DNSForwarderConfig
 from .dns_forwarder_config_info import DNSForwarderConfigInfo
+from .dns_forwarder_config_info_interfaces import DNSForwarderConfigInfoInterfaces
 from .dns_forwarder_domain import DNSForwarderDomain
 from .dns_forwarder_host import DNSForwarderHost
 from .dns_forwarder_update_req import DNSForwarderUpdateReq
 from .dns_resolver_config import DNSResolverConfig
 from .dns_resolver_config_info import DNSResolverConfigInfo
 from .dns_resolver_config_info_interfaces import DNSResolverConfigInfoInterfaces
+from .dns_resolver_domain import DNSResolverDomain
 from .dns_resolver_status import DNSResolverStatus
 from .dns_resolver_status_speed import DNSResolverStatusSpeed
 from .dns_resolver_status_stats import DNSResolverStatusStats
@@ -199,10 +214,9 @@ from .dns_resolver_update_req import DNSResolverUpdateReq
 from .dnsacl import DNSACL
 from .dnsacl_network import DNSACLNetwork
 from .dyn_dns_config import DynDNSConfig
-from .dyn_dns_config_info import DynDNSConfigInfo
-from .dyn_dns_configs import DynDNSConfigs
-from .dyn_dns_update_req import DynDNSUpdateReq
+from .dyn_dns_list import DynDnsList
 from .edit_file_data import EditFileData
+from .edit_file_req import EditFileReq
 from .encryption_algorithm import EncryptionAlgorithm
 from .error import Error
 from .event import Event
@@ -237,11 +251,10 @@ from .fw_bulk_copy import FwBulkCopy
 from .fw_bulk_delete import FwBulkDelete
 from .fw_bulk_toggle import FwBulkToggle
 from .fw_filter_rule import FWFilterRule
+from .fw_filter_rule_nat import FWFilterRuleNAT
 from .fw_firewall_interfaces import FWFirewallInterfaces
-from .fw_ignored_input import FwIgnoredInput
 from .fw_rule_item_order import FWRuleItemOrder
 from .fw_rule_list import FWRuleList
-from .fw_rule_order import FWRuleOrder
 from .fw_rule_state import FWRuleState
 from .fw_rule_states import FWRuleStates
 from .fw_rule_toggle import FwRuleToggle
@@ -289,7 +302,6 @@ from .if_stats import IfStats
 from .if_stats_bandwidth import IfStatsBandwidth
 from .if_stats_summary import IfStatsSummary
 from .igmp_proxies import IGMPProxies
-from .igmp_proxies_req import IGMPProxiesReq
 from .igmp_proxy import IGMPProxy
 from .igmp_proxy_settings import IGMPProxySettings
 from .import_pkcs_12_certificate_body import ImportPkcs12CertificateBody
@@ -301,6 +313,8 @@ from .install_packages_opt import InstallPackagesOpt
 from .install_packages_response import InstallPackagesResponse
 from .install_software_package_info import InstallSoftwarePackageInfo
 from .interface import Interface
+from .interface_assigned_name import InterfaceAssignedName
+from .interface_assignments import InterfaceAssignments
 from .interface_descriptors import InterfaceDescriptors
 from .interface_descriptors_info import InterfaceDescriptorsInfo
 from .interface_descriptors_info_bridges import InterfaceDescriptorsInfoBridges
@@ -312,7 +326,6 @@ from .interface_descriptors_info_ppp import InterfaceDescriptorsInfoPpp
 from .interface_descriptors_info_qinq import InterfaceDescriptorsInfoQinq
 from .interface_descriptors_info_vlan import InterfaceDescriptorsInfoVlan
 from .interface_event import InterfaceEvent
-from .interface_friendly_name import InterfaceFriendlyName
 from .interface_group import InterfaceGroup
 from .interface_groups import InterfaceGroups
 from .interface_info import InterfaceInfo
@@ -326,14 +339,18 @@ from .interface_statistics_widget_result import InterfaceStatisticsWidgetResult
 from .interface_statistics_widget_result_interfaces import InterfaceStatisticsWidgetResultInterfaces
 from .interface_widgets import InterfaceWidgets
 from .interfaces import Interfaces
-from .interfaces_friendly import InterfacesFriendly
 from .interfaces_simple import InterfacesSimple
 from .interfaces_widget import InterfacesWidget
+from .intf_router_adv_setting import IntfRouterAdvSetting
+from .intf_router_adv_setting_mode import IntfRouterAdvSettingMode
 from .ip_sec_bypass_rule import IPSecBypassRule
 from .ip_sec_bypass_rules import IPSecBypassRules
+from .ip_sec_capable_interface import IPSecCapableInterface
 from .ip_sec_child_sas import IPSecChildSAS
 from .ip_sec_client import IPSecClient
 from .ip_sec_client_config import IPSecClientConfig
+from .ip_sec_client_group import IPSecClientGroup
+from .ip_sec_client_groups import IPSecClientGroups
 from .ip_sec_config import IPSecConfig
 from .ip_sec_connect_req import IPSecConnectReq
 from .ip_sec_disconnect_req import IPSecDisconnectReq
@@ -343,7 +360,6 @@ from .ip_sec_logging import IPSecLogging
 from .ip_sec_mobile_key import IPSecMobileKey
 from .ip_sec_mobile_keys import IPSecMobileKeys
 from .ip_sec_phase_list import IPSecPhaseList
-from .ip_sec_phases import IPSecPhases
 from .ip_sec_pool import IPSecPool
 from .ip_sec_pool_lease import IPSecPoolLease
 from .ip_sec_psk import IPSecPSK
@@ -366,7 +382,16 @@ from .lagg_interface_proto import LAGGInterfaceProto
 from .lagg_interfaces import LAGGInterfaces
 from .ldap_auth_server import LdapAuthServer
 from .lease_interface import LeaseInterface
+from .limiter import Limiter
+from .limiter_aqm import LimiterAqm
+from .limiter_bandwidth import LimiterBandwidth
 from .limiter_info import LimiterInfo
+from .limiter_mask import LimiterMask
+from .limiter_queue import LimiterQueue
+from .limiter_queue_aqm import LimiterQueueAqm
+from .limiter_queue_mask import LimiterQueueMask
+from .limiter_sched import LimiterSched
+from .limiters import Limiters
 from .load_avg import LoadAvg
 from .local_server import LocalServer
 from .log_entries import LogEntries
@@ -383,6 +408,7 @@ from .monitoring_data_request import MonitoringDataRequest
 from .monitoring_data_result import MonitoringDataResult
 from .monitoring_dataset_info import MonitoringDatasetInfo
 from .monitoring_datasets import MonitoringDatasets
+from .name_descr import NameDescr
 from .nat1_to_1_rule import NAT1To1Rule
 from .nat1_to_1_rules import NAT1To1Rules
 from .nat1_to_1_update_result import NAT1To1UpdateResult
@@ -401,6 +427,7 @@ from .nat_outbound_rules import NATOutboundRules
 from .nat_rule import NATRule
 from .nat_rule_order import NATRuleOrder
 from .nat_rules import NATRules
+from .nat_rules_entry import NATRulesEntry
 from .nat_update_result import NATUpdateResult
 from .ndp_entry import NDPEntry
 from .ndp_table import NDPTable
@@ -436,10 +463,12 @@ from .ntp_server_info import NtpServerInfo
 from .ntp_settings import NtpSettings
 from .ntp_status import NtpStatus
 from .open_vpn_active_conn import OpenVPNActiveConn
+from .open_vpn_capable_interface import OpenVPNCapableInterface
 from .open_vpn_client import OpenVPNClient
 from .open_vpn_client_config import OpenVPNClientConfig
 from .open_vpn_clients import OpenVPNClients
 from .open_vpn_conn import OpenVPNConn
+from .open_vpn_next_port import OpenVPNNextPort
 from .open_vpn_route import OpenVPNRoute
 from .open_vpn_server import OpenVPNServer
 from .open_vpn_server_config import OpenVPNServerConfig
@@ -457,13 +486,13 @@ from .p_flow_global_options_src_ip_address import PFlowGlobalOptionsSrcIpAddress
 from .p_flow_options import PFlowOptions
 from .package import Package
 from .package_install_progress import PackageInstallProgress
+from .package_status import PackageStatus
 from .packages import Packages
 from .packet_capture import PacketCapture
+from .packet_capture_filter import PacketCaptureFilter
 from .packet_capture_request import PacketCaptureRequest
-from .passthru_mac import PassthruMac
 from .patch_system_certificates_refid_body import PatchSystemCertificatesRefidBody
 from .pcap_interface import PcapInterface
-from .pf_configuration import PfConfiguration
 from .pf_info import PfInfo
 from .pf_info_response import PfInfoResponse
 from .pfsense_result import PfsenseResult
@@ -502,7 +531,9 @@ from .renew_cert_options import RenewCertOptions
 from .result import Result
 from .retrieved_backup import RetrievedBackup
 from .rfc_item import RFCItem
+from .rfc_item_list import RFCItemList
 from .route_record import RouteRecord
+from .router_adv_settings import RouterAdvSettings
 from .routes_apply_request import RoutesApplyRequest
 from .routes_dirty_state import RoutesDirtyState
 from .separator import Separator
@@ -519,6 +550,7 @@ from .services_status import ServicesStatus
 from .services_status_list import ServicesStatusList
 from .services_u_pn_p_config import ServicesUPnPConfig
 from .services_u_pn_p_config_req import ServicesUPnPConfigReq
+from .set_adv_networking_response import SetAdvNetworkingResponse
 from .set_open_vpn_client_response import SetOpenVPNClientResponse
 from .set_open_vpn_server_response import SetOpenVPNServerResponse
 from .set_open_vpncso_response import SetOpenVPNCSOResponse
@@ -568,6 +600,7 @@ from .tcp_flags import TCPFlags
 from .test_port_request import TestPortRequest
 from .test_port_response import TestPortResponse
 from .test_port_sources import TestPortSources
+from .text_value import TextValue
 from .tier import Tier
 from .tls_cert_path import TLSCertPath
 from .toggle_resp_status import ToggleRespStatus
@@ -575,6 +608,7 @@ from .toggle_upnp import ToggleUPNP
 from .traceroute_request import TracerouteRequest
 from .traceroute_response import TracerouteResponse
 from .traffic_queue_stats import TrafficQueueStats
+from .traffic_shapers import TrafficShapers
 from .tunable import Tunable
 from .tunable_request import TunableRequest
 from .tunables import Tunables
@@ -588,7 +622,6 @@ from .update_ca_cert_req import UpdateCaCertReq
 from .update_cert_req import UpdateCertReq
 from .update_crl_req import UpdateCRLReq
 from .update_pkcs12_cert_req import UpdatePKCS12CertReq
-from .update_proxy_req import UpdateProxyReq
 from .user import User
 from .user_add_req import UserAddReq
 from .user_auth_settings import UserAuthSettings
@@ -647,10 +680,14 @@ __all__ = (
     "AdvNetworkSetting",
     "AdvNotifications",
     "AdvNotificationSetting",
-    "AllowedHost",
-    "AllowedIP",
     "AllSoftwarePackages",
     "AllSoftwarePackagesSoftwarePackages",
+    "ALTQCapableInterface",
+    "ALTQChildQueue",
+    "ALTQRootQueue",
+    "ALTQRootQueueBandwidthtype",
+    "ALTQRootQueues",
+    "ALTQRootQueueScheduler",
     "ApplyDirtyConfigRequest",
     "ArpTableEntry",
     "AuthServer",
@@ -668,9 +705,11 @@ __all__ = (
     "BridgeInterfaces",
     "CaCertMethodExisting",
     "CaCertMethodNew",
+    "CaptiveAllowedHost",
+    "CaptiveAllowedIP",
     "CaptiveElement",
+    "CaptivePassthruMac",
     "CaptivePortalConfig",
-    "CaptivePortalConfigReq",
     "CaptivePortalDisconnectRequest",
     "CaptivePortalInfo",
     "CaptivePortalName",
@@ -697,6 +736,8 @@ __all__ = (
     "CertPkcs12ExportOptsEncryption",
     "CertsConfig",
     "CheckIPService",
+    "CheckIPServicesList",
+    "ConfigEvent",
     "ConsoleClient",
     "ConsoleClients",
     "ControlledDevice",
@@ -721,6 +762,7 @@ __all__ = (
     "ControllerIdentity",
     "ControllerInfo",
     "ControllerServiceAction",
+    "ControllerServiceActionAction",
     "ControllersList",
     "ControllerStats",
     "ControllerSummary",
@@ -806,6 +848,10 @@ __all__ = (
     "DiagSocketStats",
     "DiagState",
     "DiagStates",
+    "DiagTable",
+    "DiagTableAction",
+    "DiagTableDetailed",
+    "DiagTables",
     "DiagUploadRequest",
     "DiagUploadResult",
     "Dimm",
@@ -820,21 +866,22 @@ __all__ = (
     "DNSForwarderAlias",
     "DNSForwarderConfig",
     "DNSForwarderConfigInfo",
+    "DNSForwarderConfigInfoInterfaces",
     "DNSForwarderDomain",
     "DNSForwarderHost",
     "DNSForwarderUpdateReq",
     "DNSResolverConfig",
     "DNSResolverConfigInfo",
     "DNSResolverConfigInfoInterfaces",
+    "DNSResolverDomain",
     "DNSResolverStatus",
     "DNSResolverStatusSpeed",
     "DNSResolverStatusStats",
     "DNSResolverUpdateReq",
     "DynDNSConfig",
-    "DynDNSConfigInfo",
-    "DynDNSConfigs",
-    "DynDNSUpdateReq",
+    "DynDnsList",
     "EditFileData",
+    "EditFileReq",
     "EncryptionAlgorithm",
     "Error",
     "Event",
@@ -869,11 +916,10 @@ __all__ = (
     "FwBulkDelete",
     "FwBulkToggle",
     "FWFilterRule",
+    "FWFilterRuleNAT",
     "FWFirewallInterfaces",
-    "FwIgnoredInput",
     "FWRuleItemOrder",
     "FWRuleList",
-    "FWRuleOrder",
     "FWRules",
     "FWRulesAliases",
     "FwRulesEntry",
@@ -921,7 +967,6 @@ __all__ = (
     "IfStatsBandwidth",
     "IfStatsSummary",
     "IGMPProxies",
-    "IGMPProxiesReq",
     "IGMPProxy",
     "IGMPProxySettings",
     "ImportPkcs12CertificateBody",
@@ -933,6 +978,8 @@ __all__ = (
     "InstallPackagesResponse",
     "InstallSoftwarePackageInfo",
     "Interface",
+    "InterfaceAssignedName",
+    "InterfaceAssignments",
     "InterfaceDescriptors",
     "InterfaceDescriptorsInfo",
     "InterfaceDescriptorsInfoBridges",
@@ -944,7 +991,6 @@ __all__ = (
     "InterfaceDescriptorsInfoQinq",
     "InterfaceDescriptorsInfoVlan",
     "InterfaceEvent",
-    "InterfaceFriendlyName",
     "InterfaceGroup",
     "InterfaceGroups",
     "InterfaceInfo",
@@ -953,7 +999,6 @@ __all__ = (
     "InterfacePorts",
     "InterfacePortsLists",
     "Interfaces",
-    "InterfacesFriendly",
     "InterfaceSimple",
     "InterfacesSimple",
     "InterfaceStatisticsWidget",
@@ -961,11 +1006,16 @@ __all__ = (
     "InterfaceStatisticsWidgetResultInterfaces",
     "InterfacesWidget",
     "InterfaceWidgets",
+    "IntfRouterAdvSetting",
+    "IntfRouterAdvSettingMode",
     "IPSecBypassRule",
     "IPSecBypassRules",
+    "IPSecCapableInterface",
     "IPSecChildSAS",
     "IPSecClient",
     "IPSecClientConfig",
+    "IPSecClientGroup",
+    "IPSecClientGroups",
     "IPSecConfig",
     "IPSecConnectReq",
     "IPSecDisconnectReq",
@@ -975,7 +1025,6 @@ __all__ = (
     "IPSecMobileKey",
     "IPSecMobileKeys",
     "IPSecPhaseList",
-    "IPSecPhases",
     "IPSecPool",
     "IPSecPoolLease",
     "IPSecPSK",
@@ -998,7 +1047,16 @@ __all__ = (
     "LAGGInterfaces",
     "LdapAuthServer",
     "LeaseInterface",
+    "Limiter",
+    "LimiterAqm",
+    "LimiterBandwidth",
     "LimiterInfo",
+    "LimiterMask",
+    "LimiterQueue",
+    "LimiterQueueAqm",
+    "LimiterQueueMask",
+    "Limiters",
+    "LimiterSched",
     "LoadAvg",
     "LocalServer",
     "LogEntries",
@@ -1015,6 +1073,7 @@ __all__ = (
     "MonitoringDataResult",
     "MonitoringDatasetInfo",
     "MonitoringDatasets",
+    "NameDescr",
     "NAT1To1Rule",
     "NAT1To1Rules",
     "NAT1To1UpdateResult",
@@ -1033,6 +1092,7 @@ __all__ = (
     "NATRule",
     "NATRuleOrder",
     "NATRules",
+    "NATRulesEntry",
     "NATUpdateResult",
     "NDPEntry",
     "NDPTable",
@@ -1068,6 +1128,7 @@ __all__ = (
     "NtpSettings",
     "NtpStatus",
     "OpenVPNActiveConn",
+    "OpenVPNCapableInterface",
     "OpenVPNClient",
     "OpenVPNClientConfig",
     "OpenVPNClients",
@@ -1075,6 +1136,7 @@ __all__ = (
     "OpenVPNCSO",
     "OpenVPNCSOConfig",
     "OpenVPNCSOs",
+    "OpenVPNNextPort",
     "OpenVPNRoute",
     "OpenVPNServer",
     "OpenVPNServerConfig",
@@ -1086,12 +1148,12 @@ __all__ = (
     "Package",
     "PackageInstallProgress",
     "Packages",
+    "PackageStatus",
     "PacketCapture",
+    "PacketCaptureFilter",
     "PacketCaptureRequest",
-    "PassthruMac",
     "PatchSystemCertificatesRefidBody",
     "PcapInterface",
-    "PfConfiguration",
     "PfInfo",
     "PfInfoResponse",
     "PFlowExporter",
@@ -1134,6 +1196,8 @@ __all__ = (
     "Result",
     "RetrievedBackup",
     "RFCItem",
+    "RFCItemList",
+    "RouterAdvSettings",
     "RouteRecord",
     "RoutesApplyRequest",
     "RoutesDirtyState",
@@ -1151,6 +1215,7 @@ __all__ = (
     "ServicesStatusList",
     "ServicesUPnPConfig",
     "ServicesUPnPConfigReq",
+    "SetAdvNetworkingResponse",
     "SetOpenVPNClientResponse",
     "SetOpenVPNCSOResponse",
     "SetOpenVPNServerResponse",
@@ -1200,6 +1265,7 @@ __all__ = (
     "TestPortRequest",
     "TestPortResponse",
     "TestPortSources",
+    "TextValue",
     "Tier",
     "TLSCertPath",
     "ToggleRespStatus",
@@ -1207,6 +1273,7 @@ __all__ = (
     "TracerouteRequest",
     "TracerouteResponse",
     "TrafficQueueStats",
+    "TrafficShapers",
     "Tunable",
     "TunableRequest",
     "Tunables",
@@ -1216,7 +1283,6 @@ __all__ = (
     "UpdateCertReq",
     "UpdateCRLReq",
     "UpdatePKCS12CertReq",
-    "UpdateProxyReq",
     "UPnPConfig",
     "UPnPMapping",
     "UPnPMappings",

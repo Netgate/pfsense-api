@@ -12,22 +12,23 @@ T = TypeVar("T", bound="FWAddrPort")
 class FWAddrPort:
     """
     Attributes:
-        label (str):
-        address (str):
-        network (str):
-        port (str):
-        not_ (bool):
-        alias_id (str):
+        label (str): read-only; label to display to user
+        address (Union[Unset, str]): single address, subnet or an alias (FWAlias)
+        network (Union[Unset, str]): system aliases: interface name (e.g. opt1), interface address "opt1ip", or firewall
+            "self"
+        port (Union[Unset, str]):
+        not_ (Union[Unset, bool]):
         any_ (Union[Unset, bool]):
+        alias_id (Union[Unset, str]):
     """
 
     label: str
-    address: str
-    network: str
-    port: str
-    not_: bool
-    alias_id: str
+    address: Union[Unset, str] = UNSET
+    network: Union[Unset, str] = UNSET
+    port: Union[Unset, str] = UNSET
+    not_: Union[Unset, bool] = UNSET
     any_: Union[Unset, bool] = UNSET
+    alias_id: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -41,24 +42,29 @@ class FWAddrPort:
 
         not_ = self.not_
 
-        alias_id = self.alias_id
-
         any_ = self.any_
+
+        alias_id = self.alias_id
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
                 "label": label,
-                "address": address,
-                "network": network,
-                "port": port,
-                "not": not_,
-                "alias_id": alias_id,
             }
         )
+        if address is not UNSET:
+            field_dict["address"] = address
+        if network is not UNSET:
+            field_dict["network"] = network
+        if port is not UNSET:
+            field_dict["port"] = port
+        if not_ is not UNSET:
+            field_dict["not"] = not_
         if any_ is not UNSET:
             field_dict["any"] = any_
+        if alias_id is not UNSET:
+            field_dict["alias_id"] = alias_id
 
         return field_dict
 
@@ -67,17 +73,17 @@ class FWAddrPort:
         d = src_dict.copy()
         label = d.pop("label")
 
-        address = d.pop("address")
+        address = d.pop("address", UNSET)
 
-        network = d.pop("network")
+        network = d.pop("network", UNSET)
 
-        port = d.pop("port")
+        port = d.pop("port", UNSET)
 
-        not_ = d.pop("not")
-
-        alias_id = d.pop("alias_id")
+        not_ = d.pop("not", UNSET)
 
         any_ = d.pop("any", UNSET)
+
+        alias_id = d.pop("alias_id", UNSET)
 
         fw_addr_port = cls(
             label=label,
@@ -85,8 +91,8 @@ class FWAddrPort:
             network=network,
             port=port,
             not_=not_,
-            alias_id=alias_id,
             any_=any_,
+            alias_id=alias_id,
         )
 
         fw_addr_port.additional_properties = d

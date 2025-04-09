@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SystemUpdateBootEnvsSettings")
 
@@ -10,14 +12,14 @@ T = TypeVar("T", bound="SystemUpdateBootEnvsSettings")
 class SystemUpdateBootEnvsSettings:
     """
     Attributes:
-        deferred_boot (bool):
-        verify (bool):
-        verify_timeout (int):
+        deferred_boot (Union[Unset, bool]):
+        verify (Union[Unset, bool]):
+        verify_timeout (Union[Unset, int]):
     """
 
-    deferred_boot: bool
-    verify: bool
-    verify_timeout: int
+    deferred_boot: Union[Unset, bool] = UNSET
+    verify: Union[Unset, bool] = UNSET
+    verify_timeout: Union[Unset, int] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -29,24 +31,24 @@ class SystemUpdateBootEnvsSettings:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "deferred_boot": deferred_boot,
-                "verify": verify,
-                "verify_timeout": verify_timeout,
-            }
-        )
+        field_dict.update({})
+        if deferred_boot is not UNSET:
+            field_dict["deferred_boot"] = deferred_boot
+        if verify is not UNSET:
+            field_dict["verify"] = verify
+        if verify_timeout is not UNSET:
+            field_dict["verify_timeout"] = verify_timeout
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        deferred_boot = d.pop("deferred_boot")
+        deferred_boot = d.pop("deferred_boot", UNSET)
 
-        verify = d.pop("verify")
+        verify = d.pop("verify", UNSET)
 
-        verify_timeout = d.pop("verify_timeout")
+        verify_timeout = d.pop("verify_timeout", UNSET)
 
         system_update_boot_envs_settings = cls(
             deferred_boot=deferred_boot,

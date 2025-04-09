@@ -12,19 +12,19 @@ T = TypeVar("T", bound="UserGroup")
 class UserGroup:
     """
     Attributes:
-        name (str):
-        description (str):
-        scope (str):
-        gid (int):
+        name (Union[Unset, str]):
+        description (Union[Unset, str]):
+        scope (Union[Unset, str]):
+        gid (Union[Unset, int]):
         member (Union[Unset, List[int]]):
         members (Union[Unset, List[int]]):
         privs (Union[Unset, List[str]]):
     """
 
-    name: str
-    description: str
-    scope: str
-    gid: int
+    name: Union[Unset, str] = UNSET
+    description: Union[Unset, str] = UNSET
+    scope: Union[Unset, str] = UNSET
+    gid: Union[Unset, int] = UNSET
     member: Union[Unset, List[int]] = UNSET
     members: Union[Unset, List[int]] = UNSET
     privs: Union[Unset, List[str]] = UNSET
@@ -53,14 +53,15 @@ class UserGroup:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "description": description,
-                "scope": scope,
-                "gid": gid,
-            }
-        )
+        field_dict.update({})
+        if name is not UNSET:
+            field_dict["name"] = name
+        if description is not UNSET:
+            field_dict["description"] = description
+        if scope is not UNSET:
+            field_dict["scope"] = scope
+        if gid is not UNSET:
+            field_dict["gid"] = gid
         if member is not UNSET:
             field_dict["member"] = member
         if members is not UNSET:
@@ -73,13 +74,13 @@ class UserGroup:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        description = d.pop("description")
+        description = d.pop("description", UNSET)
 
-        scope = d.pop("scope")
+        scope = d.pop("scope", UNSET)
 
-        gid = d.pop("gid")
+        gid = d.pop("gid", UNSET)
 
         member = cast(List[int], d.pop("member", UNSET))
 

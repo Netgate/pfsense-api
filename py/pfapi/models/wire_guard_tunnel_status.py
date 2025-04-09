@@ -17,32 +17,32 @@ T = TypeVar("T", bound="WireGuardTunnelStatus")
 class WireGuardTunnelStatus:
     """
     Attributes:
-        private_key (str):
-        public_key (str):
-        listen_port (str):
-        fwmark (str):
-        status (str):
-        transfer_rx (int):
-        transfer_tx (int):
-        inpkts (int):
-        outpkts (int):
-        mtu (int):
-        config (WGTunnel): valid values:
+        private_key (Union[Unset, str]):
+        public_key (Union[Unset, str]):
+        listen_port (Union[Unset, str]):
+        fwmark (Union[Unset, str]):
+        status (Union[Unset, str]):
+        transfer_rx (Union[Unset, int]):
+        transfer_tx (Union[Unset, int]):
+        inpkts (Union[Unset, int]):
+        outpkts (Union[Unset, int]):
+        mtu (Union[Unset, int]):
+        config (Union[Unset, WGTunnel]): valid values:
             enabled = "yes", "no"
         peers (Union[Unset, List['WireGuardPeerStatus']]):
     """
 
-    private_key: str
-    public_key: str
-    listen_port: str
-    fwmark: str
-    status: str
-    transfer_rx: int
-    transfer_tx: int
-    inpkts: int
-    outpkts: int
-    mtu: int
-    config: "WGTunnel"
+    private_key: Union[Unset, str] = UNSET
+    public_key: Union[Unset, str] = UNSET
+    listen_port: Union[Unset, str] = UNSET
+    fwmark: Union[Unset, str] = UNSET
+    status: Union[Unset, str] = UNSET
+    transfer_rx: Union[Unset, int] = UNSET
+    transfer_tx: Union[Unset, int] = UNSET
+    inpkts: Union[Unset, int] = UNSET
+    outpkts: Union[Unset, int] = UNSET
+    mtu: Union[Unset, int] = UNSET
+    config: Union[Unset, "WGTunnel"] = UNSET
     peers: Union[Unset, List["WireGuardPeerStatus"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -67,7 +67,9 @@ class WireGuardTunnelStatus:
 
         mtu = self.mtu
 
-        config = self.config.to_dict()
+        config: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.config, Unset):
+            config = self.config.to_dict()
 
         peers: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.peers, Unset):
@@ -78,21 +80,29 @@ class WireGuardTunnelStatus:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "private_key": private_key,
-                "public_key": public_key,
-                "listen_port": listen_port,
-                "fwmark": fwmark,
-                "status": status,
-                "transfer_rx": transfer_rx,
-                "transfer_tx": transfer_tx,
-                "inpkts": inpkts,
-                "outpkts": outpkts,
-                "mtu": mtu,
-                "config": config,
-            }
-        )
+        field_dict.update({})
+        if private_key is not UNSET:
+            field_dict["private_key"] = private_key
+        if public_key is not UNSET:
+            field_dict["public_key"] = public_key
+        if listen_port is not UNSET:
+            field_dict["listen_port"] = listen_port
+        if fwmark is not UNSET:
+            field_dict["fwmark"] = fwmark
+        if status is not UNSET:
+            field_dict["status"] = status
+        if transfer_rx is not UNSET:
+            field_dict["transfer_rx"] = transfer_rx
+        if transfer_tx is not UNSET:
+            field_dict["transfer_tx"] = transfer_tx
+        if inpkts is not UNSET:
+            field_dict["inpkts"] = inpkts
+        if outpkts is not UNSET:
+            field_dict["outpkts"] = outpkts
+        if mtu is not UNSET:
+            field_dict["mtu"] = mtu
+        if config is not UNSET:
+            field_dict["config"] = config
         if peers is not UNSET:
             field_dict["peers"] = peers
 
@@ -104,27 +114,32 @@ class WireGuardTunnelStatus:
         from ..models.wire_guard_peer_status import WireGuardPeerStatus
 
         d = src_dict.copy()
-        private_key = d.pop("private_key")
+        private_key = d.pop("private_key", UNSET)
 
-        public_key = d.pop("public_key")
+        public_key = d.pop("public_key", UNSET)
 
-        listen_port = d.pop("listen_port")
+        listen_port = d.pop("listen_port", UNSET)
 
-        fwmark = d.pop("fwmark")
+        fwmark = d.pop("fwmark", UNSET)
 
-        status = d.pop("status")
+        status = d.pop("status", UNSET)
 
-        transfer_rx = d.pop("transfer_rx")
+        transfer_rx = d.pop("transfer_rx", UNSET)
 
-        transfer_tx = d.pop("transfer_tx")
+        transfer_tx = d.pop("transfer_tx", UNSET)
 
-        inpkts = d.pop("inpkts")
+        inpkts = d.pop("inpkts", UNSET)
 
-        outpkts = d.pop("outpkts")
+        outpkts = d.pop("outpkts", UNSET)
 
-        mtu = d.pop("mtu")
+        mtu = d.pop("mtu", UNSET)
 
-        config = WGTunnel.from_dict(d.pop("config"))
+        _config = d.pop("config", UNSET)
+        config: Union[Unset, WGTunnel]
+        if isinstance(_config, Unset):
+            config = UNSET
+        else:
+            config = WGTunnel.from_dict(_config)
 
         peers = []
         _peers = d.pop("peers", UNSET)

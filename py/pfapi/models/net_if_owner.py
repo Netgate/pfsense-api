@@ -22,16 +22,16 @@ class NetIfOwner:
     owner has a unique ID and linked to its associated configuraton.
 
         Attributes:
-            owner_type (str):
-            owner_id (str):
+            owner_type (Union[Unset, str]):
+            owner_id (Union[Unset, str]):
             host_config (Union[Unset, NetIfOwnerHost]):
             vpp_config (Union[Unset, NetIfOwnerVPP]):
             container_config (Union[Unset, NetIfOwnerContainer]):
             vm_config (Union[Unset, NetIfOwnerVM]):
     """
 
-    owner_type: str
-    owner_id: str
+    owner_type: Union[Unset, str] = UNSET
+    owner_id: Union[Unset, str] = UNSET
     host_config: Union[Unset, "NetIfOwnerHost"] = UNSET
     vpp_config: Union[Unset, "NetIfOwnerVPP"] = UNSET
     container_config: Union[Unset, "NetIfOwnerContainer"] = UNSET
@@ -61,12 +61,11 @@ class NetIfOwner:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "owner_type": owner_type,
-                "owner_id": owner_id,
-            }
-        )
+        field_dict.update({})
+        if owner_type is not UNSET:
+            field_dict["owner_type"] = owner_type
+        if owner_id is not UNSET:
+            field_dict["owner_id"] = owner_id
         if host_config is not UNSET:
             field_dict["host_config"] = host_config
         if vpp_config is not UNSET:
@@ -86,9 +85,9 @@ class NetIfOwner:
         from ..models.net_if_owner_vpp import NetIfOwnerVPP
 
         d = src_dict.copy()
-        owner_type = d.pop("owner_type")
+        owner_type = d.pop("owner_type", UNSET)
 
-        owner_id = d.pop("owner_id")
+        owner_id = d.pop("owner_id", UNSET)
 
         _host_config = d.pop("host_config", UNSET)
         host_config: Union[Unset, NetIfOwnerHost]

@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="CaptivePortalName")
 
@@ -12,14 +14,14 @@ class CaptivePortalName:
     Attributes:
         zone (str):
         interface (str):
-        descr (str):
-        users (int):
+        descr (Union[Unset, str]):
+        users (Union[Unset, int]):
     """
 
     zone: str
     interface: str
-    descr: str
-    users: int
+    descr: Union[Unset, str] = UNSET
+    users: Union[Unset, int] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -37,10 +39,12 @@ class CaptivePortalName:
             {
                 "zone": zone,
                 "interface": interface,
-                "descr": descr,
-                "users": users,
             }
         )
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if users is not UNSET:
+            field_dict["users"] = users
 
         return field_dict
 
@@ -51,9 +55,9 @@ class CaptivePortalName:
 
         interface = d.pop("interface")
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
-        users = d.pop("users")
+        users = d.pop("users", UNSET)
 
         captive_portal_name = cls(
             zone=zone,

@@ -12,26 +12,26 @@ T = TypeVar("T", bound="ControllerIdentity")
 class ControllerIdentity:
     """
     Attributes:
-        name (str):
-        key (str):
-        cert (str):
-        vpn_listenaddr (str):
-        vpn_address (str):
-        vpn_pubkey (str):
-        vpn_netkey (str):
-        vpn_prefix (str):
+        name (Union[Unset, str]):
+        key (Union[Unset, str]):
+        cert (Union[Unset, str]):
+        vpn_listenaddr (Union[Unset, str]):
+        vpn_address (Union[Unset, str]):
+        vpn_pubkey (Union[Unset, str]):
+        vpn_netkey (Union[Unset, str]):
+        vpn_prefix (Union[Unset, str]):
         oldkey (Union[Unset, str]):
         regentokens (Union[Unset, bool]):
     """
 
-    name: str
-    key: str
-    cert: str
-    vpn_listenaddr: str
-    vpn_address: str
-    vpn_pubkey: str
-    vpn_netkey: str
-    vpn_prefix: str
+    name: Union[Unset, str] = UNSET
+    key: Union[Unset, str] = UNSET
+    cert: Union[Unset, str] = UNSET
+    vpn_listenaddr: Union[Unset, str] = UNSET
+    vpn_address: Union[Unset, str] = UNSET
+    vpn_pubkey: Union[Unset, str] = UNSET
+    vpn_netkey: Union[Unset, str] = UNSET
+    vpn_prefix: Union[Unset, str] = UNSET
     oldkey: Union[Unset, str] = UNSET
     regentokens: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -59,18 +59,23 @@ class ControllerIdentity:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "key": key,
-                "cert": cert,
-                "vpn_listenaddr": vpn_listenaddr,
-                "vpn_address": vpn_address,
-                "vpn_pubkey": vpn_pubkey,
-                "vpn_netkey": vpn_netkey,
-                "vpn_prefix": vpn_prefix,
-            }
-        )
+        field_dict.update({})
+        if name is not UNSET:
+            field_dict["name"] = name
+        if key is not UNSET:
+            field_dict["key"] = key
+        if cert is not UNSET:
+            field_dict["cert"] = cert
+        if vpn_listenaddr is not UNSET:
+            field_dict["vpn_listenaddr"] = vpn_listenaddr
+        if vpn_address is not UNSET:
+            field_dict["vpn_address"] = vpn_address
+        if vpn_pubkey is not UNSET:
+            field_dict["vpn_pubkey"] = vpn_pubkey
+        if vpn_netkey is not UNSET:
+            field_dict["vpn_netkey"] = vpn_netkey
+        if vpn_prefix is not UNSET:
+            field_dict["vpn_prefix"] = vpn_prefix
         if oldkey is not UNSET:
             field_dict["oldkey"] = oldkey
         if regentokens is not UNSET:
@@ -81,21 +86,21 @@ class ControllerIdentity:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        key = d.pop("key")
+        key = d.pop("key", UNSET)
 
-        cert = d.pop("cert")
+        cert = d.pop("cert", UNSET)
 
-        vpn_listenaddr = d.pop("vpn_listenaddr")
+        vpn_listenaddr = d.pop("vpn_listenaddr", UNSET)
 
-        vpn_address = d.pop("vpn_address")
+        vpn_address = d.pop("vpn_address", UNSET)
 
-        vpn_pubkey = d.pop("vpn_pubkey")
+        vpn_pubkey = d.pop("vpn_pubkey", UNSET)
 
-        vpn_netkey = d.pop("vpn_netkey")
+        vpn_netkey = d.pop("vpn_netkey", UNSET)
 
-        vpn_prefix = d.pop("vpn_prefix")
+        vpn_prefix = d.pop("vpn_prefix", UNSET)
 
         oldkey = d.pop("oldkey", UNSET)
 

@@ -20,26 +20,22 @@ class SystemUpdateSettings:
     Attributes:
         firmware_branch (str):
         disable_check (bool):
-        boot_envs (SystemUpdateBootEnvsSettings):
-        git_sync (SystemGitSyncSettings):
         firmware_branches (Union[Unset, List['SystemUpdateFirmwareBranch']]):
+        boot_envs (Union[Unset, SystemUpdateBootEnvsSettings]):
+        git_sync (Union[Unset, SystemGitSyncSettings]):
     """
 
     firmware_branch: str
     disable_check: bool
-    boot_envs: "SystemUpdateBootEnvsSettings"
-    git_sync: "SystemGitSyncSettings"
     firmware_branches: Union[Unset, List["SystemUpdateFirmwareBranch"]] = UNSET
+    boot_envs: Union[Unset, "SystemUpdateBootEnvsSettings"] = UNSET
+    git_sync: Union[Unset, "SystemGitSyncSettings"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         firmware_branch = self.firmware_branch
 
         disable_check = self.disable_check
-
-        boot_envs = self.boot_envs.to_dict()
-
-        git_sync = self.git_sync.to_dict()
 
         firmware_branches: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.firmware_branches, Unset):
@@ -48,18 +44,28 @@ class SystemUpdateSettings:
                 firmware_branches_item = firmware_branches_item_data.to_dict()
                 firmware_branches.append(firmware_branches_item)
 
+        boot_envs: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.boot_envs, Unset):
+            boot_envs = self.boot_envs.to_dict()
+
+        git_sync: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.git_sync, Unset):
+            git_sync = self.git_sync.to_dict()
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
                 "firmware_branch": firmware_branch,
                 "disable_check": disable_check,
-                "boot_envs": boot_envs,
-                "git_sync": git_sync,
             }
         )
         if firmware_branches is not UNSET:
             field_dict["firmware_branches"] = firmware_branches
+        if boot_envs is not UNSET:
+            field_dict["boot_envs"] = boot_envs
+        if git_sync is not UNSET:
+            field_dict["git_sync"] = git_sync
 
         return field_dict
 
@@ -74,10 +80,6 @@ class SystemUpdateSettings:
 
         disable_check = d.pop("disable_check")
 
-        boot_envs = SystemUpdateBootEnvsSettings.from_dict(d.pop("boot_envs"))
-
-        git_sync = SystemGitSyncSettings.from_dict(d.pop("git_sync"))
-
         firmware_branches = []
         _firmware_branches = d.pop("firmware_branches", UNSET)
         for firmware_branches_item_data in _firmware_branches or []:
@@ -85,12 +87,26 @@ class SystemUpdateSettings:
 
             firmware_branches.append(firmware_branches_item)
 
+        _boot_envs = d.pop("boot_envs", UNSET)
+        boot_envs: Union[Unset, SystemUpdateBootEnvsSettings]
+        if isinstance(_boot_envs, Unset):
+            boot_envs = UNSET
+        else:
+            boot_envs = SystemUpdateBootEnvsSettings.from_dict(_boot_envs)
+
+        _git_sync = d.pop("git_sync", UNSET)
+        git_sync: Union[Unset, SystemGitSyncSettings]
+        if isinstance(_git_sync, Unset):
+            git_sync = UNSET
+        else:
+            git_sync = SystemGitSyncSettings.from_dict(_git_sync)
+
         system_update_settings = cls(
             firmware_branch=firmware_branch,
             disable_check=disable_check,
+            firmware_branches=firmware_branches,
             boot_envs=boot_envs,
             git_sync=git_sync,
-            firmware_branches=firmware_branches,
         )
 
         system_update_settings.additional_properties = d

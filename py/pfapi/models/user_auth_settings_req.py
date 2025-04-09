@@ -13,19 +13,20 @@ class UserAuthSettingsReq:
     """
     Attributes:
         authentication_server (str):
-        save_and_test (bool):
-        session_timeout (Union[Unset, int]):
+        save_and_test (Union[Unset, bool]):
+        session_timeout (Union[Unset, str]): session timeout in minutes, empty string is default 240
         password_hash (Union[Unset, str]):
         shell_auth (Union[Unset, bool]):
-        auth_refresh_time (Union[Unset, int]):
+        auth_refresh_time (Union[Unset, str]): duration to cache authentication results from remote auth servers in
+            seconds, empty string is default 30, max 3600
     """
 
     authentication_server: str
-    save_and_test: bool
-    session_timeout: Union[Unset, int] = UNSET
+    save_and_test: Union[Unset, bool] = UNSET
+    session_timeout: Union[Unset, str] = UNSET
     password_hash: Union[Unset, str] = UNSET
     shell_auth: Union[Unset, bool] = UNSET
-    auth_refresh_time: Union[Unset, int] = UNSET
+    auth_refresh_time: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -46,9 +47,10 @@ class UserAuthSettingsReq:
         field_dict.update(
             {
                 "authentication_server": authentication_server,
-                "save_and_test": save_and_test,
             }
         )
+        if save_and_test is not UNSET:
+            field_dict["save_and_test"] = save_and_test
         if session_timeout is not UNSET:
             field_dict["session_timeout"] = session_timeout
         if password_hash is not UNSET:
@@ -65,7 +67,7 @@ class UserAuthSettingsReq:
         d = src_dict.copy()
         authentication_server = d.pop("authentication_server")
 
-        save_and_test = d.pop("save_and_test")
+        save_and_test = d.pop("save_and_test", UNSET)
 
         session_timeout = d.pop("session_timeout", UNSET)
 

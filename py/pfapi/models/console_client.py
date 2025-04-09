@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ConsoleClient")
 
@@ -10,14 +12,14 @@ T = TypeVar("T", bound="ConsoleClient")
 class ConsoleClient:
     """
     Attributes:
-        addr (str):
-        type (str):
-        time (int):
+        addr (Union[Unset, str]):
+        type (Union[Unset, str]):
+        time (Union[Unset, int]):
     """
 
-    addr: str
-    type: str
-    time: int
+    addr: Union[Unset, str] = UNSET
+    type: Union[Unset, str] = UNSET
+    time: Union[Unset, int] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -29,24 +31,24 @@ class ConsoleClient:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "addr": addr,
-                "type": type,
-                "time": time,
-            }
-        )
+        field_dict.update({})
+        if addr is not UNSET:
+            field_dict["addr"] = addr
+        if type is not UNSET:
+            field_dict["type"] = type
+        if time is not UNSET:
+            field_dict["time"] = time
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        addr = d.pop("addr")
+        addr = d.pop("addr", UNSET)
 
-        type = d.pop("type")
+        type = d.pop("type", UNSET)
 
-        time = d.pop("time")
+        time = d.pop("time", UNSET)
 
         console_client = cls(
             addr=addr,

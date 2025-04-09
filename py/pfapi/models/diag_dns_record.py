@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DiagDnsRecord")
 
@@ -10,12 +12,12 @@ T = TypeVar("T", bound="DiagDnsRecord")
 class DiagDnsRecord:
     """
     Attributes:
-        type (str):
-        data (str):
+        type (Union[Unset, str]):
+        data (Union[Unset, str]):
     """
 
-    type: str
-    data: str
+    type: Union[Unset, str] = UNSET
+    data: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,21 +27,20 @@ class DiagDnsRecord:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "type": type,
-                "data": data,
-            }
-        )
+        field_dict.update({})
+        if type is not UNSET:
+            field_dict["type"] = type
+        if data is not UNSET:
+            field_dict["data"] = data
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        type = d.pop("type")
+        type = d.pop("type", UNSET)
 
-        data = d.pop("data")
+        data = d.pop("data", UNSET)
 
         diag_dns_record = cls(
             type=type,

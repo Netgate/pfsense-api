@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="PPPLinkInterface")
 
@@ -11,23 +13,23 @@ class PPPLinkInterface:
     """
     Attributes:
         if_device (str): device name of the interface used for the link
-        bandwidth (int):
-        mtu (int):
-        mru (int):
-        mrru (int):
-        localip (str): (type pptp and l2tp only) local ip address
-        subnet (int): (type pptp and l2tp only) local ip address subnet
-        gateway (str): (type pptp and l2tp only) gateway ip address or hostname
+        bandwidth (Union[Unset, int]):
+        mtu (Union[Unset, int]):
+        mru (Union[Unset, int]):
+        mrru (Union[Unset, int]):
+        localip (Union[Unset, str]): (type pptp and l2tp only) local ip address
+        subnet (Union[Unset, int]): (type pptp and l2tp only) local ip address subnet
+        gateway (Union[Unset, str]): (type pptp and l2tp only) gateway ip address or hostname
     """
 
     if_device: str
-    bandwidth: int
-    mtu: int
-    mru: int
-    mrru: int
-    localip: str
-    subnet: int
-    gateway: str
+    bandwidth: Union[Unset, int] = UNSET
+    mtu: Union[Unset, int] = UNSET
+    mru: Union[Unset, int] = UNSET
+    mrru: Union[Unset, int] = UNSET
+    localip: Union[Unset, str] = UNSET
+    subnet: Union[Unset, int] = UNSET
+    gateway: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -52,15 +54,22 @@ class PPPLinkInterface:
         field_dict.update(
             {
                 "if_device": if_device,
-                "bandwidth": bandwidth,
-                "mtu": mtu,
-                "mru": mru,
-                "mrru": mrru,
-                "localip": localip,
-                "subnet": subnet,
-                "gateway": gateway,
             }
         )
+        if bandwidth is not UNSET:
+            field_dict["bandwidth"] = bandwidth
+        if mtu is not UNSET:
+            field_dict["mtu"] = mtu
+        if mru is not UNSET:
+            field_dict["mru"] = mru
+        if mrru is not UNSET:
+            field_dict["mrru"] = mrru
+        if localip is not UNSET:
+            field_dict["localip"] = localip
+        if subnet is not UNSET:
+            field_dict["subnet"] = subnet
+        if gateway is not UNSET:
+            field_dict["gateway"] = gateway
 
         return field_dict
 
@@ -69,19 +78,19 @@ class PPPLinkInterface:
         d = src_dict.copy()
         if_device = d.pop("if_device")
 
-        bandwidth = d.pop("bandwidth")
+        bandwidth = d.pop("bandwidth", UNSET)
 
-        mtu = d.pop("mtu")
+        mtu = d.pop("mtu", UNSET)
 
-        mru = d.pop("mru")
+        mru = d.pop("mru", UNSET)
 
-        mrru = d.pop("mrru")
+        mrru = d.pop("mrru", UNSET)
 
-        localip = d.pop("localip")
+        localip = d.pop("localip", UNSET)
 
-        subnet = d.pop("subnet")
+        subnet = d.pop("subnet", UNSET)
 
-        gateway = d.pop("gateway")
+        gateway = d.pop("gateway", UNSET)
 
         ppp_link_interface = cls(
             if_device=if_device,

@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SetupPPPoECfg")
 
@@ -12,20 +14,20 @@ class SetupPPPoECfg:
     Attributes:
         service_name (str):
         username (str):
-        password (str):
-        dod (bool):
-        idletimeout (str):
-        provider (str):
-        localip (str):
+        password (Union[Unset, str]):
+        dod (Union[Unset, bool]):
+        idletimeout (Union[Unset, str]):
+        provider (Union[Unset, str]):
+        localip (Union[Unset, str]):
     """
 
     service_name: str
     username: str
-    password: str
-    dod: bool
-    idletimeout: str
-    provider: str
-    localip: str
+    password: Union[Unset, str] = UNSET
+    dod: Union[Unset, bool] = UNSET
+    idletimeout: Union[Unset, str] = UNSET
+    provider: Union[Unset, str] = UNSET
+    localip: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -49,13 +51,18 @@ class SetupPPPoECfg:
             {
                 "service_name": service_name,
                 "username": username,
-                "password": password,
-                "dod": dod,
-                "idletimeout": idletimeout,
-                "provider": provider,
-                "localip": localip,
             }
         )
+        if password is not UNSET:
+            field_dict["password"] = password
+        if dod is not UNSET:
+            field_dict["dod"] = dod
+        if idletimeout is not UNSET:
+            field_dict["idletimeout"] = idletimeout
+        if provider is not UNSET:
+            field_dict["provider"] = provider
+        if localip is not UNSET:
+            field_dict["localip"] = localip
 
         return field_dict
 
@@ -66,15 +73,15 @@ class SetupPPPoECfg:
 
         username = d.pop("username")
 
-        password = d.pop("password")
+        password = d.pop("password", UNSET)
 
-        dod = d.pop("dod")
+        dod = d.pop("dod", UNSET)
 
-        idletimeout = d.pop("idletimeout")
+        idletimeout = d.pop("idletimeout", UNSET)
 
-        provider = d.pop("provider")
+        provider = d.pop("provider", UNSET)
 
-        localip = d.pop("localip")
+        localip = d.pop("localip", UNSET)
 
         setup_pp_po_e_cfg = cls(
             service_name=service_name,

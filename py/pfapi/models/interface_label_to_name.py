@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="InterfaceLabelToName")
 
@@ -17,16 +19,16 @@ class InterfaceLabelToName:
     if:       eth0
 
         Attributes:
-            friendly (str):
-            name (str):
-            ident (str):
-            if_ (str):
+            friendly (Union[Unset, str]):
+            name (Union[Unset, str]):
+            ident (Union[Unset, str]):
+            if_ (Union[Unset, str]):
     """
 
-    friendly: str
-    name: str
-    ident: str
-    if_: str
+    friendly: Union[Unset, str] = UNSET
+    name: Union[Unset, str] = UNSET
+    ident: Union[Unset, str] = UNSET
+    if_: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -40,27 +42,28 @@ class InterfaceLabelToName:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "friendly": friendly,
-                "name": name,
-                "ident": ident,
-                "if": if_,
-            }
-        )
+        field_dict.update({})
+        if friendly is not UNSET:
+            field_dict["friendly"] = friendly
+        if name is not UNSET:
+            field_dict["name"] = name
+        if ident is not UNSET:
+            field_dict["ident"] = ident
+        if if_ is not UNSET:
+            field_dict["if"] = if_
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        friendly = d.pop("friendly")
+        friendly = d.pop("friendly", UNSET)
 
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        ident = d.pop("ident")
+        ident = d.pop("ident", UNSET)
 
-        if_ = d.pop("if")
+        if_ = d.pop("if", UNSET)
 
         interface_label_to_name = cls(
             friendly=friendly,

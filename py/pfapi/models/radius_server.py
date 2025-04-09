@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="RadiusServer")
 
@@ -11,17 +13,17 @@ class RadiusServer:
     """
     Attributes:
         ip (str):
-        secret (str):
-        port (str):
-        acctport (str):
-        enable (bool):
+        secret (Union[Unset, str]):
+        port (Union[Unset, str]):
+        acctport (Union[Unset, str]):
+        enable (Union[Unset, bool]):
     """
 
     ip: str
-    secret: str
-    port: str
-    acctport: str
-    enable: bool
+    secret: Union[Unset, str] = UNSET
+    port: Union[Unset, str] = UNSET
+    acctport: Union[Unset, str] = UNSET
+    enable: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -40,12 +42,16 @@ class RadiusServer:
         field_dict.update(
             {
                 "ip": ip,
-                "secret": secret,
-                "port": port,
-                "acctport": acctport,
-                "enable": enable,
             }
         )
+        if secret is not UNSET:
+            field_dict["secret"] = secret
+        if port is not UNSET:
+            field_dict["port"] = port
+        if acctport is not UNSET:
+            field_dict["acctport"] = acctport
+        if enable is not UNSET:
+            field_dict["enable"] = enable
 
         return field_dict
 
@@ -54,13 +60,13 @@ class RadiusServer:
         d = src_dict.copy()
         ip = d.pop("ip")
 
-        secret = d.pop("secret")
+        secret = d.pop("secret", UNSET)
 
-        port = d.pop("port")
+        port = d.pop("port", UNSET)
 
-        acctport = d.pop("acctport")
+        acctport = d.pop("acctport", UNSET)
 
-        enable = d.pop("enable")
+        enable = d.pop("enable", UNSET)
 
         radius_server = cls(
             ip=ip,

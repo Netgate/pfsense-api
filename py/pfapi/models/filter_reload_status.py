@@ -12,14 +12,16 @@ T = TypeVar("T", bound="FilterReloadStatus")
 class FilterReloadStatus:
     """
     Attributes:
-        ongoing (bool):
-        done (bool):
+        ongoing (Union[Unset, bool]):
+        done (Union[Unset, bool]):
         status_lines (Union[Unset, List[str]]):
+        ha_xmlrpc_enabled (Union[Unset, bool]):
     """
 
-    ongoing: bool
-    done: bool
+    ongoing: Union[Unset, bool] = UNSET
+    done: Union[Unset, bool] = UNSET
     status_lines: Union[Unset, List[str]] = UNSET
+    ha_xmlrpc_enabled: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -31,32 +33,38 @@ class FilterReloadStatus:
         if not isinstance(self.status_lines, Unset):
             status_lines = self.status_lines
 
+        ha_xmlrpc_enabled = self.ha_xmlrpc_enabled
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "ongoing": ongoing,
-                "done": done,
-            }
-        )
+        field_dict.update({})
+        if ongoing is not UNSET:
+            field_dict["ongoing"] = ongoing
+        if done is not UNSET:
+            field_dict["done"] = done
         if status_lines is not UNSET:
             field_dict["status_lines"] = status_lines
+        if ha_xmlrpc_enabled is not UNSET:
+            field_dict["ha_xmlrpc_enabled"] = ha_xmlrpc_enabled
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        ongoing = d.pop("ongoing")
+        ongoing = d.pop("ongoing", UNSET)
 
-        done = d.pop("done")
+        done = d.pop("done", UNSET)
 
         status_lines = cast(List[str], d.pop("status_lines", UNSET))
+
+        ha_xmlrpc_enabled = d.pop("ha_xmlrpc_enabled", UNSET)
 
         filter_reload_status = cls(
             ongoing=ongoing,
             done=done,
             status_lines=status_lines,
+            ha_xmlrpc_enabled=ha_xmlrpc_enabled,
         )
 
         filter_reload_status.additional_properties = d

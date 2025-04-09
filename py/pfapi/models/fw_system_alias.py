@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="FWSystemAlias")
 
@@ -12,24 +14,24 @@ class FWSystemAlias:
     Attributes:
         name (str):
         type (str):
-        descr (str):
-        address (str):
-        url (str):
-        table (str):
-        if_ident (str):
-        if_assigned_name (str):
-        truncated (bool):
+        descr (Union[Unset, str]):
+        address (Union[Unset, str]): space separated list of addresses
+        url (Union[Unset, str]):
+        table (Union[Unset, str]): name of firewall table applicable to this alias
+        if_ident (Union[Unset, str]): interface identity
+        if_assigned_name (Union[Unset, str]): interface assigned name
+        truncated (Union[Unset, bool]):
     """
 
     name: str
     type: str
-    descr: str
-    address: str
-    url: str
-    table: str
-    if_ident: str
-    if_assigned_name: str
-    truncated: bool
+    descr: Union[Unset, str] = UNSET
+    address: Union[Unset, str] = UNSET
+    url: Union[Unset, str] = UNSET
+    table: Union[Unset, str] = UNSET
+    if_ident: Union[Unset, str] = UNSET
+    if_assigned_name: Union[Unset, str] = UNSET
+    truncated: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -57,15 +59,22 @@ class FWSystemAlias:
             {
                 "name": name,
                 "type": type,
-                "descr": descr,
-                "address": address,
-                "url": url,
-                "table": table,
-                "if_ident": if_ident,
-                "if_assigned_name": if_assigned_name,
-                "truncated": truncated,
             }
         )
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if address is not UNSET:
+            field_dict["address"] = address
+        if url is not UNSET:
+            field_dict["url"] = url
+        if table is not UNSET:
+            field_dict["table"] = table
+        if if_ident is not UNSET:
+            field_dict["if_ident"] = if_ident
+        if if_assigned_name is not UNSET:
+            field_dict["if_assigned_name"] = if_assigned_name
+        if truncated is not UNSET:
+            field_dict["truncated"] = truncated
 
         return field_dict
 
@@ -76,19 +85,19 @@ class FWSystemAlias:
 
         type = d.pop("type")
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
-        address = d.pop("address")
+        address = d.pop("address", UNSET)
 
-        url = d.pop("url")
+        url = d.pop("url", UNSET)
 
-        table = d.pop("table")
+        table = d.pop("table", UNSET)
 
-        if_ident = d.pop("if_ident")
+        if_ident = d.pop("if_ident", UNSET)
 
-        if_assigned_name = d.pop("if_assigned_name")
+        if_assigned_name = d.pop("if_assigned_name", UNSET)
 
-        truncated = d.pop("truncated")
+        truncated = d.pop("truncated", UNSET)
 
         fw_system_alias = cls(
             name=name,

@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="IPSecSPD")
 
@@ -10,26 +12,26 @@ T = TypeVar("T", bound="IPSecSPD")
 class IPSecSPD:
     """
     Attributes:
-        dir_ (str):
-        scope (str):
-        ifname (str):
-        srcid (str):
-        dstid (str):
-        proto (str):
-        src (str):
-        dst (str):
-        unique (str):
+        dir_ (Union[Unset, str]):
+        scope (Union[Unset, str]):
+        ifname (Union[Unset, str]):
+        srcid (Union[Unset, str]):
+        dstid (Union[Unset, str]):
+        proto (Union[Unset, str]):
+        src (Union[Unset, str]):
+        dst (Union[Unset, str]):
+        unique (Union[Unset, str]):
     """
 
-    dir_: str
-    scope: str
-    ifname: str
-    srcid: str
-    dstid: str
-    proto: str
-    src: str
-    dst: str
-    unique: str
+    dir_: Union[Unset, str] = UNSET
+    scope: Union[Unset, str] = UNSET
+    ifname: Union[Unset, str] = UNSET
+    srcid: Union[Unset, str] = UNSET
+    dstid: Union[Unset, str] = UNSET
+    proto: Union[Unset, str] = UNSET
+    src: Union[Unset, str] = UNSET
+    dst: Union[Unset, str] = UNSET
+    unique: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -53,42 +55,48 @@ class IPSecSPD:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "dir": dir_,
-                "scope": scope,
-                "ifname": ifname,
-                "srcid": srcid,
-                "dstid": dstid,
-                "proto": proto,
-                "src": src,
-                "dst": dst,
-                "unique": unique,
-            }
-        )
+        field_dict.update({})
+        if dir_ is not UNSET:
+            field_dict["dir"] = dir_
+        if scope is not UNSET:
+            field_dict["scope"] = scope
+        if ifname is not UNSET:
+            field_dict["ifname"] = ifname
+        if srcid is not UNSET:
+            field_dict["srcid"] = srcid
+        if dstid is not UNSET:
+            field_dict["dstid"] = dstid
+        if proto is not UNSET:
+            field_dict["proto"] = proto
+        if src is not UNSET:
+            field_dict["src"] = src
+        if dst is not UNSET:
+            field_dict["dst"] = dst
+        if unique is not UNSET:
+            field_dict["unique"] = unique
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        dir_ = d.pop("dir")
+        dir_ = d.pop("dir", UNSET)
 
-        scope = d.pop("scope")
+        scope = d.pop("scope", UNSET)
 
-        ifname = d.pop("ifname")
+        ifname = d.pop("ifname", UNSET)
 
-        srcid = d.pop("srcid")
+        srcid = d.pop("srcid", UNSET)
 
-        dstid = d.pop("dstid")
+        dstid = d.pop("dstid", UNSET)
 
-        proto = d.pop("proto")
+        proto = d.pop("proto", UNSET)
 
-        src = d.pop("src")
+        src = d.pop("src", UNSET)
 
-        dst = d.pop("dst")
+        dst = d.pop("dst", UNSET)
 
-        unique = d.pop("unique")
+        unique = d.pop("unique", UNSET)
 
         ip_sec_spd = cls(
             dir_=dir_,

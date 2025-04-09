@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="FWTarget")
 
@@ -11,13 +13,13 @@ class FWTarget:
     """
     Attributes:
         name (str):
-        descr (str):
-        updatefreq (str):
+        descr (Union[Unset, str]):
+        updatefreq (Union[Unset, str]):
     """
 
     name: str
-    descr: str
-    updatefreq: str
+    descr: Union[Unset, str] = UNSET
+    updatefreq: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -32,10 +34,12 @@ class FWTarget:
         field_dict.update(
             {
                 "name": name,
-                "descr": descr,
-                "updatefreq": updatefreq,
             }
         )
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if updatefreq is not UNSET:
+            field_dict["updatefreq"] = updatefreq
 
         return field_dict
 
@@ -44,9 +48,9 @@ class FWTarget:
         d = src_dict.copy()
         name = d.pop("name")
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
-        updatefreq = d.pop("updatefreq")
+        updatefreq = d.pop("updatefreq", UNSET)
 
         fw_target = cls(
             name=name,

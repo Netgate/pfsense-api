@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="EncryptionAlgorithm")
 
@@ -10,12 +12,12 @@ T = TypeVar("T", bound="EncryptionAlgorithm")
 class EncryptionAlgorithm:
     """
     Attributes:
-        name (str):
-        keylen (str):
+        name (Union[Unset, str]):
+        keylen (Union[Unset, str]):
     """
 
-    name: str
-    keylen: str
+    name: Union[Unset, str] = UNSET
+    keylen: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,21 +27,20 @@ class EncryptionAlgorithm:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "keylen": keylen,
-            }
-        )
+        field_dict.update({})
+        if name is not UNSET:
+            field_dict["name"] = name
+        if keylen is not UNSET:
+            field_dict["keylen"] = keylen
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        keylen = d.pop("keylen")
+        keylen = d.pop("keylen", UNSET)
 
         encryption_algorithm = cls(
             name=name,

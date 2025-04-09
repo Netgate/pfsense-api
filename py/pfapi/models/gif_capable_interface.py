@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="GIFCapableInterface")
 
@@ -10,12 +12,12 @@ T = TypeVar("T", bound="GIFCapableInterface")
 class GIFCapableInterface:
     """
     Attributes:
-        if_identity (str):
-        if_assigned_name (str):
+        if_identity (Union[Unset, str]):
+        if_assigned_name (Union[Unset, str]):
     """
 
-    if_identity: str
-    if_assigned_name: str
+    if_identity: Union[Unset, str] = UNSET
+    if_assigned_name: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,21 +27,20 @@ class GIFCapableInterface:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "if_identity": if_identity,
-                "if_assigned_name": if_assigned_name,
-            }
-        )
+        field_dict.update({})
+        if if_identity is not UNSET:
+            field_dict["if_identity"] = if_identity
+        if if_assigned_name is not UNSET:
+            field_dict["if_assigned_name"] = if_assigned_name
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        if_identity = d.pop("if_identity")
+        if_identity = d.pop("if_identity", UNSET)
 
-        if_assigned_name = d.pop("if_assigned_name")
+        if_assigned_name = d.pop("if_assigned_name", UNSET)
 
         gif_capable_interface = cls(
             if_identity=if_identity,

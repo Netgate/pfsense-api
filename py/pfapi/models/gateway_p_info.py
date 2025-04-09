@@ -17,25 +17,21 @@ class GatewayPInfo:
     """
     Attributes:
         name (str):
-        descr (str):
-        ipprotocol (str): inet or inet6
         gateway (str): gateway address
         vaddress (Union[Unset, List['GatewayVAddress']]):
+        descr (Union[Unset, str]):
+        ipprotocol (Union[Unset, str]): inet or inet6
     """
 
     name: str
-    descr: str
-    ipprotocol: str
     gateway: str
     vaddress: Union[Unset, List["GatewayVAddress"]] = UNSET
+    descr: Union[Unset, str] = UNSET
+    ipprotocol: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         name = self.name
-
-        descr = self.descr
-
-        ipprotocol = self.ipprotocol
 
         gateway = self.gateway
 
@@ -46,18 +42,24 @@ class GatewayPInfo:
                 vaddress_item = vaddress_item_data.to_dict()
                 vaddress.append(vaddress_item)
 
+        descr = self.descr
+
+        ipprotocol = self.ipprotocol
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
                 "name": name,
-                "descr": descr,
-                "ipprotocol": ipprotocol,
                 "gateway": gateway,
             }
         )
         if vaddress is not UNSET:
             field_dict["vaddress"] = vaddress
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if ipprotocol is not UNSET:
+            field_dict["ipprotocol"] = ipprotocol
 
         return field_dict
 
@@ -68,10 +70,6 @@ class GatewayPInfo:
         d = src_dict.copy()
         name = d.pop("name")
 
-        descr = d.pop("descr")
-
-        ipprotocol = d.pop("ipprotocol")
-
         gateway = d.pop("gateway")
 
         vaddress = []
@@ -81,12 +79,16 @@ class GatewayPInfo:
 
             vaddress.append(vaddress_item)
 
+        descr = d.pop("descr", UNSET)
+
+        ipprotocol = d.pop("ipprotocol", UNSET)
+
         gateway_p_info = cls(
             name=name,
-            descr=descr,
-            ipprotocol=ipprotocol,
             gateway=gateway,
             vaddress=vaddress,
+            descr=descr,
+            ipprotocol=ipprotocol,
         )
 
         gateway_p_info.additional_properties = d

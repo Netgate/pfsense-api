@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="WireGuardKeys")
 
@@ -10,16 +12,16 @@ T = TypeVar("T", bound="WireGuardKeys")
 class WireGuardKeys:
     """
     Attributes:
-        privkey (str):
-        privkey_clamped (str):
-        pubkey (str):
-        was_clamped (bool):
+        privkey (Union[Unset, str]):
+        privkey_clamped (Union[Unset, str]):
+        pubkey (Union[Unset, str]):
+        was_clamped (Union[Unset, bool]):
     """
 
-    privkey: str
-    privkey_clamped: str
-    pubkey: str
-    was_clamped: bool
+    privkey: Union[Unset, str] = UNSET
+    privkey_clamped: Union[Unset, str] = UNSET
+    pubkey: Union[Unset, str] = UNSET
+    was_clamped: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -33,27 +35,28 @@ class WireGuardKeys:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "privkey": privkey,
-                "privkey_clamped": privkey_clamped,
-                "pubkey": pubkey,
-                "was_clamped": was_clamped,
-            }
-        )
+        field_dict.update({})
+        if privkey is not UNSET:
+            field_dict["privkey"] = privkey
+        if privkey_clamped is not UNSET:
+            field_dict["privkey_clamped"] = privkey_clamped
+        if pubkey is not UNSET:
+            field_dict["pubkey"] = pubkey
+        if was_clamped is not UNSET:
+            field_dict["was_clamped"] = was_clamped
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        privkey = d.pop("privkey")
+        privkey = d.pop("privkey", UNSET)
 
-        privkey_clamped = d.pop("privkey_clamped")
+        privkey_clamped = d.pop("privkey_clamped", UNSET)
 
-        pubkey = d.pop("pubkey")
+        pubkey = d.pop("pubkey", UNSET)
 
-        was_clamped = d.pop("was_clamped")
+        was_clamped = d.pop("was_clamped", UNSET)
 
         wire_guard_keys = cls(
             privkey=privkey,

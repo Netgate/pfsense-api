@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ToggleRespStatus")
 
@@ -10,12 +12,12 @@ T = TypeVar("T", bound="ToggleRespStatus")
 class ToggleRespStatus:
     """
     Attributes:
-        disabled (bool):
-        id (str):
+        disabled (Union[Unset, bool]):
+        id (Union[Unset, str]):
     """
 
-    disabled: bool
-    id: str
+    disabled: Union[Unset, bool] = UNSET
+    id: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,21 +27,20 @@ class ToggleRespStatus:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "disabled": disabled,
-                "id": id,
-            }
-        )
+        field_dict.update({})
+        if disabled is not UNSET:
+            field_dict["disabled"] = disabled
+        if id is not UNSET:
+            field_dict["id"] = id
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        disabled = d.pop("disabled")
+        disabled = d.pop("disabled", UNSET)
 
-        id = d.pop("id")
+        id = d.pop("id", UNSET)
 
         toggle_resp_status = cls(
             disabled=disabled,

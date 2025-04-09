@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="IGMPProxySettings")
 
@@ -10,12 +12,12 @@ T = TypeVar("T", bound="IGMPProxySettings")
 class IGMPProxySettings:
     """
     Attributes:
-        verbose (bool):
-        enable (bool):
+        verbose (Union[Unset, bool]):
+        enable (Union[Unset, bool]):
     """
 
-    verbose: bool
-    enable: bool
+    verbose: Union[Unset, bool] = UNSET
+    enable: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,21 +27,20 @@ class IGMPProxySettings:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "verbose": verbose,
-                "enable": enable,
-            }
-        )
+        field_dict.update({})
+        if verbose is not UNSET:
+            field_dict["verbose"] = verbose
+        if enable is not UNSET:
+            field_dict["enable"] = enable
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        verbose = d.pop("verbose")
+        verbose = d.pop("verbose", UNSET)
 
-        enable = d.pop("enable")
+        enable = d.pop("enable", UNSET)
 
         igmp_proxy_settings = cls(
             verbose=verbose,

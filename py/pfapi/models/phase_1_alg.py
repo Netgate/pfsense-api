@@ -1,7 +1,9 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.encryption_algorithm import EncryptionAlgorithm
@@ -14,20 +16,22 @@ T = TypeVar("T", bound="Phase1Alg")
 class Phase1Alg:
     """
     Attributes:
-        encryption_algorithm (EncryptionAlgorithm):
-        hash_algorithm (str):
-        prf_algorithm (str):
-        dhgroup (str):
+        encryption_algorithm (Union[Unset, EncryptionAlgorithm]):
+        hash_algorithm (Union[Unset, str]):
+        prf_algorithm (Union[Unset, str]):
+        dhgroup (Union[Unset, str]):
     """
 
-    encryption_algorithm: "EncryptionAlgorithm"
-    hash_algorithm: str
-    prf_algorithm: str
-    dhgroup: str
+    encryption_algorithm: Union[Unset, "EncryptionAlgorithm"] = UNSET
+    hash_algorithm: Union[Unset, str] = UNSET
+    prf_algorithm: Union[Unset, str] = UNSET
+    dhgroup: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        encryption_algorithm = self.encryption_algorithm.to_dict()
+        encryption_algorithm: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.encryption_algorithm, Unset):
+            encryption_algorithm = self.encryption_algorithm.to_dict()
 
         hash_algorithm = self.hash_algorithm
 
@@ -37,14 +41,15 @@ class Phase1Alg:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "encryption_algorithm": encryption_algorithm,
-                "hash_algorithm": hash_algorithm,
-                "prf_algorithm": prf_algorithm,
-                "dhgroup": dhgroup,
-            }
-        )
+        field_dict.update({})
+        if encryption_algorithm is not UNSET:
+            field_dict["encryption_algorithm"] = encryption_algorithm
+        if hash_algorithm is not UNSET:
+            field_dict["hash_algorithm"] = hash_algorithm
+        if prf_algorithm is not UNSET:
+            field_dict["prf_algorithm"] = prf_algorithm
+        if dhgroup is not UNSET:
+            field_dict["dhgroup"] = dhgroup
 
         return field_dict
 
@@ -53,13 +58,18 @@ class Phase1Alg:
         from ..models.encryption_algorithm import EncryptionAlgorithm
 
         d = src_dict.copy()
-        encryption_algorithm = EncryptionAlgorithm.from_dict(d.pop("encryption_algorithm"))
+        _encryption_algorithm = d.pop("encryption_algorithm", UNSET)
+        encryption_algorithm: Union[Unset, EncryptionAlgorithm]
+        if isinstance(_encryption_algorithm, Unset):
+            encryption_algorithm = UNSET
+        else:
+            encryption_algorithm = EncryptionAlgorithm.from_dict(_encryption_algorithm)
 
-        hash_algorithm = d.pop("hash_algorithm")
+        hash_algorithm = d.pop("hash_algorithm", UNSET)
 
-        prf_algorithm = d.pop("prf_algorithm")
+        prf_algorithm = d.pop("prf_algorithm", UNSET)
 
-        dhgroup = d.pop("dhgroup")
+        dhgroup = d.pop("dhgroup", UNSET)
 
         phase_1_alg = cls(
             encryption_algorithm=encryption_algorithm,

@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="FilterLogVersion4Info")
 
@@ -10,20 +12,20 @@ T = TypeVar("T", bound="FilterLogVersion4Info")
 class FilterLogVersion4Info:
     """
     Attributes:
-        tos (str):
-        ecn (str):
-        ttl (str):
-        id (str):
-        offset (str):
-        flags (str):
+        tos (Union[Unset, str]):
+        ecn (Union[Unset, str]):
+        ttl (Union[Unset, str]):
+        id (Union[Unset, str]):
+        offset (Union[Unset, str]):
+        flags (Union[Unset, str]):
     """
 
-    tos: str
-    ecn: str
-    ttl: str
-    id: str
-    offset: str
-    flags: str
+    tos: Union[Unset, str] = UNSET
+    ecn: Union[Unset, str] = UNSET
+    ttl: Union[Unset, str] = UNSET
+    id: Union[Unset, str] = UNSET
+    offset: Union[Unset, str] = UNSET
+    flags: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -41,33 +43,36 @@ class FilterLogVersion4Info:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "tos": tos,
-                "ecn": ecn,
-                "ttl": ttl,
-                "id": id,
-                "offset": offset,
-                "flags": flags,
-            }
-        )
+        field_dict.update({})
+        if tos is not UNSET:
+            field_dict["tos"] = tos
+        if ecn is not UNSET:
+            field_dict["ecn"] = ecn
+        if ttl is not UNSET:
+            field_dict["ttl"] = ttl
+        if id is not UNSET:
+            field_dict["id"] = id
+        if offset is not UNSET:
+            field_dict["offset"] = offset
+        if flags is not UNSET:
+            field_dict["flags"] = flags
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        tos = d.pop("tos")
+        tos = d.pop("tos", UNSET)
 
-        ecn = d.pop("ecn")
+        ecn = d.pop("ecn", UNSET)
 
-        ttl = d.pop("ttl")
+        ttl = d.pop("ttl", UNSET)
 
-        id = d.pop("id")
+        id = d.pop("id", UNSET)
 
-        offset = d.pop("offset")
+        offset = d.pop("offset", UNSET)
 
-        flags = d.pop("flags")
+        flags = d.pop("flags", UNSET)
 
         filter_log_version_4_info = cls(
             tos=tos,

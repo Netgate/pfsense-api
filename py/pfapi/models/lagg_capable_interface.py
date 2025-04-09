@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="LAGGCapableInterface")
 
@@ -10,12 +12,12 @@ T = TypeVar("T", bound="LAGGCapableInterface")
 class LAGGCapableInterface:
     """
     Attributes:
-        if_device (str):
-        mac (str):
+        if_device (Union[Unset, str]):
+        mac (Union[Unset, str]):
     """
 
-    if_device: str
-    mac: str
+    if_device: Union[Unset, str] = UNSET
+    mac: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,21 +27,20 @@ class LAGGCapableInterface:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "if_device": if_device,
-                "mac": mac,
-            }
-        )
+        field_dict.update({})
+        if if_device is not UNSET:
+            field_dict["if_device"] = if_device
+        if mac is not UNSET:
+            field_dict["mac"] = mac
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        if_device = d.pop("if_device")
+        if_device = d.pop("if_device", UNSET)
 
-        mac = d.pop("mac")
+        mac = d.pop("mac", UNSET)
 
         lagg_capable_interface = cls(
             if_device=if_device,

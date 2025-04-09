@@ -12,13 +12,13 @@ T = TypeVar("T", bound="DirtySubsystem")
 class DirtySubsystem:
     """
     Attributes:
-        name (str):
-        descr (str):
+        name (Union[Unset, str]):
+        descr (Union[Unset, str]):
         file (Union[Unset, str]):
     """
 
-    name: str
-    descr: str
+    name: Union[Unset, str] = UNSET
+    descr: Union[Unset, str] = UNSET
     file: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -31,12 +31,11 @@ class DirtySubsystem:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "descr": descr,
-            }
-        )
+        field_dict.update({})
+        if name is not UNSET:
+            field_dict["name"] = name
+        if descr is not UNSET:
+            field_dict["descr"] = descr
         if file is not UNSET:
             field_dict["file"] = file
 
@@ -45,9 +44,9 @@ class DirtySubsystem:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
         file = d.pop("file", UNSET)
 

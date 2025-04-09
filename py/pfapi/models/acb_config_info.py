@@ -1,7 +1,9 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.acb_config import ACBConfig
@@ -14,29 +16,30 @@ T = TypeVar("T", bound="ACBConfigInfo")
 class ACBConfigInfo:
     """
     Attributes:
-        config (ACBConfig): valid values:
+        config (Union[Unset, ACBConfig]): valid values:
             frequency = "cron", "every"
             reverse = "yes", "no"
-        userkey (str):
+        userkey (Union[Unset, str]):
     """
 
-    config: "ACBConfig"
-    userkey: str
+    config: Union[Unset, "ACBConfig"] = UNSET
+    userkey: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        config = self.config.to_dict()
+        config: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.config, Unset):
+            config = self.config.to_dict()
 
         userkey = self.userkey
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "config": config,
-                "userkey": userkey,
-            }
-        )
+        field_dict.update({})
+        if config is not UNSET:
+            field_dict["config"] = config
+        if userkey is not UNSET:
+            field_dict["userkey"] = userkey
 
         return field_dict
 
@@ -45,9 +48,14 @@ class ACBConfigInfo:
         from ..models.acb_config import ACBConfig
 
         d = src_dict.copy()
-        config = ACBConfig.from_dict(d.pop("config"))
+        _config = d.pop("config", UNSET)
+        config: Union[Unset, ACBConfig]
+        if isinstance(_config, Unset):
+            config = UNSET
+        else:
+            config = ACBConfig.from_dict(_config)
 
-        userkey = d.pop("userkey")
+        userkey = d.pop("userkey", UNSET)
 
         acb_config_info = cls(
             config=config,

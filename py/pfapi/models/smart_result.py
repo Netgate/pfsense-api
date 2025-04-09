@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SMARTResult")
 
@@ -10,12 +12,12 @@ T = TypeVar("T", bound="SMARTResult")
 class SMARTResult:
     """
     Attributes:
-        status (str):
-        result (str):
+        status (Union[Unset, str]):
+        result (Union[Unset, str]):
     """
 
-    status: str
-    result: str
+    status: Union[Unset, str] = UNSET
+    result: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,21 +27,20 @@ class SMARTResult:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "status": status,
-                "result": result,
-            }
-        )
+        field_dict.update({})
+        if status is not UNSET:
+            field_dict["status"] = status
+        if result is not UNSET:
+            field_dict["result"] = result
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        status = d.pop("status")
+        status = d.pop("status", UNSET)
 
-        result = d.pop("result")
+        result = d.pop("result", UNSET)
 
         smart_result = cls(
             status=status,

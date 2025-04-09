@@ -8,8 +8,7 @@ from ..types import UNSET, Unset
 if TYPE_CHECKING:
     from ..models.fw_alias import FWAlias
     from ..models.fw_system_alias import FWSystemAlias
-    from ..models.nat_rule import NATRule
-    from ..models.separator import Separator
+    from ..models.nat_rules_entry import NATRulesEntry
     from ..models.simple_interface import SimpleInterface
 
 
@@ -25,8 +24,7 @@ class NATRules:
         locallist (Union[Unset, List['SimpleInterface']]):
         aliases (Union[Unset, List['FWAlias']]):
         sysaliases (Union[Unset, List['FWSystemAlias']]):
-        rules (Union[Unset, List['NATRule']]):
-        separators (Union[Unset, List['Separator']]):
+        rules (Union[Unset, List['NATRulesEntry']]):
         srclist (Union[Unset, List['SimpleInterface']]):
     """
 
@@ -35,8 +33,7 @@ class NATRules:
     locallist: Union[Unset, List["SimpleInterface"]] = UNSET
     aliases: Union[Unset, List["FWAlias"]] = UNSET
     sysaliases: Union[Unset, List["FWSystemAlias"]] = UNSET
-    rules: Union[Unset, List["NATRule"]] = UNSET
-    separators: Union[Unset, List["Separator"]] = UNSET
+    rules: Union[Unset, List["NATRulesEntry"]] = UNSET
     srclist: Union[Unset, List["SimpleInterface"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -83,13 +80,6 @@ class NATRules:
                 rules_item = rules_item_data.to_dict()
                 rules.append(rules_item)
 
-        separators: Union[Unset, List[Dict[str, Any]]] = UNSET
-        if not isinstance(self.separators, Unset):
-            separators = []
-            for separators_item_data in self.separators:
-                separators_item = separators_item_data.to_dict()
-                separators.append(separators_item)
-
         srclist: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.srclist, Unset):
             srclist = []
@@ -112,8 +102,6 @@ class NATRules:
             field_dict["sysaliases"] = sysaliases
         if rules is not UNSET:
             field_dict["rules"] = rules
-        if separators is not UNSET:
-            field_dict["separators"] = separators
         if srclist is not UNSET:
             field_dict["srclist"] = srclist
 
@@ -123,8 +111,7 @@ class NATRules:
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         from ..models.fw_alias import FWAlias
         from ..models.fw_system_alias import FWSystemAlias
-        from ..models.nat_rule import NATRule
-        from ..models.separator import Separator
+        from ..models.nat_rules_entry import NATRulesEntry
         from ..models.simple_interface import SimpleInterface
 
         d = src_dict.copy()
@@ -166,16 +153,9 @@ class NATRules:
         rules = []
         _rules = d.pop("rules", UNSET)
         for rules_item_data in _rules or []:
-            rules_item = NATRule.from_dict(rules_item_data)
+            rules_item = NATRulesEntry.from_dict(rules_item_data)
 
             rules.append(rules_item)
-
-        separators = []
-        _separators = d.pop("separators", UNSET)
-        for separators_item_data in _separators or []:
-            separators_item = Separator.from_dict(separators_item_data)
-
-            separators.append(separators_item)
 
         srclist = []
         _srclist = d.pop("srclist", UNSET)
@@ -191,7 +171,6 @@ class NATRules:
             aliases=aliases,
             sysaliases=sysaliases,
             rules=rules,
-            separators=separators,
             srclist=srclist,
         )
 

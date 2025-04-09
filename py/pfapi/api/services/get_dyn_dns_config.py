@@ -5,7 +5,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.dyn_dns_config_info import DynDNSConfigInfo
+from ...models.dyn_dns_list import DynDnsList
 from ...models.error import Error
 from ...types import Response
 
@@ -21,9 +21,9 @@ def _get_kwargs() -> Dict[str, Any]:
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[DynDNSConfigInfo, Error]]:
+) -> Optional[Union[DynDnsList, Error]]:
     if response.status_code == 200:
-        response_200 = DynDNSConfigInfo.from_dict(response.json())
+        response_200 = DynDnsList.from_dict(response.json())
 
         return response_200
     if response.status_code == 400:
@@ -38,7 +38,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[DynDNSConfigInfo, Error]]:
+) -> Response[Union[DynDnsList, Error]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -50,15 +50,15 @@ def _build_response(
 def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Response[Union[DynDNSConfigInfo, Error]]:
-    """Get Dynamic DNS config
+) -> Response[Union[DynDnsList, Error]]:
+    """Get all Dynamic DNS configs
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DynDNSConfigInfo, Error]]
+        Response[Union[DynDnsList, Error]]
     """
 
     kwargs = _get_kwargs()
@@ -73,15 +73,15 @@ def sync_detailed(
 def sync(
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[DynDNSConfigInfo, Error]]:
-    """Get Dynamic DNS config
+) -> Optional[Union[DynDnsList, Error]]:
+    """Get all Dynamic DNS configs
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DynDNSConfigInfo, Error]
+        Union[DynDnsList, Error]
     """
 
     return sync_detailed(
@@ -92,15 +92,15 @@ def sync(
 async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Response[Union[DynDNSConfigInfo, Error]]:
-    """Get Dynamic DNS config
+) -> Response[Union[DynDnsList, Error]]:
+    """Get all Dynamic DNS configs
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DynDNSConfigInfo, Error]]
+        Response[Union[DynDnsList, Error]]
     """
 
     kwargs = _get_kwargs()
@@ -113,15 +113,15 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[DynDNSConfigInfo, Error]]:
-    """Get Dynamic DNS config
+) -> Optional[Union[DynDnsList, Error]]:
+    """Get all Dynamic DNS configs
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DynDNSConfigInfo, Error]
+        Union[DynDnsList, Error]
     """
 
     return (

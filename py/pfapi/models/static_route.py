@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="StaticRoute")
 
@@ -11,31 +13,27 @@ class StaticRoute:
     """
     Attributes:
         network (str):
-        network_encoded (str):
         gateway (str):
-        gateway_encoded (str):
-        descr (str):
-        disabled (bool):
-        interface (str):
+        descr (Union[Unset, str]):
+        disabled (Union[Unset, bool]):
+        interface (Union[Unset, str]):
+        network_encoded (Union[Unset, str]): base64 encoded network; read-only
+        gateway_encoded (Union[Unset, str]): base64 encoded gateway; read-only
     """
 
     network: str
-    network_encoded: str
     gateway: str
-    gateway_encoded: str
-    descr: str
-    disabled: bool
-    interface: str
+    descr: Union[Unset, str] = UNSET
+    disabled: Union[Unset, bool] = UNSET
+    interface: Union[Unset, str] = UNSET
+    network_encoded: Union[Unset, str] = UNSET
+    gateway_encoded: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         network = self.network
 
-        network_encoded = self.network_encoded
-
         gateway = self.gateway
-
-        gateway_encoded = self.gateway_encoded
 
         descr = self.descr
 
@@ -43,19 +41,28 @@ class StaticRoute:
 
         interface = self.interface
 
+        network_encoded = self.network_encoded
+
+        gateway_encoded = self.gateway_encoded
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
                 "network": network,
-                "network_encoded": network_encoded,
                 "gateway": gateway,
-                "gateway_encoded": gateway_encoded,
-                "descr": descr,
-                "disabled": disabled,
-                "interface": interface,
             }
         )
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if disabled is not UNSET:
+            field_dict["disabled"] = disabled
+        if interface is not UNSET:
+            field_dict["interface"] = interface
+        if network_encoded is not UNSET:
+            field_dict["network_encoded"] = network_encoded
+        if gateway_encoded is not UNSET:
+            field_dict["gateway_encoded"] = gateway_encoded
 
         return field_dict
 
@@ -64,26 +71,26 @@ class StaticRoute:
         d = src_dict.copy()
         network = d.pop("network")
 
-        network_encoded = d.pop("network_encoded")
-
         gateway = d.pop("gateway")
 
-        gateway_encoded = d.pop("gateway_encoded")
+        descr = d.pop("descr", UNSET)
 
-        descr = d.pop("descr")
+        disabled = d.pop("disabled", UNSET)
 
-        disabled = d.pop("disabled")
+        interface = d.pop("interface", UNSET)
 
-        interface = d.pop("interface")
+        network_encoded = d.pop("network_encoded", UNSET)
+
+        gateway_encoded = d.pop("gateway_encoded", UNSET)
 
         static_route = cls(
             network=network,
-            network_encoded=network_encoded,
             gateway=gateway,
-            gateway_encoded=gateway_encoded,
             descr=descr,
             disabled=disabled,
             interface=interface,
+            network_encoded=network_encoded,
+            gateway_encoded=gateway_encoded,
         )
 
         static_route.additional_properties = d

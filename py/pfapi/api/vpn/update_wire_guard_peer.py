@@ -12,15 +12,15 @@ from ...types import Response
 
 
 def _get_kwargs(
-    id: str,
+    pubkey: str,
     *,
     body: WGPeer,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
     _kwargs: Dict[str, Any] = {
-        "method": "put",
-        "url": f"/vpn/wg/peer/{id}",
+        "method": "post",
+        "url": f"/vpn/wg/peer/{pubkey}",
     }
 
     _body = body.to_dict()
@@ -61,7 +61,7 @@ def _build_response(
 
 
 def sync_detailed(
-    id: str,
+    pubkey: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: WGPeer,
@@ -69,7 +69,7 @@ def sync_detailed(
     """Update WireGuard Peer
 
     Args:
-        id (str):
+        pubkey (str):
         body (WGPeer): valid values:
             enabled = "yes", "no"
 
@@ -82,7 +82,7 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
-        id=id,
+        pubkey=pubkey,
         body=body,
     )
 
@@ -94,7 +94,7 @@ def sync_detailed(
 
 
 def sync(
-    id: str,
+    pubkey: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: WGPeer,
@@ -102,7 +102,7 @@ def sync(
     """Update WireGuard Peer
 
     Args:
-        id (str):
+        pubkey (str):
         body (WGPeer): valid values:
             enabled = "yes", "no"
 
@@ -115,14 +115,14 @@ def sync(
     """
 
     return sync_detailed(
-        id=id,
+        pubkey=pubkey,
         client=client,
         body=body,
     ).parsed
 
 
 async def asyncio_detailed(
-    id: str,
+    pubkey: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: WGPeer,
@@ -130,7 +130,7 @@ async def asyncio_detailed(
     """Update WireGuard Peer
 
     Args:
-        id (str):
+        pubkey (str):
         body (WGPeer): valid values:
             enabled = "yes", "no"
 
@@ -143,7 +143,7 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
-        id=id,
+        pubkey=pubkey,
         body=body,
     )
 
@@ -153,7 +153,7 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    id: str,
+    pubkey: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: WGPeer,
@@ -161,7 +161,7 @@ async def asyncio(
     """Update WireGuard Peer
 
     Args:
-        id (str):
+        pubkey (str):
         body (WGPeer): valid values:
             enabled = "yes", "no"
 
@@ -175,7 +175,7 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
-            id=id,
+            pubkey=pubkey,
             client=client,
             body=body,
         )

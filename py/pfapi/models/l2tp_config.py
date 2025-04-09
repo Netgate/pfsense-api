@@ -18,37 +18,39 @@ class L2TPConfig:
     """
     Attributes:
         mode (str):
-        radius (L2TPRadius):
-        remoteip (str):
-        localip (str):
-        l2tp_subnet (str):
-        interface (str):
-        n_l2tp_units (str):
-        secret (str):
-        paporchap (str):
-        dns1 (str):
-        dns2 (str):
+        radius (Union[Unset, L2TPRadius]):
+        remoteip (Union[Unset, str]):
+        localip (Union[Unset, str]):
+        l2tp_subnet (Union[Unset, str]):
+        interface (Union[Unset, str]):
+        n_l2tp_units (Union[Unset, str]):
+        secret (Union[Unset, str]):
+        paporchap (Union[Unset, str]):
+        dns1 (Union[Unset, str]):
+        dns2 (Union[Unset, str]):
         user (Union[Unset, List['L2TPUser']]):
     """
 
     mode: str
-    radius: "L2TPRadius"
-    remoteip: str
-    localip: str
-    l2tp_subnet: str
-    interface: str
-    n_l2tp_units: str
-    secret: str
-    paporchap: str
-    dns1: str
-    dns2: str
+    radius: Union[Unset, "L2TPRadius"] = UNSET
+    remoteip: Union[Unset, str] = UNSET
+    localip: Union[Unset, str] = UNSET
+    l2tp_subnet: Union[Unset, str] = UNSET
+    interface: Union[Unset, str] = UNSET
+    n_l2tp_units: Union[Unset, str] = UNSET
+    secret: Union[Unset, str] = UNSET
+    paporchap: Union[Unset, str] = UNSET
+    dns1: Union[Unset, str] = UNSET
+    dns2: Union[Unset, str] = UNSET
     user: Union[Unset, List["L2TPUser"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         mode = self.mode
 
-        radius = self.radius.to_dict()
+        radius: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.radius, Unset):
+            radius = self.radius.to_dict()
 
         remoteip = self.remoteip
 
@@ -80,18 +82,28 @@ class L2TPConfig:
         field_dict.update(
             {
                 "mode": mode,
-                "radius": radius,
-                "remoteip": remoteip,
-                "localip": localip,
-                "l2tp_subnet": l2tp_subnet,
-                "interface": interface,
-                "n_l2tp_units": n_l2tp_units,
-                "secret": secret,
-                "paporchap": paporchap,
-                "dns1": dns1,
-                "dns2": dns2,
             }
         )
+        if radius is not UNSET:
+            field_dict["radius"] = radius
+        if remoteip is not UNSET:
+            field_dict["remoteip"] = remoteip
+        if localip is not UNSET:
+            field_dict["localip"] = localip
+        if l2tp_subnet is not UNSET:
+            field_dict["l2tp_subnet"] = l2tp_subnet
+        if interface is not UNSET:
+            field_dict["interface"] = interface
+        if n_l2tp_units is not UNSET:
+            field_dict["n_l2tp_units"] = n_l2tp_units
+        if secret is not UNSET:
+            field_dict["secret"] = secret
+        if paporchap is not UNSET:
+            field_dict["paporchap"] = paporchap
+        if dns1 is not UNSET:
+            field_dict["dns1"] = dns1
+        if dns2 is not UNSET:
+            field_dict["dns2"] = dns2
         if user is not UNSET:
             field_dict["user"] = user
 
@@ -105,25 +117,30 @@ class L2TPConfig:
         d = src_dict.copy()
         mode = d.pop("mode")
 
-        radius = L2TPRadius.from_dict(d.pop("radius"))
+        _radius = d.pop("radius", UNSET)
+        radius: Union[Unset, L2TPRadius]
+        if isinstance(_radius, Unset):
+            radius = UNSET
+        else:
+            radius = L2TPRadius.from_dict(_radius)
 
-        remoteip = d.pop("remoteip")
+        remoteip = d.pop("remoteip", UNSET)
 
-        localip = d.pop("localip")
+        localip = d.pop("localip", UNSET)
 
-        l2tp_subnet = d.pop("l2tp_subnet")
+        l2tp_subnet = d.pop("l2tp_subnet", UNSET)
 
-        interface = d.pop("interface")
+        interface = d.pop("interface", UNSET)
 
-        n_l2tp_units = d.pop("n_l2tp_units")
+        n_l2tp_units = d.pop("n_l2tp_units", UNSET)
 
-        secret = d.pop("secret")
+        secret = d.pop("secret", UNSET)
 
-        paporchap = d.pop("paporchap")
+        paporchap = d.pop("paporchap", UNSET)
 
-        dns1 = d.pop("dns1")
+        dns1 = d.pop("dns1", UNSET)
 
-        dns2 = d.pop("dns2")
+        dns2 = d.pop("dns2", UNSET)
 
         user = []
         _user = d.pop("user", UNSET)

@@ -18,44 +18,58 @@ class ControlledDeviceInfo:
     """Additional information about the device
 
     Attributes:
-        hostname (str):
-        uptime (int): number of seconds since the device started
-        product (str): eg pfsense
-        product_version (str): eg 24.08
-        product_build (str):
-        os_name (str):
-        os_version (str):
-        cpu (str):
-        memory (int):
-        model (str):
-        vendor (str):
-        serial (str):
-        hw_uuid (str):
+        hostname (Union[Unset, str]):
+        uptime (Union[Unset, int]): number of seconds since the device started
         network_ports (Union[Unset, List['DeviceNetworkPort']]):
         services (Union[Unset, List['DeviceServiceBasic']]):
+        product (Union[Unset, str]): eg pfsense
+        product_version (Union[Unset, str]): eg 24.08
+        product_build (Union[Unset, str]):
+        os_name (Union[Unset, str]):
+        os_version (Union[Unset, str]):
+        cpu (Union[Unset, str]):
+        memory (Union[Unset, int]):
+        model (Union[Unset, str]):
+        vendor (Union[Unset, str]):
+        serial (Union[Unset, str]):
+        hw_uuid (Union[Unset, str]):
     """
 
-    hostname: str
-    uptime: int
-    product: str
-    product_version: str
-    product_build: str
-    os_name: str
-    os_version: str
-    cpu: str
-    memory: int
-    model: str
-    vendor: str
-    serial: str
-    hw_uuid: str
+    hostname: Union[Unset, str] = UNSET
+    uptime: Union[Unset, int] = UNSET
     network_ports: Union[Unset, List["DeviceNetworkPort"]] = UNSET
     services: Union[Unset, List["DeviceServiceBasic"]] = UNSET
+    product: Union[Unset, str] = UNSET
+    product_version: Union[Unset, str] = UNSET
+    product_build: Union[Unset, str] = UNSET
+    os_name: Union[Unset, str] = UNSET
+    os_version: Union[Unset, str] = UNSET
+    cpu: Union[Unset, str] = UNSET
+    memory: Union[Unset, int] = UNSET
+    model: Union[Unset, str] = UNSET
+    vendor: Union[Unset, str] = UNSET
+    serial: Union[Unset, str] = UNSET
+    hw_uuid: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         hostname = self.hostname
 
         uptime = self.uptime
+
+        network_ports: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.network_ports, Unset):
+            network_ports = []
+            for network_ports_item_data in self.network_ports:
+                network_ports_item = network_ports_item_data.to_dict()
+                network_ports.append(network_ports_item)
+
+        services: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.services, Unset):
+            services = []
+            for services_item_data in self.services:
+                services_item = services_item_data.to_dict()
+                services.append(services_item)
 
         product = self.product
 
@@ -79,43 +93,39 @@ class ControlledDeviceInfo:
 
         hw_uuid = self.hw_uuid
 
-        network_ports: Union[Unset, List[Dict[str, Any]]] = UNSET
-        if not isinstance(self.network_ports, Unset):
-            network_ports = []
-            for network_ports_item_data in self.network_ports:
-                network_ports_item = network_ports_item_data.to_dict()
-                network_ports.append(network_ports_item)
-
-        services: Union[Unset, List[Dict[str, Any]]] = UNSET
-        if not isinstance(self.services, Unset):
-            services = []
-            for services_item_data in self.services:
-                services_item = services_item_data.to_dict()
-                services.append(services_item)
-
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "hostname": hostname,
-                "uptime": uptime,
-                "product": product,
-                "product_version": product_version,
-                "product_build": product_build,
-                "os_name": os_name,
-                "os_version": os_version,
-                "cpu": cpu,
-                "memory": memory,
-                "model": model,
-                "vendor": vendor,
-                "serial": serial,
-                "hw_uuid": hw_uuid,
-            }
-        )
+        field_dict.update({})
+        if hostname is not UNSET:
+            field_dict["hostname"] = hostname
+        if uptime is not UNSET:
+            field_dict["uptime"] = uptime
         if network_ports is not UNSET:
             field_dict["network_ports"] = network_ports
         if services is not UNSET:
             field_dict["services"] = services
+        if product is not UNSET:
+            field_dict["product"] = product
+        if product_version is not UNSET:
+            field_dict["product_version"] = product_version
+        if product_build is not UNSET:
+            field_dict["product_build"] = product_build
+        if os_name is not UNSET:
+            field_dict["os_name"] = os_name
+        if os_version is not UNSET:
+            field_dict["os_version"] = os_version
+        if cpu is not UNSET:
+            field_dict["cpu"] = cpu
+        if memory is not UNSET:
+            field_dict["memory"] = memory
+        if model is not UNSET:
+            field_dict["model"] = model
+        if vendor is not UNSET:
+            field_dict["vendor"] = vendor
+        if serial is not UNSET:
+            field_dict["serial"] = serial
+        if hw_uuid is not UNSET:
+            field_dict["hw_uuid"] = hw_uuid
 
         return field_dict
 
@@ -125,31 +135,9 @@ class ControlledDeviceInfo:
         from ..models.device_service_basic import DeviceServiceBasic
 
         d = src_dict.copy()
-        hostname = d.pop("hostname")
+        hostname = d.pop("hostname", UNSET)
 
-        uptime = d.pop("uptime")
-
-        product = d.pop("product")
-
-        product_version = d.pop("product_version")
-
-        product_build = d.pop("product_build")
-
-        os_name = d.pop("os_name")
-
-        os_version = d.pop("os_version")
-
-        cpu = d.pop("cpu")
-
-        memory = d.pop("memory")
-
-        model = d.pop("model")
-
-        vendor = d.pop("vendor")
-
-        serial = d.pop("serial")
-
-        hw_uuid = d.pop("hw_uuid")
+        uptime = d.pop("uptime", UNSET)
 
         network_ports = []
         _network_ports = d.pop("network_ports", UNSET)
@@ -165,9 +153,33 @@ class ControlledDeviceInfo:
 
             services.append(services_item)
 
+        product = d.pop("product", UNSET)
+
+        product_version = d.pop("product_version", UNSET)
+
+        product_build = d.pop("product_build", UNSET)
+
+        os_name = d.pop("os_name", UNSET)
+
+        os_version = d.pop("os_version", UNSET)
+
+        cpu = d.pop("cpu", UNSET)
+
+        memory = d.pop("memory", UNSET)
+
+        model = d.pop("model", UNSET)
+
+        vendor = d.pop("vendor", UNSET)
+
+        serial = d.pop("serial", UNSET)
+
+        hw_uuid = d.pop("hw_uuid", UNSET)
+
         controlled_device_info = cls(
             hostname=hostname,
             uptime=uptime,
+            network_ports=network_ports,
+            services=services,
             product=product,
             product_version=product_version,
             product_build=product_build,
@@ -179,8 +191,6 @@ class ControlledDeviceInfo:
             vendor=vendor,
             serial=serial,
             hw_uuid=hw_uuid,
-            network_ports=network_ports,
-            services=services,
         )
 
         controlled_device_info.additional_properties = d

@@ -23,8 +23,8 @@ class NewCaCertReq:
 
         Attributes:
             name (str):
-            trust (bool):
-            randomize_serial (bool):
+            trust (Union[Unset, bool]):
+            randomize_serial (Union[Unset, bool]):
             method_internal (Union[Unset, CaCertMethodNew]): Options for creating/updating an internal CA certificate.
                 The values for internal and intermediate certificates are the same,
                 with the exception that the intermediate certificate is signed by
@@ -68,8 +68,8 @@ class NewCaCertReq:
     """
 
     name: str
-    trust: bool
-    randomize_serial: bool
+    trust: Union[Unset, bool] = UNSET
+    randomize_serial: Union[Unset, bool] = UNSET
     method_internal: Union[Unset, "CaCertMethodNew"] = UNSET
     method_existing: Union[Unset, "CaCertMethodExisting"] = UNSET
     method_intermediate: Union[Unset, "CaCertMethodNew"] = UNSET
@@ -99,10 +99,12 @@ class NewCaCertReq:
         field_dict.update(
             {
                 "name": name,
-                "trust": trust,
-                "randomize_serial": randomize_serial,
             }
         )
+        if trust is not UNSET:
+            field_dict["trust"] = trust
+        if randomize_serial is not UNSET:
+            field_dict["randomize_serial"] = randomize_serial
         if method_internal is not UNSET:
             field_dict["method_internal"] = method_internal
         if method_existing is not UNSET:
@@ -120,9 +122,9 @@ class NewCaCertReq:
         d = src_dict.copy()
         name = d.pop("name")
 
-        trust = d.pop("trust")
+        trust = d.pop("trust", UNSET)
 
-        randomize_serial = d.pop("randomize_serial")
+        randomize_serial = d.pop("randomize_serial", UNSET)
 
         _method_internal = d.pop("method_internal", UNSET)
         method_internal: Union[Unset, CaCertMethodNew]

@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DeviceServiceBasic")
 
@@ -10,14 +12,14 @@ T = TypeVar("T", bound="DeviceServiceBasic")
 class DeviceServiceBasic:
     """
     Attributes:
-        type (str):
-        name (str):
-        enabled (bool):
+        type (Union[Unset, str]):
+        name (Union[Unset, str]):
+        enabled (Union[Unset, bool]):
     """
 
-    type: str
-    name: str
-    enabled: bool
+    type: Union[Unset, str] = UNSET
+    name: Union[Unset, str] = UNSET
+    enabled: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -29,24 +31,24 @@ class DeviceServiceBasic:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "type": type,
-                "name": name,
-                "enabled": enabled,
-            }
-        )
+        field_dict.update({})
+        if type is not UNSET:
+            field_dict["type"] = type
+        if name is not UNSET:
+            field_dict["name"] = name
+        if enabled is not UNSET:
+            field_dict["enabled"] = enabled
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        type = d.pop("type")
+        type = d.pop("type", UNSET)
 
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        enabled = d.pop("enabled")
+        enabled = d.pop("enabled", UNSET)
 
         device_service_basic = cls(
             type=type,

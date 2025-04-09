@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SNMPModules")
 
@@ -10,20 +12,20 @@ T = TypeVar("T", bound="SNMPModules")
 class SNMPModules:
     """
     Attributes:
-        mibii (bool):
-        netgraph (bool):
-        pf (bool):
-        hostres (bool):
-        ucd (bool):
-        regex (bool):
+        mibii (Union[Unset, bool]):
+        netgraph (Union[Unset, bool]):
+        pf (Union[Unset, bool]):
+        hostres (Union[Unset, bool]):
+        ucd (Union[Unset, bool]):
+        regex (Union[Unset, bool]):
     """
 
-    mibii: bool
-    netgraph: bool
-    pf: bool
-    hostres: bool
-    ucd: bool
-    regex: bool
+    mibii: Union[Unset, bool] = UNSET
+    netgraph: Union[Unset, bool] = UNSET
+    pf: Union[Unset, bool] = UNSET
+    hostres: Union[Unset, bool] = UNSET
+    ucd: Union[Unset, bool] = UNSET
+    regex: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -41,33 +43,36 @@ class SNMPModules:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "mibii": mibii,
-                "netgraph": netgraph,
-                "pf": pf,
-                "hostres": hostres,
-                "ucd": ucd,
-                "regex": regex,
-            }
-        )
+        field_dict.update({})
+        if mibii is not UNSET:
+            field_dict["mibii"] = mibii
+        if netgraph is not UNSET:
+            field_dict["netgraph"] = netgraph
+        if pf is not UNSET:
+            field_dict["pf"] = pf
+        if hostres is not UNSET:
+            field_dict["hostres"] = hostres
+        if ucd is not UNSET:
+            field_dict["ucd"] = ucd
+        if regex is not UNSET:
+            field_dict["regex"] = regex
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        mibii = d.pop("mibii")
+        mibii = d.pop("mibii", UNSET)
 
-        netgraph = d.pop("netgraph")
+        netgraph = d.pop("netgraph", UNSET)
 
-        pf = d.pop("pf")
+        pf = d.pop("pf", UNSET)
 
-        hostres = d.pop("hostres")
+        hostres = d.pop("hostres", UNSET)
 
-        ucd = d.pop("ucd")
+        ucd = d.pop("ucd", UNSET)
 
-        regex = d.pop("regex")
+        regex = d.pop("regex", UNSET)
 
         snmp_modules = cls(
             mibii=mibii,

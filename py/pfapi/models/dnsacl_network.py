@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DNSACLNetwork")
 
@@ -12,12 +14,12 @@ class DNSACLNetwork:
     Attributes:
         acl_network (str):
         mask (str):
-        description (str):
+        description (Union[Unset, str]):
     """
 
     acl_network: str
     mask: str
-    description: str
+    description: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -33,9 +35,10 @@ class DNSACLNetwork:
             {
                 "acl_network": acl_network,
                 "mask": mask,
-                "description": description,
             }
         )
+        if description is not UNSET:
+            field_dict["description"] = description
 
         return field_dict
 
@@ -46,7 +49,7 @@ class DNSACLNetwork:
 
         mask = d.pop("mask")
 
-        description = d.pop("description")
+        description = d.pop("description", UNSET)
 
         dnsacl_network = cls(
             acl_network=acl_network,

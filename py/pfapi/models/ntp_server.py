@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="NtpServer")
 
@@ -11,15 +13,15 @@ class NtpServer:
     """
     Attributes:
         addr (str):
-        type (str):
-        prefer (bool):
-        no_select (bool):
+        type (str): pool | peer | server
+        prefer (Union[Unset, bool]):
+        no_select (Union[Unset, bool]):
     """
 
     addr: str
     type: str
-    prefer: bool
-    no_select: bool
+    prefer: Union[Unset, bool] = UNSET
+    no_select: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -37,10 +39,12 @@ class NtpServer:
             {
                 "addr": addr,
                 "type": type,
-                "prefer": prefer,
-                "no_select": no_select,
             }
         )
+        if prefer is not UNSET:
+            field_dict["prefer"] = prefer
+        if no_select is not UNSET:
+            field_dict["no_select"] = no_select
 
         return field_dict
 
@@ -51,9 +55,9 @@ class NtpServer:
 
         type = d.pop("type")
 
-        prefer = d.pop("prefer")
+        prefer = d.pop("prefer", UNSET)
 
-        no_select = d.pop("no_select")
+        no_select = d.pop("no_select", UNSET)
 
         ntp_server = cls(
             addr=addr,

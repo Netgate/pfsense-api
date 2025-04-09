@@ -12,6 +12,7 @@ from ...types import Response
 
 
 def _get_kwargs(
+    id: str,
     *,
     body: CaptivePortalDisconnectRequest,
 ) -> Dict[str, Any]:
@@ -19,7 +20,7 @@ def _get_kwargs(
 
     _kwargs: Dict[str, Any] = {
         "method": "post",
-        "url": "/services/capportal/disconnect",
+        "url": f"/services/capportal/disconnect/{id}",
     }
 
     _body = body.to_dict()
@@ -60,13 +61,15 @@ def _build_response(
 
 
 def sync_detailed(
+    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: CaptivePortalDisconnectRequest,
 ) -> Response[Union[Error, Result]]:
-    """Disconnect some or all users from Captive Portal
+    """Disconnect some or all users from Captive Portal zone
 
     Args:
+        id (str):
         body (CaptivePortalDisconnectRequest):
 
     Raises:
@@ -78,6 +81,7 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
+        id=id,
         body=body,
     )
 
@@ -89,13 +93,15 @@ def sync_detailed(
 
 
 def sync(
+    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: CaptivePortalDisconnectRequest,
 ) -> Optional[Union[Error, Result]]:
-    """Disconnect some or all users from Captive Portal
+    """Disconnect some or all users from Captive Portal zone
 
     Args:
+        id (str):
         body (CaptivePortalDisconnectRequest):
 
     Raises:
@@ -107,19 +113,22 @@ def sync(
     """
 
     return sync_detailed(
+        id=id,
         client=client,
         body=body,
     ).parsed
 
 
 async def asyncio_detailed(
+    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: CaptivePortalDisconnectRequest,
 ) -> Response[Union[Error, Result]]:
-    """Disconnect some or all users from Captive Portal
+    """Disconnect some or all users from Captive Portal zone
 
     Args:
+        id (str):
         body (CaptivePortalDisconnectRequest):
 
     Raises:
@@ -131,6 +140,7 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
+        id=id,
         body=body,
     )
 
@@ -140,13 +150,15 @@ async def asyncio_detailed(
 
 
 async def asyncio(
+    id: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: CaptivePortalDisconnectRequest,
 ) -> Optional[Union[Error, Result]]:
-    """Disconnect some or all users from Captive Portal
+    """Disconnect some or all users from Captive Portal zone
 
     Args:
+        id (str):
         body (CaptivePortalDisconnectRequest):
 
     Raises:
@@ -159,6 +171,7 @@ async def asyncio(
 
     return (
         await asyncio_detailed(
+            id=id,
             client=client,
             body=body,
         )

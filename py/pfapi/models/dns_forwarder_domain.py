@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="DNSForwarderDomain")
 
@@ -12,20 +14,24 @@ class DNSForwarderDomain:
     Attributes:
         domain (str):
         ip (str):
-        descr (str):
-        idx (int):
+        source_ip (str):
+        descr (Union[Unset, str]):
+        idx (Union[Unset, int]):
     """
 
     domain: str
     ip: str
-    descr: str
-    idx: int
+    source_ip: str
+    descr: Union[Unset, str] = UNSET
+    idx: Union[Unset, int] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         domain = self.domain
 
         ip = self.ip
+
+        source_ip = self.source_ip
 
         descr = self.descr
 
@@ -37,10 +43,13 @@ class DNSForwarderDomain:
             {
                 "domain": domain,
                 "ip": ip,
-                "descr": descr,
-                "idx": idx,
+                "source_ip": source_ip,
             }
         )
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if idx is not UNSET:
+            field_dict["idx"] = idx
 
         return field_dict
 
@@ -51,13 +60,16 @@ class DNSForwarderDomain:
 
         ip = d.pop("ip")
 
-        descr = d.pop("descr")
+        source_ip = d.pop("source_ip")
 
-        idx = d.pop("idx")
+        descr = d.pop("descr", UNSET)
+
+        idx = d.pop("idx", UNSET)
 
         dns_forwarder_domain = cls(
             domain=domain,
             ip=ip,
+            source_ip=source_ip,
             descr=descr,
             idx=idx,
         )

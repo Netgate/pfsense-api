@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="Phase2LocalId")
 
@@ -10,14 +12,14 @@ T = TypeVar("T", bound="Phase2LocalId")
 class Phase2LocalId:
     """
     Attributes:
-        type (str):
-        address (str):
-        netbits (str):
+        type (Union[Unset, str]):
+        address (Union[Unset, str]):
+        netbits (Union[Unset, str]):
     """
 
-    type: str
-    address: str
-    netbits: str
+    type: Union[Unset, str] = UNSET
+    address: Union[Unset, str] = UNSET
+    netbits: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -29,24 +31,24 @@ class Phase2LocalId:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "type": type,
-                "address": address,
-                "netbits": netbits,
-            }
-        )
+        field_dict.update({})
+        if type is not UNSET:
+            field_dict["type"] = type
+        if address is not UNSET:
+            field_dict["address"] = address
+        if netbits is not UNSET:
+            field_dict["netbits"] = netbits
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        type = d.pop("type")
+        type = d.pop("type", UNSET)
 
-        address = d.pop("address")
+        address = d.pop("address", UNSET)
 
-        netbits = d.pop("netbits")
+        netbits = d.pop("netbits", UNSET)
 
         phase_2_local_id = cls(
             type=type,

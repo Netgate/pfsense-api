@@ -17,9 +17,11 @@ class ACBList:
     """
     Attributes:
         backups (Union[Unset, List['ACBBackup']]):
+        staged_backups (Union[Unset, int]): number of staged backups pending upload
     """
 
     backups: Union[Unset, List["ACBBackup"]] = UNSET
+    staged_backups: Union[Unset, int] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -30,11 +32,15 @@ class ACBList:
                 backups_item = backups_item_data.to_dict()
                 backups.append(backups_item)
 
+        staged_backups = self.staged_backups
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if backups is not UNSET:
             field_dict["backups"] = backups
+        if staged_backups is not UNSET:
+            field_dict["staged_backups"] = staged_backups
 
         return field_dict
 
@@ -50,8 +56,11 @@ class ACBList:
 
             backups.append(backups_item)
 
+        staged_backups = d.pop("staged_backups", UNSET)
+
         acb_list = cls(
             backups=backups,
+            staged_backups=staged_backups,
         )
 
         acb_list.additional_properties = d

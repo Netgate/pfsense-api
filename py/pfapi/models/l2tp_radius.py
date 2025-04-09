@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="L2TPRadius")
 
@@ -12,16 +14,16 @@ class L2TPRadius:
     Attributes:
         server (str):
         secret (str):
-        enable (bool):
-        accounting (bool):
-        radiusissueips (bool):
+        enable (Union[Unset, bool]):
+        accounting (Union[Unset, bool]):
+        radiusissueips (Union[Unset, bool]):
     """
 
     server: str
     secret: str
-    enable: bool
-    accounting: bool
-    radiusissueips: bool
+    enable: Union[Unset, bool] = UNSET
+    accounting: Union[Unset, bool] = UNSET
+    radiusissueips: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -41,11 +43,14 @@ class L2TPRadius:
             {
                 "server": server,
                 "secret": secret,
-                "enable": enable,
-                "accounting": accounting,
-                "radiusissueips": radiusissueips,
             }
         )
+        if enable is not UNSET:
+            field_dict["enable"] = enable
+        if accounting is not UNSET:
+            field_dict["accounting"] = accounting
+        if radiusissueips is not UNSET:
+            field_dict["radiusissueips"] = radiusissueips
 
         return field_dict
 
@@ -56,11 +61,11 @@ class L2TPRadius:
 
         secret = d.pop("secret")
 
-        enable = d.pop("enable")
+        enable = d.pop("enable", UNSET)
 
-        accounting = d.pop("accounting")
+        accounting = d.pop("accounting", UNSET)
 
-        radiusissueips = d.pop("radiusissueips")
+        radiusissueips = d.pop("radiusissueips", UNSET)
 
         l2tp_radius = cls(
             server=server,

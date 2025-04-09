@@ -5,7 +5,7 @@ import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
-from ...models.acb_config import ACBConfig
+from ...models.acb_config_info import ACBConfigInfo
 from ...models.error import Error
 from ...models.result import Result
 from ...types import Response
@@ -13,7 +13,7 @@ from ...types import Response
 
 def _get_kwargs(
     *,
-    body: ACBConfig,
+    body: ACBConfigInfo,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
@@ -62,14 +62,12 @@ def _build_response(
 def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: ACBConfig,
+    body: ACBConfigInfo,
 ) -> Response[Union[Error, Result]]:
     """Save ACB config
 
     Args:
-        body (ACBConfig): valid values:
-            frequency = "cron", "every"
-            reverse = "yes", "no"
+        body (ACBConfigInfo):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -93,14 +91,12 @@ def sync_detailed(
 def sync(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: ACBConfig,
+    body: ACBConfigInfo,
 ) -> Optional[Union[Error, Result]]:
     """Save ACB config
 
     Args:
-        body (ACBConfig): valid values:
-            frequency = "cron", "every"
-            reverse = "yes", "no"
+        body (ACBConfigInfo):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -119,14 +115,12 @@ def sync(
 async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: ACBConfig,
+    body: ACBConfigInfo,
 ) -> Response[Union[Error, Result]]:
     """Save ACB config
 
     Args:
-        body (ACBConfig): valid values:
-            frequency = "cron", "every"
-            reverse = "yes", "no"
+        body (ACBConfigInfo):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -148,14 +142,12 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: ACBConfig,
+    body: ACBConfigInfo,
 ) -> Optional[Union[Error, Result]]:
     """Save ACB config
 
     Args:
-        body (ACBConfig): valid values:
-            frequency = "cron", "every"
-            reverse = "yes", "no"
+        body (ACBConfigInfo):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

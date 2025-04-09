@@ -16,49 +16,54 @@ T = TypeVar("T", bound="NATNptRule")
 class NATNptRule:
     """
     Attributes:
-        destination (NATNptAddr):
-        id (str):
-        interface (str):
-        source (NATNptAddr):
         descr (Union[Unset, str]):
         disabled (Union[Unset, bool]):
+        destination (Union[Unset, NATNptAddr]):
+        id (Union[Unset, str]):
+        interface (Union[Unset, str]):
+        source (Union[Unset, NATNptAddr]):
     """
 
-    destination: "NATNptAddr"
-    id: str
-    interface: str
-    source: "NATNptAddr"
     descr: Union[Unset, str] = UNSET
     disabled: Union[Unset, bool] = UNSET
+    destination: Union[Unset, "NATNptAddr"] = UNSET
+    id: Union[Unset, str] = UNSET
+    interface: Union[Unset, str] = UNSET
+    source: Union[Unset, "NATNptAddr"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        destination = self.destination.to_dict()
+        descr = self.descr
+
+        disabled = self.disabled
+
+        destination: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.destination, Unset):
+            destination = self.destination.to_dict()
 
         id = self.id
 
         interface = self.interface
 
-        source = self.source.to_dict()
-
-        descr = self.descr
-
-        disabled = self.disabled
+        source: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.source, Unset):
+            source = self.source.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "destination": destination,
-                "id": id,
-                "interface": interface,
-                "source": source,
-            }
-        )
+        field_dict.update({})
         if descr is not UNSET:
             field_dict["descr"] = descr
         if disabled is not UNSET:
             field_dict["disabled"] = disabled
+        if destination is not UNSET:
+            field_dict["destination"] = destination
+        if id is not UNSET:
+            field_dict["id"] = id
+        if interface is not UNSET:
+            field_dict["interface"] = interface
+        if source is not UNSET:
+            field_dict["source"] = source
 
         return field_dict
 
@@ -67,25 +72,35 @@ class NATNptRule:
         from ..models.nat_npt_addr import NATNptAddr
 
         d = src_dict.copy()
-        destination = NATNptAddr.from_dict(d.pop("destination"))
-
-        id = d.pop("id")
-
-        interface = d.pop("interface")
-
-        source = NATNptAddr.from_dict(d.pop("source"))
-
         descr = d.pop("descr", UNSET)
 
         disabled = d.pop("disabled", UNSET)
 
+        _destination = d.pop("destination", UNSET)
+        destination: Union[Unset, NATNptAddr]
+        if isinstance(_destination, Unset):
+            destination = UNSET
+        else:
+            destination = NATNptAddr.from_dict(_destination)
+
+        id = d.pop("id", UNSET)
+
+        interface = d.pop("interface", UNSET)
+
+        _source = d.pop("source", UNSET)
+        source: Union[Unset, NATNptAddr]
+        if isinstance(_source, Unset):
+            source = UNSET
+        else:
+            source = NATNptAddr.from_dict(_source)
+
         nat_npt_rule = cls(
+            descr=descr,
+            disabled=disabled,
             destination=destination,
             id=id,
             interface=interface,
             source=source,
-            descr=descr,
-            disabled=disabled,
         )
 
         nat_npt_rule.additional_properties = d

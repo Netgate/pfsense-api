@@ -12,17 +12,14 @@ from ...types import UNSET, Response, Unset
 
 def _get_kwargs(
     *,
-    proto: Union[Unset, str] = UNSET,
+    viewtype: Union[Unset, str] = UNSET,
     detail: Union[Unset, str] = UNSET,
-    dnsquery: Union[Unset, str] = UNSET,
 ) -> Dict[str, Any]:
     params: Dict[str, Any] = {}
 
-    params["proto"] = proto
+    params["viewtype"] = viewtype
 
     params["detail"] = detail
-
-    params["dnsquery"] = dnsquery
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
@@ -66,16 +63,14 @@ def _build_response(
 def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    proto: Union[Unset, str] = UNSET,
+    viewtype: Union[Unset, str] = UNSET,
     detail: Union[Unset, str] = UNSET,
-    dnsquery: Union[Unset, str] = UNSET,
 ) -> Response[Union[Error, PacketCapture]]:
-    """List current or completed packet captures
+    """Retrieve the latest parsed capture
 
     Args:
-        proto (Union[Unset, str]):
+        viewtype (Union[Unset, str]):
         detail (Union[Unset, str]):
-        dnsquery (Union[Unset, str]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -86,9 +81,8 @@ def sync_detailed(
     """
 
     kwargs = _get_kwargs(
-        proto=proto,
+        viewtype=viewtype,
         detail=detail,
-        dnsquery=dnsquery,
     )
 
     response = client.get_httpx_client().request(
@@ -101,16 +95,14 @@ def sync_detailed(
 def sync(
     *,
     client: Union[AuthenticatedClient, Client],
-    proto: Union[Unset, str] = UNSET,
+    viewtype: Union[Unset, str] = UNSET,
     detail: Union[Unset, str] = UNSET,
-    dnsquery: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Error, PacketCapture]]:
-    """List current or completed packet captures
+    """Retrieve the latest parsed capture
 
     Args:
-        proto (Union[Unset, str]):
+        viewtype (Union[Unset, str]):
         detail (Union[Unset, str]):
-        dnsquery (Union[Unset, str]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -122,25 +114,22 @@ def sync(
 
     return sync_detailed(
         client=client,
-        proto=proto,
+        viewtype=viewtype,
         detail=detail,
-        dnsquery=dnsquery,
     ).parsed
 
 
 async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    proto: Union[Unset, str] = UNSET,
+    viewtype: Union[Unset, str] = UNSET,
     detail: Union[Unset, str] = UNSET,
-    dnsquery: Union[Unset, str] = UNSET,
 ) -> Response[Union[Error, PacketCapture]]:
-    """List current or completed packet captures
+    """Retrieve the latest parsed capture
 
     Args:
-        proto (Union[Unset, str]):
+        viewtype (Union[Unset, str]):
         detail (Union[Unset, str]):
-        dnsquery (Union[Unset, str]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -151,9 +140,8 @@ async def asyncio_detailed(
     """
 
     kwargs = _get_kwargs(
-        proto=proto,
+        viewtype=viewtype,
         detail=detail,
-        dnsquery=dnsquery,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -164,16 +152,14 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
-    proto: Union[Unset, str] = UNSET,
+    viewtype: Union[Unset, str] = UNSET,
     detail: Union[Unset, str] = UNSET,
-    dnsquery: Union[Unset, str] = UNSET,
 ) -> Optional[Union[Error, PacketCapture]]:
-    """List current or completed packet captures
+    """Retrieve the latest parsed capture
 
     Args:
-        proto (Union[Unset, str]):
+        viewtype (Union[Unset, str]):
         detail (Union[Unset, str]):
-        dnsquery (Union[Unset, str]):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -186,8 +172,7 @@ async def asyncio(
     return (
         await asyncio_detailed(
             client=client,
-            proto=proto,
+            viewtype=viewtype,
             detail=detail,
-            dnsquery=dnsquery,
         )
     ).parsed

@@ -1,7 +1,9 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.ppp_capable_interface import PPPCapableInterface
@@ -14,33 +16,36 @@ T = TypeVar("T", bound="PPPCapableInterfaces")
 class PPPCapableInterfaces:
     """
     Attributes:
-        serials (List['PPPCapableInterface']):
-        interfaces (List['PPPCapableInterface']):
+        serials (Union[Unset, List['PPPCapableInterface']]):
+        interfaces (Union[Unset, List['PPPCapableInterface']]):
     """
 
-    serials: List["PPPCapableInterface"]
-    interfaces: List["PPPCapableInterface"]
+    serials: Union[Unset, List["PPPCapableInterface"]] = UNSET
+    interfaces: Union[Unset, List["PPPCapableInterface"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        serials = []
-        for serials_item_data in self.serials:
-            serials_item = serials_item_data.to_dict()
-            serials.append(serials_item)
+        serials: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.serials, Unset):
+            serials = []
+            for serials_item_data in self.serials:
+                serials_item = serials_item_data.to_dict()
+                serials.append(serials_item)
 
-        interfaces = []
-        for interfaces_item_data in self.interfaces:
-            interfaces_item = interfaces_item_data.to_dict()
-            interfaces.append(interfaces_item)
+        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.interfaces, Unset):
+            interfaces = []
+            for interfaces_item_data in self.interfaces:
+                interfaces_item = interfaces_item_data.to_dict()
+                interfaces.append(interfaces_item)
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "serials": serials,
-                "interfaces": interfaces,
-            }
-        )
+        field_dict.update({})
+        if serials is not UNSET:
+            field_dict["serials"] = serials
+        if interfaces is not UNSET:
+            field_dict["interfaces"] = interfaces
 
         return field_dict
 
@@ -50,15 +55,15 @@ class PPPCapableInterfaces:
 
         d = src_dict.copy()
         serials = []
-        _serials = d.pop("serials")
-        for serials_item_data in _serials:
+        _serials = d.pop("serials", UNSET)
+        for serials_item_data in _serials or []:
             serials_item = PPPCapableInterface.from_dict(serials_item_data)
 
             serials.append(serials_item)
 
         interfaces = []
-        _interfaces = d.pop("interfaces")
-        for interfaces_item_data in _interfaces:
+        _interfaces = d.pop("interfaces", UNSET)
+        for interfaces_item_data in _interfaces or []:
             interfaces_item = PPPCapableInterface.from_dict(interfaces_item_data)
 
             interfaces.append(interfaces_item)

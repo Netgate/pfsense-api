@@ -1,7 +1,9 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.ppp_capable_interfaces import PPPCapableInterfaces
@@ -15,30 +17,33 @@ T = TypeVar("T", bound="PPPInterfaces")
 class PPPInterfaces:
     """
     Attributes:
-        interfaces (List['PPPInterface']):
-        ppp_capable_ifs (PPPCapableInterfaces):
+        interfaces (Union[Unset, List['PPPInterface']]):
+        ppp_capable_ifs (Union[Unset, PPPCapableInterfaces]):
     """
 
-    interfaces: List["PPPInterface"]
-    ppp_capable_ifs: "PPPCapableInterfaces"
+    interfaces: Union[Unset, List["PPPInterface"]] = UNSET
+    ppp_capable_ifs: Union[Unset, "PPPCapableInterfaces"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        interfaces = []
-        for interfaces_item_data in self.interfaces:
-            interfaces_item = interfaces_item_data.to_dict()
-            interfaces.append(interfaces_item)
+        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.interfaces, Unset):
+            interfaces = []
+            for interfaces_item_data in self.interfaces:
+                interfaces_item = interfaces_item_data.to_dict()
+                interfaces.append(interfaces_item)
 
-        ppp_capable_ifs = self.ppp_capable_ifs.to_dict()
+        ppp_capable_ifs: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.ppp_capable_ifs, Unset):
+            ppp_capable_ifs = self.ppp_capable_ifs.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "interfaces": interfaces,
-                "ppp_capable_ifs": ppp_capable_ifs,
-            }
-        )
+        field_dict.update({})
+        if interfaces is not UNSET:
+            field_dict["interfaces"] = interfaces
+        if ppp_capable_ifs is not UNSET:
+            field_dict["ppp_capable_ifs"] = ppp_capable_ifs
 
         return field_dict
 
@@ -49,13 +54,18 @@ class PPPInterfaces:
 
         d = src_dict.copy()
         interfaces = []
-        _interfaces = d.pop("interfaces")
-        for interfaces_item_data in _interfaces:
+        _interfaces = d.pop("interfaces", UNSET)
+        for interfaces_item_data in _interfaces or []:
             interfaces_item = PPPInterface.from_dict(interfaces_item_data)
 
             interfaces.append(interfaces_item)
 
-        ppp_capable_ifs = PPPCapableInterfaces.from_dict(d.pop("ppp_capable_ifs"))
+        _ppp_capable_ifs = d.pop("ppp_capable_ifs", UNSET)
+        ppp_capable_ifs: Union[Unset, PPPCapableInterfaces]
+        if isinstance(_ppp_capable_ifs, Unset):
+            ppp_capable_ifs = UNSET
+        else:
+            ppp_capable_ifs = PPPCapableInterfaces.from_dict(_ppp_capable_ifs)
 
         ppp_interfaces = cls(
             interfaces=interfaces,

@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="EditFileData")
 
@@ -10,12 +12,12 @@ T = TypeVar("T", bound="EditFileData")
 class EditFileData:
     """
     Attributes:
-        fname (str):
-        contents (str):
+        fname (Union[Unset, str]):
+        contents (Union[Unset, str]):
     """
 
-    fname: str
-    contents: str
+    fname: Union[Unset, str] = UNSET
+    contents: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,21 +27,20 @@ class EditFileData:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "fname": fname,
-                "contents": contents,
-            }
-        )
+        field_dict.update({})
+        if fname is not UNSET:
+            field_dict["fname"] = fname
+        if contents is not UNSET:
+            field_dict["contents"] = contents
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        fname = d.pop("fname")
+        fname = d.pop("fname", UNSET)
 
-        contents = d.pop("contents")
+        contents = d.pop("contents", UNSET)
 
         edit_file_data = cls(
             fname=fname,

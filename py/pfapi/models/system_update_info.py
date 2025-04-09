@@ -16,36 +16,28 @@ T = TypeVar("T", bound="SystemUpdateInfo")
 class SystemUpdateInfo:
     """
     Attributes:
-        firmware_branch (str):
-        boot_env (str):
-        curr_base_system (str):
-        latest_base_system (str):
-        status_message (str):
+        firmware_branch (Union[Unset, str]):
         firmware_branches (Union[Unset, List['SystemUpdateFirmwareBranch']]):
         messages (Union[Unset, List[str]]):
+        boot_env (Union[Unset, str]):
+        curr_base_system (Union[Unset, str]):
+        latest_base_system (Union[Unset, str]):
+        status_message (Union[Unset, str]):
         update_messages (Union[Unset, List[str]]):
     """
 
-    firmware_branch: str
-    boot_env: str
-    curr_base_system: str
-    latest_base_system: str
-    status_message: str
+    firmware_branch: Union[Unset, str] = UNSET
     firmware_branches: Union[Unset, List["SystemUpdateFirmwareBranch"]] = UNSET
     messages: Union[Unset, List[str]] = UNSET
+    boot_env: Union[Unset, str] = UNSET
+    curr_base_system: Union[Unset, str] = UNSET
+    latest_base_system: Union[Unset, str] = UNSET
+    status_message: Union[Unset, str] = UNSET
     update_messages: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
         firmware_branch = self.firmware_branch
-
-        boot_env = self.boot_env
-
-        curr_base_system = self.curr_base_system
-
-        latest_base_system = self.latest_base_system
-
-        status_message = self.status_message
 
         firmware_branches: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.firmware_branches, Unset):
@@ -58,25 +50,35 @@ class SystemUpdateInfo:
         if not isinstance(self.messages, Unset):
             messages = self.messages
 
+        boot_env = self.boot_env
+
+        curr_base_system = self.curr_base_system
+
+        latest_base_system = self.latest_base_system
+
+        status_message = self.status_message
+
         update_messages: Union[Unset, List[str]] = UNSET
         if not isinstance(self.update_messages, Unset):
             update_messages = self.update_messages
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "firmware_branch": firmware_branch,
-                "boot_env": boot_env,
-                "curr_base_system": curr_base_system,
-                "latest_base_system": latest_base_system,
-                "status_message": status_message,
-            }
-        )
+        field_dict.update({})
+        if firmware_branch is not UNSET:
+            field_dict["firmware_branch"] = firmware_branch
         if firmware_branches is not UNSET:
             field_dict["firmware_branches"] = firmware_branches
         if messages is not UNSET:
             field_dict["messages"] = messages
+        if boot_env is not UNSET:
+            field_dict["boot_env"] = boot_env
+        if curr_base_system is not UNSET:
+            field_dict["curr_base_system"] = curr_base_system
+        if latest_base_system is not UNSET:
+            field_dict["latest_base_system"] = latest_base_system
+        if status_message is not UNSET:
+            field_dict["status_message"] = status_message
         if update_messages is not UNSET:
             field_dict["update_messages"] = update_messages
 
@@ -87,15 +89,7 @@ class SystemUpdateInfo:
         from ..models.system_update_firmware_branch import SystemUpdateFirmwareBranch
 
         d = src_dict.copy()
-        firmware_branch = d.pop("firmware_branch")
-
-        boot_env = d.pop("boot_env")
-
-        curr_base_system = d.pop("curr_base_system")
-
-        latest_base_system = d.pop("latest_base_system")
-
-        status_message = d.pop("status_message")
+        firmware_branch = d.pop("firmware_branch", UNSET)
 
         firmware_branches = []
         _firmware_branches = d.pop("firmware_branches", UNSET)
@@ -106,16 +100,24 @@ class SystemUpdateInfo:
 
         messages = cast(List[str], d.pop("messages", UNSET))
 
+        boot_env = d.pop("boot_env", UNSET)
+
+        curr_base_system = d.pop("curr_base_system", UNSET)
+
+        latest_base_system = d.pop("latest_base_system", UNSET)
+
+        status_message = d.pop("status_message", UNSET)
+
         update_messages = cast(List[str], d.pop("update_messages", UNSET))
 
         system_update_info = cls(
             firmware_branch=firmware_branch,
+            firmware_branches=firmware_branches,
+            messages=messages,
             boot_env=boot_env,
             curr_base_system=curr_base_system,
             latest_base_system=latest_base_system,
             status_message=status_message,
-            firmware_branches=firmware_branches,
-            messages=messages,
             update_messages=update_messages,
         )
 

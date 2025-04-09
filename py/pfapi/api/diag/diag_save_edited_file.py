@@ -6,13 +6,14 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.edit_file_data import EditFileData
+from ...models.edit_file_req import EditFileReq
 from ...models.error import Error
 from ...types import Response
 
 
 def _get_kwargs(
     *,
-    body: EditFileData,
+    body: EditFileReq,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
@@ -61,12 +62,12 @@ def _build_response(
 def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: EditFileData,
+    body: EditFileReq,
 ) -> Response[Union[EditFileData, Error]]:
     """Save edited file
 
     Args:
-        body (EditFileData):
+        body (EditFileReq):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -90,12 +91,12 @@ def sync_detailed(
 def sync(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: EditFileData,
+    body: EditFileReq,
 ) -> Optional[Union[EditFileData, Error]]:
     """Save edited file
 
     Args:
-        body (EditFileData):
+        body (EditFileReq):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -114,12 +115,12 @@ def sync(
 async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: EditFileData,
+    body: EditFileReq,
 ) -> Response[Union[EditFileData, Error]]:
     """Save edited file
 
     Args:
-        body (EditFileData):
+        body (EditFileReq):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -141,12 +142,12 @@ async def asyncio_detailed(
 async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
-    body: EditFileData,
+    body: EditFileReq,
 ) -> Optional[Union[EditFileData, Error]]:
     """Save edited file
 
     Args:
-        body (EditFileData):
+        body (EditFileReq):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

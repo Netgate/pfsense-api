@@ -1,7 +1,9 @@
-from typing import Any, Dict, List, Type, TypeVar
+from typing import Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="SyslogConfigOverride")
 
@@ -10,60 +12,44 @@ T = TypeVar("T", bound="SyslogConfigOverride")
 class SyslogConfigOverride:
     """
     Attributes:
-        override_reverse (bool):
-        reverse (bool):
-        override_nentries (bool):
-        nentries (int):
-        override_logfilesize (bool):
-        logfilesize (int):
-        override_rotatecount (bool):
-        rotatecount (int):
-        override_format (bool):
-        format_ (str):
-        lognginx (bool):
-        logdefaultblock (bool):
-        logdefaultpass (bool):
-        logbogons (bool):
-        logprivatenets (bool):
-        filterdescriptions (int):
+        cronorder (Union[Unset, str]): reverse, forward, or empty for default
+        nentries (Union[Unset, int]):
+        logfilesize (Union[Unset, int]):
+        rotatecount (Union[Unset, int]):
+        format_ (Union[Unset, str]): formatted, raw
+        lognginx (Union[Unset, bool]):
+        logdefaultblock (Union[Unset, bool]):
+        logdefaultpass (Union[Unset, bool]):
+        logbogons (Union[Unset, bool]):
+        logprivatenets (Union[Unset, bool]):
+        loglinklocal4 (Union[Unset, bool]):
+        logsnort2c (Union[Unset, bool]):
+        filterdescriptions (Union[Unset, int]):
     """
 
-    override_reverse: bool
-    reverse: bool
-    override_nentries: bool
-    nentries: int
-    override_logfilesize: bool
-    logfilesize: int
-    override_rotatecount: bool
-    rotatecount: int
-    override_format: bool
-    format_: str
-    lognginx: bool
-    logdefaultblock: bool
-    logdefaultpass: bool
-    logbogons: bool
-    logprivatenets: bool
-    filterdescriptions: int
+    cronorder: Union[Unset, str] = UNSET
+    nentries: Union[Unset, int] = UNSET
+    logfilesize: Union[Unset, int] = UNSET
+    rotatecount: Union[Unset, int] = UNSET
+    format_: Union[Unset, str] = UNSET
+    lognginx: Union[Unset, bool] = UNSET
+    logdefaultblock: Union[Unset, bool] = UNSET
+    logdefaultpass: Union[Unset, bool] = UNSET
+    logbogons: Union[Unset, bool] = UNSET
+    logprivatenets: Union[Unset, bool] = UNSET
+    loglinklocal4: Union[Unset, bool] = UNSET
+    logsnort2c: Union[Unset, bool] = UNSET
+    filterdescriptions: Union[Unset, int] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        override_reverse = self.override_reverse
-
-        reverse = self.reverse
-
-        override_nentries = self.override_nentries
+        cronorder = self.cronorder
 
         nentries = self.nentries
 
-        override_logfilesize = self.override_logfilesize
-
         logfilesize = self.logfilesize
 
-        override_rotatecount = self.override_rotatecount
-
         rotatecount = self.rotatecount
-
-        override_format = self.override_format
 
         format_ = self.format_
 
@@ -77,84 +63,86 @@ class SyslogConfigOverride:
 
         logprivatenets = self.logprivatenets
 
+        loglinklocal4 = self.loglinklocal4
+
+        logsnort2c = self.logsnort2c
+
         filterdescriptions = self.filterdescriptions
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "override_reverse": override_reverse,
-                "reverse": reverse,
-                "override_nentries": override_nentries,
-                "nentries": nentries,
-                "override_logfilesize": override_logfilesize,
-                "logfilesize": logfilesize,
-                "override_rotatecount": override_rotatecount,
-                "rotatecount": rotatecount,
-                "override_format": override_format,
-                "format": format_,
-                "lognginx": lognginx,
-                "logdefaultblock": logdefaultblock,
-                "logdefaultpass": logdefaultpass,
-                "logbogons": logbogons,
-                "logprivatenets": logprivatenets,
-                "filterdescriptions": filterdescriptions,
-            }
-        )
+        field_dict.update({})
+        if cronorder is not UNSET:
+            field_dict["cronorder"] = cronorder
+        if nentries is not UNSET:
+            field_dict["nentries"] = nentries
+        if logfilesize is not UNSET:
+            field_dict["logfilesize"] = logfilesize
+        if rotatecount is not UNSET:
+            field_dict["rotatecount"] = rotatecount
+        if format_ is not UNSET:
+            field_dict["format"] = format_
+        if lognginx is not UNSET:
+            field_dict["lognginx"] = lognginx
+        if logdefaultblock is not UNSET:
+            field_dict["logdefaultblock"] = logdefaultblock
+        if logdefaultpass is not UNSET:
+            field_dict["logdefaultpass"] = logdefaultpass
+        if logbogons is not UNSET:
+            field_dict["logbogons"] = logbogons
+        if logprivatenets is not UNSET:
+            field_dict["logprivatenets"] = logprivatenets
+        if loglinklocal4 is not UNSET:
+            field_dict["loglinklocal4"] = loglinklocal4
+        if logsnort2c is not UNSET:
+            field_dict["logsnort2c"] = logsnort2c
+        if filterdescriptions is not UNSET:
+            field_dict["filterdescriptions"] = filterdescriptions
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        override_reverse = d.pop("override_reverse")
+        cronorder = d.pop("cronorder", UNSET)
 
-        reverse = d.pop("reverse")
+        nentries = d.pop("nentries", UNSET)
 
-        override_nentries = d.pop("override_nentries")
+        logfilesize = d.pop("logfilesize", UNSET)
 
-        nentries = d.pop("nentries")
+        rotatecount = d.pop("rotatecount", UNSET)
 
-        override_logfilesize = d.pop("override_logfilesize")
+        format_ = d.pop("format", UNSET)
 
-        logfilesize = d.pop("logfilesize")
+        lognginx = d.pop("lognginx", UNSET)
 
-        override_rotatecount = d.pop("override_rotatecount")
+        logdefaultblock = d.pop("logdefaultblock", UNSET)
 
-        rotatecount = d.pop("rotatecount")
+        logdefaultpass = d.pop("logdefaultpass", UNSET)
 
-        override_format = d.pop("override_format")
+        logbogons = d.pop("logbogons", UNSET)
 
-        format_ = d.pop("format")
+        logprivatenets = d.pop("logprivatenets", UNSET)
 
-        lognginx = d.pop("lognginx")
+        loglinklocal4 = d.pop("loglinklocal4", UNSET)
 
-        logdefaultblock = d.pop("logdefaultblock")
+        logsnort2c = d.pop("logsnort2c", UNSET)
 
-        logdefaultpass = d.pop("logdefaultpass")
-
-        logbogons = d.pop("logbogons")
-
-        logprivatenets = d.pop("logprivatenets")
-
-        filterdescriptions = d.pop("filterdescriptions")
+        filterdescriptions = d.pop("filterdescriptions", UNSET)
 
         syslog_config_override = cls(
-            override_reverse=override_reverse,
-            reverse=reverse,
-            override_nentries=override_nentries,
+            cronorder=cronorder,
             nentries=nentries,
-            override_logfilesize=override_logfilesize,
             logfilesize=logfilesize,
-            override_rotatecount=override_rotatecount,
             rotatecount=rotatecount,
-            override_format=override_format,
             format_=format_,
             lognginx=lognginx,
             logdefaultblock=logdefaultblock,
             logdefaultpass=logdefaultpass,
             logbogons=logbogons,
             logprivatenets=logprivatenets,
+            loglinklocal4=loglinklocal4,
+            logsnort2c=logsnort2c,
             filterdescriptions=filterdescriptions,
         )
 

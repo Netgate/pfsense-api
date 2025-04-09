@@ -1,7 +1,9 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.cert_method_existing_pkcs_12 import CertMethodExistingPkcs12
@@ -15,18 +17,19 @@ class UpdatePKCS12CertReq:
     """Update the certificate with PKCS12 appended file upload
 
     Attributes:
-        name (str):
-        descr (str):
-        description (str):
-        method_existing_pkcs12 (CertMethodExistingPkcs12): Existing PKCS12 certificate and key; the PKCS12 payload
+        name (Union[Unset, str]):
+        descr (Union[Unset, str]):
+        description (Union[Unset, str]):
+        method_existing_pkcs12 (Union[Unset, CertMethodExistingPkcs12]): Existing PKCS12 certificate and key; the PKCS12
+            payload
             is to be sent as a file upload part in a multi-part request, otherwise
             it can be included as pkcs12_b64 directly within this structure.
     """
 
-    name: str
-    descr: str
-    description: str
-    method_existing_pkcs12: "CertMethodExistingPkcs12"
+    name: Union[Unset, str] = UNSET
+    descr: Union[Unset, str] = UNSET
+    description: Union[Unset, str] = UNSET
+    method_existing_pkcs12: Union[Unset, "CertMethodExistingPkcs12"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -36,18 +39,21 @@ class UpdatePKCS12CertReq:
 
         description = self.description
 
-        method_existing_pkcs12 = self.method_existing_pkcs12.to_dict()
+        method_existing_pkcs12: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.method_existing_pkcs12, Unset):
+            method_existing_pkcs12 = self.method_existing_pkcs12.to_dict()
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "name": name,
-                "descr": descr,
-                "description": description,
-                "method_existing_pkcs12": method_existing_pkcs12,
-            }
-        )
+        field_dict.update({})
+        if name is not UNSET:
+            field_dict["name"] = name
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if description is not UNSET:
+            field_dict["description"] = description
+        if method_existing_pkcs12 is not UNSET:
+            field_dict["method_existing_pkcs12"] = method_existing_pkcs12
 
         return field_dict
 
@@ -56,13 +62,18 @@ class UpdatePKCS12CertReq:
         from ..models.cert_method_existing_pkcs_12 import CertMethodExistingPkcs12
 
         d = src_dict.copy()
-        name = d.pop("name")
+        name = d.pop("name", UNSET)
 
-        descr = d.pop("descr")
+        descr = d.pop("descr", UNSET)
 
-        description = d.pop("description")
+        description = d.pop("description", UNSET)
 
-        method_existing_pkcs12 = CertMethodExistingPkcs12.from_dict(d.pop("method_existing_pkcs12"))
+        _method_existing_pkcs12 = d.pop("method_existing_pkcs12", UNSET)
+        method_existing_pkcs12: Union[Unset, CertMethodExistingPkcs12]
+        if isinstance(_method_existing_pkcs12, Unset):
+            method_existing_pkcs12 = UNSET
+        else:
+            method_existing_pkcs12 = CertMethodExistingPkcs12.from_dict(_method_existing_pkcs12)
 
         update_pkcs12_cert_req = cls(
             name=name,

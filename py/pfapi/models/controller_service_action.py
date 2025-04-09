@@ -3,6 +3,7 @@ from typing import Any, Dict, List, Type, TypeVar, Union
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.controller_service_action_action import ControllerServiceActionAction
 from ..types import UNSET, Unset
 
 T = TypeVar("T", bound="ControllerServiceAction")
@@ -12,14 +13,16 @@ T = TypeVar("T", bound="ControllerServiceAction")
 class ControllerServiceAction:
     """
     Attributes:
-        action (Union[Unset, str]): Action to carry out [restart, reload, stop]
+        action (Union[Unset, ControllerServiceActionAction]): Action to carry out [restart, reload, stop]
     """
 
-    action: Union[Unset, str] = UNSET
+    action: Union[Unset, ControllerServiceActionAction] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        action = self.action
+        action: Union[Unset, str] = UNSET
+        if not isinstance(self.action, Unset):
+            action = self.action.value
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -32,7 +35,12 @@ class ControllerServiceAction:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        action = d.pop("action", UNSET)
+        _action = d.pop("action", UNSET)
+        action: Union[Unset, ControllerServiceActionAction]
+        if isinstance(_action, Unset):
+            action = UNSET
+        else:
+            action = ControllerServiceActionAction(_action)
 
         controller_service_action = cls(
             action=action,

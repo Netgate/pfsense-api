@@ -13,11 +13,9 @@ class DeleteBootenvs:
     """
     Attributes:
         names (Union[Unset, List[str]]):
-        name (Union[Unset, str]):
     """
 
     names: Union[Unset, List[str]] = UNSET
-    name: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -25,15 +23,11 @@ class DeleteBootenvs:
         if not isinstance(self.names, Unset):
             names = self.names
 
-        name = self.name
-
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if names is not UNSET:
             field_dict["names"] = names
-        if name is not UNSET:
-            field_dict["name"] = name
 
         return field_dict
 
@@ -42,11 +36,8 @@ class DeleteBootenvs:
         d = src_dict.copy()
         names = cast(List[str], d.pop("names", UNSET))
 
-        name = d.pop("name", UNSET)
-
         delete_bootenvs = cls(
             names=names,
-            name=name,
         )
 
         delete_bootenvs.additional_properties = d

@@ -21,9 +21,9 @@ T = TypeVar("T", bound="FirewallEvent")
 class FirewallEvent:
     """
     Attributes:
-        intf_name (str): friendly network interface name
-        action (str): activity on the rule - added, updated, deleted, moved
-        rule_type (str): filter, separator, nat, nat1to1, natout, npt
+        intf_name (Union[Unset, str]): friendly network interface name
+        action (Union[Unset, str]): activity on the rule - added, updated, deleted, moved
+        rule_type (Union[Unset, str]): filter, separator, nat, nat1to1, natout, npt
         filter_ (Union[Unset, FWFilterRule]):
         nat (Union[Unset, NATRule]):
         nat1to1 (Union[Unset, NAT1To1Rule]):
@@ -32,9 +32,9 @@ class FirewallEvent:
         separator (Union[Unset, Separator]):
     """
 
-    intf_name: str
-    action: str
-    rule_type: str
+    intf_name: Union[Unset, str] = UNSET
+    action: Union[Unset, str] = UNSET
+    rule_type: Union[Unset, str] = UNSET
     filter_: Union[Unset, "FWFilterRule"] = UNSET
     nat: Union[Unset, "NATRule"] = UNSET
     nat1to1: Union[Unset, "NAT1To1Rule"] = UNSET
@@ -76,13 +76,13 @@ class FirewallEvent:
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update(
-            {
-                "intf_name": intf_name,
-                "action": action,
-                "rule_type": rule_type,
-            }
-        )
+        field_dict.update({})
+        if intf_name is not UNSET:
+            field_dict["intf_name"] = intf_name
+        if action is not UNSET:
+            field_dict["action"] = action
+        if rule_type is not UNSET:
+            field_dict["rule_type"] = rule_type
         if filter_ is not UNSET:
             field_dict["filter"] = filter_
         if nat is not UNSET:
@@ -108,11 +108,11 @@ class FirewallEvent:
         from ..models.separator import Separator
 
         d = src_dict.copy()
-        intf_name = d.pop("intf_name")
+        intf_name = d.pop("intf_name", UNSET)
 
-        action = d.pop("action")
+        action = d.pop("action", UNSET)
 
-        rule_type = d.pop("rule_type")
+        rule_type = d.pop("rule_type", UNSET)
 
         _filter_ = d.pop("filter", UNSET)
         filter_: Union[Unset, FWFilterRule]
