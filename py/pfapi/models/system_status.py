@@ -34,6 +34,7 @@ class SystemStatus:
         timestamp (Union[Unset, str]):
         apiver (Union[Unset, str]):
         vpn_addr (Union[Unset, str]):
+        alerts (Union[Unset, str]):
         nexus_controllers (Union[Unset, List['NexusControllerInfo']]):
     """
 
@@ -55,6 +56,7 @@ class SystemStatus:
     timestamp: Union[Unset, str] = UNSET
     apiver: Union[Unset, str] = UNSET
     vpn_addr: Union[Unset, str] = UNSET
+    alerts: Union[Unset, str] = UNSET
     nexus_controllers: Union[Unset, List["NexusControllerInfo"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -94,6 +96,8 @@ class SystemStatus:
         apiver = self.apiver
 
         vpn_addr = self.vpn_addr
+
+        alerts = self.alerts
 
         nexus_controllers: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.nexus_controllers, Unset):
@@ -141,6 +145,8 @@ class SystemStatus:
             field_dict["apiver"] = apiver
         if vpn_addr is not UNSET:
             field_dict["vpn_addr"] = vpn_addr
+        if alerts is not UNSET:
+            field_dict["alerts"] = alerts
         if nexus_controllers is not UNSET:
             field_dict["nexus_controllers"] = nexus_controllers
 
@@ -187,6 +193,8 @@ class SystemStatus:
 
         vpn_addr = d.pop("vpn_addr", UNSET)
 
+        alerts = d.pop("alerts", UNSET)
+
         nexus_controllers = []
         _nexus_controllers = d.pop("nexus_controllers", UNSET)
         for nexus_controllers_item_data in _nexus_controllers or []:
@@ -213,6 +221,7 @@ class SystemStatus:
             timestamp=timestamp,
             apiver=apiver,
             vpn_addr=vpn_addr,
+            alerts=alerts,
             nexus_controllers=nexus_controllers,
         )
 

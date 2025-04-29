@@ -54,7 +54,7 @@ def sync_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Response[Union[Error, Interface]]:
-    """Get interface by its assigned name
+    """Get interface by its identity name
 
     Args:
         name (str):
@@ -83,7 +83,7 @@ def sync(
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Optional[Union[Error, Interface]]:
-    """Get interface by its assigned name
+    """Get interface by its identity name
 
     Args:
         name (str):
@@ -107,7 +107,7 @@ async def asyncio_detailed(
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Response[Union[Error, Interface]]:
-    """Get interface by its assigned name
+    """Get interface by its identity name
 
     Args:
         name (str):
@@ -134,7 +134,7 @@ async def asyncio(
     *,
     client: Union[AuthenticatedClient, Client],
 ) -> Optional[Union[Error, Interface]]:
-    """Get interface by its assigned name
+    """Get interface by its identity name
 
     Args:
         name (str):

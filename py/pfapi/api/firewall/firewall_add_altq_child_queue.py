@@ -13,6 +13,7 @@ from ...types import Response
 
 def _get_kwargs(
     name: str,
+    parentname: str,
     *,
     body: ALTQChildQueue,
 ) -> Dict[str, Any]:
@@ -20,7 +21,7 @@ def _get_kwargs(
 
     _kwargs: Dict[str, Any] = {
         "method": "put",
-        "url": f"/firewall/traffic-shaper/altq/{name}/queue",
+        "url": f"/firewall/traffic-shaper/altq/{name}/queue/{parentname}",
     }
 
     _body = body.to_dict()
@@ -62,6 +63,7 @@ def _build_response(
 
 def sync_detailed(
     name: str,
+    parentname: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: ALTQChildQueue,
@@ -70,6 +72,7 @@ def sync_detailed(
 
     Args:
         name (str):
+        parentname (str):
         body (ALTQChildQueue):
 
     Raises:
@@ -82,6 +85,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         name=name,
+        parentname=parentname,
         body=body,
     )
 
@@ -94,6 +98,7 @@ def sync_detailed(
 
 def sync(
     name: str,
+    parentname: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: ALTQChildQueue,
@@ -102,6 +107,7 @@ def sync(
 
     Args:
         name (str):
+        parentname (str):
         body (ALTQChildQueue):
 
     Raises:
@@ -114,6 +120,7 @@ def sync(
 
     return sync_detailed(
         name=name,
+        parentname=parentname,
         client=client,
         body=body,
     ).parsed
@@ -121,6 +128,7 @@ def sync(
 
 async def asyncio_detailed(
     name: str,
+    parentname: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: ALTQChildQueue,
@@ -129,6 +137,7 @@ async def asyncio_detailed(
 
     Args:
         name (str):
+        parentname (str):
         body (ALTQChildQueue):
 
     Raises:
@@ -141,6 +150,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         name=name,
+        parentname=parentname,
         body=body,
     )
 
@@ -151,6 +161,7 @@ async def asyncio_detailed(
 
 async def asyncio(
     name: str,
+    parentname: str,
     *,
     client: Union[AuthenticatedClient, Client],
     body: ALTQChildQueue,
@@ -159,6 +170,7 @@ async def asyncio(
 
     Args:
         name (str):
+        parentname (str):
         body (ALTQChildQueue):
 
     Raises:
@@ -172,6 +184,7 @@ async def asyncio(
     return (
         await asyncio_detailed(
             name=name,
+            parentname=parentname,
             client=client,
             body=body,
         )

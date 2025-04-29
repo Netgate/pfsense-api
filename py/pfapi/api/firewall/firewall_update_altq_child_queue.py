@@ -13,6 +13,7 @@ from ...types import Response
 
 def _get_kwargs(
     name: str,
+    parentname: str,
     qname: str,
     *,
     body: ALTQChildQueue,
@@ -21,7 +22,7 @@ def _get_kwargs(
 
     _kwargs: Dict[str, Any] = {
         "method": "post",
-        "url": f"/firewall/traffic-shaper/altq/{name}/queue/{qname}",
+        "url": f"/firewall/traffic-shaper/altq/{name}/queue/{parentname}/{qname}",
     }
 
     _body = body.to_dict()
@@ -63,6 +64,7 @@ def _build_response(
 
 def sync_detailed(
     name: str,
+    parentname: str,
     qname: str,
     *,
     client: Union[AuthenticatedClient, Client],
@@ -72,6 +74,7 @@ def sync_detailed(
 
     Args:
         name (str):
+        parentname (str):
         qname (str):
         body (ALTQChildQueue):
 
@@ -85,6 +88,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         name=name,
+        parentname=parentname,
         qname=qname,
         body=body,
     )
@@ -98,6 +102,7 @@ def sync_detailed(
 
 def sync(
     name: str,
+    parentname: str,
     qname: str,
     *,
     client: Union[AuthenticatedClient, Client],
@@ -107,6 +112,7 @@ def sync(
 
     Args:
         name (str):
+        parentname (str):
         qname (str):
         body (ALTQChildQueue):
 
@@ -120,6 +126,7 @@ def sync(
 
     return sync_detailed(
         name=name,
+        parentname=parentname,
         qname=qname,
         client=client,
         body=body,
@@ -128,6 +135,7 @@ def sync(
 
 async def asyncio_detailed(
     name: str,
+    parentname: str,
     qname: str,
     *,
     client: Union[AuthenticatedClient, Client],
@@ -137,6 +145,7 @@ async def asyncio_detailed(
 
     Args:
         name (str):
+        parentname (str):
         qname (str):
         body (ALTQChildQueue):
 
@@ -150,6 +159,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         name=name,
+        parentname=parentname,
         qname=qname,
         body=body,
     )
@@ -161,6 +171,7 @@ async def asyncio_detailed(
 
 async def asyncio(
     name: str,
+    parentname: str,
     qname: str,
     *,
     client: Union[AuthenticatedClient, Client],
@@ -170,6 +181,7 @@ async def asyncio(
 
     Args:
         name (str):
+        parentname (str):
         qname (str):
         body (ALTQChildQueue):
 
@@ -184,6 +196,7 @@ async def asyncio(
     return (
         await asyncio_detailed(
             name=name,
+            parentname=parentname,
             qname=qname,
             client=client,
             body=body,

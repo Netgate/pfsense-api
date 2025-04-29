@@ -10,7 +10,8 @@ T = TypeVar("T", bound="InterfaceSimple")
 
 @_attrs_define
 class InterfaceSimple:
-    """
+    """Basic interface details.
+
     Attributes:
         name (str): alias to identity
         identity (Union[Unset, str]): interface identity

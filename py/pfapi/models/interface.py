@@ -40,11 +40,7 @@ class Interface:
         gateway (Union[Unset, str]):
         ipaddrv6 (Union[Unset, str]):
         ipv6usev4iface (Union[Unset, bool]):
-        defaultgw6 (Union[Unset, bool]):
-        gatewayip6 (Union[Unset, str]):
         gatewayv6 (Union[Unset, str]):
-        gatewaydescr6 (Union[Unset, str]):
-        gatewayname6 (Union[Unset, str]):
         alias_address (Union[Unset, str]):
         dhcphostname (Union[Unset, str]):
         dhcprejectfrom (Union[Unset, str]):
@@ -60,10 +56,10 @@ class Interface:
         dhcp6cvpt (Union[Unset, str]):
         prefix_6rd (Union[Unset, str]):
         gateway_6rd (Union[Unset, str]):
-        track6_prefix_id_hex (Union[Unset, str]):
         dhcp6_ia_pd_len (Union[Unset, str]):
         prefix_6rd_v4plen (Union[Unset, str]):
         track6_interface (Union[Unset, str]):
+        track6_prefix_id (Union[Unset, str]):
         adv_dhcp_config_advanced (Union[Unset, bool]):
         adv_dhcp_config_file_override (Union[Unset, bool]):
         adv_dhcp_pt_timeout (Union[Unset, str]):
@@ -136,11 +132,7 @@ class Interface:
     gateway: Union[Unset, str] = UNSET
     ipaddrv6: Union[Unset, str] = UNSET
     ipv6usev4iface: Union[Unset, bool] = UNSET
-    defaultgw6: Union[Unset, bool] = UNSET
-    gatewayip6: Union[Unset, str] = UNSET
     gatewayv6: Union[Unset, str] = UNSET
-    gatewaydescr6: Union[Unset, str] = UNSET
-    gatewayname6: Union[Unset, str] = UNSET
     alias_address: Union[Unset, str] = UNSET
     dhcphostname: Union[Unset, str] = UNSET
     dhcprejectfrom: Union[Unset, str] = UNSET
@@ -156,10 +148,10 @@ class Interface:
     dhcp6cvpt: Union[Unset, str] = UNSET
     prefix_6rd: Union[Unset, str] = UNSET
     gateway_6rd: Union[Unset, str] = UNSET
-    track6_prefix_id_hex: Union[Unset, str] = UNSET
     dhcp6_ia_pd_len: Union[Unset, str] = UNSET
     prefix_6rd_v4plen: Union[Unset, str] = UNSET
     track6_interface: Union[Unset, str] = UNSET
+    track6_prefix_id: Union[Unset, str] = UNSET
     adv_dhcp_config_advanced: Union[Unset, bool] = UNSET
     adv_dhcp_config_file_override: Union[Unset, bool] = UNSET
     adv_dhcp_pt_timeout: Union[Unset, str] = UNSET
@@ -260,15 +252,7 @@ class Interface:
 
         ipv6usev4iface = self.ipv6usev4iface
 
-        defaultgw6 = self.defaultgw6
-
-        gatewayip6 = self.gatewayip6
-
         gatewayv6 = self.gatewayv6
-
-        gatewaydescr6 = self.gatewaydescr6
-
-        gatewayname6 = self.gatewayname6
 
         alias_address = self.alias_address
 
@@ -302,13 +286,13 @@ class Interface:
 
         gateway_6rd = self.gateway_6rd
 
-        track6_prefix_id_hex = self.track6_prefix_id_hex
-
         dhcp6_ia_pd_len = self.dhcp6_ia_pd_len
 
         prefix_6rd_v4plen = self.prefix_6rd_v4plen
 
         track6_interface = self.track6_interface
+
+        track6_prefix_id = self.track6_prefix_id
 
         adv_dhcp_config_advanced = self.adv_dhcp_config_advanced
 
@@ -455,16 +439,8 @@ class Interface:
             field_dict["ipaddrv6"] = ipaddrv6
         if ipv6usev4iface is not UNSET:
             field_dict["ipv6usev4iface"] = ipv6usev4iface
-        if defaultgw6 is not UNSET:
-            field_dict["defaultgw6"] = defaultgw6
-        if gatewayip6 is not UNSET:
-            field_dict["gatewayip6"] = gatewayip6
         if gatewayv6 is not UNSET:
             field_dict["gatewayv6"] = gatewayv6
-        if gatewaydescr6 is not UNSET:
-            field_dict["gatewaydescr6"] = gatewaydescr6
-        if gatewayname6 is not UNSET:
-            field_dict["gatewayname6"] = gatewayname6
         if alias_address is not UNSET:
             field_dict["alias_address"] = alias_address
         if dhcphostname is not UNSET:
@@ -495,14 +471,14 @@ class Interface:
             field_dict["prefix_6rd"] = prefix_6rd
         if gateway_6rd is not UNSET:
             field_dict["gateway_6rd"] = gateway_6rd
-        if track6_prefix_id_hex is not UNSET:
-            field_dict["track6_prefix_id__hex"] = track6_prefix_id_hex
         if dhcp6_ia_pd_len is not UNSET:
             field_dict["dhcp6_ia_pd_len"] = dhcp6_ia_pd_len
         if prefix_6rd_v4plen is not UNSET:
             field_dict["prefix_6rd_v4plen"] = prefix_6rd_v4plen
         if track6_interface is not UNSET:
             field_dict["track6_interface"] = track6_interface
+        if track6_prefix_id is not UNSET:
+            field_dict["track6_prefix_id"] = track6_prefix_id
         if adv_dhcp_config_advanced is not UNSET:
             field_dict["adv_dhcp_config_advanced"] = adv_dhcp_config_advanced
         if adv_dhcp_config_file_override is not UNSET:
@@ -651,15 +627,7 @@ class Interface:
 
         ipv6usev4iface = d.pop("ipv6usev4iface", UNSET)
 
-        defaultgw6 = d.pop("defaultgw6", UNSET)
-
-        gatewayip6 = d.pop("gatewayip6", UNSET)
-
         gatewayv6 = d.pop("gatewayv6", UNSET)
-
-        gatewaydescr6 = d.pop("gatewaydescr6", UNSET)
-
-        gatewayname6 = d.pop("gatewayname6", UNSET)
 
         alias_address = d.pop("alias_address", UNSET)
 
@@ -691,13 +659,13 @@ class Interface:
 
         gateway_6rd = d.pop("gateway_6rd", UNSET)
 
-        track6_prefix_id_hex = d.pop("track6_prefix_id__hex", UNSET)
-
         dhcp6_ia_pd_len = d.pop("dhcp6_ia_pd_len", UNSET)
 
         prefix_6rd_v4plen = d.pop("prefix_6rd_v4plen", UNSET)
 
         track6_interface = d.pop("track6_interface", UNSET)
+
+        track6_prefix_id = d.pop("track6_prefix_id", UNSET)
 
         adv_dhcp_config_advanced = d.pop("adv_dhcp_config_advanced", UNSET)
 
@@ -815,11 +783,7 @@ class Interface:
             gateway=gateway,
             ipaddrv6=ipaddrv6,
             ipv6usev4iface=ipv6usev4iface,
-            defaultgw6=defaultgw6,
-            gatewayip6=gatewayip6,
             gatewayv6=gatewayv6,
-            gatewaydescr6=gatewaydescr6,
-            gatewayname6=gatewayname6,
             alias_address=alias_address,
             dhcphostname=dhcphostname,
             dhcprejectfrom=dhcprejectfrom,
@@ -835,10 +799,10 @@ class Interface:
             dhcp6cvpt=dhcp6cvpt,
             prefix_6rd=prefix_6rd,
             gateway_6rd=gateway_6rd,
-            track6_prefix_id_hex=track6_prefix_id_hex,
             dhcp6_ia_pd_len=dhcp6_ia_pd_len,
             prefix_6rd_v4plen=prefix_6rd_v4plen,
             track6_interface=track6_interface,
+            track6_prefix_id=track6_prefix_id,
             adv_dhcp_config_advanced=adv_dhcp_config_advanced,
             adv_dhcp_config_file_override=adv_dhcp_config_file_override,
             adv_dhcp_pt_timeout=adv_dhcp_pt_timeout,

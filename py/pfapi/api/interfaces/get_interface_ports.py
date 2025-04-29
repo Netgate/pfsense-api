@@ -52,7 +52,8 @@ def sync_detailed(
     client: Union[AuthenticatedClient, Client],
 ) -> Response[Union[Error, InterfacePorts]]:
     """Get interface ports.
-    The response of ports is a map of port-type (e.g. wans, gres) to
+
+     Get interface ports as a map of port-type (e.g. wans, gres) to
     a list of its corresponding datastructure.
 
     Raises:
@@ -77,7 +78,8 @@ def sync(
     client: Union[AuthenticatedClient, Client],
 ) -> Optional[Union[Error, InterfacePorts]]:
     """Get interface ports.
-    The response of ports is a map of port-type (e.g. wans, gres) to
+
+     Get interface ports as a map of port-type (e.g. wans, gres) to
     a list of its corresponding datastructure.
 
     Raises:
@@ -98,7 +100,8 @@ async def asyncio_detailed(
     client: Union[AuthenticatedClient, Client],
 ) -> Response[Union[Error, InterfacePorts]]:
     """Get interface ports.
-    The response of ports is a map of port-type (e.g. wans, gres) to
+
+     Get interface ports as a map of port-type (e.g. wans, gres) to
     a list of its corresponding datastructure.
 
     Raises:
@@ -121,7 +124,8 @@ async def asyncio(
     client: Union[AuthenticatedClient, Client],
 ) -> Optional[Union[Error, InterfacePorts]]:
     """Get interface ports.
-    The response of ports is a map of port-type (e.g. wans, gres) to
+
+     Get interface ports as a map of port-type (e.g. wans, gres) to
     a list of its corresponding datastructure.
 
     Raises:

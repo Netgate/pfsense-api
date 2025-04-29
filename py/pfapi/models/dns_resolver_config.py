@@ -26,6 +26,8 @@ class DNSResolverConfig:
         hideidentity (Union[Unset, bool]):
         hideversion (Union[Unset, bool]):
         dnssecstripped (Union[Unset, bool]):
+        drop_old_udp_pkts (Union[Unset, int]):
+        keep_probing (Union[Unset, bool]):
         qname_minimisation (Union[Unset, bool]):
         qname_minimisation_strict (Union[Unset, bool]):
         prefetch (Union[Unset, bool]):
@@ -76,6 +78,8 @@ class DNSResolverConfig:
     hideidentity: Union[Unset, bool] = UNSET
     hideversion: Union[Unset, bool] = UNSET
     dnssecstripped: Union[Unset, bool] = UNSET
+    drop_old_udp_pkts: Union[Unset, int] = UNSET
+    keep_probing: Union[Unset, bool] = UNSET
     qname_minimisation: Union[Unset, bool] = UNSET
     qname_minimisation_strict: Union[Unset, bool] = UNSET
     prefetch: Union[Unset, bool] = UNSET
@@ -138,6 +142,10 @@ class DNSResolverConfig:
         hideversion = self.hideversion
 
         dnssecstripped = self.dnssecstripped
+
+        drop_old_udp_pkts = self.drop_old_udp_pkts
+
+        keep_probing = self.keep_probing
 
         qname_minimisation = self.qname_minimisation
 
@@ -253,6 +261,10 @@ class DNSResolverConfig:
             field_dict["hideversion"] = hideversion
         if dnssecstripped is not UNSET:
             field_dict["dnssecstripped"] = dnssecstripped
+        if drop_old_udp_pkts is not UNSET:
+            field_dict["drop_old_udp_pkts"] = drop_old_udp_pkts
+        if keep_probing is not UNSET:
+            field_dict["keep_probing"] = keep_probing
         if qname_minimisation is not UNSET:
             field_dict["qname_minimisation"] = qname_minimisation
         if qname_minimisation_strict is not UNSET:
@@ -359,6 +371,10 @@ class DNSResolverConfig:
 
         dnssecstripped = d.pop("dnssecstripped", UNSET)
 
+        drop_old_udp_pkts = d.pop("drop_old_udp_pkts", UNSET)
+
+        keep_probing = d.pop("keep_probing", UNSET)
+
         qname_minimisation = d.pop("qname_minimisation", UNSET)
 
         qname_minimisation_strict = d.pop("qname_minimisation_strict", UNSET)
@@ -463,6 +479,8 @@ class DNSResolverConfig:
             hideidentity=hideidentity,
             hideversion=hideversion,
             dnssecstripped=dnssecstripped,
+            drop_old_udp_pkts=drop_old_udp_pkts,
+            keep_probing=keep_probing,
             qname_minimisation=qname_minimisation,
             qname_minimisation_strict=qname_minimisation_strict,
             prefetch=prefetch,

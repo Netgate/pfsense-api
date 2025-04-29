@@ -12,11 +12,12 @@ from ...types import Response
 
 def _get_kwargs(
     name: str,
+    parentname: str,
     qname: str,
 ) -> Dict[str, Any]:
     _kwargs: Dict[str, Any] = {
         "method": "delete",
-        "url": f"/firewall/traffic-shaper/altq/{name}/queue/{qname}",
+        "url": f"/firewall/traffic-shaper/altq/{name}/queue/{parentname}/{qname}",
     }
 
     return _kwargs
@@ -52,6 +53,7 @@ def _build_response(
 
 def sync_detailed(
     name: str,
+    parentname: str,
     qname: str,
     *,
     client: Union[AuthenticatedClient, Client],
@@ -60,6 +62,7 @@ def sync_detailed(
 
     Args:
         name (str):
+        parentname (str):
         qname (str):
 
     Raises:
@@ -72,6 +75,7 @@ def sync_detailed(
 
     kwargs = _get_kwargs(
         name=name,
+        parentname=parentname,
         qname=qname,
     )
 
@@ -84,6 +88,7 @@ def sync_detailed(
 
 def sync(
     name: str,
+    parentname: str,
     qname: str,
     *,
     client: Union[AuthenticatedClient, Client],
@@ -92,6 +97,7 @@ def sync(
 
     Args:
         name (str):
+        parentname (str):
         qname (str):
 
     Raises:
@@ -104,6 +110,7 @@ def sync(
 
     return sync_detailed(
         name=name,
+        parentname=parentname,
         qname=qname,
         client=client,
     ).parsed
@@ -111,6 +118,7 @@ def sync(
 
 async def asyncio_detailed(
     name: str,
+    parentname: str,
     qname: str,
     *,
     client: Union[AuthenticatedClient, Client],
@@ -119,6 +127,7 @@ async def asyncio_detailed(
 
     Args:
         name (str):
+        parentname (str):
         qname (str):
 
     Raises:
@@ -131,6 +140,7 @@ async def asyncio_detailed(
 
     kwargs = _get_kwargs(
         name=name,
+        parentname=parentname,
         qname=qname,
     )
 
@@ -141,6 +151,7 @@ async def asyncio_detailed(
 
 async def asyncio(
     name: str,
+    parentname: str,
     qname: str,
     *,
     client: Union[AuthenticatedClient, Client],
@@ -149,6 +160,7 @@ async def asyncio(
 
     Args:
         name (str):
+        parentname (str):
         qname (str):
 
     Raises:
@@ -162,6 +174,7 @@ async def asyncio(
     return (
         await asyncio_detailed(
             name=name,
+            parentname=parentname,
             qname=qname,
             client=client,
         )

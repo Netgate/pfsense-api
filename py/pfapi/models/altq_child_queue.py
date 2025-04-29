@@ -25,6 +25,7 @@ class ALTQChildQueue:
         ecn (Union[Unset, bool]): explicit congestion notification, it allows sending of control messages that will
             throttle connections if both ends support ecn
         codel (Union[Unset, bool]): a flag to mark this queue as being the active queue for the codel shaper discipline
+        queue (Union[Unset, List['ALTQChildQueue']]):
     """
 
     name: str
@@ -38,6 +39,7 @@ class ALTQChildQueue:
     rio: Union[Unset, bool] = UNSET
     ecn: Union[Unset, bool] = UNSET
     codel: Union[Unset, bool] = UNSET
+    queue: Union[Unset, List["ALTQChildQueue"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -62,6 +64,13 @@ class ALTQChildQueue:
         ecn = self.ecn
 
         codel = self.codel
+
+        queue: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.queue, Unset):
+            queue = []
+            for queue_item_data in self.queue:
+                queue_item = queue_item_data.to_dict()
+                queue.append(queue_item)
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -90,6 +99,8 @@ class ALTQChildQueue:
             field_dict["ecn"] = ecn
         if codel is not UNSET:
             field_dict["codel"] = codel
+        if queue is not UNSET:
+            field_dict["queue"] = queue
 
         return field_dict
 
@@ -118,6 +129,13 @@ class ALTQChildQueue:
 
         codel = d.pop("codel", UNSET)
 
+        queue = []
+        _queue = d.pop("queue", UNSET)
+        for queue_item_data in _queue or []:
+            queue_item = ALTQChildQueue.from_dict(queue_item_data)
+
+            queue.append(queue_item)
+
         altq_child_queue = cls(
             name=name,
             enabled=enabled,
@@ -130,6 +148,7 @@ class ALTQChildQueue:
             rio=rio,
             ecn=ecn,
             codel=codel,
+            queue=queue,
         )
 
         altq_child_queue.additional_properties = d

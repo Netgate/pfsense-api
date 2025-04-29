@@ -66,7 +66,7 @@ def sync_detailed(
     client: Union[AuthenticatedClient, Client],
     body: Interface,
 ) -> Response[Union[Error, PfsenseResult]]:
-    """Update an interface
+    """Update an interface by its identity name
 
     Args:
         name (str):
@@ -98,7 +98,7 @@ def sync(
     client: Union[AuthenticatedClient, Client],
     body: Interface,
 ) -> Optional[Union[Error, PfsenseResult]]:
-    """Update an interface
+    """Update an interface by its identity name
 
     Args:
         name (str):
@@ -125,7 +125,7 @@ async def asyncio_detailed(
     client: Union[AuthenticatedClient, Client],
     body: Interface,
 ) -> Response[Union[Error, PfsenseResult]]:
-    """Update an interface
+    """Update an interface by its identity name
 
     Args:
         name (str):
@@ -155,7 +155,7 @@ async def asyncio(
     client: Union[AuthenticatedClient, Client],
     body: Interface,
 ) -> Optional[Union[Error, PfsenseResult]]:
-    """Update an interface
+    """Update an interface by its identity name
 
     Args:
         name (str):

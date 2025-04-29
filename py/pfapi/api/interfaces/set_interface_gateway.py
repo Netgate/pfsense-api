@@ -6,26 +6,37 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.net_if import NetIf
+from ...models.interface_gateway_update import InterfaceGatewayUpdate
+from ...models.pfsense_result import PfsenseResult
 from ...types import Response
 
 
 def _get_kwargs(
-    devname: str,
+    name: str,
+    *,
+    body: InterfaceGatewayUpdate,
 ) -> Dict[str, Any]:
+    headers: Dict[str, Any] = {}
+
     _kwargs: Dict[str, Any] = {
-        "method": "get",
-        "url": f"/interfaces/by-device/{devname}",
+        "method": "post",
+        "url": f"/interfaces/{name}/gateway",
     }
 
+    _body = body.to_dict()
+
+    _kwargs["json"] = _body
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
 def _parse_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, NetIf]]:
+) -> Optional[Union[Error, PfsenseResult]]:
     if response.status_code == 200:
-        response_200 = NetIf.from_dict(response.json())
+        response_200 = PfsenseResult.from_dict(response.json())
 
         return response_200
     if response.status_code == 400:
@@ -40,7 +51,7 @@ def _parse_response(
 
 def _build_response(
     *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, NetIf]]:
+) -> Response[Union[Error, PfsenseResult]]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -50,29 +61,32 @@ def _build_response(
 
 
 def sync_detailed(
-    devname: str,
+    name: str,
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, NetIf]]:
-    """Get interface by its host interface name
+    body: InterfaceGatewayUpdate,
+) -> Response[Union[Error, PfsenseResult]]:
+    """Update an interface's gateway(s)
 
-     Host interfaces are those defined by the operating system's drivers.
-    It also includes pseudo interfaces, which are software created, such as
-    TUN, TAP and bridges. This function gets the information of the {devname} specified.
+     Update an interface's gateway(s). A gateway value which is not provided will not be modified.
+    A gateway with an empty string is set to None. Otherwise, the gateway should already exist
+    and the interface is updated with that value.
 
     Args:
-        devname (str):
+        name (str):
+        body (InterfaceGatewayUpdate):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, NetIf]]
+        Response[Union[Error, PfsenseResult]]
     """
 
     kwargs = _get_kwargs(
-        devname=devname,
+        name=name,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -83,57 +97,63 @@ def sync_detailed(
 
 
 def sync(
-    devname: str,
+    name: str,
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, NetIf]]:
-    """Get interface by its host interface name
+    body: InterfaceGatewayUpdate,
+) -> Optional[Union[Error, PfsenseResult]]:
+    """Update an interface's gateway(s)
 
-     Host interfaces are those defined by the operating system's drivers.
-    It also includes pseudo interfaces, which are software created, such as
-    TUN, TAP and bridges. This function gets the information of the {devname} specified.
+     Update an interface's gateway(s). A gateway value which is not provided will not be modified.
+    A gateway with an empty string is set to None. Otherwise, the gateway should already exist
+    and the interface is updated with that value.
 
     Args:
-        devname (str):
+        name (str):
+        body (InterfaceGatewayUpdate):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, NetIf]
+        Union[Error, PfsenseResult]
     """
 
     return sync_detailed(
-        devname=devname,
+        name=name,
         client=client,
+        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
-    devname: str,
+    name: str,
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, NetIf]]:
-    """Get interface by its host interface name
+    body: InterfaceGatewayUpdate,
+) -> Response[Union[Error, PfsenseResult]]:
+    """Update an interface's gateway(s)
 
-     Host interfaces are those defined by the operating system's drivers.
-    It also includes pseudo interfaces, which are software created, such as
-    TUN, TAP and bridges. This function gets the information of the {devname} specified.
+     Update an interface's gateway(s). A gateway value which is not provided will not be modified.
+    A gateway with an empty string is set to None. Otherwise, the gateway should already exist
+    and the interface is updated with that value.
 
     Args:
-        devname (str):
+        name (str):
+        body (InterfaceGatewayUpdate):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, NetIf]]
+        Response[Union[Error, PfsenseResult]]
     """
 
     kwargs = _get_kwargs(
-        devname=devname,
+        name=name,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -142,30 +162,33 @@ async def asyncio_detailed(
 
 
 async def asyncio(
-    devname: str,
+    name: str,
     *,
     client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, NetIf]]:
-    """Get interface by its host interface name
+    body: InterfaceGatewayUpdate,
+) -> Optional[Union[Error, PfsenseResult]]:
+    """Update an interface's gateway(s)
 
-     Host interfaces are those defined by the operating system's drivers.
-    It also includes pseudo interfaces, which are software created, such as
-    TUN, TAP and bridges. This function gets the information of the {devname} specified.
+     Update an interface's gateway(s). A gateway value which is not provided will not be modified.
+    A gateway with an empty string is set to None. Otherwise, the gateway should already exist
+    and the interface is updated with that value.
 
     Args:
-        devname (str):
+        name (str):
+        body (InterfaceGatewayUpdate):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, NetIf]
+        Union[Error, PfsenseResult]
     """
 
     return (
         await asyncio_detailed(
-            devname=devname,
+            name=name,
             client=client,
+            body=body,
         )
     ).parsed

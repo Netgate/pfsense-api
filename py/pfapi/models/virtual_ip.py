@@ -24,6 +24,7 @@ class VirtualIP:
         subnet (Union[Unset, str]):
         id (Union[Unset, str]):
         carp_mode (Union[Unset, str]):
+        carp_peer (Union[Unset, str]):
     """
 
     mode: Union[Unset, str] = UNSET
@@ -38,6 +39,7 @@ class VirtualIP:
     subnet: Union[Unset, str] = UNSET
     id: Union[Unset, str] = UNSET
     carp_mode: Union[Unset, str] = UNSET
+    carp_peer: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -64,6 +66,8 @@ class VirtualIP:
         id = self.id
 
         carp_mode = self.carp_mode
+
+        carp_peer = self.carp_peer
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -92,6 +96,8 @@ class VirtualIP:
             field_dict["id"] = id
         if carp_mode is not UNSET:
             field_dict["carp_mode"] = carp_mode
+        if carp_peer is not UNSET:
+            field_dict["carp_peer"] = carp_peer
 
         return field_dict
 
@@ -122,6 +128,8 @@ class VirtualIP:
 
         carp_mode = d.pop("carp_mode", UNSET)
 
+        carp_peer = d.pop("carp_peer", UNSET)
+
         virtual_ip = cls(
             mode=mode,
             interface=interface,
@@ -135,6 +143,7 @@ class VirtualIP:
             subnet=subnet,
             id=id,
             carp_mode=carp_mode,
+            carp_peer=carp_peer,
         )
 
         virtual_ip.additional_properties = d

@@ -3079,10 +3079,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /firewall/traffic-shaper/altq/{name}/queue:
+  /firewall/traffic-shaper/altq/{name}/queue/{parentname}:
     parameters:
       - in: path
         name: name
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: parentname
         required: true
         schema:
           type: string
@@ -3111,10 +3116,15 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /firewall/traffic-shaper/altq/{name}/queue/{qname}:
+  /firewall/traffic-shaper/altq/{name}/queue/{parentname}/{qname}:
     parameters:
       - in: path
         name: name
+        required: true
+        schema:
+          type: string
+      - in: path
+        name: parentname
         required: true
         schema:
           type: string
@@ -3667,8 +3677,7 @@ paths:
       description: |
         Host interfaces are those defined by the operating system's drivers.
         It also includes pseudo interfaces, which are software created, such as
-        TUN, TAP and bridges. This function gets the information information
-        of the {name} specified.
+        TUN, TAP and bridges. This function gets the information of the {devname} specified.
       operationId: GetHostInterface
       responses:
         '200':
@@ -4168,11 +4177,10 @@ paths:
     get:
       tags:
         - interfaces
-      summary: |
-        Get interface ports.
-        The response of ports is a map of port-type (e.g. wans, gres) to
+      summary: Get interface ports.
+      description: |
+        Get interface ports as a map of port-type (e.g. wans, gres) to
         a list of its corresponding datastructure.
-      description: ""
       operationId: GetInterfacePorts
       responses:
         '200':
@@ -4626,7 +4634,7 @@ paths:
     get:
       tags:
         - interfaces
-      summary: Get interface by its assigned name
+      summary: Get interface by its identity name
       description: ""
       operationId: GetInterface
       responses:
@@ -4645,7 +4653,7 @@ paths:
     delete:
       tags:
         - interfaces
-      summary: Delete an interface
+      summary: Delete an interface by its identity name
       description: ""
       operationId: DeleteInterface
       responses:
@@ -4664,7 +4672,7 @@ paths:
     post:
       tags:
         - interfaces
-      summary: Update an interface
+      summary: Update an interface by its identity name
       description: ""
       operationId: SetInterface
       requestBody:
@@ -4673,6 +4681,41 @@ paths:
           application/json:
             schema:
               $ref: '#/components/schemas/Interface'
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PfsenseResult'
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /interfaces/{name}/gateway:
+    parameters:
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - interfaces
+      summary: 'Update an interface''s gateway(s)'
+      description: |
+        Update an interface's gateway(s). A gateway value which is not provided will not be modified.
+        A gateway with an empty string is set to None. Otherwise, the gateway should already exist
+        and the interface is updated with that value.
+      operationId: SetInterfaceGateway
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/InterfaceGatewayUpdate'
       responses:
         '200':
           description: ok
@@ -11662,6 +11705,10 @@ components:
         codel:
           type: boolean
           description: a flag to mark this queue as being the active queue for the codel shaper discipline
+        queue:
+          type: array
+          items:
+            $ref: '#/components/schemas/ALTQChildQueue'
     ALTQRootQueue:
       type: object
       required: [if_ident, scheduler, bandwidth, bandwidthtype]
@@ -13833,6 +13880,10 @@ components:
           type: boolean
         dnssecstripped:
           type: boolean
+        drop_old_udp_pkts:
+          type: integer
+        keep_probing:
+          type: boolean
         qname_minimisation:
           type: boolean
         qname_minimisation_strict:
@@ -14632,6 +14683,14 @@ components:
           type: array
           items:
             type: string
+        carp_status_vip_entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextValue'
+        interfaces_entries:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextValue'
     DhcpRelayToggle:
       type: object
       properties:
@@ -17128,15 +17187,7 @@ components:
           type: string
         ipv6usev4iface:
           type: boolean
-        defaultgw6:
-          type: boolean
-        gatewayip6:
-          type: string
         gatewayv6:
-          type: string
-        gatewaydescr6:
-          type: string
-        gatewayname6:
           type: string
         alias_address:
           type: string
@@ -17170,13 +17221,13 @@ components:
           type: string
         gateway_6rd:
           type: string
-        track6_prefix_id__hex:
-          type: string
         dhcp6_ia_pd_len:
           type: string
         prefix_6rd_v4plen:
           type: string
         track6_interface:
+          type: string
+        track6_prefix_id:
           type: string
         adv_dhcp_config_advanced:
           type: boolean
@@ -17339,6 +17390,15 @@ components:
         speed:
           type: integer
           description: speed change, Mbps
+    InterfaceGatewayUpdate:
+      type: object
+      properties:
+        gateway:
+          type: string
+          description: name of IPv4 gateway
+        gatewayv6:
+          type: string
+          description: name of IPv6 gateway
     InterfaceGroup:
       type: object
       properties:
@@ -17563,6 +17623,7 @@ components:
             $ref: '#/components/schemas/PhysicalInterface'
     InterfaceSimple:
       type: object
+      description: Basic interface details.
       required: [name]
       properties:
         name:
@@ -21049,6 +21110,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/PackageStatus'
+        dirty:
+          $ref: '#/components/schemas/DirtySubsystems'
+        ui_features:
+          type: object
+          additionalProperties:
+            type: boolean
+            description: /ui/features UIStates
+        alerts:
+          type: string
     StdLog:
       type: object
       properties:
@@ -21511,6 +21581,8 @@ components:
         apiver:
           type: string
         vpn_addr:
+          type: string
+        alerts:
           type: string
         nexus_controllers:
           type: array
@@ -22307,6 +22379,8 @@ components:
         id:
           type: string
         carp_mode:
+          type: string
+        carp_peer:
           type: string
     VirtualIPResult:
       type: object

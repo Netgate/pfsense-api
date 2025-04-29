@@ -326,6 +326,7 @@ from .interface_descriptors_info_ppp import InterfaceDescriptorsInfoPpp
 from .interface_descriptors_info_qinq import InterfaceDescriptorsInfoQinq
 from .interface_descriptors_info_vlan import InterfaceDescriptorsInfoVlan
 from .interface_event import InterfaceEvent
+from .interface_gateway_update import InterfaceGatewayUpdate
 from .interface_group import InterfaceGroup
 from .interface_groups import InterfaceGroups
 from .interface_info import InterfaceInfo
@@ -570,6 +571,7 @@ from .software_package_list import SoftwarePackageList
 from .static_route import StaticRoute
 from .static_routes import StaticRoutes
 from .status_summary import StatusSummary
+from .status_summary_ui_features import StatusSummaryUiFeatures
 from .std_log import StdLog
 from .std_logs import StdLogs
 from .storage_stats import StorageStats
@@ -991,6 +993,7 @@ __all__ = (
     "InterfaceDescriptorsInfoQinq",
     "InterfaceDescriptorsInfoVlan",
     "InterfaceEvent",
+    "InterfaceGatewayUpdate",
     "InterfaceGroup",
     "InterfaceGroups",
     "InterfaceInfo",
@@ -1235,6 +1238,7 @@ __all__ = (
     "StaticRoute",
     "StaticRoutes",
     "StatusSummary",
+    "StatusSummaryUiFeatures",
     "StdLog",
     "StdLogs",
     "StorageStats",

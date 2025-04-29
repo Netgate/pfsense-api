@@ -6,7 +6,9 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.dirty_subsystems import DirtySubsystems
     from ..models.package_status import PackageStatus
+    from ..models.status_summary_ui_features import StatusSummaryUiFeatures
     from ..models.system_status import SystemStatus
 
 
@@ -19,10 +21,16 @@ class StatusSummary:
     Attributes:
         status (Union[Unset, SystemStatus]):
         packages (Union[Unset, List['PackageStatus']]):
+        dirty (Union[Unset, DirtySubsystems]):
+        ui_features (Union[Unset, StatusSummaryUiFeatures]):
+        alerts (Union[Unset, str]):
     """
 
     status: Union[Unset, "SystemStatus"] = UNSET
     packages: Union[Unset, List["PackageStatus"]] = UNSET
+    dirty: Union[Unset, "DirtySubsystems"] = UNSET
+    ui_features: Union[Unset, "StatusSummaryUiFeatures"] = UNSET
+    alerts: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -37,6 +45,16 @@ class StatusSummary:
                 packages_item = packages_item_data.to_dict()
                 packages.append(packages_item)
 
+        dirty: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.dirty, Unset):
+            dirty = self.dirty.to_dict()
+
+        ui_features: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.ui_features, Unset):
+            ui_features = self.ui_features.to_dict()
+
+        alerts = self.alerts
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -44,12 +62,20 @@ class StatusSummary:
             field_dict["status"] = status
         if packages is not UNSET:
             field_dict["packages"] = packages
+        if dirty is not UNSET:
+            field_dict["dirty"] = dirty
+        if ui_features is not UNSET:
+            field_dict["ui_features"] = ui_features
+        if alerts is not UNSET:
+            field_dict["alerts"] = alerts
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+        from ..models.dirty_subsystems import DirtySubsystems
         from ..models.package_status import PackageStatus
+        from ..models.status_summary_ui_features import StatusSummaryUiFeatures
         from ..models.system_status import SystemStatus
 
         d = src_dict.copy()
@@ -67,9 +93,28 @@ class StatusSummary:
 
             packages.append(packages_item)
 
+        _dirty = d.pop("dirty", UNSET)
+        dirty: Union[Unset, DirtySubsystems]
+        if isinstance(_dirty, Unset):
+            dirty = UNSET
+        else:
+            dirty = DirtySubsystems.from_dict(_dirty)
+
+        _ui_features = d.pop("ui_features", UNSET)
+        ui_features: Union[Unset, StatusSummaryUiFeatures]
+        if isinstance(_ui_features, Unset):
+            ui_features = UNSET
+        else:
+            ui_features = StatusSummaryUiFeatures.from_dict(_ui_features)
+
+        alerts = d.pop("alerts", UNSET)
+
         status_summary = cls(
             status=status,
             packages=packages,
+            dirty=dirty,
+            ui_features=ui_features,
+            alerts=alerts,
         )
 
         status_summary.additional_properties = d
