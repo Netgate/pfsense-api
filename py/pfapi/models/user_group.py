@@ -16,7 +16,6 @@ class UserGroup:
         description (Union[Unset, str]):
         scope (Union[Unset, str]):
         gid (Union[Unset, int]):
-        member (Union[Unset, List[int]]):
         members (Union[Unset, List[int]]):
         privs (Union[Unset, List[str]]):
     """
@@ -25,7 +24,6 @@ class UserGroup:
     description: Union[Unset, str] = UNSET
     scope: Union[Unset, str] = UNSET
     gid: Union[Unset, int] = UNSET
-    member: Union[Unset, List[int]] = UNSET
     members: Union[Unset, List[int]] = UNSET
     privs: Union[Unset, List[str]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -38,10 +36,6 @@ class UserGroup:
         scope = self.scope
 
         gid = self.gid
-
-        member: Union[Unset, List[int]] = UNSET
-        if not isinstance(self.member, Unset):
-            member = self.member
 
         members: Union[Unset, List[int]] = UNSET
         if not isinstance(self.members, Unset):
@@ -62,8 +56,6 @@ class UserGroup:
             field_dict["scope"] = scope
         if gid is not UNSET:
             field_dict["gid"] = gid
-        if member is not UNSET:
-            field_dict["member"] = member
         if members is not UNSET:
             field_dict["members"] = members
         if privs is not UNSET:
@@ -82,8 +74,6 @@ class UserGroup:
 
         gid = d.pop("gid", UNSET)
 
-        member = cast(List[int], d.pop("member", UNSET))
-
         members = cast(List[int], d.pop("members", UNSET))
 
         privs = cast(List[str], d.pop("privs", UNSET))
@@ -93,7 +83,6 @@ class UserGroup:
             description=description,
             scope=scope,
             gid=gid,
-            member=member,
             members=members,
             privs=privs,
         )

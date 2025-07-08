@@ -20,6 +20,7 @@ class StatusSummary:
     """
     Attributes:
         status (Union[Unset, SystemStatus]):
+        timestamp (Union[Unset, int]): millisecond timestamp of the system
         packages (Union[Unset, List['PackageStatus']]):
         dirty (Union[Unset, DirtySubsystems]):
         ui_features (Union[Unset, StatusSummaryUiFeatures]):
@@ -27,6 +28,7 @@ class StatusSummary:
     """
 
     status: Union[Unset, "SystemStatus"] = UNSET
+    timestamp: Union[Unset, int] = UNSET
     packages: Union[Unset, List["PackageStatus"]] = UNSET
     dirty: Union[Unset, "DirtySubsystems"] = UNSET
     ui_features: Union[Unset, "StatusSummaryUiFeatures"] = UNSET
@@ -37,6 +39,8 @@ class StatusSummary:
         status: Union[Unset, Dict[str, Any]] = UNSET
         if not isinstance(self.status, Unset):
             status = self.status.to_dict()
+
+        timestamp = self.timestamp
 
         packages: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.packages, Unset):
@@ -60,6 +64,8 @@ class StatusSummary:
         field_dict.update({})
         if status is not UNSET:
             field_dict["status"] = status
+        if timestamp is not UNSET:
+            field_dict["timestamp"] = timestamp
         if packages is not UNSET:
             field_dict["packages"] = packages
         if dirty is not UNSET:
@@ -86,6 +92,8 @@ class StatusSummary:
         else:
             status = SystemStatus.from_dict(_status)
 
+        timestamp = d.pop("timestamp", UNSET)
+
         packages = []
         _packages = d.pop("packages", UNSET)
         for packages_item_data in _packages or []:
@@ -111,6 +119,7 @@ class StatusSummary:
 
         status_summary = cls(
             status=status,
+            timestamp=timestamp,
             packages=packages,
             dirty=dirty,
             ui_features=ui_features,

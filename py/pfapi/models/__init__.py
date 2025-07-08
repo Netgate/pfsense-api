@@ -7,6 +7,7 @@ from .acb_list import ACBList
 from .acb_manual_backup_request import ACBManualBackupRequest
 from .acb_restore_request import ACBRestoreRequest
 from .activate_bootenv import ActivateBootenv
+from .admin_login_session import AdminLoginSession
 from .adv_firewall import AdvFirewall
 from .adv_firewall_setting import AdvFirewallSetting
 from .adv_misc import AdvMisc
@@ -19,10 +20,12 @@ from .all_software_packages import AllSoftwarePackages
 from .all_software_packages_software_packages import AllSoftwarePackagesSoftwarePackages
 from .altq_capable_interface import ALTQCapableInterface
 from .altq_child_queue import ALTQChildQueue
+from .altq_child_queue_bandwidthtype import ALTQChildQueueBandwidthtype
 from .altq_root_queue import ALTQRootQueue
 from .altq_root_queue_bandwidthtype import ALTQRootQueueBandwidthtype
 from .altq_root_queue_scheduler import ALTQRootQueueScheduler
 from .altq_root_queues import ALTQRootQueues
+from .app_mem_stat import AppMemStat
 from .apply_dirty_config_request import ApplyDirtyConfigRequest
 from .arp_table_entry import ArpTableEntry
 from .auth_server import AuthServer
@@ -77,6 +80,7 @@ from .console_client import ConsoleClient
 from .console_clients import ConsoleClients
 from .controlled_device import ControlledDevice
 from .controlled_device_auth import ControlledDeviceAuth
+from .controlled_device_brief import ControlledDeviceBrief
 from .controlled_device_cert import ControlledDeviceCert
 from .controlled_device_cert_options import ControlledDeviceCertOptions
 from .controlled_device_certs import ControlledDeviceCerts
@@ -158,6 +162,7 @@ from .dhcp_static_mappings import DhcpStaticMappings
 from .dhcpd import Dhcpd
 from .dhcpd_config import DhcpdConfig
 from .dhcpd_lan import DhcpdLan
+from .dhcpha_state import DHCPHAState
 from .dhcpv_6_static_mapping import Dhcpv6StaticMapping
 from .diag_activity import DiagActivity
 from .diag_arp_table import DiagArpTable
@@ -298,6 +303,7 @@ from .ha_sync_opts import HASyncOpts
 from .haxmlrpc_sync import HAXMLRPCSync
 from .hw_device import HWDevice
 from .hw_devices import HWDevices
+from .if_group_capable_interface import IfGroupCapableInterface
 from .if_stats import IfStats
 from .if_stats_bandwidth import IfStatsBandwidth
 from .if_stats_summary import IfStatsSummary
@@ -383,6 +389,7 @@ from .lagg_interface_proto import LAGGInterfaceProto
 from .lagg_interfaces import LAGGInterfaces
 from .ldap_auth_server import LdapAuthServer
 from .lease_interface import LeaseInterface
+from .license_feature import LicenseFeature
 from .limiter import Limiter
 from .limiter_aqm import LimiterAqm
 from .limiter_bandwidth import LimiterBandwidth
@@ -405,6 +412,9 @@ from .memory_map import MemoryMap
 from .memory_stat import MemoryStat
 from .mesh_stats import MeshStats
 from .mesh_vpn_conns import MeshVpnConns
+from .mim_tags import MimTags
+from .mim_tags_dev_list import MimTagsDevList
+from .mim_tags_tags import MimTagsTags
 from .monitoring_data_request import MonitoringDataRequest
 from .monitoring_data_result import MonitoringDataResult
 from .monitoring_dataset_info import MonitoringDatasetInfo
@@ -580,6 +590,7 @@ from .sys_firmware_upgrade_opt import SysFirmwareUpgradeOpt
 from .sys_net_if import SysNetIf
 from .sysinfo import Sysinfo
 from .sysinfo_fs import SysinfoFs
+from .sysinfo_license import SysinfoLicense
 from .sysinfo_update import SysinfoUpdate
 from .syslog_config_override import SyslogConfigOverride
 from .syslog_configuration import SyslogConfiguration
@@ -674,6 +685,7 @@ __all__ = (
     "ACBManualBackupRequest",
     "ACBRestoreRequest",
     "ActivateBootenv",
+    "AdminLoginSession",
     "AdvFirewall",
     "AdvFirewallSetting",
     "AdvMisc",
@@ -686,11 +698,13 @@ __all__ = (
     "AllSoftwarePackagesSoftwarePackages",
     "ALTQCapableInterface",
     "ALTQChildQueue",
+    "ALTQChildQueueBandwidthtype",
     "ALTQRootQueue",
     "ALTQRootQueueBandwidthtype",
     "ALTQRootQueues",
     "ALTQRootQueueScheduler",
     "ApplyDirtyConfigRequest",
+    "AppMemStat",
     "ArpTableEntry",
     "AuthServer",
     "AuthServers",
@@ -744,6 +758,7 @@ __all__ = (
     "ConsoleClients",
     "ControlledDevice",
     "ControlledDeviceAuth",
+    "ControlledDeviceBrief",
     "ControlledDeviceCert",
     "ControlledDeviceCertOptions",
     "ControlledDeviceCerts",
@@ -810,6 +825,7 @@ __all__ = (
     "DhcpdLan",
     "DhcpGlobalSettings",
     "DhcpGlobalSettingsIpv6DuidType",
+    "DHCPHAState",
     "DhcpHighAvailabilityAdvanceConfig",
     "DhcpHighAvailabilityConfig",
     "DhcpInterfaceConfig",
@@ -965,6 +981,7 @@ __all__ = (
     "HAXMLRPCSync",
     "HWDevice",
     "HWDevices",
+    "IfGroupCapableInterface",
     "IfStats",
     "IfStatsBandwidth",
     "IfStatsSummary",
@@ -1050,6 +1067,7 @@ __all__ = (
     "LAGGInterfaces",
     "LdapAuthServer",
     "LeaseInterface",
+    "LicenseFeature",
     "Limiter",
     "LimiterAqm",
     "LimiterBandwidth",
@@ -1072,6 +1090,9 @@ __all__ = (
     "MemoryStat",
     "MeshStats",
     "MeshVpnConns",
+    "MimTags",
+    "MimTagsDevList",
+    "MimTagsTags",
     "MonitoringDataRequest",
     "MonitoringDataResult",
     "MonitoringDatasetInfo",
@@ -1246,6 +1267,7 @@ __all__ = (
     "SysFirmwareUpgradeOpt",
     "Sysinfo",
     "SysinfoFs",
+    "SysinfoLicense",
     "SysinfoUpdate",
     "SyslogConfigOverride",
     "SyslogConfiguration",

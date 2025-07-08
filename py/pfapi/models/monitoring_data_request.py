@@ -17,6 +17,7 @@ class MonitoringDataRequest:
         start_time_unix_seconds (Union[Unset, int]):
         end_time_unix_seconds (Union[Unset, int]):
         resolution_seconds (Union[Unset, int]):
+        csv (Union[Unset, bool]): return data as comma-separated values
     """
 
     scope: Union[Unset, str] = UNSET
@@ -24,6 +25,7 @@ class MonitoringDataRequest:
     start_time_unix_seconds: Union[Unset, int] = UNSET
     end_time_unix_seconds: Union[Unset, int] = UNSET
     resolution_seconds: Union[Unset, int] = UNSET
+    csv: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -36,6 +38,8 @@ class MonitoringDataRequest:
         end_time_unix_seconds = self.end_time_unix_seconds
 
         resolution_seconds = self.resolution_seconds
+
+        csv = self.csv
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -50,6 +54,8 @@ class MonitoringDataRequest:
             field_dict["end_time_unix_seconds"] = end_time_unix_seconds
         if resolution_seconds is not UNSET:
             field_dict["resolution_seconds"] = resolution_seconds
+        if csv is not UNSET:
+            field_dict["csv"] = csv
 
         return field_dict
 
@@ -66,12 +72,15 @@ class MonitoringDataRequest:
 
         resolution_seconds = d.pop("resolution_seconds", UNSET)
 
+        csv = d.pop("csv", UNSET)
+
         monitoring_data_request = cls(
             scope=scope,
             dataset=dataset,
             start_time_unix_seconds=start_time_unix_seconds,
             end_time_unix_seconds=end_time_unix_seconds,
             resolution_seconds=resolution_seconds,
+            csv=csv,
         )
 
         monitoring_data_request.additional_properties = d

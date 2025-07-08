@@ -7,6 +7,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.open_vpncso_config import OpenVPNCSOConfig
+    from ..models.text_value import TextValue
 
 
 T = TypeVar("T", bound="OpenVPNCSOs")
@@ -17,9 +18,11 @@ class OpenVPNCSOs:
     """
     Attributes:
         cscs (Union[Unset, List['OpenVPNCSOConfig']]):
+        removable_options (Union[Unset, List['TextValue']]):
     """
 
     cscs: Union[Unset, List["OpenVPNCSOConfig"]] = UNSET
+    removable_options: Union[Unset, List["TextValue"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -30,17 +33,27 @@ class OpenVPNCSOs:
                 cscs_item = cscs_item_data.to_dict()
                 cscs.append(cscs_item)
 
+        removable_options: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.removable_options, Unset):
+            removable_options = []
+            for removable_options_item_data in self.removable_options:
+                removable_options_item = removable_options_item_data.to_dict()
+                removable_options.append(removable_options_item)
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if cscs is not UNSET:
             field_dict["cscs"] = cscs
+        if removable_options is not UNSET:
+            field_dict["removable_options"] = removable_options
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         from ..models.open_vpncso_config import OpenVPNCSOConfig
+        from ..models.text_value import TextValue
 
         d = src_dict.copy()
         cscs = []
@@ -50,8 +63,16 @@ class OpenVPNCSOs:
 
             cscs.append(cscs_item)
 
+        removable_options = []
+        _removable_options = d.pop("removable_options", UNSET)
+        for removable_options_item_data in _removable_options or []:
+            removable_options_item = TextValue.from_dict(removable_options_item_data)
+
+            removable_options.append(removable_options_item)
+
         open_vpncs_os = cls(
             cscs=cscs,
+            removable_options=removable_options,
         )
 
         open_vpncs_os.additional_properties = d

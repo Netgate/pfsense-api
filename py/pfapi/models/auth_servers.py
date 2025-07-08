@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from ..models.ldap_auth_server import LdapAuthServer
     from ..models.local_server import LocalServer
     from ..models.radius_auth_server import RadiusAuthServer
+    from ..models.text_value import TextValue
 
 
 T = TypeVar("T", bound="AuthServers")
@@ -23,6 +24,7 @@ class AuthServers:
         ldap (Union[Unset, List['LdapAuthServer']]):
         radius (Union[Unset, List['RadiusAuthServer']]):
         local (Union[Unset, LocalServer]):
+        radius_nas_list (Union[Unset, List['TextValue']]):
     """
 
     active_type: Union[Unset, str] = UNSET
@@ -30,6 +32,7 @@ class AuthServers:
     ldap: Union[Unset, List["LdapAuthServer"]] = UNSET
     radius: Union[Unset, List["RadiusAuthServer"]] = UNSET
     local: Union[Unset, "LocalServer"] = UNSET
+    radius_nas_list: Union[Unset, List["TextValue"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -55,6 +58,13 @@ class AuthServers:
         if not isinstance(self.local, Unset):
             local = self.local.to_dict()
 
+        radius_nas_list: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.radius_nas_list, Unset):
+            radius_nas_list = []
+            for radius_nas_list_item_data in self.radius_nas_list:
+                radius_nas_list_item = radius_nas_list_item_data.to_dict()
+                radius_nas_list.append(radius_nas_list_item)
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -68,6 +78,8 @@ class AuthServers:
             field_dict["radius"] = radius
         if local is not UNSET:
             field_dict["local"] = local
+        if radius_nas_list is not UNSET:
+            field_dict["radius_nas_list"] = radius_nas_list
 
         return field_dict
 
@@ -76,6 +88,7 @@ class AuthServers:
         from ..models.ldap_auth_server import LdapAuthServer
         from ..models.local_server import LocalServer
         from ..models.radius_auth_server import RadiusAuthServer
+        from ..models.text_value import TextValue
 
         d = src_dict.copy()
         active_type = d.pop("active_type", UNSET)
@@ -103,12 +116,20 @@ class AuthServers:
         else:
             local = LocalServer.from_dict(_local)
 
+        radius_nas_list = []
+        _radius_nas_list = d.pop("radius_nas_list", UNSET)
+        for radius_nas_list_item_data in _radius_nas_list or []:
+            radius_nas_list_item = TextValue.from_dict(radius_nas_list_item_data)
+
+            radius_nas_list.append(radius_nas_list_item)
+
         auth_servers = cls(
             active_type=active_type,
             active_name=active_name,
             ldap=ldap,
             radius=radius,
             local=local,
+            radius_nas_list=radius_nas_list,
         )
 
         auth_servers.additional_properties = d

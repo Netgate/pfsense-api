@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -8,6 +8,7 @@ from ..types import UNSET, Unset
 if TYPE_CHECKING:
     from ..models.device_network_port import DeviceNetworkPort
     from ..models.device_service_basic import DeviceServiceBasic
+    from ..models.sysinfo_license import SysinfoLicense
 
 
 T = TypeVar("T", bound="ControlledDeviceInfo")
@@ -33,6 +34,8 @@ class ControlledDeviceInfo:
         vendor (Union[Unset, str]):
         serial (Union[Unset, str]):
         hw_uuid (Union[Unset, str]):
+        gateways (Union[Unset, List[str]]):
+        license_ (Union[Unset, SysinfoLicense]):
     """
 
     hostname: Union[Unset, str] = UNSET
@@ -50,6 +53,8 @@ class ControlledDeviceInfo:
     vendor: Union[Unset, str] = UNSET
     serial: Union[Unset, str] = UNSET
     hw_uuid: Union[Unset, str] = UNSET
+    gateways: Union[Unset, List[str]] = UNSET
+    license_: Union[Unset, "SysinfoLicense"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -93,6 +98,14 @@ class ControlledDeviceInfo:
 
         hw_uuid = self.hw_uuid
 
+        gateways: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.gateways, Unset):
+            gateways = self.gateways
+
+        license_: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.license_, Unset):
+            license_ = self.license_.to_dict()
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -126,6 +139,10 @@ class ControlledDeviceInfo:
             field_dict["serial"] = serial
         if hw_uuid is not UNSET:
             field_dict["hw_uuid"] = hw_uuid
+        if gateways is not UNSET:
+            field_dict["gateways"] = gateways
+        if license_ is not UNSET:
+            field_dict["license"] = license_
 
         return field_dict
 
@@ -133,6 +150,7 @@ class ControlledDeviceInfo:
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         from ..models.device_network_port import DeviceNetworkPort
         from ..models.device_service_basic import DeviceServiceBasic
+        from ..models.sysinfo_license import SysinfoLicense
 
         d = src_dict.copy()
         hostname = d.pop("hostname", UNSET)
@@ -175,6 +193,15 @@ class ControlledDeviceInfo:
 
         hw_uuid = d.pop("hw_uuid", UNSET)
 
+        gateways = cast(List[str], d.pop("gateways", UNSET))
+
+        _license_ = d.pop("license", UNSET)
+        license_: Union[Unset, SysinfoLicense]
+        if isinstance(_license_, Unset):
+            license_ = UNSET
+        else:
+            license_ = SysinfoLicense.from_dict(_license_)
+
         controlled_device_info = cls(
             hostname=hostname,
             uptime=uptime,
@@ -191,6 +218,8 @@ class ControlledDeviceInfo:
             vendor=vendor,
             serial=serial,
             hw_uuid=hw_uuid,
+            gateways=gateways,
+            license_=license_,
         )
 
         controlled_device_info.additional_properties = d

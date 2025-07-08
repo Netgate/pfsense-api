@@ -13,7 +13,7 @@ class GroupUpdateReq:
     """
     Attributes:
         description (Union[Unset, str]):
-        scope (Union[Unset, str]):
+        scope (Union[Unset, str]): local or remote (if non-system)
         gid (Union[Unset, int]):
         members (Union[Unset, List[int]]):
         remove_members (Union[Unset, List[int]]):

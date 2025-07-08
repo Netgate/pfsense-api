@@ -12,31 +12,41 @@ T = TypeVar("T", bound="DHCPLease")
 class DHCPLease:
     """
     Attributes:
+        type (Union[Unset, str]): dynamic, static, ia-na, ia-pd, ia-ta
         host (Union[Unset, str]):
         lifetime (Union[Unset, int]):
         ip (Union[Unset, str]):
         mac (Union[Unset, str]):
         cltt (Union[Unset, str]):
+        cid (Union[Unset, str]):
         state (Union[Unset, str]):
         start (Union[Unset, str]):
         end (Union[Unset, str]):
-        iaid (Union[Unset, int]):
+        iaid (Union[Unset, str]):
         duid (Union[Unset, str]):
+        online_status (Union[Unset, str]):
+        descr (Union[Unset, str]):
     """
 
+    type: Union[Unset, str] = UNSET
     host: Union[Unset, str] = UNSET
     lifetime: Union[Unset, int] = UNSET
     ip: Union[Unset, str] = UNSET
     mac: Union[Unset, str] = UNSET
     cltt: Union[Unset, str] = UNSET
+    cid: Union[Unset, str] = UNSET
     state: Union[Unset, str] = UNSET
     start: Union[Unset, str] = UNSET
     end: Union[Unset, str] = UNSET
-    iaid: Union[Unset, int] = UNSET
+    iaid: Union[Unset, str] = UNSET
     duid: Union[Unset, str] = UNSET
+    online_status: Union[Unset, str] = UNSET
+    descr: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
+        type = self.type
+
         host = self.host
 
         lifetime = self.lifetime
@@ -46,6 +56,8 @@ class DHCPLease:
         mac = self.mac
 
         cltt = self.cltt
+
+        cid = self.cid
 
         state = self.state
 
@@ -57,9 +69,15 @@ class DHCPLease:
 
         duid = self.duid
 
+        online_status = self.online_status
+
+        descr = self.descr
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
+        if type is not UNSET:
+            field_dict["type"] = type
         if host is not UNSET:
             field_dict["host"] = host
         if lifetime is not UNSET:
@@ -70,6 +88,8 @@ class DHCPLease:
             field_dict["mac"] = mac
         if cltt is not UNSET:
             field_dict["cltt"] = cltt
+        if cid is not UNSET:
+            field_dict["cid"] = cid
         if state is not UNSET:
             field_dict["state"] = state
         if start is not UNSET:
@@ -80,12 +100,18 @@ class DHCPLease:
             field_dict["iaid"] = iaid
         if duid is not UNSET:
             field_dict["duid"] = duid
+        if online_status is not UNSET:
+            field_dict["online_status"] = online_status
+        if descr is not UNSET:
+            field_dict["descr"] = descr
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
+        type = d.pop("type", UNSET)
+
         host = d.pop("host", UNSET)
 
         lifetime = d.pop("lifetime", UNSET)
@@ -95,6 +121,8 @@ class DHCPLease:
         mac = d.pop("mac", UNSET)
 
         cltt = d.pop("cltt", UNSET)
+
+        cid = d.pop("cid", UNSET)
 
         state = d.pop("state", UNSET)
 
@@ -106,17 +134,25 @@ class DHCPLease:
 
         duid = d.pop("duid", UNSET)
 
+        online_status = d.pop("online_status", UNSET)
+
+        descr = d.pop("descr", UNSET)
+
         dhcp_lease = cls(
+            type=type,
             host=host,
             lifetime=lifetime,
             ip=ip,
             mac=mac,
             cltt=cltt,
+            cid=cid,
             state=state,
             start=start,
             end=end,
             iaid=iaid,
             duid=duid,
+            online_status=online_status,
+            descr=descr,
         )
 
         dhcp_lease.additional_properties = d

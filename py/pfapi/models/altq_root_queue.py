@@ -21,7 +21,7 @@ class ALTQRootQueue:
         if_ident (str): identity of the interface for this traffic shaper (root queue)
         scheduler (ALTQRootQueueScheduler): scheduler type
             valid values = HFSC, CBQ, FAIRQ, CODELQ, PRIQ
-        bandwidth (int): the amount of bandwidth available on this interface in the outbound direction
+        bandwidth (str): the amount of bandwidth available on this interface in the outbound direction
         bandwidthtype (ALTQRootQueueBandwidthtype): units for the bandwidth
             valid value = Kb, Mb, Gb, b, %
         enabled (Union[Unset, bool]):
@@ -34,7 +34,7 @@ class ALTQRootQueue:
 
     if_ident: str
     scheduler: ALTQRootQueueScheduler
-    bandwidth: int
+    bandwidth: str
     bandwidthtype: ALTQRootQueueBandwidthtype
     enabled: Union[Unset, bool] = UNSET
     name: Union[Unset, str] = UNSET

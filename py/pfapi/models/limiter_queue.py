@@ -24,9 +24,31 @@ class LimiterQueue:
         description (Union[Unset, str]):
         aqm (Union[Unset, LimiterQueueAqm]): active queue management (AQM) algorithm
             valid values = droptail, codel, pie, red, gred
+        param_codel_target (Union[Unset, str]): (for aqm=codel only) codel target delay in ms (set to "" to use default
+            value)
+        param_codel_interval (Union[Unset, str]): (for aqm=codel only) codel interval in ms (set to "" to use default
+            value)
+        param_pie_target (Union[Unset, str]): (for aqm=pie only) target delay in ms (set to "" to use default value)
+        param_pie_tupdate (Union[Unset, str]): (for aqm=pie only) interval in ms (set to "" to use default value)
+        param_pie_alpha (Union[Unset, str]): (for aqm=pie only) alpha (set to "" to use default value)
+        param_pie_beta (Union[Unset, str]): (for aqm=pie only) beta (set to "" to use default value)
+        param_pie_max_burst (Union[Unset, str]): (for aqm=pie only) max burst (set to "" to use default value)
+        param_pie_max_ecnth (Union[Unset, str]): (for aqm=pie only) max ecnth (set to "" to use default value)
+        param_red_w_q (Union[Unset, str]): (for aqm=red only) w_q (set to "" to use default value)
+        param_red_min_th (Union[Unset, str]): (for aqm=red only) min_th (set to "" to use default value)
+        param_red_max_th (Union[Unset, str]): (for aqm=red only) max_th (set to "" to use default value)
+        param_red_max_p (Union[Unset, str]): (for aqm=red only) max_p (set to "" to use default value)
+        param_gred_w_q (Union[Unset, str]): (for aqm=gred only) w_q (set to "" to use default value)
+        param_gred_min_th (Union[Unset, str]): (for aqm=gred only) min_th (set to "" to use default value)
+        param_gred_max_th (Union[Unset, str]): (for aqm=gred only) max_th (set to "" to use default value)
+        param_gred_max_p (Union[Unset, str]): (for aqm=gred only) max_p (set to "" to use default value)
+        ecn (Union[Unset, bool]): (for aqm=codel, pie, red, or gred only) explicit congestion notification
+        pie_onoff (Union[Unset, bool]): (for aqm=pie only) turning pie on and off depending on queue load
+        pie_capdrop (Union[Unset, bool]): (for aqm=pie only) cap drop adjustment
+        pie_qdelay (Union[Unset, bool]): (for aqm=pie only) set queue delay type to timestamps (true) or departure rate
+            estimation (false)
+        pie_pderand (Union[Unset, bool]): (for aqm=pie only) drop probability de-randomisation
         qlimit (Union[Unset, int]): specifies the length of this queue, which the AQM is responsible for
-        ecn (Union[Unset, bool]): explicit congestion Notification (ECN) sets a reserved TCP flag when the queue is
-            nearing or exceeding capacity
         weight (Union[Unset, int]): this value can range from 1 to 100, higher values give more precedence to packets in
             a given queue
         plr (Union[Unset, float]): packet loss rate can be configured to drop a certain fraction of packets that enter
@@ -45,8 +67,28 @@ class LimiterQueue:
     maskbitsv6: Union[Unset, int] = UNSET
     description: Union[Unset, str] = UNSET
     aqm: Union[Unset, LimiterQueueAqm] = UNSET
-    qlimit: Union[Unset, int] = UNSET
+    param_codel_target: Union[Unset, str] = UNSET
+    param_codel_interval: Union[Unset, str] = UNSET
+    param_pie_target: Union[Unset, str] = UNSET
+    param_pie_tupdate: Union[Unset, str] = UNSET
+    param_pie_alpha: Union[Unset, str] = UNSET
+    param_pie_beta: Union[Unset, str] = UNSET
+    param_pie_max_burst: Union[Unset, str] = UNSET
+    param_pie_max_ecnth: Union[Unset, str] = UNSET
+    param_red_w_q: Union[Unset, str] = UNSET
+    param_red_min_th: Union[Unset, str] = UNSET
+    param_red_max_th: Union[Unset, str] = UNSET
+    param_red_max_p: Union[Unset, str] = UNSET
+    param_gred_w_q: Union[Unset, str] = UNSET
+    param_gred_min_th: Union[Unset, str] = UNSET
+    param_gred_max_th: Union[Unset, str] = UNSET
+    param_gred_max_p: Union[Unset, str] = UNSET
     ecn: Union[Unset, bool] = UNSET
+    pie_onoff: Union[Unset, bool] = UNSET
+    pie_capdrop: Union[Unset, bool] = UNSET
+    pie_qdelay: Union[Unset, bool] = UNSET
+    pie_pderand: Union[Unset, bool] = UNSET
+    qlimit: Union[Unset, int] = UNSET
     weight: Union[Unset, int] = UNSET
     plr: Union[Unset, float] = UNSET
     buckets: Union[Unset, int] = UNSET
@@ -73,9 +115,49 @@ class LimiterQueue:
         if not isinstance(self.aqm, Unset):
             aqm = self.aqm.value
 
-        qlimit = self.qlimit
+        param_codel_target = self.param_codel_target
+
+        param_codel_interval = self.param_codel_interval
+
+        param_pie_target = self.param_pie_target
+
+        param_pie_tupdate = self.param_pie_tupdate
+
+        param_pie_alpha = self.param_pie_alpha
+
+        param_pie_beta = self.param_pie_beta
+
+        param_pie_max_burst = self.param_pie_max_burst
+
+        param_pie_max_ecnth = self.param_pie_max_ecnth
+
+        param_red_w_q = self.param_red_w_q
+
+        param_red_min_th = self.param_red_min_th
+
+        param_red_max_th = self.param_red_max_th
+
+        param_red_max_p = self.param_red_max_p
+
+        param_gred_w_q = self.param_gred_w_q
+
+        param_gred_min_th = self.param_gred_min_th
+
+        param_gred_max_th = self.param_gred_max_th
+
+        param_gred_max_p = self.param_gred_max_p
 
         ecn = self.ecn
+
+        pie_onoff = self.pie_onoff
+
+        pie_capdrop = self.pie_capdrop
+
+        pie_qdelay = self.pie_qdelay
+
+        pie_pderand = self.pie_pderand
+
+        qlimit = self.qlimit
 
         weight = self.weight
 
@@ -104,10 +186,50 @@ class LimiterQueue:
             field_dict["description"] = description
         if aqm is not UNSET:
             field_dict["aqm"] = aqm
-        if qlimit is not UNSET:
-            field_dict["qlimit"] = qlimit
+        if param_codel_target is not UNSET:
+            field_dict["param_codel_target"] = param_codel_target
+        if param_codel_interval is not UNSET:
+            field_dict["param_codel_interval"] = param_codel_interval
+        if param_pie_target is not UNSET:
+            field_dict["param_pie_target"] = param_pie_target
+        if param_pie_tupdate is not UNSET:
+            field_dict["param_pie_tupdate"] = param_pie_tupdate
+        if param_pie_alpha is not UNSET:
+            field_dict["param_pie_alpha"] = param_pie_alpha
+        if param_pie_beta is not UNSET:
+            field_dict["param_pie_beta"] = param_pie_beta
+        if param_pie_max_burst is not UNSET:
+            field_dict["param_pie_max_burst"] = param_pie_max_burst
+        if param_pie_max_ecnth is not UNSET:
+            field_dict["param_pie_max_ecnth"] = param_pie_max_ecnth
+        if param_red_w_q is not UNSET:
+            field_dict["param_red_w_q"] = param_red_w_q
+        if param_red_min_th is not UNSET:
+            field_dict["param_red_min_th"] = param_red_min_th
+        if param_red_max_th is not UNSET:
+            field_dict["param_red_max_th"] = param_red_max_th
+        if param_red_max_p is not UNSET:
+            field_dict["param_red_max_p"] = param_red_max_p
+        if param_gred_w_q is not UNSET:
+            field_dict["param_gred_w_q"] = param_gred_w_q
+        if param_gred_min_th is not UNSET:
+            field_dict["param_gred_min_th"] = param_gred_min_th
+        if param_gred_max_th is not UNSET:
+            field_dict["param_gred_max_th"] = param_gred_max_th
+        if param_gred_max_p is not UNSET:
+            field_dict["param_gred_max_p"] = param_gred_max_p
         if ecn is not UNSET:
             field_dict["ecn"] = ecn
+        if pie_onoff is not UNSET:
+            field_dict["pie_onoff"] = pie_onoff
+        if pie_capdrop is not UNSET:
+            field_dict["pie_capdrop"] = pie_capdrop
+        if pie_qdelay is not UNSET:
+            field_dict["pie_qdelay"] = pie_qdelay
+        if pie_pderand is not UNSET:
+            field_dict["pie_pderand"] = pie_pderand
+        if qlimit is not UNSET:
+            field_dict["qlimit"] = qlimit
         if weight is not UNSET:
             field_dict["weight"] = weight
         if plr is not UNSET:
@@ -146,9 +268,49 @@ class LimiterQueue:
         else:
             aqm = LimiterQueueAqm(_aqm)
 
-        qlimit = d.pop("qlimit", UNSET)
+        param_codel_target = d.pop("param_codel_target", UNSET)
+
+        param_codel_interval = d.pop("param_codel_interval", UNSET)
+
+        param_pie_target = d.pop("param_pie_target", UNSET)
+
+        param_pie_tupdate = d.pop("param_pie_tupdate", UNSET)
+
+        param_pie_alpha = d.pop("param_pie_alpha", UNSET)
+
+        param_pie_beta = d.pop("param_pie_beta", UNSET)
+
+        param_pie_max_burst = d.pop("param_pie_max_burst", UNSET)
+
+        param_pie_max_ecnth = d.pop("param_pie_max_ecnth", UNSET)
+
+        param_red_w_q = d.pop("param_red_w_q", UNSET)
+
+        param_red_min_th = d.pop("param_red_min_th", UNSET)
+
+        param_red_max_th = d.pop("param_red_max_th", UNSET)
+
+        param_red_max_p = d.pop("param_red_max_p", UNSET)
+
+        param_gred_w_q = d.pop("param_gred_w_q", UNSET)
+
+        param_gred_min_th = d.pop("param_gred_min_th", UNSET)
+
+        param_gred_max_th = d.pop("param_gred_max_th", UNSET)
+
+        param_gred_max_p = d.pop("param_gred_max_p", UNSET)
 
         ecn = d.pop("ecn", UNSET)
+
+        pie_onoff = d.pop("pie_onoff", UNSET)
+
+        pie_capdrop = d.pop("pie_capdrop", UNSET)
+
+        pie_qdelay = d.pop("pie_qdelay", UNSET)
+
+        pie_pderand = d.pop("pie_pderand", UNSET)
+
+        qlimit = d.pop("qlimit", UNSET)
 
         weight = d.pop("weight", UNSET)
 
@@ -165,8 +327,28 @@ class LimiterQueue:
             maskbitsv6=maskbitsv6,
             description=description,
             aqm=aqm,
-            qlimit=qlimit,
+            param_codel_target=param_codel_target,
+            param_codel_interval=param_codel_interval,
+            param_pie_target=param_pie_target,
+            param_pie_tupdate=param_pie_tupdate,
+            param_pie_alpha=param_pie_alpha,
+            param_pie_beta=param_pie_beta,
+            param_pie_max_burst=param_pie_max_burst,
+            param_pie_max_ecnth=param_pie_max_ecnth,
+            param_red_w_q=param_red_w_q,
+            param_red_min_th=param_red_min_th,
+            param_red_max_th=param_red_max_th,
+            param_red_max_p=param_red_max_p,
+            param_gred_w_q=param_gred_w_q,
+            param_gred_min_th=param_gred_min_th,
+            param_gred_max_th=param_gred_max_th,
+            param_gred_max_p=param_gred_max_p,
             ecn=ecn,
+            pie_onoff=pie_onoff,
+            pie_capdrop=pie_capdrop,
+            pie_qdelay=pie_qdelay,
+            pie_pderand=pie_pderand,
+            qlimit=qlimit,
             weight=weight,
             plr=plr,
             buckets=buckets,

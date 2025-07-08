@@ -21,8 +21,8 @@ class OpenVPNServerConfig:
         interface (Union[Unset, str]):
         local_port (Union[Unset, int]):
         description (Union[Unset, str]):
-        tls (Union[Unset, str]):
-        tls_type (Union[Unset, str]):
+        tls (Union[Unset, str]): OpenVPN PEM TLS key
+        tls_type (Union[Unset, str]): "auth" or "crypt"
         certref (Union[Unset, str]):
         caref (Union[Unset, str]):
         dh_length (Union[Unset, str]):

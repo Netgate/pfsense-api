@@ -14,6 +14,7 @@ class GatewayStatus:
     Attributes:
         name (str):
         gateway (str):
+        defaultgw (Union[Unset, bool]): default gateway
         monitor (Union[Unset, str]):
         descr (Union[Unset, str]):
         delay (Union[Unset, str]):
@@ -25,6 +26,7 @@ class GatewayStatus:
 
     name: str
     gateway: str
+    defaultgw: Union[Unset, bool] = UNSET
     monitor: Union[Unset, str] = UNSET
     descr: Union[Unset, str] = UNSET
     delay: Union[Unset, str] = UNSET
@@ -38,6 +40,8 @@ class GatewayStatus:
         name = self.name
 
         gateway = self.gateway
+
+        defaultgw = self.defaultgw
 
         monitor = self.monitor
 
@@ -61,6 +65,8 @@ class GatewayStatus:
                 "gateway": gateway,
             }
         )
+        if defaultgw is not UNSET:
+            field_dict["defaultgw"] = defaultgw
         if monitor is not UNSET:
             field_dict["monitor"] = monitor
         if descr is not UNSET:
@@ -85,6 +91,8 @@ class GatewayStatus:
 
         gateway = d.pop("gateway")
 
+        defaultgw = d.pop("defaultgw", UNSET)
+
         monitor = d.pop("monitor", UNSET)
 
         descr = d.pop("descr", UNSET)
@@ -102,6 +110,7 @@ class GatewayStatus:
         gateway_status = cls(
             name=name,
             gateway=gateway,
+            defaultgw=defaultgw,
             monitor=monitor,
             descr=descr,
             delay=delay,

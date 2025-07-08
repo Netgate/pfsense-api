@@ -35,6 +35,13 @@ class IPSecConfig:
         compression (Union[Unset, bool]):
         noshuntlaninterfaces (Union[Unset, bool]):
         maxmss (Union[Unset, str]):
+        dns_interval (Union[Unset, int]):
+        ikev2_retransmit_enable (Union[Unset, bool]):
+        ikev2_retransmit_tries (Union[Unset, int]):
+        ikev2_retransmit_timeout (Union[Unset, int]):
+        ikev2_retransmit_base (Union[Unset, int]):
+        ikev2_retransmit_jitter (Union[Unset, int]):
+        ikev2_retransmit_limit (Union[Unset, int]):
     """
 
     logging: Union[Unset, "IPSecLogging"] = UNSET
@@ -55,6 +62,13 @@ class IPSecConfig:
     compression: Union[Unset, bool] = UNSET
     noshuntlaninterfaces: Union[Unset, bool] = UNSET
     maxmss: Union[Unset, str] = UNSET
+    dns_interval: Union[Unset, int] = UNSET
+    ikev2_retransmit_enable: Union[Unset, bool] = UNSET
+    ikev2_retransmit_tries: Union[Unset, int] = UNSET
+    ikev2_retransmit_timeout: Union[Unset, int] = UNSET
+    ikev2_retransmit_base: Union[Unset, int] = UNSET
+    ikev2_retransmit_jitter: Union[Unset, int] = UNSET
+    ikev2_retransmit_limit: Union[Unset, int] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -98,6 +112,20 @@ class IPSecConfig:
 
         maxmss = self.maxmss
 
+        dns_interval = self.dns_interval
+
+        ikev2_retransmit_enable = self.ikev2_retransmit_enable
+
+        ikev2_retransmit_tries = self.ikev2_retransmit_tries
+
+        ikev2_retransmit_timeout = self.ikev2_retransmit_timeout
+
+        ikev2_retransmit_base = self.ikev2_retransmit_base
+
+        ikev2_retransmit_jitter = self.ikev2_retransmit_jitter
+
+        ikev2_retransmit_limit = self.ikev2_retransmit_limit
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -137,6 +165,20 @@ class IPSecConfig:
             field_dict["noshuntlaninterfaces"] = noshuntlaninterfaces
         if maxmss is not UNSET:
             field_dict["maxmss"] = maxmss
+        if dns_interval is not UNSET:
+            field_dict["dns_interval"] = dns_interval
+        if ikev2_retransmit_enable is not UNSET:
+            field_dict["ikev2_retransmit_enable"] = ikev2_retransmit_enable
+        if ikev2_retransmit_tries is not UNSET:
+            field_dict["ikev2_retransmit_tries"] = ikev2_retransmit_tries
+        if ikev2_retransmit_timeout is not UNSET:
+            field_dict["ikev2_retransmit_timeout"] = ikev2_retransmit_timeout
+        if ikev2_retransmit_base is not UNSET:
+            field_dict["ikev2_retransmit_base"] = ikev2_retransmit_base
+        if ikev2_retransmit_jitter is not UNSET:
+            field_dict["ikev2_retransmit_jitter"] = ikev2_retransmit_jitter
+        if ikev2_retransmit_limit is not UNSET:
+            field_dict["ikev2_retransmit_limit"] = ikev2_retransmit_limit
 
         return field_dict
 
@@ -192,6 +234,20 @@ class IPSecConfig:
 
         maxmss = d.pop("maxmss", UNSET)
 
+        dns_interval = d.pop("dns_interval", UNSET)
+
+        ikev2_retransmit_enable = d.pop("ikev2_retransmit_enable", UNSET)
+
+        ikev2_retransmit_tries = d.pop("ikev2_retransmit_tries", UNSET)
+
+        ikev2_retransmit_timeout = d.pop("ikev2_retransmit_timeout", UNSET)
+
+        ikev2_retransmit_base = d.pop("ikev2_retransmit_base", UNSET)
+
+        ikev2_retransmit_jitter = d.pop("ikev2_retransmit_jitter", UNSET)
+
+        ikev2_retransmit_limit = d.pop("ikev2_retransmit_limit", UNSET)
+
         ip_sec_config = cls(
             logging=logging,
             async_crypto=async_crypto,
@@ -211,6 +267,13 @@ class IPSecConfig:
             compression=compression,
             noshuntlaninterfaces=noshuntlaninterfaces,
             maxmss=maxmss,
+            dns_interval=dns_interval,
+            ikev2_retransmit_enable=ikev2_retransmit_enable,
+            ikev2_retransmit_tries=ikev2_retransmit_tries,
+            ikev2_retransmit_timeout=ikev2_retransmit_timeout,
+            ikev2_retransmit_base=ikev2_retransmit_base,
+            ikev2_retransmit_jitter=ikev2_retransmit_jitter,
+            ikev2_retransmit_limit=ikev2_retransmit_limit,
         )
 
         ip_sec_config.additional_properties = d

@@ -1,4 +1,4 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,11 +18,15 @@ class CARPStatus:
     Attributes:
         enabled (Union[Unset, bool]):
         maintenancemode_enabled (Union[Unset, bool]):
+        my_hostid (Union[Unset, str]): this system's host-id
+        state_sync_hostids (Union[Unset, List[str]]):
         vips (Union[Unset, List['CARPVIPStatus']]):
     """
 
     enabled: Union[Unset, bool] = UNSET
     maintenancemode_enabled: Union[Unset, bool] = UNSET
+    my_hostid: Union[Unset, str] = UNSET
+    state_sync_hostids: Union[Unset, List[str]] = UNSET
     vips: Union[Unset, List["CARPVIPStatus"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -30,6 +34,12 @@ class CARPStatus:
         enabled = self.enabled
 
         maintenancemode_enabled = self.maintenancemode_enabled
+
+        my_hostid = self.my_hostid
+
+        state_sync_hostids: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.state_sync_hostids, Unset):
+            state_sync_hostids = self.state_sync_hostids
 
         vips: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.vips, Unset):
@@ -45,6 +55,10 @@ class CARPStatus:
             field_dict["enabled"] = enabled
         if maintenancemode_enabled is not UNSET:
             field_dict["maintenancemode_enabled"] = maintenancemode_enabled
+        if my_hostid is not UNSET:
+            field_dict["my_hostid"] = my_hostid
+        if state_sync_hostids is not UNSET:
+            field_dict["state_sync_hostids"] = state_sync_hostids
         if vips is not UNSET:
             field_dict["vips"] = vips
 
@@ -59,6 +73,10 @@ class CARPStatus:
 
         maintenancemode_enabled = d.pop("maintenancemode_enabled", UNSET)
 
+        my_hostid = d.pop("my_hostid", UNSET)
+
+        state_sync_hostids = cast(List[str], d.pop("state_sync_hostids", UNSET))
+
         vips = []
         _vips = d.pop("vips", UNSET)
         for vips_item_data in _vips or []:
@@ -69,6 +87,8 @@ class CARPStatus:
         carp_status = cls(
             enabled=enabled,
             maintenancemode_enabled=maintenancemode_enabled,
+            my_hostid=my_hostid,
+            state_sync_hostids=state_sync_hostids,
             vips=vips,
         )
 

@@ -35,8 +35,8 @@ class OpenVPNClientConfig:
         tlsauth_enable (Union[Unset, bool]):
         autokey_enable (Union[Unset, bool]):
         autotls_enable (Union[Unset, bool]):
-        tls (Union[Unset, str]):
-        tls_type (Union[Unset, str]):
+        tls (Union[Unset, str]): OpenVPN TLS key
+        tls_type (Union[Unset, str]): "auth" or "crypt"
         tlsauth_keydir (Union[Unset, str]):
         remote_cert_tls (Union[Unset, bool]):
         shared_key (Union[Unset, str]):
@@ -319,7 +319,7 @@ class OpenVPNClientConfig:
         if compression is not UNSET:
             field_dict["compression"] = compression
         if auth_retry_none is not UNSET:
-            field_dict["auth-retry-none"] = auth_retry_none
+            field_dict["auth_retry_none"] = auth_retry_none
         if passtos is not UNSET:
             field_dict["passtos"] = passtos
         if udp_fast_io is not UNSET:
@@ -436,7 +436,7 @@ class OpenVPNClientConfig:
 
         compression = d.pop("compression", UNSET)
 
-        auth_retry_none = d.pop("auth-retry-none", UNSET)
+        auth_retry_none = d.pop("auth_retry_none", UNSET)
 
         passtos = d.pop("passtos", UNSET)
 

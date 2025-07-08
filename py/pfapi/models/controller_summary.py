@@ -14,13 +14,13 @@ class ControllerSummary:
     controller using Netgard.
 
         Attributes:
-            mode_active (Union[Unset, bool]):
+            mode_active (Union[Unset, bool]): is controller mode active?
             name (Union[Unset, str]):
-            key (Union[Unset, str]):
-            vpn_pubkey (Union[Unset, str]):
-            vpn_listenaddr (Union[Unset, str]):
-            vpn_address (Union[Unset, str]):
-            vpn_prefix (Union[Unset, str]):
+            key (Union[Unset, str]): Controller's identity key
+            vpn_pubkey (Union[Unset, str]): Negard public key of controller
+            vpn_listenaddr (Union[Unset, str]): Netgard listening address:port, space or comma separated list
+            vpn_address (Union[Unset, str]): VPN Address
+            vpn_prefix (Union[Unset, str]): IPv6 address prefix to use for management VPN
             vpn_netkey (Union[Unset, str]):
     """
 

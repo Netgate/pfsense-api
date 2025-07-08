@@ -27,6 +27,7 @@ class ControlledDeviceDetailed:
         tags (Union[Unset, List[str]]):
         address (Union[Unset, str]):
         address6 (Union[Unset, str]):
+        gateways (Union[Unset, List[str]]):
         primary_auth (Union[Unset, str]):
         auth (Union[Unset, ControlledDeviceAuth]):
         controller (Union[Unset, DeviceControllerInfo]): brief information about the controller managing the device
@@ -46,6 +47,7 @@ class ControlledDeviceDetailed:
     tags: Union[Unset, List[str]] = UNSET
     address: Union[Unset, str] = UNSET
     address6: Union[Unset, str] = UNSET
+    gateways: Union[Unset, List[str]] = UNSET
     primary_auth: Union[Unset, str] = UNSET
     auth: Union[Unset, "ControlledDeviceAuth"] = UNSET
     controller: Union[Unset, "DeviceControllerInfo"] = UNSET
@@ -75,6 +77,10 @@ class ControlledDeviceDetailed:
         address = self.address
 
         address6 = self.address6
+
+        gateways: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.gateways, Unset):
+            gateways = self.gateways
 
         primary_auth = self.primary_auth
 
@@ -121,6 +127,8 @@ class ControlledDeviceDetailed:
             field_dict["address"] = address
         if address6 is not UNSET:
             field_dict["address6"] = address6
+        if gateways is not UNSET:
+            field_dict["gateways"] = gateways
         if primary_auth is not UNSET:
             field_dict["primary_auth"] = primary_auth
         if auth is not UNSET:
@@ -165,6 +173,8 @@ class ControlledDeviceDetailed:
 
         address6 = d.pop("address6", UNSET)
 
+        gateways = cast(List[str], d.pop("gateways", UNSET))
+
         primary_auth = d.pop("primary_auth", UNSET)
 
         _auth = d.pop("auth", UNSET)
@@ -207,6 +217,7 @@ class ControlledDeviceDetailed:
             tags=tags,
             address=address,
             address6=address6,
+            gateways=gateways,
             primary_auth=primary_auth,
             auth=auth,
             controller=controller,

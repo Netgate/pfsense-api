@@ -6,6 +6,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.admin_login_session import AdminLoginSession
     from ..models.mesh_stats import MeshStats
     from ..models.storage_stats import StorageStats
 
@@ -28,6 +29,8 @@ class ControllerStats:
         systems_online (Union[Unset, int]): number of systems that are online
         systems_failed (Union[Unset, int]): number of systems in failure/error state
         mesh (Union[Unset, MeshStats]):
+        admin_sessions (Union[Unset, List['AdminLoginSession']]):
+        timestamp (Union[Unset, int]): current millisecond timestamp of the controller
     """
 
     uptime: Union[Unset, int] = UNSET
@@ -41,6 +44,8 @@ class ControllerStats:
     systems_online: Union[Unset, int] = UNSET
     systems_failed: Union[Unset, int] = UNSET
     mesh: Union[Unset, "MeshStats"] = UNSET
+    admin_sessions: Union[Unset, List["AdminLoginSession"]] = UNSET
+    timestamp: Union[Unset, int] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -75,6 +80,15 @@ class ControllerStats:
         if not isinstance(self.mesh, Unset):
             mesh = self.mesh.to_dict()
 
+        admin_sessions: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.admin_sessions, Unset):
+            admin_sessions = []
+            for admin_sessions_item_data in self.admin_sessions:
+                admin_sessions_item = admin_sessions_item_data.to_dict()
+                admin_sessions.append(admin_sessions_item)
+
+        timestamp = self.timestamp
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -100,11 +114,16 @@ class ControllerStats:
             field_dict["systems_failed"] = systems_failed
         if mesh is not UNSET:
             field_dict["mesh"] = mesh
+        if admin_sessions is not UNSET:
+            field_dict["admin_sessions"] = admin_sessions
+        if timestamp is not UNSET:
+            field_dict["timestamp"] = timestamp
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+        from ..models.admin_login_session import AdminLoginSession
         from ..models.mesh_stats import MeshStats
         from ..models.storage_stats import StorageStats
 
@@ -141,6 +160,15 @@ class ControllerStats:
         else:
             mesh = MeshStats.from_dict(_mesh)
 
+        admin_sessions = []
+        _admin_sessions = d.pop("admin_sessions", UNSET)
+        for admin_sessions_item_data in _admin_sessions or []:
+            admin_sessions_item = AdminLoginSession.from_dict(admin_sessions_item_data)
+
+            admin_sessions.append(admin_sessions_item)
+
+        timestamp = d.pop("timestamp", UNSET)
+
         controller_stats = cls(
             uptime=uptime,
             started=started,
@@ -153,6 +181,8 @@ class ControllerStats:
             systems_online=systems_online,
             systems_failed=systems_failed,
             mesh=mesh,
+            admin_sessions=admin_sessions,
+            timestamp=timestamp,
         )
 
         controller_stats.additional_properties = d

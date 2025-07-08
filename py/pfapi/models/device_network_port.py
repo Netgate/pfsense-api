@@ -23,6 +23,7 @@ class DeviceNetworkPort:
         vlan (Union[Unset, int]): vlan number, if VLAN
         device_info (Union[Unset, str]): device hardware, model name
         is_physical (Union[Unset, bool]): device is a physical port
+        is_switchport (Union[Unset, bool]): device is a port on an embedded NIC switch
         addresses (Union[Unset, List[str]]):
         label (Union[Unset, str]): description (user-defined name) of device
     """
@@ -37,6 +38,7 @@ class DeviceNetworkPort:
     vlan: Union[Unset, int] = UNSET
     device_info: Union[Unset, str] = UNSET
     is_physical: Union[Unset, bool] = UNSET
+    is_switchport: Union[Unset, bool] = UNSET
     addresses: Union[Unset, List[str]] = UNSET
     label: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -61,6 +63,8 @@ class DeviceNetworkPort:
         device_info = self.device_info
 
         is_physical = self.is_physical
+
+        is_switchport = self.is_switchport
 
         addresses: Union[Unset, List[str]] = UNSET
         if not isinstance(self.addresses, Unset):
@@ -91,6 +95,8 @@ class DeviceNetworkPort:
             field_dict["device_info"] = device_info
         if is_physical is not UNSET:
             field_dict["is_physical"] = is_physical
+        if is_switchport is not UNSET:
+            field_dict["is_switchport"] = is_switchport
         if addresses is not UNSET:
             field_dict["addresses"] = addresses
         if label is not UNSET:
@@ -121,6 +127,8 @@ class DeviceNetworkPort:
 
         is_physical = d.pop("is_physical", UNSET)
 
+        is_switchport = d.pop("is_switchport", UNSET)
+
         addresses = cast(List[str], d.pop("addresses", UNSET))
 
         label = d.pop("label", UNSET)
@@ -136,6 +144,7 @@ class DeviceNetworkPort:
             vlan=vlan,
             device_info=device_info,
             is_physical=is_physical,
+            is_switchport=is_switchport,
             addresses=addresses,
             label=label,
         )

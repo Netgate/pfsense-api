@@ -12,24 +12,20 @@ T = TypeVar("T", bound="InterfaceGroup")
 class InterfaceGroup:
     """
     Attributes:
-        members (Union[Unset, str]):
-        member (Union[Unset, List[str]]):
+        members (Union[Unset, List[str]]):
         descr (Union[Unset, str]):
-        ifname (Union[Unset, str]):
+        ifname (Union[Unset, str]): interface group name
     """
 
-    members: Union[Unset, str] = UNSET
-    member: Union[Unset, List[str]] = UNSET
+    members: Union[Unset, List[str]] = UNSET
     descr: Union[Unset, str] = UNSET
     ifname: Union[Unset, str] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        members = self.members
-
-        member: Union[Unset, List[str]] = UNSET
-        if not isinstance(self.member, Unset):
-            member = self.member
+        members: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.members, Unset):
+            members = self.members
 
         descr = self.descr
 
@@ -40,8 +36,6 @@ class InterfaceGroup:
         field_dict.update({})
         if members is not UNSET:
             field_dict["members"] = members
-        if member is not UNSET:
-            field_dict["member"] = member
         if descr is not UNSET:
             field_dict["descr"] = descr
         if ifname is not UNSET:
@@ -52,9 +46,7 @@ class InterfaceGroup:
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
         d = src_dict.copy()
-        members = d.pop("members", UNSET)
-
-        member = cast(List[str], d.pop("member", UNSET))
+        members = cast(List[str], d.pop("members", UNSET))
 
         descr = d.pop("descr", UNSET)
 
@@ -62,7 +54,6 @@ class InterfaceGroup:
 
         interface_group = cls(
             members=members,
-            member=member,
             descr=descr,
             ifname=ifname,
         )

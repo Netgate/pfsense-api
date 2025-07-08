@@ -9,6 +9,7 @@ if TYPE_CHECKING:
     from ..models.device_service_basic import DeviceServiceBasic
     from ..models.sys_net_if import SysNetIf
     from ..models.sysinfo_fs import SysinfoFs
+    from ..models.sysinfo_license import SysinfoLicense
 
 
 T = TypeVar("T", bound="Sysinfo")
@@ -49,6 +50,8 @@ class Sysinfo:
         network_ports (Union[Unset, List['SysNetIf']]):
         services (Union[Unset, List['DeviceServiceBasic']]):
         mim_devices (Union[Unset, int]):
+        gateways (Union[Unset, List[str]]):
+        license_ (Union[Unset, SysinfoLicense]):
     """
 
     hostname: Union[Unset, str] = UNSET
@@ -82,6 +85,8 @@ class Sysinfo:
     network_ports: Union[Unset, List["SysNetIf"]] = UNSET
     services: Union[Unset, List["DeviceServiceBasic"]] = UNSET
     mim_devices: Union[Unset, int] = UNSET
+    gateways: Union[Unset, List[str]] = UNSET
+    license_: Union[Unset, "SysinfoLicense"] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -166,6 +171,14 @@ class Sysinfo:
 
         mim_devices = self.mim_devices
 
+        gateways: Union[Unset, List[str]] = UNSET
+        if not isinstance(self.gateways, Unset):
+            gateways = self.gateways
+
+        license_: Union[Unset, Dict[str, Any]] = UNSET
+        if not isinstance(self.license_, Unset):
+            license_ = self.license_.to_dict()
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -231,6 +244,10 @@ class Sysinfo:
             field_dict["services"] = services
         if mim_devices is not UNSET:
             field_dict["mim_devices"] = mim_devices
+        if gateways is not UNSET:
+            field_dict["gateways"] = gateways
+        if license_ is not UNSET:
+            field_dict["license"] = license_
 
         return field_dict
 
@@ -239,6 +256,7 @@ class Sysinfo:
         from ..models.device_service_basic import DeviceServiceBasic
         from ..models.sys_net_if import SysNetIf
         from ..models.sysinfo_fs import SysinfoFs
+        from ..models.sysinfo_license import SysinfoLicense
 
         d = src_dict.copy()
         hostname = d.pop("hostname", UNSET)
@@ -318,6 +336,15 @@ class Sysinfo:
 
         mim_devices = d.pop("mim_devices", UNSET)
 
+        gateways = cast(List[str], d.pop("gateways", UNSET))
+
+        _license_ = d.pop("license", UNSET)
+        license_: Union[Unset, SysinfoLicense]
+        if isinstance(_license_, Unset):
+            license_ = UNSET
+        else:
+            license_ = SysinfoLicense.from_dict(_license_)
+
         sysinfo = cls(
             hostname=hostname,
             address=address,
@@ -350,6 +377,8 @@ class Sysinfo:
             network_ports=network_ports,
             services=services,
             mim_devices=mim_devices,
+            gateways=gateways,
+            license_=license_,
         )
 
         sysinfo.additional_properties = d
