@@ -23,7 +23,8 @@ class IntfRouterAdvSetting:
         max_ra_interval (Union[Unset, int]): maximum time allowed between sending unsolicited multicast RA in seconds,
             default 600
         router_lifetime (Union[Unset, int]): lifetime associated wi th default router in seconds, default 3x max RA
-        nat64_prefix (Union[Unset, str]): NAT 64 prefix to enabel PREF64 support
+        nat64_enable (Union[Unset, bool]): advertise a NAT64 prefix
+        nat64_prefix (Union[Unset, str]): NAT 64 prefix to enable PREF64 support
         nat64_prefix_life (Union[Unset, int]): length of time in seconds that the prefix is valid for NAT64, default is
             3x RA
         ra_subnets (Union[Unset, List[str]]):
@@ -41,6 +42,7 @@ class IntfRouterAdvSetting:
     min_ra_interval: Union[Unset, int] = UNSET
     max_ra_interval: Union[Unset, int] = UNSET
     router_lifetime: Union[Unset, int] = UNSET
+    nat64_enable: Union[Unset, bool] = UNSET
     nat64_prefix: Union[Unset, str] = UNSET
     nat64_prefix_life: Union[Unset, int] = UNSET
     ra_subnets: Union[Unset, List[str]] = UNSET
@@ -66,6 +68,8 @@ class IntfRouterAdvSetting:
         max_ra_interval = self.max_ra_interval
 
         router_lifetime = self.router_lifetime
+
+        nat64_enable = self.nat64_enable
 
         nat64_prefix = self.nat64_prefix
 
@@ -107,6 +111,8 @@ class IntfRouterAdvSetting:
             field_dict["max_ra_interval"] = max_ra_interval
         if router_lifetime is not UNSET:
             field_dict["router_lifetime"] = router_lifetime
+        if nat64_enable is not UNSET:
+            field_dict["nat64_enable"] = nat64_enable
         if nat64_prefix is not UNSET:
             field_dict["nat64_prefix"] = nat64_prefix
         if nat64_prefix_life is not UNSET:
@@ -143,6 +149,8 @@ class IntfRouterAdvSetting:
 
         router_lifetime = d.pop("router_lifetime", UNSET)
 
+        nat64_enable = d.pop("nat64_enable", UNSET)
+
         nat64_prefix = d.pop("nat64_prefix", UNSET)
 
         nat64_prefix_life = d.pop("nat64_prefix_life", UNSET)
@@ -166,6 +174,7 @@ class IntfRouterAdvSetting:
             min_ra_interval=min_ra_interval,
             max_ra_interval=max_ra_interval,
             router_lifetime=router_lifetime,
+            nat64_enable=nat64_enable,
             nat64_prefix=nat64_prefix,
             nat64_prefix_life=nat64_prefix_life,
             ra_subnets=ra_subnets,

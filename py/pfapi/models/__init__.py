@@ -629,7 +629,6 @@ from .u_pn_p_config import UPnPConfig
 from .u_pn_p_mapping import UPnPMapping
 from .u_pn_p_mappings import UPnPMappings
 from .u_pn_p_perm_user import UPnPPermUser
-from .ui_states import UIStates
 from .update_bootenv import UpdateBootenv
 from .update_ca_cert_req import UpdateCaCertReq
 from .update_cert_req import UpdateCertReq
@@ -664,7 +663,6 @@ from .wg_tunnel import WGTunnel
 from .wg_tunnel_conf import WGTunnelConf
 from .wg_tunnels import WGTunnels
 from .wgip_address import WGIPAddress
-from .wgip_addresses import WGIPAddresses
 from .wire_guard_keys import WireGuardKeys
 from .wire_guard_peer_status import WireGuardPeerStatus
 from .wire_guard_settings import WireGuardSettings
@@ -1303,7 +1301,6 @@ __all__ = (
     "Tunable",
     "TunableRequest",
     "Tunables",
-    "UIStates",
     "UpdateBootenv",
     "UpdateCaCertReq",
     "UpdateCertReq",
@@ -1337,7 +1334,6 @@ __all__ = (
     "VoucherRoll",
     "WGConfig",
     "WGIPAddress",
-    "WGIPAddresses",
     "WGPeer",
     "WGPeers",
     "WGTunnel",

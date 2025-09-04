@@ -6,7 +6,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.wgip_addresses import WGIPAddresses
+    from ..models.wgip_address import WGIPAddress
 
 
 T = TypeVar("T", bound="WGPeer")
@@ -26,7 +26,7 @@ class WGPeer:
             port (Union[Unset, str]):
             persistentkeepalive (Union[Unset, str]):
             presharedkey (Union[Unset, str]):
-            allowedips (Union[Unset, WGIPAddresses]):
+            allowedips (Union[Unset, List['WGIPAddress']]):
     """
 
     publickey: str
@@ -37,7 +37,7 @@ class WGPeer:
     port: Union[Unset, str] = UNSET
     persistentkeepalive: Union[Unset, str] = UNSET
     presharedkey: Union[Unset, str] = UNSET
-    allowedips: Union[Unset, "WGIPAddresses"] = UNSET
+    allowedips: Union[Unset, List["WGIPAddress"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -57,9 +57,12 @@ class WGPeer:
 
         presharedkey = self.presharedkey
 
-        allowedips: Union[Unset, Dict[str, Any]] = UNSET
+        allowedips: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.allowedips, Unset):
-            allowedips = self.allowedips.to_dict()
+            allowedips = []
+            for allowedips_item_data in self.allowedips:
+                allowedips_item = allowedips_item_data.to_dict()
+                allowedips.append(allowedips_item)
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -89,7 +92,7 @@ class WGPeer:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.wgip_addresses import WGIPAddresses
+        from ..models.wgip_address import WGIPAddress
 
         d = src_dict.copy()
         publickey = d.pop("publickey")
@@ -108,12 +111,12 @@ class WGPeer:
 
         presharedkey = d.pop("presharedkey", UNSET)
 
+        allowedips = []
         _allowedips = d.pop("allowedips", UNSET)
-        allowedips: Union[Unset, WGIPAddresses]
-        if isinstance(_allowedips, Unset):
-            allowedips = UNSET
-        else:
-            allowedips = WGIPAddresses.from_dict(_allowedips)
+        for allowedips_item_data in _allowedips or []:
+            allowedips_item = WGIPAddress.from_dict(allowedips_item_data)
+
+            allowedips.append(allowedips_item)
 
         wg_peer = cls(
             publickey=publickey,

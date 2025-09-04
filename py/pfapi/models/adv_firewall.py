@@ -60,6 +60,7 @@ class AdvFirewall:
         udpfirsttimeout (Union[Unset, str]):
         udpmultipletimeout (Union[Unset, str]):
         udpsingletimeout (Union[Unset, str]):
+        allow_nat64_prefix_override (Union[Unset, bool]): Allow overriding the NAT64 prefix used in rules and services
     """
 
     adaptiveend: Union[Unset, str] = UNSET
@@ -110,6 +111,7 @@ class AdvFirewall:
     udpfirsttimeout: Union[Unset, str] = UNSET
     udpmultipletimeout: Union[Unset, str] = UNSET
     udpsingletimeout: Union[Unset, str] = UNSET
+    allow_nat64_prefix_override: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -211,6 +213,8 @@ class AdvFirewall:
 
         udpsingletimeout = self.udpsingletimeout
 
+        allow_nat64_prefix_override = self.allow_nat64_prefix_override
+
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -310,6 +314,8 @@ class AdvFirewall:
             field_dict["udpmultipletimeout"] = udpmultipletimeout
         if udpsingletimeout is not UNSET:
             field_dict["udpsingletimeout"] = udpsingletimeout
+        if allow_nat64_prefix_override is not UNSET:
+            field_dict["allow_nat64_prefix_override"] = allow_nat64_prefix_override
 
         return field_dict
 
@@ -412,6 +418,8 @@ class AdvFirewall:
 
         udpsingletimeout = d.pop("udpsingletimeout", UNSET)
 
+        allow_nat64_prefix_override = d.pop("allow_nat64_prefix_override", UNSET)
+
         adv_firewall = cls(
             adaptiveend=adaptiveend,
             adaptivestart=adaptivestart,
@@ -461,6 +469,7 @@ class AdvFirewall:
             udpfirsttimeout=udpfirsttimeout,
             udpmultipletimeout=udpmultipletimeout,
             udpsingletimeout=udpsingletimeout,
+            allow_nat64_prefix_override=allow_nat64_prefix_override,
         )
 
         adv_firewall.additional_properties = d

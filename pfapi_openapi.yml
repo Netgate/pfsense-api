@@ -2,7 +2,18 @@ openapi: 3.0.3
 info:
   title: pfSense API
   version: "1.0"
-  description: pfSense Multi-instance Management APIs
+  description: |
+    # pfSense Multi-instance Management APIs
+    
+    ## pfSense API Software Toolkit
+    
+    pfSense® Plus software is a widely deployed, robust, and easy to use firewall solution.
+    This repository contains the set of packages to extend the powerful management
+    capabilities of pfSense Plus through the availability a RESTful interface provided
+    by the pfSense Multi-instance Management Controller.
+    
+    This API schema is provided for language agnostic client implementations.
+    The schema generated document can be viewed here: [netgate.github.io/pfsense-api](https://netgate.github.io/pfsense-api/)
 
 tags:
   - name: login
@@ -754,51 +765,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/DiagUploadResult'
-        '400':
-          description: error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-  /diag/console:
-    get:
-      tags:
-        - diag
-      summary: |
-        Obtain access to the console. Note this is a websocket upgrade
-        point and not regular HTTP. The success response below is for
-        OpenAPI and not meant as the actual reponse payload. The API
-        will launch a virtual terminal instance on the host and stream
-        its contents to the client. Client writes are delivered to
-        the virtual terminal as is.
-      description: ""
-      operationId: DiagGetConsole
-      responses:
-        '200':
-          description: ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Result'
-        '400':
-          description: error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
-    delete:
-      tags:
-        - diag
-      summary: Shutdown web console session
-      description: ""
-      operationId: DiagShutdownConsole
-      responses:
-        '200':
-          description: ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Result'
         '400':
           description: error
           content:
@@ -10332,26 +10298,6 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
-  /ui/features:
-    get:
-      tags:
-        - ui
-      summary: Get current state of UI components
-      description: ""
-      operationId: GetUIStates
-      responses:
-        '200':
-          description: ok
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/UIStates'
-        '400':
-          description: error
-          content:
-            application/json:
-              schema:
-                $ref: '#/components/schemas/Error'
   /vpn/ipsec:
     get:
       tags:
@@ -11972,6 +11918,9 @@ components:
           type: string
         udpsingletimeout:
           type: string
+        allow_nat64_prefix_override:
+          type: boolean
+          description: Allow overriding the NAT64 prefix used in rules and services
     AdvFirewallSetting:
       type: object
       properties:
@@ -14693,6 +14642,8 @@ components:
         dhcp6_debug:
           type: boolean
         address_release:
+          type: boolean
+        ignore_isc_warn:
           type: boolean
         ipv6_duid_type:
           type: string
@@ -18009,9 +17960,12 @@ components:
         router_lifetime:
           type: integer
           description: lifetime associated wi th default router in seconds, default 3x max RA
+        nat64_enable:
+          type: boolean
+          description: advertise a NAT64 prefix
         nat64_prefix:
           type: string
-          description: NAT 64 prefix to enabel PREF64 support
+          description: NAT 64 prefix to enable PREF64 support
         nat64_prefix_life:
           type: integer
           description: length of time in seconds that the prefix is valid for NAT64, default is 3x RA
@@ -18808,11 +18762,9 @@ components:
           type: integer
         resolution_seconds:
           type: integer
-        csv:
-          type: boolean
-          description: return data as comma-separated values
     MonitoringDataResult:
       type: object
+      description: Data returned is a set of CSV values for the series.
       properties:
         request:
           $ref: '#/components/schemas/MonitoringDataRequest'
@@ -22422,10 +22374,6 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Tunable'
-    UIStates:
-      type: object
-      additionalProperties:
-        type: boolean
     UPnPConfig:
       type: object
       properties:
@@ -23059,13 +23007,6 @@ components:
           description: CIDR address/mask
         descr:
           type: string
-    WGIPAddresses:
-      type: object
-      properties:
-        row:
-          type: array
-          items:
-            $ref: '#/components/schemas/WGIPAddress'
     WGPeer:
       type: object
       description: |
@@ -23090,7 +23031,9 @@ components:
         presharedkey:
           type: string
         allowedips:
-          $ref: '#/components/schemas/WGIPAddresses'
+          type: array
+          items:
+            $ref: '#/components/schemas/WGIPAddress'
     WGPeers:
       type: object
       properties:
@@ -23120,7 +23063,9 @@ components:
         mtu:
           type: string
         addresses:
-          $ref: '#/components/schemas/WGIPAddresses'
+          type: array
+          items:
+            $ref: '#/components/schemas/WGIPAddress'
     WGTunnelConf:
       type: object
       properties:

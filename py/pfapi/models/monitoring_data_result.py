@@ -14,7 +14,8 @@ T = TypeVar("T", bound="MonitoringDataResult")
 
 @_attrs_define
 class MonitoringDataResult:
-    """
+    """Data returned is a set of CSV values for the series.
+
     Attributes:
         request (Union[Unset, MonitoringDataRequest]):
         dataseries (Union[Unset, List[str]]):

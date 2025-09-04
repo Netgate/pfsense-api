@@ -6,7 +6,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.wgip_addresses import WGIPAddresses
+    from ..models.wgip_address import WGIPAddress
 
 
 T = TypeVar("T", bound="WGTunnel")
@@ -25,7 +25,7 @@ class WGTunnel:
             enabled (Union[Unset, bool]):
             listenport (Union[Unset, int]):
             mtu (Union[Unset, str]):
-            addresses (Union[Unset, WGIPAddresses]):
+            addresses (Union[Unset, List['WGIPAddress']]):
     """
 
     name: str
@@ -35,7 +35,7 @@ class WGTunnel:
     enabled: Union[Unset, bool] = UNSET
     listenport: Union[Unset, int] = UNSET
     mtu: Union[Unset, str] = UNSET
-    addresses: Union[Unset, "WGIPAddresses"] = UNSET
+    addresses: Union[Unset, List["WGIPAddress"]] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
@@ -53,9 +53,12 @@ class WGTunnel:
 
         mtu = self.mtu
 
-        addresses: Union[Unset, Dict[str, Any]] = UNSET
+        addresses: Union[Unset, List[Dict[str, Any]]] = UNSET
         if not isinstance(self.addresses, Unset):
-            addresses = self.addresses.to_dict()
+            addresses = []
+            for addresses_item_data in self.addresses:
+                addresses_item = addresses_item_data.to_dict()
+                addresses.append(addresses_item)
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -81,7 +84,7 @@ class WGTunnel:
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.wgip_addresses import WGIPAddresses
+        from ..models.wgip_address import WGIPAddress
 
         d = src_dict.copy()
         name = d.pop("name")
@@ -98,12 +101,12 @@ class WGTunnel:
 
         mtu = d.pop("mtu", UNSET)
 
+        addresses = []
         _addresses = d.pop("addresses", UNSET)
-        addresses: Union[Unset, WGIPAddresses]
-        if isinstance(_addresses, Unset):
-            addresses = UNSET
-        else:
-            addresses = WGIPAddresses.from_dict(_addresses)
+        for addresses_item_data in _addresses or []:
+            addresses_item = WGIPAddress.from_dict(addresses_item_data)
+
+            addresses.append(addresses_item)
 
         wg_tunnel = cls(
             name=name,

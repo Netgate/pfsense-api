@@ -8,6 +8,8 @@ by the pfSense Multi-instance Management Controller.
 An [OpenAPI schema](./pfapi_openapi.yml) is provided for language agnostic client implementations. The
 included generated definitions are for Python 3; other language support will be added in the future.
 
+The schema generated document can be viewed here: https://netgate.github.io/pfsense-api/
+
 ## Usage
 
 ### Python

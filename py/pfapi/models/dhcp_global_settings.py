@@ -17,6 +17,7 @@ class DhcpGlobalSettings:
         radvd_debug (Union[Unset, bool]):
         dhcp6_debug (Union[Unset, bool]):
         address_release (Union[Unset, bool]):
+        ignore_isc_warn (Union[Unset, bool]):
         ipv6_duid_type (Union[Unset, DhcpGlobalSettingsIpv6DuidType]): A DHCPv6 Unique Identifier (DUID) is used by the
             firewall when requesting an IPv6 address.
 
@@ -43,6 +44,7 @@ class DhcpGlobalSettings:
     radvd_debug: Union[Unset, bool] = UNSET
     dhcp6_debug: Union[Unset, bool] = UNSET
     address_release: Union[Unset, bool] = UNSET
+    ignore_isc_warn: Union[Unset, bool] = UNSET
     ipv6_duid_type: Union[Unset, DhcpGlobalSettingsIpv6DuidType] = UNSET
     ipv6_duid_raw: Union[Unset, str] = UNSET
     ipv6_duid_llt_time: Union[Unset, str] = UNSET
@@ -61,6 +63,8 @@ class DhcpGlobalSettings:
         dhcp6_debug = self.dhcp6_debug
 
         address_release = self.address_release
+
+        ignore_isc_warn = self.ignore_isc_warn
 
         ipv6_duid_type: Union[Unset, str] = UNSET
         if not isinstance(self.ipv6_duid_type, Unset):
@@ -91,6 +95,8 @@ class DhcpGlobalSettings:
             field_dict["dhcp6_debug"] = dhcp6_debug
         if address_release is not UNSET:
             field_dict["address_release"] = address_release
+        if ignore_isc_warn is not UNSET:
+            field_dict["ignore_isc_warn"] = ignore_isc_warn
         if ipv6_duid_type is not UNSET:
             field_dict["ipv6_duid_type"] = ipv6_duid_type
         if ipv6_duid_raw is not UNSET:
@@ -121,6 +127,8 @@ class DhcpGlobalSettings:
 
         address_release = d.pop("address_release", UNSET)
 
+        ignore_isc_warn = d.pop("ignore_isc_warn", UNSET)
+
         _ipv6_duid_type = d.pop("ipv6_duid_type", UNSET)
         ipv6_duid_type: Union[Unset, DhcpGlobalSettingsIpv6DuidType]
         if isinstance(_ipv6_duid_type, Unset):
@@ -147,6 +155,7 @@ class DhcpGlobalSettings:
             radvd_debug=radvd_debug,
             dhcp6_debug=dhcp6_debug,
             address_release=address_release,
+            ignore_isc_warn=ignore_isc_warn,
             ipv6_duid_type=ipv6_duid_type,
             ipv6_duid_raw=ipv6_duid_raw,
             ipv6_duid_llt_time=ipv6_duid_llt_time,
