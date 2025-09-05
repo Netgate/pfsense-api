@@ -248,6 +248,7 @@ from .fw_addr_alias import FWAddrAlias
 from .fw_addr_port import FWAddrPort
 from .fw_alias import FWAlias
 from .fw_alias_req import FWAliasReq
+from .fw_alias_req_type import FWAliasReqType
 from .fw_alias_type import FWAliasType
 from .fw_aliases import FWAliases
 from .fw_bogon_rule import FWBogonRule
@@ -275,7 +276,8 @@ from .fw_single_rule_states import FWSingleRuleStates
 from .fw_system_alias import FWSystemAlias
 from .fw_target import FWTarget
 from .fw_toggle_result import FWToggleResult
-from .fw_update_aliasreq import FWUpdateAliasreq
+from .fw_update_alias_req import FWUpdateAliasReq
+from .fw_update_alias_req_type import FWUpdateAliasReqType
 from .fw_user_timestamp import FWUserTimestamp
 from .gateway import Gateway
 from .gateway_defaults import GatewayDefaults
@@ -925,6 +927,7 @@ __all__ = (
     "FWAlias",
     "FWAliases",
     "FWAliasReq",
+    "FWAliasReqType",
     "FWAliasType",
     "FWBogonRule",
     "FWBogonState",
@@ -951,7 +954,8 @@ __all__ = (
     "FWSystemAlias",
     "FWTarget",
     "FWToggleResult",
-    "FWUpdateAliasreq",
+    "FWUpdateAliasReq",
+    "FWUpdateAliasReqType",
     "FWUserTimestamp",
     "Gateway",
     "GatewayDefaults",

@@ -6,7 +6,7 @@ import httpx
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.fw_update_aliasreq import FWUpdateAliasreq
+from ...models.fw_update_alias_req import FWUpdateAliasReq
 from ...models.pfsense_result import PfsenseResult
 from ...types import Response
 
@@ -14,7 +14,7 @@ from ...types import Response
 def _get_kwargs(
     id: str,
     *,
-    body: FWUpdateAliasreq,
+    body: FWUpdateAliasReq,
 ) -> Dict[str, Any]:
     headers: Dict[str, Any] = {}
 
@@ -64,13 +64,13 @@ def sync_detailed(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FWUpdateAliasreq,
+    body: FWUpdateAliasReq,
 ) -> Response[Union[Error, PfsenseResult]]:
     """Update firewall alias
 
     Args:
         id (str):
-        body (FWUpdateAliasreq):
+        body (FWUpdateAliasReq):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -96,13 +96,13 @@ def sync(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FWUpdateAliasreq,
+    body: FWUpdateAliasReq,
 ) -> Optional[Union[Error, PfsenseResult]]:
     """Update firewall alias
 
     Args:
         id (str):
-        body (FWUpdateAliasreq):
+        body (FWUpdateAliasReq):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -123,13 +123,13 @@ async def asyncio_detailed(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FWUpdateAliasreq,
+    body: FWUpdateAliasReq,
 ) -> Response[Union[Error, PfsenseResult]]:
     """Update firewall alias
 
     Args:
         id (str):
-        body (FWUpdateAliasreq):
+        body (FWUpdateAliasReq):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
@@ -153,13 +153,13 @@ async def asyncio(
     id: str,
     *,
     client: Union[AuthenticatedClient, Client],
-    body: FWUpdateAliasreq,
+    body: FWUpdateAliasReq,
 ) -> Optional[Union[Error, PfsenseResult]]:
     """Update firewall alias
 
     Args:
         id (str):
-        body (FWUpdateAliasreq):
+        body (FWUpdateAliasReq):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.

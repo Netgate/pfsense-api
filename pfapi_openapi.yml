@@ -116,7 +116,7 @@ paths:
         content:
           application/json:
             schema:
-              $ref: '#/components/schemas/FWUpdateAliasreq'
+              $ref: '#/components/schemas/FWUpdateAliasReq'
       responses:
         '200':
           description: ok
@@ -15523,9 +15523,29 @@ components:
           type: boolean
     FWAliasReq:
       type: object
+      required: [name]
       properties:
-        alias:
-          $ref: '#/components/schemas/FWAlias'
+        name:
+          type: string
+        address:
+          type: string
+          description: space separated list of addresses
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/FWTarget'
+        descr:
+          type: string
+        type:
+          type: string
+          description: host, network, url, urltable, urltable_ports, port, or url_ports
+          enum: ['host', 'network', 'url', 'urltable', 'urltable_ports', 'port', 'url_ports']
+        detail:
+          type: string
+        updatefreq:
+          type: string
+        truncated:
+          type: boolean
     FWAliases:
       type: object
       properties:
@@ -15875,13 +15895,31 @@ components:
       properties:
         status:
           $ref: '#/components/schemas/ToggleRespStatus'
-    FWUpdateAliasreq:
+    FWUpdateAliasReq:
       type: object
+      required: [name]
       properties:
-        alias:
-          $ref: '#/components/schemas/FWAlias'
-        id:
+        name:
           type: string
+        address:
+          type: string
+          description: space separated list of addresses
+        targets:
+          type: array
+          items:
+            $ref: '#/components/schemas/FWTarget'
+        descr:
+          type: string
+        type:
+          type: string
+          description: host, network, url, urltable, urltable_ports, port, or url_ports
+          enum: ['host', 'network', 'url', 'urltable', 'urltable_ports', 'port', 'url_ports']
+        detail:
+          type: string
+        updatefreq:
+          type: string
+        truncated:
+          type: boolean
     FWUserTimestamp:
       type: object
       properties:

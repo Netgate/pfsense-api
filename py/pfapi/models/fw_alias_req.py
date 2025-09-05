@@ -3,10 +3,11 @@ from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
+from ..models.fw_alias_req_type import FWAliasReqType
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
-    from ..models.fw_alias import FWAlias
+    from ..models.fw_target import FWTarget
 
 
 T = TypeVar("T", bound="FWAliasReq")
@@ -16,39 +17,114 @@ T = TypeVar("T", bound="FWAliasReq")
 class FWAliasReq:
     """
     Attributes:
-        alias (Union[Unset, FWAlias]):
+        name (str):
+        address (Union[Unset, str]): space separated list of addresses
+        targets (Union[Unset, List['FWTarget']]):
+        descr (Union[Unset, str]):
+        type (Union[Unset, FWAliasReqType]): host, network, url, urltable, urltable_ports, port, or url_ports
+        detail (Union[Unset, str]):
+        updatefreq (Union[Unset, str]):
+        truncated (Union[Unset, bool]):
     """
 
-    alias: Union[Unset, "FWAlias"] = UNSET
+    name: str
+    address: Union[Unset, str] = UNSET
+    targets: Union[Unset, List["FWTarget"]] = UNSET
+    descr: Union[Unset, str] = UNSET
+    type: Union[Unset, FWAliasReqType] = UNSET
+    detail: Union[Unset, str] = UNSET
+    updatefreq: Union[Unset, str] = UNSET
+    truncated: Union[Unset, bool] = UNSET
     additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> Dict[str, Any]:
-        alias: Union[Unset, Dict[str, Any]] = UNSET
-        if not isinstance(self.alias, Unset):
-            alias = self.alias.to_dict()
+        name = self.name
+
+        address = self.address
+
+        targets: Union[Unset, List[Dict[str, Any]]] = UNSET
+        if not isinstance(self.targets, Unset):
+            targets = []
+            for targets_item_data in self.targets:
+                targets_item = targets_item_data.to_dict()
+                targets.append(targets_item)
+
+        descr = self.descr
+
+        type: Union[Unset, str] = UNSET
+        if not isinstance(self.type, Unset):
+            type = self.type.value
+
+        detail = self.detail
+
+        updatefreq = self.updatefreq
+
+        truncated = self.truncated
 
         field_dict: Dict[str, Any] = {}
         field_dict.update(self.additional_properties)
-        field_dict.update({})
-        if alias is not UNSET:
-            field_dict["alias"] = alias
+        field_dict.update(
+            {
+                "name": name,
+            }
+        )
+        if address is not UNSET:
+            field_dict["address"] = address
+        if targets is not UNSET:
+            field_dict["targets"] = targets
+        if descr is not UNSET:
+            field_dict["descr"] = descr
+        if type is not UNSET:
+            field_dict["type"] = type
+        if detail is not UNSET:
+            field_dict["detail"] = detail
+        if updatefreq is not UNSET:
+            field_dict["updatefreq"] = updatefreq
+        if truncated is not UNSET:
+            field_dict["truncated"] = truncated
 
         return field_dict
 
     @classmethod
     def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        from ..models.fw_alias import FWAlias
+        from ..models.fw_target import FWTarget
 
         d = src_dict.copy()
-        _alias = d.pop("alias", UNSET)
-        alias: Union[Unset, FWAlias]
-        if isinstance(_alias, Unset):
-            alias = UNSET
+        name = d.pop("name")
+
+        address = d.pop("address", UNSET)
+
+        targets = []
+        _targets = d.pop("targets", UNSET)
+        for targets_item_data in _targets or []:
+            targets_item = FWTarget.from_dict(targets_item_data)
+
+            targets.append(targets_item)
+
+        descr = d.pop("descr", UNSET)
+
+        _type = d.pop("type", UNSET)
+        type: Union[Unset, FWAliasReqType]
+        if isinstance(_type, Unset):
+            type = UNSET
         else:
-            alias = FWAlias.from_dict(_alias)
+            type = FWAliasReqType(_type)
+
+        detail = d.pop("detail", UNSET)
+
+        updatefreq = d.pop("updatefreq", UNSET)
+
+        truncated = d.pop("truncated", UNSET)
 
         fw_alias_req = cls(
-            alias=alias,
+            name=name,
+            address=address,
+            targets=targets,
+            descr=descr,
+            type=type,
+            detail=detail,
+            updatefreq=updatefreq,
+            truncated=truncated,
         )
 
         fw_alias_req.additional_properties = d
