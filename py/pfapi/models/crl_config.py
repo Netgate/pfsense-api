@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,33 +22,33 @@ class CRLConfig:
     Attributes:
         refid (str):
         ca_refid (str):
-        descr (Union[Unset, str]):
-        method (Union[Unset, str]):
-        serial (Union[Unset, int]):
-        lifetime (Union[Unset, int]):
-        internal (Union[Unset, bool]):
-        inuse (Union[Unset, bool]):
-        is_ovpn_crl (Union[Unset, bool]):
-        text (Union[Unset, str]):
-        cert (Union[Unset, List['CRLCert']]):
-        pkgs (Union[Unset, CRLConfigPkgs]):
+        descr (str | Unset):
+        method (str | Unset):
+        serial (int | Unset):
+        lifetime (int | Unset):
+        internal (bool | Unset):
+        inuse (bool | Unset):
+        is_ovpn_crl (bool | Unset):
+        text (str | Unset):
+        cert (list[CRLCert] | Unset):
+        pkgs (CRLConfigPkgs | Unset):
     """
 
     refid: str
     ca_refid: str
-    descr: Union[Unset, str] = UNSET
-    method: Union[Unset, str] = UNSET
-    serial: Union[Unset, int] = UNSET
-    lifetime: Union[Unset, int] = UNSET
-    internal: Union[Unset, bool] = UNSET
-    inuse: Union[Unset, bool] = UNSET
-    is_ovpn_crl: Union[Unset, bool] = UNSET
-    text: Union[Unset, str] = UNSET
-    cert: Union[Unset, List["CRLCert"]] = UNSET
-    pkgs: Union[Unset, "CRLConfigPkgs"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    descr: str | Unset = UNSET
+    method: str | Unset = UNSET
+    serial: int | Unset = UNSET
+    lifetime: int | Unset = UNSET
+    internal: bool | Unset = UNSET
+    inuse: bool | Unset = UNSET
+    is_ovpn_crl: bool | Unset = UNSET
+    text: str | Unset = UNSET
+    cert: list[CRLCert] | Unset = UNSET
+    pkgs: CRLConfigPkgs | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         refid = self.refid
 
         ca_refid = self.ca_refid
@@ -66,18 +69,18 @@ class CRLConfig:
 
         text = self.text
 
-        cert: Union[Unset, List[Dict[str, Any]]] = UNSET
+        cert: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.cert, Unset):
             cert = []
             for cert_item_data in self.cert:
                 cert_item = cert_item_data.to_dict()
                 cert.append(cert_item)
 
-        pkgs: Union[Unset, Dict[str, Any]] = UNSET
+        pkgs: dict[str, Any] | Unset = UNSET
         if not isinstance(self.pkgs, Unset):
             pkgs = self.pkgs.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -109,11 +112,11 @@ class CRLConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.crl_cert import CRLCert
         from ..models.crl_config_pkgs import CRLConfigPkgs
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         refid = d.pop("refid")
 
         ca_refid = d.pop("ca_refid")
@@ -134,15 +137,17 @@ class CRLConfig:
 
         text = d.pop("text", UNSET)
 
-        cert = []
         _cert = d.pop("cert", UNSET)
-        for cert_item_data in _cert or []:
-            cert_item = CRLCert.from_dict(cert_item_data)
+        cert: list[CRLCert] | Unset = UNSET
+        if _cert is not UNSET:
+            cert = []
+            for cert_item_data in _cert:
+                cert_item = CRLCert.from_dict(cert_item_data)
 
-            cert.append(cert_item)
+                cert.append(cert_item)
 
         _pkgs = d.pop("pkgs", UNSET)
-        pkgs: Union[Unset, CRLConfigPkgs]
+        pkgs: CRLConfigPkgs | Unset
         if isinstance(_pkgs, Unset):
             pkgs = UNSET
         else:
@@ -167,7 +172,7 @@ class CRLConfig:
         return crl_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

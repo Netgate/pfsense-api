@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,49 +19,49 @@ T = TypeVar("T", bound="DhcpAddressPool")
 class DhcpAddressPool:
     """
     Attributes:
-        id (Union[Unset, str]): readonly (index)
-        deny_unknown_clients (Union[Unset, str]): disabled | enabled | class
-        description (Union[Unset, str]):
-        address_pool_range_from (Union[Unset, str]):
-        address_pool_range_to (Union[Unset, str]):
-        wins_servers (Union[Unset, List[str]]):
-        dns_servers (Union[Unset, List[str]]):
-        gateway (Union[Unset, str]):
-        domain_name (Union[Unset, str]):
-        domain_search_list (Union[Unset, List[str]]):
-        mac_allow (Union[Unset, List[str]]):
-        mac_deny (Union[Unset, List[str]]):
-        ntp_servers (Union[Unset, List[str]]):
-        tftp_server (Union[Unset, str]):
-        ldap_server_uri (Union[Unset, str]):
-        network_booting (Union[Unset, DhcpNetworkBooting]):
-        subnet (Union[Unset, str]):
-        subnet_range_from (Union[Unset, str]):
-        subnet_range_to (Union[Unset, str]):
+        id (str | Unset): readonly (index)
+        deny_unknown_clients (str | Unset): disabled | enabled | class
+        description (str | Unset):
+        address_pool_range_from (str | Unset):
+        address_pool_range_to (str | Unset):
+        wins_servers (list[str] | Unset):
+        dns_servers (list[str] | Unset):
+        gateway (str | Unset):
+        domain_name (str | Unset):
+        domain_search_list (list[str] | Unset):
+        mac_allow (list[str] | Unset):
+        mac_deny (list[str] | Unset):
+        ntp_servers (list[str] | Unset):
+        tftp_server (str | Unset):
+        ldap_server_uri (str | Unset):
+        network_booting (DhcpNetworkBooting | Unset):
+        subnet (str | Unset):
+        subnet_range_from (str | Unset):
+        subnet_range_to (str | Unset):
     """
 
-    id: Union[Unset, str] = UNSET
-    deny_unknown_clients: Union[Unset, str] = UNSET
-    description: Union[Unset, str] = UNSET
-    address_pool_range_from: Union[Unset, str] = UNSET
-    address_pool_range_to: Union[Unset, str] = UNSET
-    wins_servers: Union[Unset, List[str]] = UNSET
-    dns_servers: Union[Unset, List[str]] = UNSET
-    gateway: Union[Unset, str] = UNSET
-    domain_name: Union[Unset, str] = UNSET
-    domain_search_list: Union[Unset, List[str]] = UNSET
-    mac_allow: Union[Unset, List[str]] = UNSET
-    mac_deny: Union[Unset, List[str]] = UNSET
-    ntp_servers: Union[Unset, List[str]] = UNSET
-    tftp_server: Union[Unset, str] = UNSET
-    ldap_server_uri: Union[Unset, str] = UNSET
-    network_booting: Union[Unset, "DhcpNetworkBooting"] = UNSET
-    subnet: Union[Unset, str] = UNSET
-    subnet_range_from: Union[Unset, str] = UNSET
-    subnet_range_to: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    id: str | Unset = UNSET
+    deny_unknown_clients: str | Unset = UNSET
+    description: str | Unset = UNSET
+    address_pool_range_from: str | Unset = UNSET
+    address_pool_range_to: str | Unset = UNSET
+    wins_servers: list[str] | Unset = UNSET
+    dns_servers: list[str] | Unset = UNSET
+    gateway: str | Unset = UNSET
+    domain_name: str | Unset = UNSET
+    domain_search_list: list[str] | Unset = UNSET
+    mac_allow: list[str] | Unset = UNSET
+    mac_deny: list[str] | Unset = UNSET
+    ntp_servers: list[str] | Unset = UNSET
+    tftp_server: str | Unset = UNSET
+    ldap_server_uri: str | Unset = UNSET
+    network_booting: DhcpNetworkBooting | Unset = UNSET
+    subnet: str | Unset = UNSET
+    subnet_range_from: str | Unset = UNSET
+    subnet_range_to: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         id = self.id
 
         deny_unknown_clients = self.deny_unknown_clients
@@ -69,11 +72,11 @@ class DhcpAddressPool:
 
         address_pool_range_to = self.address_pool_range_to
 
-        wins_servers: Union[Unset, List[str]] = UNSET
+        wins_servers: list[str] | Unset = UNSET
         if not isinstance(self.wins_servers, Unset):
             wins_servers = self.wins_servers
 
-        dns_servers: Union[Unset, List[str]] = UNSET
+        dns_servers: list[str] | Unset = UNSET
         if not isinstance(self.dns_servers, Unset):
             dns_servers = self.dns_servers
 
@@ -81,19 +84,19 @@ class DhcpAddressPool:
 
         domain_name = self.domain_name
 
-        domain_search_list: Union[Unset, List[str]] = UNSET
+        domain_search_list: list[str] | Unset = UNSET
         if not isinstance(self.domain_search_list, Unset):
             domain_search_list = self.domain_search_list
 
-        mac_allow: Union[Unset, List[str]] = UNSET
+        mac_allow: list[str] | Unset = UNSET
         if not isinstance(self.mac_allow, Unset):
             mac_allow = self.mac_allow
 
-        mac_deny: Union[Unset, List[str]] = UNSET
+        mac_deny: list[str] | Unset = UNSET
         if not isinstance(self.mac_deny, Unset):
             mac_deny = self.mac_deny
 
-        ntp_servers: Union[Unset, List[str]] = UNSET
+        ntp_servers: list[str] | Unset = UNSET
         if not isinstance(self.ntp_servers, Unset):
             ntp_servers = self.ntp_servers
 
@@ -101,7 +104,7 @@ class DhcpAddressPool:
 
         ldap_server_uri = self.ldap_server_uri
 
-        network_booting: Union[Unset, Dict[str, Any]] = UNSET
+        network_booting: dict[str, Any] | Unset = UNSET
         if not isinstance(self.network_booting, Unset):
             network_booting = self.network_booting.to_dict()
 
@@ -111,7 +114,7 @@ class DhcpAddressPool:
 
         subnet_range_to = self.subnet_range_to
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if id is not UNSET:
@@ -156,10 +159,10 @@ class DhcpAddressPool:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dhcp_network_booting import DhcpNetworkBooting
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         id = d.pop("id", UNSET)
 
         deny_unknown_clients = d.pop("deny_unknown_clients", UNSET)
@@ -170,28 +173,28 @@ class DhcpAddressPool:
 
         address_pool_range_to = d.pop("address_pool_range_to", UNSET)
 
-        wins_servers = cast(List[str], d.pop("wins_servers", UNSET))
+        wins_servers = cast(list[str], d.pop("wins_servers", UNSET))
 
-        dns_servers = cast(List[str], d.pop("dns_servers", UNSET))
+        dns_servers = cast(list[str], d.pop("dns_servers", UNSET))
 
         gateway = d.pop("gateway", UNSET)
 
         domain_name = d.pop("domain_name", UNSET)
 
-        domain_search_list = cast(List[str], d.pop("domain_search_list", UNSET))
+        domain_search_list = cast(list[str], d.pop("domain_search_list", UNSET))
 
-        mac_allow = cast(List[str], d.pop("mac_allow", UNSET))
+        mac_allow = cast(list[str], d.pop("mac_allow", UNSET))
 
-        mac_deny = cast(List[str], d.pop("mac_deny", UNSET))
+        mac_deny = cast(list[str], d.pop("mac_deny", UNSET))
 
-        ntp_servers = cast(List[str], d.pop("ntp_servers", UNSET))
+        ntp_servers = cast(list[str], d.pop("ntp_servers", UNSET))
 
         tftp_server = d.pop("tftp_server", UNSET)
 
         ldap_server_uri = d.pop("ldap_server_uri", UNSET)
 
         _network_booting = d.pop("network_booting", UNSET)
-        network_booting: Union[Unset, DhcpNetworkBooting]
+        network_booting: DhcpNetworkBooting | Unset
         if isinstance(_network_booting, Unset):
             network_booting = UNSET
         else:
@@ -229,7 +232,7 @@ class DhcpAddressPool:
         return dhcp_address_pool
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,51 +20,51 @@ T = TypeVar("T", bound="WirelessInterface")
 class WirelessInterface:
     """
     Attributes:
-        mode (Union[Unset, str]):
-        standard (Union[Unset, str]):
-        protmode (Union[Unset, str]):
-        ssid (Union[Unset, str]):
-        channel (Union[Unset, str]):
-        authmode (Union[Unset, str]):
-        txpower (Union[Unset, str]):
-        distance (Union[Unset, str]):
-        regdomain (Union[Unset, str]):
-        regcountry (Union[Unset, str]):
-        reglocation (Union[Unset, str]):
-        wpa (Union[Unset, WPASetting]):
-        auth_server_addr (Union[Unset, str]):
-        auth_server_port (Union[Unset, str]):
-        auth_server_shared_secret (Union[Unset, str]):
-        auth_server_addr2 (Union[Unset, str]):
-        auth_server_port2 (Union[Unset, str]):
-        auth_server_shared_secret2 (Union[Unset, str]):
-        wme (Union[Unset, WMESetting]):
-        channel_width (Union[Unset, str]):
+        mode (str | Unset):
+        standard (str | Unset):
+        protmode (str | Unset):
+        ssid (str | Unset):
+        channel (str | Unset):
+        authmode (str | Unset):
+        txpower (str | Unset):
+        distance (str | Unset):
+        regdomain (str | Unset):
+        regcountry (str | Unset):
+        reglocation (str | Unset):
+        wpa (WPASetting | Unset):
+        auth_server_addr (str | Unset):
+        auth_server_port (str | Unset):
+        auth_server_shared_secret (str | Unset):
+        auth_server_addr2 (str | Unset):
+        auth_server_port2 (str | Unset):
+        auth_server_shared_secret2 (str | Unset):
+        wme (WMESetting | Unset):
+        channel_width (str | Unset):
     """
 
-    mode: Union[Unset, str] = UNSET
-    standard: Union[Unset, str] = UNSET
-    protmode: Union[Unset, str] = UNSET
-    ssid: Union[Unset, str] = UNSET
-    channel: Union[Unset, str] = UNSET
-    authmode: Union[Unset, str] = UNSET
-    txpower: Union[Unset, str] = UNSET
-    distance: Union[Unset, str] = UNSET
-    regdomain: Union[Unset, str] = UNSET
-    regcountry: Union[Unset, str] = UNSET
-    reglocation: Union[Unset, str] = UNSET
-    wpa: Union[Unset, "WPASetting"] = UNSET
-    auth_server_addr: Union[Unset, str] = UNSET
-    auth_server_port: Union[Unset, str] = UNSET
-    auth_server_shared_secret: Union[Unset, str] = UNSET
-    auth_server_addr2: Union[Unset, str] = UNSET
-    auth_server_port2: Union[Unset, str] = UNSET
-    auth_server_shared_secret2: Union[Unset, str] = UNSET
-    wme: Union[Unset, "WMESetting"] = UNSET
-    channel_width: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    mode: str | Unset = UNSET
+    standard: str | Unset = UNSET
+    protmode: str | Unset = UNSET
+    ssid: str | Unset = UNSET
+    channel: str | Unset = UNSET
+    authmode: str | Unset = UNSET
+    txpower: str | Unset = UNSET
+    distance: str | Unset = UNSET
+    regdomain: str | Unset = UNSET
+    regcountry: str | Unset = UNSET
+    reglocation: str | Unset = UNSET
+    wpa: WPASetting | Unset = UNSET
+    auth_server_addr: str | Unset = UNSET
+    auth_server_port: str | Unset = UNSET
+    auth_server_shared_secret: str | Unset = UNSET
+    auth_server_addr2: str | Unset = UNSET
+    auth_server_port2: str | Unset = UNSET
+    auth_server_shared_secret2: str | Unset = UNSET
+    wme: WMESetting | Unset = UNSET
+    channel_width: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         mode = self.mode
 
         standard = self.standard
@@ -84,7 +87,7 @@ class WirelessInterface:
 
         reglocation = self.reglocation
 
-        wpa: Union[Unset, Dict[str, Any]] = UNSET
+        wpa: dict[str, Any] | Unset = UNSET
         if not isinstance(self.wpa, Unset):
             wpa = self.wpa.to_dict()
 
@@ -100,13 +103,13 @@ class WirelessInterface:
 
         auth_server_shared_secret2 = self.auth_server_shared_secret2
 
-        wme: Union[Unset, Dict[str, Any]] = UNSET
+        wme: dict[str, Any] | Unset = UNSET
         if not isinstance(self.wme, Unset):
             wme = self.wme.to_dict()
 
         channel_width = self.channel_width
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if mode is not UNSET:
@@ -153,11 +156,11 @@ class WirelessInterface:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.wme_setting import WMESetting
         from ..models.wpa_setting import WPASetting
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         mode = d.pop("mode", UNSET)
 
         standard = d.pop("standard", UNSET)
@@ -181,7 +184,7 @@ class WirelessInterface:
         reglocation = d.pop("reglocation", UNSET)
 
         _wpa = d.pop("wpa", UNSET)
-        wpa: Union[Unset, WPASetting]
+        wpa: WPASetting | Unset
         if isinstance(_wpa, Unset):
             wpa = UNSET
         else:
@@ -200,7 +203,7 @@ class WirelessInterface:
         auth_server_shared_secret2 = d.pop("auth_server_shared_secret2", UNSET)
 
         _wme = d.pop("wme", UNSET)
-        wme: Union[Unset, WMESetting]
+        wme: WMESetting | Unset
         if isinstance(_wme, Unset):
             wme = UNSET
         else:
@@ -235,7 +238,7 @@ class WirelessInterface:
         return wireless_interface
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

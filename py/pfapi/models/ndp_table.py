@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="NDPTable")
 class NDPTable:
     """
     Attributes:
-        ndptable (Union[Unset, List['NDPEntry']]):
+        ndptable (list[NDPEntry] | Unset):
     """
 
-    ndptable: Union[Unset, List["NDPEntry"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ndptable: list[NDPEntry] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        ndptable: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        ndptable: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.ndptable, Unset):
             ndptable = []
             for ndptable_item_data in self.ndptable:
                 ndptable_item = ndptable_item_data.to_dict()
                 ndptable.append(ndptable_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ndptable is not UNSET:
@@ -39,16 +42,18 @@ class NDPTable:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ndp_entry import NDPEntry
 
-        d = src_dict.copy()
-        ndptable = []
+        d = dict(src_dict)
         _ndptable = d.pop("ndptable", UNSET)
-        for ndptable_item_data in _ndptable or []:
-            ndptable_item = NDPEntry.from_dict(ndptable_item_data)
+        ndptable: list[NDPEntry] | Unset = UNSET
+        if _ndptable is not UNSET:
+            ndptable = []
+            for ndptable_item_data in _ndptable:
+                ndptable_item = NDPEntry.from_dict(ndptable_item_data)
 
-            ndptable.append(ndptable_item)
+                ndptable.append(ndptable_item)
 
         ndp_table = cls(
             ndptable=ndptable,
@@ -58,7 +63,7 @@ class NDPTable:
         return ndp_table
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

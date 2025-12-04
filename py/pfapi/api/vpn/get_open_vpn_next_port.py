@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -12,10 +12,10 @@ from ...types import UNSET, Response, Unset
 
 def _get_kwargs(
     *,
-    protocol: Union[Unset, str] = UNSET,
-    if_ident: Union[Unset, str] = UNSET,
-) -> Dict[str, Any]:
-    params: Dict[str, Any] = {}
+    protocol: str | Unset = UNSET,
+    if_ident: str | Unset = UNSET,
+) -> dict[str, Any]:
+    params: dict[str, Any] = {}
 
     params["protocol"] = protocol
 
@@ -23,7 +23,7 @@ def _get_kwargs(
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/vpn/openvpn/nextport",
         "params": params,
@@ -33,16 +33,18 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, OpenVPNNextPort]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Error | OpenVPNNextPort | None:
     if response.status_code == 200:
         response_200 = OpenVPNNextPort.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -50,8 +52,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, OpenVPNNextPort]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Error | OpenVPNNextPort]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -62,22 +64,22 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    protocol: Union[Unset, str] = UNSET,
-    if_ident: Union[Unset, str] = UNSET,
-) -> Response[Union[Error, OpenVPNNextPort]]:
+    client: AuthenticatedClient | Client,
+    protocol: str | Unset = UNSET,
+    if_ident: str | Unset = UNSET,
+) -> Response[Error | OpenVPNNextPort]:
     """Get the next available openvpn port
 
     Args:
-        protocol (Union[Unset, str]):
-        if_ident (Union[Unset, str]):
+        protocol (str | Unset):
+        if_ident (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, OpenVPNNextPort]]
+        Response[Error | OpenVPNNextPort]
     """
 
     kwargs = _get_kwargs(
@@ -94,22 +96,22 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-    protocol: Union[Unset, str] = UNSET,
-    if_ident: Union[Unset, str] = UNSET,
-) -> Optional[Union[Error, OpenVPNNextPort]]:
+    client: AuthenticatedClient | Client,
+    protocol: str | Unset = UNSET,
+    if_ident: str | Unset = UNSET,
+) -> Error | OpenVPNNextPort | None:
     """Get the next available openvpn port
 
     Args:
-        protocol (Union[Unset, str]):
-        if_ident (Union[Unset, str]):
+        protocol (str | Unset):
+        if_ident (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, OpenVPNNextPort]
+        Error | OpenVPNNextPort
     """
 
     return sync_detailed(
@@ -121,22 +123,22 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    protocol: Union[Unset, str] = UNSET,
-    if_ident: Union[Unset, str] = UNSET,
-) -> Response[Union[Error, OpenVPNNextPort]]:
+    client: AuthenticatedClient | Client,
+    protocol: str | Unset = UNSET,
+    if_ident: str | Unset = UNSET,
+) -> Response[Error | OpenVPNNextPort]:
     """Get the next available openvpn port
 
     Args:
-        protocol (Union[Unset, str]):
-        if_ident (Union[Unset, str]):
+        protocol (str | Unset):
+        if_ident (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, OpenVPNNextPort]]
+        Response[Error | OpenVPNNextPort]
     """
 
     kwargs = _get_kwargs(
@@ -151,22 +153,22 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-    protocol: Union[Unset, str] = UNSET,
-    if_ident: Union[Unset, str] = UNSET,
-) -> Optional[Union[Error, OpenVPNNextPort]]:
+    client: AuthenticatedClient | Client,
+    protocol: str | Unset = UNSET,
+    if_ident: str | Unset = UNSET,
+) -> Error | OpenVPNNextPort | None:
     """Get the next available openvpn port
 
     Args:
-        protocol (Union[Unset, str]):
-        if_ident (Union[Unset, str]):
+        protocol (str | Unset):
+        if_ident (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, OpenVPNNextPort]
+        Error | OpenVPNNextPort
     """
 
     return (

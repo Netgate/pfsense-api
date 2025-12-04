@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,19 +15,19 @@ T = TypeVar("T", bound="Tunable")
 class Tunable:
     """
     Attributes:
-        tunable (Union[Unset, str]):
-        value (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        modified (Union[Unset, bool]):
+        tunable (str | Unset):
+        value (str | Unset):
+        descr (str | Unset):
+        modified (bool | Unset):
     """
 
-    tunable: Union[Unset, str] = UNSET
-    value: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    modified: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    tunable: str | Unset = UNSET
+    value: str | Unset = UNSET
+    descr: str | Unset = UNSET
+    modified: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         tunable = self.tunable
 
         value = self.value
@@ -33,7 +36,7 @@ class Tunable:
 
         modified = self.modified
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if tunable is not UNSET:
@@ -48,8 +51,8 @@ class Tunable:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         tunable = d.pop("tunable", UNSET)
 
         value = d.pop("value", UNSET)
@@ -69,7 +72,7 @@ class Tunable:
         return tunable
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

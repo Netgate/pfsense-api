@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,25 +15,25 @@ T = TypeVar("T", bound="NetIfDevConfig")
 class NetIfDevConfig:
     """
     Attributes:
-        device (Union[Unset, str]): original name of the device
-        bus_path (Union[Unset, str]): BUS path of the device
-        mac (Union[Unset, str]): original MAC address
-        parent_device (Union[Unset, str]): parent device
-        parent_path (Union[Unset, str]): parent device bus path
-        iftype (Union[Unset, str]): interface type
-        members (Union[Unset, List[str]]):
+        device (str | Unset): original name of the device
+        bus_path (str | Unset): BUS path of the device
+        mac (str | Unset): original MAC address
+        parent_device (str | Unset): parent device
+        parent_path (str | Unset): parent device bus path
+        iftype (str | Unset): interface type
+        members (list[str] | Unset):
     """
 
-    device: Union[Unset, str] = UNSET
-    bus_path: Union[Unset, str] = UNSET
-    mac: Union[Unset, str] = UNSET
-    parent_device: Union[Unset, str] = UNSET
-    parent_path: Union[Unset, str] = UNSET
-    iftype: Union[Unset, str] = UNSET
-    members: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    device: str | Unset = UNSET
+    bus_path: str | Unset = UNSET
+    mac: str | Unset = UNSET
+    parent_device: str | Unset = UNSET
+    parent_path: str | Unset = UNSET
+    iftype: str | Unset = UNSET
+    members: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         device = self.device
 
         bus_path = self.bus_path
@@ -43,11 +46,11 @@ class NetIfDevConfig:
 
         iftype = self.iftype
 
-        members: Union[Unset, List[str]] = UNSET
+        members: list[str] | Unset = UNSET
         if not isinstance(self.members, Unset):
             members = self.members
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if device is not UNSET:
@@ -68,8 +71,8 @@ class NetIfDevConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         device = d.pop("device", UNSET)
 
         bus_path = d.pop("bus_path", UNSET)
@@ -82,7 +85,7 @@ class NetIfDevConfig:
 
         iftype = d.pop("iftype", UNSET)
 
-        members = cast(List[str], d.pop("members", UNSET))
+        members = cast(list[str], d.pop("members", UNSET))
 
         net_if_dev_config = cls(
             device=device,
@@ -98,7 +101,7 @@ class NetIfDevConfig:
         return net_if_dev_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

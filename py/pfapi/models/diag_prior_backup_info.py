@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="DiagPriorBackupInfo")
 class DiagPriorBackupInfo:
     """
     Attributes:
-        backups (Union[Unset, List['DiagBackupInfo']]):
+        backups (list[DiagBackupInfo] | Unset):
     """
 
-    backups: Union[Unset, List["DiagBackupInfo"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    backups: list[DiagBackupInfo] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        backups: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        backups: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.backups, Unset):
             backups = []
             for backups_item_data in self.backups:
                 backups_item = backups_item_data.to_dict()
                 backups.append(backups_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if backups is not UNSET:
@@ -39,16 +42,18 @@ class DiagPriorBackupInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.diag_backup_info import DiagBackupInfo
 
-        d = src_dict.copy()
-        backups = []
+        d = dict(src_dict)
         _backups = d.pop("backups", UNSET)
-        for backups_item_data in _backups or []:
-            backups_item = DiagBackupInfo.from_dict(backups_item_data)
+        backups: list[DiagBackupInfo] | Unset = UNSET
+        if _backups is not UNSET:
+            backups = []
+            for backups_item_data in _backups:
+                backups_item = DiagBackupInfo.from_dict(backups_item_data)
 
-            backups.append(backups_item)
+                backups.append(backups_item)
 
         diag_prior_backup_info = cls(
             backups=backups,
@@ -58,7 +63,7 @@ class DiagPriorBackupInfo:
         return diag_prior_backup_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

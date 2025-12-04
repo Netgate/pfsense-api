@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,28 +15,28 @@ T = TypeVar("T", bound="Phase2LocalId")
 class Phase2LocalId:
     """
     Attributes:
-        type (Union[Unset, str]):
-        address (Union[Unset, str]):
-        netbits (Union[Unset, str]):
+        type_ (str | Unset):
+        address (str | Unset):
+        netbits (str | Unset):
     """
 
-    type: Union[Unset, str] = UNSET
-    address: Union[Unset, str] = UNSET
-    netbits: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    type_: str | Unset = UNSET
+    address: str | Unset = UNSET
+    netbits: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        type = self.type
+    def to_dict(self) -> dict[str, Any]:
+        type_ = self.type_
 
         address = self.address
 
         netbits = self.netbits
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if address is not UNSET:
             field_dict["address"] = address
         if netbits is not UNSET:
@@ -42,16 +45,16 @@ class Phase2LocalId:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
-        type = d.pop("type", UNSET)
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        type_ = d.pop("type", UNSET)
 
         address = d.pop("address", UNSET)
 
         netbits = d.pop("netbits", UNSET)
 
         phase_2_local_id = cls(
-            type=type,
+            type_=type_,
             address=address,
             netbits=netbits,
         )
@@ -60,7 +63,7 @@ class Phase2LocalId:
         return phase_2_local_id
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

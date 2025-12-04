@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,30 +15,30 @@ T = TypeVar("T", bound="MeshVpnConns")
 class MeshVpnConns:
     """
     Attributes:
-        vpn_type (Union[Unset, str]): type of VPN
-        vpn_name (Union[Unset, str]): name assigned to vpn
-        subnets (Union[Unset, List[str]]):
-        conns (Union[Unset, str]): number of connections
+        vpn_type (str | Unset): type of VPN
+        vpn_name (str | Unset): name assigned to vpn
+        subnets (list[str] | Unset):
+        conns (str | Unset): number of connections
     """
 
-    vpn_type: Union[Unset, str] = UNSET
-    vpn_name: Union[Unset, str] = UNSET
-    subnets: Union[Unset, List[str]] = UNSET
-    conns: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    vpn_type: str | Unset = UNSET
+    vpn_name: str | Unset = UNSET
+    subnets: list[str] | Unset = UNSET
+    conns: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         vpn_type = self.vpn_type
 
         vpn_name = self.vpn_name
 
-        subnets: Union[Unset, List[str]] = UNSET
+        subnets: list[str] | Unset = UNSET
         if not isinstance(self.subnets, Unset):
             subnets = self.subnets
 
         conns = self.conns
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if vpn_type is not UNSET:
@@ -50,13 +53,13 @@ class MeshVpnConns:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         vpn_type = d.pop("vpn_type", UNSET)
 
         vpn_name = d.pop("vpn_name", UNSET)
 
-        subnets = cast(List[str], d.pop("subnets", UNSET))
+        subnets = cast(list[str], d.pop("subnets", UNSET))
 
         conns = d.pop("conns", UNSET)
 
@@ -71,7 +74,7 @@ class MeshVpnConns:
         return mesh_vpn_conns
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

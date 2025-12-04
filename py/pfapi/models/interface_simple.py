@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,34 +17,34 @@ class InterfaceSimple:
 
     Attributes:
         name (str): alias to identity
-        identity (Union[Unset, str]): interface identity
-        assigned (Union[Unset, str]): assigned interface name
-        if_ (Union[Unset, str]): operating system device name
-        descr (Union[Unset, str]): interface description
-        ipaddr (Union[Unset, str]):
-        ipaddrv6 (Union[Unset, str]):
-        mac (Union[Unset, str]):
-        tag (Union[Unset, int]):
-        member (Union[Unset, str]):
-        addresses (Union[Unset, List[str]]):
-        enable (Union[Unset, bool]):
+        identity (str | Unset): interface identity
+        assigned (str | Unset): assigned interface name
+        if_ (str | Unset): operating system device name
+        descr (str | Unset): interface description
+        ipaddr (str | Unset):
+        ipaddrv6 (str | Unset):
+        mac (str | Unset):
+        tag (int | Unset):
+        member (str | Unset):
+        addresses (list[str] | Unset):
+        enable (bool | Unset):
     """
 
     name: str
-    identity: Union[Unset, str] = UNSET
-    assigned: Union[Unset, str] = UNSET
-    if_: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    ipaddr: Union[Unset, str] = UNSET
-    ipaddrv6: Union[Unset, str] = UNSET
-    mac: Union[Unset, str] = UNSET
-    tag: Union[Unset, int] = UNSET
-    member: Union[Unset, str] = UNSET
-    addresses: Union[Unset, List[str]] = UNSET
-    enable: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    identity: str | Unset = UNSET
+    assigned: str | Unset = UNSET
+    if_: str | Unset = UNSET
+    descr: str | Unset = UNSET
+    ipaddr: str | Unset = UNSET
+    ipaddrv6: str | Unset = UNSET
+    mac: str | Unset = UNSET
+    tag: int | Unset = UNSET
+    member: str | Unset = UNSET
+    addresses: list[str] | Unset = UNSET
+    enable: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         identity = self.identity
@@ -62,13 +65,13 @@ class InterfaceSimple:
 
         member = self.member
 
-        addresses: Union[Unset, List[str]] = UNSET
+        addresses: list[str] | Unset = UNSET
         if not isinstance(self.addresses, Unset):
             addresses = self.addresses
 
         enable = self.enable
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -101,8 +104,8 @@ class InterfaceSimple:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name")
 
         identity = d.pop("identity", UNSET)
@@ -123,7 +126,7 @@ class InterfaceSimple:
 
         member = d.pop("member", UNSET)
 
-        addresses = cast(List[str], d.pop("addresses", UNSET))
+        addresses = cast(list[str], d.pop("addresses", UNSET))
 
         enable = d.pop("enable", UNSET)
 
@@ -146,7 +149,7 @@ class InterfaceSimple:
         return interface_simple
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

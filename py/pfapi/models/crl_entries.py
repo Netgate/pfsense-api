@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,16 +19,16 @@ T = TypeVar("T", bound="CRLEntries")
 class CRLEntries:
     """
     Attributes:
-        crls (Union[Unset, List['CRLConfig']]):
-        refid (Union[Unset, str]): for new and update CRL functions, the refid of the CRL that was changed
+        crls (list[CRLConfig] | Unset):
+        refid (str | Unset): for new and update CRL functions, the refid of the CRL that was changed
     """
 
-    crls: Union[Unset, List["CRLConfig"]] = UNSET
-    refid: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    crls: list[CRLConfig] | Unset = UNSET
+    refid: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        crls: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        crls: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.crls, Unset):
             crls = []
             for crls_item_data in self.crls:
@@ -34,7 +37,7 @@ class CRLEntries:
 
         refid = self.refid
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if crls is not UNSET:
@@ -45,16 +48,18 @@ class CRLEntries:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.crl_config import CRLConfig
 
-        d = src_dict.copy()
-        crls = []
+        d = dict(src_dict)
         _crls = d.pop("crls", UNSET)
-        for crls_item_data in _crls or []:
-            crls_item = CRLConfig.from_dict(crls_item_data)
+        crls: list[CRLConfig] | Unset = UNSET
+        if _crls is not UNSET:
+            crls = []
+            for crls_item_data in _crls:
+                crls_item = CRLConfig.from_dict(crls_item_data)
 
-            crls.append(crls_item)
+                crls.append(crls_item)
 
         refid = d.pop("refid", UNSET)
 
@@ -67,7 +72,7 @@ class CRLEntries:
         return crl_entries
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,37 +15,39 @@ T = TypeVar("T", bound="SyslogConfigOverride")
 class SyslogConfigOverride:
     """
     Attributes:
-        cronorder (Union[Unset, str]): reverse, forward, or empty for default
-        nentries (Union[Unset, int]):
-        logfilesize (Union[Unset, int]):
-        rotatecount (Union[Unset, int]):
-        format_ (Union[Unset, str]): formatted, raw
-        lognginx (Union[Unset, bool]):
-        logdefaultblock (Union[Unset, bool]):
-        logdefaultpass (Union[Unset, bool]):
-        logbogons (Union[Unset, bool]):
-        logprivatenets (Union[Unset, bool]):
-        loglinklocal4 (Union[Unset, bool]):
-        logsnort2c (Union[Unset, bool]):
-        filterdescriptions (Union[Unset, int]):
+        cronorder (str | Unset): reverse, forward, or empty for default
+        nentries (int | Unset):
+        logfilesize (int | Unset):
+        rotatecount (int | Unset):
+        format_ (str | Unset): formatted, raw
+        lognginx (bool | Unset):
+        logdefaultblock (bool | Unset):
+        logdefaultpass (bool | Unset):
+        logipoptions (bool | Unset):
+        logbogons (bool | Unset):
+        logprivatenets (bool | Unset):
+        loglinklocal4 (bool | Unset):
+        logsnort2c (bool | Unset):
+        filterdescriptions (int | Unset):
     """
 
-    cronorder: Union[Unset, str] = UNSET
-    nentries: Union[Unset, int] = UNSET
-    logfilesize: Union[Unset, int] = UNSET
-    rotatecount: Union[Unset, int] = UNSET
-    format_: Union[Unset, str] = UNSET
-    lognginx: Union[Unset, bool] = UNSET
-    logdefaultblock: Union[Unset, bool] = UNSET
-    logdefaultpass: Union[Unset, bool] = UNSET
-    logbogons: Union[Unset, bool] = UNSET
-    logprivatenets: Union[Unset, bool] = UNSET
-    loglinklocal4: Union[Unset, bool] = UNSET
-    logsnort2c: Union[Unset, bool] = UNSET
-    filterdescriptions: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    cronorder: str | Unset = UNSET
+    nentries: int | Unset = UNSET
+    logfilesize: int | Unset = UNSET
+    rotatecount: int | Unset = UNSET
+    format_: str | Unset = UNSET
+    lognginx: bool | Unset = UNSET
+    logdefaultblock: bool | Unset = UNSET
+    logdefaultpass: bool | Unset = UNSET
+    logipoptions: bool | Unset = UNSET
+    logbogons: bool | Unset = UNSET
+    logprivatenets: bool | Unset = UNSET
+    loglinklocal4: bool | Unset = UNSET
+    logsnort2c: bool | Unset = UNSET
+    filterdescriptions: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         cronorder = self.cronorder
 
         nentries = self.nentries
@@ -59,6 +64,8 @@ class SyslogConfigOverride:
 
         logdefaultpass = self.logdefaultpass
 
+        logipoptions = self.logipoptions
+
         logbogons = self.logbogons
 
         logprivatenets = self.logprivatenets
@@ -69,7 +76,7 @@ class SyslogConfigOverride:
 
         filterdescriptions = self.filterdescriptions
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if cronorder is not UNSET:
@@ -88,6 +95,8 @@ class SyslogConfigOverride:
             field_dict["logdefaultblock"] = logdefaultblock
         if logdefaultpass is not UNSET:
             field_dict["logdefaultpass"] = logdefaultpass
+        if logipoptions is not UNSET:
+            field_dict["logipoptions"] = logipoptions
         if logbogons is not UNSET:
             field_dict["logbogons"] = logbogons
         if logprivatenets is not UNSET:
@@ -102,8 +111,8 @@ class SyslogConfigOverride:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         cronorder = d.pop("cronorder", UNSET)
 
         nentries = d.pop("nentries", UNSET)
@@ -119,6 +128,8 @@ class SyslogConfigOverride:
         logdefaultblock = d.pop("logdefaultblock", UNSET)
 
         logdefaultpass = d.pop("logdefaultpass", UNSET)
+
+        logipoptions = d.pop("logipoptions", UNSET)
 
         logbogons = d.pop("logbogons", UNSET)
 
@@ -139,6 +150,7 @@ class SyslogConfigOverride:
             lognginx=lognginx,
             logdefaultblock=logdefaultblock,
             logdefaultpass=logdefaultpass,
+            logipoptions=logipoptions,
             logbogons=logbogons,
             logprivatenets=logprivatenets,
             loglinklocal4=loglinklocal4,
@@ -150,7 +162,7 @@ class SyslogConfigOverride:
         return syslog_config_override
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

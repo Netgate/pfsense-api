@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -25,11 +28,11 @@ class NewCertReq:
     - one of the method_xxxx
 
         Attributes:
-            name (Union[Unset, str]):
-            descr (Union[Unset, str]):
-            description (Union[Unset, str]):
-            userid (Union[Unset, int]):
-            method_internal (Union[Unset, CertMethodNew]): Options for creating/updating an internal certificate.
+            name (str | Unset):
+            descr (str | Unset):
+            description (str | Unset):
+            userid (int | Unset):
+            method_internal (CertMethodNew | Unset): Options for creating/updating an internal certificate.
                 For key type, size and options, query /system/certopts for the
                 supported values.
 
@@ -46,29 +49,29 @@ class NewCertReq:
                 - org:          organization, business name
                 - ou:           organization unit
                 - server_cert   true for server cert, false for user cert
-            method_existing_pem (Union[Unset, CertMethodExistingPEM]): Existing PEM certificate and key, either in
-                PEM/pkcs12 format or base64-encoded
-            method_existing_pkcs12 (Union[Unset, CertMethodExistingPkcs12]): Existing PKCS12 certificate and key; the PKCS12
+            method_existing_pem (CertMethodExistingPEM | Unset): Existing PEM certificate and key, either in PEM/pkcs12
+                format or base64-encoded
+            method_existing_pkcs12 (CertMethodExistingPkcs12 | Unset): Existing PKCS12 certificate and key; the PKCS12
                 payload
                 is to be sent as a file upload part in a multi-part request, otherwise
                 it can be included as pkcs12_b64 directly within this structure.
-            method_csr (Union[Unset, CertMethodSigningRequest]):
-            method_sign (Union[Unset, CertMethodSignCSR]): Sign a certificate signing request with the selected CA.
+            method_csr (CertMethodSigningRequest | Unset):
+            method_sign (CertMethodSignCSR | Unset): Sign a certificate signing request with the selected CA.
                 An existing csr_refid or new CSR (base64 encoded "csr") must be provided.
     """
 
-    name: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    description: Union[Unset, str] = UNSET
-    userid: Union[Unset, int] = UNSET
-    method_internal: Union[Unset, "CertMethodNew"] = UNSET
-    method_existing_pem: Union[Unset, "CertMethodExistingPEM"] = UNSET
-    method_existing_pkcs12: Union[Unset, "CertMethodExistingPkcs12"] = UNSET
-    method_csr: Union[Unset, "CertMethodSigningRequest"] = UNSET
-    method_sign: Union[Unset, "CertMethodSignCSR"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    descr: str | Unset = UNSET
+    description: str | Unset = UNSET
+    userid: int | Unset = UNSET
+    method_internal: CertMethodNew | Unset = UNSET
+    method_existing_pem: CertMethodExistingPEM | Unset = UNSET
+    method_existing_pkcs12: CertMethodExistingPkcs12 | Unset = UNSET
+    method_csr: CertMethodSigningRequest | Unset = UNSET
+    method_sign: CertMethodSignCSR | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         descr = self.descr
@@ -77,27 +80,27 @@ class NewCertReq:
 
         userid = self.userid
 
-        method_internal: Union[Unset, Dict[str, Any]] = UNSET
+        method_internal: dict[str, Any] | Unset = UNSET
         if not isinstance(self.method_internal, Unset):
             method_internal = self.method_internal.to_dict()
 
-        method_existing_pem: Union[Unset, Dict[str, Any]] = UNSET
+        method_existing_pem: dict[str, Any] | Unset = UNSET
         if not isinstance(self.method_existing_pem, Unset):
             method_existing_pem = self.method_existing_pem.to_dict()
 
-        method_existing_pkcs12: Union[Unset, Dict[str, Any]] = UNSET
+        method_existing_pkcs12: dict[str, Any] | Unset = UNSET
         if not isinstance(self.method_existing_pkcs12, Unset):
             method_existing_pkcs12 = self.method_existing_pkcs12.to_dict()
 
-        method_csr: Union[Unset, Dict[str, Any]] = UNSET
+        method_csr: dict[str, Any] | Unset = UNSET
         if not isinstance(self.method_csr, Unset):
             method_csr = self.method_csr.to_dict()
 
-        method_sign: Union[Unset, Dict[str, Any]] = UNSET
+        method_sign: dict[str, Any] | Unset = UNSET
         if not isinstance(self.method_sign, Unset):
             method_sign = self.method_sign.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -122,14 +125,14 @@ class NewCertReq:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.cert_method_existing_pem import CertMethodExistingPEM
         from ..models.cert_method_existing_pkcs_12 import CertMethodExistingPkcs12
         from ..models.cert_method_new import CertMethodNew
         from ..models.cert_method_sign_csr import CertMethodSignCSR
         from ..models.cert_method_signing_request import CertMethodSigningRequest
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         descr = d.pop("descr", UNSET)
@@ -139,35 +142,35 @@ class NewCertReq:
         userid = d.pop("userid", UNSET)
 
         _method_internal = d.pop("method_internal", UNSET)
-        method_internal: Union[Unset, CertMethodNew]
+        method_internal: CertMethodNew | Unset
         if isinstance(_method_internal, Unset):
             method_internal = UNSET
         else:
             method_internal = CertMethodNew.from_dict(_method_internal)
 
         _method_existing_pem = d.pop("method_existing_pem", UNSET)
-        method_existing_pem: Union[Unset, CertMethodExistingPEM]
+        method_existing_pem: CertMethodExistingPEM | Unset
         if isinstance(_method_existing_pem, Unset):
             method_existing_pem = UNSET
         else:
             method_existing_pem = CertMethodExistingPEM.from_dict(_method_existing_pem)
 
         _method_existing_pkcs12 = d.pop("method_existing_pkcs12", UNSET)
-        method_existing_pkcs12: Union[Unset, CertMethodExistingPkcs12]
+        method_existing_pkcs12: CertMethodExistingPkcs12 | Unset
         if isinstance(_method_existing_pkcs12, Unset):
             method_existing_pkcs12 = UNSET
         else:
             method_existing_pkcs12 = CertMethodExistingPkcs12.from_dict(_method_existing_pkcs12)
 
         _method_csr = d.pop("method_csr", UNSET)
-        method_csr: Union[Unset, CertMethodSigningRequest]
+        method_csr: CertMethodSigningRequest | Unset
         if isinstance(_method_csr, Unset):
             method_csr = UNSET
         else:
             method_csr = CertMethodSigningRequest.from_dict(_method_csr)
 
         _method_sign = d.pop("method_sign", UNSET)
-        method_sign: Union[Unset, CertMethodSignCSR]
+        method_sign: CertMethodSignCSR | Unset
         if isinstance(_method_sign, Unset):
             method_sign = UNSET
         else:
@@ -189,7 +192,7 @@ class NewCertReq:
         return new_cert_req
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

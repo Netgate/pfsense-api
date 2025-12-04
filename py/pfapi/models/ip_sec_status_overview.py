@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,53 +22,53 @@ T = TypeVar("T", bound="IPSecStatusOverview")
 class IPSecStatusOverview:
     """
     Attributes:
-        enabled (Union[Unset, bool]):
-        daemon_running (Union[Unset, bool]):
-        status (Union[Unset, IPSecStatus]):
-        lease (Union[Unset, List['IPSecPool']]):
-        sads (Union[Unset, List['IPSecSAD']]):
-        spds (Union[Unset, List['IPSecSPD']]):
+        enabled (bool | Unset):
+        daemon_running (bool | Unset):
+        status (IPSecStatus | Unset):
+        lease (list[IPSecPool] | Unset):
+        sads (list[IPSecSAD] | Unset):
+        spds (list[IPSecSPD] | Unset):
     """
 
-    enabled: Union[Unset, bool] = UNSET
-    daemon_running: Union[Unset, bool] = UNSET
-    status: Union[Unset, "IPSecStatus"] = UNSET
-    lease: Union[Unset, List["IPSecPool"]] = UNSET
-    sads: Union[Unset, List["IPSecSAD"]] = UNSET
-    spds: Union[Unset, List["IPSecSPD"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    enabled: bool | Unset = UNSET
+    daemon_running: bool | Unset = UNSET
+    status: IPSecStatus | Unset = UNSET
+    lease: list[IPSecPool] | Unset = UNSET
+    sads: list[IPSecSAD] | Unset = UNSET
+    spds: list[IPSecSPD] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enabled = self.enabled
 
         daemon_running = self.daemon_running
 
-        status: Union[Unset, Dict[str, Any]] = UNSET
+        status: dict[str, Any] | Unset = UNSET
         if not isinstance(self.status, Unset):
             status = self.status.to_dict()
 
-        lease: Union[Unset, List[Dict[str, Any]]] = UNSET
+        lease: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.lease, Unset):
             lease = []
             for lease_item_data in self.lease:
                 lease_item = lease_item_data.to_dict()
                 lease.append(lease_item)
 
-        sads: Union[Unset, List[Dict[str, Any]]] = UNSET
+        sads: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.sads, Unset):
             sads = []
             for sads_item_data in self.sads:
                 sads_item = sads_item_data.to_dict()
                 sads.append(sads_item)
 
-        spds: Union[Unset, List[Dict[str, Any]]] = UNSET
+        spds: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.spds, Unset):
             spds = []
             for spds_item_data in self.spds:
                 spds_item = spds_item_data.to_dict()
                 spds.append(spds_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if enabled is not UNSET:
@@ -84,44 +87,50 @@ class IPSecStatusOverview:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ip_sec_pool import IPSecPool
         from ..models.ip_sec_sad import IPSecSAD
         from ..models.ip_sec_spd import IPSecSPD
         from ..models.ip_sec_status import IPSecStatus
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         enabled = d.pop("enabled", UNSET)
 
         daemon_running = d.pop("daemon_running", UNSET)
 
         _status = d.pop("status", UNSET)
-        status: Union[Unset, IPSecStatus]
+        status: IPSecStatus | Unset
         if isinstance(_status, Unset):
             status = UNSET
         else:
             status = IPSecStatus.from_dict(_status)
 
-        lease = []
         _lease = d.pop("lease", UNSET)
-        for lease_item_data in _lease or []:
-            lease_item = IPSecPool.from_dict(lease_item_data)
+        lease: list[IPSecPool] | Unset = UNSET
+        if _lease is not UNSET:
+            lease = []
+            for lease_item_data in _lease:
+                lease_item = IPSecPool.from_dict(lease_item_data)
 
-            lease.append(lease_item)
+                lease.append(lease_item)
 
-        sads = []
         _sads = d.pop("sads", UNSET)
-        for sads_item_data in _sads or []:
-            sads_item = IPSecSAD.from_dict(sads_item_data)
+        sads: list[IPSecSAD] | Unset = UNSET
+        if _sads is not UNSET:
+            sads = []
+            for sads_item_data in _sads:
+                sads_item = IPSecSAD.from_dict(sads_item_data)
 
-            sads.append(sads_item)
+                sads.append(sads_item)
 
-        spds = []
         _spds = d.pop("spds", UNSET)
-        for spds_item_data in _spds or []:
-            spds_item = IPSecSPD.from_dict(spds_item_data)
+        spds: list[IPSecSPD] | Unset = UNSET
+        if _spds is not UNSET:
+            spds = []
+            for spds_item_data in _spds:
+                spds_item = IPSecSPD.from_dict(spds_item_data)
 
-            spds.append(spds_item)
+                spds.append(spds_item)
 
         ip_sec_status_overview = cls(
             enabled=enabled,
@@ -136,7 +145,7 @@ class IPSecStatusOverview:
         return ip_sec_status_overview
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

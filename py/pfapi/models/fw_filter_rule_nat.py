@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,55 +15,55 @@ T = TypeVar("T", bound="FWFilterRuleNAT")
 class FWFilterRuleNAT:
     """
     Attributes:
-        enabled (Union[Unset, bool]):
-        source (Union[Unset, str]): address to apply to the NAT64 rule
-        type (Union[Unset, str]): auto, network, alias, interface
+        enabled (bool | Unset):
+        source (str | Unset): address to apply to the NAT64 rule
+        type_ (str | Unset): auto, network, alias, interface
     """
 
-    enabled: Union[Unset, bool] = UNSET
-    source: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    enabled: bool | Unset = UNSET
+    source: str | Unset = UNSET
+    type_: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enabled = self.enabled
 
         source = self.source
 
-        type = self.type
+        type_ = self.type_
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if enabled is not UNSET:
             field_dict["enabled"] = enabled
         if source is not UNSET:
             field_dict["source"] = source
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
 
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         enabled = d.pop("enabled", UNSET)
 
         source = d.pop("source", UNSET)
 
-        type = d.pop("type", UNSET)
+        type_ = d.pop("type", UNSET)
 
         fw_filter_rule_nat = cls(
             enabled=enabled,
             source=source,
-            type=type,
+            type_=type_,
         )
 
         fw_filter_rule_nat.additional_properties = d
         return fw_filter_rule_nat
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

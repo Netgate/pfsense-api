@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,23 +15,23 @@ T = TypeVar("T", bound="SNMPModules")
 class SNMPModules:
     """
     Attributes:
-        mibii (Union[Unset, bool]):
-        netgraph (Union[Unset, bool]):
-        pf (Union[Unset, bool]):
-        hostres (Union[Unset, bool]):
-        ucd (Union[Unset, bool]):
-        regex (Union[Unset, bool]):
+        mibii (bool | Unset):
+        netgraph (bool | Unset):
+        pf (bool | Unset):
+        hostres (bool | Unset):
+        ucd (bool | Unset):
+        regex (bool | Unset):
     """
 
-    mibii: Union[Unset, bool] = UNSET
-    netgraph: Union[Unset, bool] = UNSET
-    pf: Union[Unset, bool] = UNSET
-    hostres: Union[Unset, bool] = UNSET
-    ucd: Union[Unset, bool] = UNSET
-    regex: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    mibii: bool | Unset = UNSET
+    netgraph: bool | Unset = UNSET
+    pf: bool | Unset = UNSET
+    hostres: bool | Unset = UNSET
+    ucd: bool | Unset = UNSET
+    regex: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         mibii = self.mibii
 
         netgraph = self.netgraph
@@ -41,7 +44,7 @@ class SNMPModules:
 
         regex = self.regex
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if mibii is not UNSET:
@@ -60,8 +63,8 @@ class SNMPModules:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         mibii = d.pop("mibii", UNSET)
 
         netgraph = d.pop("netgraph", UNSET)
@@ -87,7 +90,7 @@ class SNMPModules:
         return snmp_modules
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

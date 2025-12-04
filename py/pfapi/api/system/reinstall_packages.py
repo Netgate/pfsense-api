@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -14,25 +14,24 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     *,
     body: InstallPackagesOpt,
-    chunked: Union[Unset, bool] = UNSET,
-) -> Dict[str, Any]:
-    headers: Dict[str, Any] = {}
+    chunked: bool | Unset = UNSET,
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
-    params: Dict[str, Any] = {}
+    params: dict[str, Any] = {}
 
     params["chunked"] = chunked
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "post",
         "url": "/system/package/reinstall",
         "params": params,
     }
 
-    _body = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-    _kwargs["json"] = _body
     headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
@@ -40,16 +39,18 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, InstallPackagesResponse]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Error | InstallPackagesResponse | None:
     if response.status_code == 200:
         response_200 = InstallPackagesResponse.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -57,8 +58,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, InstallPackagesResponse]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Error | InstallPackagesResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -69,17 +70,17 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: InstallPackagesOpt,
-    chunked: Union[Unset, bool] = UNSET,
-) -> Response[Union[Error, InstallPackagesResponse]]:
+    chunked: bool | Unset = UNSET,
+) -> Response[Error | InstallPackagesResponse]:
     """Reinstall package(s)
 
      Reinstall specified list of packages. If chunked=true, then the progress of the reinstallation is
     returned as chunks.
 
     Args:
-        chunked (Union[Unset, bool]):
+        chunked (bool | Unset):
         body (InstallPackagesOpt):
 
     Raises:
@@ -87,7 +88,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, InstallPackagesResponse]]
+        Response[Error | InstallPackagesResponse]
     """
 
     kwargs = _get_kwargs(
@@ -104,17 +105,17 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: InstallPackagesOpt,
-    chunked: Union[Unset, bool] = UNSET,
-) -> Optional[Union[Error, InstallPackagesResponse]]:
+    chunked: bool | Unset = UNSET,
+) -> Error | InstallPackagesResponse | None:
     """Reinstall package(s)
 
      Reinstall specified list of packages. If chunked=true, then the progress of the reinstallation is
     returned as chunks.
 
     Args:
-        chunked (Union[Unset, bool]):
+        chunked (bool | Unset):
         body (InstallPackagesOpt):
 
     Raises:
@@ -122,7 +123,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, InstallPackagesResponse]
+        Error | InstallPackagesResponse
     """
 
     return sync_detailed(
@@ -134,17 +135,17 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: InstallPackagesOpt,
-    chunked: Union[Unset, bool] = UNSET,
-) -> Response[Union[Error, InstallPackagesResponse]]:
+    chunked: bool | Unset = UNSET,
+) -> Response[Error | InstallPackagesResponse]:
     """Reinstall package(s)
 
      Reinstall specified list of packages. If chunked=true, then the progress of the reinstallation is
     returned as chunks.
 
     Args:
-        chunked (Union[Unset, bool]):
+        chunked (bool | Unset):
         body (InstallPackagesOpt):
 
     Raises:
@@ -152,7 +153,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, InstallPackagesResponse]]
+        Response[Error | InstallPackagesResponse]
     """
 
     kwargs = _get_kwargs(
@@ -167,17 +168,17 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: InstallPackagesOpt,
-    chunked: Union[Unset, bool] = UNSET,
-) -> Optional[Union[Error, InstallPackagesResponse]]:
+    chunked: bool | Unset = UNSET,
+) -> Error | InstallPackagesResponse | None:
     """Reinstall package(s)
 
      Reinstall specified list of packages. If chunked=true, then the progress of the reinstallation is
     returned as chunks.
 
     Args:
-        chunked (Union[Unset, bool]):
+        chunked (bool | Unset):
         body (InstallPackagesOpt):
 
     Raises:
@@ -185,7 +186,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, InstallPackagesResponse]
+        Error | InstallPackagesResponse
     """
 
     return (

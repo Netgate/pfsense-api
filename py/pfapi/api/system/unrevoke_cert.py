@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,35 +14,36 @@ from ...types import Response
 def _get_kwargs(
     refid: str,
     certid: str,
-) -> Dict[str, Any]:
-    _kwargs: Dict[str, Any] = {
+) -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "delete",
-        "url": f"/system/crl/{refid}/cert/{certid}",
+        "url": "/system/crl/{refid}/cert/{certid}".format(
+            refid=quote(str(refid), safe=""),
+            certid=quote(str(certid), safe=""),
+        ),
     }
 
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[CRLEntries, Error]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> CRLEntries | Error | None:
     if response.status_code == 200:
         response_200 = CRLEntries.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[CRLEntries, Error]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[CRLEntries | Error]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -54,8 +56,8 @@ def sync_detailed(
     refid: str,
     certid: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[CRLEntries, Error]]:
+    client: AuthenticatedClient | Client,
+) -> Response[CRLEntries | Error]:
     """Unrevoke certificate by its ID.
 
      Unrevokes the certificate by removing it from the CRL.
@@ -69,7 +71,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CRLEntries, Error]]
+        Response[CRLEntries | Error]
     """
 
     kwargs = _get_kwargs(
@@ -88,8 +90,8 @@ def sync(
     refid: str,
     certid: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[CRLEntries, Error]]:
+    client: AuthenticatedClient | Client,
+) -> CRLEntries | Error | None:
     """Unrevoke certificate by its ID.
 
      Unrevokes the certificate by removing it from the CRL.
@@ -103,7 +105,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CRLEntries, Error]
+        CRLEntries | Error
     """
 
     return sync_detailed(
@@ -117,8 +119,8 @@ async def asyncio_detailed(
     refid: str,
     certid: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[CRLEntries, Error]]:
+    client: AuthenticatedClient | Client,
+) -> Response[CRLEntries | Error]:
     """Unrevoke certificate by its ID.
 
      Unrevokes the certificate by removing it from the CRL.
@@ -132,7 +134,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CRLEntries, Error]]
+        Response[CRLEntries | Error]
     """
 
     kwargs = _get_kwargs(
@@ -149,8 +151,8 @@ async def asyncio(
     refid: str,
     certid: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[CRLEntries, Error]]:
+    client: AuthenticatedClient | Client,
+) -> CRLEntries | Error | None:
     """Unrevoke certificate by its ID.
 
      Unrevokes the certificate by removing it from the CRL.
@@ -164,7 +166,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CRLEntries, Error]
+        CRLEntries | Error
     """
 
     return (

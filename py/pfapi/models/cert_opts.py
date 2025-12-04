@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,36 +15,36 @@ T = TypeVar("T", bound="CertOpts")
 class CertOpts:
     """
     Attributes:
-        key_type (Union[Unset, List[str]]):
-        key_size (Union[Unset, List[int]]):
-        key_opt (Union[Unset, List[str]]):
-        digest (Union[Unset, List[str]]):
+        key_type (list[str] | Unset):
+        key_size (list[int] | Unset):
+        key_opt (list[str] | Unset):
+        digest (list[str] | Unset):
     """
 
-    key_type: Union[Unset, List[str]] = UNSET
-    key_size: Union[Unset, List[int]] = UNSET
-    key_opt: Union[Unset, List[str]] = UNSET
-    digest: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    key_type: list[str] | Unset = UNSET
+    key_size: list[int] | Unset = UNSET
+    key_opt: list[str] | Unset = UNSET
+    digest: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        key_type: Union[Unset, List[str]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        key_type: list[str] | Unset = UNSET
         if not isinstance(self.key_type, Unset):
             key_type = self.key_type
 
-        key_size: Union[Unset, List[int]] = UNSET
+        key_size: list[int] | Unset = UNSET
         if not isinstance(self.key_size, Unset):
             key_size = self.key_size
 
-        key_opt: Union[Unset, List[str]] = UNSET
+        key_opt: list[str] | Unset = UNSET
         if not isinstance(self.key_opt, Unset):
             key_opt = self.key_opt
 
-        digest: Union[Unset, List[str]] = UNSET
+        digest: list[str] | Unset = UNSET
         if not isinstance(self.digest, Unset):
             digest = self.digest
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if key_type is not UNSET:
@@ -56,15 +59,15 @@ class CertOpts:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
-        key_type = cast(List[str], d.pop("key_type", UNSET))
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        key_type = cast(list[str], d.pop("key_type", UNSET))
 
-        key_size = cast(List[int], d.pop("key_size", UNSET))
+        key_size = cast(list[int], d.pop("key_size", UNSET))
 
-        key_opt = cast(List[str], d.pop("key_opt", UNSET))
+        key_opt = cast(list[str], d.pop("key_opt", UNSET))
 
-        digest = cast(List[str], d.pop("digest", UNSET))
+        digest = cast(list[str], d.pop("digest", UNSET))
 
         cert_opts = cls(
             key_type=key_type,
@@ -77,7 +80,7 @@ class CertOpts:
         return cert_opts
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

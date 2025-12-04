@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,48 +20,48 @@ T = TypeVar("T", bound="NATRule")
 class NATRule:
     """
     Attributes:
-        id (Union[Unset, str]):
-        associated_rule_id (Union[Unset, str]):
-        created (Union[Unset, FWUserTimestamp]):
-        descr (Union[Unset, str]):
-        disabled (Union[Unset, bool]):
-        destination (Union[Unset, NATAddrPort]):
-        filter_rule_association (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        target (Union[Unset, NATAddrPort]):
-        natreflection (Union[Unset, str]):
-        nordr (Union[Unset, bool]):
-        protocol (Union[Unset, str]):
-        ipprotocol (Union[Unset, str]):
-        source (Union[Unset, NATAddrPort]):
-        updated (Union[Unset, FWUserTimestamp]):
-        nosync (Union[Unset, bool]):
+        id (str | Unset):
+        associated_rule_id (str | Unset):
+        created (FWUserTimestamp | Unset):
+        descr (str | Unset):
+        disabled (bool | Unset):
+        destination (NATAddrPort | Unset):
+        filter_rule_association (str | Unset):
+        interface (str | Unset):
+        target (NATAddrPort | Unset):
+        natreflection (str | Unset):
+        nordr (bool | Unset):
+        protocol (str | Unset):
+        ipprotocol (str | Unset):
+        source (NATAddrPort | Unset):
+        updated (FWUserTimestamp | Unset):
+        nosync (bool | Unset):
     """
 
-    id: Union[Unset, str] = UNSET
-    associated_rule_id: Union[Unset, str] = UNSET
-    created: Union[Unset, "FWUserTimestamp"] = UNSET
-    descr: Union[Unset, str] = UNSET
-    disabled: Union[Unset, bool] = UNSET
-    destination: Union[Unset, "NATAddrPort"] = UNSET
-    filter_rule_association: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    target: Union[Unset, "NATAddrPort"] = UNSET
-    natreflection: Union[Unset, str] = UNSET
-    nordr: Union[Unset, bool] = UNSET
-    protocol: Union[Unset, str] = UNSET
-    ipprotocol: Union[Unset, str] = UNSET
-    source: Union[Unset, "NATAddrPort"] = UNSET
-    updated: Union[Unset, "FWUserTimestamp"] = UNSET
-    nosync: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    id: str | Unset = UNSET
+    associated_rule_id: str | Unset = UNSET
+    created: FWUserTimestamp | Unset = UNSET
+    descr: str | Unset = UNSET
+    disabled: bool | Unset = UNSET
+    destination: NATAddrPort | Unset = UNSET
+    filter_rule_association: str | Unset = UNSET
+    interface: str | Unset = UNSET
+    target: NATAddrPort | Unset = UNSET
+    natreflection: str | Unset = UNSET
+    nordr: bool | Unset = UNSET
+    protocol: str | Unset = UNSET
+    ipprotocol: str | Unset = UNSET
+    source: NATAddrPort | Unset = UNSET
+    updated: FWUserTimestamp | Unset = UNSET
+    nosync: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         id = self.id
 
         associated_rule_id = self.associated_rule_id
 
-        created: Union[Unset, Dict[str, Any]] = UNSET
+        created: dict[str, Any] | Unset = UNSET
         if not isinstance(self.created, Unset):
             created = self.created.to_dict()
 
@@ -66,7 +69,7 @@ class NATRule:
 
         disabled = self.disabled
 
-        destination: Union[Unset, Dict[str, Any]] = UNSET
+        destination: dict[str, Any] | Unset = UNSET
         if not isinstance(self.destination, Unset):
             destination = self.destination.to_dict()
 
@@ -74,7 +77,7 @@ class NATRule:
 
         interface = self.interface
 
-        target: Union[Unset, Dict[str, Any]] = UNSET
+        target: dict[str, Any] | Unset = UNSET
         if not isinstance(self.target, Unset):
             target = self.target.to_dict()
 
@@ -86,17 +89,17 @@ class NATRule:
 
         ipprotocol = self.ipprotocol
 
-        source: Union[Unset, Dict[str, Any]] = UNSET
+        source: dict[str, Any] | Unset = UNSET
         if not isinstance(self.source, Unset):
             source = self.source.to_dict()
 
-        updated: Union[Unset, Dict[str, Any]] = UNSET
+        updated: dict[str, Any] | Unset = UNSET
         if not isinstance(self.updated, Unset):
             updated = self.updated.to_dict()
 
         nosync = self.nosync
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if id is not UNSET:
@@ -135,17 +138,17 @@ class NATRule:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.fw_user_timestamp import FWUserTimestamp
         from ..models.nat_addr_port import NATAddrPort
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         id = d.pop("id", UNSET)
 
         associated_rule_id = d.pop("associated_rule_id", UNSET)
 
         _created = d.pop("created", UNSET)
-        created: Union[Unset, FWUserTimestamp]
+        created: FWUserTimestamp | Unset
         if isinstance(_created, Unset):
             created = UNSET
         else:
@@ -156,7 +159,7 @@ class NATRule:
         disabled = d.pop("disabled", UNSET)
 
         _destination = d.pop("destination", UNSET)
-        destination: Union[Unset, NATAddrPort]
+        destination: NATAddrPort | Unset
         if isinstance(_destination, Unset):
             destination = UNSET
         else:
@@ -167,7 +170,7 @@ class NATRule:
         interface = d.pop("interface", UNSET)
 
         _target = d.pop("target", UNSET)
-        target: Union[Unset, NATAddrPort]
+        target: NATAddrPort | Unset
         if isinstance(_target, Unset):
             target = UNSET
         else:
@@ -182,14 +185,14 @@ class NATRule:
         ipprotocol = d.pop("ipprotocol", UNSET)
 
         _source = d.pop("source", UNSET)
-        source: Union[Unset, NATAddrPort]
+        source: NATAddrPort | Unset
         if isinstance(_source, Unset):
             source = UNSET
         else:
             source = NATAddrPort.from_dict(_source)
 
         _updated = d.pop("updated", UNSET)
-        updated: Union[Unset, FWUserTimestamp]
+        updated: FWUserTimestamp | Unset
         if isinstance(_updated, Unset):
             updated = UNSET
         else:
@@ -220,7 +223,7 @@ class NATRule:
         return nat_rule
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

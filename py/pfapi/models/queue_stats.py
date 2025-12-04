@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,42 +15,42 @@ T = TypeVar("T", bound="QueueStats")
 class QueueStats:
     """
     Attributes:
-        name (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        shapertype (Union[Unset, str]):
-        contains (Union[Unset, List[str]]):
-        pkts (Union[Unset, str]):
-        bytes_ (Union[Unset, str]):
-        droppedpkts (Union[Unset, str]):
-        droppedbytes (Union[Unset, str]):
-        qlengthitems (Union[Unset, str]):
-        qlengthsize (Union[Unset, str]):
-        borrows (Union[Unset, str]):
-        suspends (Union[Unset, str]):
+        name (str | Unset):
+        interface (str | Unset):
+        shapertype (str | Unset):
+        contains (list[str] | Unset):
+        pkts (str | Unset):
+        bytes_ (str | Unset):
+        droppedpkts (str | Unset):
+        droppedbytes (str | Unset):
+        qlengthitems (str | Unset):
+        qlengthsize (str | Unset):
+        borrows (str | Unset):
+        suspends (str | Unset):
     """
 
-    name: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    shapertype: Union[Unset, str] = UNSET
-    contains: Union[Unset, List[str]] = UNSET
-    pkts: Union[Unset, str] = UNSET
-    bytes_: Union[Unset, str] = UNSET
-    droppedpkts: Union[Unset, str] = UNSET
-    droppedbytes: Union[Unset, str] = UNSET
-    qlengthitems: Union[Unset, str] = UNSET
-    qlengthsize: Union[Unset, str] = UNSET
-    borrows: Union[Unset, str] = UNSET
-    suspends: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    interface: str | Unset = UNSET
+    shapertype: str | Unset = UNSET
+    contains: list[str] | Unset = UNSET
+    pkts: str | Unset = UNSET
+    bytes_: str | Unset = UNSET
+    droppedpkts: str | Unset = UNSET
+    droppedbytes: str | Unset = UNSET
+    qlengthitems: str | Unset = UNSET
+    qlengthsize: str | Unset = UNSET
+    borrows: str | Unset = UNSET
+    suspends: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         interface = self.interface
 
         shapertype = self.shapertype
 
-        contains: Union[Unset, List[str]] = UNSET
+        contains: list[str] | Unset = UNSET
         if not isinstance(self.contains, Unset):
             contains = self.contains
 
@@ -67,7 +70,7 @@ class QueueStats:
 
         suspends = self.suspends
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -98,15 +101,15 @@ class QueueStats:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         interface = d.pop("interface", UNSET)
 
         shapertype = d.pop("shapertype", UNSET)
 
-        contains = cast(List[str], d.pop("contains", UNSET))
+        contains = cast(list[str], d.pop("contains", UNSET))
 
         pkts = d.pop("pkts", UNSET)
 
@@ -143,7 +146,7 @@ class QueueStats:
         return queue_stats
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

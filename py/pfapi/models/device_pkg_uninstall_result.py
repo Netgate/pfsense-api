@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,24 +15,24 @@ T = TypeVar("T", bound="DevicePkgUninstallResult")
 class DevicePkgUninstallResult:
     """
     Attributes:
-        device_id (Union[Unset, str]):
-        uninstall_messages (Union[Unset, str]):
-        result (Union[Unset, str]):
+        device_id (str | Unset):
+        uninstall_messages (str | Unset):
+        result (str | Unset):
     """
 
-    device_id: Union[Unset, str] = UNSET
-    uninstall_messages: Union[Unset, str] = UNSET
-    result: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    device_id: str | Unset = UNSET
+    uninstall_messages: str | Unset = UNSET
+    result: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         device_id = self.device_id
 
         uninstall_messages = self.uninstall_messages
 
         result = self.result
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if device_id is not UNSET:
@@ -42,8 +45,8 @@ class DevicePkgUninstallResult:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         device_id = d.pop("device_id", UNSET)
 
         uninstall_messages = d.pop("uninstall_messages", UNSET)
@@ -60,7 +63,7 @@ class DevicePkgUninstallResult:
         return device_pkg_uninstall_result
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

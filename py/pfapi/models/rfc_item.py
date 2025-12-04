@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,44 +16,44 @@ class RFCItem:
     """
     Attributes:
         enable (bool):
-        host (Union[Unset, str]):
-        zone (Union[Unset, str]):
-        ttl (Union[Unset, str]):
-        keyname (Union[Unset, str]):
-        keyalgorithm (Union[Unset, str]):
-        keydata (Union[Unset, str]):
-        server (Union[Unset, str]):
-        usetcp (Union[Unset, bool]):
-        usepublicip (Union[Unset, bool]):
-        recordtype (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        updatesource (Union[Unset, str]):
-        updatesourcefamily (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        status (Union[Unset, str]): failed or updated
-        ip (Union[Unset, str]): cached IP/IPv6
+        host (str | Unset):
+        zone (str | Unset):
+        ttl (str | Unset):
+        keyname (str | Unset):
+        keyalgorithm (str | Unset):
+        keydata (str | Unset):
+        server (str | Unset):
+        usetcp (bool | Unset):
+        usepublicip (bool | Unset):
+        recordtype (str | Unset):
+        interface (str | Unset):
+        updatesource (str | Unset):
+        updatesourcefamily (str | Unset):
+        descr (str | Unset):
+        status (str | Unset): failed or updated
+        ip (str | Unset): cached IP/IPv6
     """
 
     enable: bool
-    host: Union[Unset, str] = UNSET
-    zone: Union[Unset, str] = UNSET
-    ttl: Union[Unset, str] = UNSET
-    keyname: Union[Unset, str] = UNSET
-    keyalgorithm: Union[Unset, str] = UNSET
-    keydata: Union[Unset, str] = UNSET
-    server: Union[Unset, str] = UNSET
-    usetcp: Union[Unset, bool] = UNSET
-    usepublicip: Union[Unset, bool] = UNSET
-    recordtype: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    updatesource: Union[Unset, str] = UNSET
-    updatesourcefamily: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    status: Union[Unset, str] = UNSET
-    ip: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    host: str | Unset = UNSET
+    zone: str | Unset = UNSET
+    ttl: str | Unset = UNSET
+    keyname: str | Unset = UNSET
+    keyalgorithm: str | Unset = UNSET
+    keydata: str | Unset = UNSET
+    server: str | Unset = UNSET
+    usetcp: bool | Unset = UNSET
+    usepublicip: bool | Unset = UNSET
+    recordtype: str | Unset = UNSET
+    interface: str | Unset = UNSET
+    updatesource: str | Unset = UNSET
+    updatesourcefamily: str | Unset = UNSET
+    descr: str | Unset = UNSET
+    status: str | Unset = UNSET
+    ip: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enable = self.enable
 
         host = self.host
@@ -85,7 +88,7 @@ class RFCItem:
 
         ip = self.ip
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -128,8 +131,8 @@ class RFCItem:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         enable = d.pop("enable")
 
         host = d.pop("host", UNSET)
@@ -188,7 +191,7 @@ class RFCItem:
         return rfc_item
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

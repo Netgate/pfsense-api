@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,24 +15,24 @@ T = TypeVar("T", bound="NtpPpsFlags")
 class NtpPpsFlags:
     """
     Attributes:
-        enable_falling_edge_pps_signal_processing (Union[Unset, bool]):
-        enable_kernel_pps_clock_disciple (Union[Unset, bool]):
-        record_a_timestamp_once_for_each_second (Union[Unset, bool]):
+        enable_falling_edge_pps_signal_processing (bool | Unset):
+        enable_kernel_pps_clock_disciple (bool | Unset):
+        record_a_timestamp_once_for_each_second (bool | Unset):
     """
 
-    enable_falling_edge_pps_signal_processing: Union[Unset, bool] = UNSET
-    enable_kernel_pps_clock_disciple: Union[Unset, bool] = UNSET
-    record_a_timestamp_once_for_each_second: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    enable_falling_edge_pps_signal_processing: bool | Unset = UNSET
+    enable_kernel_pps_clock_disciple: bool | Unset = UNSET
+    record_a_timestamp_once_for_each_second: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enable_falling_edge_pps_signal_processing = self.enable_falling_edge_pps_signal_processing
 
         enable_kernel_pps_clock_disciple = self.enable_kernel_pps_clock_disciple
 
         record_a_timestamp_once_for_each_second = self.record_a_timestamp_once_for_each_second
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if enable_falling_edge_pps_signal_processing is not UNSET:
@@ -42,8 +45,8 @@ class NtpPpsFlags:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         enable_falling_edge_pps_signal_processing = d.pop("enable_falling_edge_pps_signal_processing", UNSET)
 
         enable_kernel_pps_clock_disciple = d.pop("enable_kernel_pps_clock_disciple", UNSET)
@@ -60,7 +63,7 @@ class NtpPpsFlags:
         return ntp_pps_flags
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

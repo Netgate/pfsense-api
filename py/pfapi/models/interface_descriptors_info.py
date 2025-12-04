@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,6 +17,7 @@ if TYPE_CHECKING:
     from ..models.interface_descriptors_info_ppp import InterfaceDescriptorsInfoPpp
     from ..models.interface_descriptors_info_qinq import InterfaceDescriptorsInfoQinq
     from ..models.interface_descriptors_info_vlan import InterfaceDescriptorsInfoVlan
+    from ..models.interface_descriptors_info_vxlan import InterfaceDescriptorsInfoVxlan
 
 
 T = TypeVar("T", bound="InterfaceDescriptorsInfo")
@@ -24,60 +28,66 @@ class InterfaceDescriptorsInfo:
     """Mapping of interface names to their descriptions.
 
     Attributes:
-        gre (Union[Unset, InterfaceDescriptorsInfoGre]):
-        gif (Union[Unset, InterfaceDescriptorsInfoGif]):
-        lagg (Union[Unset, InterfaceDescriptorsInfoLagg]):
-        qinq (Union[Unset, InterfaceDescriptorsInfoQinq]):
-        ppp (Union[Unset, InterfaceDescriptorsInfoPpp]):
-        bridges (Union[Unset, InterfaceDescriptorsInfoBridges]):
-        vlan (Union[Unset, InterfaceDescriptorsInfoVlan]):
-        physical (Union[Unset, InterfaceDescriptorsInfoPhysical]):
+        gre (InterfaceDescriptorsInfoGre | Unset):
+        gif (InterfaceDescriptorsInfoGif | Unset):
+        lagg (InterfaceDescriptorsInfoLagg | Unset):
+        qinq (InterfaceDescriptorsInfoQinq | Unset):
+        ppp (InterfaceDescriptorsInfoPpp | Unset):
+        bridges (InterfaceDescriptorsInfoBridges | Unset):
+        vlan (InterfaceDescriptorsInfoVlan | Unset):
+        vxlan (InterfaceDescriptorsInfoVxlan | Unset):
+        physical (InterfaceDescriptorsInfoPhysical | Unset):
     """
 
-    gre: Union[Unset, "InterfaceDescriptorsInfoGre"] = UNSET
-    gif: Union[Unset, "InterfaceDescriptorsInfoGif"] = UNSET
-    lagg: Union[Unset, "InterfaceDescriptorsInfoLagg"] = UNSET
-    qinq: Union[Unset, "InterfaceDescriptorsInfoQinq"] = UNSET
-    ppp: Union[Unset, "InterfaceDescriptorsInfoPpp"] = UNSET
-    bridges: Union[Unset, "InterfaceDescriptorsInfoBridges"] = UNSET
-    vlan: Union[Unset, "InterfaceDescriptorsInfoVlan"] = UNSET
-    physical: Union[Unset, "InterfaceDescriptorsInfoPhysical"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    gre: InterfaceDescriptorsInfoGre | Unset = UNSET
+    gif: InterfaceDescriptorsInfoGif | Unset = UNSET
+    lagg: InterfaceDescriptorsInfoLagg | Unset = UNSET
+    qinq: InterfaceDescriptorsInfoQinq | Unset = UNSET
+    ppp: InterfaceDescriptorsInfoPpp | Unset = UNSET
+    bridges: InterfaceDescriptorsInfoBridges | Unset = UNSET
+    vlan: InterfaceDescriptorsInfoVlan | Unset = UNSET
+    vxlan: InterfaceDescriptorsInfoVxlan | Unset = UNSET
+    physical: InterfaceDescriptorsInfoPhysical | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        gre: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        gre: dict[str, Any] | Unset = UNSET
         if not isinstance(self.gre, Unset):
             gre = self.gre.to_dict()
 
-        gif: Union[Unset, Dict[str, Any]] = UNSET
+        gif: dict[str, Any] | Unset = UNSET
         if not isinstance(self.gif, Unset):
             gif = self.gif.to_dict()
 
-        lagg: Union[Unset, Dict[str, Any]] = UNSET
+        lagg: dict[str, Any] | Unset = UNSET
         if not isinstance(self.lagg, Unset):
             lagg = self.lagg.to_dict()
 
-        qinq: Union[Unset, Dict[str, Any]] = UNSET
+        qinq: dict[str, Any] | Unset = UNSET
         if not isinstance(self.qinq, Unset):
             qinq = self.qinq.to_dict()
 
-        ppp: Union[Unset, Dict[str, Any]] = UNSET
+        ppp: dict[str, Any] | Unset = UNSET
         if not isinstance(self.ppp, Unset):
             ppp = self.ppp.to_dict()
 
-        bridges: Union[Unset, Dict[str, Any]] = UNSET
+        bridges: dict[str, Any] | Unset = UNSET
         if not isinstance(self.bridges, Unset):
             bridges = self.bridges.to_dict()
 
-        vlan: Union[Unset, Dict[str, Any]] = UNSET
+        vlan: dict[str, Any] | Unset = UNSET
         if not isinstance(self.vlan, Unset):
             vlan = self.vlan.to_dict()
 
-        physical: Union[Unset, Dict[str, Any]] = UNSET
+        vxlan: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.vxlan, Unset):
+            vxlan = self.vxlan.to_dict()
+
+        physical: dict[str, Any] | Unset = UNSET
         if not isinstance(self.physical, Unset):
             physical = self.physical.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if gre is not UNSET:
@@ -94,13 +104,15 @@ class InterfaceDescriptorsInfo:
             field_dict["bridges"] = bridges
         if vlan is not UNSET:
             field_dict["vlan"] = vlan
+        if vxlan is not UNSET:
+            field_dict["vxlan"] = vxlan
         if physical is not UNSET:
             field_dict["physical"] = physical
 
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.interface_descriptors_info_bridges import InterfaceDescriptorsInfoBridges
         from ..models.interface_descriptors_info_gif import InterfaceDescriptorsInfoGif
         from ..models.interface_descriptors_info_gre import InterfaceDescriptorsInfoGre
@@ -109,59 +121,67 @@ class InterfaceDescriptorsInfo:
         from ..models.interface_descriptors_info_ppp import InterfaceDescriptorsInfoPpp
         from ..models.interface_descriptors_info_qinq import InterfaceDescriptorsInfoQinq
         from ..models.interface_descriptors_info_vlan import InterfaceDescriptorsInfoVlan
+        from ..models.interface_descriptors_info_vxlan import InterfaceDescriptorsInfoVxlan
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _gre = d.pop("gre", UNSET)
-        gre: Union[Unset, InterfaceDescriptorsInfoGre]
+        gre: InterfaceDescriptorsInfoGre | Unset
         if isinstance(_gre, Unset):
             gre = UNSET
         else:
             gre = InterfaceDescriptorsInfoGre.from_dict(_gre)
 
         _gif = d.pop("gif", UNSET)
-        gif: Union[Unset, InterfaceDescriptorsInfoGif]
+        gif: InterfaceDescriptorsInfoGif | Unset
         if isinstance(_gif, Unset):
             gif = UNSET
         else:
             gif = InterfaceDescriptorsInfoGif.from_dict(_gif)
 
         _lagg = d.pop("lagg", UNSET)
-        lagg: Union[Unset, InterfaceDescriptorsInfoLagg]
+        lagg: InterfaceDescriptorsInfoLagg | Unset
         if isinstance(_lagg, Unset):
             lagg = UNSET
         else:
             lagg = InterfaceDescriptorsInfoLagg.from_dict(_lagg)
 
         _qinq = d.pop("qinq", UNSET)
-        qinq: Union[Unset, InterfaceDescriptorsInfoQinq]
+        qinq: InterfaceDescriptorsInfoQinq | Unset
         if isinstance(_qinq, Unset):
             qinq = UNSET
         else:
             qinq = InterfaceDescriptorsInfoQinq.from_dict(_qinq)
 
         _ppp = d.pop("ppp", UNSET)
-        ppp: Union[Unset, InterfaceDescriptorsInfoPpp]
+        ppp: InterfaceDescriptorsInfoPpp | Unset
         if isinstance(_ppp, Unset):
             ppp = UNSET
         else:
             ppp = InterfaceDescriptorsInfoPpp.from_dict(_ppp)
 
         _bridges = d.pop("bridges", UNSET)
-        bridges: Union[Unset, InterfaceDescriptorsInfoBridges]
+        bridges: InterfaceDescriptorsInfoBridges | Unset
         if isinstance(_bridges, Unset):
             bridges = UNSET
         else:
             bridges = InterfaceDescriptorsInfoBridges.from_dict(_bridges)
 
         _vlan = d.pop("vlan", UNSET)
-        vlan: Union[Unset, InterfaceDescriptorsInfoVlan]
+        vlan: InterfaceDescriptorsInfoVlan | Unset
         if isinstance(_vlan, Unset):
             vlan = UNSET
         else:
             vlan = InterfaceDescriptorsInfoVlan.from_dict(_vlan)
 
+        _vxlan = d.pop("vxlan", UNSET)
+        vxlan: InterfaceDescriptorsInfoVxlan | Unset
+        if isinstance(_vxlan, Unset):
+            vxlan = UNSET
+        else:
+            vxlan = InterfaceDescriptorsInfoVxlan.from_dict(_vxlan)
+
         _physical = d.pop("physical", UNSET)
-        physical: Union[Unset, InterfaceDescriptorsInfoPhysical]
+        physical: InterfaceDescriptorsInfoPhysical | Unset
         if isinstance(_physical, Unset):
             physical = UNSET
         else:
@@ -175,6 +195,7 @@ class InterfaceDescriptorsInfo:
             ppp=ppp,
             bridges=bridges,
             vlan=vlan,
+            vxlan=vxlan,
             physical=physical,
         )
 
@@ -182,7 +203,7 @@ class InterfaceDescriptorsInfo:
         return interface_descriptors_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

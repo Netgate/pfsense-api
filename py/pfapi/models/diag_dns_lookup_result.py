@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,30 +20,30 @@ T = TypeVar("T", bound="DiagDnsLookupResult")
 class DiagDnsLookupResult:
     """
     Attributes:
-        results (Union[Unset, List['DiagDnsRecord']]):
-        timings (Union[Unset, List['DiagDnsServerTiming']]):
+        results (list[DiagDnsRecord] | Unset):
+        timings (list[DiagDnsServerTiming] | Unset):
     """
 
-    results: Union[Unset, List["DiagDnsRecord"]] = UNSET
-    timings: Union[Unset, List["DiagDnsServerTiming"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    results: list[DiagDnsRecord] | Unset = UNSET
+    timings: list[DiagDnsServerTiming] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        results: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        results: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.results, Unset):
             results = []
             for results_item_data in self.results:
                 results_item = results_item_data.to_dict()
                 results.append(results_item)
 
-        timings: Union[Unset, List[Dict[str, Any]]] = UNSET
+        timings: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.timings, Unset):
             timings = []
             for timings_item_data in self.timings:
                 timings_item = timings_item_data.to_dict()
                 timings.append(timings_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if results is not UNSET:
@@ -51,24 +54,28 @@ class DiagDnsLookupResult:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.diag_dns_record import DiagDnsRecord
         from ..models.diag_dns_server_timing import DiagDnsServerTiming
 
-        d = src_dict.copy()
-        results = []
+        d = dict(src_dict)
         _results = d.pop("results", UNSET)
-        for results_item_data in _results or []:
-            results_item = DiagDnsRecord.from_dict(results_item_data)
+        results: list[DiagDnsRecord] | Unset = UNSET
+        if _results is not UNSET:
+            results = []
+            for results_item_data in _results:
+                results_item = DiagDnsRecord.from_dict(results_item_data)
 
-            results.append(results_item)
+                results.append(results_item)
 
-        timings = []
         _timings = d.pop("timings", UNSET)
-        for timings_item_data in _timings or []:
-            timings_item = DiagDnsServerTiming.from_dict(timings_item_data)
+        timings: list[DiagDnsServerTiming] | Unset = UNSET
+        if _timings is not UNSET:
+            timings = []
+            for timings_item_data in _timings:
+                timings_item = DiagDnsServerTiming.from_dict(timings_item_data)
 
-            timings.append(timings_item)
+                timings.append(timings_item)
 
         diag_dns_lookup_result = cls(
             results=results,
@@ -79,7 +86,7 @@ class DiagDnsLookupResult:
         return diag_dns_lookup_result
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

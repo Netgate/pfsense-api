@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,29 +19,29 @@ T = TypeVar("T", bound="NtpStatus")
 class NtpStatus:
     """
     Attributes:
-        enabled (Union[Unset, bool]):
-        query_enabled (Union[Unset, bool]):
-        servers (Union[Unset, List['NtpServerInfo']]):
+        enabled (bool | Unset):
+        query_enabled (bool | Unset):
+        servers (list[NtpServerInfo] | Unset):
     """
 
-    enabled: Union[Unset, bool] = UNSET
-    query_enabled: Union[Unset, bool] = UNSET
-    servers: Union[Unset, List["NtpServerInfo"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    enabled: bool | Unset = UNSET
+    query_enabled: bool | Unset = UNSET
+    servers: list[NtpServerInfo] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enabled = self.enabled
 
         query_enabled = self.query_enabled
 
-        servers: Union[Unset, List[Dict[str, Any]]] = UNSET
+        servers: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.servers, Unset):
             servers = []
             for servers_item_data in self.servers:
                 servers_item = servers_item_data.to_dict()
                 servers.append(servers_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if enabled is not UNSET:
@@ -51,20 +54,22 @@ class NtpStatus:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ntp_server_info import NtpServerInfo
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         enabled = d.pop("enabled", UNSET)
 
         query_enabled = d.pop("query_enabled", UNSET)
 
-        servers = []
         _servers = d.pop("servers", UNSET)
-        for servers_item_data in _servers or []:
-            servers_item = NtpServerInfo.from_dict(servers_item_data)
+        servers: list[NtpServerInfo] | Unset = UNSET
+        if _servers is not UNSET:
+            servers = []
+            for servers_item_data in _servers:
+                servers_item = NtpServerInfo.from_dict(servers_item_data)
 
-            servers.append(servers_item)
+                servers.append(servers_item)
 
         ntp_status = cls(
             enabled=enabled,
@@ -76,7 +81,7 @@ class NtpStatus:
         return ntp_status
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

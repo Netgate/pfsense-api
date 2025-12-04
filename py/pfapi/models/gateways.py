@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,45 +21,45 @@ T = TypeVar("T", bound="Gateways")
 class Gateways:
     """
     Attributes:
-        defaults (Union[Unset, GatewayDefaults]):
-        gateways (Union[Unset, List['Gateway']]):
-        default_assignable_gw4 (Union[Unset, List['TextValue']]):
-        default_assignable_gw6 (Union[Unset, List['TextValue']]):
+        defaults (GatewayDefaults | Unset):
+        gateways (list[Gateway] | Unset):
+        default_assignable_gw4 (list[TextValue] | Unset):
+        default_assignable_gw6 (list[TextValue] | Unset):
     """
 
-    defaults: Union[Unset, "GatewayDefaults"] = UNSET
-    gateways: Union[Unset, List["Gateway"]] = UNSET
-    default_assignable_gw4: Union[Unset, List["TextValue"]] = UNSET
-    default_assignable_gw6: Union[Unset, List["TextValue"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    defaults: GatewayDefaults | Unset = UNSET
+    gateways: list[Gateway] | Unset = UNSET
+    default_assignable_gw4: list[TextValue] | Unset = UNSET
+    default_assignable_gw6: list[TextValue] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        defaults: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        defaults: dict[str, Any] | Unset = UNSET
         if not isinstance(self.defaults, Unset):
             defaults = self.defaults.to_dict()
 
-        gateways: Union[Unset, List[Dict[str, Any]]] = UNSET
+        gateways: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.gateways, Unset):
             gateways = []
             for gateways_item_data in self.gateways:
                 gateways_item = gateways_item_data.to_dict()
                 gateways.append(gateways_item)
 
-        default_assignable_gw4: Union[Unset, List[Dict[str, Any]]] = UNSET
+        default_assignable_gw4: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.default_assignable_gw4, Unset):
             default_assignable_gw4 = []
             for default_assignable_gw4_item_data in self.default_assignable_gw4:
                 default_assignable_gw4_item = default_assignable_gw4_item_data.to_dict()
                 default_assignable_gw4.append(default_assignable_gw4_item)
 
-        default_assignable_gw6: Union[Unset, List[Dict[str, Any]]] = UNSET
+        default_assignable_gw6: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.default_assignable_gw6, Unset):
             default_assignable_gw6 = []
             for default_assignable_gw6_item_data in self.default_assignable_gw6:
                 default_assignable_gw6_item = default_assignable_gw6_item_data.to_dict()
                 default_assignable_gw6.append(default_assignable_gw6_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if defaults is not UNSET:
@@ -71,39 +74,45 @@ class Gateways:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.gateway import Gateway
         from ..models.gateway_defaults import GatewayDefaults
         from ..models.text_value import TextValue
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _defaults = d.pop("defaults", UNSET)
-        defaults: Union[Unset, GatewayDefaults]
+        defaults: GatewayDefaults | Unset
         if isinstance(_defaults, Unset):
             defaults = UNSET
         else:
             defaults = GatewayDefaults.from_dict(_defaults)
 
-        gateways = []
         _gateways = d.pop("gateways", UNSET)
-        for gateways_item_data in _gateways or []:
-            gateways_item = Gateway.from_dict(gateways_item_data)
+        gateways: list[Gateway] | Unset = UNSET
+        if _gateways is not UNSET:
+            gateways = []
+            for gateways_item_data in _gateways:
+                gateways_item = Gateway.from_dict(gateways_item_data)
 
-            gateways.append(gateways_item)
+                gateways.append(gateways_item)
 
-        default_assignable_gw4 = []
         _default_assignable_gw4 = d.pop("default_assignable_gw4", UNSET)
-        for default_assignable_gw4_item_data in _default_assignable_gw4 or []:
-            default_assignable_gw4_item = TextValue.from_dict(default_assignable_gw4_item_data)
+        default_assignable_gw4: list[TextValue] | Unset = UNSET
+        if _default_assignable_gw4 is not UNSET:
+            default_assignable_gw4 = []
+            for default_assignable_gw4_item_data in _default_assignable_gw4:
+                default_assignable_gw4_item = TextValue.from_dict(default_assignable_gw4_item_data)
 
-            default_assignable_gw4.append(default_assignable_gw4_item)
+                default_assignable_gw4.append(default_assignable_gw4_item)
 
-        default_assignable_gw6 = []
         _default_assignable_gw6 = d.pop("default_assignable_gw6", UNSET)
-        for default_assignable_gw6_item_data in _default_assignable_gw6 or []:
-            default_assignable_gw6_item = TextValue.from_dict(default_assignable_gw6_item_data)
+        default_assignable_gw6: list[TextValue] | Unset = UNSET
+        if _default_assignable_gw6 is not UNSET:
+            default_assignable_gw6 = []
+            for default_assignable_gw6_item_data in _default_assignable_gw6:
+                default_assignable_gw6_item = TextValue.from_dict(default_assignable_gw6_item_data)
 
-            default_assignable_gw6.append(default_assignable_gw6_item)
+                default_assignable_gw6.append(default_assignable_gw6_item)
 
         gateways = cls(
             defaults=defaults,
@@ -116,7 +125,7 @@ class Gateways:
         return gateways
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

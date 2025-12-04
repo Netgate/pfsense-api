@@ -1,6 +1,7 @@
 from http import HTTPStatus
 from io import BytesIO
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -15,43 +16,42 @@ def _get_kwargs(
     refid: str,
     *,
     body: CertPkcs12ExportOpts,
-) -> Dict[str, Any]:
-    headers: Dict[str, Any] = {}
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "post",
-        "url": f"/system/certificates/{refid}/export-p12",
+        "url": "/system/certificates/{refid}/export-p12".format(
+            refid=quote(str(refid), safe=""),
+        ),
     }
 
-    _body = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-    _kwargs["json"] = _body
     headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, File]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | File | None:
     if response.status_code == 200:
         response_200 = File(payload=BytesIO(response.content))
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, File]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | File]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -63,9 +63,9 @@ def _build_response(
 def sync_detailed(
     refid: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: CertPkcs12ExportOpts,
-) -> Response[Union[Error, File]]:
+) -> Response[Error | File]:
     """Download the certificate and key as a unified PKCS12 file
 
     Args:
@@ -77,7 +77,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, File]]
+        Response[Error | File]
     """
 
     kwargs = _get_kwargs(
@@ -95,9 +95,9 @@ def sync_detailed(
 def sync(
     refid: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: CertPkcs12ExportOpts,
-) -> Optional[Union[Error, File]]:
+) -> Error | File | None:
     """Download the certificate and key as a unified PKCS12 file
 
     Args:
@@ -109,7 +109,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, File]
+        Error | File
     """
 
     return sync_detailed(
@@ -122,9 +122,9 @@ def sync(
 async def asyncio_detailed(
     refid: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: CertPkcs12ExportOpts,
-) -> Response[Union[Error, File]]:
+) -> Response[Error | File]:
     """Download the certificate and key as a unified PKCS12 file
 
     Args:
@@ -136,7 +136,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, File]]
+        Response[Error | File]
     """
 
     kwargs = _get_kwargs(
@@ -152,9 +152,9 @@ async def asyncio_detailed(
 async def asyncio(
     refid: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: CertPkcs12ExportOpts,
-) -> Optional[Union[Error, File]]:
+) -> Error | File | None:
     """Download the certificate and key as a unified PKCS12 file
 
     Args:
@@ -166,7 +166,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, File]
+        Error | File
     """
 
     return (

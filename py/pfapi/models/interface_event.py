@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,19 +15,19 @@ T = TypeVar("T", bound="InterfaceEvent")
 class InterfaceEvent:
     """
     Attributes:
-        name (Union[Unset, str]): name of interface device
-        friendly_name (Union[Unset, str]): friendly name eg wan, lan
-        state (Union[Unset, str]): current state change
-        speed (Union[Unset, int]): speed change, Mbps
+        name (str | Unset): name of interface device
+        friendly_name (str | Unset): friendly name eg wan, lan
+        state (str | Unset): current state change
+        speed (int | Unset): speed change, Mbps
     """
 
-    name: Union[Unset, str] = UNSET
-    friendly_name: Union[Unset, str] = UNSET
-    state: Union[Unset, str] = UNSET
-    speed: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    friendly_name: str | Unset = UNSET
+    state: str | Unset = UNSET
+    speed: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         friendly_name = self.friendly_name
@@ -33,7 +36,7 @@ class InterfaceEvent:
 
         speed = self.speed
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -48,8 +51,8 @@ class InterfaceEvent:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         friendly_name = d.pop("friendly_name", UNSET)
@@ -69,7 +72,7 @@ class InterfaceEvent:
         return interface_event
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

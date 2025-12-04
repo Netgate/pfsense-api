@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -12,15 +12,15 @@ from ...types import UNSET, Response, Unset
 
 def _get_kwargs(
     *,
-    withprivkey: Union[Unset, bool] = UNSET,
-) -> Dict[str, Any]:
-    params: Dict[str, Any] = {}
+    withprivkey: bool | Unset = UNSET,
+) -> dict[str, Any]:
+    params: dict[str, Any] = {}
 
     params["withprivkey"] = withprivkey
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/system/certauth",
         "params": params,
@@ -30,16 +30,18 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[CertAuthorities, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> CertAuthorities | Error | None:
     if response.status_code == 200:
         response_200 = CertAuthorities.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -47,8 +49,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[CertAuthorities, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[CertAuthorities | Error]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -59,20 +61,20 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    withprivkey: Union[Unset, bool] = UNSET,
-) -> Response[Union[CertAuthorities, Error]]:
+    client: AuthenticatedClient | Client,
+    withprivkey: bool | Unset = UNSET,
+) -> Response[CertAuthorities | Error]:
     """Get a list of Certificate Authorities
 
     Args:
-        withprivkey (Union[Unset, bool]):
+        withprivkey (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CertAuthorities, Error]]
+        Response[CertAuthorities | Error]
     """
 
     kwargs = _get_kwargs(
@@ -88,20 +90,20 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-    withprivkey: Union[Unset, bool] = UNSET,
-) -> Optional[Union[CertAuthorities, Error]]:
+    client: AuthenticatedClient | Client,
+    withprivkey: bool | Unset = UNSET,
+) -> CertAuthorities | Error | None:
     """Get a list of Certificate Authorities
 
     Args:
-        withprivkey (Union[Unset, bool]):
+        withprivkey (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CertAuthorities, Error]
+        CertAuthorities | Error
     """
 
     return sync_detailed(
@@ -112,20 +114,20 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    withprivkey: Union[Unset, bool] = UNSET,
-) -> Response[Union[CertAuthorities, Error]]:
+    client: AuthenticatedClient | Client,
+    withprivkey: bool | Unset = UNSET,
+) -> Response[CertAuthorities | Error]:
     """Get a list of Certificate Authorities
 
     Args:
-        withprivkey (Union[Unset, bool]):
+        withprivkey (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[CertAuthorities, Error]]
+        Response[CertAuthorities | Error]
     """
 
     kwargs = _get_kwargs(
@@ -139,20 +141,20 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-    withprivkey: Union[Unset, bool] = UNSET,
-) -> Optional[Union[CertAuthorities, Error]]:
+    client: AuthenticatedClient | Client,
+    withprivkey: bool | Unset = UNSET,
+) -> CertAuthorities | Error | None:
     """Get a list of Certificate Authorities
 
     Args:
-        withprivkey (Union[Unset, bool]):
+        withprivkey (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[CertAuthorities, Error]
+        CertAuthorities | Error
     """
 
     return (

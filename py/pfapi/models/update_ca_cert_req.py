@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -23,9 +26,9 @@ class UpdateCaCertReq:
 
         Attributes:
             name (str):
-            trust (Union[Unset, bool]):
-            randomize_serial (Union[Unset, bool]):
-            method_internal (Union[Unset, CaCertMethodNew]): Options for creating/updating an internal CA certificate.
+            trust (bool | Unset):
+            randomize_serial (bool | Unset):
+            method_internal (CaCertMethodNew | Unset): Options for creating/updating an internal CA certificate.
                 The values for internal and intermediate certificates are the same,
                 with the exception that the intermediate certificate is signed by
                 a CA referenced by caref.
@@ -44,9 +47,9 @@ class UpdateCaCertReq:
                 - org:          organization, business name
                 - ou:           organization unit
                 - caref:        signing CA reference ID
-            method_existing (Union[Unset, CaCertMethodExisting]): Existing PEM certificate and key, either in PEM format or
+            method_existing (CaCertMethodExisting | Unset): Existing PEM certificate and key, either in PEM format or
                 base64-encoded
-            method_intermediate (Union[Unset, CaCertMethodNew]): Options for creating/updating an internal CA certificate.
+            method_intermediate (CaCertMethodNew | Unset): Options for creating/updating an internal CA certificate.
                 The values for internal and intermediate certificates are the same,
                 with the exception that the intermediate certificate is signed by
                 a CA referenced by caref.
@@ -68,33 +71,33 @@ class UpdateCaCertReq:
     """
 
     name: str
-    trust: Union[Unset, bool] = UNSET
-    randomize_serial: Union[Unset, bool] = UNSET
-    method_internal: Union[Unset, "CaCertMethodNew"] = UNSET
-    method_existing: Union[Unset, "CaCertMethodExisting"] = UNSET
-    method_intermediate: Union[Unset, "CaCertMethodNew"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    trust: bool | Unset = UNSET
+    randomize_serial: bool | Unset = UNSET
+    method_internal: CaCertMethodNew | Unset = UNSET
+    method_existing: CaCertMethodExisting | Unset = UNSET
+    method_intermediate: CaCertMethodNew | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         trust = self.trust
 
         randomize_serial = self.randomize_serial
 
-        method_internal: Union[Unset, Dict[str, Any]] = UNSET
+        method_internal: dict[str, Any] | Unset = UNSET
         if not isinstance(self.method_internal, Unset):
             method_internal = self.method_internal.to_dict()
 
-        method_existing: Union[Unset, Dict[str, Any]] = UNSET
+        method_existing: dict[str, Any] | Unset = UNSET
         if not isinstance(self.method_existing, Unset):
             method_existing = self.method_existing.to_dict()
 
-        method_intermediate: Union[Unset, Dict[str, Any]] = UNSET
+        method_intermediate: dict[str, Any] | Unset = UNSET
         if not isinstance(self.method_intermediate, Unset):
             method_intermediate = self.method_intermediate.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -115,11 +118,11 @@ class UpdateCaCertReq:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ca_cert_method_existing import CaCertMethodExisting
         from ..models.ca_cert_method_new import CaCertMethodNew
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name")
 
         trust = d.pop("trust", UNSET)
@@ -127,21 +130,21 @@ class UpdateCaCertReq:
         randomize_serial = d.pop("randomize_serial", UNSET)
 
         _method_internal = d.pop("method_internal", UNSET)
-        method_internal: Union[Unset, CaCertMethodNew]
+        method_internal: CaCertMethodNew | Unset
         if isinstance(_method_internal, Unset):
             method_internal = UNSET
         else:
             method_internal = CaCertMethodNew.from_dict(_method_internal)
 
         _method_existing = d.pop("method_existing", UNSET)
-        method_existing: Union[Unset, CaCertMethodExisting]
+        method_existing: CaCertMethodExisting | Unset
         if isinstance(_method_existing, Unset):
             method_existing = UNSET
         else:
             method_existing = CaCertMethodExisting.from_dict(_method_existing)
 
         _method_intermediate = d.pop("method_intermediate", UNSET)
-        method_intermediate: Union[Unset, CaCertMethodNew]
+        method_intermediate: CaCertMethodNew | Unset
         if isinstance(_method_intermediate, Unset):
             method_intermediate = UNSET
         else:
@@ -160,7 +163,7 @@ class UpdateCaCertReq:
         return update_ca_cert_req
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

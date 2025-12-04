@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,18 +19,18 @@ T = TypeVar("T", bound="NAT1To1UpdateResult")
 class NAT1To1UpdateResult:
     """
     Attributes:
-        rule (Union[Unset, NAT1To1Rule]):
+        rule (NAT1To1Rule | Unset):
     """
 
-    rule: Union[Unset, "NAT1To1Rule"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    rule: NAT1To1Rule | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        rule: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        rule: dict[str, Any] | Unset = UNSET
         if not isinstance(self.rule, Unset):
             rule = self.rule.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if rule is not UNSET:
@@ -36,12 +39,12 @@ class NAT1To1UpdateResult:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.nat1_to_1_rule import NAT1To1Rule
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _rule = d.pop("rule", UNSET)
-        rule: Union[Unset, NAT1To1Rule]
+        rule: NAT1To1Rule | Unset
         if isinstance(_rule, Unset):
             rule = UNSET
         else:
@@ -55,7 +58,7 @@ class NAT1To1UpdateResult:
         return nat1_to_1_update_result
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

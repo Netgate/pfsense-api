@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,19 +15,19 @@ T = TypeVar("T", bound="IPSecBypassRule")
 class IPSecBypassRule:
     """
     Attributes:
-        source (Union[Unset, str]):
-        sourcemask (Union[Unset, str]):
-        destination (Union[Unset, str]):
-        dstmask (Union[Unset, str]):
+        source (str | Unset):
+        sourcemask (str | Unset):
+        destination (str | Unset):
+        dstmask (str | Unset):
     """
 
-    source: Union[Unset, str] = UNSET
-    sourcemask: Union[Unset, str] = UNSET
-    destination: Union[Unset, str] = UNSET
-    dstmask: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    source: str | Unset = UNSET
+    sourcemask: str | Unset = UNSET
+    destination: str | Unset = UNSET
+    dstmask: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         source = self.source
 
         sourcemask = self.sourcemask
@@ -33,7 +36,7 @@ class IPSecBypassRule:
 
         dstmask = self.dstmask
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if source is not UNSET:
@@ -48,8 +51,8 @@ class IPSecBypassRule:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         source = d.pop("source", UNSET)
 
         sourcemask = d.pop("sourcemask", UNSET)
@@ -69,7 +72,7 @@ class IPSecBypassRule:
         return ip_sec_bypass_rule
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

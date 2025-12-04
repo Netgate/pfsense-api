@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -12,21 +12,21 @@ from ...types import UNSET, Response, Unset
 
 def _get_kwargs(
     *,
-    port: Union[Unset, int] = UNSET,
-    remipp: Union[Unset, str] = UNSET,
-    clientid: Union[Unset, str] = UNSET,
-) -> Dict[str, Any]:
-    params: Dict[str, Any] = {}
+    mgmt: str | Unset = UNSET,
+    remote_host: str | Unset = UNSET,
+    client_id: str | Unset = UNSET,
+) -> dict[str, Any]:
+    params: dict[str, Any] = {}
 
-    params["port"] = port
+    params["mgmt"] = mgmt
 
-    params["remipp"] = remipp
+    params["remote_host"] = remote_host
 
-    params["clientid"] = clientid
+    params["client_id"] = client_id
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "post",
         "url": "/vpn/openvpn/killclient",
         "params": params,
@@ -35,26 +35,24 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, Result]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | Result | None:
     if response.status_code == 200:
         response_200 = Result.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, Result]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | Result]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -65,30 +63,30 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    port: Union[Unset, int] = UNSET,
-    remipp: Union[Unset, str] = UNSET,
-    clientid: Union[Unset, str] = UNSET,
-) -> Response[Union[Error, Result]]:
+    client: AuthenticatedClient | Client,
+    mgmt: str | Unset = UNSET,
+    remote_host: str | Unset = UNSET,
+    client_id: str | Unset = UNSET,
+) -> Response[Error | Result]:
     """Kill a client by host, IP or client ID
 
     Args:
-        port (Union[Unset, int]):
-        remipp (Union[Unset, str]):
-        clientid (Union[Unset, str]):
+        mgmt (str | Unset):
+        remote_host (str | Unset):
+        client_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, Result]]
+        Response[Error | Result]
     """
 
     kwargs = _get_kwargs(
-        port=port,
-        remipp=remipp,
-        clientid=clientid,
+        mgmt=mgmt,
+        remote_host=remote_host,
+        client_id=client_id,
     )
 
     response = client.get_httpx_client().request(
@@ -100,60 +98,60 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-    port: Union[Unset, int] = UNSET,
-    remipp: Union[Unset, str] = UNSET,
-    clientid: Union[Unset, str] = UNSET,
-) -> Optional[Union[Error, Result]]:
+    client: AuthenticatedClient | Client,
+    mgmt: str | Unset = UNSET,
+    remote_host: str | Unset = UNSET,
+    client_id: str | Unset = UNSET,
+) -> Error | Result | None:
     """Kill a client by host, IP or client ID
 
     Args:
-        port (Union[Unset, int]):
-        remipp (Union[Unset, str]):
-        clientid (Union[Unset, str]):
+        mgmt (str | Unset):
+        remote_host (str | Unset):
+        client_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, Result]
+        Error | Result
     """
 
     return sync_detailed(
         client=client,
-        port=port,
-        remipp=remipp,
-        clientid=clientid,
+        mgmt=mgmt,
+        remote_host=remote_host,
+        client_id=client_id,
     ).parsed
 
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    port: Union[Unset, int] = UNSET,
-    remipp: Union[Unset, str] = UNSET,
-    clientid: Union[Unset, str] = UNSET,
-) -> Response[Union[Error, Result]]:
+    client: AuthenticatedClient | Client,
+    mgmt: str | Unset = UNSET,
+    remote_host: str | Unset = UNSET,
+    client_id: str | Unset = UNSET,
+) -> Response[Error | Result]:
     """Kill a client by host, IP or client ID
 
     Args:
-        port (Union[Unset, int]):
-        remipp (Union[Unset, str]):
-        clientid (Union[Unset, str]):
+        mgmt (str | Unset):
+        remote_host (str | Unset):
+        client_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, Result]]
+        Response[Error | Result]
     """
 
     kwargs = _get_kwargs(
-        port=port,
-        remipp=remipp,
-        clientid=clientid,
+        mgmt=mgmt,
+        remote_host=remote_host,
+        client_id=client_id,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -163,31 +161,31 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-    port: Union[Unset, int] = UNSET,
-    remipp: Union[Unset, str] = UNSET,
-    clientid: Union[Unset, str] = UNSET,
-) -> Optional[Union[Error, Result]]:
+    client: AuthenticatedClient | Client,
+    mgmt: str | Unset = UNSET,
+    remote_host: str | Unset = UNSET,
+    client_id: str | Unset = UNSET,
+) -> Error | Result | None:
     """Kill a client by host, IP or client ID
 
     Args:
-        port (Union[Unset, int]):
-        remipp (Union[Unset, str]):
-        clientid (Union[Unset, str]):
+        mgmt (str | Unset):
+        remote_host (str | Unset):
+        client_id (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, Result]
+        Error | Result
     """
 
     return (
         await asyncio_detailed(
             client=client,
-            port=port,
-            remipp=remipp,
-            clientid=clientid,
+            mgmt=mgmt,
+            remote_host=remote_host,
+            client_id=client_id,
         )
     ).parsed

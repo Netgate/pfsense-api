@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,30 +19,30 @@ T = TypeVar("T", bound="LAGGCapableInterfaces")
 class LAGGCapableInterfaces:
     """
     Attributes:
-        capable_ifs (Union[Unset, List['LAGGCapableInterface']]):
-        lagg_members (Union[Unset, List['LAGGCapableInterface']]):
+        capable_ifs (list[LAGGCapableInterface] | Unset):
+        lagg_members (list[LAGGCapableInterface] | Unset):
     """
 
-    capable_ifs: Union[Unset, List["LAGGCapableInterface"]] = UNSET
-    lagg_members: Union[Unset, List["LAGGCapableInterface"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    capable_ifs: list[LAGGCapableInterface] | Unset = UNSET
+    lagg_members: list[LAGGCapableInterface] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        capable_ifs: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        capable_ifs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.capable_ifs, Unset):
             capable_ifs = []
             for capable_ifs_item_data in self.capable_ifs:
                 capable_ifs_item = capable_ifs_item_data.to_dict()
                 capable_ifs.append(capable_ifs_item)
 
-        lagg_members: Union[Unset, List[Dict[str, Any]]] = UNSET
+        lagg_members: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.lagg_members, Unset):
             lagg_members = []
             for lagg_members_item_data in self.lagg_members:
                 lagg_members_item = lagg_members_item_data.to_dict()
                 lagg_members.append(lagg_members_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if capable_ifs is not UNSET:
@@ -50,23 +53,27 @@ class LAGGCapableInterfaces:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.lagg_capable_interface import LAGGCapableInterface
 
-        d = src_dict.copy()
-        capable_ifs = []
+        d = dict(src_dict)
         _capable_ifs = d.pop("capable_ifs", UNSET)
-        for capable_ifs_item_data in _capable_ifs or []:
-            capable_ifs_item = LAGGCapableInterface.from_dict(capable_ifs_item_data)
+        capable_ifs: list[LAGGCapableInterface] | Unset = UNSET
+        if _capable_ifs is not UNSET:
+            capable_ifs = []
+            for capable_ifs_item_data in _capable_ifs:
+                capable_ifs_item = LAGGCapableInterface.from_dict(capable_ifs_item_data)
 
-            capable_ifs.append(capable_ifs_item)
+                capable_ifs.append(capable_ifs_item)
 
-        lagg_members = []
         _lagg_members = d.pop("lagg_members", UNSET)
-        for lagg_members_item_data in _lagg_members or []:
-            lagg_members_item = LAGGCapableInterface.from_dict(lagg_members_item_data)
+        lagg_members: list[LAGGCapableInterface] | Unset = UNSET
+        if _lagg_members is not UNSET:
+            lagg_members = []
+            for lagg_members_item_data in _lagg_members:
+                lagg_members_item = LAGGCapableInterface.from_dict(lagg_members_item_data)
 
-            lagg_members.append(lagg_members_item)
+                lagg_members.append(lagg_members_item)
 
         lagg_capable_interfaces = cls(
             capable_ifs=capable_ifs,
@@ -77,7 +84,7 @@ class LAGGCapableInterfaces:
         return lagg_capable_interfaces
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,20 +17,20 @@ T = TypeVar("T", bound="DhcpServiceConfigInterfaces")
 class DhcpServiceConfigInterfaces:
     """ """
 
-    additional_properties: Dict[str, "DhcpInterfaceConfig"] = _attrs_field(init=False, factory=dict)
+    additional_properties: dict[str, DhcpInterfaceConfig] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        field_dict: Dict[str, Any] = {}
+    def to_dict(self) -> dict[str, Any]:
+        field_dict: dict[str, Any] = {}
         for prop_name, prop in self.additional_properties.items():
             field_dict[prop_name] = prop.to_dict()
 
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dhcp_interface_config import DhcpInterfaceConfig
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         dhcp_service_config_interfaces = cls()
 
         additional_properties = {}
@@ -40,13 +43,13 @@ class DhcpServiceConfigInterfaces:
         return dhcp_service_config_interfaces
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
-    def __getitem__(self, key: str) -> "DhcpInterfaceConfig":
+    def __getitem__(self, key: str) -> DhcpInterfaceConfig:
         return self.additional_properties[key]
 
-    def __setitem__(self, key: str, value: "DhcpInterfaceConfig") -> None:
+    def __setitem__(self, key: str, value: DhcpInterfaceConfig) -> None:
         self.additional_properties[key] = value
 
     def __delitem__(self, key: str) -> None:

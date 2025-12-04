@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,36 +16,36 @@ class UserAddReq:
     """
     Attributes:
         username (str):
-        uid (Union[Unset, int]):
-        password (Union[Unset, str]):
-        full_name (Union[Unset, str]):
-        groups (Union[Unset, List[str]]):
-        cert_refids (Union[Unset, List[str]]):
-        authorized_keys (Union[Unset, str]):
-        privs (Union[Unset, List[str]]):
-        scope (Union[Unset, str]):
-        keep_cmd_history (Union[Unset, bool]):
-        expiration (Union[Unset, int]):
-        disabled (Union[Unset, bool]):
-        ipsec_psk (Union[Unset, str]):
+        uid (int | Unset):
+        password (str | Unset):
+        full_name (str | Unset):
+        groups (list[str] | Unset):
+        cert_refids (list[str] | Unset):
+        authorized_keys (str | Unset):
+        privs (list[str] | Unset):
+        scope (str | Unset):
+        keep_cmd_history (bool | Unset):
+        expiration (int | Unset):
+        disabled (bool | Unset):
+        ipsec_psk (str | Unset):
     """
 
     username: str
-    uid: Union[Unset, int] = UNSET
-    password: Union[Unset, str] = UNSET
-    full_name: Union[Unset, str] = UNSET
-    groups: Union[Unset, List[str]] = UNSET
-    cert_refids: Union[Unset, List[str]] = UNSET
-    authorized_keys: Union[Unset, str] = UNSET
-    privs: Union[Unset, List[str]] = UNSET
-    scope: Union[Unset, str] = UNSET
-    keep_cmd_history: Union[Unset, bool] = UNSET
-    expiration: Union[Unset, int] = UNSET
-    disabled: Union[Unset, bool] = UNSET
-    ipsec_psk: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    uid: int | Unset = UNSET
+    password: str | Unset = UNSET
+    full_name: str | Unset = UNSET
+    groups: list[str] | Unset = UNSET
+    cert_refids: list[str] | Unset = UNSET
+    authorized_keys: str | Unset = UNSET
+    privs: list[str] | Unset = UNSET
+    scope: str | Unset = UNSET
+    keep_cmd_history: bool | Unset = UNSET
+    expiration: int | Unset = UNSET
+    disabled: bool | Unset = UNSET
+    ipsec_psk: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         username = self.username
 
         uid = self.uid
@@ -51,17 +54,17 @@ class UserAddReq:
 
         full_name = self.full_name
 
-        groups: Union[Unset, List[str]] = UNSET
+        groups: list[str] | Unset = UNSET
         if not isinstance(self.groups, Unset):
             groups = self.groups
 
-        cert_refids: Union[Unset, List[str]] = UNSET
+        cert_refids: list[str] | Unset = UNSET
         if not isinstance(self.cert_refids, Unset):
             cert_refids = self.cert_refids
 
         authorized_keys = self.authorized_keys
 
-        privs: Union[Unset, List[str]] = UNSET
+        privs: list[str] | Unset = UNSET
         if not isinstance(self.privs, Unset):
             privs = self.privs
 
@@ -75,7 +78,7 @@ class UserAddReq:
 
         ipsec_psk = self.ipsec_psk
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -110,8 +113,8 @@ class UserAddReq:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         username = d.pop("username")
 
         uid = d.pop("uid", UNSET)
@@ -120,13 +123,13 @@ class UserAddReq:
 
         full_name = d.pop("full_name", UNSET)
 
-        groups = cast(List[str], d.pop("groups", UNSET))
+        groups = cast(list[str], d.pop("groups", UNSET))
 
-        cert_refids = cast(List[str], d.pop("cert_refids", UNSET))
+        cert_refids = cast(list[str], d.pop("cert_refids", UNSET))
 
         authorized_keys = d.pop("authorized_keys", UNSET)
 
-        privs = cast(List[str], d.pop("privs", UNSET))
+        privs = cast(list[str], d.pop("privs", UNSET))
 
         scope = d.pop("scope", UNSET)
 
@@ -158,7 +161,7 @@ class UserAddReq:
         return user_add_req
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="Tunables")
 class Tunables:
     """
     Attributes:
-        tunables (Union[Unset, List['Tunable']]):
+        tunables (list[Tunable] | Unset):
     """
 
-    tunables: Union[Unset, List["Tunable"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    tunables: list[Tunable] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        tunables: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        tunables: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.tunables, Unset):
             tunables = []
             for tunables_item_data in self.tunables:
                 tunables_item = tunables_item_data.to_dict()
                 tunables.append(tunables_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if tunables is not UNSET:
@@ -39,16 +42,18 @@ class Tunables:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.tunable import Tunable
 
-        d = src_dict.copy()
-        tunables = []
+        d = dict(src_dict)
         _tunables = d.pop("tunables", UNSET)
-        for tunables_item_data in _tunables or []:
-            tunables_item = Tunable.from_dict(tunables_item_data)
+        tunables: list[Tunable] | Unset = UNSET
+        if _tunables is not UNSET:
+            tunables = []
+            for tunables_item_data in _tunables:
+                tunables_item = Tunable.from_dict(tunables_item_data)
 
-            tunables.append(tunables_item)
+                tunables.append(tunables_item)
 
         tunables = cls(
             tunables=tunables,
@@ -58,7 +63,7 @@ class Tunables:
         return tunables
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

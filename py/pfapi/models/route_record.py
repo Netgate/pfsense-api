@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,30 +15,30 @@ T = TypeVar("T", bound="RouteRecord")
 class RouteRecord:
     """
     Attributes:
-        dest (Union[Unset, str]):
-        gw (Union[Unset, str]):
-        flag (Union[Unset, str]):
-        uses (Union[Unset, str]):
-        mtu (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        exp (Union[Unset, str]):
+        dest (str | Unset):
+        gw (str | Unset):
+        flags (str | Unset):
+        uses (str | Unset):
+        mtu (str | Unset):
+        interface (str | Unset):
+        exp (str | Unset):
     """
 
-    dest: Union[Unset, str] = UNSET
-    gw: Union[Unset, str] = UNSET
-    flag: Union[Unset, str] = UNSET
-    uses: Union[Unset, str] = UNSET
-    mtu: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    exp: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    dest: str | Unset = UNSET
+    gw: str | Unset = UNSET
+    flags: str | Unset = UNSET
+    uses: str | Unset = UNSET
+    mtu: str | Unset = UNSET
+    interface: str | Unset = UNSET
+    exp: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         dest = self.dest
 
         gw = self.gw
 
-        flag = self.flag
+        flags = self.flags
 
         uses = self.uses
 
@@ -45,15 +48,15 @@ class RouteRecord:
 
         exp = self.exp
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if dest is not UNSET:
             field_dict["dest"] = dest
         if gw is not UNSET:
             field_dict["gw"] = gw
-        if flag is not UNSET:
-            field_dict["flag"] = flag
+        if flags is not UNSET:
+            field_dict["flags"] = flags
         if uses is not UNSET:
             field_dict["uses"] = uses
         if mtu is not UNSET:
@@ -66,13 +69,13 @@ class RouteRecord:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         dest = d.pop("dest", UNSET)
 
         gw = d.pop("gw", UNSET)
 
-        flag = d.pop("flag", UNSET)
+        flags = d.pop("flags", UNSET)
 
         uses = d.pop("uses", UNSET)
 
@@ -85,7 +88,7 @@ class RouteRecord:
         route_record = cls(
             dest=dest,
             gw=gw,
-            flag=flag,
+            flags=flags,
             uses=uses,
             mtu=mtu,
             interface=interface,
@@ -96,7 +99,7 @@ class RouteRecord:
         return route_record
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,29 +15,29 @@ T = TypeVar("T", bound="FWRuleState")
 class FWRuleState:
     """
     Attributes:
-        id (Union[Unset, str]):
-        tracker (Union[Unset, str]):
-        label (Union[Unset, str]):
-        evaluations (Union[Unset, int]):
-        packets (Union[Unset, int]):
-        bytes_ (Union[Unset, int]):
-        states (Union[Unset, int]):
-        pid (Union[Unset, int]):
-        state_creations (Union[Unset, int]):
+        id (str | Unset):
+        tracker (str | Unset):
+        label (str | Unset):
+        evaluations (int | Unset):
+        packets (int | Unset):
+        bytes_ (int | Unset):
+        states (int | Unset):
+        pid (int | Unset):
+        state_creations (int | Unset):
     """
 
-    id: Union[Unset, str] = UNSET
-    tracker: Union[Unset, str] = UNSET
-    label: Union[Unset, str] = UNSET
-    evaluations: Union[Unset, int] = UNSET
-    packets: Union[Unset, int] = UNSET
-    bytes_: Union[Unset, int] = UNSET
-    states: Union[Unset, int] = UNSET
-    pid: Union[Unset, int] = UNSET
-    state_creations: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    id: str | Unset = UNSET
+    tracker: str | Unset = UNSET
+    label: str | Unset = UNSET
+    evaluations: int | Unset = UNSET
+    packets: int | Unset = UNSET
+    bytes_: int | Unset = UNSET
+    states: int | Unset = UNSET
+    pid: int | Unset = UNSET
+    state_creations: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         id = self.id
 
         tracker = self.tracker
@@ -53,7 +56,7 @@ class FWRuleState:
 
         state_creations = self.state_creations
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if id is not UNSET:
@@ -78,8 +81,8 @@ class FWRuleState:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         id = d.pop("id", UNSET)
 
         tracker = d.pop("tracker", UNSET)
@@ -114,7 +117,7 @@ class FWRuleState:
         return fw_rule_state
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

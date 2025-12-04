@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,24 +19,24 @@ T = TypeVar("T", bound="LoadAvg")
 class LoadAvg:
     """
     Attributes:
-        loadavg (Union[Unset, List[int]]):
-        memstat (Union[Unset, AppMemStat]):
+        loadavg (list[int] | Unset):
+        memstat (AppMemStat | Unset):
     """
 
-    loadavg: Union[Unset, List[int]] = UNSET
-    memstat: Union[Unset, "AppMemStat"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    loadavg: list[int] | Unset = UNSET
+    memstat: AppMemStat | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        loadavg: Union[Unset, List[int]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        loadavg: list[int] | Unset = UNSET
         if not isinstance(self.loadavg, Unset):
             loadavg = self.loadavg
 
-        memstat: Union[Unset, Dict[str, Any]] = UNSET
+        memstat: dict[str, Any] | Unset = UNSET
         if not isinstance(self.memstat, Unset):
             memstat = self.memstat.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if loadavg is not UNSET:
@@ -44,14 +47,14 @@ class LoadAvg:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.app_mem_stat import AppMemStat
 
-        d = src_dict.copy()
-        loadavg = cast(List[int], d.pop("loadavg", UNSET))
+        d = dict(src_dict)
+        loadavg = cast(list[int], d.pop("loadavg", UNSET))
 
         _memstat = d.pop("memstat", UNSET)
-        memstat: Union[Unset, AppMemStat]
+        memstat: AppMemStat | Unset
         if isinstance(_memstat, Unset):
             memstat = UNSET
         else:
@@ -66,7 +69,7 @@ class LoadAvg:
         return load_avg
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

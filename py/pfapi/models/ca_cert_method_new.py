@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -33,33 +36,33 @@ class CaCertMethodNew:
         Attributes:
             key_type (str): rsa, ecdsa
             cn (str):
-            key_size (Union[Unset, int]): rsa key size
-            key_opt (Union[Unset, str]): key options, eg ecdsa curve
-            digest_alg (Union[Unset, str]): sha1, sha224, sha256, sha384, sha512
-            lifetime (Union[Unset, int]): days til expiry
-            country_code (Union[Unset, str]):
-            state (Union[Unset, str]):
-            city (Union[Unset, str]):
-            org (Union[Unset, str]):
-            ou (Union[Unset, str]):
-            caref (Union[Unset, str]):
+            key_size (int | Unset): rsa key size
+            key_opt (str | Unset): key options, eg ecdsa curve
+            digest_alg (str | Unset): sha1, sha224, sha256, sha384, sha512
+            lifetime (int | Unset): days til expiry
+            country_code (str | Unset):
+            state (str | Unset):
+            city (str | Unset):
+            org (str | Unset):
+            ou (str | Unset):
+            caref (str | Unset):
     """
 
     key_type: str
     cn: str
-    key_size: Union[Unset, int] = UNSET
-    key_opt: Union[Unset, str] = UNSET
-    digest_alg: Union[Unset, str] = UNSET
-    lifetime: Union[Unset, int] = UNSET
-    country_code: Union[Unset, str] = UNSET
-    state: Union[Unset, str] = UNSET
-    city: Union[Unset, str] = UNSET
-    org: Union[Unset, str] = UNSET
-    ou: Union[Unset, str] = UNSET
-    caref: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    key_size: int | Unset = UNSET
+    key_opt: str | Unset = UNSET
+    digest_alg: str | Unset = UNSET
+    lifetime: int | Unset = UNSET
+    country_code: str | Unset = UNSET
+    state: str | Unset = UNSET
+    city: str | Unset = UNSET
+    org: str | Unset = UNSET
+    ou: str | Unset = UNSET
+    caref: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         key_type = self.key_type
 
         cn = self.cn
@@ -84,7 +87,7 @@ class CaCertMethodNew:
 
         caref = self.caref
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -116,8 +119,8 @@ class CaCertMethodNew:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         key_type = d.pop("key_type")
 
         cn = d.pop("cn")
@@ -161,7 +164,7 @@ class CaCertMethodNew:
         return ca_cert_method_new
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

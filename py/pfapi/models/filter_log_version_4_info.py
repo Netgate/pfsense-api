@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,23 +15,23 @@ T = TypeVar("T", bound="FilterLogVersion4Info")
 class FilterLogVersion4Info:
     """
     Attributes:
-        tos (Union[Unset, str]):
-        ecn (Union[Unset, str]):
-        ttl (Union[Unset, str]):
-        id (Union[Unset, str]):
-        offset (Union[Unset, str]):
-        flags (Union[Unset, str]):
+        tos (str | Unset):
+        ecn (str | Unset):
+        ttl (str | Unset):
+        id (str | Unset):
+        offset (str | Unset):
+        flags (str | Unset):
     """
 
-    tos: Union[Unset, str] = UNSET
-    ecn: Union[Unset, str] = UNSET
-    ttl: Union[Unset, str] = UNSET
-    id: Union[Unset, str] = UNSET
-    offset: Union[Unset, str] = UNSET
-    flags: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    tos: str | Unset = UNSET
+    ecn: str | Unset = UNSET
+    ttl: str | Unset = UNSET
+    id: str | Unset = UNSET
+    offset: str | Unset = UNSET
+    flags: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         tos = self.tos
 
         ecn = self.ecn
@@ -41,7 +44,7 @@ class FilterLogVersion4Info:
 
         flags = self.flags
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if tos is not UNSET:
@@ -60,8 +63,8 @@ class FilterLogVersion4Info:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         tos = d.pop("tos", UNSET)
 
         ecn = d.pop("ecn", UNSET)
@@ -87,7 +90,7 @@ class FilterLogVersion4Info:
         return filter_log_version_4_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

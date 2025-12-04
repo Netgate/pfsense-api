@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,25 +20,25 @@ class NtpNetworkAccessRestriction:
     """
     Attributes:
         network (str):
-        mask (Union[Unset, int]):
-        restrictions (Union[Unset, NtpAccessRestrictions]):
+        mask (int | Unset):
+        restrictions (NtpAccessRestrictions | Unset):
     """
 
     network: str
-    mask: Union[Unset, int] = UNSET
-    restrictions: Union[Unset, "NtpAccessRestrictions"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    mask: int | Unset = UNSET
+    restrictions: NtpAccessRestrictions | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         network = self.network
 
         mask = self.mask
 
-        restrictions: Union[Unset, Dict[str, Any]] = UNSET
+        restrictions: dict[str, Any] | Unset = UNSET
         if not isinstance(self.restrictions, Unset):
             restrictions = self.restrictions.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -50,16 +53,16 @@ class NtpNetworkAccessRestriction:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ntp_access_restrictions import NtpAccessRestrictions
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         network = d.pop("network")
 
         mask = d.pop("mask", UNSET)
 
         _restrictions = d.pop("restrictions", UNSET)
-        restrictions: Union[Unset, NtpAccessRestrictions]
+        restrictions: NtpAccessRestrictions | Unset
         if isinstance(_restrictions, Unset):
             restrictions = UNSET
         else:
@@ -75,7 +78,7 @@ class NtpNetworkAccessRestriction:
         return ntp_network_access_restriction
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

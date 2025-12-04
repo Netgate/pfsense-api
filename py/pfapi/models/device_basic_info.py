@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,23 +15,23 @@ T = TypeVar("T", bound="DeviceBasicInfo")
 class DeviceBasicInfo:
     """
     Attributes:
-        name (Union[Unset, str]):
-        device_id (Union[Unset, str]):
-        device_type (Union[Unset, str]):
-        os_type (Union[Unset, str]):
-        os_version (Union[Unset, str]):
-        address (Union[Unset, str]):
+        name (str | Unset):
+        device_id (str | Unset):
+        device_type (str | Unset):
+        os_type (str | Unset):
+        os_version (str | Unset):
+        address (str | Unset):
     """
 
-    name: Union[Unset, str] = UNSET
-    device_id: Union[Unset, str] = UNSET
-    device_type: Union[Unset, str] = UNSET
-    os_type: Union[Unset, str] = UNSET
-    os_version: Union[Unset, str] = UNSET
-    address: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    device_id: str | Unset = UNSET
+    device_type: str | Unset = UNSET
+    os_type: str | Unset = UNSET
+    os_version: str | Unset = UNSET
+    address: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         device_id = self.device_id
@@ -41,7 +44,7 @@ class DeviceBasicInfo:
 
         address = self.address
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -60,8 +63,8 @@ class DeviceBasicInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         device_id = d.pop("device_id", UNSET)
@@ -87,7 +90,7 @@ class DeviceBasicInfo:
         return device_basic_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

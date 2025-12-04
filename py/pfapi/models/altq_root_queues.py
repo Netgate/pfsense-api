@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="ALTQRootQueues")
 class ALTQRootQueues:
     """
     Attributes:
-        altq (Union[Unset, List['ALTQRootQueue']]):
+        altq (list[ALTQRootQueue] | Unset):
     """
 
-    altq: Union[Unset, List["ALTQRootQueue"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    altq: list[ALTQRootQueue] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        altq: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        altq: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.altq, Unset):
             altq = []
             for altq_item_data in self.altq:
                 altq_item = altq_item_data.to_dict()
                 altq.append(altq_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if altq is not UNSET:
@@ -39,16 +42,18 @@ class ALTQRootQueues:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.altq_root_queue import ALTQRootQueue
 
-        d = src_dict.copy()
-        altq = []
+        d = dict(src_dict)
         _altq = d.pop("altq", UNSET)
-        for altq_item_data in _altq or []:
-            altq_item = ALTQRootQueue.from_dict(altq_item_data)
+        altq: list[ALTQRootQueue] | Unset = UNSET
+        if _altq is not UNSET:
+            altq = []
+            for altq_item_data in _altq:
+                altq_item = ALTQRootQueue.from_dict(altq_item_data)
 
-            altq.append(altq_item)
+                altq.append(altq_item)
 
         altq_root_queues = cls(
             altq=altq,
@@ -58,7 +63,7 @@ class ALTQRootQueues:
         return altq_root_queues
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

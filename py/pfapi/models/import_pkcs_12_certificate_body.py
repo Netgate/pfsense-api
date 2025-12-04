@@ -1,11 +1,15 @@
+from __future__ import annotations
+
 import json
+from collections.abc import Mapping
 from io import BytesIO
-from typing import TYPE_CHECKING, Any, Dict, List, Tuple, Type, TypeVar, Union
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
-from ..types import UNSET, File, FileJsonType, Unset
+from .. import types
+from ..types import UNSET, File, FileTypes, Unset
 
 if TYPE_CHECKING:
     from ..models.new_cert_req import NewCertReq
@@ -18,28 +22,28 @@ T = TypeVar("T", bound="ImportPkcs12CertificateBody")
 class ImportPkcs12CertificateBody:
     """
     Attributes:
-        reqdata (Union[Unset, NewCertReq]): Request for creating a cert or updating an existing one.
+        reqdata (NewCertReq | Unset): Request for creating a cert or updating an existing one.
             - name: short description about certificate
             - userid: user-ID for user-specific certificate, eg for VPN
             - description:  Descriptive name
             - one of the method_xxxx
-        pkcs12file (Union[Unset, File]):
+        pkcs12file (File | Unset):
     """
 
-    reqdata: Union[Unset, "NewCertReq"] = UNSET
-    pkcs12file: Union[Unset, File] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    reqdata: NewCertReq | Unset = UNSET
+    pkcs12file: File | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        reqdata: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        reqdata: dict[str, Any] | Unset = UNSET
         if not isinstance(self.reqdata, Unset):
             reqdata = self.reqdata.to_dict()
 
-        pkcs12file: Union[Unset, FileJsonType] = UNSET
+        pkcs12file: FileTypes | Unset = UNSET
         if not isinstance(self.pkcs12file, Unset):
             pkcs12file = self.pkcs12file.to_tuple()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if reqdata is not UNSET:
@@ -49,41 +53,34 @@ class ImportPkcs12CertificateBody:
 
         return field_dict
 
-    def to_multipart(self) -> Dict[str, Any]:
-        reqdata: Union[Unset, Tuple[None, bytes, str]] = UNSET
+    def to_multipart(self) -> types.RequestFiles:
+        files: types.RequestFiles = []
+
         if not isinstance(self.reqdata, Unset):
-            reqdata = (None, json.dumps(self.reqdata.to_dict()).encode(), "application/json")
+            files.append(("reqdata", (None, json.dumps(self.reqdata.to_dict()).encode(), "application/json")))
 
-        pkcs12file: Union[Unset, FileJsonType] = UNSET
         if not isinstance(self.pkcs12file, Unset):
-            pkcs12file = self.pkcs12file.to_tuple()
+            files.append(("pkcs12file", self.pkcs12file.to_tuple()))
 
-        field_dict: Dict[str, Any] = {}
         for prop_name, prop in self.additional_properties.items():
-            field_dict[prop_name] = (None, str(prop).encode(), "text/plain")
+            files.append((prop_name, (None, str(prop).encode(), "text/plain")))
 
-        field_dict.update({})
-        if reqdata is not UNSET:
-            field_dict["reqdata"] = reqdata
-        if pkcs12file is not UNSET:
-            field_dict["pkcs12file"] = pkcs12file
-
-        return field_dict
+        return files
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.new_cert_req import NewCertReq
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _reqdata = d.pop("reqdata", UNSET)
-        reqdata: Union[Unset, NewCertReq]
+        reqdata: NewCertReq | Unset
         if isinstance(_reqdata, Unset):
             reqdata = UNSET
         else:
             reqdata = NewCertReq.from_dict(_reqdata)
 
         _pkcs12file = d.pop("pkcs12file", UNSET)
-        pkcs12file: Union[Unset, File]
+        pkcs12file: File | Unset
         if isinstance(_pkcs12file, Unset):
             pkcs12file = UNSET
         else:
@@ -98,7 +95,7 @@ class ImportPkcs12CertificateBody:
         return import_pkcs_12_certificate_body
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

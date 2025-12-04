@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,24 +15,24 @@ T = TypeVar("T", bound="IfStatsBandwidth")
 class IfStatsBandwidth:
     """
     Attributes:
-        host (Union[Unset, str]):
-        bitsin (Union[Unset, str]):
-        bitsout (Union[Unset, str]):
+        host (str | Unset):
+        bitsin (str | Unset):
+        bitsout (str | Unset):
     """
 
-    host: Union[Unset, str] = UNSET
-    bitsin: Union[Unset, str] = UNSET
-    bitsout: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    host: str | Unset = UNSET
+    bitsin: str | Unset = UNSET
+    bitsout: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         host = self.host
 
         bitsin = self.bitsin
 
         bitsout = self.bitsout
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if host is not UNSET:
@@ -42,8 +45,8 @@ class IfStatsBandwidth:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         host = d.pop("host", UNSET)
 
         bitsin = d.pop("bitsin", UNSET)
@@ -60,7 +63,7 @@ class IfStatsBandwidth:
         return if_stats_bandwidth
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

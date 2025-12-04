@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -6,6 +9,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.wg_config import WGConfig
     from ..models.wire_guard_tunnel_status import WireGuardTunnelStatus
 
 
@@ -16,41 +20,65 @@ T = TypeVar("T", bound="WireGuardStatus")
 class WireGuardStatus:
     """
     Attributes:
-        status (Union[Unset, List['WireGuardTunnelStatus']]):
+        config (list[WGConfig] | Unset):
+        status (list[WireGuardTunnelStatus] | Unset):
     """
 
-    status: Union[Unset, List["WireGuardTunnelStatus"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    config: list[WGConfig] | Unset = UNSET
+    status: list[WireGuardTunnelStatus] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        status: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        config: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.config, Unset):
+            config = []
+            for config_item_data in self.config:
+                config_item = config_item_data.to_dict()
+                config.append(config_item)
+
+        status: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.status, Unset):
             status = []
             for status_item_data in self.status:
                 status_item = status_item_data.to_dict()
                 status.append(status_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
+        if config is not UNSET:
+            field_dict["config"] = config
         if status is not UNSET:
             field_dict["status"] = status
 
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.wg_config import WGConfig
         from ..models.wire_guard_tunnel_status import WireGuardTunnelStatus
 
-        d = src_dict.copy()
-        status = []
-        _status = d.pop("status", UNSET)
-        for status_item_data in _status or []:
-            status_item = WireGuardTunnelStatus.from_dict(status_item_data)
+        d = dict(src_dict)
+        _config = d.pop("config", UNSET)
+        config: list[WGConfig] | Unset = UNSET
+        if _config is not UNSET:
+            config = []
+            for config_item_data in _config:
+                config_item = WGConfig.from_dict(config_item_data)
 
-            status.append(status_item)
+                config.append(config_item)
+
+        _status = d.pop("status", UNSET)
+        status: list[WireGuardTunnelStatus] | Unset = UNSET
+        if _status is not UNSET:
+            status = []
+            for status_item_data in _status:
+                status_item = WireGuardTunnelStatus.from_dict(status_item_data)
+
+                status.append(status_item)
 
         wire_guard_status = cls(
+            config=config,
             status=status,
         )
 
@@ -58,7 +86,7 @@ class WireGuardStatus:
         return wire_guard_status
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

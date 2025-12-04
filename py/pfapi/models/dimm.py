@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,55 +15,55 @@ T = TypeVar("T", bound="Dimm")
 class Dimm:
     """
     Attributes:
-        slot (Union[Unset, str]):
-        size (Union[Unset, int]):
-        type (Union[Unset, str]):
+        slot (str | Unset):
+        size (int | Unset):
+        type_ (str | Unset):
     """
 
-    slot: Union[Unset, str] = UNSET
-    size: Union[Unset, int] = UNSET
-    type: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    slot: str | Unset = UNSET
+    size: int | Unset = UNSET
+    type_: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         slot = self.slot
 
         size = self.size
 
-        type = self.type
+        type_ = self.type_
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if slot is not UNSET:
             field_dict["slot"] = slot
         if size is not UNSET:
             field_dict["size"] = size
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
 
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         slot = d.pop("slot", UNSET)
 
         size = d.pop("size", UNSET)
 
-        type = d.pop("type", UNSET)
+        type_ = d.pop("type", UNSET)
 
         dimm = cls(
             slot=slot,
             size=size,
-            type=type,
+            type_=type_,
         )
 
         dimm.additional_properties = d
         return dimm
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

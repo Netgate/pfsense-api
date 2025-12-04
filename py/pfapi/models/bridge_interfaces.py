@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,30 +20,30 @@ T = TypeVar("T", bound="BridgeInterfaces")
 class BridgeInterfaces:
     """
     Attributes:
-        interfaces (Union[Unset, List['BridgeInterface']]):
-        bridge_capable_ifs (Union[Unset, List['BridgeCapableInterface']]):
+        interfaces (list[BridgeInterface] | Unset):
+        bridge_capable_ifs (list[BridgeCapableInterface] | Unset):
     """
 
-    interfaces: Union[Unset, List["BridgeInterface"]] = UNSET
-    bridge_capable_ifs: Union[Unset, List["BridgeCapableInterface"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    interfaces: list[BridgeInterface] | Unset = UNSET
+    bridge_capable_ifs: list[BridgeCapableInterface] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        interfaces: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = []
             for interfaces_item_data in self.interfaces:
                 interfaces_item = interfaces_item_data.to_dict()
                 interfaces.append(interfaces_item)
 
-        bridge_capable_ifs: Union[Unset, List[Dict[str, Any]]] = UNSET
+        bridge_capable_ifs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.bridge_capable_ifs, Unset):
             bridge_capable_ifs = []
             for bridge_capable_ifs_item_data in self.bridge_capable_ifs:
                 bridge_capable_ifs_item = bridge_capable_ifs_item_data.to_dict()
                 bridge_capable_ifs.append(bridge_capable_ifs_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if interfaces is not UNSET:
@@ -51,24 +54,28 @@ class BridgeInterfaces:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.bridge_capable_interface import BridgeCapableInterface
         from ..models.bridge_interface import BridgeInterface
 
-        d = src_dict.copy()
-        interfaces = []
+        d = dict(src_dict)
         _interfaces = d.pop("interfaces", UNSET)
-        for interfaces_item_data in _interfaces or []:
-            interfaces_item = BridgeInterface.from_dict(interfaces_item_data)
+        interfaces: list[BridgeInterface] | Unset = UNSET
+        if _interfaces is not UNSET:
+            interfaces = []
+            for interfaces_item_data in _interfaces:
+                interfaces_item = BridgeInterface.from_dict(interfaces_item_data)
 
-            interfaces.append(interfaces_item)
+                interfaces.append(interfaces_item)
 
-        bridge_capable_ifs = []
         _bridge_capable_ifs = d.pop("bridge_capable_ifs", UNSET)
-        for bridge_capable_ifs_item_data in _bridge_capable_ifs or []:
-            bridge_capable_ifs_item = BridgeCapableInterface.from_dict(bridge_capable_ifs_item_data)
+        bridge_capable_ifs: list[BridgeCapableInterface] | Unset = UNSET
+        if _bridge_capable_ifs is not UNSET:
+            bridge_capable_ifs = []
+            for bridge_capable_ifs_item_data in _bridge_capable_ifs:
+                bridge_capable_ifs_item = BridgeCapableInterface.from_dict(bridge_capable_ifs_item_data)
 
-            bridge_capable_ifs.append(bridge_capable_ifs_item)
+                bridge_capable_ifs.append(bridge_capable_ifs_item)
 
         bridge_interfaces = cls(
             interfaces=interfaces,
@@ -79,7 +86,7 @@ class BridgeInterfaces:
         return bridge_interfaces
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -21,24 +24,24 @@ class WGTunnel:
             name (str):
             privatekey (str):
             publickey (str):
-            descr (Union[Unset, str]):
-            enabled (Union[Unset, bool]):
-            listenport (Union[Unset, int]):
-            mtu (Union[Unset, str]):
-            addresses (Union[Unset, List['WGIPAddress']]):
+            descr (str | Unset):
+            enabled (bool | Unset):
+            listenport (int | Unset):
+            mtu (str | Unset):
+            addresses (list[WGIPAddress] | Unset):
     """
 
     name: str
     privatekey: str
     publickey: str
-    descr: Union[Unset, str] = UNSET
-    enabled: Union[Unset, bool] = UNSET
-    listenport: Union[Unset, int] = UNSET
-    mtu: Union[Unset, str] = UNSET
-    addresses: Union[Unset, List["WGIPAddress"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    descr: str | Unset = UNSET
+    enabled: bool | Unset = UNSET
+    listenport: int | Unset = UNSET
+    mtu: str | Unset = UNSET
+    addresses: list[WGIPAddress] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         privatekey = self.privatekey
@@ -53,14 +56,14 @@ class WGTunnel:
 
         mtu = self.mtu
 
-        addresses: Union[Unset, List[Dict[str, Any]]] = UNSET
+        addresses: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.addresses, Unset):
             addresses = []
             for addresses_item_data in self.addresses:
                 addresses_item = addresses_item_data.to_dict()
                 addresses.append(addresses_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -83,10 +86,10 @@ class WGTunnel:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.wgip_address import WGIPAddress
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name")
 
         privatekey = d.pop("privatekey")
@@ -101,12 +104,14 @@ class WGTunnel:
 
         mtu = d.pop("mtu", UNSET)
 
-        addresses = []
         _addresses = d.pop("addresses", UNSET)
-        for addresses_item_data in _addresses or []:
-            addresses_item = WGIPAddress.from_dict(addresses_item_data)
+        addresses: list[WGIPAddress] | Unset = UNSET
+        if _addresses is not UNSET:
+            addresses = []
+            for addresses_item_data in _addresses:
+                addresses_item = WGIPAddress.from_dict(addresses_item_data)
 
-            addresses.append(addresses_item)
+                addresses.append(addresses_item)
 
         wg_tunnel = cls(
             name=name,
@@ -123,7 +128,7 @@ class WGTunnel:
         return wg_tunnel
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

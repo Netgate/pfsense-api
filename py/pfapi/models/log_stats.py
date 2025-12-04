@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,24 +15,24 @@ T = TypeVar("T", bound="LogStats")
 class LogStats:
     """
     Attributes:
-        clock_statistics (Union[Unset, bool]):
-        discipline_statistics (Union[Unset, bool]):
-        peer_statistics (Union[Unset, bool]):
+        clock_statistics (bool | Unset):
+        discipline_statistics (bool | Unset):
+        peer_statistics (bool | Unset):
     """
 
-    clock_statistics: Union[Unset, bool] = UNSET
-    discipline_statistics: Union[Unset, bool] = UNSET
-    peer_statistics: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    clock_statistics: bool | Unset = UNSET
+    discipline_statistics: bool | Unset = UNSET
+    peer_statistics: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         clock_statistics = self.clock_statistics
 
         discipline_statistics = self.discipline_statistics
 
         peer_statistics = self.peer_statistics
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if clock_statistics is not UNSET:
@@ -42,8 +45,8 @@ class LogStats:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         clock_statistics = d.pop("clock_statistics", UNSET)
 
         discipline_statistics = d.pop("discipline_statistics", UNSET)
@@ -60,7 +63,7 @@ class LogStats:
         return log_stats
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

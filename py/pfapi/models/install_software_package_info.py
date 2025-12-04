@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,27 +20,27 @@ T = TypeVar("T", bound="InstallSoftwarePackageInfo")
 class InstallSoftwarePackageInfo:
     """
     Attributes:
-        package (Union[Unset, SoftwarePackage]):
-        installable (Union[Unset, List['DeviceBasicInfo']]):
+        package (SoftwarePackage | Unset):
+        installable (list[DeviceBasicInfo] | Unset):
     """
 
-    package: Union[Unset, "SoftwarePackage"] = UNSET
-    installable: Union[Unset, List["DeviceBasicInfo"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    package: SoftwarePackage | Unset = UNSET
+    installable: list[DeviceBasicInfo] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        package: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        package: dict[str, Any] | Unset = UNSET
         if not isinstance(self.package, Unset):
             package = self.package.to_dict()
 
-        installable: Union[Unset, List[Dict[str, Any]]] = UNSET
+        installable: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.installable, Unset):
             installable = []
             for installable_item_data in self.installable:
                 installable_item = installable_item_data.to_dict()
                 installable.append(installable_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if package is not UNSET:
@@ -48,24 +51,26 @@ class InstallSoftwarePackageInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.device_basic_info import DeviceBasicInfo
         from ..models.software_package import SoftwarePackage
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _package = d.pop("package", UNSET)
-        package: Union[Unset, SoftwarePackage]
+        package: SoftwarePackage | Unset
         if isinstance(_package, Unset):
             package = UNSET
         else:
             package = SoftwarePackage.from_dict(_package)
 
-        installable = []
         _installable = d.pop("installable", UNSET)
-        for installable_item_data in _installable or []:
-            installable_item = DeviceBasicInfo.from_dict(installable_item_data)
+        installable: list[DeviceBasicInfo] | Unset = UNSET
+        if _installable is not UNSET:
+            installable = []
+            for installable_item_data in _installable:
+                installable_item = DeviceBasicInfo.from_dict(installable_item_data)
 
-            installable.append(installable_item)
+                installable.append(installable_item)
 
         install_software_package_info = cls(
             package=package,
@@ -76,7 +81,7 @@ class InstallSoftwarePackageInfo:
         return install_software_package_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

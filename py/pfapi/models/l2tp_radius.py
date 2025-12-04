@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,19 +17,19 @@ class L2TPRadius:
     Attributes:
         server (str):
         secret (str):
-        enable (Union[Unset, bool]):
-        accounting (Union[Unset, bool]):
-        radiusissueips (Union[Unset, bool]):
+        enable (bool | Unset):
+        accounting (bool | Unset):
+        radiusissueips (bool | Unset):
     """
 
     server: str
     secret: str
-    enable: Union[Unset, bool] = UNSET
-    accounting: Union[Unset, bool] = UNSET
-    radiusissueips: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    enable: bool | Unset = UNSET
+    accounting: bool | Unset = UNSET
+    radiusissueips: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         server = self.server
 
         secret = self.secret
@@ -37,7 +40,7 @@ class L2TPRadius:
 
         radiusissueips = self.radiusissueips
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -55,8 +58,8 @@ class L2TPRadius:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         server = d.pop("server")
 
         secret = d.pop("secret")
@@ -79,7 +82,7 @@ class L2TPRadius:
         return l2tp_radius
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,30 +19,30 @@ T = TypeVar("T", bound="DiagRoutes")
 class DiagRoutes:
     """
     Attributes:
-        ipv4 (Union[Unset, List['RouteRecord']]):
-        ipv6 (Union[Unset, List['RouteRecord']]):
+        ipv4 (list[RouteRecord] | Unset):
+        ipv6 (list[RouteRecord] | Unset):
     """
 
-    ipv4: Union[Unset, List["RouteRecord"]] = UNSET
-    ipv6: Union[Unset, List["RouteRecord"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ipv4: list[RouteRecord] | Unset = UNSET
+    ipv6: list[RouteRecord] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        ipv4: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        ipv4: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.ipv4, Unset):
             ipv4 = []
             for ipv4_item_data in self.ipv4:
                 ipv4_item = ipv4_item_data.to_dict()
                 ipv4.append(ipv4_item)
 
-        ipv6: Union[Unset, List[Dict[str, Any]]] = UNSET
+        ipv6: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.ipv6, Unset):
             ipv6 = []
             for ipv6_item_data in self.ipv6:
                 ipv6_item = ipv6_item_data.to_dict()
                 ipv6.append(ipv6_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ipv4 is not UNSET:
@@ -50,23 +53,27 @@ class DiagRoutes:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.route_record import RouteRecord
 
-        d = src_dict.copy()
-        ipv4 = []
+        d = dict(src_dict)
         _ipv4 = d.pop("ipv4", UNSET)
-        for ipv4_item_data in _ipv4 or []:
-            ipv4_item = RouteRecord.from_dict(ipv4_item_data)
+        ipv4: list[RouteRecord] | Unset = UNSET
+        if _ipv4 is not UNSET:
+            ipv4 = []
+            for ipv4_item_data in _ipv4:
+                ipv4_item = RouteRecord.from_dict(ipv4_item_data)
 
-            ipv4.append(ipv4_item)
+                ipv4.append(ipv4_item)
 
-        ipv6 = []
         _ipv6 = d.pop("ipv6", UNSET)
-        for ipv6_item_data in _ipv6 or []:
-            ipv6_item = RouteRecord.from_dict(ipv6_item_data)
+        ipv6: list[RouteRecord] | Unset = UNSET
+        if _ipv6 is not UNSET:
+            ipv6 = []
+            for ipv6_item_data in _ipv6:
+                ipv6_item = RouteRecord.from_dict(ipv6_item_data)
 
-            ipv6.append(ipv6_item)
+                ipv6.append(ipv6_item)
 
         diag_routes = cls(
             ipv4=ipv4,
@@ -77,7 +84,7 @@ class DiagRoutes:
         return diag_routes
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

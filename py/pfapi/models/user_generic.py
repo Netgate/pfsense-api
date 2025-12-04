@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,38 +16,38 @@ class UserGeneric:
     """
     Attributes:
         username (str):
-        name (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        scope (Union[Unset, str]):
-        groupname (Union[Unset, str]):
-        groups (Union[Unset, List[str]]):
-        disabled (Union[Unset, bool]):
-        uid (Union[Unset, int]):
-        full_name (Union[Unset, str]):
-        cert_refids (Union[Unset, List[str]]):
-        authorized_keys (Union[Unset, str]):
-        privs (Union[Unset, List[str]]):
-        keep_cmd_history (Union[Unset, bool]):
-        expiration (Union[Unset, int]):
+        name (str | Unset):
+        descr (str | Unset):
+        scope (str | Unset):
+        groupname (str | Unset):
+        groups (list[str] | Unset):
+        disabled (bool | Unset):
+        uid (int | Unset):
+        full_name (str | Unset):
+        cert_refids (list[str] | Unset):
+        authorized_keys (str | Unset):
+        privs (list[str] | Unset):
+        keep_cmd_history (bool | Unset):
+        expiration (int | Unset):
     """
 
     username: str
-    name: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    scope: Union[Unset, str] = UNSET
-    groupname: Union[Unset, str] = UNSET
-    groups: Union[Unset, List[str]] = UNSET
-    disabled: Union[Unset, bool] = UNSET
-    uid: Union[Unset, int] = UNSET
-    full_name: Union[Unset, str] = UNSET
-    cert_refids: Union[Unset, List[str]] = UNSET
-    authorized_keys: Union[Unset, str] = UNSET
-    privs: Union[Unset, List[str]] = UNSET
-    keep_cmd_history: Union[Unset, bool] = UNSET
-    expiration: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    descr: str | Unset = UNSET
+    scope: str | Unset = UNSET
+    groupname: str | Unset = UNSET
+    groups: list[str] | Unset = UNSET
+    disabled: bool | Unset = UNSET
+    uid: int | Unset = UNSET
+    full_name: str | Unset = UNSET
+    cert_refids: list[str] | Unset = UNSET
+    authorized_keys: str | Unset = UNSET
+    privs: list[str] | Unset = UNSET
+    keep_cmd_history: bool | Unset = UNSET
+    expiration: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         username = self.username
 
         name = self.name
@@ -55,7 +58,7 @@ class UserGeneric:
 
         groupname = self.groupname
 
-        groups: Union[Unset, List[str]] = UNSET
+        groups: list[str] | Unset = UNSET
         if not isinstance(self.groups, Unset):
             groups = self.groups
 
@@ -65,13 +68,13 @@ class UserGeneric:
 
         full_name = self.full_name
 
-        cert_refids: Union[Unset, List[str]] = UNSET
+        cert_refids: list[str] | Unset = UNSET
         if not isinstance(self.cert_refids, Unset):
             cert_refids = self.cert_refids
 
         authorized_keys = self.authorized_keys
 
-        privs: Union[Unset, List[str]] = UNSET
+        privs: list[str] | Unset = UNSET
         if not isinstance(self.privs, Unset):
             privs = self.privs
 
@@ -79,7 +82,7 @@ class UserGeneric:
 
         expiration = self.expiration
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -116,8 +119,8 @@ class UserGeneric:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         username = d.pop("username")
 
         name = d.pop("name", UNSET)
@@ -128,7 +131,7 @@ class UserGeneric:
 
         groupname = d.pop("groupname", UNSET)
 
-        groups = cast(List[str], d.pop("groups", UNSET))
+        groups = cast(list[str], d.pop("groups", UNSET))
 
         disabled = d.pop("disabled", UNSET)
 
@@ -136,11 +139,11 @@ class UserGeneric:
 
         full_name = d.pop("full_name", UNSET)
 
-        cert_refids = cast(List[str], d.pop("cert_refids", UNSET))
+        cert_refids = cast(list[str], d.pop("cert_refids", UNSET))
 
         authorized_keys = d.pop("authorized_keys", UNSET)
 
-        privs = cast(List[str], d.pop("privs", UNSET))
+        privs = cast(list[str], d.pop("privs", UNSET))
 
         keep_cmd_history = d.pop("keep_cmd_history", UNSET)
 
@@ -167,7 +170,7 @@ class UserGeneric:
         return user_generic
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

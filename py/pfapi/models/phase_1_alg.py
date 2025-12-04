@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,20 +19,20 @@ T = TypeVar("T", bound="Phase1Alg")
 class Phase1Alg:
     """
     Attributes:
-        encryption_algorithm (Union[Unset, EncryptionAlgorithm]):
-        hash_algorithm (Union[Unset, str]):
-        prf_algorithm (Union[Unset, str]):
-        dhgroup (Union[Unset, str]):
+        encryption_algorithm (EncryptionAlgorithm | Unset):
+        hash_algorithm (str | Unset):
+        prf_algorithm (str | Unset):
+        dhgroup (str | Unset):
     """
 
-    encryption_algorithm: Union[Unset, "EncryptionAlgorithm"] = UNSET
-    hash_algorithm: Union[Unset, str] = UNSET
-    prf_algorithm: Union[Unset, str] = UNSET
-    dhgroup: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    encryption_algorithm: EncryptionAlgorithm | Unset = UNSET
+    hash_algorithm: str | Unset = UNSET
+    prf_algorithm: str | Unset = UNSET
+    dhgroup: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        encryption_algorithm: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        encryption_algorithm: dict[str, Any] | Unset = UNSET
         if not isinstance(self.encryption_algorithm, Unset):
             encryption_algorithm = self.encryption_algorithm.to_dict()
 
@@ -39,7 +42,7 @@ class Phase1Alg:
 
         dhgroup = self.dhgroup
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if encryption_algorithm is not UNSET:
@@ -54,12 +57,12 @@ class Phase1Alg:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.encryption_algorithm import EncryptionAlgorithm
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _encryption_algorithm = d.pop("encryption_algorithm", UNSET)
-        encryption_algorithm: Union[Unset, EncryptionAlgorithm]
+        encryption_algorithm: EncryptionAlgorithm | Unset
         if isinstance(_encryption_algorithm, Unset):
             encryption_algorithm = UNSET
         else:
@@ -82,7 +85,7 @@ class Phase1Alg:
         return phase_1_alg
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

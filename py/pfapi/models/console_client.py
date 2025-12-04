@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,47 +15,47 @@ T = TypeVar("T", bound="ConsoleClient")
 class ConsoleClient:
     """
     Attributes:
-        addr (Union[Unset, str]):
-        type (Union[Unset, str]):
-        time (Union[Unset, int]):
+        addr (str | Unset):
+        type_ (str | Unset):
+        time (int | Unset):
     """
 
-    addr: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
-    time: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    addr: str | Unset = UNSET
+    type_: str | Unset = UNSET
+    time: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         addr = self.addr
 
-        type = self.type
+        type_ = self.type_
 
         time = self.time
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if addr is not UNSET:
             field_dict["addr"] = addr
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if time is not UNSET:
             field_dict["time"] = time
 
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         addr = d.pop("addr", UNSET)
 
-        type = d.pop("type", UNSET)
+        type_ = d.pop("type", UNSET)
 
         time = d.pop("time", UNSET)
 
         console_client = cls(
             addr=addr,
-            type=type,
+            type_=type_,
             time=time,
         )
 
@@ -60,7 +63,7 @@ class ConsoleClient:
         return console_client
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

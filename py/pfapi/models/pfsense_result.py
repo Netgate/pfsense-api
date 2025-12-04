@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,26 +16,26 @@ class PfsenseResult:
     """
     Attributes:
         msg (str):
-        alrt (Union[Unset, bool]):
-        sb (Union[Unset, bool]):
-        alrtoln (Union[Unset, bool]):
-        alrtclr (Union[Unset, str]):
-        auth (Union[Unset, bool]):
-        status (Union[Unset, str]):
-        message (Union[Unset, str]):
+        alrt (bool | Unset):
+        sb (bool | Unset):
+        alrtoln (bool | Unset):
+        alrtclr (str | Unset):
+        auth (bool | Unset):
+        status (str | Unset):
+        message (str | Unset):
     """
 
     msg: str
-    alrt: Union[Unset, bool] = UNSET
-    sb: Union[Unset, bool] = UNSET
-    alrtoln: Union[Unset, bool] = UNSET
-    alrtclr: Union[Unset, str] = UNSET
-    auth: Union[Unset, bool] = UNSET
-    status: Union[Unset, str] = UNSET
-    message: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    alrt: bool | Unset = UNSET
+    sb: bool | Unset = UNSET
+    alrtoln: bool | Unset = UNSET
+    alrtclr: str | Unset = UNSET
+    auth: bool | Unset = UNSET
+    status: str | Unset = UNSET
+    message: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         msg = self.msg
 
         alrt = self.alrt
@@ -49,7 +52,7 @@ class PfsenseResult:
 
         message = self.message
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -74,8 +77,8 @@ class PfsenseResult:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         msg = d.pop("msg")
 
         alrt = d.pop("alrt", UNSET)
@@ -107,7 +110,7 @@ class PfsenseResult:
         return pfsense_result
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,69 +19,69 @@ T = TypeVar("T", bound="SystemAdvAdmin")
 class SystemAdvAdmin:
     """
     Attributes:
-        webguiproto (Union[Unset, str]):
-        webguiport (Union[Unset, str]):
-        max_procs (Union[Unset, int]):
-        disablehttpredirect (Union[Unset, bool]):
-        disablehsts (Union[Unset, bool]):
-        ocsp_staple (Union[Unset, bool]):
-        disableconsolemenu (Union[Unset, bool]):
-        noantilockout (Union[Unset, bool]):
-        nodnsrebindcheck (Union[Unset, bool]):
-        nohttpreferercheck (Union[Unset, bool]):
-        pagenamefirst (Union[Unset, bool]):
-        loginautocomplete (Union[Unset, bool]):
-        althostnames (Union[Unset, str]):
-        enableserial (Union[Unset, bool]):
-        serialspeed (Union[Unset, str]):
-        primaryconsole (Union[Unset, str]):
-        sshport (Union[Unset, str]):
-        enablesshd (Union[Unset, bool]):
-        sshdkeyonly (Union[Unset, str]): disabled, enabled, or both
-        sshdagentforwarding (Union[Unset, bool]):
-        quietlogin (Union[Unset, bool]):
-        roaming (Union[Unset, bool]):
-        sshguard_threshold (Union[Unset, str]):
-        sshguard_blocktime (Union[Unset, str]):
-        sshguard_detection_time (Union[Unset, str]):
-        sshguard_whitelist (Union[Unset, str]):
-        ssl_certref (Union[Unset, str]):
-        certsavailable (Union[Unset, bool]):
-        certlist (Union[Unset, List['SystemCert']]):
+        webguiproto (str | Unset):
+        webguiport (str | Unset):
+        max_procs (int | Unset):
+        disablehttpredirect (bool | Unset):
+        disablehsts (bool | Unset):
+        ocsp_staple (bool | Unset):
+        disableconsolemenu (bool | Unset):
+        noantilockout (bool | Unset):
+        nodnsrebindcheck (bool | Unset):
+        nohttpreferercheck (bool | Unset):
+        pagenamefirst (bool | Unset):
+        loginautocomplete (bool | Unset):
+        althostnames (str | Unset):
+        enableserial (bool | Unset):
+        serialspeed (str | Unset):
+        primaryconsole (str | Unset):
+        sshport (str | Unset):
+        enablesshd (bool | Unset):
+        sshdkeyonly (str | Unset): disabled, enabled, or both
+        sshdagentforwarding (bool | Unset):
+        quietlogin (bool | Unset):
+        roaming (bool | Unset):
+        sshguard_threshold (str | Unset):
+        sshguard_blocktime (str | Unset):
+        sshguard_detection_time (str | Unset):
+        sshguard_whitelist (str | Unset):
+        ssl_certref (str | Unset):
+        certsavailable (bool | Unset):
+        certlist (list[SystemCert] | Unset):
     """
 
-    webguiproto: Union[Unset, str] = UNSET
-    webguiport: Union[Unset, str] = UNSET
-    max_procs: Union[Unset, int] = UNSET
-    disablehttpredirect: Union[Unset, bool] = UNSET
-    disablehsts: Union[Unset, bool] = UNSET
-    ocsp_staple: Union[Unset, bool] = UNSET
-    disableconsolemenu: Union[Unset, bool] = UNSET
-    noantilockout: Union[Unset, bool] = UNSET
-    nodnsrebindcheck: Union[Unset, bool] = UNSET
-    nohttpreferercheck: Union[Unset, bool] = UNSET
-    pagenamefirst: Union[Unset, bool] = UNSET
-    loginautocomplete: Union[Unset, bool] = UNSET
-    althostnames: Union[Unset, str] = UNSET
-    enableserial: Union[Unset, bool] = UNSET
-    serialspeed: Union[Unset, str] = UNSET
-    primaryconsole: Union[Unset, str] = UNSET
-    sshport: Union[Unset, str] = UNSET
-    enablesshd: Union[Unset, bool] = UNSET
-    sshdkeyonly: Union[Unset, str] = UNSET
-    sshdagentforwarding: Union[Unset, bool] = UNSET
-    quietlogin: Union[Unset, bool] = UNSET
-    roaming: Union[Unset, bool] = UNSET
-    sshguard_threshold: Union[Unset, str] = UNSET
-    sshguard_blocktime: Union[Unset, str] = UNSET
-    sshguard_detection_time: Union[Unset, str] = UNSET
-    sshguard_whitelist: Union[Unset, str] = UNSET
-    ssl_certref: Union[Unset, str] = UNSET
-    certsavailable: Union[Unset, bool] = UNSET
-    certlist: Union[Unset, List["SystemCert"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    webguiproto: str | Unset = UNSET
+    webguiport: str | Unset = UNSET
+    max_procs: int | Unset = UNSET
+    disablehttpredirect: bool | Unset = UNSET
+    disablehsts: bool | Unset = UNSET
+    ocsp_staple: bool | Unset = UNSET
+    disableconsolemenu: bool | Unset = UNSET
+    noantilockout: bool | Unset = UNSET
+    nodnsrebindcheck: bool | Unset = UNSET
+    nohttpreferercheck: bool | Unset = UNSET
+    pagenamefirst: bool | Unset = UNSET
+    loginautocomplete: bool | Unset = UNSET
+    althostnames: str | Unset = UNSET
+    enableserial: bool | Unset = UNSET
+    serialspeed: str | Unset = UNSET
+    primaryconsole: str | Unset = UNSET
+    sshport: str | Unset = UNSET
+    enablesshd: bool | Unset = UNSET
+    sshdkeyonly: str | Unset = UNSET
+    sshdagentforwarding: bool | Unset = UNSET
+    quietlogin: bool | Unset = UNSET
+    roaming: bool | Unset = UNSET
+    sshguard_threshold: str | Unset = UNSET
+    sshguard_blocktime: str | Unset = UNSET
+    sshguard_detection_time: str | Unset = UNSET
+    sshguard_whitelist: str | Unset = UNSET
+    ssl_certref: str | Unset = UNSET
+    certsavailable: bool | Unset = UNSET
+    certlist: list[SystemCert] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         webguiproto = self.webguiproto
 
         webguiport = self.webguiport
@@ -135,14 +138,14 @@ class SystemAdvAdmin:
 
         certsavailable = self.certsavailable
 
-        certlist: Union[Unset, List[Dict[str, Any]]] = UNSET
+        certlist: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.certlist, Unset):
             certlist = []
             for certlist_item_data in self.certlist:
                 certlist_item = certlist_item_data.to_dict()
                 certlist.append(certlist_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if webguiproto is not UNSET:
@@ -207,10 +210,10 @@ class SystemAdvAdmin:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.system_cert import SystemCert
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         webguiproto = d.pop("webguiproto", UNSET)
 
         webguiport = d.pop("webguiport", UNSET)
@@ -267,12 +270,14 @@ class SystemAdvAdmin:
 
         certsavailable = d.pop("certsavailable", UNSET)
 
-        certlist = []
         _certlist = d.pop("certlist", UNSET)
-        for certlist_item_data in _certlist or []:
-            certlist_item = SystemCert.from_dict(certlist_item_data)
+        certlist: list[SystemCert] | Unset = UNSET
+        if _certlist is not UNSET:
+            certlist = []
+            for certlist_item_data in _certlist:
+                certlist_item = SystemCert.from_dict(certlist_item_data)
 
-            certlist.append(certlist_item)
+                certlist.append(certlist_item)
 
         system_adv_admin = cls(
             webguiproto=webguiproto,
@@ -310,7 +315,7 @@ class SystemAdvAdmin:
         return system_adv_admin
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

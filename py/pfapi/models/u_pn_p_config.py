@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,47 +19,47 @@ T = TypeVar("T", bound="UPnPConfig")
 class UPnPConfig:
     """
     Attributes:
-        enable (Union[Unset, bool]):
-        enable_upnp (Union[Unset, bool]):
-        enable_natpmp (Union[Unset, bool]):
-        ext_iface (Union[Unset, str]):
-        iface_array (Union[Unset, List[str]]):
-        download (Union[Unset, str]):
-        upload (Union[Unset, str]):
-        overridewanip (Union[Unset, str]):
-        upnpqueue (Union[Unset, str]):
-        logpackets (Union[Unset, bool]):
-        sysuptime (Union[Unset, bool]):
-        permdefault (Union[Unset, bool]):
-        row (Union[Unset, List['UPnPPermUser']]):
-        presentationurl (Union[Unset, str]):
-        modelnumber (Union[Unset, str]):
-        enable_stun (Union[Unset, bool]):
-        stun_host (Union[Unset, str]):
-        stun_port (Union[Unset, str]):
+        enable (bool | Unset):
+        enable_upnp (bool | Unset):
+        enable_natpmp (bool | Unset):
+        ext_iface (str | Unset):
+        iface_array (list[str] | Unset):
+        download (str | Unset):
+        upload (str | Unset):
+        overridewanip (str | Unset):
+        upnpqueue (str | Unset):
+        logpackets (bool | Unset):
+        sysuptime (bool | Unset):
+        permdefault (bool | Unset):
+        row (list[UPnPPermUser] | Unset):
+        presentationurl (str | Unset):
+        modelnumber (str | Unset):
+        enable_stun (bool | Unset):
+        stun_host (str | Unset):
+        stun_port (str | Unset):
     """
 
-    enable: Union[Unset, bool] = UNSET
-    enable_upnp: Union[Unset, bool] = UNSET
-    enable_natpmp: Union[Unset, bool] = UNSET
-    ext_iface: Union[Unset, str] = UNSET
-    iface_array: Union[Unset, List[str]] = UNSET
-    download: Union[Unset, str] = UNSET
-    upload: Union[Unset, str] = UNSET
-    overridewanip: Union[Unset, str] = UNSET
-    upnpqueue: Union[Unset, str] = UNSET
-    logpackets: Union[Unset, bool] = UNSET
-    sysuptime: Union[Unset, bool] = UNSET
-    permdefault: Union[Unset, bool] = UNSET
-    row: Union[Unset, List["UPnPPermUser"]] = UNSET
-    presentationurl: Union[Unset, str] = UNSET
-    modelnumber: Union[Unset, str] = UNSET
-    enable_stun: Union[Unset, bool] = UNSET
-    stun_host: Union[Unset, str] = UNSET
-    stun_port: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    enable: bool | Unset = UNSET
+    enable_upnp: bool | Unset = UNSET
+    enable_natpmp: bool | Unset = UNSET
+    ext_iface: str | Unset = UNSET
+    iface_array: list[str] | Unset = UNSET
+    download: str | Unset = UNSET
+    upload: str | Unset = UNSET
+    overridewanip: str | Unset = UNSET
+    upnpqueue: str | Unset = UNSET
+    logpackets: bool | Unset = UNSET
+    sysuptime: bool | Unset = UNSET
+    permdefault: bool | Unset = UNSET
+    row: list[UPnPPermUser] | Unset = UNSET
+    presentationurl: str | Unset = UNSET
+    modelnumber: str | Unset = UNSET
+    enable_stun: bool | Unset = UNSET
+    stun_host: str | Unset = UNSET
+    stun_port: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enable = self.enable
 
         enable_upnp = self.enable_upnp
@@ -65,7 +68,7 @@ class UPnPConfig:
 
         ext_iface = self.ext_iface
 
-        iface_array: Union[Unset, List[str]] = UNSET
+        iface_array: list[str] | Unset = UNSET
         if not isinstance(self.iface_array, Unset):
             iface_array = self.iface_array
 
@@ -83,7 +86,7 @@ class UPnPConfig:
 
         permdefault = self.permdefault
 
-        row: Union[Unset, List[Dict[str, Any]]] = UNSET
+        row: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.row, Unset):
             row = []
             for row_item_data in self.row:
@@ -100,7 +103,7 @@ class UPnPConfig:
 
         stun_port = self.stun_port
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if enable is not UNSET:
@@ -143,10 +146,10 @@ class UPnPConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.u_pn_p_perm_user import UPnPPermUser
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         enable = d.pop("enable", UNSET)
 
         enable_upnp = d.pop("enable_upnp", UNSET)
@@ -155,7 +158,7 @@ class UPnPConfig:
 
         ext_iface = d.pop("ext_iface", UNSET)
 
-        iface_array = cast(List[str], d.pop("iface_array", UNSET))
+        iface_array = cast(list[str], d.pop("iface_array", UNSET))
 
         download = d.pop("download", UNSET)
 
@@ -171,12 +174,14 @@ class UPnPConfig:
 
         permdefault = d.pop("permdefault", UNSET)
 
-        row = []
         _row = d.pop("row", UNSET)
-        for row_item_data in _row or []:
-            row_item = UPnPPermUser.from_dict(row_item_data)
+        row: list[UPnPPermUser] | Unset = UNSET
+        if _row is not UNSET:
+            row = []
+            for row_item_data in _row:
+                row_item = UPnPPermUser.from_dict(row_item_data)
 
-            row.append(row_item)
+                row.append(row_item)
 
         presentationurl = d.pop("presentationurl", UNSET)
 
@@ -213,7 +218,7 @@ class UPnPConfig:
         return u_pn_p_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

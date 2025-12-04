@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -10,8 +10,8 @@ from ...models.error import Error
 from ...types import Response
 
 
-def _get_kwargs() -> Dict[str, Any]:
-    _kwargs: Dict[str, Any] = {
+def _get_kwargs() -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/system/advanced/firewall",
     }
@@ -20,16 +20,18 @@ def _get_kwargs() -> Dict[str, Any]:
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[AdvFirewallSetting, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> AdvFirewallSetting | Error | None:
     if response.status_code == 200:
         response_200 = AdvFirewallSetting.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -37,8 +39,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[AdvFirewallSetting, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[AdvFirewallSetting | Error]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -49,8 +51,8 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[AdvFirewallSetting, Error]]:
+    client: AuthenticatedClient | Client,
+) -> Response[AdvFirewallSetting | Error]:
     """Get Advanced Firewall
 
     Raises:
@@ -58,7 +60,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[AdvFirewallSetting, Error]]
+        Response[AdvFirewallSetting | Error]
     """
 
     kwargs = _get_kwargs()
@@ -72,8 +74,8 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[AdvFirewallSetting, Error]]:
+    client: AuthenticatedClient | Client,
+) -> AdvFirewallSetting | Error | None:
     """Get Advanced Firewall
 
     Raises:
@@ -81,7 +83,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[AdvFirewallSetting, Error]
+        AdvFirewallSetting | Error
     """
 
     return sync_detailed(
@@ -91,8 +93,8 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[AdvFirewallSetting, Error]]:
+    client: AuthenticatedClient | Client,
+) -> Response[AdvFirewallSetting | Error]:
     """Get Advanced Firewall
 
     Raises:
@@ -100,7 +102,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[AdvFirewallSetting, Error]]
+        Response[AdvFirewallSetting | Error]
     """
 
     kwargs = _get_kwargs()
@@ -112,8 +114,8 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[AdvFirewallSetting, Error]]:
+    client: AuthenticatedClient | Client,
+) -> AdvFirewallSetting | Error | None:
     """Get Advanced Firewall
 
     Raises:
@@ -121,7 +123,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[AdvFirewallSetting, Error]
+        AdvFirewallSetting | Error
     """
 
     return (

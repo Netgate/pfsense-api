@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -12,35 +13,35 @@ from ...types import Response
 
 def _get_kwargs(
     key: str,
-) -> Dict[str, Any]:
-    _kwargs: Dict[str, Any] = {
+) -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "delete",
-        "url": f"/mim/controllers/id/{key}",
+        "url": "/mim/controllers/id/{key}".format(
+            key=quote(str(key), safe=""),
+        ),
     }
 
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, Result]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | Result | None:
     if response.status_code == 200:
         response_200 = Result.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, Result]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | Result]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -52,8 +53,8 @@ def _build_response(
 def sync_detailed(
     key: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, Result]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Error | Result]:
     """Delete controller entry. The key can be hex or base64-URL encoded.
 
     Args:
@@ -64,7 +65,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, Result]]
+        Response[Error | Result]
     """
 
     kwargs = _get_kwargs(
@@ -81,8 +82,8 @@ def sync_detailed(
 def sync(
     key: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, Result]]:
+    client: AuthenticatedClient | Client,
+) -> Error | Result | None:
     """Delete controller entry. The key can be hex or base64-URL encoded.
 
     Args:
@@ -93,7 +94,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, Result]
+        Error | Result
     """
 
     return sync_detailed(
@@ -105,8 +106,8 @@ def sync(
 async def asyncio_detailed(
     key: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, Result]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Error | Result]:
     """Delete controller entry. The key can be hex or base64-URL encoded.
 
     Args:
@@ -117,7 +118,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, Result]]
+        Response[Error | Result]
     """
 
     kwargs = _get_kwargs(
@@ -132,8 +133,8 @@ async def asyncio_detailed(
 async def asyncio(
     key: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, Result]]:
+    client: AuthenticatedClient | Client,
+) -> Error | Result | None:
     """Delete controller entry. The key can be hex or base64-URL encoded.
 
     Args:
@@ -144,7 +145,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, Result]
+        Error | Result
     """
 
     return (

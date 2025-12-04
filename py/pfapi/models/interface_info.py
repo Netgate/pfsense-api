@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,131 +15,131 @@ T = TypeVar("T", bound="InterfaceInfo")
 class InterfaceInfo:
     """
     Attributes:
-        assigned_interface (Union[Unset, str]): alias to device
-        internal_name (Union[Unset, str]): alias to identity
-        friendly_name (Union[Unset, str]): alias to assigned_name
-        assigned_name (Union[Unset, str]):
-        identity (Union[Unset, str]):
-        device (Union[Unset, str]):
-        enabled (Union[Unset, bool]):
-        status (Union[Unset, str]):
-        mac_address (Union[Unset, str]):
-        mtu (Union[Unset, int]):
-        media (Union[Unset, str]):
-        plugged (Union[Unset, str]):
-        vendor (Union[Unset, str]):
-        temperature (Union[Unset, str]):
-        voltage (Union[Unset, str]):
-        rx (Union[Unset, str]):
-        tx (Union[Unset, str]):
-        channel (Union[Unset, int]):
-        ssid (Union[Unset, str]):
-        bssid (Union[Unset, str]):
-        rate (Union[Unset, str]):
-        rssi (Union[Unset, str]):
-        in_packets (Union[Unset, int]):
-        out_packets (Union[Unset, int]):
-        in_bytes (Union[Unset, int]):
-        out_bytes (Union[Unset, int]):
-        in_packets_pass (Union[Unset, int]):
-        out_packets_pass (Union[Unset, int]):
-        in_bytes_pass (Union[Unset, int]):
-        out_bytes_pass (Union[Unset, int]):
-        in_packets_block (Union[Unset, int]):
-        out_packets_block (Union[Unset, int]):
-        in_bytes_block (Union[Unset, int]):
-        out_bytes_block (Union[Unset, int]):
-        in_errors (Union[Unset, int]):
-        out_errors (Union[Unset, int]):
-        collisions (Union[Unset, int]):
-        ip_address (Union[Unset, str]):
-        subnet_mask (Union[Unset, str]):
-        gateway (Union[Unset, str]):
-        ipv6_link_local (Union[Unset, str]):
-        ipv6_address (Union[Unset, str]):
-        ipv6_subnet_mask (Union[Unset, str]):
-        ipv6_gateway (Union[Unset, str]):
-        dns_servers (Union[Unset, List[str]]):
-        lagg_enabled (Union[Unset, bool]):
-        lagg_ports (Union[Unset, str]):
-        current_ppp_uptime (Union[Unset, str]):
-        historical_ppp_uptime (Union[Unset, str]):
-        cell_rssi (Union[Unset, str]):
-        cell_mode (Union[Unset, str]):
-        cell_simstate (Union[Unset, str]):
-        cell_service (Union[Unset, str]):
-        cell_bwupstream (Union[Unset, int]):
-        cell_bwdownstream (Union[Unset, int]):
-        cell_upstream (Union[Unset, int]):
-        cell_downstream (Union[Unset, int]):
-        dhcplink (Union[Unset, str]):
-        pppoelink (Union[Unset, str]):
-        pptplink (Union[Unset, str]):
+        assigned_interface (str | Unset): alias to device
+        internal_name (str | Unset): alias to identity
+        friendly_name (str | Unset): alias to assigned_name
+        assigned_name (str | Unset):
+        identity (str | Unset):
+        device (str | Unset):
+        enabled (bool | Unset):
+        status (str | Unset):
+        mac_address (str | Unset):
+        mtu (int | Unset):
+        media (str | Unset):
+        plugged (str | Unset):
+        vendor (str | Unset):
+        temperature (str | Unset):
+        voltage (str | Unset):
+        rx (str | Unset):
+        tx (str | Unset):
+        channel (int | Unset):
+        ssid (str | Unset):
+        bssid (str | Unset):
+        rate (str | Unset):
+        rssi (str | Unset):
+        in_packets (int | Unset):
+        out_packets (int | Unset):
+        in_bytes (int | Unset):
+        out_bytes (int | Unset):
+        in_packets_pass (int | Unset):
+        out_packets_pass (int | Unset):
+        in_bytes_pass (int | Unset):
+        out_bytes_pass (int | Unset):
+        in_packets_block (int | Unset):
+        out_packets_block (int | Unset):
+        in_bytes_block (int | Unset):
+        out_bytes_block (int | Unset):
+        in_errors (int | Unset):
+        out_errors (int | Unset):
+        collisions (int | Unset):
+        ip_address (str | Unset):
+        subnet_mask (str | Unset):
+        gateway (str | Unset):
+        ipv6_link_local (str | Unset):
+        ipv6_address (str | Unset):
+        ipv6_subnet_mask (str | Unset):
+        ipv6_gateway (str | Unset):
+        dns_servers (list[str] | Unset):
+        lagg_enabled (bool | Unset):
+        lagg_ports (str | Unset):
+        current_ppp_uptime (str | Unset):
+        historical_ppp_uptime (str | Unset):
+        cell_rssi (str | Unset):
+        cell_mode (str | Unset):
+        cell_simstate (str | Unset):
+        cell_service (str | Unset):
+        cell_bwupstream (int | Unset):
+        cell_bwdownstream (int | Unset):
+        cell_upstream (int | Unset):
+        cell_downstream (int | Unset):
+        dhcplink (str | Unset):
+        pppoelink (str | Unset):
+        pptplink (str | Unset):
     """
 
-    assigned_interface: Union[Unset, str] = UNSET
-    internal_name: Union[Unset, str] = UNSET
-    friendly_name: Union[Unset, str] = UNSET
-    assigned_name: Union[Unset, str] = UNSET
-    identity: Union[Unset, str] = UNSET
-    device: Union[Unset, str] = UNSET
-    enabled: Union[Unset, bool] = UNSET
-    status: Union[Unset, str] = UNSET
-    mac_address: Union[Unset, str] = UNSET
-    mtu: Union[Unset, int] = UNSET
-    media: Union[Unset, str] = UNSET
-    plugged: Union[Unset, str] = UNSET
-    vendor: Union[Unset, str] = UNSET
-    temperature: Union[Unset, str] = UNSET
-    voltage: Union[Unset, str] = UNSET
-    rx: Union[Unset, str] = UNSET
-    tx: Union[Unset, str] = UNSET
-    channel: Union[Unset, int] = UNSET
-    ssid: Union[Unset, str] = UNSET
-    bssid: Union[Unset, str] = UNSET
-    rate: Union[Unset, str] = UNSET
-    rssi: Union[Unset, str] = UNSET
-    in_packets: Union[Unset, int] = UNSET
-    out_packets: Union[Unset, int] = UNSET
-    in_bytes: Union[Unset, int] = UNSET
-    out_bytes: Union[Unset, int] = UNSET
-    in_packets_pass: Union[Unset, int] = UNSET
-    out_packets_pass: Union[Unset, int] = UNSET
-    in_bytes_pass: Union[Unset, int] = UNSET
-    out_bytes_pass: Union[Unset, int] = UNSET
-    in_packets_block: Union[Unset, int] = UNSET
-    out_packets_block: Union[Unset, int] = UNSET
-    in_bytes_block: Union[Unset, int] = UNSET
-    out_bytes_block: Union[Unset, int] = UNSET
-    in_errors: Union[Unset, int] = UNSET
-    out_errors: Union[Unset, int] = UNSET
-    collisions: Union[Unset, int] = UNSET
-    ip_address: Union[Unset, str] = UNSET
-    subnet_mask: Union[Unset, str] = UNSET
-    gateway: Union[Unset, str] = UNSET
-    ipv6_link_local: Union[Unset, str] = UNSET
-    ipv6_address: Union[Unset, str] = UNSET
-    ipv6_subnet_mask: Union[Unset, str] = UNSET
-    ipv6_gateway: Union[Unset, str] = UNSET
-    dns_servers: Union[Unset, List[str]] = UNSET
-    lagg_enabled: Union[Unset, bool] = UNSET
-    lagg_ports: Union[Unset, str] = UNSET
-    current_ppp_uptime: Union[Unset, str] = UNSET
-    historical_ppp_uptime: Union[Unset, str] = UNSET
-    cell_rssi: Union[Unset, str] = UNSET
-    cell_mode: Union[Unset, str] = UNSET
-    cell_simstate: Union[Unset, str] = UNSET
-    cell_service: Union[Unset, str] = UNSET
-    cell_bwupstream: Union[Unset, int] = UNSET
-    cell_bwdownstream: Union[Unset, int] = UNSET
-    cell_upstream: Union[Unset, int] = UNSET
-    cell_downstream: Union[Unset, int] = UNSET
-    dhcplink: Union[Unset, str] = UNSET
-    pppoelink: Union[Unset, str] = UNSET
-    pptplink: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    assigned_interface: str | Unset = UNSET
+    internal_name: str | Unset = UNSET
+    friendly_name: str | Unset = UNSET
+    assigned_name: str | Unset = UNSET
+    identity: str | Unset = UNSET
+    device: str | Unset = UNSET
+    enabled: bool | Unset = UNSET
+    status: str | Unset = UNSET
+    mac_address: str | Unset = UNSET
+    mtu: int | Unset = UNSET
+    media: str | Unset = UNSET
+    plugged: str | Unset = UNSET
+    vendor: str | Unset = UNSET
+    temperature: str | Unset = UNSET
+    voltage: str | Unset = UNSET
+    rx: str | Unset = UNSET
+    tx: str | Unset = UNSET
+    channel: int | Unset = UNSET
+    ssid: str | Unset = UNSET
+    bssid: str | Unset = UNSET
+    rate: str | Unset = UNSET
+    rssi: str | Unset = UNSET
+    in_packets: int | Unset = UNSET
+    out_packets: int | Unset = UNSET
+    in_bytes: int | Unset = UNSET
+    out_bytes: int | Unset = UNSET
+    in_packets_pass: int | Unset = UNSET
+    out_packets_pass: int | Unset = UNSET
+    in_bytes_pass: int | Unset = UNSET
+    out_bytes_pass: int | Unset = UNSET
+    in_packets_block: int | Unset = UNSET
+    out_packets_block: int | Unset = UNSET
+    in_bytes_block: int | Unset = UNSET
+    out_bytes_block: int | Unset = UNSET
+    in_errors: int | Unset = UNSET
+    out_errors: int | Unset = UNSET
+    collisions: int | Unset = UNSET
+    ip_address: str | Unset = UNSET
+    subnet_mask: str | Unset = UNSET
+    gateway: str | Unset = UNSET
+    ipv6_link_local: str | Unset = UNSET
+    ipv6_address: str | Unset = UNSET
+    ipv6_subnet_mask: str | Unset = UNSET
+    ipv6_gateway: str | Unset = UNSET
+    dns_servers: list[str] | Unset = UNSET
+    lagg_enabled: bool | Unset = UNSET
+    lagg_ports: str | Unset = UNSET
+    current_ppp_uptime: str | Unset = UNSET
+    historical_ppp_uptime: str | Unset = UNSET
+    cell_rssi: str | Unset = UNSET
+    cell_mode: str | Unset = UNSET
+    cell_simstate: str | Unset = UNSET
+    cell_service: str | Unset = UNSET
+    cell_bwupstream: int | Unset = UNSET
+    cell_bwdownstream: int | Unset = UNSET
+    cell_upstream: int | Unset = UNSET
+    cell_downstream: int | Unset = UNSET
+    dhcplink: str | Unset = UNSET
+    pppoelink: str | Unset = UNSET
+    pptplink: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         assigned_interface = self.assigned_interface
 
         internal_name = self.internal_name
@@ -225,7 +228,7 @@ class InterfaceInfo:
 
         ipv6_gateway = self.ipv6_gateway
 
-        dns_servers: Union[Unset, List[str]] = UNSET
+        dns_servers: list[str] | Unset = UNSET
         if not isinstance(self.dns_servers, Unset):
             dns_servers = self.dns_servers
 
@@ -259,7 +262,7 @@ class InterfaceInfo:
 
         pptplink = self.pptplink
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if assigned_interface is not UNSET:
@@ -386,8 +389,8 @@ class InterfaceInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         assigned_interface = d.pop("assigned_interface", UNSET)
 
         internal_name = d.pop("internal_name", UNSET)
@@ -476,7 +479,7 @@ class InterfaceInfo:
 
         ipv6_gateway = d.pop("ipv6_gateway", UNSET)
 
-        dns_servers = cast(List[str], d.pop("dns_servers", UNSET))
+        dns_servers = cast(list[str], d.pop("dns_servers", UNSET))
 
         lagg_enabled = d.pop("lagg_enabled", UNSET)
 
@@ -575,7 +578,7 @@ class InterfaceInfo:
         return interface_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

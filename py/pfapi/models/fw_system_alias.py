@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,31 +16,31 @@ class FWSystemAlias:
     """
     Attributes:
         name (str):
-        type (str):
-        descr (Union[Unset, str]):
-        address (Union[Unset, str]): space separated list of addresses
-        url (Union[Unset, str]):
-        table (Union[Unset, str]): name of firewall table applicable to this alias
-        if_ident (Union[Unset, str]): interface identity
-        if_assigned_name (Union[Unset, str]): interface assigned name
-        truncated (Union[Unset, bool]):
+        type_ (str):
+        descr (str | Unset):
+        address (str | Unset): space separated list of addresses
+        url (str | Unset):
+        table (str | Unset): name of firewall table applicable to this alias
+        if_ident (str | Unset): interface identity
+        if_assigned_name (str | Unset): interface assigned name
+        truncated (bool | Unset):
     """
 
     name: str
-    type: str
-    descr: Union[Unset, str] = UNSET
-    address: Union[Unset, str] = UNSET
-    url: Union[Unset, str] = UNSET
-    table: Union[Unset, str] = UNSET
-    if_ident: Union[Unset, str] = UNSET
-    if_assigned_name: Union[Unset, str] = UNSET
-    truncated: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    type_: str
+    descr: str | Unset = UNSET
+    address: str | Unset = UNSET
+    url: str | Unset = UNSET
+    table: str | Unset = UNSET
+    if_ident: str | Unset = UNSET
+    if_assigned_name: str | Unset = UNSET
+    truncated: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
-        type = self.type
+        type_ = self.type_
 
         descr = self.descr
 
@@ -53,12 +56,12 @@ class FWSystemAlias:
 
         truncated = self.truncated
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
                 "name": name,
-                "type": type,
+                "type": type_,
             }
         )
         if descr is not UNSET:
@@ -79,11 +82,11 @@ class FWSystemAlias:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name")
 
-        type = d.pop("type")
+        type_ = d.pop("type")
 
         descr = d.pop("descr", UNSET)
 
@@ -101,7 +104,7 @@ class FWSystemAlias:
 
         fw_system_alias = cls(
             name=name,
-            type=type,
+            type_=type_,
             descr=descr,
             address=address,
             url=url,
@@ -115,7 +118,7 @@ class FWSystemAlias:
         return fw_system_alias
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

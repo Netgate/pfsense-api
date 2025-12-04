@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,31 +21,31 @@ class FWUpdateAliasReq:
     """
     Attributes:
         name (str):
-        address (Union[Unset, str]): space separated list of addresses
-        targets (Union[Unset, List['FWTarget']]):
-        descr (Union[Unset, str]):
-        type (Union[Unset, FWUpdateAliasReqType]): host, network, url, urltable, urltable_ports, port, or url_ports
-        detail (Union[Unset, str]):
-        updatefreq (Union[Unset, str]):
-        truncated (Union[Unset, bool]):
+        address (str | Unset): space separated list of addresses
+        targets (list[FWTarget] | Unset):
+        descr (str | Unset):
+        type_ (FWUpdateAliasReqType | Unset): host, network, url, urltable, urltable_ports, port, or url_ports
+        detail (str | Unset):
+        updatefreq (str | Unset):
+        truncated (bool | Unset):
     """
 
     name: str
-    address: Union[Unset, str] = UNSET
-    targets: Union[Unset, List["FWTarget"]] = UNSET
-    descr: Union[Unset, str] = UNSET
-    type: Union[Unset, FWUpdateAliasReqType] = UNSET
-    detail: Union[Unset, str] = UNSET
-    updatefreq: Union[Unset, str] = UNSET
-    truncated: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    address: str | Unset = UNSET
+    targets: list[FWTarget] | Unset = UNSET
+    descr: str | Unset = UNSET
+    type_: FWUpdateAliasReqType | Unset = UNSET
+    detail: str | Unset = UNSET
+    updatefreq: str | Unset = UNSET
+    truncated: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         address = self.address
 
-        targets: Union[Unset, List[Dict[str, Any]]] = UNSET
+        targets: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.targets, Unset):
             targets = []
             for targets_item_data in self.targets:
@@ -51,9 +54,9 @@ class FWUpdateAliasReq:
 
         descr = self.descr
 
-        type: Union[Unset, str] = UNSET
-        if not isinstance(self.type, Unset):
-            type = self.type.value
+        type_: str | Unset = UNSET
+        if not isinstance(self.type_, Unset):
+            type_ = self.type_.value
 
         detail = self.detail
 
@@ -61,7 +64,7 @@ class FWUpdateAliasReq:
 
         truncated = self.truncated
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -74,8 +77,8 @@ class FWUpdateAliasReq:
             field_dict["targets"] = targets
         if descr is not UNSET:
             field_dict["descr"] = descr
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if detail is not UNSET:
             field_dict["detail"] = detail
         if updatefreq is not UNSET:
@@ -86,29 +89,31 @@ class FWUpdateAliasReq:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.fw_target import FWTarget
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name")
 
         address = d.pop("address", UNSET)
 
-        targets = []
         _targets = d.pop("targets", UNSET)
-        for targets_item_data in _targets or []:
-            targets_item = FWTarget.from_dict(targets_item_data)
+        targets: list[FWTarget] | Unset = UNSET
+        if _targets is not UNSET:
+            targets = []
+            for targets_item_data in _targets:
+                targets_item = FWTarget.from_dict(targets_item_data)
 
-            targets.append(targets_item)
+                targets.append(targets_item)
 
         descr = d.pop("descr", UNSET)
 
-        _type = d.pop("type", UNSET)
-        type: Union[Unset, FWUpdateAliasReqType]
-        if isinstance(_type, Unset):
-            type = UNSET
+        _type_ = d.pop("type", UNSET)
+        type_: FWUpdateAliasReqType | Unset
+        if isinstance(_type_, Unset):
+            type_ = UNSET
         else:
-            type = FWUpdateAliasReqType(_type)
+            type_ = FWUpdateAliasReqType(_type_)
 
         detail = d.pop("detail", UNSET)
 
@@ -121,7 +126,7 @@ class FWUpdateAliasReq:
             address=address,
             targets=targets,
             descr=descr,
-            type=type,
+            type_=type_,
             detail=detail,
             updatefreq=updatefreq,
             truncated=truncated,
@@ -131,7 +136,7 @@ class FWUpdateAliasReq:
         return fw_update_alias_req
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

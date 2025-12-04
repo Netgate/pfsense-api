@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,30 +20,30 @@ T = TypeVar("T", bound="DhcpdConfig")
 class DhcpdConfig:
     """
     Attributes:
-        service (Union[Unset, DhcpGlobalSettings]):
-        dhcpd (Union[Unset, DhcpServiceConfig]): Per IP version DHCP service setting
-        dhcpdv6 (Union[Unset, DhcpServiceConfig]): Per IP version DHCP service setting
+        service (DhcpGlobalSettings | Unset):
+        dhcpd (DhcpServiceConfig | Unset): Per IP version DHCP service setting
+        dhcpdv6 (DhcpServiceConfig | Unset): Per IP version DHCP service setting
     """
 
-    service: Union[Unset, "DhcpGlobalSettings"] = UNSET
-    dhcpd: Union[Unset, "DhcpServiceConfig"] = UNSET
-    dhcpdv6: Union[Unset, "DhcpServiceConfig"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    service: DhcpGlobalSettings | Unset = UNSET
+    dhcpd: DhcpServiceConfig | Unset = UNSET
+    dhcpdv6: DhcpServiceConfig | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        service: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        service: dict[str, Any] | Unset = UNSET
         if not isinstance(self.service, Unset):
             service = self.service.to_dict()
 
-        dhcpd: Union[Unset, Dict[str, Any]] = UNSET
+        dhcpd: dict[str, Any] | Unset = UNSET
         if not isinstance(self.dhcpd, Unset):
             dhcpd = self.dhcpd.to_dict()
 
-        dhcpdv6: Union[Unset, Dict[str, Any]] = UNSET
+        dhcpdv6: dict[str, Any] | Unset = UNSET
         if not isinstance(self.dhcpdv6, Unset):
             dhcpdv6 = self.dhcpdv6.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if service is not UNSET:
@@ -53,27 +56,27 @@ class DhcpdConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dhcp_global_settings import DhcpGlobalSettings
         from ..models.dhcp_service_config import DhcpServiceConfig
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _service = d.pop("service", UNSET)
-        service: Union[Unset, DhcpGlobalSettings]
+        service: DhcpGlobalSettings | Unset
         if isinstance(_service, Unset):
             service = UNSET
         else:
             service = DhcpGlobalSettings.from_dict(_service)
 
         _dhcpd = d.pop("dhcpd", UNSET)
-        dhcpd: Union[Unset, DhcpServiceConfig]
+        dhcpd: DhcpServiceConfig | Unset
         if isinstance(_dhcpd, Unset):
             dhcpd = UNSET
         else:
             dhcpd = DhcpServiceConfig.from_dict(_dhcpd)
 
         _dhcpdv6 = d.pop("dhcpdv6", UNSET)
-        dhcpdv6: Union[Unset, DhcpServiceConfig]
+        dhcpdv6: DhcpServiceConfig | Unset
         if isinstance(_dhcpdv6, Unset):
             dhcpdv6 = UNSET
         else:
@@ -89,7 +92,7 @@ class DhcpdConfig:
         return dhcpd_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,24 +15,24 @@ T = TypeVar("T", bound="MemoryStat")
 class MemoryStat:
     """
     Attributes:
-        total (Union[Unset, int]):
-        reserved (Union[Unset, int]):
-        used (Union[Unset, int]):
+        total (int | Unset):
+        reserved (int | Unset):
+        used (int | Unset):
     """
 
-    total: Union[Unset, int] = UNSET
-    reserved: Union[Unset, int] = UNSET
-    used: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    total: int | Unset = UNSET
+    reserved: int | Unset = UNSET
+    used: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         total = self.total
 
         reserved = self.reserved
 
         used = self.used
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if total is not UNSET:
@@ -42,8 +45,8 @@ class MemoryStat:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         total = d.pop("total", UNSET)
 
         reserved = d.pop("reserved", UNSET)
@@ -60,7 +63,7 @@ class MemoryStat:
         return memory_stat
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

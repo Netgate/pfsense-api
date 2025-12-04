@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="Limiters")
 class Limiters:
     """
     Attributes:
-        limiter (Union[Unset, List['Limiter']]):
+        limiter (list[Limiter] | Unset):
     """
 
-    limiter: Union[Unset, List["Limiter"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    limiter: list[Limiter] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        limiter: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        limiter: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.limiter, Unset):
             limiter = []
             for limiter_item_data in self.limiter:
                 limiter_item = limiter_item_data.to_dict()
                 limiter.append(limiter_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if limiter is not UNSET:
@@ -39,16 +42,18 @@ class Limiters:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.limiter import Limiter
 
-        d = src_dict.copy()
-        limiter = []
+        d = dict(src_dict)
         _limiter = d.pop("limiter", UNSET)
-        for limiter_item_data in _limiter or []:
-            limiter_item = Limiter.from_dict(limiter_item_data)
+        limiter: list[Limiter] | Unset = UNSET
+        if _limiter is not UNSET:
+            limiter = []
+            for limiter_item_data in _limiter:
+                limiter_item = Limiter.from_dict(limiter_item_data)
 
-            limiter.append(limiter_item)
+                limiter.append(limiter_item)
 
         limiters = cls(
             limiter=limiter,
@@ -58,7 +63,7 @@ class Limiters:
         return limiters
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

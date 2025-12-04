@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,20 +17,20 @@ T = TypeVar("T", bound="OSSoftwarePackages")
 class OSSoftwarePackages:
     """ """
 
-    additional_properties: Dict[str, "SoftwarePackageList"] = _attrs_field(init=False, factory=dict)
+    additional_properties: dict[str, SoftwarePackageList] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        field_dict: Dict[str, Any] = {}
+    def to_dict(self) -> dict[str, Any]:
+        field_dict: dict[str, Any] = {}
         for prop_name, prop in self.additional_properties.items():
             field_dict[prop_name] = prop.to_dict()
 
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.software_package_list import SoftwarePackageList
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         os_software_packages = cls()
 
         additional_properties = {}
@@ -40,13 +43,13 @@ class OSSoftwarePackages:
         return os_software_packages
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
-    def __getitem__(self, key: str) -> "SoftwarePackageList":
+    def __getitem__(self, key: str) -> SoftwarePackageList:
         return self.additional_properties[key]
 
-    def __setitem__(self, key: str, value: "SoftwarePackageList") -> None:
+    def __setitem__(self, key: str, value: SoftwarePackageList) -> None:
         self.additional_properties[key] = value
 
     def __delitem__(self, key: str) -> None:

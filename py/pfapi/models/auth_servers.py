@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,53 +22,53 @@ T = TypeVar("T", bound="AuthServers")
 class AuthServers:
     """
     Attributes:
-        active_type (Union[Unset, str]):
-        active_name (Union[Unset, str]):
-        ldap (Union[Unset, List['LdapAuthServer']]):
-        radius (Union[Unset, List['RadiusAuthServer']]):
-        local (Union[Unset, LocalServer]):
-        radius_nas_list (Union[Unset, List['TextValue']]):
+        active_type (str | Unset):
+        active_name (str | Unset):
+        ldap (list[LdapAuthServer] | Unset):
+        radius (list[RadiusAuthServer] | Unset):
+        local (LocalServer | Unset):
+        radius_nas_list (list[TextValue] | Unset):
     """
 
-    active_type: Union[Unset, str] = UNSET
-    active_name: Union[Unset, str] = UNSET
-    ldap: Union[Unset, List["LdapAuthServer"]] = UNSET
-    radius: Union[Unset, List["RadiusAuthServer"]] = UNSET
-    local: Union[Unset, "LocalServer"] = UNSET
-    radius_nas_list: Union[Unset, List["TextValue"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    active_type: str | Unset = UNSET
+    active_name: str | Unset = UNSET
+    ldap: list[LdapAuthServer] | Unset = UNSET
+    radius: list[RadiusAuthServer] | Unset = UNSET
+    local: LocalServer | Unset = UNSET
+    radius_nas_list: list[TextValue] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         active_type = self.active_type
 
         active_name = self.active_name
 
-        ldap: Union[Unset, List[Dict[str, Any]]] = UNSET
+        ldap: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.ldap, Unset):
             ldap = []
             for ldap_item_data in self.ldap:
                 ldap_item = ldap_item_data.to_dict()
                 ldap.append(ldap_item)
 
-        radius: Union[Unset, List[Dict[str, Any]]] = UNSET
+        radius: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.radius, Unset):
             radius = []
             for radius_item_data in self.radius:
                 radius_item = radius_item_data.to_dict()
                 radius.append(radius_item)
 
-        local: Union[Unset, Dict[str, Any]] = UNSET
+        local: dict[str, Any] | Unset = UNSET
         if not isinstance(self.local, Unset):
             local = self.local.to_dict()
 
-        radius_nas_list: Union[Unset, List[Dict[str, Any]]] = UNSET
+        radius_nas_list: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.radius_nas_list, Unset):
             radius_nas_list = []
             for radius_nas_list_item_data in self.radius_nas_list:
                 radius_nas_list_item = radius_nas_list_item_data.to_dict()
                 radius_nas_list.append(radius_nas_list_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if active_type is not UNSET:
@@ -84,44 +87,50 @@ class AuthServers:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ldap_auth_server import LdapAuthServer
         from ..models.local_server import LocalServer
         from ..models.radius_auth_server import RadiusAuthServer
         from ..models.text_value import TextValue
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         active_type = d.pop("active_type", UNSET)
 
         active_name = d.pop("active_name", UNSET)
 
-        ldap = []
         _ldap = d.pop("ldap", UNSET)
-        for ldap_item_data in _ldap or []:
-            ldap_item = LdapAuthServer.from_dict(ldap_item_data)
+        ldap: list[LdapAuthServer] | Unset = UNSET
+        if _ldap is not UNSET:
+            ldap = []
+            for ldap_item_data in _ldap:
+                ldap_item = LdapAuthServer.from_dict(ldap_item_data)
 
-            ldap.append(ldap_item)
+                ldap.append(ldap_item)
 
-        radius = []
         _radius = d.pop("radius", UNSET)
-        for radius_item_data in _radius or []:
-            radius_item = RadiusAuthServer.from_dict(radius_item_data)
+        radius: list[RadiusAuthServer] | Unset = UNSET
+        if _radius is not UNSET:
+            radius = []
+            for radius_item_data in _radius:
+                radius_item = RadiusAuthServer.from_dict(radius_item_data)
 
-            radius.append(radius_item)
+                radius.append(radius_item)
 
         _local = d.pop("local", UNSET)
-        local: Union[Unset, LocalServer]
+        local: LocalServer | Unset
         if isinstance(_local, Unset):
             local = UNSET
         else:
             local = LocalServer.from_dict(_local)
 
-        radius_nas_list = []
         _radius_nas_list = d.pop("radius_nas_list", UNSET)
-        for radius_nas_list_item_data in _radius_nas_list or []:
-            radius_nas_list_item = TextValue.from_dict(radius_nas_list_item_data)
+        radius_nas_list: list[TextValue] | Unset = UNSET
+        if _radius_nas_list is not UNSET:
+            radius_nas_list = []
+            for radius_nas_list_item_data in _radius_nas_list:
+                radius_nas_list_item = TextValue.from_dict(radius_nas_list_item_data)
 
-            radius_nas_list.append(radius_nas_list_item)
+                radius_nas_list.append(radius_nas_list_item)
 
         auth_servers = cls(
             active_type=active_type,
@@ -136,7 +145,7 @@ class AuthServers:
         return auth_servers
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

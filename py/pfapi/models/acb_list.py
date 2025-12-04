@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,16 +19,16 @@ T = TypeVar("T", bound="ACBList")
 class ACBList:
     """
     Attributes:
-        backups (Union[Unset, List['ACBBackup']]):
-        staged_backups (Union[Unset, int]): number of staged backups pending upload
+        backups (list[ACBBackup] | Unset):
+        staged_backups (int | Unset): number of staged backups pending upload
     """
 
-    backups: Union[Unset, List["ACBBackup"]] = UNSET
-    staged_backups: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    backups: list[ACBBackup] | Unset = UNSET
+    staged_backups: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        backups: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        backups: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.backups, Unset):
             backups = []
             for backups_item_data in self.backups:
@@ -34,7 +37,7 @@ class ACBList:
 
         staged_backups = self.staged_backups
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if backups is not UNSET:
@@ -45,16 +48,18 @@ class ACBList:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.acb_backup import ACBBackup
 
-        d = src_dict.copy()
-        backups = []
+        d = dict(src_dict)
         _backups = d.pop("backups", UNSET)
-        for backups_item_data in _backups or []:
-            backups_item = ACBBackup.from_dict(backups_item_data)
+        backups: list[ACBBackup] | Unset = UNSET
+        if _backups is not UNSET:
+            backups = []
+            for backups_item_data in _backups:
+                backups_item = ACBBackup.from_dict(backups_item_data)
 
-            backups.append(backups_item)
+                backups.append(backups_item)
 
         staged_backups = d.pop("staged_backups", UNSET)
 
@@ -67,7 +72,7 @@ class ACBList:
         return acb_list
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

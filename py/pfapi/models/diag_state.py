@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,27 +15,27 @@ T = TypeVar("T", bound="DiagState")
 class DiagState:
     """
     Attributes:
-        interface (Union[Unset, str]):
-        proto (Union[Unset, str]):
-        src (Union[Unset, str]):
-        dst (Union[Unset, str]):
-        display (Union[Unset, str]):
-        state (Union[Unset, str]):
-        packet (Union[Unset, str]):
-        bytes_ (Union[Unset, str]):
+        interface (str | Unset):
+        proto (str | Unset):
+        src (str | Unset):
+        dst (str | Unset):
+        display (str | Unset):
+        state (str | Unset):
+        packet (str | Unset):
+        bytes_ (str | Unset):
     """
 
-    interface: Union[Unset, str] = UNSET
-    proto: Union[Unset, str] = UNSET
-    src: Union[Unset, str] = UNSET
-    dst: Union[Unset, str] = UNSET
-    display: Union[Unset, str] = UNSET
-    state: Union[Unset, str] = UNSET
-    packet: Union[Unset, str] = UNSET
-    bytes_: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    interface: str | Unset = UNSET
+    proto: str | Unset = UNSET
+    src: str | Unset = UNSET
+    dst: str | Unset = UNSET
+    display: str | Unset = UNSET
+    state: str | Unset = UNSET
+    packet: str | Unset = UNSET
+    bytes_: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         interface = self.interface
 
         proto = self.proto
@@ -49,7 +52,7 @@ class DiagState:
 
         bytes_ = self.bytes_
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if interface is not UNSET:
@@ -72,8 +75,8 @@ class DiagState:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         interface = d.pop("interface", UNSET)
 
         proto = d.pop("proto", UNSET)
@@ -105,7 +108,7 @@ class DiagState:
         return diag_state
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,30 +15,30 @@ T = TypeVar("T", bound="FilterReloadStatus")
 class FilterReloadStatus:
     """
     Attributes:
-        ongoing (Union[Unset, bool]):
-        done (Union[Unset, bool]):
-        status_lines (Union[Unset, List[str]]):
-        ha_xmlrpc_enabled (Union[Unset, bool]):
+        ongoing (bool | Unset):
+        done (bool | Unset):
+        status_lines (list[str] | Unset):
+        ha_xmlrpc_enabled (bool | Unset):
     """
 
-    ongoing: Union[Unset, bool] = UNSET
-    done: Union[Unset, bool] = UNSET
-    status_lines: Union[Unset, List[str]] = UNSET
-    ha_xmlrpc_enabled: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ongoing: bool | Unset = UNSET
+    done: bool | Unset = UNSET
+    status_lines: list[str] | Unset = UNSET
+    ha_xmlrpc_enabled: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         ongoing = self.ongoing
 
         done = self.done
 
-        status_lines: Union[Unset, List[str]] = UNSET
+        status_lines: list[str] | Unset = UNSET
         if not isinstance(self.status_lines, Unset):
             status_lines = self.status_lines
 
         ha_xmlrpc_enabled = self.ha_xmlrpc_enabled
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ongoing is not UNSET:
@@ -50,13 +53,13 @@ class FilterReloadStatus:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         ongoing = d.pop("ongoing", UNSET)
 
         done = d.pop("done", UNSET)
 
-        status_lines = cast(List[str], d.pop("status_lines", UNSET))
+        status_lines = cast(list[str], d.pop("status_lines", UNSET))
 
         ha_xmlrpc_enabled = d.pop("ha_xmlrpc_enabled", UNSET)
 
@@ -71,7 +74,7 @@ class FilterReloadStatus:
         return filter_reload_status
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

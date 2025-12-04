@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,25 +19,25 @@ T = TypeVar("T", bound="ServiceProviderSetting")
 class ServiceProviderSetting:
     """
     Attributes:
-        name (Union[Unset, str]):
-        plans (Union[Unset, List['ProviderPlanSetting']]):
+        name (str | Unset):
+        plans (list[ProviderPlanSetting] | Unset):
     """
 
-    name: Union[Unset, str] = UNSET
-    plans: Union[Unset, List["ProviderPlanSetting"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    plans: list[ProviderPlanSetting] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
-        plans: Union[Unset, List[Dict[str, Any]]] = UNSET
+        plans: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.plans, Unset):
             plans = []
             for plans_item_data in self.plans:
                 plans_item = plans_item_data.to_dict()
                 plans.append(plans_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -45,18 +48,20 @@ class ServiceProviderSetting:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.provider_plan_setting import ProviderPlanSetting
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
-        plans = []
         _plans = d.pop("plans", UNSET)
-        for plans_item_data in _plans or []:
-            plans_item = ProviderPlanSetting.from_dict(plans_item_data)
+        plans: list[ProviderPlanSetting] | Unset = UNSET
+        if _plans is not UNSET:
+            plans = []
+            for plans_item_data in _plans:
+                plans_item = ProviderPlanSetting.from_dict(plans_item_data)
 
-            plans.append(plans_item)
+                plans.append(plans_item)
 
         service_provider_setting = cls(
             name=name,
@@ -67,7 +72,7 @@ class ServiceProviderSetting:
         return service_provider_setting
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

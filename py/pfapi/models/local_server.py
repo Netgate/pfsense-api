@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,47 +15,47 @@ T = TypeVar("T", bound="LocalServer")
 class LocalServer:
     """
     Attributes:
-        name (Union[Unset, str]):
-        type (Union[Unset, str]):
-        host (Union[Unset, str]):
+        name (str | Unset):
+        type_ (str | Unset):
+        host (str | Unset):
     """
 
-    name: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
-    host: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    type_: str | Unset = UNSET
+    host: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
-        type = self.type
+        type_ = self.type_
 
         host = self.host
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
             field_dict["name"] = name
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if host is not UNSET:
             field_dict["host"] = host
 
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
-        type = d.pop("type", UNSET)
+        type_ = d.pop("type", UNSET)
 
         host = d.pop("host", UNSET)
 
         local_server = cls(
             name=name,
-            type=type,
+            type_=type_,
             host=host,
         )
 
@@ -60,7 +63,7 @@ class LocalServer:
         return local_server
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -6,6 +9,7 @@ from attrs import field as _attrs_field
 from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
+    from ..models.netif_status import NetifStatus
     from ..models.nexus_controller_info import NexusControllerInfo
 
 
@@ -16,51 +20,53 @@ T = TypeVar("T", bound="SystemStatus")
 class SystemStatus:
     """
     Attributes:
-        prod (Union[Unset, str]):
-        host (Union[Unset, str]):
-        osver (Union[Unset, str]):
-        os (Union[Unset, str]):
-        machine (Union[Unset, str]):
-        arch (Union[Unset, str]):
-        vndr (Union[Unset, str]):
-        cores (Union[Unset, int]):
-        cpu (Union[Unset, str]):
-        up (Union[Unset, str]):
-        rev (Union[Unset, str]):
-        ram (Union[Unset, int]):
-        fram (Union[Unset, int]):
-        swap (Union[Unset, int]):
-        fswap (Union[Unset, int]):
-        timestamp (Union[Unset, str]):
-        apiver (Union[Unset, str]):
-        vpn_addr (Union[Unset, str]):
-        alerts (Union[Unset, str]):
-        nexus_controllers (Union[Unset, List['NexusControllerInfo']]):
+        prod (str | Unset):
+        host (str | Unset):
+        osver (str | Unset):
+        os (str | Unset):
+        machine (str | Unset):
+        arch (str | Unset):
+        vndr (str | Unset):
+        cores (int | Unset):
+        cpu (str | Unset):
+        up (str | Unset):
+        rev (str | Unset):
+        ram (int | Unset):
+        fram (int | Unset):
+        swap (int | Unset):
+        fswap (int | Unset):
+        timestamp (str | Unset):
+        apiver (str | Unset):
+        vpn_addr (str | Unset):
+        alerts (str | Unset):
+        net_interfaces (list[NetifStatus] | Unset):
+        nexus_controllers (list[NexusControllerInfo] | Unset):
     """
 
-    prod: Union[Unset, str] = UNSET
-    host: Union[Unset, str] = UNSET
-    osver: Union[Unset, str] = UNSET
-    os: Union[Unset, str] = UNSET
-    machine: Union[Unset, str] = UNSET
-    arch: Union[Unset, str] = UNSET
-    vndr: Union[Unset, str] = UNSET
-    cores: Union[Unset, int] = UNSET
-    cpu: Union[Unset, str] = UNSET
-    up: Union[Unset, str] = UNSET
-    rev: Union[Unset, str] = UNSET
-    ram: Union[Unset, int] = UNSET
-    fram: Union[Unset, int] = UNSET
-    swap: Union[Unset, int] = UNSET
-    fswap: Union[Unset, int] = UNSET
-    timestamp: Union[Unset, str] = UNSET
-    apiver: Union[Unset, str] = UNSET
-    vpn_addr: Union[Unset, str] = UNSET
-    alerts: Union[Unset, str] = UNSET
-    nexus_controllers: Union[Unset, List["NexusControllerInfo"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    prod: str | Unset = UNSET
+    host: str | Unset = UNSET
+    osver: str | Unset = UNSET
+    os: str | Unset = UNSET
+    machine: str | Unset = UNSET
+    arch: str | Unset = UNSET
+    vndr: str | Unset = UNSET
+    cores: int | Unset = UNSET
+    cpu: str | Unset = UNSET
+    up: str | Unset = UNSET
+    rev: str | Unset = UNSET
+    ram: int | Unset = UNSET
+    fram: int | Unset = UNSET
+    swap: int | Unset = UNSET
+    fswap: int | Unset = UNSET
+    timestamp: str | Unset = UNSET
+    apiver: str | Unset = UNSET
+    vpn_addr: str | Unset = UNSET
+    alerts: str | Unset = UNSET
+    net_interfaces: list[NetifStatus] | Unset = UNSET
+    nexus_controllers: list[NexusControllerInfo] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         prod = self.prod
 
         host = self.host
@@ -99,14 +105,21 @@ class SystemStatus:
 
         alerts = self.alerts
 
-        nexus_controllers: Union[Unset, List[Dict[str, Any]]] = UNSET
+        net_interfaces: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.net_interfaces, Unset):
+            net_interfaces = []
+            for net_interfaces_item_data in self.net_interfaces:
+                net_interfaces_item = net_interfaces_item_data.to_dict()
+                net_interfaces.append(net_interfaces_item)
+
+        nexus_controllers: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.nexus_controllers, Unset):
             nexus_controllers = []
             for nexus_controllers_item_data in self.nexus_controllers:
                 nexus_controllers_item = nexus_controllers_item_data.to_dict()
                 nexus_controllers.append(nexus_controllers_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if prod is not UNSET:
@@ -147,16 +160,19 @@ class SystemStatus:
             field_dict["vpn_addr"] = vpn_addr
         if alerts is not UNSET:
             field_dict["alerts"] = alerts
+        if net_interfaces is not UNSET:
+            field_dict["net_interfaces"] = net_interfaces
         if nexus_controllers is not UNSET:
             field_dict["nexus_controllers"] = nexus_controllers
 
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.netif_status import NetifStatus
         from ..models.nexus_controller_info import NexusControllerInfo
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         prod = d.pop("prod", UNSET)
 
         host = d.pop("host", UNSET)
@@ -195,12 +211,23 @@ class SystemStatus:
 
         alerts = d.pop("alerts", UNSET)
 
-        nexus_controllers = []
-        _nexus_controllers = d.pop("nexus_controllers", UNSET)
-        for nexus_controllers_item_data in _nexus_controllers or []:
-            nexus_controllers_item = NexusControllerInfo.from_dict(nexus_controllers_item_data)
+        _net_interfaces = d.pop("net_interfaces", UNSET)
+        net_interfaces: list[NetifStatus] | Unset = UNSET
+        if _net_interfaces is not UNSET:
+            net_interfaces = []
+            for net_interfaces_item_data in _net_interfaces:
+                net_interfaces_item = NetifStatus.from_dict(net_interfaces_item_data)
 
-            nexus_controllers.append(nexus_controllers_item)
+                net_interfaces.append(net_interfaces_item)
+
+        _nexus_controllers = d.pop("nexus_controllers", UNSET)
+        nexus_controllers: list[NexusControllerInfo] | Unset = UNSET
+        if _nexus_controllers is not UNSET:
+            nexus_controllers = []
+            for nexus_controllers_item_data in _nexus_controllers:
+                nexus_controllers_item = NexusControllerInfo.from_dict(nexus_controllers_item_data)
+
+                nexus_controllers.append(nexus_controllers_item)
 
         system_status = cls(
             prod=prod,
@@ -222,6 +249,7 @@ class SystemStatus:
             apiver=apiver,
             vpn_addr=vpn_addr,
             alerts=alerts,
+            net_interfaces=net_interfaces,
             nexus_controllers=nexus_controllers,
         )
 
@@ -229,7 +257,7 @@ class SystemStatus:
         return system_status
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

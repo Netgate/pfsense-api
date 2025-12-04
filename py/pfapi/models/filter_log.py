@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -20,65 +23,65 @@ T = TypeVar("T", bound="FilterLog")
 class FilterLog:
     """
     Attributes:
-        time_usec (Union[Unset, int]):
-        time (Union[Unset, str]):
-        rulenum (Union[Unset, int]):
-        subrulenum (Union[Unset, int]):
-        anchor (Union[Unset, str]):
-        rule_descr (Union[Unset, str]):
-        tracker (Union[Unset, str]):
-        realint (Union[Unset, str]):
-        friendly_interface (Union[Unset, str]):
-        reason (Union[Unset, str]):
-        action (Union[Unset, str]):
-        direction (Union[Unset, str]):
-        version (Union[Unset, int]):
-        proto_id (Union[Unset, int]):
-        proto (Union[Unset, str]):
-        v4info (Union[Unset, FilterLogVersion4Info]):
-        v6info (Union[Unset, FilterLogVersion6Info]):
-        length (Union[Unset, int]):
-        src (Union[Unset, str]):
-        dst (Union[Unset, str]):
-        src_ip (Union[Unset, str]):
-        dst_ip (Union[Unset, str]):
-        src_port (Union[Unset, int]):
-        dst_port (Union[Unset, int]):
-        tcp_info (Union[Unset, FilterLogTCPInfo]): proto_id = 6
-        icmp_info (Union[Unset, FilterLogICMPInfo]): proto_id 1, 58
-        carp_info (Union[Unset, FilterLogCARPInfo]):
+        time_usec (int | Unset):
+        time (str | Unset):
+        rulenum (int | Unset):
+        subrulenum (int | Unset):
+        anchor (str | Unset):
+        rule_descr (str | Unset):
+        tracker (str | Unset):
+        realint (str | Unset):
+        friendly_interface (str | Unset):
+        reason (str | Unset):
+        action (str | Unset):
+        direction (str | Unset):
+        version (int | Unset):
+        proto_id (int | Unset):
+        proto (str | Unset):
+        v4info (FilterLogVersion4Info | Unset):
+        v6info (FilterLogVersion6Info | Unset):
+        length (int | Unset):
+        src (str | Unset):
+        dst (str | Unset):
+        src_ip (str | Unset):
+        dst_ip (str | Unset):
+        src_port (int | Unset):
+        dst_port (int | Unset):
+        tcp_info (FilterLogTCPInfo | Unset): proto_id = 6
+        icmp_info (FilterLogICMPInfo | Unset): proto_id 1, 58
+        carp_info (FilterLogCARPInfo | Unset):
     """
 
-    time_usec: Union[Unset, int] = UNSET
-    time: Union[Unset, str] = UNSET
-    rulenum: Union[Unset, int] = UNSET
-    subrulenum: Union[Unset, int] = UNSET
-    anchor: Union[Unset, str] = UNSET
-    rule_descr: Union[Unset, str] = UNSET
-    tracker: Union[Unset, str] = UNSET
-    realint: Union[Unset, str] = UNSET
-    friendly_interface: Union[Unset, str] = UNSET
-    reason: Union[Unset, str] = UNSET
-    action: Union[Unset, str] = UNSET
-    direction: Union[Unset, str] = UNSET
-    version: Union[Unset, int] = UNSET
-    proto_id: Union[Unset, int] = UNSET
-    proto: Union[Unset, str] = UNSET
-    v4info: Union[Unset, "FilterLogVersion4Info"] = UNSET
-    v6info: Union[Unset, "FilterLogVersion6Info"] = UNSET
-    length: Union[Unset, int] = UNSET
-    src: Union[Unset, str] = UNSET
-    dst: Union[Unset, str] = UNSET
-    src_ip: Union[Unset, str] = UNSET
-    dst_ip: Union[Unset, str] = UNSET
-    src_port: Union[Unset, int] = UNSET
-    dst_port: Union[Unset, int] = UNSET
-    tcp_info: Union[Unset, "FilterLogTCPInfo"] = UNSET
-    icmp_info: Union[Unset, "FilterLogICMPInfo"] = UNSET
-    carp_info: Union[Unset, "FilterLogCARPInfo"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    time_usec: int | Unset = UNSET
+    time: str | Unset = UNSET
+    rulenum: int | Unset = UNSET
+    subrulenum: int | Unset = UNSET
+    anchor: str | Unset = UNSET
+    rule_descr: str | Unset = UNSET
+    tracker: str | Unset = UNSET
+    realint: str | Unset = UNSET
+    friendly_interface: str | Unset = UNSET
+    reason: str | Unset = UNSET
+    action: str | Unset = UNSET
+    direction: str | Unset = UNSET
+    version: int | Unset = UNSET
+    proto_id: int | Unset = UNSET
+    proto: str | Unset = UNSET
+    v4info: FilterLogVersion4Info | Unset = UNSET
+    v6info: FilterLogVersion6Info | Unset = UNSET
+    length: int | Unset = UNSET
+    src: str | Unset = UNSET
+    dst: str | Unset = UNSET
+    src_ip: str | Unset = UNSET
+    dst_ip: str | Unset = UNSET
+    src_port: int | Unset = UNSET
+    dst_port: int | Unset = UNSET
+    tcp_info: FilterLogTCPInfo | Unset = UNSET
+    icmp_info: FilterLogICMPInfo | Unset = UNSET
+    carp_info: FilterLogCARPInfo | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         time_usec = self.time_usec
 
         time = self.time
@@ -109,11 +112,11 @@ class FilterLog:
 
         proto = self.proto
 
-        v4info: Union[Unset, Dict[str, Any]] = UNSET
+        v4info: dict[str, Any] | Unset = UNSET
         if not isinstance(self.v4info, Unset):
             v4info = self.v4info.to_dict()
 
-        v6info: Union[Unset, Dict[str, Any]] = UNSET
+        v6info: dict[str, Any] | Unset = UNSET
         if not isinstance(self.v6info, Unset):
             v6info = self.v6info.to_dict()
 
@@ -131,19 +134,19 @@ class FilterLog:
 
         dst_port = self.dst_port
 
-        tcp_info: Union[Unset, Dict[str, Any]] = UNSET
+        tcp_info: dict[str, Any] | Unset = UNSET
         if not isinstance(self.tcp_info, Unset):
             tcp_info = self.tcp_info.to_dict()
 
-        icmp_info: Union[Unset, Dict[str, Any]] = UNSET
+        icmp_info: dict[str, Any] | Unset = UNSET
         if not isinstance(self.icmp_info, Unset):
             icmp_info = self.icmp_info.to_dict()
 
-        carp_info: Union[Unset, Dict[str, Any]] = UNSET
+        carp_info: dict[str, Any] | Unset = UNSET
         if not isinstance(self.carp_info, Unset):
             carp_info = self.carp_info.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if time_usec is not UNSET:
@@ -204,14 +207,14 @@ class FilterLog:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.filter_log_carp_info import FilterLogCARPInfo
         from ..models.filter_log_icmp_info import FilterLogICMPInfo
         from ..models.filter_log_tcp_info import FilterLogTCPInfo
         from ..models.filter_log_version_4_info import FilterLogVersion4Info
         from ..models.filter_log_version_6_info import FilterLogVersion6Info
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         time_usec = d.pop("time_usec", UNSET)
 
         time = d.pop("time", UNSET)
@@ -243,14 +246,14 @@ class FilterLog:
         proto = d.pop("proto", UNSET)
 
         _v4info = d.pop("v4info", UNSET)
-        v4info: Union[Unset, FilterLogVersion4Info]
+        v4info: FilterLogVersion4Info | Unset
         if isinstance(_v4info, Unset):
             v4info = UNSET
         else:
             v4info = FilterLogVersion4Info.from_dict(_v4info)
 
         _v6info = d.pop("v6info", UNSET)
-        v6info: Union[Unset, FilterLogVersion6Info]
+        v6info: FilterLogVersion6Info | Unset
         if isinstance(_v6info, Unset):
             v6info = UNSET
         else:
@@ -271,21 +274,21 @@ class FilterLog:
         dst_port = d.pop("dst_port", UNSET)
 
         _tcp_info = d.pop("tcp_info", UNSET)
-        tcp_info: Union[Unset, FilterLogTCPInfo]
+        tcp_info: FilterLogTCPInfo | Unset
         if isinstance(_tcp_info, Unset):
             tcp_info = UNSET
         else:
             tcp_info = FilterLogTCPInfo.from_dict(_tcp_info)
 
         _icmp_info = d.pop("icmp_info", UNSET)
-        icmp_info: Union[Unset, FilterLogICMPInfo]
+        icmp_info: FilterLogICMPInfo | Unset
         if isinstance(_icmp_info, Unset):
             icmp_info = UNSET
         else:
             icmp_info = FilterLogICMPInfo.from_dict(_icmp_info)
 
         _carp_info = d.pop("carp_info", UNSET)
-        carp_info: Union[Unset, FilterLogCARPInfo]
+        carp_info: FilterLogCARPInfo | Unset
         if isinstance(_carp_info, Unset):
             carp_info = UNSET
         else:
@@ -325,7 +328,7 @@ class FilterLog:
         return filter_log
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

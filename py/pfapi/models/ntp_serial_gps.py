@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,42 +19,42 @@ T = TypeVar("T", bound="NtpSerialGps")
 class NtpSerialGps:
     """
     Attributes:
-        type (Union[Unset, str]): Default | Custom | Generic | Garmin | MediaTek | SiRF | U-Blox | SureGPS
-        port (Union[Unset, str]):
-        speed (Union[Unset, str]):
-        autobaudinit (Union[Unset, bool]):
-        nmea (Union[Unset, int]): 0 | 1 | 2 | 4 | 8 or sum of them if multi selected
-        fudge1 (Union[Unset, float]):
-        fudge2 (Union[Unset, float]):
-        stratum (Union[Unset, int]): 0-16
-        gpsminpoll (Union[Unset, str]): Empty for default, "omit" or number ranged from 3 to 17 based on pfsense
-            specific approach
-        gpsmaxpoll (Union[Unset, str]): Empty for default, "omit" or number ranged from 3 to 17 based on pfsense
-            specific approach
-        ntp_gps_flags (Union[Unset, NtpGpsFlags]):
-        refid (Union[Unset, str]):
-        initcmd (Union[Unset, str]):
-        autocorrect_initcmd (Union[Unset, bool]):
+        type_ (str | Unset): Default | Custom | Generic | Garmin | MediaTek | SiRF | U-Blox | SureGPS
+        port (str | Unset):
+        speed (str | Unset):
+        autobaudinit (bool | Unset):
+        nmea (int | Unset): 0 | 1 | 2 | 4 | 8 or sum of them if multi selected
+        fudge1 (float | Unset):
+        fudge2 (float | Unset):
+        stratum (int | Unset): 0-16
+        gpsminpoll (str | Unset): Empty for default, "omit" or number ranged from 3 to 17 based on pfsense specific
+            approach
+        gpsmaxpoll (str | Unset): Empty for default, "omit" or number ranged from 3 to 17 based on pfsense specific
+            approach
+        ntp_gps_flags (NtpGpsFlags | Unset):
+        refid (str | Unset):
+        initcmd (str | Unset):
+        autocorrect_initcmd (bool | Unset):
     """
 
-    type: Union[Unset, str] = UNSET
-    port: Union[Unset, str] = UNSET
-    speed: Union[Unset, str] = UNSET
-    autobaudinit: Union[Unset, bool] = UNSET
-    nmea: Union[Unset, int] = UNSET
-    fudge1: Union[Unset, float] = UNSET
-    fudge2: Union[Unset, float] = UNSET
-    stratum: Union[Unset, int] = UNSET
-    gpsminpoll: Union[Unset, str] = UNSET
-    gpsmaxpoll: Union[Unset, str] = UNSET
-    ntp_gps_flags: Union[Unset, "NtpGpsFlags"] = UNSET
-    refid: Union[Unset, str] = UNSET
-    initcmd: Union[Unset, str] = UNSET
-    autocorrect_initcmd: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    type_: str | Unset = UNSET
+    port: str | Unset = UNSET
+    speed: str | Unset = UNSET
+    autobaudinit: bool | Unset = UNSET
+    nmea: int | Unset = UNSET
+    fudge1: float | Unset = UNSET
+    fudge2: float | Unset = UNSET
+    stratum: int | Unset = UNSET
+    gpsminpoll: str | Unset = UNSET
+    gpsmaxpoll: str | Unset = UNSET
+    ntp_gps_flags: NtpGpsFlags | Unset = UNSET
+    refid: str | Unset = UNSET
+    initcmd: str | Unset = UNSET
+    autocorrect_initcmd: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        type = self.type
+    def to_dict(self) -> dict[str, Any]:
+        type_ = self.type_
 
         port = self.port
 
@@ -71,7 +74,7 @@ class NtpSerialGps:
 
         gpsmaxpoll = self.gpsmaxpoll
 
-        ntp_gps_flags: Union[Unset, Dict[str, Any]] = UNSET
+        ntp_gps_flags: dict[str, Any] | Unset = UNSET
         if not isinstance(self.ntp_gps_flags, Unset):
             ntp_gps_flags = self.ntp_gps_flags.to_dict()
 
@@ -81,11 +84,11 @@ class NtpSerialGps:
 
         autocorrect_initcmd = self.autocorrect_initcmd
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if port is not UNSET:
             field_dict["port"] = port
         if speed is not UNSET:
@@ -116,11 +119,11 @@ class NtpSerialGps:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ntp_gps_flags import NtpGpsFlags
 
-        d = src_dict.copy()
-        type = d.pop("type", UNSET)
+        d = dict(src_dict)
+        type_ = d.pop("type", UNSET)
 
         port = d.pop("port", UNSET)
 
@@ -141,7 +144,7 @@ class NtpSerialGps:
         gpsmaxpoll = d.pop("gpsmaxpoll", UNSET)
 
         _ntp_gps_flags = d.pop("ntp_gps_flags", UNSET)
-        ntp_gps_flags: Union[Unset, NtpGpsFlags]
+        ntp_gps_flags: NtpGpsFlags | Unset
         if isinstance(_ntp_gps_flags, Unset):
             ntp_gps_flags = UNSET
         else:
@@ -154,7 +157,7 @@ class NtpSerialGps:
         autocorrect_initcmd = d.pop("autocorrect_initcmd", UNSET)
 
         ntp_serial_gps = cls(
-            type=type,
+            type_=type_,
             port=port,
             speed=speed,
             autobaudinit=autobaudinit,
@@ -174,7 +177,7 @@ class NtpSerialGps:
         return ntp_serial_gps
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

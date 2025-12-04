@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -12,10 +12,10 @@ from ...types import UNSET, Response, Unset
 
 def _get_kwargs(
     *,
-    t1: Union[Unset, int] = UNSET,
-    t2: Union[Unset, int] = UNSET,
-) -> Dict[str, Any]:
-    params: Dict[str, Any] = {}
+    t1: int | Unset = UNSET,
+    t2: int | Unset = UNSET,
+) -> dict[str, Any]:
+    params: dict[str, Any] = {}
 
     params["t1"] = t1
 
@@ -23,7 +23,7 @@ def _get_kwargs(
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/diag/backup/diff",
         "params": params,
@@ -32,17 +32,17 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[DiagBackupDiff, Error]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> DiagBackupDiff | Error | None:
     if response.status_code == 200:
         response_200 = DiagBackupDiff.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -50,8 +50,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[DiagBackupDiff, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[DiagBackupDiff | Error]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -62,22 +62,22 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    t1: Union[Unset, int] = UNSET,
-    t2: Union[Unset, int] = UNSET,
-) -> Response[Union[DiagBackupDiff, Error]]:
+    client: AuthenticatedClient | Client,
+    t1: int | Unset = UNSET,
+    t2: int | Unset = UNSET,
+) -> Response[DiagBackupDiff | Error]:
     """Get a diff of two backups
 
     Args:
-        t1 (Union[Unset, int]):
-        t2 (Union[Unset, int]):
+        t1 (int | Unset):
+        t2 (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DiagBackupDiff, Error]]
+        Response[DiagBackupDiff | Error]
     """
 
     kwargs = _get_kwargs(
@@ -94,22 +94,22 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-    t1: Union[Unset, int] = UNSET,
-    t2: Union[Unset, int] = UNSET,
-) -> Optional[Union[DiagBackupDiff, Error]]:
+    client: AuthenticatedClient | Client,
+    t1: int | Unset = UNSET,
+    t2: int | Unset = UNSET,
+) -> DiagBackupDiff | Error | None:
     """Get a diff of two backups
 
     Args:
-        t1 (Union[Unset, int]):
-        t2 (Union[Unset, int]):
+        t1 (int | Unset):
+        t2 (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DiagBackupDiff, Error]
+        DiagBackupDiff | Error
     """
 
     return sync_detailed(
@@ -121,22 +121,22 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    t1: Union[Unset, int] = UNSET,
-    t2: Union[Unset, int] = UNSET,
-) -> Response[Union[DiagBackupDiff, Error]]:
+    client: AuthenticatedClient | Client,
+    t1: int | Unset = UNSET,
+    t2: int | Unset = UNSET,
+) -> Response[DiagBackupDiff | Error]:
     """Get a diff of two backups
 
     Args:
-        t1 (Union[Unset, int]):
-        t2 (Union[Unset, int]):
+        t1 (int | Unset):
+        t2 (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DiagBackupDiff, Error]]
+        Response[DiagBackupDiff | Error]
     """
 
     kwargs = _get_kwargs(
@@ -151,22 +151,22 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-    t1: Union[Unset, int] = UNSET,
-    t2: Union[Unset, int] = UNSET,
-) -> Optional[Union[DiagBackupDiff, Error]]:
+    client: AuthenticatedClient | Client,
+    t1: int | Unset = UNSET,
+    t2: int | Unset = UNSET,
+) -> DiagBackupDiff | Error | None:
     """Get a diff of two backups
 
     Args:
-        t1 (Union[Unset, int]):
-        t2 (Union[Unset, int]):
+        t1 (int | Unset):
+        t2 (int | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DiagBackupDiff, Error]
+        DiagBackupDiff | Error
     """
 
     return (

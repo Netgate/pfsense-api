@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,31 +15,31 @@ T = TypeVar("T", bound="Dhcp6AdvancedOptions")
 class Dhcp6AdvancedOptions:
     """
     Attributes:
-        duid (Union[Unset, str]):
-        client_id (Union[Unset, str]):
-        dhcp6_pfxdel_len (Union[Unset, int]): delegated prefix length
-        prefix_selected_interface (Union[Unset, str]):
-        ifreq_information_only_enable (Union[Unset, bool]):
-        send_options (Union[Unset, str]):
-        request_options (Union[Unset, str]):
-        enable_override_options (Union[Unset, bool]):
-        override_options (Union[Unset, str]):
-        config_file_override_path (Union[Unset, str]):
+        duid (str | Unset):
+        client_id (str | Unset):
+        dhcp6_pfxdel_len (int | Unset): delegated prefix length
+        prefix_selected_interface (str | Unset):
+        ifreq_information_only_enable (bool | Unset):
+        send_options (str | Unset):
+        request_options (str | Unset):
+        enable_override_options (bool | Unset):
+        override_options (str | Unset):
+        config_file_override_path (str | Unset):
     """
 
-    duid: Union[Unset, str] = UNSET
-    client_id: Union[Unset, str] = UNSET
-    dhcp6_pfxdel_len: Union[Unset, int] = UNSET
-    prefix_selected_interface: Union[Unset, str] = UNSET
-    ifreq_information_only_enable: Union[Unset, bool] = UNSET
-    send_options: Union[Unset, str] = UNSET
-    request_options: Union[Unset, str] = UNSET
-    enable_override_options: Union[Unset, bool] = UNSET
-    override_options: Union[Unset, str] = UNSET
-    config_file_override_path: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    duid: str | Unset = UNSET
+    client_id: str | Unset = UNSET
+    dhcp6_pfxdel_len: int | Unset = UNSET
+    prefix_selected_interface: str | Unset = UNSET
+    ifreq_information_only_enable: bool | Unset = UNSET
+    send_options: str | Unset = UNSET
+    request_options: str | Unset = UNSET
+    enable_override_options: bool | Unset = UNSET
+    override_options: str | Unset = UNSET
+    config_file_override_path: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         duid = self.duid
 
         client_id = self.client_id
@@ -57,7 +60,7 @@ class Dhcp6AdvancedOptions:
 
         config_file_override_path = self.config_file_override_path
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if duid is not UNSET:
@@ -84,8 +87,8 @@ class Dhcp6AdvancedOptions:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         duid = d.pop("duid", UNSET)
 
         client_id = d.pop("client_id", UNSET)
@@ -123,7 +126,7 @@ class Dhcp6AdvancedOptions:
         return dhcp_6_advanced_options
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

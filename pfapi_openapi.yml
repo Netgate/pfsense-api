@@ -1095,6 +1095,24 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /diag/ping:
+    get:
+      tags:
+        - diag
+      summary: Get the valid set of values that can be used for a ping request
+      description: ""
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/ValidPingOptions'
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
     post:
       tags:
         - diag
@@ -1166,17 +1184,12 @@ paths:
               schema:
                 $ref: '#/components/schemas/Error'
   /diag/smart/abort:
-    get:
+    delete:
       tags:
         - diag
-      summary: Abort SMART test
+      summary: Abort current SMART test
       description: ""
-      operationId: DiagGetSmartAbort
-      parameters:
-        - in: query
-          name: drive
-          schema:
-            type: string
+      operationId: DiagAbortSmartTest
       responses:
         '200':
           description: ok
@@ -1252,9 +1265,28 @@ paths:
     get:
       tags:
         - diag
-      summary: Run SMART test
+      summary: Get current SMART test status/result
       description: ""
       operationId: DiagGetSmartTest
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SMARTResult'
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    post:
+      tags:
+        - diag
+      summary: Run SMART test
+      description: ""
+      operationId: DiagRunSmartTest
       parameters:
         - in: query
           name: drive
@@ -1262,10 +1294,7 @@ paths:
             type: string
         - in: query
           name: type
-          schema:
-            type: string
-        - in: query
-          name: status
+          description: test type
           schema:
             type: string
       responses:
@@ -1351,10 +1380,17 @@ paths:
       parameters:
         - in: query
           name: srcip
+          description: delete matching source IP
           schema:
             type: string
         - in: query
           name: dstip
+          description: delete matching destination IP
+          schema:
+            type: string
+        - in: query
+          name: filter_str
+          description: delete states matching the filter, only used if srcip and dstip both not provided
           schema:
             type: string
       responses:
@@ -4459,6 +4495,102 @@ paths:
       summary: Delete VLAN interface
       description: ""
       operationId: DeleteVLAN
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PfsenseResult'
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /interfaces/vxlan:
+    get:
+      tags:
+        - interfaces
+      summary: Get VXLANs
+      description: ""
+      operationId: GetVXLANs
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/VXLANInterfaces'
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    put:
+      tags:
+        - interfaces
+      summary: Add VXLAN interface
+      description: ""
+      operationId: AddVXLAN
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VXLANInterface'
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PfsenseResult'
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /interfaces/vxlan/{name}:
+    parameters:
+      - in: path
+        name: name
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - interfaces
+      summary: Update VXLAN interface
+      description: ""
+      operationId: SetVXLAN
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/VXLANInterface'
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/PfsenseResult'
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    delete:
+      tags:
+        - interfaces
+      summary: Delete VXLAN interface
+      description: ""
+      operationId: DeleteVXLAN
       responses:
         '200':
           description: ok
@@ -11130,15 +11262,15 @@ paths:
       operationId: KillClientOpenVPN
       parameters:
         - in: query
-          name: port
-          schema:
-            type: integer
-        - in: query
-          name: remipp
+          name: mgmt
           schema:
             type: string
         - in: query
-          name: clientid
+          name: remote_host
+          schema:
+            type: string
+        - in: query
+          name: client_id
           schema:
             type: string
       responses:
@@ -15133,8 +15265,20 @@ components:
       properties:
         host:
           type: string
+          description: host name or address to ping
         count:
           type: integer
+          description: number of packets to send
+        wait_sec:
+          type: integer
+          description: number of seconds between ping packets
+        ipv6:
+          type: boolean
+          description: if hostname is provided, use IPv6 instead of IPv4
+        source_addr:
+          type: string
+          description: |
+            local IP address or name of interface to use, default "" (any)
     DiagPingResponse:
       type: object
       properties:
@@ -16179,6 +16323,7 @@ components:
             type: string
         value:
           type: boolean
+          description: true to disable
     FwRuleToggle:
       type: object
       properties:
@@ -17326,8 +17471,6 @@ components:
     InsertFilterRule:
       type: object
       properties:
-        reference:
-          type: string
         after:
           type: boolean
         rule:
@@ -17620,6 +17763,10 @@ components:
           additionalProperties:
             type: string
         vlan:
+          type: object
+          additionalProperties:
+            type: string
+        vxlan:
           type: object
           additionalProperties:
             type: string
@@ -18257,6 +18404,8 @@ components:
           type: string
         num:
           type: integer
+        capacity:
+          type: integer
     LicenseFeature:
       type: object
       properties:
@@ -18268,6 +18417,13 @@ components:
           type: string
         stop:
           type: integer
+    LicenseKey:
+      type: object
+      properties:
+        private_key:
+          type: string
+        public_key:
+          type: string
     Limiter:
       type: object
       required: [name]
@@ -19423,6 +19579,21 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/NetIf'
+    NetifStatus:
+      type: object
+      properties:
+        assigned_name:
+          type: string
+        identity:
+          type: string
+        device:
+          type: string
+        state:
+          type: string
+        addresses:
+          type: array
+          items:
+            type: string
     NewCRLReq:
       type: object
       properties:
@@ -21024,6 +21195,8 @@ components:
           description: first level VLAN tag
           minimum: 1
           maximum: 4094
+        tag_type:
+          type: string
         autogroup:
           type: boolean
           description: adds interface to QinQ interface groups
@@ -21223,7 +21396,7 @@ components:
           type: string
         gw:
           type: string
-        flag:
+        flags:
           type: string
         uses:
           type: string
@@ -21912,6 +22085,8 @@ components:
           type: boolean
         logdefaultpass:
           type: boolean
+        logipoptions:
+          type: boolean
         logbogons:
           type: boolean
         logprivatenets:
@@ -21985,6 +22160,8 @@ components:
         enable:
           type: boolean
         logdefaultblock:
+          type: boolean
+        logipoptions:
           type: boolean
         logdefaultpass:
           type: boolean
@@ -22155,6 +22332,10 @@ components:
           type: string
         alerts:
           type: string
+        net_interfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/NetifStatus'
         nexus_controllers:
           type: array
           items:
@@ -22404,7 +22585,7 @@ components:
         tunable:
           $ref: '#/components/schemas/Tunable'
         id:
-          type: integer
+          type: string
     Tunables:
       type: object
       properties:
@@ -22894,6 +23075,9 @@ components:
           description: 802.1Q VLAN tag (between 1 and 4094)
           minimum: 1
           maximum: 4094
+        tag_type:
+          type: string
+          description: C-tag or S-tag
         pcp:
           type: integer
           description: 802.1Q VLAN Priority (between 0 and 7)
@@ -22916,6 +23100,59 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/VLANCapableInterface'
+    VXLANCapableInterface:
+      type: object
+      properties:
+        if_device:
+          type: string
+        if_assigned_name:
+          type: string
+    VXLANInterface:
+      type: object
+      required: [if_device]
+      properties:
+        if_device:
+          type: string
+        remote_addr:
+          type: string
+        ttl:
+          type: integer
+        id:
+          type: integer
+          minimum: 1
+          maximum: 16777215
+        local_port:
+          type: integer
+        remote_port:
+          type: integer
+        learn:
+          type: boolean
+        descr:
+          type: string
+        vxlanif:
+          type: string
+    VXLANInterfaces:
+      type: object
+      properties:
+        interfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/VXLANInterface'
+        vxlan_capable_ifs:
+          type: array
+          items:
+            $ref: '#/components/schemas/VXLANCapableInterface'
+    ValidPingOptions:
+      type: object
+      properties:
+        source_addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextValue'
+        max_count:
+          type: integer
+        max_wait_sec:
+          type: integer
     VirtualIP:
       type: object
       properties:
@@ -23189,6 +23426,10 @@ components:
     WireGuardStatus:
       type: object
       properties:
+        config:
+          type: array
+          items:
+            $ref: '#/components/schemas/WGConfig'
         status:
           type: array
           items:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,27 +15,27 @@ T = TypeVar("T", bound="IPSecSAD")
 class IPSecSAD:
     """
     Attributes:
-        src (Union[Unset, str]):
-        dst (Union[Unset, str]):
-        proto (Union[Unset, str]):
-        spi (Union[Unset, str]):
-        reqid (Union[Unset, str]):
-        ealgo (Union[Unset, str]):
-        aalgo (Union[Unset, str]):
-        data (Union[Unset, str]):
+        src (str | Unset):
+        dst (str | Unset):
+        proto (str | Unset):
+        spi (str | Unset):
+        reqid (str | Unset):
+        ealgo (str | Unset):
+        aalgo (str | Unset):
+        data (str | Unset):
     """
 
-    src: Union[Unset, str] = UNSET
-    dst: Union[Unset, str] = UNSET
-    proto: Union[Unset, str] = UNSET
-    spi: Union[Unset, str] = UNSET
-    reqid: Union[Unset, str] = UNSET
-    ealgo: Union[Unset, str] = UNSET
-    aalgo: Union[Unset, str] = UNSET
-    data: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    src: str | Unset = UNSET
+    dst: str | Unset = UNSET
+    proto: str | Unset = UNSET
+    spi: str | Unset = UNSET
+    reqid: str | Unset = UNSET
+    ealgo: str | Unset = UNSET
+    aalgo: str | Unset = UNSET
+    data: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         src = self.src
 
         dst = self.dst
@@ -49,7 +52,7 @@ class IPSecSAD:
 
         data = self.data
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if src is not UNSET:
@@ -72,8 +75,8 @@ class IPSecSAD:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         src = d.pop("src", UNSET)
 
         dst = d.pop("dst", UNSET)
@@ -105,7 +108,7 @@ class IPSecSAD:
         return ip_sec_sad
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,12 +16,12 @@ T = TypeVar("T", bound="DhcpGlobalSettings")
 class DhcpGlobalSettings:
     """
     Attributes:
-        backend (Union[Unset, str]):
-        radvd_debug (Union[Unset, bool]):
-        dhcp6_debug (Union[Unset, bool]):
-        address_release (Union[Unset, bool]):
-        ignore_isc_warn (Union[Unset, bool]):
-        ipv6_duid_type (Union[Unset, DhcpGlobalSettingsIpv6DuidType]): A DHCPv6 Unique Identifier (DUID) is used by the
+        backend (str | Unset):
+        radvd_debug (bool | Unset):
+        dhcp6_debug (bool | Unset):
+        address_release (bool | Unset):
+        ignore_isc_warn (bool | Unset):
+        ipv6_duid_type (DhcpGlobalSettingsIpv6DuidType | Unset): A DHCPv6 Unique Identifier (DUID) is used by the
             firewall when requesting an IPv6 address.
 
             By default, the firewall automatically creates a dynamic DUID-LLT which is not saved
@@ -31,31 +34,31 @@ class DhcpGlobalSettings:
 
             When setting the config, if duid type is 0/raw and no value for ipv6_duid_raw is provided,
             then the DUID will be removed from the firewall configuration.
-        ipv6_duid_raw (Union[Unset, str]):
-        ipv6_duid_llt_time (Union[Unset, str]):
-        ipv6_duid_llt_ll (Union[Unset, str]):
-        ipv6_duid_en_en (Union[Unset, str]):
-        ipv6_duid_en_id (Union[Unset, str]):
-        ipv6_duid_ll (Union[Unset, str]):
-        ipv6_duid_uuid (Union[Unset, str]):
+        ipv6_duid_raw (str | Unset):
+        ipv6_duid_llt_time (str | Unset):
+        ipv6_duid_llt_ll (str | Unset):
+        ipv6_duid_en_en (str | Unset):
+        ipv6_duid_en_id (str | Unset):
+        ipv6_duid_ll (str | Unset):
+        ipv6_duid_uuid (str | Unset):
     """
 
-    backend: Union[Unset, str] = UNSET
-    radvd_debug: Union[Unset, bool] = UNSET
-    dhcp6_debug: Union[Unset, bool] = UNSET
-    address_release: Union[Unset, bool] = UNSET
-    ignore_isc_warn: Union[Unset, bool] = UNSET
-    ipv6_duid_type: Union[Unset, DhcpGlobalSettingsIpv6DuidType] = UNSET
-    ipv6_duid_raw: Union[Unset, str] = UNSET
-    ipv6_duid_llt_time: Union[Unset, str] = UNSET
-    ipv6_duid_llt_ll: Union[Unset, str] = UNSET
-    ipv6_duid_en_en: Union[Unset, str] = UNSET
-    ipv6_duid_en_id: Union[Unset, str] = UNSET
-    ipv6_duid_ll: Union[Unset, str] = UNSET
-    ipv6_duid_uuid: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    backend: str | Unset = UNSET
+    radvd_debug: bool | Unset = UNSET
+    dhcp6_debug: bool | Unset = UNSET
+    address_release: bool | Unset = UNSET
+    ignore_isc_warn: bool | Unset = UNSET
+    ipv6_duid_type: DhcpGlobalSettingsIpv6DuidType | Unset = UNSET
+    ipv6_duid_raw: str | Unset = UNSET
+    ipv6_duid_llt_time: str | Unset = UNSET
+    ipv6_duid_llt_ll: str | Unset = UNSET
+    ipv6_duid_en_en: str | Unset = UNSET
+    ipv6_duid_en_id: str | Unset = UNSET
+    ipv6_duid_ll: str | Unset = UNSET
+    ipv6_duid_uuid: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         backend = self.backend
 
         radvd_debug = self.radvd_debug
@@ -66,7 +69,7 @@ class DhcpGlobalSettings:
 
         ignore_isc_warn = self.ignore_isc_warn
 
-        ipv6_duid_type: Union[Unset, str] = UNSET
+        ipv6_duid_type: str | Unset = UNSET
         if not isinstance(self.ipv6_duid_type, Unset):
             ipv6_duid_type = self.ipv6_duid_type.value
 
@@ -84,7 +87,7 @@ class DhcpGlobalSettings:
 
         ipv6_duid_uuid = self.ipv6_duid_uuid
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if backend is not UNSET:
@@ -117,8 +120,8 @@ class DhcpGlobalSettings:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         backend = d.pop("backend", UNSET)
 
         radvd_debug = d.pop("radvd_debug", UNSET)
@@ -130,7 +133,7 @@ class DhcpGlobalSettings:
         ignore_isc_warn = d.pop("ignore_isc_warn", UNSET)
 
         _ipv6_duid_type = d.pop("ipv6_duid_type", UNSET)
-        ipv6_duid_type: Union[Unset, DhcpGlobalSettingsIpv6DuidType]
+        ipv6_duid_type: DhcpGlobalSettingsIpv6DuidType | Unset
         if isinstance(_ipv6_duid_type, Unset):
             ipv6_duid_type = UNSET
         else:
@@ -170,7 +173,7 @@ class DhcpGlobalSettings:
         return dhcp_global_settings
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

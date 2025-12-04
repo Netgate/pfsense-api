@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="CaptivePortals")
 class CaptivePortals:
     """
     Attributes:
-        config (Union[Unset, List['CaptivePortalName']]):
+        config (list[CaptivePortalName] | Unset):
     """
 
-    config: Union[Unset, List["CaptivePortalName"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    config: list[CaptivePortalName] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        config: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        config: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.config, Unset):
             config = []
             for config_item_data in self.config:
                 config_item = config_item_data.to_dict()
                 config.append(config_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if config is not UNSET:
@@ -39,16 +42,18 @@ class CaptivePortals:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.captive_portal_name import CaptivePortalName
 
-        d = src_dict.copy()
-        config = []
+        d = dict(src_dict)
         _config = d.pop("config", UNSET)
-        for config_item_data in _config or []:
-            config_item = CaptivePortalName.from_dict(config_item_data)
+        config: list[CaptivePortalName] | Unset = UNSET
+        if _config is not UNSET:
+            config = []
+            for config_item_data in _config:
+                config_item = CaptivePortalName.from_dict(config_item_data)
 
-            config.append(config_item)
+                config.append(config_item)
 
         captive_portals = cls(
             config=config,
@@ -58,7 +63,7 @@ class CaptivePortals:
         return captive_portals
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

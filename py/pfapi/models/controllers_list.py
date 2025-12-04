@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,25 +19,25 @@ T = TypeVar("T", bound="ControllersList")
 class ControllersList:
     """
     Attributes:
-        device_pubkey (Union[Unset, str]):
-        controllers (Union[Unset, List['ControllerInfo']]):
+        device_pubkey (str | Unset):
+        controllers (list[ControllerInfo] | Unset):
     """
 
-    device_pubkey: Union[Unset, str] = UNSET
-    controllers: Union[Unset, List["ControllerInfo"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    device_pubkey: str | Unset = UNSET
+    controllers: list[ControllerInfo] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         device_pubkey = self.device_pubkey
 
-        controllers: Union[Unset, List[Dict[str, Any]]] = UNSET
+        controllers: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.controllers, Unset):
             controllers = []
             for controllers_item_data in self.controllers:
                 controllers_item = controllers_item_data.to_dict()
                 controllers.append(controllers_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if device_pubkey is not UNSET:
@@ -45,18 +48,20 @@ class ControllersList:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.controller_info import ControllerInfo
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         device_pubkey = d.pop("device_pubkey", UNSET)
 
-        controllers = []
         _controllers = d.pop("controllers", UNSET)
-        for controllers_item_data in _controllers or []:
-            controllers_item = ControllerInfo.from_dict(controllers_item_data)
+        controllers: list[ControllerInfo] | Unset = UNSET
+        if _controllers is not UNSET:
+            controllers = []
+            for controllers_item_data in _controllers:
+                controllers_item = ControllerInfo.from_dict(controllers_item_data)
 
-            controllers.append(controllers_item)
+                controllers.append(controllers_item)
 
         controllers_list = cls(
             device_pubkey=device_pubkey,
@@ -67,7 +72,7 @@ class ControllersList:
         return controllers_list
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

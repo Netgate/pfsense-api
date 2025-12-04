@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -10,8 +10,8 @@ from ...models.error import Error
 from ...types import Response
 
 
-def _get_kwargs() -> Dict[str, Any]:
-    _kwargs: Dict[str, Any] = {
+def _get_kwargs() -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/diag/console/sessions",
     }
@@ -19,17 +19,17 @@ def _get_kwargs() -> Dict[str, Any]:
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ConsoleClients, Error]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> ConsoleClients | Error | None:
     if response.status_code == 200:
         response_200 = ConsoleClients.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -37,8 +37,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ConsoleClients, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ConsoleClients | Error]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -49,8 +49,8 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ConsoleClients, Error]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ConsoleClients | Error]:
     """List open console clients, including remote SSH logins.
 
     Raises:
@@ -58,7 +58,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ConsoleClients, Error]]
+        Response[ConsoleClients | Error]
     """
 
     kwargs = _get_kwargs()
@@ -72,8 +72,8 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ConsoleClients, Error]]:
+    client: AuthenticatedClient | Client,
+) -> ConsoleClients | Error | None:
     """List open console clients, including remote SSH logins.
 
     Raises:
@@ -81,7 +81,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ConsoleClients, Error]
+        ConsoleClients | Error
     """
 
     return sync_detailed(
@@ -91,8 +91,8 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ConsoleClients, Error]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ConsoleClients | Error]:
     """List open console clients, including remote SSH logins.
 
     Raises:
@@ -100,7 +100,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ConsoleClients, Error]]
+        Response[ConsoleClients | Error]
     """
 
     kwargs = _get_kwargs()
@@ -112,8 +112,8 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ConsoleClients, Error]]:
+    client: AuthenticatedClient | Client,
+) -> ConsoleClients | Error | None:
     """List open console clients, including remote SSH logins.
 
     Raises:
@@ -121,7 +121,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ConsoleClients, Error]
+        ConsoleClients | Error
     """
 
     return (

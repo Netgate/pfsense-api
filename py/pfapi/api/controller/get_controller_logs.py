@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -12,17 +12,17 @@ from ...types import UNSET, Response, Unset
 
 def _get_kwargs(
     *,
-    device_name: Union[Unset, str] = UNSET,
-    type: Union[Unset, str] = UNSET,
-    from_ts: Union[Unset, int] = UNSET,
-    to_ts: Union[Unset, int] = UNSET,
-    class_: Union[Unset, str] = UNSET,
-) -> Dict[str, Any]:
-    params: Dict[str, Any] = {}
+    device_name: str | Unset = UNSET,
+    type_: str | Unset = UNSET,
+    from_ts: int | Unset = UNSET,
+    to_ts: int | Unset = UNSET,
+    class_: str | Unset = UNSET,
+) -> dict[str, Any]:
+    params: dict[str, Any] = {}
 
     params["device_name"] = device_name
 
-    params["type"] = type
+    params["type"] = type_
 
     params["from_ts"] = from_ts
 
@@ -32,7 +32,7 @@ def _get_kwargs(
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/controller/logs",
         "params": params,
@@ -41,26 +41,24 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, LogEntries]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | LogEntries | None:
     if response.status_code == 200:
         response_200 = LogEntries.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, LogEntries]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | LogEntries]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -71,33 +69,33 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    device_name: Union[Unset, str] = UNSET,
-    type: Union[Unset, str] = UNSET,
-    from_ts: Union[Unset, int] = UNSET,
-    to_ts: Union[Unset, int] = UNSET,
-    class_: Union[Unset, str] = UNSET,
-) -> Response[Union[Error, LogEntries]]:
+    client: AuthenticatedClient | Client,
+    device_name: str | Unset = UNSET,
+    type_: str | Unset = UNSET,
+    from_ts: int | Unset = UNSET,
+    to_ts: int | Unset = UNSET,
+    class_: str | Unset = UNSET,
+) -> Response[Error | LogEntries]:
     """Get controller logs
 
     Args:
-        device_name (Union[Unset, str]):
-        type (Union[Unset, str]):
-        from_ts (Union[Unset, int]):
-        to_ts (Union[Unset, int]):
-        class_ (Union[Unset, str]):
+        device_name (str | Unset):
+        type_ (str | Unset):
+        from_ts (int | Unset):
+        to_ts (int | Unset):
+        class_ (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, LogEntries]]
+        Response[Error | LogEntries]
     """
 
     kwargs = _get_kwargs(
         device_name=device_name,
-        type=type,
+        type_=type_,
         from_ts=from_ts,
         to_ts=to_ts,
         class_=class_,
@@ -112,34 +110,34 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-    device_name: Union[Unset, str] = UNSET,
-    type: Union[Unset, str] = UNSET,
-    from_ts: Union[Unset, int] = UNSET,
-    to_ts: Union[Unset, int] = UNSET,
-    class_: Union[Unset, str] = UNSET,
-) -> Optional[Union[Error, LogEntries]]:
+    client: AuthenticatedClient | Client,
+    device_name: str | Unset = UNSET,
+    type_: str | Unset = UNSET,
+    from_ts: int | Unset = UNSET,
+    to_ts: int | Unset = UNSET,
+    class_: str | Unset = UNSET,
+) -> Error | LogEntries | None:
     """Get controller logs
 
     Args:
-        device_name (Union[Unset, str]):
-        type (Union[Unset, str]):
-        from_ts (Union[Unset, int]):
-        to_ts (Union[Unset, int]):
-        class_ (Union[Unset, str]):
+        device_name (str | Unset):
+        type_ (str | Unset):
+        from_ts (int | Unset):
+        to_ts (int | Unset):
+        class_ (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, LogEntries]
+        Error | LogEntries
     """
 
     return sync_detailed(
         client=client,
         device_name=device_name,
-        type=type,
+        type_=type_,
         from_ts=from_ts,
         to_ts=to_ts,
         class_=class_,
@@ -148,33 +146,33 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    device_name: Union[Unset, str] = UNSET,
-    type: Union[Unset, str] = UNSET,
-    from_ts: Union[Unset, int] = UNSET,
-    to_ts: Union[Unset, int] = UNSET,
-    class_: Union[Unset, str] = UNSET,
-) -> Response[Union[Error, LogEntries]]:
+    client: AuthenticatedClient | Client,
+    device_name: str | Unset = UNSET,
+    type_: str | Unset = UNSET,
+    from_ts: int | Unset = UNSET,
+    to_ts: int | Unset = UNSET,
+    class_: str | Unset = UNSET,
+) -> Response[Error | LogEntries]:
     """Get controller logs
 
     Args:
-        device_name (Union[Unset, str]):
-        type (Union[Unset, str]):
-        from_ts (Union[Unset, int]):
-        to_ts (Union[Unset, int]):
-        class_ (Union[Unset, str]):
+        device_name (str | Unset):
+        type_ (str | Unset):
+        from_ts (int | Unset):
+        to_ts (int | Unset):
+        class_ (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, LogEntries]]
+        Response[Error | LogEntries]
     """
 
     kwargs = _get_kwargs(
         device_name=device_name,
-        type=type,
+        type_=type_,
         from_ts=from_ts,
         to_ts=to_ts,
         class_=class_,
@@ -187,35 +185,35 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-    device_name: Union[Unset, str] = UNSET,
-    type: Union[Unset, str] = UNSET,
-    from_ts: Union[Unset, int] = UNSET,
-    to_ts: Union[Unset, int] = UNSET,
-    class_: Union[Unset, str] = UNSET,
-) -> Optional[Union[Error, LogEntries]]:
+    client: AuthenticatedClient | Client,
+    device_name: str | Unset = UNSET,
+    type_: str | Unset = UNSET,
+    from_ts: int | Unset = UNSET,
+    to_ts: int | Unset = UNSET,
+    class_: str | Unset = UNSET,
+) -> Error | LogEntries | None:
     """Get controller logs
 
     Args:
-        device_name (Union[Unset, str]):
-        type (Union[Unset, str]):
-        from_ts (Union[Unset, int]):
-        to_ts (Union[Unset, int]):
-        class_ (Union[Unset, str]):
+        device_name (str | Unset):
+        type_ (str | Unset):
+        from_ts (int | Unset):
+        to_ts (int | Unset):
+        class_ (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, LogEntries]
+        Error | LogEntries
     """
 
     return (
         await asyncio_detailed(
             client=client,
             device_name=device_name,
-            type=type,
+            type_=type_,
             from_ts=from_ts,
             to_ts=to_ts,
             class_=class_,

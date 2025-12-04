@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="SoftwarePackageList")
 class SoftwarePackageList:
     """
     Attributes:
-        packages (Union[Unset, List['SoftwarePackage']]):
+        packages (list[SoftwarePackage] | Unset):
     """
 
-    packages: Union[Unset, List["SoftwarePackage"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    packages: list[SoftwarePackage] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        packages: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        packages: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.packages, Unset):
             packages = []
             for packages_item_data in self.packages:
                 packages_item = packages_item_data.to_dict()
                 packages.append(packages_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if packages is not UNSET:
@@ -39,16 +42,18 @@ class SoftwarePackageList:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.software_package import SoftwarePackage
 
-        d = src_dict.copy()
-        packages = []
+        d = dict(src_dict)
         _packages = d.pop("packages", UNSET)
-        for packages_item_data in _packages or []:
-            packages_item = SoftwarePackage.from_dict(packages_item_data)
+        packages: list[SoftwarePackage] | Unset = UNSET
+        if _packages is not UNSET:
+            packages = []
+            for packages_item_data in _packages:
+                packages_item = SoftwarePackage.from_dict(packages_item_data)
 
-            packages.append(packages_item)
+                packages.append(packages_item)
 
         software_package_list = cls(
             packages=packages,
@@ -58,7 +63,7 @@ class SoftwarePackageList:
         return software_package_list
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

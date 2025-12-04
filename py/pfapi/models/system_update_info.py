@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,37 +19,37 @@ T = TypeVar("T", bound="SystemUpdateInfo")
 class SystemUpdateInfo:
     """
     Attributes:
-        firmware_branch (Union[Unset, str]):
-        firmware_branches (Union[Unset, List['SystemUpdateFirmwareBranch']]):
-        messages (Union[Unset, List[str]]):
-        boot_env (Union[Unset, str]):
-        curr_base_system (Union[Unset, str]):
-        latest_base_system (Union[Unset, str]):
-        status_message (Union[Unset, str]):
-        update_messages (Union[Unset, List[str]]):
+        firmware_branch (str | Unset):
+        firmware_branches (list[SystemUpdateFirmwareBranch] | Unset):
+        messages (list[str] | Unset):
+        boot_env (str | Unset):
+        curr_base_system (str | Unset):
+        latest_base_system (str | Unset):
+        status_message (str | Unset):
+        update_messages (list[str] | Unset):
     """
 
-    firmware_branch: Union[Unset, str] = UNSET
-    firmware_branches: Union[Unset, List["SystemUpdateFirmwareBranch"]] = UNSET
-    messages: Union[Unset, List[str]] = UNSET
-    boot_env: Union[Unset, str] = UNSET
-    curr_base_system: Union[Unset, str] = UNSET
-    latest_base_system: Union[Unset, str] = UNSET
-    status_message: Union[Unset, str] = UNSET
-    update_messages: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    firmware_branch: str | Unset = UNSET
+    firmware_branches: list[SystemUpdateFirmwareBranch] | Unset = UNSET
+    messages: list[str] | Unset = UNSET
+    boot_env: str | Unset = UNSET
+    curr_base_system: str | Unset = UNSET
+    latest_base_system: str | Unset = UNSET
+    status_message: str | Unset = UNSET
+    update_messages: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         firmware_branch = self.firmware_branch
 
-        firmware_branches: Union[Unset, List[Dict[str, Any]]] = UNSET
+        firmware_branches: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.firmware_branches, Unset):
             firmware_branches = []
             for firmware_branches_item_data in self.firmware_branches:
                 firmware_branches_item = firmware_branches_item_data.to_dict()
                 firmware_branches.append(firmware_branches_item)
 
-        messages: Union[Unset, List[str]] = UNSET
+        messages: list[str] | Unset = UNSET
         if not isinstance(self.messages, Unset):
             messages = self.messages
 
@@ -58,11 +61,11 @@ class SystemUpdateInfo:
 
         status_message = self.status_message
 
-        update_messages: Union[Unset, List[str]] = UNSET
+        update_messages: list[str] | Unset = UNSET
         if not isinstance(self.update_messages, Unset):
             update_messages = self.update_messages
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if firmware_branch is not UNSET:
@@ -85,20 +88,22 @@ class SystemUpdateInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.system_update_firmware_branch import SystemUpdateFirmwareBranch
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         firmware_branch = d.pop("firmware_branch", UNSET)
 
-        firmware_branches = []
         _firmware_branches = d.pop("firmware_branches", UNSET)
-        for firmware_branches_item_data in _firmware_branches or []:
-            firmware_branches_item = SystemUpdateFirmwareBranch.from_dict(firmware_branches_item_data)
+        firmware_branches: list[SystemUpdateFirmwareBranch] | Unset = UNSET
+        if _firmware_branches is not UNSET:
+            firmware_branches = []
+            for firmware_branches_item_data in _firmware_branches:
+                firmware_branches_item = SystemUpdateFirmwareBranch.from_dict(firmware_branches_item_data)
 
-            firmware_branches.append(firmware_branches_item)
+                firmware_branches.append(firmware_branches_item)
 
-        messages = cast(List[str], d.pop("messages", UNSET))
+        messages = cast(list[str], d.pop("messages", UNSET))
 
         boot_env = d.pop("boot_env", UNSET)
 
@@ -108,7 +113,7 @@ class SystemUpdateInfo:
 
         status_message = d.pop("status_message", UNSET)
 
-        update_messages = cast(List[str], d.pop("update_messages", UNSET))
+        update_messages = cast(list[str], d.pop("update_messages", UNSET))
 
         system_update_info = cls(
             firmware_branch=firmware_branch,
@@ -125,7 +130,7 @@ class SystemUpdateInfo:
         return system_update_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

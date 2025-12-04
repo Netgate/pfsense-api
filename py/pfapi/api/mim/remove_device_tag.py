@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,26 +14,31 @@ from ...types import Response
 def _get_kwargs(
     tag: str,
     device_id: str,
-) -> Dict[str, Any]:
-    _kwargs: Dict[str, Any] = {
+) -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "delete",
-        "url": f"/mim/devices/tag/{tag}/device/{device_id}",
+        "url": "/mim/devices/tag/{tag}/device/{device_id}".format(
+            tag=quote(str(tag), safe=""),
+            device_id=quote(str(device_id), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ControlledDevice, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ControlledDevice | Error | None:
     if response.status_code == 200:
         response_200 = ControlledDevice.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -40,8 +46,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ControlledDevice, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ControlledDevice | Error]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -54,8 +60,8 @@ def sync_detailed(
     tag: str,
     device_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ControlledDevice, Error]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ControlledDevice | Error]:
     r"""Remove the tag from the specified device. If tag == \"*\" then remove all tags from the device.
 
     Args:
@@ -67,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ControlledDevice, Error]]
+        Response[ControlledDevice | Error]
     """
 
     kwargs = _get_kwargs(
@@ -86,8 +92,8 @@ def sync(
     tag: str,
     device_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ControlledDevice, Error]]:
+    client: AuthenticatedClient | Client,
+) -> ControlledDevice | Error | None:
     r"""Remove the tag from the specified device. If tag == \"*\" then remove all tags from the device.
 
     Args:
@@ -99,7 +105,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ControlledDevice, Error]
+        ControlledDevice | Error
     """
 
     return sync_detailed(
@@ -113,8 +119,8 @@ async def asyncio_detailed(
     tag: str,
     device_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ControlledDevice, Error]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ControlledDevice | Error]:
     r"""Remove the tag from the specified device. If tag == \"*\" then remove all tags from the device.
 
     Args:
@@ -126,7 +132,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ControlledDevice, Error]]
+        Response[ControlledDevice | Error]
     """
 
     kwargs = _get_kwargs(
@@ -143,8 +149,8 @@ async def asyncio(
     tag: str,
     device_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ControlledDevice, Error]]:
+    client: AuthenticatedClient | Client,
+) -> ControlledDevice | Error | None:
     r"""Remove the tag from the specified device. If tag == \"*\" then remove all tags from the device.
 
     Args:
@@ -156,7 +162,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ControlledDevice, Error]
+        ControlledDevice | Error
     """
 
     return (

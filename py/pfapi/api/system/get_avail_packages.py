@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -12,15 +12,15 @@ from ...types import UNSET, Response, Unset
 
 def _get_kwargs(
     *,
-    remote_check: Union[Unset, bool] = UNSET,
-) -> Dict[str, Any]:
-    params: Dict[str, Any] = {}
+    remote_check: bool | Unset = UNSET,
+) -> dict[str, Any]:
+    params: dict[str, Any] = {}
 
     params["remote_check"] = remote_check
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/system/package/available",
         "params": params,
@@ -29,26 +29,24 @@ def _get_kwargs(
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, Packages]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | Packages | None:
     if response.status_code == 200:
         response_200 = Packages.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, Packages]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | Packages]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -59,20 +57,20 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    remote_check: Union[Unset, bool] = UNSET,
-) -> Response[Union[Error, Packages]]:
+    client: AuthenticatedClient | Client,
+    remote_check: bool | Unset = UNSET,
+) -> Response[Error | Packages]:
     """Get list of available packages
 
     Args:
-        remote_check (Union[Unset, bool]):
+        remote_check (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, Packages]]
+        Response[Error | Packages]
     """
 
     kwargs = _get_kwargs(
@@ -88,20 +86,20 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-    remote_check: Union[Unset, bool] = UNSET,
-) -> Optional[Union[Error, Packages]]:
+    client: AuthenticatedClient | Client,
+    remote_check: bool | Unset = UNSET,
+) -> Error | Packages | None:
     """Get list of available packages
 
     Args:
-        remote_check (Union[Unset, bool]):
+        remote_check (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, Packages]
+        Error | Packages
     """
 
     return sync_detailed(
@@ -112,20 +110,20 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    remote_check: Union[Unset, bool] = UNSET,
-) -> Response[Union[Error, Packages]]:
+    client: AuthenticatedClient | Client,
+    remote_check: bool | Unset = UNSET,
+) -> Response[Error | Packages]:
     """Get list of available packages
 
     Args:
-        remote_check (Union[Unset, bool]):
+        remote_check (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, Packages]]
+        Response[Error | Packages]
     """
 
     kwargs = _get_kwargs(
@@ -139,20 +137,20 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-    remote_check: Union[Unset, bool] = UNSET,
-) -> Optional[Union[Error, Packages]]:
+    client: AuthenticatedClient | Client,
+    remote_check: bool | Unset = UNSET,
+) -> Error | Packages | None:
     """Get list of available packages
 
     Args:
-        remote_check (Union[Unset, bool]):
+        remote_check (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, Packages]
+        Error | Packages
     """
 
     return (

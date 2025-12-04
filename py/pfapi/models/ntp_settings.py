@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,51 +21,51 @@ class NtpSettings:
     """
     Attributes:
         enable (bool):
-        interfaces (Union[Unset, List[str]]):
-        servers (Union[Unset, List['NtpServer']]):
-        ntpmaxpeers (Union[Unset, str]):
-        orphan (Union[Unset, str]):
-        ntpminpoll (Union[Unset, str]): Empty for default, "omit" or number ranged from 3 to 17 based on pfsense
-            specific approach
-        ntpmaxpoll (Union[Unset, str]): Empty for default, "omit" or number ranged from 3 to 17 based on pfsense
-            specific approach
-        statsgraph (Union[Unset, bool]):
-        logpeer (Union[Unset, bool]):
-        logsys (Union[Unset, bool]):
-        log_stats (Union[Unset, LogStats]):
-        leapsec (Union[Unset, str]):
-        dnsresolv (Union[Unset, str]): auto | inet | inet6
-        serverauth (Union[Unset, bool]):
-        serverauthkey (Union[Unset, str]):
-        serverauthalgo (Union[Unset, str]): md5 (length 1 to 20) | sha1 (length 40) | sha256 (length 64)
+        interfaces (list[str] | Unset):
+        servers (list[NtpServer] | Unset):
+        ntpmaxpeers (str | Unset):
+        orphan (str | Unset):
+        ntpminpoll (str | Unset): Empty for default, "omit" or number ranged from 3 to 17 based on pfsense specific
+            approach
+        ntpmaxpoll (str | Unset): Empty for default, "omit" or number ranged from 3 to 17 based on pfsense specific
+            approach
+        statsgraph (bool | Unset):
+        logpeer (bool | Unset):
+        logsys (bool | Unset):
+        log_stats (LogStats | Unset):
+        leapsec (str | Unset):
+        dnsresolv (str | Unset): auto | inet | inet6
+        serverauth (bool | Unset):
+        serverauthkey (str | Unset):
+        serverauthalgo (str | Unset): md5 (length 1 to 20) | sha1 (length 40) | sha256 (length 64)
     """
 
     enable: bool
-    interfaces: Union[Unset, List[str]] = UNSET
-    servers: Union[Unset, List["NtpServer"]] = UNSET
-    ntpmaxpeers: Union[Unset, str] = UNSET
-    orphan: Union[Unset, str] = UNSET
-    ntpminpoll: Union[Unset, str] = UNSET
-    ntpmaxpoll: Union[Unset, str] = UNSET
-    statsgraph: Union[Unset, bool] = UNSET
-    logpeer: Union[Unset, bool] = UNSET
-    logsys: Union[Unset, bool] = UNSET
-    log_stats: Union[Unset, "LogStats"] = UNSET
-    leapsec: Union[Unset, str] = UNSET
-    dnsresolv: Union[Unset, str] = UNSET
-    serverauth: Union[Unset, bool] = UNSET
-    serverauthkey: Union[Unset, str] = UNSET
-    serverauthalgo: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    interfaces: list[str] | Unset = UNSET
+    servers: list[NtpServer] | Unset = UNSET
+    ntpmaxpeers: str | Unset = UNSET
+    orphan: str | Unset = UNSET
+    ntpminpoll: str | Unset = UNSET
+    ntpmaxpoll: str | Unset = UNSET
+    statsgraph: bool | Unset = UNSET
+    logpeer: bool | Unset = UNSET
+    logsys: bool | Unset = UNSET
+    log_stats: LogStats | Unset = UNSET
+    leapsec: str | Unset = UNSET
+    dnsresolv: str | Unset = UNSET
+    serverauth: bool | Unset = UNSET
+    serverauthkey: str | Unset = UNSET
+    serverauthalgo: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enable = self.enable
 
-        interfaces: Union[Unset, List[str]] = UNSET
+        interfaces: list[str] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = self.interfaces
 
-        servers: Union[Unset, List[Dict[str, Any]]] = UNSET
+        servers: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.servers, Unset):
             servers = []
             for servers_item_data in self.servers:
@@ -83,7 +86,7 @@ class NtpSettings:
 
         logsys = self.logsys
 
-        log_stats: Union[Unset, Dict[str, Any]] = UNSET
+        log_stats: dict[str, Any] | Unset = UNSET
         if not isinstance(self.log_stats, Unset):
             log_stats = self.log_stats.to_dict()
 
@@ -97,7 +100,7 @@ class NtpSettings:
 
         serverauthalgo = self.serverauthalgo
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -138,21 +141,23 @@ class NtpSettings:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.log_stats import LogStats
         from ..models.ntp_server import NtpServer
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         enable = d.pop("enable")
 
-        interfaces = cast(List[str], d.pop("interfaces", UNSET))
+        interfaces = cast(list[str], d.pop("interfaces", UNSET))
 
-        servers = []
         _servers = d.pop("servers", UNSET)
-        for servers_item_data in _servers or []:
-            servers_item = NtpServer.from_dict(servers_item_data)
+        servers: list[NtpServer] | Unset = UNSET
+        if _servers is not UNSET:
+            servers = []
+            for servers_item_data in _servers:
+                servers_item = NtpServer.from_dict(servers_item_data)
 
-            servers.append(servers_item)
+                servers.append(servers_item)
 
         ntpmaxpeers = d.pop("ntpmaxpeers", UNSET)
 
@@ -169,7 +174,7 @@ class NtpSettings:
         logsys = d.pop("logsys", UNSET)
 
         _log_stats = d.pop("log_stats", UNSET)
-        log_stats: Union[Unset, LogStats]
+        log_stats: LogStats | Unset
         if isinstance(_log_stats, Unset):
             log_stats = UNSET
         else:
@@ -208,7 +213,7 @@ class NtpSettings:
         return ntp_settings
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

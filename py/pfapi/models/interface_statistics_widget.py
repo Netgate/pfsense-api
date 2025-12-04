@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,25 +15,25 @@ T = TypeVar("T", bound="InterfaceStatisticsWidget")
 class InterfaceStatisticsWidget:
     """
     Attributes:
-        packets_in (Union[Unset, int]):
-        packets_out (Union[Unset, int]):
-        bytes_in (Union[Unset, int]):
-        bytes_out (Union[Unset, int]):
-        errors_in (Union[Unset, int]):
-        errors_out (Union[Unset, int]):
-        collisions (Union[Unset, int]):
+        packets_in (int | Unset):
+        packets_out (int | Unset):
+        bytes_in (int | Unset):
+        bytes_out (int | Unset):
+        errors_in (int | Unset):
+        errors_out (int | Unset):
+        collisions (int | Unset):
     """
 
-    packets_in: Union[Unset, int] = UNSET
-    packets_out: Union[Unset, int] = UNSET
-    bytes_in: Union[Unset, int] = UNSET
-    bytes_out: Union[Unset, int] = UNSET
-    errors_in: Union[Unset, int] = UNSET
-    errors_out: Union[Unset, int] = UNSET
-    collisions: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    packets_in: int | Unset = UNSET
+    packets_out: int | Unset = UNSET
+    bytes_in: int | Unset = UNSET
+    bytes_out: int | Unset = UNSET
+    errors_in: int | Unset = UNSET
+    errors_out: int | Unset = UNSET
+    collisions: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         packets_in = self.packets_in
 
         packets_out = self.packets_out
@@ -45,7 +48,7 @@ class InterfaceStatisticsWidget:
 
         collisions = self.collisions
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if packets_in is not UNSET:
@@ -66,8 +69,8 @@ class InterfaceStatisticsWidget:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         packets_in = d.pop("packets_in", UNSET)
 
         packets_out = d.pop("packets_out", UNSET)
@@ -96,7 +99,7 @@ class InterfaceStatisticsWidget:
         return interface_statistics_widget
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

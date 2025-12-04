@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,19 +15,19 @@ T = TypeVar("T", bound="HAPfsync")
 class HAPfsync:
     """
     Attributes:
-        enabled (Union[Unset, bool]): enable pfsync
-        sync_assigned_intf (Union[Unset, str]): assigned network interface for sync communication
-        hostid (Union[Unset, str]): max 8 character unique host identifier
-        peer_ip (Union[Unset, str]): optional - sync to this IP address; default is directed multicast
+        enabled (bool | Unset): enable pfsync
+        sync_assigned_intf (str | Unset): assigned network interface for sync communication
+        hostid (str | Unset): max 8 character unique host identifier
+        peer_ip (str | Unset): optional - sync to this IP address; default is directed multicast
     """
 
-    enabled: Union[Unset, bool] = UNSET
-    sync_assigned_intf: Union[Unset, str] = UNSET
-    hostid: Union[Unset, str] = UNSET
-    peer_ip: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    enabled: bool | Unset = UNSET
+    sync_assigned_intf: str | Unset = UNSET
+    hostid: str | Unset = UNSET
+    peer_ip: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enabled = self.enabled
 
         sync_assigned_intf = self.sync_assigned_intf
@@ -33,7 +36,7 @@ class HAPfsync:
 
         peer_ip = self.peer_ip
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if enabled is not UNSET:
@@ -48,8 +51,8 @@ class HAPfsync:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         enabled = d.pop("enabled", UNSET)
 
         sync_assigned_intf = d.pop("sync_assigned_intf", UNSET)
@@ -69,7 +72,7 @@ class HAPfsync:
         return ha_pfsync
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="ConsoleClients")
 class ConsoleClients:
     """
     Attributes:
-        clients (Union[Unset, List['ConsoleClient']]):
+        clients (list[ConsoleClient] | Unset):
     """
 
-    clients: Union[Unset, List["ConsoleClient"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    clients: list[ConsoleClient] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        clients: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        clients: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.clients, Unset):
             clients = []
             for clients_item_data in self.clients:
                 clients_item = clients_item_data.to_dict()
                 clients.append(clients_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if clients is not UNSET:
@@ -39,16 +42,18 @@ class ConsoleClients:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.console_client import ConsoleClient
 
-        d = src_dict.copy()
-        clients = []
+        d = dict(src_dict)
         _clients = d.pop("clients", UNSET)
-        for clients_item_data in _clients or []:
-            clients_item = ConsoleClient.from_dict(clients_item_data)
+        clients: list[ConsoleClient] | Unset = UNSET
+        if _clients is not UNSET:
+            clients = []
+            for clients_item_data in _clients:
+                clients_item = ConsoleClient.from_dict(clients_item_data)
 
-            clients.append(clients_item)
+                clients.append(clients_item)
 
         console_clients = cls(
             clients=clients,
@@ -58,7 +63,7 @@ class ConsoleClients:
         return console_clients
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

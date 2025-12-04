@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,35 +20,35 @@ class SetupSettings:
     """
     Attributes:
         hostname (str):
-        domain (Union[Unset, str]):
-        dnsservers (Union[Unset, List['SetupDNSSetting']]):
-        dnsoveride (Union[Unset, bool]):
-        dnsresolution (Union[Unset, str]): DNS resolution behavior, options - not-specified (default), local, remote
-        timezone (Union[Unset, str]):
-        timeservers (Union[Unset, str]): space separated list of time servers
-        lang (Union[Unset, str]):
-        login_message (Union[Unset, str]): message to display when user authenticates
-        ui_req_state_filter (Union[Unset, bool]): require state filter in diagnostics-states
+        domain (str | Unset):
+        dnsservers (list[SetupDNSSetting] | Unset):
+        dnsoveride (bool | Unset):
+        dnsresolution (str | Unset): DNS resolution behavior, options - not-specified (default), local, remote
+        timezone (str | Unset):
+        timeservers (str | Unset): space separated list of time servers
+        lang (str | Unset):
+        login_message (str | Unset): message to display when user authenticates
+        ui_req_state_filter (bool | Unset): require state filter in diagnostics-states
     """
 
     hostname: str
-    domain: Union[Unset, str] = UNSET
-    dnsservers: Union[Unset, List["SetupDNSSetting"]] = UNSET
-    dnsoveride: Union[Unset, bool] = UNSET
-    dnsresolution: Union[Unset, str] = UNSET
-    timezone: Union[Unset, str] = UNSET
-    timeservers: Union[Unset, str] = UNSET
-    lang: Union[Unset, str] = UNSET
-    login_message: Union[Unset, str] = UNSET
-    ui_req_state_filter: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    domain: str | Unset = UNSET
+    dnsservers: list[SetupDNSSetting] | Unset = UNSET
+    dnsoveride: bool | Unset = UNSET
+    dnsresolution: str | Unset = UNSET
+    timezone: str | Unset = UNSET
+    timeservers: str | Unset = UNSET
+    lang: str | Unset = UNSET
+    login_message: str | Unset = UNSET
+    ui_req_state_filter: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         hostname = self.hostname
 
         domain = self.domain
 
-        dnsservers: Union[Unset, List[Dict[str, Any]]] = UNSET
+        dnsservers: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.dnsservers, Unset):
             dnsservers = []
             for dnsservers_item_data in self.dnsservers:
@@ -66,7 +69,7 @@ class SetupSettings:
 
         ui_req_state_filter = self.ui_req_state_filter
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -95,20 +98,22 @@ class SetupSettings:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.setup_dns_setting import SetupDNSSetting
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         hostname = d.pop("hostname")
 
         domain = d.pop("domain", UNSET)
 
-        dnsservers = []
         _dnsservers = d.pop("dnsservers", UNSET)
-        for dnsservers_item_data in _dnsservers or []:
-            dnsservers_item = SetupDNSSetting.from_dict(dnsservers_item_data)
+        dnsservers: list[SetupDNSSetting] | Unset = UNSET
+        if _dnsservers is not UNSET:
+            dnsservers = []
+            for dnsservers_item_data in _dnsservers:
+                dnsservers_item = SetupDNSSetting.from_dict(dnsservers_item_data)
 
-            dnsservers.append(dnsservers_item)
+                dnsservers.append(dnsservers_item)
 
         dnsoveride = d.pop("dnsoveride", UNSET)
 
@@ -141,7 +146,7 @@ class SetupSettings:
         return setup_settings
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

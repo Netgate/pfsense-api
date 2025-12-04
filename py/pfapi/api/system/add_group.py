@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -14,43 +14,40 @@ from ...types import Response
 def _get_kwargs(
     *,
     body: GroupAddReq,
-) -> Dict[str, Any]:
-    headers: Dict[str, Any] = {}
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "put",
         "url": "/system/users/group",
     }
 
-    _body = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-    _kwargs["json"] = _body
     headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, UserGroups]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | UserGroups | None:
     if response.status_code == 200:
         response_200 = UserGroups.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, UserGroups]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | UserGroups]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -61,9 +58,9 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: GroupAddReq,
-) -> Response[Union[Error, UserGroups]]:
+) -> Response[Error | UserGroups]:
     """Add group
 
     Args:
@@ -74,7 +71,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, UserGroups]]
+        Response[Error | UserGroups]
     """
 
     kwargs = _get_kwargs(
@@ -90,9 +87,9 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: GroupAddReq,
-) -> Optional[Union[Error, UserGroups]]:
+) -> Error | UserGroups | None:
     """Add group
 
     Args:
@@ -103,7 +100,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, UserGroups]
+        Error | UserGroups
     """
 
     return sync_detailed(
@@ -114,9 +111,9 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: GroupAddReq,
-) -> Response[Union[Error, UserGroups]]:
+) -> Response[Error | UserGroups]:
     """Add group
 
     Args:
@@ -127,7 +124,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, UserGroups]]
+        Response[Error | UserGroups]
     """
 
     kwargs = _get_kwargs(
@@ -141,9 +138,9 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: GroupAddReq,
-) -> Optional[Union[Error, UserGroups]]:
+) -> Error | UserGroups | None:
     """Add group
 
     Args:
@@ -154,7 +151,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, UserGroups]
+        Error | UserGroups
     """
 
     return (

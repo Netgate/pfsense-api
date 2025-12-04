@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,25 +19,25 @@ T = TypeVar("T", bound="PacketCapture")
 class PacketCapture:
     """
     Attributes:
-        filename (Union[Unset, str]):
-        capture (Union[Unset, str]):
-        starttime (Union[Unset, str]):
-        endtime (Union[Unset, str]):
-        running (Union[Unset, bool]):
-        command (Union[Unset, str]):
-        interfaces (Union[Unset, List['PcapInterface']]):
+        filename (str | Unset):
+        capture (str | Unset):
+        starttime (str | Unset):
+        endtime (str | Unset):
+        running (bool | Unset):
+        command (str | Unset):
+        interfaces (list[PcapInterface] | Unset):
     """
 
-    filename: Union[Unset, str] = UNSET
-    capture: Union[Unset, str] = UNSET
-    starttime: Union[Unset, str] = UNSET
-    endtime: Union[Unset, str] = UNSET
-    running: Union[Unset, bool] = UNSET
-    command: Union[Unset, str] = UNSET
-    interfaces: Union[Unset, List["PcapInterface"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    filename: str | Unset = UNSET
+    capture: str | Unset = UNSET
+    starttime: str | Unset = UNSET
+    endtime: str | Unset = UNSET
+    running: bool | Unset = UNSET
+    command: str | Unset = UNSET
+    interfaces: list[PcapInterface] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         filename = self.filename
 
         capture = self.capture
@@ -47,14 +50,14 @@ class PacketCapture:
 
         command = self.command
 
-        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
+        interfaces: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = []
             for interfaces_item_data in self.interfaces:
                 interfaces_item = interfaces_item_data.to_dict()
                 interfaces.append(interfaces_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if filename is not UNSET:
@@ -75,10 +78,10 @@ class PacketCapture:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.pcap_interface import PcapInterface
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         filename = d.pop("filename", UNSET)
 
         capture = d.pop("capture", UNSET)
@@ -91,12 +94,14 @@ class PacketCapture:
 
         command = d.pop("command", UNSET)
 
-        interfaces = []
         _interfaces = d.pop("interfaces", UNSET)
-        for interfaces_item_data in _interfaces or []:
-            interfaces_item = PcapInterface.from_dict(interfaces_item_data)
+        interfaces: list[PcapInterface] | Unset = UNSET
+        if _interfaces is not UNSET:
+            interfaces = []
+            for interfaces_item_data in _interfaces:
+                interfaces_item = PcapInterface.from_dict(interfaces_item_data)
 
-            interfaces.append(interfaces_item)
+                interfaces.append(interfaces_item)
 
         packet_capture = cls(
             filename=filename,
@@ -112,7 +117,7 @@ class PacketCapture:
         return packet_capture
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

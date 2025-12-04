@@ -1,45 +1,50 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
 from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
-from ...models.smart_result import SMARTResult
-from ...types import UNSET, Response, Unset
+from ...models.pfsense_result import PfsenseResult
+from ...models.vxlan_interface import VXLANInterface
+from ...types import Response
 
 
 def _get_kwargs(
+    name: str,
     *,
-    drive: Union[Unset, str] = UNSET,
-) -> Dict[str, Any]:
-    params: Dict[str, Any] = {}
+    body: VXLANInterface,
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
-    params["drive"] = drive
-
-    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
-
-    _kwargs: Dict[str, Any] = {
-        "method": "get",
-        "url": "/diag/smart/abort",
-        "params": params,
+    _kwargs: dict[str, Any] = {
+        "method": "post",
+        "url": "/interfaces/vxlan/{name}".format(
+            name=quote(str(name), safe=""),
+        ),
     }
 
+    _kwargs["json"] = body.to_dict()
+
+    headers["Content-Type"] = "application/json"
+
+    _kwargs["headers"] = headers
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, SMARTResult]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | PfsenseResult | None:
     if response.status_code == 200:
-        response_200 = SMARTResult.from_dict(response.json())
+        response_200 = PfsenseResult.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -47,8 +52,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, SMARTResult]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Error | PfsenseResult]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -58,25 +63,28 @@ def _build_response(
 
 
 def sync_detailed(
+    name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    drive: Union[Unset, str] = UNSET,
-) -> Response[Union[Error, SMARTResult]]:
-    """Abort SMART test
+    client: AuthenticatedClient | Client,
+    body: VXLANInterface,
+) -> Response[Error | PfsenseResult]:
+    """Update VXLAN interface
 
     Args:
-        drive (Union[Unset, str]):
+        name (str):
+        body (VXLANInterface):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, SMARTResult]]
+        Response[Error | PfsenseResult]
     """
 
     kwargs = _get_kwargs(
-        drive=drive,
+        name=name,
+        body=body,
     )
 
     response = client.get_httpx_client().request(
@@ -87,49 +95,55 @@ def sync_detailed(
 
 
 def sync(
+    name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    drive: Union[Unset, str] = UNSET,
-) -> Optional[Union[Error, SMARTResult]]:
-    """Abort SMART test
+    client: AuthenticatedClient | Client,
+    body: VXLANInterface,
+) -> Error | PfsenseResult | None:
+    """Update VXLAN interface
 
     Args:
-        drive (Union[Unset, str]):
+        name (str):
+        body (VXLANInterface):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, SMARTResult]
+        Error | PfsenseResult
     """
 
     return sync_detailed(
+        name=name,
         client=client,
-        drive=drive,
+        body=body,
     ).parsed
 
 
 async def asyncio_detailed(
+    name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    drive: Union[Unset, str] = UNSET,
-) -> Response[Union[Error, SMARTResult]]:
-    """Abort SMART test
+    client: AuthenticatedClient | Client,
+    body: VXLANInterface,
+) -> Response[Error | PfsenseResult]:
+    """Update VXLAN interface
 
     Args:
-        drive (Union[Unset, str]):
+        name (str):
+        body (VXLANInterface):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, SMARTResult]]
+        Response[Error | PfsenseResult]
     """
 
     kwargs = _get_kwargs(
-        drive=drive,
+        name=name,
+        body=body,
     )
 
     response = await client.get_async_httpx_client().request(**kwargs)
@@ -138,26 +152,29 @@ async def asyncio_detailed(
 
 
 async def asyncio(
+    name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    drive: Union[Unset, str] = UNSET,
-) -> Optional[Union[Error, SMARTResult]]:
-    """Abort SMART test
+    client: AuthenticatedClient | Client,
+    body: VXLANInterface,
+) -> Error | PfsenseResult | None:
+    """Update VXLAN interface
 
     Args:
-        drive (Union[Unset, str]):
+        name (str):
+        body (VXLANInterface):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, SMARTResult]
+        Error | PfsenseResult
     """
 
     return (
         await asyncio_detailed(
+            name=name,
             client=client,
-            drive=drive,
+            body=body,
         )
     ).parsed

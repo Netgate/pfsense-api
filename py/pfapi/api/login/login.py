@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -14,34 +14,33 @@ from ...types import Response
 def _get_kwargs(
     *,
     body: LoginCredentials,
-) -> Dict[str, Any]:
-    headers: Dict[str, Any] = {}
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "post",
         "url": "/login",
     }
 
-    _body = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-    _kwargs["json"] = _body
     headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, LoginResponse]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | LoginResponse | None:
     if response.status_code == 200:
         response_200 = LoginResponse.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -49,8 +48,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, LoginResponse]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Error | LoginResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -61,9 +60,9 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: LoginCredentials,
-) -> Response[Union[Error, LoginResponse]]:
+) -> Response[Error | LoginResponse]:
     """Authenticate with the controller.
 
      Login to pfSense. If the JWT access token is not provided, then a new
@@ -79,7 +78,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, LoginResponse]]
+        Response[Error | LoginResponse]
     """
 
     kwargs = _get_kwargs(
@@ -95,9 +94,9 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: LoginCredentials,
-) -> Optional[Union[Error, LoginResponse]]:
+) -> Error | LoginResponse | None:
     """Authenticate with the controller.
 
      Login to pfSense. If the JWT access token is not provided, then a new
@@ -113,7 +112,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, LoginResponse]
+        Error | LoginResponse
     """
 
     return sync_detailed(
@@ -124,9 +123,9 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: LoginCredentials,
-) -> Response[Union[Error, LoginResponse]]:
+) -> Response[Error | LoginResponse]:
     """Authenticate with the controller.
 
      Login to pfSense. If the JWT access token is not provided, then a new
@@ -142,7 +141,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, LoginResponse]]
+        Response[Error | LoginResponse]
     """
 
     kwargs = _get_kwargs(
@@ -156,9 +155,9 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: LoginCredentials,
-) -> Optional[Union[Error, LoginResponse]]:
+) -> Error | LoginResponse | None:
     """Authenticate with the controller.
 
      Login to pfSense. If the JWT access token is not provided, then a new
@@ -174,7 +173,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, LoginResponse]
+        Error | LoginResponse
     """
 
     return (

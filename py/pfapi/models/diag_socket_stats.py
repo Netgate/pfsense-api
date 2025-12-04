@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,18 +19,18 @@ T = TypeVar("T", bound="DiagSocketStats")
 class DiagSocketStats:
     """
     Attributes:
-        sockets (Union[Unset, OsSocketList]):
+        sockets (OsSocketList | Unset):
     """
 
-    sockets: Union[Unset, "OsSocketList"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    sockets: OsSocketList | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        sockets: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        sockets: dict[str, Any] | Unset = UNSET
         if not isinstance(self.sockets, Unset):
             sockets = self.sockets.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if sockets is not UNSET:
@@ -36,12 +39,12 @@ class DiagSocketStats:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.os_socket_list import OsSocketList
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _sockets = d.pop("sockets", UNSET)
-        sockets: Union[Unset, OsSocketList]
+        sockets: OsSocketList | Unset
         if isinstance(_sockets, Unset):
             sockets = UNSET
         else:
@@ -55,7 +58,7 @@ class DiagSocketStats:
         return diag_socket_stats
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

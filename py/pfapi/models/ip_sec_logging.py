@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,43 +15,43 @@ T = TypeVar("T", bound="IPSecLogging")
 class IPSecLogging:
     """
     Attributes:
-        dmn (Union[Unset, str]):
-        mgr (Union[Unset, str]):
-        ike (Union[Unset, str]):
-        chd (Union[Unset, str]):
-        job (Union[Unset, str]):
-        cfg (Union[Unset, str]):
-        knl (Union[Unset, str]):
-        net (Union[Unset, str]):
-        asn (Union[Unset, str]):
-        enc (Union[Unset, str]):
-        imc (Union[Unset, str]):
-        imv (Union[Unset, str]):
-        pts (Union[Unset, str]):
-        tls (Union[Unset, str]):
-        esp (Union[Unset, str]):
-        lib (Union[Unset, str]):
+        dmn (str | Unset):
+        mgr (str | Unset):
+        ike (str | Unset):
+        chd (str | Unset):
+        job (str | Unset):
+        cfg (str | Unset):
+        knl (str | Unset):
+        net (str | Unset):
+        asn (str | Unset):
+        enc (str | Unset):
+        imc (str | Unset):
+        imv (str | Unset):
+        pts (str | Unset):
+        tls (str | Unset):
+        esp (str | Unset):
+        lib (str | Unset):
     """
 
-    dmn: Union[Unset, str] = UNSET
-    mgr: Union[Unset, str] = UNSET
-    ike: Union[Unset, str] = UNSET
-    chd: Union[Unset, str] = UNSET
-    job: Union[Unset, str] = UNSET
-    cfg: Union[Unset, str] = UNSET
-    knl: Union[Unset, str] = UNSET
-    net: Union[Unset, str] = UNSET
-    asn: Union[Unset, str] = UNSET
-    enc: Union[Unset, str] = UNSET
-    imc: Union[Unset, str] = UNSET
-    imv: Union[Unset, str] = UNSET
-    pts: Union[Unset, str] = UNSET
-    tls: Union[Unset, str] = UNSET
-    esp: Union[Unset, str] = UNSET
-    lib: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    dmn: str | Unset = UNSET
+    mgr: str | Unset = UNSET
+    ike: str | Unset = UNSET
+    chd: str | Unset = UNSET
+    job: str | Unset = UNSET
+    cfg: str | Unset = UNSET
+    knl: str | Unset = UNSET
+    net: str | Unset = UNSET
+    asn: str | Unset = UNSET
+    enc: str | Unset = UNSET
+    imc: str | Unset = UNSET
+    imv: str | Unset = UNSET
+    pts: str | Unset = UNSET
+    tls: str | Unset = UNSET
+    esp: str | Unset = UNSET
+    lib: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         dmn = self.dmn
 
         mgr = self.mgr
@@ -81,7 +84,7 @@ class IPSecLogging:
 
         lib = self.lib
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if dmn is not UNSET:
@@ -120,8 +123,8 @@ class IPSecLogging:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         dmn = d.pop("dmn", UNSET)
 
         mgr = d.pop("mgr", UNSET)
@@ -177,7 +180,7 @@ class IPSecLogging:
         return ip_sec_logging
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

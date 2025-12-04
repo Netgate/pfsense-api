@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -15,17 +16,18 @@ def _get_kwargs(
     id: str,
     *,
     body: VirtualIP,
-) -> Dict[str, Any]:
-    headers: Dict[str, Any] = {}
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "put",
-        "url": f"/firewall/virtualip/{id}",
+        "url": "/firewall/virtualip/{id}".format(
+            id=quote(str(id), safe=""),
+        ),
     }
 
-    _body = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-    _kwargs["json"] = _body
     headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
@@ -33,16 +35,18 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, VirtualIPResult]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Error | VirtualIPResult | None:
     if response.status_code == 200:
         response_200 = VirtualIPResult.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -50,8 +54,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, VirtualIPResult]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Error | VirtualIPResult]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -63,9 +67,9 @@ def _build_response(
 def sync_detailed(
     id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: VirtualIP,
-) -> Response[Union[Error, VirtualIPResult]]:
+) -> Response[Error | VirtualIPResult]:
     """Update Virtual IP
 
     Args:
@@ -77,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, VirtualIPResult]]
+        Response[Error | VirtualIPResult]
     """
 
     kwargs = _get_kwargs(
@@ -95,9 +99,9 @@ def sync_detailed(
 def sync(
     id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: VirtualIP,
-) -> Optional[Union[Error, VirtualIPResult]]:
+) -> Error | VirtualIPResult | None:
     """Update Virtual IP
 
     Args:
@@ -109,7 +113,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, VirtualIPResult]
+        Error | VirtualIPResult
     """
 
     return sync_detailed(
@@ -122,9 +126,9 @@ def sync(
 async def asyncio_detailed(
     id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: VirtualIP,
-) -> Response[Union[Error, VirtualIPResult]]:
+) -> Response[Error | VirtualIPResult]:
     """Update Virtual IP
 
     Args:
@@ -136,7 +140,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, VirtualIPResult]]
+        Response[Error | VirtualIPResult]
     """
 
     kwargs = _get_kwargs(
@@ -152,9 +156,9 @@ async def asyncio_detailed(
 async def asyncio(
     id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: VirtualIP,
-) -> Optional[Union[Error, VirtualIPResult]]:
+) -> Error | VirtualIPResult | None:
     """Update Virtual IP
 
     Args:
@@ -166,7 +170,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, VirtualIPResult]
+        Error | VirtualIPResult
     """
 
     return (

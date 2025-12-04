@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,20 +15,20 @@ T = TypeVar("T", bound="DiagUploadResult")
 class DiagUploadResult:
     """
     Attributes:
-        result (Union[Unset, str]):
-        location (Union[Unset, str]):
+        result (str | Unset):
+        location (str | Unset):
     """
 
-    result: Union[Unset, str] = UNSET
-    location: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    result: str | Unset = UNSET
+    location: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         result = self.result
 
         location = self.location
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if result is not UNSET:
@@ -36,8 +39,8 @@ class DiagUploadResult:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         result = d.pop("result", UNSET)
 
         location = d.pop("location", UNSET)
@@ -51,7 +54,7 @@ class DiagUploadResult:
         return diag_upload_result
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

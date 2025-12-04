@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -12,15 +12,15 @@ from ...types import UNSET, Response, Unset
 
 def _get_kwargs(
     *,
-    filter_: Union[Unset, str] = UNSET,
-) -> Dict[str, Any]:
-    params: Dict[str, Any] = {}
+    filter_: str | Unset = UNSET,
+) -> dict[str, Any]:
+    params: dict[str, Any] = {}
 
     params["filter"] = filter_
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/diag/sockets",
         "params": params,
@@ -30,16 +30,18 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[DiagSocketStats, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> DiagSocketStats | Error | None:
     if response.status_code == 200:
         response_200 = DiagSocketStats.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -47,8 +49,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[DiagSocketStats, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[DiagSocketStats | Error]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -59,20 +61,20 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    filter_: Union[Unset, str] = UNSET,
-) -> Response[Union[DiagSocketStats, Error]]:
+    client: AuthenticatedClient | Client,
+    filter_: str | Unset = UNSET,
+) -> Response[DiagSocketStats | Error]:
     """Get socket stats
 
     Args:
-        filter_ (Union[Unset, str]):
+        filter_ (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DiagSocketStats, Error]]
+        Response[DiagSocketStats | Error]
     """
 
     kwargs = _get_kwargs(
@@ -88,20 +90,20 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-    filter_: Union[Unset, str] = UNSET,
-) -> Optional[Union[DiagSocketStats, Error]]:
+    client: AuthenticatedClient | Client,
+    filter_: str | Unset = UNSET,
+) -> DiagSocketStats | Error | None:
     """Get socket stats
 
     Args:
-        filter_ (Union[Unset, str]):
+        filter_ (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DiagSocketStats, Error]
+        DiagSocketStats | Error
     """
 
     return sync_detailed(
@@ -112,20 +114,20 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    filter_: Union[Unset, str] = UNSET,
-) -> Response[Union[DiagSocketStats, Error]]:
+    client: AuthenticatedClient | Client,
+    filter_: str | Unset = UNSET,
+) -> Response[DiagSocketStats | Error]:
     """Get socket stats
 
     Args:
-        filter_ (Union[Unset, str]):
+        filter_ (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DiagSocketStats, Error]]
+        Response[DiagSocketStats | Error]
     """
 
     kwargs = _get_kwargs(
@@ -139,20 +141,20 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-    filter_: Union[Unset, str] = UNSET,
-) -> Optional[Union[DiagSocketStats, Error]]:
+    client: AuthenticatedClient | Client,
+    filter_: str | Unset = UNSET,
+) -> DiagSocketStats | Error | None:
     """Get socket stats
 
     Args:
-        filter_ (Union[Unset, str]):
+        filter_ (str | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DiagSocketStats, Error]
+        DiagSocketStats | Error
     """
 
     return (

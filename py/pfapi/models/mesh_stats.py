@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,29 +19,29 @@ T = TypeVar("T", bound="MeshStats")
 class MeshStats:
     """
     Attributes:
-        devices_total (Union[Unset, int]): total number of devices
-        devices_online (Union[Unset, int]): active devices
-        vpn_conns (Union[Unset, List['MeshVpnConns']]):
+        devices_total (int | Unset): total number of devices
+        devices_online (int | Unset): active devices
+        vpn_conns (list[MeshVpnConns] | Unset):
     """
 
-    devices_total: Union[Unset, int] = UNSET
-    devices_online: Union[Unset, int] = UNSET
-    vpn_conns: Union[Unset, List["MeshVpnConns"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    devices_total: int | Unset = UNSET
+    devices_online: int | Unset = UNSET
+    vpn_conns: list[MeshVpnConns] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         devices_total = self.devices_total
 
         devices_online = self.devices_online
 
-        vpn_conns: Union[Unset, List[Dict[str, Any]]] = UNSET
+        vpn_conns: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.vpn_conns, Unset):
             vpn_conns = []
             for vpn_conns_item_data in self.vpn_conns:
                 vpn_conns_item = vpn_conns_item_data.to_dict()
                 vpn_conns.append(vpn_conns_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if devices_total is not UNSET:
@@ -51,20 +54,22 @@ class MeshStats:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.mesh_vpn_conns import MeshVpnConns
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         devices_total = d.pop("devices_total", UNSET)
 
         devices_online = d.pop("devices_online", UNSET)
 
-        vpn_conns = []
         _vpn_conns = d.pop("vpn_conns", UNSET)
-        for vpn_conns_item_data in _vpn_conns or []:
-            vpn_conns_item = MeshVpnConns.from_dict(vpn_conns_item_data)
+        vpn_conns: list[MeshVpnConns] | Unset = UNSET
+        if _vpn_conns is not UNSET:
+            vpn_conns = []
+            for vpn_conns_item_data in _vpn_conns:
+                vpn_conns_item = MeshVpnConns.from_dict(vpn_conns_item_data)
 
-            vpn_conns.append(vpn_conns_item)
+                vpn_conns.append(vpn_conns_item)
 
         mesh_stats = cls(
             devices_total=devices_total,
@@ -76,7 +81,7 @@ class MeshStats:
         return mesh_stats
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

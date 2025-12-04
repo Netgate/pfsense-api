@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,73 +16,73 @@ class IPSecClient:
     """
     Attributes:
         enable (bool):
-        radiusaccounting (Union[Unset, bool]):
-        user_source (Union[Unset, str]):
-        user_source_array (Union[Unset, List[str]]):
-        group_source (Union[Unset, bool]):
-        auth_groups (Union[Unset, str]):
-        auth_groups_array (Union[Unset, List[str]]):
-        pool_address (Union[Unset, str]):
-        pool_netbits (Union[Unset, str]):
-        pool_address_v6 (Union[Unset, str]):
-        pool_netbits_v6 (Union[Unset, str]):
-        net_list (Union[Unset, bool]):
-        save_passwd (Union[Unset, bool]):
-        dns_domain (Union[Unset, str]):
-        dns_split (Union[Unset, str]):
-        dns_server1 (Union[Unset, str]):
-        dns_server2 (Union[Unset, str]):
-        dns_server3 (Union[Unset, str]):
-        dns_server4 (Union[Unset, str]):
-        wins_server1 (Union[Unset, str]):
-        wins_server2 (Union[Unset, str]):
-        pfs_group (Union[Unset, str]):
-        login_banner (Union[Unset, str]):
-        radius_ip_priority_enable (Union[Unset, bool]):
-        radius_retransmit_base (Union[Unset, str]):
-        radius_retransmit_timeout (Union[Unset, str]):
-        radius_retransmit_tries (Union[Unset, str]):
-        radius_sockets (Union[Unset, str]):
+        radiusaccounting (bool | Unset):
+        user_source (str | Unset):
+        user_source_array (list[str] | Unset):
+        group_source (bool | Unset):
+        auth_groups (str | Unset):
+        auth_groups_array (list[str] | Unset):
+        pool_address (str | Unset):
+        pool_netbits (str | Unset):
+        pool_address_v6 (str | Unset):
+        pool_netbits_v6 (str | Unset):
+        net_list (bool | Unset):
+        save_passwd (bool | Unset):
+        dns_domain (str | Unset):
+        dns_split (str | Unset):
+        dns_server1 (str | Unset):
+        dns_server2 (str | Unset):
+        dns_server3 (str | Unset):
+        dns_server4 (str | Unset):
+        wins_server1 (str | Unset):
+        wins_server2 (str | Unset):
+        pfs_group (str | Unset):
+        login_banner (str | Unset):
+        radius_ip_priority_enable (bool | Unset):
+        radius_retransmit_base (str | Unset):
+        radius_retransmit_timeout (str | Unset):
+        radius_retransmit_tries (str | Unset):
+        radius_sockets (str | Unset):
     """
 
     enable: bool
-    radiusaccounting: Union[Unset, bool] = UNSET
-    user_source: Union[Unset, str] = UNSET
-    user_source_array: Union[Unset, List[str]] = UNSET
-    group_source: Union[Unset, bool] = UNSET
-    auth_groups: Union[Unset, str] = UNSET
-    auth_groups_array: Union[Unset, List[str]] = UNSET
-    pool_address: Union[Unset, str] = UNSET
-    pool_netbits: Union[Unset, str] = UNSET
-    pool_address_v6: Union[Unset, str] = UNSET
-    pool_netbits_v6: Union[Unset, str] = UNSET
-    net_list: Union[Unset, bool] = UNSET
-    save_passwd: Union[Unset, bool] = UNSET
-    dns_domain: Union[Unset, str] = UNSET
-    dns_split: Union[Unset, str] = UNSET
-    dns_server1: Union[Unset, str] = UNSET
-    dns_server2: Union[Unset, str] = UNSET
-    dns_server3: Union[Unset, str] = UNSET
-    dns_server4: Union[Unset, str] = UNSET
-    wins_server1: Union[Unset, str] = UNSET
-    wins_server2: Union[Unset, str] = UNSET
-    pfs_group: Union[Unset, str] = UNSET
-    login_banner: Union[Unset, str] = UNSET
-    radius_ip_priority_enable: Union[Unset, bool] = UNSET
-    radius_retransmit_base: Union[Unset, str] = UNSET
-    radius_retransmit_timeout: Union[Unset, str] = UNSET
-    radius_retransmit_tries: Union[Unset, str] = UNSET
-    radius_sockets: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    radiusaccounting: bool | Unset = UNSET
+    user_source: str | Unset = UNSET
+    user_source_array: list[str] | Unset = UNSET
+    group_source: bool | Unset = UNSET
+    auth_groups: str | Unset = UNSET
+    auth_groups_array: list[str] | Unset = UNSET
+    pool_address: str | Unset = UNSET
+    pool_netbits: str | Unset = UNSET
+    pool_address_v6: str | Unset = UNSET
+    pool_netbits_v6: str | Unset = UNSET
+    net_list: bool | Unset = UNSET
+    save_passwd: bool | Unset = UNSET
+    dns_domain: str | Unset = UNSET
+    dns_split: str | Unset = UNSET
+    dns_server1: str | Unset = UNSET
+    dns_server2: str | Unset = UNSET
+    dns_server3: str | Unset = UNSET
+    dns_server4: str | Unset = UNSET
+    wins_server1: str | Unset = UNSET
+    wins_server2: str | Unset = UNSET
+    pfs_group: str | Unset = UNSET
+    login_banner: str | Unset = UNSET
+    radius_ip_priority_enable: bool | Unset = UNSET
+    radius_retransmit_base: str | Unset = UNSET
+    radius_retransmit_timeout: str | Unset = UNSET
+    radius_retransmit_tries: str | Unset = UNSET
+    radius_sockets: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enable = self.enable
 
         radiusaccounting = self.radiusaccounting
 
         user_source = self.user_source
 
-        user_source_array: Union[Unset, List[str]] = UNSET
+        user_source_array: list[str] | Unset = UNSET
         if not isinstance(self.user_source_array, Unset):
             user_source_array = self.user_source_array
 
@@ -87,7 +90,7 @@ class IPSecClient:
 
         auth_groups = self.auth_groups
 
-        auth_groups_array: Union[Unset, List[str]] = UNSET
+        auth_groups_array: list[str] | Unset = UNSET
         if not isinstance(self.auth_groups_array, Unset):
             auth_groups_array = self.auth_groups_array
 
@@ -133,7 +136,7 @@ class IPSecClient:
 
         radius_sockets = self.radius_sockets
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -198,21 +201,21 @@ class IPSecClient:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         enable = d.pop("enable")
 
         radiusaccounting = d.pop("radiusaccounting", UNSET)
 
         user_source = d.pop("user_source", UNSET)
 
-        user_source_array = cast(List[str], d.pop("user_source_array", UNSET))
+        user_source_array = cast(list[str], d.pop("user_source_array", UNSET))
 
         group_source = d.pop("group_source", UNSET)
 
         auth_groups = d.pop("auth_groups", UNSET)
 
-        auth_groups_array = cast(List[str], d.pop("auth_groups_array", UNSET))
+        auth_groups_array = cast(list[str], d.pop("auth_groups_array", UNSET))
 
         pool_address = d.pop("pool_address", UNSET)
 
@@ -291,7 +294,7 @@ class IPSecClient:
         return ip_sec_client
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

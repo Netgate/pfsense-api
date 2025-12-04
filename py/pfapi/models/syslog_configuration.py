@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,81 +15,83 @@ T = TypeVar("T", bound="SyslogConfiguration")
 class SyslogConfiguration:
     """
     Attributes:
-        reverse (Union[Unset, bool]):
-        nentries (Union[Unset, int]):
-        logfilesize (Union[Unset, int]):
-        logcompressiontype (Union[Unset, str]): none, bzip2, gzip, xz, zstd
-        format_ (Union[Unset, str]): rfc3164, rfc5424
-        rotatecount (Union[Unset, int]):
-        remoteserver (Union[Unset, str]):
-        remoteserver2 (Union[Unset, str]):
-        remoteserver3 (Union[Unset, str]):
-        sourceip (Union[Unset, str]):
-        ipproto (Union[Unset, str]): ipv4, ipv6
-        filter_ (Union[Unset, bool]):
-        dhcp (Union[Unset, bool]):
-        auth (Union[Unset, bool]):
-        portalauth (Union[Unset, bool]):
-        vpn (Union[Unset, bool]):
-        dpinger (Union[Unset, bool]):
-        hostapd (Union[Unset, bool]):
-        logall (Union[Unset, bool]):
-        system (Union[Unset, bool]):
-        pfnet_controller (Union[Unset, bool]):
-        resolver (Union[Unset, bool]):
-        ppp (Union[Unset, bool]):
-        routing (Union[Unset, bool]):
-        ntpd (Union[Unset, bool]):
-        disablelocallogging (Union[Unset, bool]):
-        logconfigchanges (Union[Unset, bool]):
-        enable (Union[Unset, bool]):
-        logdefaultblock (Union[Unset, bool]):
-        logdefaultpass (Union[Unset, bool]):
-        logbogons (Union[Unset, bool]):
-        logprivatenets (Union[Unset, bool]):
-        lognginx (Union[Unset, bool]):
-        rawfilter (Union[Unset, bool]):
-        filterdescriptions (Union[Unset, int]):
+        reverse (bool | Unset):
+        nentries (int | Unset):
+        logfilesize (int | Unset):
+        logcompressiontype (str | Unset): none, bzip2, gzip, xz, zstd
+        format_ (str | Unset): rfc3164, rfc5424
+        rotatecount (int | Unset):
+        remoteserver (str | Unset):
+        remoteserver2 (str | Unset):
+        remoteserver3 (str | Unset):
+        sourceip (str | Unset):
+        ipproto (str | Unset): ipv4, ipv6
+        filter_ (bool | Unset):
+        dhcp (bool | Unset):
+        auth (bool | Unset):
+        portalauth (bool | Unset):
+        vpn (bool | Unset):
+        dpinger (bool | Unset):
+        hostapd (bool | Unset):
+        logall (bool | Unset):
+        system (bool | Unset):
+        pfnet_controller (bool | Unset):
+        resolver (bool | Unset):
+        ppp (bool | Unset):
+        routing (bool | Unset):
+        ntpd (bool | Unset):
+        disablelocallogging (bool | Unset):
+        logconfigchanges (bool | Unset):
+        enable (bool | Unset):
+        logdefaultblock (bool | Unset):
+        logipoptions (bool | Unset):
+        logdefaultpass (bool | Unset):
+        logbogons (bool | Unset):
+        logprivatenets (bool | Unset):
+        lognginx (bool | Unset):
+        rawfilter (bool | Unset):
+        filterdescriptions (int | Unset):
     """
 
-    reverse: Union[Unset, bool] = UNSET
-    nentries: Union[Unset, int] = UNSET
-    logfilesize: Union[Unset, int] = UNSET
-    logcompressiontype: Union[Unset, str] = UNSET
-    format_: Union[Unset, str] = UNSET
-    rotatecount: Union[Unset, int] = UNSET
-    remoteserver: Union[Unset, str] = UNSET
-    remoteserver2: Union[Unset, str] = UNSET
-    remoteserver3: Union[Unset, str] = UNSET
-    sourceip: Union[Unset, str] = UNSET
-    ipproto: Union[Unset, str] = UNSET
-    filter_: Union[Unset, bool] = UNSET
-    dhcp: Union[Unset, bool] = UNSET
-    auth: Union[Unset, bool] = UNSET
-    portalauth: Union[Unset, bool] = UNSET
-    vpn: Union[Unset, bool] = UNSET
-    dpinger: Union[Unset, bool] = UNSET
-    hostapd: Union[Unset, bool] = UNSET
-    logall: Union[Unset, bool] = UNSET
-    system: Union[Unset, bool] = UNSET
-    pfnet_controller: Union[Unset, bool] = UNSET
-    resolver: Union[Unset, bool] = UNSET
-    ppp: Union[Unset, bool] = UNSET
-    routing: Union[Unset, bool] = UNSET
-    ntpd: Union[Unset, bool] = UNSET
-    disablelocallogging: Union[Unset, bool] = UNSET
-    logconfigchanges: Union[Unset, bool] = UNSET
-    enable: Union[Unset, bool] = UNSET
-    logdefaultblock: Union[Unset, bool] = UNSET
-    logdefaultpass: Union[Unset, bool] = UNSET
-    logbogons: Union[Unset, bool] = UNSET
-    logprivatenets: Union[Unset, bool] = UNSET
-    lognginx: Union[Unset, bool] = UNSET
-    rawfilter: Union[Unset, bool] = UNSET
-    filterdescriptions: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    reverse: bool | Unset = UNSET
+    nentries: int | Unset = UNSET
+    logfilesize: int | Unset = UNSET
+    logcompressiontype: str | Unset = UNSET
+    format_: str | Unset = UNSET
+    rotatecount: int | Unset = UNSET
+    remoteserver: str | Unset = UNSET
+    remoteserver2: str | Unset = UNSET
+    remoteserver3: str | Unset = UNSET
+    sourceip: str | Unset = UNSET
+    ipproto: str | Unset = UNSET
+    filter_: bool | Unset = UNSET
+    dhcp: bool | Unset = UNSET
+    auth: bool | Unset = UNSET
+    portalauth: bool | Unset = UNSET
+    vpn: bool | Unset = UNSET
+    dpinger: bool | Unset = UNSET
+    hostapd: bool | Unset = UNSET
+    logall: bool | Unset = UNSET
+    system: bool | Unset = UNSET
+    pfnet_controller: bool | Unset = UNSET
+    resolver: bool | Unset = UNSET
+    ppp: bool | Unset = UNSET
+    routing: bool | Unset = UNSET
+    ntpd: bool | Unset = UNSET
+    disablelocallogging: bool | Unset = UNSET
+    logconfigchanges: bool | Unset = UNSET
+    enable: bool | Unset = UNSET
+    logdefaultblock: bool | Unset = UNSET
+    logipoptions: bool | Unset = UNSET
+    logdefaultpass: bool | Unset = UNSET
+    logbogons: bool | Unset = UNSET
+    logprivatenets: bool | Unset = UNSET
+    lognginx: bool | Unset = UNSET
+    rawfilter: bool | Unset = UNSET
+    filterdescriptions: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         reverse = self.reverse
 
         nentries = self.nentries
@@ -145,6 +150,8 @@ class SyslogConfiguration:
 
         logdefaultblock = self.logdefaultblock
 
+        logipoptions = self.logipoptions
+
         logdefaultpass = self.logdefaultpass
 
         logbogons = self.logbogons
@@ -157,7 +164,7 @@ class SyslogConfiguration:
 
         filterdescriptions = self.filterdescriptions
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if reverse is not UNSET:
@@ -218,6 +225,8 @@ class SyslogConfiguration:
             field_dict["enable"] = enable
         if logdefaultblock is not UNSET:
             field_dict["logdefaultblock"] = logdefaultblock
+        if logipoptions is not UNSET:
+            field_dict["logipoptions"] = logipoptions
         if logdefaultpass is not UNSET:
             field_dict["logdefaultpass"] = logdefaultpass
         if logbogons is not UNSET:
@@ -234,8 +243,8 @@ class SyslogConfiguration:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         reverse = d.pop("reverse", UNSET)
 
         nentries = d.pop("nentries", UNSET)
@@ -294,6 +303,8 @@ class SyslogConfiguration:
 
         logdefaultblock = d.pop("logdefaultblock", UNSET)
 
+        logipoptions = d.pop("logipoptions", UNSET)
+
         logdefaultpass = d.pop("logdefaultpass", UNSET)
 
         logbogons = d.pop("logbogons", UNSET)
@@ -336,6 +347,7 @@ class SyslogConfiguration:
             logconfigchanges=logconfigchanges,
             enable=enable,
             logdefaultblock=logdefaultblock,
+            logipoptions=logipoptions,
             logdefaultpass=logdefaultpass,
             logbogons=logbogons,
             logprivatenets=logprivatenets,
@@ -348,7 +360,7 @@ class SyslogConfiguration:
         return syslog_configuration
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

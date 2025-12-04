@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,19 +15,19 @@ T = TypeVar("T", bound="DiagAuthTestRequest")
 class DiagAuthTestRequest:
     """
     Attributes:
-        authserver (Union[Unset, str]):
-        username (Union[Unset, str]):
-        password (Union[Unset, str]):
-        debug (Union[Unset, bool]):
+        authserver (str | Unset):
+        username (str | Unset):
+        password (str | Unset):
+        debug (bool | Unset):
     """
 
-    authserver: Union[Unset, str] = UNSET
-    username: Union[Unset, str] = UNSET
-    password: Union[Unset, str] = UNSET
-    debug: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    authserver: str | Unset = UNSET
+    username: str | Unset = UNSET
+    password: str | Unset = UNSET
+    debug: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         authserver = self.authserver
 
         username = self.username
@@ -33,7 +36,7 @@ class DiagAuthTestRequest:
 
         debug = self.debug
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if authserver is not UNSET:
@@ -48,8 +51,8 @@ class DiagAuthTestRequest:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         authserver = d.pop("authserver", UNSET)
 
         username = d.pop("username", UNSET)
@@ -69,7 +72,7 @@ class DiagAuthTestRequest:
         return diag_auth_test_request
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

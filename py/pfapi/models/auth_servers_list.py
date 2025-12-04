@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,22 +15,22 @@ T = TypeVar("T", bound="AuthServersList")
 class AuthServersList:
     """
     Attributes:
-        svrlist (Union[Unset, List[str]]):
-        authtype (Union[Unset, str]):
+        svrlist (list[str] | Unset):
+        authtype (str | Unset):
     """
 
-    svrlist: Union[Unset, List[str]] = UNSET
-    authtype: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    svrlist: list[str] | Unset = UNSET
+    authtype: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        svrlist: Union[Unset, List[str]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        svrlist: list[str] | Unset = UNSET
         if not isinstance(self.svrlist, Unset):
             svrlist = self.svrlist
 
         authtype = self.authtype
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if svrlist is not UNSET:
@@ -38,9 +41,9 @@ class AuthServersList:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
-        svrlist = cast(List[str], d.pop("svrlist", UNSET))
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        svrlist = cast(list[str], d.pop("svrlist", UNSET))
 
         authtype = d.pop("authtype", UNSET)
 
@@ -53,7 +56,7 @@ class AuthServersList:
         return auth_servers_list
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

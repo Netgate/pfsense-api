@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,34 +20,34 @@ class MonitoringDataResult:
     """Data returned is a set of CSV values for the series.
 
     Attributes:
-        request (Union[Unset, MonitoringDataRequest]):
-        dataseries (Union[Unset, List[str]]):
-        data_format (Union[Unset, str]):
-        data (Union[Unset, List[str]]):
+        request (MonitoringDataRequest | Unset):
+        dataseries (list[str] | Unset):
+        data_format (str | Unset):
+        data (list[str] | Unset):
     """
 
-    request: Union[Unset, "MonitoringDataRequest"] = UNSET
-    dataseries: Union[Unset, List[str]] = UNSET
-    data_format: Union[Unset, str] = UNSET
-    data: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    request: MonitoringDataRequest | Unset = UNSET
+    dataseries: list[str] | Unset = UNSET
+    data_format: str | Unset = UNSET
+    data: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        request: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        request: dict[str, Any] | Unset = UNSET
         if not isinstance(self.request, Unset):
             request = self.request.to_dict()
 
-        dataseries: Union[Unset, List[str]] = UNSET
+        dataseries: list[str] | Unset = UNSET
         if not isinstance(self.dataseries, Unset):
             dataseries = self.dataseries
 
         data_format = self.data_format
 
-        data: Union[Unset, List[str]] = UNSET
+        data: list[str] | Unset = UNSET
         if not isinstance(self.data, Unset):
             data = self.data
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if request is not UNSET:
@@ -59,22 +62,22 @@ class MonitoringDataResult:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.monitoring_data_request import MonitoringDataRequest
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _request = d.pop("request", UNSET)
-        request: Union[Unset, MonitoringDataRequest]
+        request: MonitoringDataRequest | Unset
         if isinstance(_request, Unset):
             request = UNSET
         else:
             request = MonitoringDataRequest.from_dict(_request)
 
-        dataseries = cast(List[str], d.pop("dataseries", UNSET))
+        dataseries = cast(list[str], d.pop("dataseries", UNSET))
 
         data_format = d.pop("data_format", UNSET)
 
-        data = cast(List[str], d.pop("data", UNSET))
+        data = cast(list[str], d.pop("data", UNSET))
 
         monitoring_data_result = cls(
             request=request,
@@ -87,7 +90,7 @@ class MonitoringDataResult:
         return monitoring_data_result
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

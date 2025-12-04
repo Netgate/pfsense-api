@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,24 +19,24 @@ T = TypeVar("T", bound="InterfacePorts")
 class InterfacePorts:
     """
     Attributes:
-        ports (Union[Unset, InterfacePortsLists]):
-        modems (Union[Unset, List[str]]):
+        ports (InterfacePortsLists | Unset):
+        modems (list[str] | Unset):
     """
 
-    ports: Union[Unset, "InterfacePortsLists"] = UNSET
-    modems: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ports: InterfacePortsLists | Unset = UNSET
+    modems: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        ports: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        ports: dict[str, Any] | Unset = UNSET
         if not isinstance(self.ports, Unset):
             ports = self.ports.to_dict()
 
-        modems: Union[Unset, List[str]] = UNSET
+        modems: list[str] | Unset = UNSET
         if not isinstance(self.modems, Unset):
             modems = self.modems
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ports is not UNSET:
@@ -44,18 +47,18 @@ class InterfacePorts:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.interface_ports_lists import InterfacePortsLists
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _ports = d.pop("ports", UNSET)
-        ports: Union[Unset, InterfacePortsLists]
+        ports: InterfacePortsLists | Unset
         if isinstance(_ports, Unset):
             ports = UNSET
         else:
             ports = InterfacePortsLists.from_dict(_ports)
 
-        modems = cast(List[str], d.pop("modems", UNSET))
+        modems = cast(list[str], d.pop("modems", UNSET))
 
         interface_ports = cls(
             ports=ports,
@@ -66,7 +69,7 @@ class InterfacePorts:
         return interface_ports
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

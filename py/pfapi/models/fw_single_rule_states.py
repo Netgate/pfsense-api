@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,18 +19,18 @@ T = TypeVar("T", bound="FWSingleRuleStates")
 class FWSingleRuleStates:
     """
     Attributes:
-        rule (Union[Unset, FWRuleState]):
+        rule (FWRuleState | Unset):
     """
 
-    rule: Union[Unset, "FWRuleState"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    rule: FWRuleState | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        rule: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        rule: dict[str, Any] | Unset = UNSET
         if not isinstance(self.rule, Unset):
             rule = self.rule.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if rule is not UNSET:
@@ -36,12 +39,12 @@ class FWSingleRuleStates:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.fw_rule_state import FWRuleState
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _rule = d.pop("rule", UNSET)
-        rule: Union[Unset, FWRuleState]
+        rule: FWRuleState | Unset
         if isinstance(_rule, Unset):
             rule = UNSET
         else:
@@ -55,7 +58,7 @@ class FWSingleRuleStates:
         return fw_single_rule_states
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

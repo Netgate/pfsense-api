@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,47 +17,47 @@ class CertInfo:
     Attributes:
         issuer (str):
         serial (str):
-        sig_digest (Union[Unset, str]):
-        dn (Union[Unset, str]):
-        san (Union[Unset, str]):
-        key_usage (Union[Unset, str]):
-        key_type (Union[Unset, str]):
-        key_size (Union[Unset, int]):
-        ext_key_usage (Union[Unset, str]):
-        hash_ (Union[Unset, str]):
-        subject (Union[Unset, str]):
-        subject_key_id (Union[Unset, str]):
-        auth_key_id (Union[Unset, str]):
-        valid_from (Union[Unset, str]):
-        expires (Union[Unset, str]):
-        raw_data (Union[Unset, str]):
-        cert_fingerprint (Union[Unset, str]): sha256 hash of the raw certificate
-        self_signed (Union[Unset, bool]):
-        private_key (Union[Unset, str]):
+        sig_digest (str | Unset):
+        dn (str | Unset):
+        san (str | Unset):
+        key_usage (str | Unset):
+        key_type (str | Unset):
+        key_size (int | Unset):
+        ext_key_usage (str | Unset):
+        hash_ (str | Unset):
+        subject (str | Unset):
+        subject_key_id (str | Unset):
+        auth_key_id (str | Unset):
+        valid_from (str | Unset):
+        expires (str | Unset):
+        raw_data (str | Unset):
+        cert_fingerprint (str | Unset): sha256 hash of the raw certificate
+        self_signed (bool | Unset):
+        private_key (str | Unset):
     """
 
     issuer: str
     serial: str
-    sig_digest: Union[Unset, str] = UNSET
-    dn: Union[Unset, str] = UNSET
-    san: Union[Unset, str] = UNSET
-    key_usage: Union[Unset, str] = UNSET
-    key_type: Union[Unset, str] = UNSET
-    key_size: Union[Unset, int] = UNSET
-    ext_key_usage: Union[Unset, str] = UNSET
-    hash_: Union[Unset, str] = UNSET
-    subject: Union[Unset, str] = UNSET
-    subject_key_id: Union[Unset, str] = UNSET
-    auth_key_id: Union[Unset, str] = UNSET
-    valid_from: Union[Unset, str] = UNSET
-    expires: Union[Unset, str] = UNSET
-    raw_data: Union[Unset, str] = UNSET
-    cert_fingerprint: Union[Unset, str] = UNSET
-    self_signed: Union[Unset, bool] = UNSET
-    private_key: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    sig_digest: str | Unset = UNSET
+    dn: str | Unset = UNSET
+    san: str | Unset = UNSET
+    key_usage: str | Unset = UNSET
+    key_type: str | Unset = UNSET
+    key_size: int | Unset = UNSET
+    ext_key_usage: str | Unset = UNSET
+    hash_: str | Unset = UNSET
+    subject: str | Unset = UNSET
+    subject_key_id: str | Unset = UNSET
+    auth_key_id: str | Unset = UNSET
+    valid_from: str | Unset = UNSET
+    expires: str | Unset = UNSET
+    raw_data: str | Unset = UNSET
+    cert_fingerprint: str | Unset = UNSET
+    self_signed: bool | Unset = UNSET
+    private_key: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         issuer = self.issuer
 
         serial = self.serial
@@ -93,7 +96,7 @@ class CertInfo:
 
         private_key = self.private_key
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -139,8 +142,8 @@ class CertInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         issuer = d.pop("issuer")
 
         serial = d.pop("serial")
@@ -205,7 +208,7 @@ class CertInfo:
         return cert_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

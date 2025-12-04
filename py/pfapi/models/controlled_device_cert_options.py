@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,27 +15,27 @@ T = TypeVar("T", bound="ControlledDeviceCertOptions")
 class ControlledDeviceCertOptions:
     """
     Attributes:
-        organization (Union[Unset, str]):
-        country (Union[Unset, str]):
-        province (Union[Unset, str]):
-        locality (Union[Unset, str]):
-        street_addr (Union[Unset, str]):
-        postal_code (Union[Unset, str]):
-        ip_addresses (Union[Unset, List[str]]):
-        expiry_days (Union[Unset, int]):
+        organization (str | Unset):
+        country (str | Unset):
+        province (str | Unset):
+        locality (str | Unset):
+        street_addr (str | Unset):
+        postal_code (str | Unset):
+        ip_addresses (list[str] | Unset):
+        expiry_days (int | Unset):
     """
 
-    organization: Union[Unset, str] = UNSET
-    country: Union[Unset, str] = UNSET
-    province: Union[Unset, str] = UNSET
-    locality: Union[Unset, str] = UNSET
-    street_addr: Union[Unset, str] = UNSET
-    postal_code: Union[Unset, str] = UNSET
-    ip_addresses: Union[Unset, List[str]] = UNSET
-    expiry_days: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    organization: str | Unset = UNSET
+    country: str | Unset = UNSET
+    province: str | Unset = UNSET
+    locality: str | Unset = UNSET
+    street_addr: str | Unset = UNSET
+    postal_code: str | Unset = UNSET
+    ip_addresses: list[str] | Unset = UNSET
+    expiry_days: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         organization = self.organization
 
         country = self.country
@@ -45,13 +48,13 @@ class ControlledDeviceCertOptions:
 
         postal_code = self.postal_code
 
-        ip_addresses: Union[Unset, List[str]] = UNSET
+        ip_addresses: list[str] | Unset = UNSET
         if not isinstance(self.ip_addresses, Unset):
             ip_addresses = self.ip_addresses
 
         expiry_days = self.expiry_days
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if organization is not UNSET:
@@ -74,8 +77,8 @@ class ControlledDeviceCertOptions:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         organization = d.pop("organization", UNSET)
 
         country = d.pop("country", UNSET)
@@ -88,7 +91,7 @@ class ControlledDeviceCertOptions:
 
         postal_code = d.pop("postal_code", UNSET)
 
-        ip_addresses = cast(List[str], d.pop("ip_addresses", UNSET))
+        ip_addresses = cast(list[str], d.pop("ip_addresses", UNSET))
 
         expiry_days = d.pop("expiry_days", UNSET)
 
@@ -107,7 +110,7 @@ class ControlledDeviceCertOptions:
         return controlled_device_cert_options
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

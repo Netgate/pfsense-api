@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,18 +16,18 @@ T = TypeVar("T", bound="ControllerServiceAction")
 class ControllerServiceAction:
     """
     Attributes:
-        action (Union[Unset, ControllerServiceActionAction]): Action to carry out [restart, reload, stop]
+        action (ControllerServiceActionAction | Unset): Action to carry out [restart, reload, stop]
     """
 
-    action: Union[Unset, ControllerServiceActionAction] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    action: ControllerServiceActionAction | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        action: Union[Unset, str] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        action: str | Unset = UNSET
         if not isinstance(self.action, Unset):
             action = self.action.value
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if action is not UNSET:
@@ -33,10 +36,10 @@ class ControllerServiceAction:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         _action = d.pop("action", UNSET)
-        action: Union[Unset, ControllerServiceActionAction]
+        action: ControllerServiceActionAction | Unset
         if isinstance(_action, Unset):
             action = UNSET
         else:
@@ -50,7 +53,7 @@ class ControllerServiceAction:
         return controller_service_action
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

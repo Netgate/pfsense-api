@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,28 +15,28 @@ T = TypeVar("T", bound="DeviceTagOption")
 class DeviceTagOption:
     """
     Attributes:
-        tags (Union[Unset, List[str]]):
-        devices (Union[Unset, List[str]]):
-        action (Union[Unset, str]):
+        tags (list[str] | Unset):
+        devices (list[str] | Unset):
+        action (str | Unset):
     """
 
-    tags: Union[Unset, List[str]] = UNSET
-    devices: Union[Unset, List[str]] = UNSET
-    action: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    tags: list[str] | Unset = UNSET
+    devices: list[str] | Unset = UNSET
+    action: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        tags: Union[Unset, List[str]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        tags: list[str] | Unset = UNSET
         if not isinstance(self.tags, Unset):
             tags = self.tags
 
-        devices: Union[Unset, List[str]] = UNSET
+        devices: list[str] | Unset = UNSET
         if not isinstance(self.devices, Unset):
             devices = self.devices
 
         action = self.action
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if tags is not UNSET:
@@ -46,11 +49,11 @@ class DeviceTagOption:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
-        tags = cast(List[str], d.pop("tags", UNSET))
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        tags = cast(list[str], d.pop("tags", UNSET))
 
-        devices = cast(List[str], d.pop("devices", UNSET))
+        devices = cast(list[str], d.pop("devices", UNSET))
 
         action = d.pop("action", UNSET)
 
@@ -64,7 +67,7 @@ class DeviceTagOption:
         return device_tag_option
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

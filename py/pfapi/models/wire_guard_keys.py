@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,19 +15,19 @@ T = TypeVar("T", bound="WireGuardKeys")
 class WireGuardKeys:
     """
     Attributes:
-        privkey (Union[Unset, str]):
-        privkey_clamped (Union[Unset, str]):
-        pubkey (Union[Unset, str]):
-        was_clamped (Union[Unset, bool]):
+        privkey (str | Unset):
+        privkey_clamped (str | Unset):
+        pubkey (str | Unset):
+        was_clamped (bool | Unset):
     """
 
-    privkey: Union[Unset, str] = UNSET
-    privkey_clamped: Union[Unset, str] = UNSET
-    pubkey: Union[Unset, str] = UNSET
-    was_clamped: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    privkey: str | Unset = UNSET
+    privkey_clamped: str | Unset = UNSET
+    pubkey: str | Unset = UNSET
+    was_clamped: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         privkey = self.privkey
 
         privkey_clamped = self.privkey_clamped
@@ -33,7 +36,7 @@ class WireGuardKeys:
 
         was_clamped = self.was_clamped
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if privkey is not UNSET:
@@ -48,8 +51,8 @@ class WireGuardKeys:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         privkey = d.pop("privkey", UNSET)
 
         privkey_clamped = d.pop("privkey_clamped", UNSET)
@@ -69,7 +72,7 @@ class WireGuardKeys:
         return wire_guard_keys
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

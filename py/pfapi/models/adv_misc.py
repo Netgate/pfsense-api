@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,86 +15,86 @@ T = TypeVar("T", bound="AdvMisc")
 class AdvMisc:
     """
     Attributes:
-        available_kernel_memory (Union[Unset, int]):
-        block_external_services (Union[Unset, bool]):
-        crypto_hardware (Union[Unset, str]):
-        do_not_send_uniqueid (Union[Unset, bool]):
-        dpinger_dont_add_static_routes (Union[Unset, bool]):
-        gw_down_kill_states (Union[Unset, bool]):
-        harddiskstandby (Union[Unset, str]):
-        hwpstate (Union[Unset, bool]):
-        hwpstate_control_level (Union[Unset, str]):
-        hwpstate_epp (Union[Unset, int]):
-        ipsec_mb (Union[Unset, bool]):
-        keep_failover_states (Union[Unset, bool]):
-        lb_use_sticky (Union[Unset, bool]):
-        mds (Union[Unset, str]):
-        mds_disable (Union[Unset, str]): 0=disabled, 1=VERW instruction mitigation, 2=software sequence mitigation,
+        available_kernel_memory (int | Unset):
+        block_external_services (bool | Unset):
+        crypto_hardware (str | Unset):
+        do_not_send_uniqueid (bool | Unset):
+        dpinger_dont_add_static_routes (bool | Unset):
+        gw_down_kill_states (bool | Unset):
+        harddiskstandby (str | Unset):
+        hwpstate (bool | Unset):
+        hwpstate_control_level (str | Unset):
+        hwpstate_epp (int | Unset):
+        ipsec_mb (bool | Unset):
+        keep_failover_states (bool | Unset):
+        lb_use_sticky (bool | Unset):
+        mds (str | Unset):
+        mds_disable (str | Unset): 0=disabled, 1=VERW instruction mitigation, 2=software sequence mitigation,
             3=automatic VERW or software
-        php_memory_limit (Union[Unset, int]):
-        powerd_ac_mode (Union[Unset, str]):
-        powerd_battery_mode (Union[Unset, str]):
-        powerd_enable (Union[Unset, bool]):
-        powerd_normal_mode (Union[Unset, str]):
-        proxypass (Union[Unset, str]):
-        proxypass_confirm (Union[Unset, str]):
-        proxyport (Union[Unset, int]):
-        proxyurl (Union[Unset, str]):
-        proxyuser (Union[Unset, str]):
-        pti (Union[Unset, str]):
-        pti_disabled (Union[Unset, bool]):
-        remove_failover_states_default (Union[Unset, str]):
-        schedule_states (Union[Unset, bool]):
-        skip_rules_gw_down (Union[Unset, bool]):
-        srctrack (Union[Unset, str]):
-        thermal_hardware (Union[Unset, str]):
-        use_mfs_tmp_size (Union[Unset, int]):
-        use_mfs_tmpvar (Union[Unset, bool]):
-        use_mfs_var_size (Union[Unset, int]):
-        watchdogd_enable (Union[Unset, bool]):
-        watchdogd_timeout (Union[Unset, str]):
+        php_memory_limit (int | Unset):
+        powerd_ac_mode (str | Unset):
+        powerd_battery_mode (str | Unset):
+        powerd_enable (bool | Unset):
+        powerd_normal_mode (str | Unset):
+        proxypass (str | Unset):
+        proxypass_confirm (str | Unset):
+        proxyport (int | Unset):
+        proxyurl (str | Unset):
+        proxyuser (str | Unset):
+        pti (str | Unset):
+        pti_disabled (bool | Unset):
+        remove_failover_states_default (str | Unset):
+        schedule_states (bool | Unset):
+        skip_rules_gw_down (bool | Unset):
+        srctrack (str | Unset):
+        thermal_hardware (str | Unset):
+        use_mfs_tmp_size (int | Unset):
+        use_mfs_tmpvar (bool | Unset):
+        use_mfs_var_size (int | Unset):
+        watchdogd_enable (bool | Unset):
+        watchdogd_timeout (str | Unset):
     """
 
-    available_kernel_memory: Union[Unset, int] = UNSET
-    block_external_services: Union[Unset, bool] = UNSET
-    crypto_hardware: Union[Unset, str] = UNSET
-    do_not_send_uniqueid: Union[Unset, bool] = UNSET
-    dpinger_dont_add_static_routes: Union[Unset, bool] = UNSET
-    gw_down_kill_states: Union[Unset, bool] = UNSET
-    harddiskstandby: Union[Unset, str] = UNSET
-    hwpstate: Union[Unset, bool] = UNSET
-    hwpstate_control_level: Union[Unset, str] = UNSET
-    hwpstate_epp: Union[Unset, int] = UNSET
-    ipsec_mb: Union[Unset, bool] = UNSET
-    keep_failover_states: Union[Unset, bool] = UNSET
-    lb_use_sticky: Union[Unset, bool] = UNSET
-    mds: Union[Unset, str] = UNSET
-    mds_disable: Union[Unset, str] = UNSET
-    php_memory_limit: Union[Unset, int] = UNSET
-    powerd_ac_mode: Union[Unset, str] = UNSET
-    powerd_battery_mode: Union[Unset, str] = UNSET
-    powerd_enable: Union[Unset, bool] = UNSET
-    powerd_normal_mode: Union[Unset, str] = UNSET
-    proxypass: Union[Unset, str] = UNSET
-    proxypass_confirm: Union[Unset, str] = UNSET
-    proxyport: Union[Unset, int] = UNSET
-    proxyurl: Union[Unset, str] = UNSET
-    proxyuser: Union[Unset, str] = UNSET
-    pti: Union[Unset, str] = UNSET
-    pti_disabled: Union[Unset, bool] = UNSET
-    remove_failover_states_default: Union[Unset, str] = UNSET
-    schedule_states: Union[Unset, bool] = UNSET
-    skip_rules_gw_down: Union[Unset, bool] = UNSET
-    srctrack: Union[Unset, str] = UNSET
-    thermal_hardware: Union[Unset, str] = UNSET
-    use_mfs_tmp_size: Union[Unset, int] = UNSET
-    use_mfs_tmpvar: Union[Unset, bool] = UNSET
-    use_mfs_var_size: Union[Unset, int] = UNSET
-    watchdogd_enable: Union[Unset, bool] = UNSET
-    watchdogd_timeout: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    available_kernel_memory: int | Unset = UNSET
+    block_external_services: bool | Unset = UNSET
+    crypto_hardware: str | Unset = UNSET
+    do_not_send_uniqueid: bool | Unset = UNSET
+    dpinger_dont_add_static_routes: bool | Unset = UNSET
+    gw_down_kill_states: bool | Unset = UNSET
+    harddiskstandby: str | Unset = UNSET
+    hwpstate: bool | Unset = UNSET
+    hwpstate_control_level: str | Unset = UNSET
+    hwpstate_epp: int | Unset = UNSET
+    ipsec_mb: bool | Unset = UNSET
+    keep_failover_states: bool | Unset = UNSET
+    lb_use_sticky: bool | Unset = UNSET
+    mds: str | Unset = UNSET
+    mds_disable: str | Unset = UNSET
+    php_memory_limit: int | Unset = UNSET
+    powerd_ac_mode: str | Unset = UNSET
+    powerd_battery_mode: str | Unset = UNSET
+    powerd_enable: bool | Unset = UNSET
+    powerd_normal_mode: str | Unset = UNSET
+    proxypass: str | Unset = UNSET
+    proxypass_confirm: str | Unset = UNSET
+    proxyport: int | Unset = UNSET
+    proxyurl: str | Unset = UNSET
+    proxyuser: str | Unset = UNSET
+    pti: str | Unset = UNSET
+    pti_disabled: bool | Unset = UNSET
+    remove_failover_states_default: str | Unset = UNSET
+    schedule_states: bool | Unset = UNSET
+    skip_rules_gw_down: bool | Unset = UNSET
+    srctrack: str | Unset = UNSET
+    thermal_hardware: str | Unset = UNSET
+    use_mfs_tmp_size: int | Unset = UNSET
+    use_mfs_tmpvar: bool | Unset = UNSET
+    use_mfs_var_size: int | Unset = UNSET
+    watchdogd_enable: bool | Unset = UNSET
+    watchdogd_timeout: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         available_kernel_memory = self.available_kernel_memory
 
         block_external_services = self.block_external_services
@@ -166,7 +169,7 @@ class AdvMisc:
 
         watchdogd_timeout = self.watchdogd_timeout
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if available_kernel_memory is not UNSET:
@@ -247,8 +250,8 @@ class AdvMisc:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         available_kernel_memory = d.pop("available_kernel_memory", UNSET)
 
         block_external_services = d.pop("block_external_services", UNSET)
@@ -367,7 +370,7 @@ class AdvMisc:
         return adv_misc
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

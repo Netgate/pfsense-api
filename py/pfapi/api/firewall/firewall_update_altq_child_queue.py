@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -17,34 +18,37 @@ def _get_kwargs(
     qname: str,
     *,
     body: ALTQChildQueue,
-) -> Dict[str, Any]:
-    headers: Dict[str, Any] = {}
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "post",
-        "url": f"/firewall/traffic-shaper/altq/{name}/queue/{parentname}/{qname}",
+        "url": "/firewall/traffic-shaper/altq/{name}/queue/{parentname}/{qname}".format(
+            name=quote(str(name), safe=""),
+            parentname=quote(str(parentname), safe=""),
+            qname=quote(str(qname), safe=""),
+        ),
     }
 
-    _body = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-    _kwargs["json"] = _body
     headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, PfsenseResult]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | PfsenseResult | None:
     if response.status_code == 200:
         response_200 = PfsenseResult.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -52,8 +56,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, PfsenseResult]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Error | PfsenseResult]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -67,9 +71,9 @@ def sync_detailed(
     parentname: str,
     qname: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: ALTQChildQueue,
-) -> Response[Union[Error, PfsenseResult]]:
+) -> Response[Error | PfsenseResult]:
     """Update ALTQ Child Queue
 
     Args:
@@ -83,7 +87,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, PfsenseResult]]
+        Response[Error | PfsenseResult]
     """
 
     kwargs = _get_kwargs(
@@ -105,9 +109,9 @@ def sync(
     parentname: str,
     qname: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: ALTQChildQueue,
-) -> Optional[Union[Error, PfsenseResult]]:
+) -> Error | PfsenseResult | None:
     """Update ALTQ Child Queue
 
     Args:
@@ -121,7 +125,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, PfsenseResult]
+        Error | PfsenseResult
     """
 
     return sync_detailed(
@@ -138,9 +142,9 @@ async def asyncio_detailed(
     parentname: str,
     qname: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: ALTQChildQueue,
-) -> Response[Union[Error, PfsenseResult]]:
+) -> Response[Error | PfsenseResult]:
     """Update ALTQ Child Queue
 
     Args:
@@ -154,7 +158,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, PfsenseResult]]
+        Response[Error | PfsenseResult]
     """
 
     kwargs = _get_kwargs(
@@ -174,9 +178,9 @@ async def asyncio(
     parentname: str,
     qname: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: ALTQChildQueue,
-) -> Optional[Union[Error, PfsenseResult]]:
+) -> Error | PfsenseResult | None:
     """Update ALTQ Child Queue
 
     Args:
@@ -190,7 +194,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, PfsenseResult]
+        Error | PfsenseResult
     """
 
     return (

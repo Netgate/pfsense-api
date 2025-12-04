@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,30 +20,30 @@ T = TypeVar("T", bound="QinQInterfaces")
 class QinQInterfaces:
     """
     Attributes:
-        interfaces (Union[Unset, List['QinQInterface']]):
-        vlan_capable_ifs (Union[Unset, List['VLANCapableInterface']]):
+        interfaces (list[QinQInterface] | Unset):
+        vlan_capable_ifs (list[VLANCapableInterface] | Unset):
     """
 
-    interfaces: Union[Unset, List["QinQInterface"]] = UNSET
-    vlan_capable_ifs: Union[Unset, List["VLANCapableInterface"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    interfaces: list[QinQInterface] | Unset = UNSET
+    vlan_capable_ifs: list[VLANCapableInterface] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        interfaces: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = []
             for interfaces_item_data in self.interfaces:
                 interfaces_item = interfaces_item_data.to_dict()
                 interfaces.append(interfaces_item)
 
-        vlan_capable_ifs: Union[Unset, List[Dict[str, Any]]] = UNSET
+        vlan_capable_ifs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.vlan_capable_ifs, Unset):
             vlan_capable_ifs = []
             for vlan_capable_ifs_item_data in self.vlan_capable_ifs:
                 vlan_capable_ifs_item = vlan_capable_ifs_item_data.to_dict()
                 vlan_capable_ifs.append(vlan_capable_ifs_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if interfaces is not UNSET:
@@ -51,24 +54,28 @@ class QinQInterfaces:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.qin_q_interface import QinQInterface
         from ..models.vlan_capable_interface import VLANCapableInterface
 
-        d = src_dict.copy()
-        interfaces = []
+        d = dict(src_dict)
         _interfaces = d.pop("interfaces", UNSET)
-        for interfaces_item_data in _interfaces or []:
-            interfaces_item = QinQInterface.from_dict(interfaces_item_data)
+        interfaces: list[QinQInterface] | Unset = UNSET
+        if _interfaces is not UNSET:
+            interfaces = []
+            for interfaces_item_data in _interfaces:
+                interfaces_item = QinQInterface.from_dict(interfaces_item_data)
 
-            interfaces.append(interfaces_item)
+                interfaces.append(interfaces_item)
 
-        vlan_capable_ifs = []
         _vlan_capable_ifs = d.pop("vlan_capable_ifs", UNSET)
-        for vlan_capable_ifs_item_data in _vlan_capable_ifs or []:
-            vlan_capable_ifs_item = VLANCapableInterface.from_dict(vlan_capable_ifs_item_data)
+        vlan_capable_ifs: list[VLANCapableInterface] | Unset = UNSET
+        if _vlan_capable_ifs is not UNSET:
+            vlan_capable_ifs = []
+            for vlan_capable_ifs_item_data in _vlan_capable_ifs:
+                vlan_capable_ifs_item = VLANCapableInterface.from_dict(vlan_capable_ifs_item_data)
 
-            vlan_capable_ifs.append(vlan_capable_ifs_item)
+                vlan_capable_ifs.append(vlan_capable_ifs_item)
 
         qin_q_interfaces = cls(
             interfaces=interfaces,
@@ -79,7 +86,7 @@ class QinQInterfaces:
         return qin_q_interfaces
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

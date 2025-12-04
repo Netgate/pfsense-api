@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,25 +20,25 @@ T = TypeVar("T", bound="DiagStates")
 class DiagStates:
     """
     Attributes:
-        states (Union[Unset, List['DiagState']]):
-        interfaces (Union[Unset, List['SimpleInterface']]):
-        msg (Union[Unset, str]): warnings or other info
+        states (list[DiagState] | Unset):
+        interfaces (list[SimpleInterface] | Unset):
+        msg (str | Unset): warnings or other info
     """
 
-    states: Union[Unset, List["DiagState"]] = UNSET
-    interfaces: Union[Unset, List["SimpleInterface"]] = UNSET
-    msg: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    states: list[DiagState] | Unset = UNSET
+    interfaces: list[SimpleInterface] | Unset = UNSET
+    msg: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        states: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        states: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.states, Unset):
             states = []
             for states_item_data in self.states:
                 states_item = states_item_data.to_dict()
                 states.append(states_item)
 
-        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
+        interfaces: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = []
             for interfaces_item_data in self.interfaces:
@@ -44,7 +47,7 @@ class DiagStates:
 
         msg = self.msg
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if states is not UNSET:
@@ -57,24 +60,28 @@ class DiagStates:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.diag_state import DiagState
         from ..models.simple_interface import SimpleInterface
 
-        d = src_dict.copy()
-        states = []
+        d = dict(src_dict)
         _states = d.pop("states", UNSET)
-        for states_item_data in _states or []:
-            states_item = DiagState.from_dict(states_item_data)
+        states: list[DiagState] | Unset = UNSET
+        if _states is not UNSET:
+            states = []
+            for states_item_data in _states:
+                states_item = DiagState.from_dict(states_item_data)
 
-            states.append(states_item)
+                states.append(states_item)
 
-        interfaces = []
         _interfaces = d.pop("interfaces", UNSET)
-        for interfaces_item_data in _interfaces or []:
-            interfaces_item = SimpleInterface.from_dict(interfaces_item_data)
+        interfaces: list[SimpleInterface] | Unset = UNSET
+        if _interfaces is not UNSET:
+            interfaces = []
+            for interfaces_item_data in _interfaces:
+                interfaces_item = SimpleInterface.from_dict(interfaces_item_data)
 
-            interfaces.append(interfaces_item)
+                interfaces.append(interfaces_item)
 
         msg = d.pop("msg", UNSET)
 
@@ -88,7 +95,7 @@ class DiagStates:
         return diag_states
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

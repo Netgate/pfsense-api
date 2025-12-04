@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,26 +19,26 @@ T = TypeVar("T", bound="SystemUpdateSettingsSet")
 class SystemUpdateSettingsSet:
     """
     Attributes:
-        firmware_branch (Union[Unset, str]):
-        disable_check (Union[Unset, bool]):
-        boot_envs (Union[Unset, SystemUpdateBootEnvsSettings]):
+        firmware_branch (str | Unset):
+        disable_check (bool | Unset):
+        boot_envs (SystemUpdateBootEnvsSettings | Unset):
     """
 
-    firmware_branch: Union[Unset, str] = UNSET
-    disable_check: Union[Unset, bool] = UNSET
-    boot_envs: Union[Unset, "SystemUpdateBootEnvsSettings"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    firmware_branch: str | Unset = UNSET
+    disable_check: bool | Unset = UNSET
+    boot_envs: SystemUpdateBootEnvsSettings | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         firmware_branch = self.firmware_branch
 
         disable_check = self.disable_check
 
-        boot_envs: Union[Unset, Dict[str, Any]] = UNSET
+        boot_envs: dict[str, Any] | Unset = UNSET
         if not isinstance(self.boot_envs, Unset):
             boot_envs = self.boot_envs.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if firmware_branch is not UNSET:
@@ -48,16 +51,16 @@ class SystemUpdateSettingsSet:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.system_update_boot_envs_settings import SystemUpdateBootEnvsSettings
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         firmware_branch = d.pop("firmware_branch", UNSET)
 
         disable_check = d.pop("disable_check", UNSET)
 
         _boot_envs = d.pop("boot_envs", UNSET)
-        boot_envs: Union[Unset, SystemUpdateBootEnvsSettings]
+        boot_envs: SystemUpdateBootEnvsSettings | Unset
         if isinstance(_boot_envs, Unset):
             boot_envs = UNSET
         else:
@@ -73,7 +76,7 @@ class SystemUpdateSettingsSet:
         return system_update_settings_set
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

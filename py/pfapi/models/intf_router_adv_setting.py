@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,44 +18,43 @@ class IntfRouterAdvSetting:
     Attributes:
         assigned_interface (str): assigned name of network interface
         mode (IntfRouterAdvSettingMode): disabled, router, unmanaged, managed, assist, stateless_dhcp
-        priority (Union[Unset, str]): low, normal, high
-        lifetime_secs (Union[Unset, int]): length of time in seconds, default is 86400
-        pref_lifetime_secs (Union[Unset, int]): length of time from SLAAC addresses remain preferred, default 14400
-        min_ra_interval (Union[Unset, int]): minimum time allowed between sending unsolicited multicast RA in seconds,
-            default 200
-        max_ra_interval (Union[Unset, int]): maximum time allowed between sending unsolicited multicast RA in seconds,
-            default 600
-        router_lifetime (Union[Unset, int]): lifetime associated wi th default router in seconds, default 3x max RA
-        nat64_enable (Union[Unset, bool]): advertise a NAT64 prefix
-        nat64_prefix (Union[Unset, str]): NAT 64 prefix to enable PREF64 support
-        nat64_prefix_life (Union[Unset, int]): length of time in seconds that the prefix is valid for NAT64, default is
-            3x RA
-        ra_subnets (Union[Unset, List[str]]):
-        enable_dns (Union[Unset, bool]): provide DNS configuration via RA service
-        mirror_dhcp6 (Union[Unset, bool]): copy DNS configuration from primary DHCPv6 options
-        dns_servers (Union[Unset, List[str]]):
-        dns_searchlist (Union[Unset, List[str]]):
+        priority (str | Unset): low, normal, high
+        lifetime_secs (int | Unset): length of time in seconds, default is 86400
+        pref_lifetime_secs (int | Unset): length of time from SLAAC addresses remain preferred, default 14400
+        min_ra_interval (int | Unset): minimum time allowed between sending unsolicited multicast RA in seconds, default
+            200
+        max_ra_interval (int | Unset): maximum time allowed between sending unsolicited multicast RA in seconds, default
+            600
+        router_lifetime (int | Unset): lifetime associated wi th default router in seconds, default 3x max RA
+        nat64_enable (bool | Unset): advertise a NAT64 prefix
+        nat64_prefix (str | Unset): NAT 64 prefix to enable PREF64 support
+        nat64_prefix_life (int | Unset): length of time in seconds that the prefix is valid for NAT64, default is 3x RA
+        ra_subnets (list[str] | Unset):
+        enable_dns (bool | Unset): provide DNS configuration via RA service
+        mirror_dhcp6 (bool | Unset): copy DNS configuration from primary DHCPv6 options
+        dns_servers (list[str] | Unset):
+        dns_searchlist (list[str] | Unset):
     """
 
     assigned_interface: str
     mode: IntfRouterAdvSettingMode
-    priority: Union[Unset, str] = UNSET
-    lifetime_secs: Union[Unset, int] = UNSET
-    pref_lifetime_secs: Union[Unset, int] = UNSET
-    min_ra_interval: Union[Unset, int] = UNSET
-    max_ra_interval: Union[Unset, int] = UNSET
-    router_lifetime: Union[Unset, int] = UNSET
-    nat64_enable: Union[Unset, bool] = UNSET
-    nat64_prefix: Union[Unset, str] = UNSET
-    nat64_prefix_life: Union[Unset, int] = UNSET
-    ra_subnets: Union[Unset, List[str]] = UNSET
-    enable_dns: Union[Unset, bool] = UNSET
-    mirror_dhcp6: Union[Unset, bool] = UNSET
-    dns_servers: Union[Unset, List[str]] = UNSET
-    dns_searchlist: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    priority: str | Unset = UNSET
+    lifetime_secs: int | Unset = UNSET
+    pref_lifetime_secs: int | Unset = UNSET
+    min_ra_interval: int | Unset = UNSET
+    max_ra_interval: int | Unset = UNSET
+    router_lifetime: int | Unset = UNSET
+    nat64_enable: bool | Unset = UNSET
+    nat64_prefix: str | Unset = UNSET
+    nat64_prefix_life: int | Unset = UNSET
+    ra_subnets: list[str] | Unset = UNSET
+    enable_dns: bool | Unset = UNSET
+    mirror_dhcp6: bool | Unset = UNSET
+    dns_servers: list[str] | Unset = UNSET
+    dns_searchlist: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         assigned_interface = self.assigned_interface
 
         mode = self.mode.value
@@ -75,7 +77,7 @@ class IntfRouterAdvSetting:
 
         nat64_prefix_life = self.nat64_prefix_life
 
-        ra_subnets: Union[Unset, List[str]] = UNSET
+        ra_subnets: list[str] | Unset = UNSET
         if not isinstance(self.ra_subnets, Unset):
             ra_subnets = self.ra_subnets
 
@@ -83,15 +85,15 @@ class IntfRouterAdvSetting:
 
         mirror_dhcp6 = self.mirror_dhcp6
 
-        dns_servers: Union[Unset, List[str]] = UNSET
+        dns_servers: list[str] | Unset = UNSET
         if not isinstance(self.dns_servers, Unset):
             dns_servers = self.dns_servers
 
-        dns_searchlist: Union[Unset, List[str]] = UNSET
+        dns_searchlist: list[str] | Unset = UNSET
         if not isinstance(self.dns_searchlist, Unset):
             dns_searchlist = self.dns_searchlist
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -131,8 +133,8 @@ class IntfRouterAdvSetting:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         assigned_interface = d.pop("assigned_interface")
 
         mode = IntfRouterAdvSettingMode(d.pop("mode"))
@@ -155,15 +157,15 @@ class IntfRouterAdvSetting:
 
         nat64_prefix_life = d.pop("nat64_prefix_life", UNSET)
 
-        ra_subnets = cast(List[str], d.pop("ra_subnets", UNSET))
+        ra_subnets = cast(list[str], d.pop("ra_subnets", UNSET))
 
         enable_dns = d.pop("enable_dns", UNSET)
 
         mirror_dhcp6 = d.pop("mirror_dhcp6", UNSET)
 
-        dns_servers = cast(List[str], d.pop("dns_servers", UNSET))
+        dns_servers = cast(list[str], d.pop("dns_servers", UNSET))
 
-        dns_searchlist = cast(List[str], d.pop("dns_searchlist", UNSET))
+        dns_searchlist = cast(list[str], d.pop("dns_searchlist", UNSET))
 
         intf_router_adv_setting = cls(
             assigned_interface=assigned_interface,
@@ -188,7 +190,7 @@ class IntfRouterAdvSetting:
         return intf_router_adv_setting
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

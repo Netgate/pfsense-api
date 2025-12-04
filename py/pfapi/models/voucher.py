@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,34 +20,34 @@ class Voucher:
     """
     Attributes:
         enable (bool):
-        charset (Union[Unset, str]):
-        rollbits (Union[Unset, int]):
-        ticketbits (Union[Unset, int]):
-        checksumbits (Union[Unset, int]):
-        magic (Union[Unset, int]):
-        exponent (Union[Unset, int]):
-        publickey (Union[Unset, str]):
-        privatekey (Union[Unset, str]):
-        descrmsgnoaccess (Union[Unset, str]):
-        descrmsgexpired (Union[Unset, str]):
-        roll (Union[Unset, List['VoucherRoll']]):
+        charset (str | Unset):
+        rollbits (int | Unset):
+        ticketbits (int | Unset):
+        checksumbits (int | Unset):
+        magic (int | Unset):
+        exponent (int | Unset):
+        publickey (str | Unset):
+        privatekey (str | Unset):
+        descrmsgnoaccess (str | Unset):
+        descrmsgexpired (str | Unset):
+        roll (list[VoucherRoll] | Unset):
     """
 
     enable: bool
-    charset: Union[Unset, str] = UNSET
-    rollbits: Union[Unset, int] = UNSET
-    ticketbits: Union[Unset, int] = UNSET
-    checksumbits: Union[Unset, int] = UNSET
-    magic: Union[Unset, int] = UNSET
-    exponent: Union[Unset, int] = UNSET
-    publickey: Union[Unset, str] = UNSET
-    privatekey: Union[Unset, str] = UNSET
-    descrmsgnoaccess: Union[Unset, str] = UNSET
-    descrmsgexpired: Union[Unset, str] = UNSET
-    roll: Union[Unset, List["VoucherRoll"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    charset: str | Unset = UNSET
+    rollbits: int | Unset = UNSET
+    ticketbits: int | Unset = UNSET
+    checksumbits: int | Unset = UNSET
+    magic: int | Unset = UNSET
+    exponent: int | Unset = UNSET
+    publickey: str | Unset = UNSET
+    privatekey: str | Unset = UNSET
+    descrmsgnoaccess: str | Unset = UNSET
+    descrmsgexpired: str | Unset = UNSET
+    roll: list[VoucherRoll] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enable = self.enable
 
         charset = self.charset
@@ -67,14 +70,14 @@ class Voucher:
 
         descrmsgexpired = self.descrmsgexpired
 
-        roll: Union[Unset, List[Dict[str, Any]]] = UNSET
+        roll: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.roll, Unset):
             roll = []
             for roll_item_data in self.roll:
                 roll_item = roll_item_data.to_dict()
                 roll.append(roll_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -107,10 +110,10 @@ class Voucher:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.voucher_roll import VoucherRoll
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         enable = d.pop("enable")
 
         charset = d.pop("charset", UNSET)
@@ -133,12 +136,14 @@ class Voucher:
 
         descrmsgexpired = d.pop("descrmsgexpired", UNSET)
 
-        roll = []
         _roll = d.pop("roll", UNSET)
-        for roll_item_data in _roll or []:
-            roll_item = VoucherRoll.from_dict(roll_item_data)
+        roll: list[VoucherRoll] | Unset = UNSET
+        if _roll is not UNSET:
+            roll = []
+            for roll_item_data in _roll:
+                roll_item = VoucherRoll.from_dict(roll_item_data)
 
-            roll.append(roll_item)
+                roll.append(roll_item)
 
         voucher = cls(
             enable=enable,
@@ -159,7 +164,7 @@ class Voucher:
         return voucher
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

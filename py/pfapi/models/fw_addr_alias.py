@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,21 +18,21 @@ class FWAddrAlias:
     Attributes:
         alias_type (str): system, host, port, network, url
         label (str): alias label e.g. LAN__NETWORK, alias.name
-        descr (Union[Unset, str]): description about the alias
-        table (Union[Unset, str]): firewall table, if applicable
-        values (Union[Unset, List[str]]):
-        truncated (Union[Unset, bool]): indicates whether the value list is truncated
+        descr (str | Unset): description about the alias
+        table (str | Unset): firewall table, if applicable
+        values (list[str] | Unset):
+        truncated (bool | Unset): indicates whether the value list is truncated
     """
 
     alias_type: str
     label: str
-    descr: Union[Unset, str] = UNSET
-    table: Union[Unset, str] = UNSET
-    values: Union[Unset, List[str]] = UNSET
-    truncated: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    descr: str | Unset = UNSET
+    table: str | Unset = UNSET
+    values: list[str] | Unset = UNSET
+    truncated: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         alias_type = self.alias_type
 
         label = self.label
@@ -38,13 +41,13 @@ class FWAddrAlias:
 
         table = self.table
 
-        values: Union[Unset, List[str]] = UNSET
+        values: list[str] | Unset = UNSET
         if not isinstance(self.values, Unset):
             values = self.values
 
         truncated = self.truncated
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -64,8 +67,8 @@ class FWAddrAlias:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         alias_type = d.pop("alias_type")
 
         label = d.pop("label")
@@ -74,7 +77,7 @@ class FWAddrAlias:
 
         table = d.pop("table", UNSET)
 
-        values = cast(List[str], d.pop("values", UNSET))
+        values = cast(list[str], d.pop("values", UNSET))
 
         truncated = d.pop("truncated", UNSET)
 
@@ -91,7 +94,7 @@ class FWAddrAlias:
         return fw_addr_alias
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

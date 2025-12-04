@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,69 +22,69 @@ T = TypeVar("T", bound="DhcpInterfaceConfig")
 class DhcpInterfaceConfig:
     """
     Attributes:
-        if_ident (Union[Unset, str]):
-        if_assigned_name (Union[Unset, str]):
-        enabled (Union[Unset, bool]):
-        deny_unknown_clients (Union[Unset, str]):
-        ignore_client_identifiers (Union[Unset, bool]):
-        dns_reg (Union[Unset, str]):
-        early_dns_reg (Union[Unset, str]):
-        address_pool_range_from (Union[Unset, str]):
-        address_pool_range_to (Union[Unset, str]):
-        wins_servers (Union[Unset, List[str]]):
-        dns_servers (Union[Unset, List[str]]):
-        additional_pools (Union[Unset, List['DhcpAddressPool']]):
-        gateway (Union[Unset, str]):
-        domain_name (Union[Unset, str]):
-        domain_search_list (Union[Unset, List[str]]):
-        default_lease_time (Union[Unset, int]):
-        maximum_lease_time (Union[Unset, int]):
-        mac_allow (Union[Unset, List[str]]):
-        mac_deny (Union[Unset, List[str]]):
-        ntp_servers (Union[Unset, List[str]]):
-        tftp_server (Union[Unset, str]):
-        ldap_server_uri (Union[Unset, str]):
-        network_booting (Union[Unset, DhcpNetworkBooting]):
-        static_mappings (Union[Unset, List['DhcpStaticMapping']]):
-        static_mappings_v6 (Union[Unset, List['Dhcpv6StaticMapping']]):
-        subnet (Union[Unset, str]):
-        subnet_range_from (Union[Unset, str]):
-        subnet_range_to (Union[Unset, str]):
-        backend (Union[Unset, str]):
+        if_ident (str | Unset):
+        if_assigned_name (str | Unset):
+        enabled (bool | Unset):
+        deny_unknown_clients (str | Unset):
+        ignore_client_identifiers (bool | Unset):
+        dns_reg (str | Unset):
+        early_dns_reg (str | Unset):
+        address_pool_range_from (str | Unset):
+        address_pool_range_to (str | Unset):
+        wins_servers (list[str] | Unset):
+        dns_servers (list[str] | Unset):
+        additional_pools (list[DhcpAddressPool] | Unset):
+        gateway (str | Unset):
+        domain_name (str | Unset):
+        domain_search_list (list[str] | Unset):
+        default_lease_time (int | Unset):
+        maximum_lease_time (int | Unset):
+        mac_allow (list[str] | Unset):
+        mac_deny (list[str] | Unset):
+        ntp_servers (list[str] | Unset):
+        tftp_server (str | Unset):
+        ldap_server_uri (str | Unset):
+        network_booting (DhcpNetworkBooting | Unset):
+        static_mappings (list[DhcpStaticMapping] | Unset):
+        static_mappings_v6 (list[Dhcpv6StaticMapping] | Unset):
+        subnet (str | Unset):
+        subnet_range_from (str | Unset):
+        subnet_range_to (str | Unset):
+        backend (str | Unset):
     """
 
-    if_ident: Union[Unset, str] = UNSET
-    if_assigned_name: Union[Unset, str] = UNSET
-    enabled: Union[Unset, bool] = UNSET
-    deny_unknown_clients: Union[Unset, str] = UNSET
-    ignore_client_identifiers: Union[Unset, bool] = UNSET
-    dns_reg: Union[Unset, str] = UNSET
-    early_dns_reg: Union[Unset, str] = UNSET
-    address_pool_range_from: Union[Unset, str] = UNSET
-    address_pool_range_to: Union[Unset, str] = UNSET
-    wins_servers: Union[Unset, List[str]] = UNSET
-    dns_servers: Union[Unset, List[str]] = UNSET
-    additional_pools: Union[Unset, List["DhcpAddressPool"]] = UNSET
-    gateway: Union[Unset, str] = UNSET
-    domain_name: Union[Unset, str] = UNSET
-    domain_search_list: Union[Unset, List[str]] = UNSET
-    default_lease_time: Union[Unset, int] = UNSET
-    maximum_lease_time: Union[Unset, int] = UNSET
-    mac_allow: Union[Unset, List[str]] = UNSET
-    mac_deny: Union[Unset, List[str]] = UNSET
-    ntp_servers: Union[Unset, List[str]] = UNSET
-    tftp_server: Union[Unset, str] = UNSET
-    ldap_server_uri: Union[Unset, str] = UNSET
-    network_booting: Union[Unset, "DhcpNetworkBooting"] = UNSET
-    static_mappings: Union[Unset, List["DhcpStaticMapping"]] = UNSET
-    static_mappings_v6: Union[Unset, List["Dhcpv6StaticMapping"]] = UNSET
-    subnet: Union[Unset, str] = UNSET
-    subnet_range_from: Union[Unset, str] = UNSET
-    subnet_range_to: Union[Unset, str] = UNSET
-    backend: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    if_ident: str | Unset = UNSET
+    if_assigned_name: str | Unset = UNSET
+    enabled: bool | Unset = UNSET
+    deny_unknown_clients: str | Unset = UNSET
+    ignore_client_identifiers: bool | Unset = UNSET
+    dns_reg: str | Unset = UNSET
+    early_dns_reg: str | Unset = UNSET
+    address_pool_range_from: str | Unset = UNSET
+    address_pool_range_to: str | Unset = UNSET
+    wins_servers: list[str] | Unset = UNSET
+    dns_servers: list[str] | Unset = UNSET
+    additional_pools: list[DhcpAddressPool] | Unset = UNSET
+    gateway: str | Unset = UNSET
+    domain_name: str | Unset = UNSET
+    domain_search_list: list[str] | Unset = UNSET
+    default_lease_time: int | Unset = UNSET
+    maximum_lease_time: int | Unset = UNSET
+    mac_allow: list[str] | Unset = UNSET
+    mac_deny: list[str] | Unset = UNSET
+    ntp_servers: list[str] | Unset = UNSET
+    tftp_server: str | Unset = UNSET
+    ldap_server_uri: str | Unset = UNSET
+    network_booting: DhcpNetworkBooting | Unset = UNSET
+    static_mappings: list[DhcpStaticMapping] | Unset = UNSET
+    static_mappings_v6: list[Dhcpv6StaticMapping] | Unset = UNSET
+    subnet: str | Unset = UNSET
+    subnet_range_from: str | Unset = UNSET
+    subnet_range_to: str | Unset = UNSET
+    backend: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         if_ident = self.if_ident
 
         if_assigned_name = self.if_assigned_name
@@ -100,15 +103,15 @@ class DhcpInterfaceConfig:
 
         address_pool_range_to = self.address_pool_range_to
 
-        wins_servers: Union[Unset, List[str]] = UNSET
+        wins_servers: list[str] | Unset = UNSET
         if not isinstance(self.wins_servers, Unset):
             wins_servers = self.wins_servers
 
-        dns_servers: Union[Unset, List[str]] = UNSET
+        dns_servers: list[str] | Unset = UNSET
         if not isinstance(self.dns_servers, Unset):
             dns_servers = self.dns_servers
 
-        additional_pools: Union[Unset, List[Dict[str, Any]]] = UNSET
+        additional_pools: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.additional_pools, Unset):
             additional_pools = []
             for additional_pools_item_data in self.additional_pools:
@@ -119,7 +122,7 @@ class DhcpInterfaceConfig:
 
         domain_name = self.domain_name
 
-        domain_search_list: Union[Unset, List[str]] = UNSET
+        domain_search_list: list[str] | Unset = UNSET
         if not isinstance(self.domain_search_list, Unset):
             domain_search_list = self.domain_search_list
 
@@ -127,15 +130,15 @@ class DhcpInterfaceConfig:
 
         maximum_lease_time = self.maximum_lease_time
 
-        mac_allow: Union[Unset, List[str]] = UNSET
+        mac_allow: list[str] | Unset = UNSET
         if not isinstance(self.mac_allow, Unset):
             mac_allow = self.mac_allow
 
-        mac_deny: Union[Unset, List[str]] = UNSET
+        mac_deny: list[str] | Unset = UNSET
         if not isinstance(self.mac_deny, Unset):
             mac_deny = self.mac_deny
 
-        ntp_servers: Union[Unset, List[str]] = UNSET
+        ntp_servers: list[str] | Unset = UNSET
         if not isinstance(self.ntp_servers, Unset):
             ntp_servers = self.ntp_servers
 
@@ -143,18 +146,18 @@ class DhcpInterfaceConfig:
 
         ldap_server_uri = self.ldap_server_uri
 
-        network_booting: Union[Unset, Dict[str, Any]] = UNSET
+        network_booting: dict[str, Any] | Unset = UNSET
         if not isinstance(self.network_booting, Unset):
             network_booting = self.network_booting.to_dict()
 
-        static_mappings: Union[Unset, List[Dict[str, Any]]] = UNSET
+        static_mappings: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.static_mappings, Unset):
             static_mappings = []
             for static_mappings_item_data in self.static_mappings:
                 static_mappings_item = static_mappings_item_data.to_dict()
                 static_mappings.append(static_mappings_item)
 
-        static_mappings_v6: Union[Unset, List[Dict[str, Any]]] = UNSET
+        static_mappings_v6: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.static_mappings_v6, Unset):
             static_mappings_v6 = []
             for static_mappings_v6_item_data in self.static_mappings_v6:
@@ -169,7 +172,7 @@ class DhcpInterfaceConfig:
 
         backend = self.backend
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if if_ident is not UNSET:
@@ -234,13 +237,13 @@ class DhcpInterfaceConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dhcp_address_pool import DhcpAddressPool
         from ..models.dhcp_network_booting import DhcpNetworkBooting
         from ..models.dhcp_static_mapping import DhcpStaticMapping
         from ..models.dhcpv_6_static_mapping import Dhcpv6StaticMapping
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         if_ident = d.pop("if_ident", UNSET)
 
         if_assigned_name = d.pop("if_assigned_name", UNSET)
@@ -259,57 +262,63 @@ class DhcpInterfaceConfig:
 
         address_pool_range_to = d.pop("address_pool_range_to", UNSET)
 
-        wins_servers = cast(List[str], d.pop("wins_servers", UNSET))
+        wins_servers = cast(list[str], d.pop("wins_servers", UNSET))
 
-        dns_servers = cast(List[str], d.pop("dns_servers", UNSET))
+        dns_servers = cast(list[str], d.pop("dns_servers", UNSET))
 
-        additional_pools = []
         _additional_pools = d.pop("additional_pools", UNSET)
-        for additional_pools_item_data in _additional_pools or []:
-            additional_pools_item = DhcpAddressPool.from_dict(additional_pools_item_data)
+        additional_pools: list[DhcpAddressPool] | Unset = UNSET
+        if _additional_pools is not UNSET:
+            additional_pools = []
+            for additional_pools_item_data in _additional_pools:
+                additional_pools_item = DhcpAddressPool.from_dict(additional_pools_item_data)
 
-            additional_pools.append(additional_pools_item)
+                additional_pools.append(additional_pools_item)
 
         gateway = d.pop("gateway", UNSET)
 
         domain_name = d.pop("domain_name", UNSET)
 
-        domain_search_list = cast(List[str], d.pop("domain_search_list", UNSET))
+        domain_search_list = cast(list[str], d.pop("domain_search_list", UNSET))
 
         default_lease_time = d.pop("default_lease_time", UNSET)
 
         maximum_lease_time = d.pop("maximum_lease_time", UNSET)
 
-        mac_allow = cast(List[str], d.pop("mac_allow", UNSET))
+        mac_allow = cast(list[str], d.pop("mac_allow", UNSET))
 
-        mac_deny = cast(List[str], d.pop("mac_deny", UNSET))
+        mac_deny = cast(list[str], d.pop("mac_deny", UNSET))
 
-        ntp_servers = cast(List[str], d.pop("ntp_servers", UNSET))
+        ntp_servers = cast(list[str], d.pop("ntp_servers", UNSET))
 
         tftp_server = d.pop("tftp_server", UNSET)
 
         ldap_server_uri = d.pop("ldap_server_uri", UNSET)
 
         _network_booting = d.pop("network_booting", UNSET)
-        network_booting: Union[Unset, DhcpNetworkBooting]
+        network_booting: DhcpNetworkBooting | Unset
         if isinstance(_network_booting, Unset):
             network_booting = UNSET
         else:
             network_booting = DhcpNetworkBooting.from_dict(_network_booting)
 
-        static_mappings = []
         _static_mappings = d.pop("static_mappings", UNSET)
-        for static_mappings_item_data in _static_mappings or []:
-            static_mappings_item = DhcpStaticMapping.from_dict(static_mappings_item_data)
+        static_mappings: list[DhcpStaticMapping] | Unset = UNSET
+        if _static_mappings is not UNSET:
+            static_mappings = []
+            for static_mappings_item_data in _static_mappings:
+                static_mappings_item = DhcpStaticMapping.from_dict(static_mappings_item_data)
 
-            static_mappings.append(static_mappings_item)
+                static_mappings.append(static_mappings_item)
 
-        static_mappings_v6 = []
         _static_mappings_v6 = d.pop("static_mappings_v6", UNSET)
-        for static_mappings_v6_item_data in _static_mappings_v6 or []:
-            static_mappings_v6_item = Dhcpv6StaticMapping.from_dict(static_mappings_v6_item_data)
+        static_mappings_v6: list[Dhcpv6StaticMapping] | Unset = UNSET
+        if _static_mappings_v6 is not UNSET:
+            static_mappings_v6 = []
+            for static_mappings_v6_item_data in _static_mappings_v6:
+                static_mappings_v6_item = Dhcpv6StaticMapping.from_dict(static_mappings_v6_item_data)
 
-            static_mappings_v6.append(static_mappings_v6_item)
+                static_mappings_v6.append(static_mappings_v6_item)
 
         subnet = d.pop("subnet", UNSET)
 
@@ -355,7 +364,7 @@ class DhcpInterfaceConfig:
         return dhcp_interface_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

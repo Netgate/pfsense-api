@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,35 +15,35 @@ T = TypeVar("T", bound="OpenVPNConn")
 class OpenVPNConn:
     """
     Attributes:
-        common_name (Union[Unset, str]):
-        remote_host (Union[Unset, str]):
-        virtual_addr (Union[Unset, str]):
-        virtual_addr6 (Union[Unset, str]):
-        bytes_recv (Union[Unset, str]):
-        bytes_sent (Union[Unset, str]):
-        connect_time (Union[Unset, str]):
-        connect_time_unix (Union[Unset, str]):
-        user_name (Union[Unset, str]):
-        client_id (Union[Unset, str]):
-        peer_id (Union[Unset, str]):
-        cipher (Union[Unset, str]):
+        common_name (str | Unset):
+        remote_host (str | Unset):
+        virtual_addr (str | Unset):
+        virtual_addr6 (str | Unset):
+        bytes_recv (str | Unset):
+        bytes_sent (str | Unset):
+        connect_time (str | Unset):
+        connect_time_unix (str | Unset):
+        user_name (str | Unset):
+        client_id (str | Unset):
+        peer_id (str | Unset):
+        cipher (str | Unset):
     """
 
-    common_name: Union[Unset, str] = UNSET
-    remote_host: Union[Unset, str] = UNSET
-    virtual_addr: Union[Unset, str] = UNSET
-    virtual_addr6: Union[Unset, str] = UNSET
-    bytes_recv: Union[Unset, str] = UNSET
-    bytes_sent: Union[Unset, str] = UNSET
-    connect_time: Union[Unset, str] = UNSET
-    connect_time_unix: Union[Unset, str] = UNSET
-    user_name: Union[Unset, str] = UNSET
-    client_id: Union[Unset, str] = UNSET
-    peer_id: Union[Unset, str] = UNSET
-    cipher: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    common_name: str | Unset = UNSET
+    remote_host: str | Unset = UNSET
+    virtual_addr: str | Unset = UNSET
+    virtual_addr6: str | Unset = UNSET
+    bytes_recv: str | Unset = UNSET
+    bytes_sent: str | Unset = UNSET
+    connect_time: str | Unset = UNSET
+    connect_time_unix: str | Unset = UNSET
+    user_name: str | Unset = UNSET
+    client_id: str | Unset = UNSET
+    peer_id: str | Unset = UNSET
+    cipher: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         common_name = self.common_name
 
         remote_host = self.remote_host
@@ -65,7 +68,7 @@ class OpenVPNConn:
 
         cipher = self.cipher
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if common_name is not UNSET:
@@ -96,8 +99,8 @@ class OpenVPNConn:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         common_name = d.pop("common_name", UNSET)
 
         remote_host = d.pop("remote_host", UNSET)
@@ -141,7 +144,7 @@ class OpenVPNConn:
         return open_vpn_conn
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

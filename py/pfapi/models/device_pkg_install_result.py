@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,21 +15,21 @@ T = TypeVar("T", bound="DevicePkgInstallResult")
 class DevicePkgInstallResult:
     """
     Attributes:
-        device_id (Union[Unset, str]):
-        previous_version (Union[Unset, str]): previous version of system
-        active_version (Union[Unset, str]): current running version (after upgrade attempt)
-        install_messages (Union[Unset, str]): log of upgrade process(es)
-        result (Union[Unset, str]): success or failure for this device
+        device_id (str | Unset):
+        previous_version (str | Unset): previous version of system
+        active_version (str | Unset): current running version (after upgrade attempt)
+        install_messages (str | Unset): log of upgrade process(es)
+        result (str | Unset): success or failure for this device
     """
 
-    device_id: Union[Unset, str] = UNSET
-    previous_version: Union[Unset, str] = UNSET
-    active_version: Union[Unset, str] = UNSET
-    install_messages: Union[Unset, str] = UNSET
-    result: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    device_id: str | Unset = UNSET
+    previous_version: str | Unset = UNSET
+    active_version: str | Unset = UNSET
+    install_messages: str | Unset = UNSET
+    result: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         device_id = self.device_id
 
         previous_version = self.previous_version
@@ -37,7 +40,7 @@ class DevicePkgInstallResult:
 
         result = self.result
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if device_id is not UNSET:
@@ -54,8 +57,8 @@ class DevicePkgInstallResult:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         device_id = d.pop("device_id", UNSET)
 
         previous_version = d.pop("previous_version", UNSET)
@@ -78,7 +81,7 @@ class DevicePkgInstallResult:
         return device_pkg_install_result
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

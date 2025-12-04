@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,28 +19,28 @@ T = TypeVar("T", bound="FWSchedule")
 class FWSchedule:
     """
     Attributes:
-        id (Union[Unset, str]):
-        name (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        timerange (Union[Unset, List['FWScheduleRange']]):
-        schedlabel (Union[Unset, str]):
+        id (str | Unset):
+        name (str | Unset):
+        descr (str | Unset):
+        timerange (list[FWScheduleRange] | Unset):
+        schedlabel (str | Unset):
     """
 
-    id: Union[Unset, str] = UNSET
-    name: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    timerange: Union[Unset, List["FWScheduleRange"]] = UNSET
-    schedlabel: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    id: str | Unset = UNSET
+    name: str | Unset = UNSET
+    descr: str | Unset = UNSET
+    timerange: list[FWScheduleRange] | Unset = UNSET
+    schedlabel: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         id = self.id
 
         name = self.name
 
         descr = self.descr
 
-        timerange: Union[Unset, List[Dict[str, Any]]] = UNSET
+        timerange: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.timerange, Unset):
             timerange = []
             for timerange_item_data in self.timerange:
@@ -46,7 +49,7 @@ class FWSchedule:
 
         schedlabel = self.schedlabel
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if id is not UNSET:
@@ -63,22 +66,24 @@ class FWSchedule:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.fw_schedule_range import FWScheduleRange
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         id = d.pop("id", UNSET)
 
         name = d.pop("name", UNSET)
 
         descr = d.pop("descr", UNSET)
 
-        timerange = []
         _timerange = d.pop("timerange", UNSET)
-        for timerange_item_data in _timerange or []:
-            timerange_item = FWScheduleRange.from_dict(timerange_item_data)
+        timerange: list[FWScheduleRange] | Unset = UNSET
+        if _timerange is not UNSET:
+            timerange = []
+            for timerange_item_data in _timerange:
+                timerange_item = FWScheduleRange.from_dict(timerange_item_data)
 
-            timerange.append(timerange_item)
+                timerange.append(timerange_item)
 
         schedlabel = d.pop("schedlabel", UNSET)
 
@@ -94,7 +99,7 @@ class FWSchedule:
         return fw_schedule
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

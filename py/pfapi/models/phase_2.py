@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,47 +21,47 @@ T = TypeVar("T", bound="Phase2")
 class Phase2:
     """
     Attributes:
-        ikeid (Union[Unset, str]):
-        uniqid (Union[Unset, str]):
-        mode (Union[Unset, str]):
-        reqid (Union[Unset, str]):
-        localid (Union[Unset, Phase2LocalId]):
-        remoteid (Union[Unset, Phase2RemoteId]):
-        protocol (Union[Unset, str]):
-        encryption_algorithm_option (Union[Unset, List['EncryptionAlgorithm']]):
-        hash_algorithm_option (Union[Unset, List[str]]):
-        pfsgroup (Union[Unset, str]):
-        lifetime (Union[Unset, int]):
-        rekey_time (Union[Unset, int]):
-        rand_time (Union[Unset, int]):
-        pinghost (Union[Unset, str]):
-        keepalive (Union[Unset, bool]):
-        mobile (Union[Unset, bool]):
-        disabled (Union[Unset, bool]):
-        descr (Union[Unset, str]):
+        ikeid (str | Unset):
+        uniqid (str | Unset):
+        mode (str | Unset):
+        reqid (str | Unset):
+        localid (Phase2LocalId | Unset):
+        remoteid (Phase2RemoteId | Unset):
+        protocol (str | Unset):
+        encryption_algorithm_option (list[EncryptionAlgorithm] | Unset):
+        hash_algorithm_option (list[str] | Unset):
+        pfsgroup (str | Unset):
+        lifetime (int | Unset):
+        rekey_time (int | Unset):
+        rand_time (int | Unset):
+        pinghost (str | Unset):
+        keepalive (bool | Unset):
+        mobile (bool | Unset):
+        disabled (bool | Unset):
+        descr (str | Unset):
     """
 
-    ikeid: Union[Unset, str] = UNSET
-    uniqid: Union[Unset, str] = UNSET
-    mode: Union[Unset, str] = UNSET
-    reqid: Union[Unset, str] = UNSET
-    localid: Union[Unset, "Phase2LocalId"] = UNSET
-    remoteid: Union[Unset, "Phase2RemoteId"] = UNSET
-    protocol: Union[Unset, str] = UNSET
-    encryption_algorithm_option: Union[Unset, List["EncryptionAlgorithm"]] = UNSET
-    hash_algorithm_option: Union[Unset, List[str]] = UNSET
-    pfsgroup: Union[Unset, str] = UNSET
-    lifetime: Union[Unset, int] = UNSET
-    rekey_time: Union[Unset, int] = UNSET
-    rand_time: Union[Unset, int] = UNSET
-    pinghost: Union[Unset, str] = UNSET
-    keepalive: Union[Unset, bool] = UNSET
-    mobile: Union[Unset, bool] = UNSET
-    disabled: Union[Unset, bool] = UNSET
-    descr: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ikeid: str | Unset = UNSET
+    uniqid: str | Unset = UNSET
+    mode: str | Unset = UNSET
+    reqid: str | Unset = UNSET
+    localid: Phase2LocalId | Unset = UNSET
+    remoteid: Phase2RemoteId | Unset = UNSET
+    protocol: str | Unset = UNSET
+    encryption_algorithm_option: list[EncryptionAlgorithm] | Unset = UNSET
+    hash_algorithm_option: list[str] | Unset = UNSET
+    pfsgroup: str | Unset = UNSET
+    lifetime: int | Unset = UNSET
+    rekey_time: int | Unset = UNSET
+    rand_time: int | Unset = UNSET
+    pinghost: str | Unset = UNSET
+    keepalive: bool | Unset = UNSET
+    mobile: bool | Unset = UNSET
+    disabled: bool | Unset = UNSET
+    descr: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         ikeid = self.ikeid
 
         uniqid = self.uniqid
@@ -67,24 +70,24 @@ class Phase2:
 
         reqid = self.reqid
 
-        localid: Union[Unset, Dict[str, Any]] = UNSET
+        localid: dict[str, Any] | Unset = UNSET
         if not isinstance(self.localid, Unset):
             localid = self.localid.to_dict()
 
-        remoteid: Union[Unset, Dict[str, Any]] = UNSET
+        remoteid: dict[str, Any] | Unset = UNSET
         if not isinstance(self.remoteid, Unset):
             remoteid = self.remoteid.to_dict()
 
         protocol = self.protocol
 
-        encryption_algorithm_option: Union[Unset, List[Dict[str, Any]]] = UNSET
+        encryption_algorithm_option: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.encryption_algorithm_option, Unset):
             encryption_algorithm_option = []
             for encryption_algorithm_option_item_data in self.encryption_algorithm_option:
                 encryption_algorithm_option_item = encryption_algorithm_option_item_data.to_dict()
                 encryption_algorithm_option.append(encryption_algorithm_option_item)
 
-        hash_algorithm_option: Union[Unset, List[str]] = UNSET
+        hash_algorithm_option: list[str] | Unset = UNSET
         if not isinstance(self.hash_algorithm_option, Unset):
             hash_algorithm_option = self.hash_algorithm_option
 
@@ -106,7 +109,7 @@ class Phase2:
 
         descr = self.descr
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ikeid is not UNSET:
@@ -149,12 +152,12 @@ class Phase2:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.encryption_algorithm import EncryptionAlgorithm
         from ..models.phase_2_local_id import Phase2LocalId
         from ..models.phase_2_remote_id import Phase2RemoteId
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         ikeid = d.pop("ikeid", UNSET)
 
         uniqid = d.pop("uniqid", UNSET)
@@ -164,14 +167,14 @@ class Phase2:
         reqid = d.pop("reqid", UNSET)
 
         _localid = d.pop("localid", UNSET)
-        localid: Union[Unset, Phase2LocalId]
+        localid: Phase2LocalId | Unset
         if isinstance(_localid, Unset):
             localid = UNSET
         else:
             localid = Phase2LocalId.from_dict(_localid)
 
         _remoteid = d.pop("remoteid", UNSET)
-        remoteid: Union[Unset, Phase2RemoteId]
+        remoteid: Phase2RemoteId | Unset
         if isinstance(_remoteid, Unset):
             remoteid = UNSET
         else:
@@ -179,14 +182,16 @@ class Phase2:
 
         protocol = d.pop("protocol", UNSET)
 
-        encryption_algorithm_option = []
         _encryption_algorithm_option = d.pop("encryption_algorithm_option", UNSET)
-        for encryption_algorithm_option_item_data in _encryption_algorithm_option or []:
-            encryption_algorithm_option_item = EncryptionAlgorithm.from_dict(encryption_algorithm_option_item_data)
+        encryption_algorithm_option: list[EncryptionAlgorithm] | Unset = UNSET
+        if _encryption_algorithm_option is not UNSET:
+            encryption_algorithm_option = []
+            for encryption_algorithm_option_item_data in _encryption_algorithm_option:
+                encryption_algorithm_option_item = EncryptionAlgorithm.from_dict(encryption_algorithm_option_item_data)
 
-            encryption_algorithm_option.append(encryption_algorithm_option_item)
+                encryption_algorithm_option.append(encryption_algorithm_option_item)
 
-        hash_algorithm_option = cast(List[str], d.pop("hash_algorithm_option", UNSET))
+        hash_algorithm_option = cast(list[str], d.pop("hash_algorithm_option", UNSET))
 
         pfsgroup = d.pop("pfsgroup", UNSET)
 
@@ -231,7 +236,7 @@ class Phase2:
         return phase_2
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

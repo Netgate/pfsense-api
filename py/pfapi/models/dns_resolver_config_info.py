@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,39 +21,39 @@ T = TypeVar("T", bound="DNSResolverConfigInfo")
 class DNSResolverConfigInfo:
     """
     Attributes:
-        config (Union[Unset, DNSResolverConfig]):
-        interfaces (Union[Unset, DNSResolverConfigInfoInterfaces]):
-        certs (Union[Unset, List['ServiceCertificate']]):
-        scripts (Union[Unset, List[str]]):
+        config (DNSResolverConfig | Unset):
+        interfaces (DNSResolverConfigInfoInterfaces | Unset):
+        certs (list[ServiceCertificate] | Unset):
+        scripts (list[str] | Unset):
     """
 
-    config: Union[Unset, "DNSResolverConfig"] = UNSET
-    interfaces: Union[Unset, "DNSResolverConfigInfoInterfaces"] = UNSET
-    certs: Union[Unset, List["ServiceCertificate"]] = UNSET
-    scripts: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    config: DNSResolverConfig | Unset = UNSET
+    interfaces: DNSResolverConfigInfoInterfaces | Unset = UNSET
+    certs: list[ServiceCertificate] | Unset = UNSET
+    scripts: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        config: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        config: dict[str, Any] | Unset = UNSET
         if not isinstance(self.config, Unset):
             config = self.config.to_dict()
 
-        interfaces: Union[Unset, Dict[str, Any]] = UNSET
+        interfaces: dict[str, Any] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = self.interfaces.to_dict()
 
-        certs: Union[Unset, List[Dict[str, Any]]] = UNSET
+        certs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.certs, Unset):
             certs = []
             for certs_item_data in self.certs:
                 certs_item = certs_item_data.to_dict()
                 certs.append(certs_item)
 
-        scripts: Union[Unset, List[str]] = UNSET
+        scripts: list[str] | Unset = UNSET
         if not isinstance(self.scripts, Unset):
             scripts = self.scripts
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if config is not UNSET:
@@ -65,34 +68,36 @@ class DNSResolverConfigInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dns_resolver_config import DNSResolverConfig
         from ..models.dns_resolver_config_info_interfaces import DNSResolverConfigInfoInterfaces
         from ..models.service_certificate import ServiceCertificate
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _config = d.pop("config", UNSET)
-        config: Union[Unset, DNSResolverConfig]
+        config: DNSResolverConfig | Unset
         if isinstance(_config, Unset):
             config = UNSET
         else:
             config = DNSResolverConfig.from_dict(_config)
 
         _interfaces = d.pop("interfaces", UNSET)
-        interfaces: Union[Unset, DNSResolverConfigInfoInterfaces]
+        interfaces: DNSResolverConfigInfoInterfaces | Unset
         if isinstance(_interfaces, Unset):
             interfaces = UNSET
         else:
             interfaces = DNSResolverConfigInfoInterfaces.from_dict(_interfaces)
 
-        certs = []
         _certs = d.pop("certs", UNSET)
-        for certs_item_data in _certs or []:
-            certs_item = ServiceCertificate.from_dict(certs_item_data)
+        certs: list[ServiceCertificate] | Unset = UNSET
+        if _certs is not UNSET:
+            certs = []
+            for certs_item_data in _certs:
+                certs_item = ServiceCertificate.from_dict(certs_item_data)
 
-            certs.append(certs_item)
+                certs.append(certs_item)
 
-        scripts = cast(List[str], d.pop("scripts", UNSET))
+        scripts = cast(list[str], d.pop("scripts", UNSET))
 
         dns_resolver_config_info = cls(
             config=config,
@@ -105,7 +110,7 @@ class DNSResolverConfigInfo:
         return dns_resolver_config_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

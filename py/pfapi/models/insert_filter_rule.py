@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,30 +19,24 @@ T = TypeVar("T", bound="InsertFilterRule")
 class InsertFilterRule:
     """
     Attributes:
-        reference (Union[Unset, str]):
-        after (Union[Unset, bool]):
-        rule (Union[Unset, FWFilterRule]):
+        after (bool | Unset):
+        rule (FWFilterRule | Unset):
     """
 
-    reference: Union[Unset, str] = UNSET
-    after: Union[Unset, bool] = UNSET
-    rule: Union[Unset, "FWFilterRule"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    after: bool | Unset = UNSET
+    rule: FWFilterRule | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        reference = self.reference
-
+    def to_dict(self) -> dict[str, Any]:
         after = self.after
 
-        rule: Union[Unset, Dict[str, Any]] = UNSET
+        rule: dict[str, Any] | Unset = UNSET
         if not isinstance(self.rule, Unset):
             rule = self.rule.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if reference is not UNSET:
-            field_dict["reference"] = reference
         if after is not UNSET:
             field_dict["after"] = after
         if rule is not UNSET:
@@ -48,23 +45,20 @@ class InsertFilterRule:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.fw_filter_rule import FWFilterRule
 
-        d = src_dict.copy()
-        reference = d.pop("reference", UNSET)
-
+        d = dict(src_dict)
         after = d.pop("after", UNSET)
 
         _rule = d.pop("rule", UNSET)
-        rule: Union[Unset, FWFilterRule]
+        rule: FWFilterRule | Unset
         if isinstance(_rule, Unset):
             rule = UNSET
         else:
             rule = FWFilterRule.from_dict(_rule)
 
         insert_filter_rule = cls(
-            reference=reference,
             after=after,
             rule=rule,
         )
@@ -73,7 +67,7 @@ class InsertFilterRule:
         return insert_filter_rule
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

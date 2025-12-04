@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,23 +17,23 @@ class CaCertMethodExisting:
 
     Attributes:
         cert (str):
-        private_key (Union[Unset, str]):
-        next_serial (Union[Unset, int]):
+        private_key (str | Unset):
+        next_serial (int | Unset):
     """
 
     cert: str
-    private_key: Union[Unset, str] = UNSET
-    next_serial: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    private_key: str | Unset = UNSET
+    next_serial: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         cert = self.cert
 
         private_key = self.private_key
 
         next_serial = self.next_serial
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -45,8 +48,8 @@ class CaCertMethodExisting:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         cert = d.pop("cert")
 
         private_key = d.pop("private_key", UNSET)
@@ -63,7 +66,7 @@ class CaCertMethodExisting:
         return ca_cert_method_existing
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

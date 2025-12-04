@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,30 +17,30 @@ class SystemGitSyncSettings:
     Attributes:
         sync_on_upgrade (bool):
         repo_url (str):
-        branches (Union[Unset, List[str]]):
-        minimal (Union[Unset, bool]):
-        diff (Union[Unset, bool]):
-        show_files (Union[Unset, bool]):
-        show_command (Union[Unset, bool]):
-        dry_run (Union[Unset, bool]):
+        branches (list[str] | Unset):
+        minimal (bool | Unset):
+        diff (bool | Unset):
+        show_files (bool | Unset):
+        show_command (bool | Unset):
+        dry_run (bool | Unset):
     """
 
     sync_on_upgrade: bool
     repo_url: str
-    branches: Union[Unset, List[str]] = UNSET
-    minimal: Union[Unset, bool] = UNSET
-    diff: Union[Unset, bool] = UNSET
-    show_files: Union[Unset, bool] = UNSET
-    show_command: Union[Unset, bool] = UNSET
-    dry_run: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    branches: list[str] | Unset = UNSET
+    minimal: bool | Unset = UNSET
+    diff: bool | Unset = UNSET
+    show_files: bool | Unset = UNSET
+    show_command: bool | Unset = UNSET
+    dry_run: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         sync_on_upgrade = self.sync_on_upgrade
 
         repo_url = self.repo_url
 
-        branches: Union[Unset, List[str]] = UNSET
+        branches: list[str] | Unset = UNSET
         if not isinstance(self.branches, Unset):
             branches = self.branches
 
@@ -51,7 +54,7 @@ class SystemGitSyncSettings:
 
         dry_run = self.dry_run
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -75,13 +78,13 @@ class SystemGitSyncSettings:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         sync_on_upgrade = d.pop("sync_on_upgrade")
 
         repo_url = d.pop("repo_url")
 
-        branches = cast(List[str], d.pop("branches", UNSET))
+        branches = cast(list[str], d.pop("branches", UNSET))
 
         minimal = d.pop("minimal", UNSET)
 
@@ -108,7 +111,7 @@ class SystemGitSyncSettings:
         return system_git_sync_settings
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,30 +19,30 @@ T = TypeVar("T", bound="WireGuardPeerStatus")
 class WireGuardPeerStatus:
     """
     Attributes:
-        public_key (Union[Unset, str]):
-        preshared_key (Union[Unset, str]):
-        endpoint (Union[Unset, str]):
-        allowed_ips (Union[Unset, str]):
-        latest_handshake (Union[Unset, str]):
-        transfer_rx (Union[Unset, str]):
-        transfer_tx (Union[Unset, str]):
-        persistent_keepalive (Union[Unset, str]):
-        config (Union[Unset, WGPeer]): valid values:
+        public_key (str | Unset):
+        preshared_key (str | Unset):
+        endpoint (str | Unset):
+        allowed_ips (str | Unset):
+        latest_handshake (str | Unset):
+        transfer_rx (str | Unset):
+        transfer_tx (str | Unset):
+        persistent_keepalive (str | Unset):
+        config (WGPeer | Unset): valid values:
             enabled = "yes", "no"
     """
 
-    public_key: Union[Unset, str] = UNSET
-    preshared_key: Union[Unset, str] = UNSET
-    endpoint: Union[Unset, str] = UNSET
-    allowed_ips: Union[Unset, str] = UNSET
-    latest_handshake: Union[Unset, str] = UNSET
-    transfer_rx: Union[Unset, str] = UNSET
-    transfer_tx: Union[Unset, str] = UNSET
-    persistent_keepalive: Union[Unset, str] = UNSET
-    config: Union[Unset, "WGPeer"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    public_key: str | Unset = UNSET
+    preshared_key: str | Unset = UNSET
+    endpoint: str | Unset = UNSET
+    allowed_ips: str | Unset = UNSET
+    latest_handshake: str | Unset = UNSET
+    transfer_rx: str | Unset = UNSET
+    transfer_tx: str | Unset = UNSET
+    persistent_keepalive: str | Unset = UNSET
+    config: WGPeer | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         public_key = self.public_key
 
         preshared_key = self.preshared_key
@@ -56,11 +59,11 @@ class WireGuardPeerStatus:
 
         persistent_keepalive = self.persistent_keepalive
 
-        config: Union[Unset, Dict[str, Any]] = UNSET
+        config: dict[str, Any] | Unset = UNSET
         if not isinstance(self.config, Unset):
             config = self.config.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if public_key is not UNSET:
@@ -85,10 +88,10 @@ class WireGuardPeerStatus:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.wg_peer import WGPeer
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         public_key = d.pop("public_key", UNSET)
 
         preshared_key = d.pop("preshared_key", UNSET)
@@ -106,7 +109,7 @@ class WireGuardPeerStatus:
         persistent_keepalive = d.pop("persistent_keepalive", UNSET)
 
         _config = d.pop("config", UNSET)
-        config: Union[Unset, WGPeer]
+        config: WGPeer | Unset
         if isinstance(_config, Unset):
             config = UNSET
         else:
@@ -128,7 +131,7 @@ class WireGuardPeerStatus:
         return wire_guard_peer_status
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

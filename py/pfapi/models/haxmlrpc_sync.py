@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,59 +15,59 @@ T = TypeVar("T", bound="HAXMLRPCSync")
 class HAXMLRPCSync:
     """
     Attributes:
-        sync_to_ip (Union[Unset, str]): addres of device to sync the selected config sections
-        username (Union[Unset, str]): username to authenticate with sync_to_ip device
-        password (Union[Unset, str]): authentication password
-        sync_admin_acct (Union[Unset, bool]): sync admin accounts and autoupdate sync password
-        sync_users (Union[Unset, bool]): sync user manager users and groups
-        sync_auth_servers (Union[Unset, bool]):
-        sync_certs (Union[Unset, bool]):
-        sync_fw_rules (Union[Unset, bool]):
-        sync_fw_schedules (Union[Unset, bool]):
-        sync_fw_aliases (Union[Unset, bool]):
-        sync_nat (Union[Unset, bool]):
-        sync_ipsec (Union[Unset, bool]):
-        sync_ovpn (Union[Unset, bool]):
-        sync_dhcp_server (Union[Unset, bool]):
-        sync_dhcp_relay (Union[Unset, bool]):
-        sync_dhcp6_server (Union[Unset, bool]):
-        sync_dhcp6_relay (Union[Unset, bool]):
-        sync_static_routes (Union[Unset, bool]):
-        sync_wol (Union[Unset, bool]):
-        sync_virtual_ips (Union[Unset, bool]):
-        sync_traffic_shaper (Union[Unset, bool]):
-        sync_traffic_shaper_limiters (Union[Unset, bool]):
-        sync_dns (Union[Unset, bool]):
-        sync_cap_portal (Union[Unset, bool]):
+        sync_to_ip (str | Unset): addres of device to sync the selected config sections
+        username (str | Unset): username to authenticate with sync_to_ip device
+        password (str | Unset): authentication password
+        sync_admin_acct (bool | Unset): sync admin accounts and autoupdate sync password
+        sync_users (bool | Unset): sync user manager users and groups
+        sync_auth_servers (bool | Unset):
+        sync_certs (bool | Unset):
+        sync_fw_rules (bool | Unset):
+        sync_fw_schedules (bool | Unset):
+        sync_fw_aliases (bool | Unset):
+        sync_nat (bool | Unset):
+        sync_ipsec (bool | Unset):
+        sync_ovpn (bool | Unset):
+        sync_dhcp_server (bool | Unset):
+        sync_dhcp_relay (bool | Unset):
+        sync_dhcp6_server (bool | Unset):
+        sync_dhcp6_relay (bool | Unset):
+        sync_static_routes (bool | Unset):
+        sync_wol (bool | Unset):
+        sync_virtual_ips (bool | Unset):
+        sync_traffic_shaper (bool | Unset):
+        sync_traffic_shaper_limiters (bool | Unset):
+        sync_dns (bool | Unset):
+        sync_cap_portal (bool | Unset):
     """
 
-    sync_to_ip: Union[Unset, str] = UNSET
-    username: Union[Unset, str] = UNSET
-    password: Union[Unset, str] = UNSET
-    sync_admin_acct: Union[Unset, bool] = UNSET
-    sync_users: Union[Unset, bool] = UNSET
-    sync_auth_servers: Union[Unset, bool] = UNSET
-    sync_certs: Union[Unset, bool] = UNSET
-    sync_fw_rules: Union[Unset, bool] = UNSET
-    sync_fw_schedules: Union[Unset, bool] = UNSET
-    sync_fw_aliases: Union[Unset, bool] = UNSET
-    sync_nat: Union[Unset, bool] = UNSET
-    sync_ipsec: Union[Unset, bool] = UNSET
-    sync_ovpn: Union[Unset, bool] = UNSET
-    sync_dhcp_server: Union[Unset, bool] = UNSET
-    sync_dhcp_relay: Union[Unset, bool] = UNSET
-    sync_dhcp6_server: Union[Unset, bool] = UNSET
-    sync_dhcp6_relay: Union[Unset, bool] = UNSET
-    sync_static_routes: Union[Unset, bool] = UNSET
-    sync_wol: Union[Unset, bool] = UNSET
-    sync_virtual_ips: Union[Unset, bool] = UNSET
-    sync_traffic_shaper: Union[Unset, bool] = UNSET
-    sync_traffic_shaper_limiters: Union[Unset, bool] = UNSET
-    sync_dns: Union[Unset, bool] = UNSET
-    sync_cap_portal: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    sync_to_ip: str | Unset = UNSET
+    username: str | Unset = UNSET
+    password: str | Unset = UNSET
+    sync_admin_acct: bool | Unset = UNSET
+    sync_users: bool | Unset = UNSET
+    sync_auth_servers: bool | Unset = UNSET
+    sync_certs: bool | Unset = UNSET
+    sync_fw_rules: bool | Unset = UNSET
+    sync_fw_schedules: bool | Unset = UNSET
+    sync_fw_aliases: bool | Unset = UNSET
+    sync_nat: bool | Unset = UNSET
+    sync_ipsec: bool | Unset = UNSET
+    sync_ovpn: bool | Unset = UNSET
+    sync_dhcp_server: bool | Unset = UNSET
+    sync_dhcp_relay: bool | Unset = UNSET
+    sync_dhcp6_server: bool | Unset = UNSET
+    sync_dhcp6_relay: bool | Unset = UNSET
+    sync_static_routes: bool | Unset = UNSET
+    sync_wol: bool | Unset = UNSET
+    sync_virtual_ips: bool | Unset = UNSET
+    sync_traffic_shaper: bool | Unset = UNSET
+    sync_traffic_shaper_limiters: bool | Unset = UNSET
+    sync_dns: bool | Unset = UNSET
+    sync_cap_portal: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         sync_to_ip = self.sync_to_ip
 
         username = self.username
@@ -113,7 +116,7 @@ class HAXMLRPCSync:
 
         sync_cap_portal = self.sync_cap_portal
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if sync_to_ip is not UNSET:
@@ -168,8 +171,8 @@ class HAXMLRPCSync:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         sync_to_ip = d.pop("sync_to_ip", UNSET)
 
         username = d.pop("username", UNSET)
@@ -249,7 +252,7 @@ class HAXMLRPCSync:
         return haxmlrpc_sync
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

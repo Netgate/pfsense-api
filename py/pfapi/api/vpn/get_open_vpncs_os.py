@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -10,8 +10,8 @@ from ...models.open_vpncs_os import OpenVPNCSOs
 from ...types import Response
 
 
-def _get_kwargs() -> Dict[str, Any]:
-    _kwargs: Dict[str, Any] = {
+def _get_kwargs() -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/vpn/openvpn/clientso",
     }
@@ -19,26 +19,24 @@ def _get_kwargs() -> Dict[str, Any]:
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, OpenVPNCSOs]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | OpenVPNCSOs | None:
     if response.status_code == 200:
         response_200 = OpenVPNCSOs.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, OpenVPNCSOs]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | OpenVPNCSOs]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -49,8 +47,8 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, OpenVPNCSOs]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Error | OpenVPNCSOs]:
     """Get OpenVPN Client Specific Overrides
 
     Raises:
@@ -58,7 +56,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, OpenVPNCSOs]]
+        Response[Error | OpenVPNCSOs]
     """
 
     kwargs = _get_kwargs()
@@ -72,8 +70,8 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, OpenVPNCSOs]]:
+    client: AuthenticatedClient | Client,
+) -> Error | OpenVPNCSOs | None:
     """Get OpenVPN Client Specific Overrides
 
     Raises:
@@ -81,7 +79,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, OpenVPNCSOs]
+        Error | OpenVPNCSOs
     """
 
     return sync_detailed(
@@ -91,8 +89,8 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, OpenVPNCSOs]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Error | OpenVPNCSOs]:
     """Get OpenVPN Client Specific Overrides
 
     Raises:
@@ -100,7 +98,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, OpenVPNCSOs]]
+        Response[Error | OpenVPNCSOs]
     """
 
     kwargs = _get_kwargs()
@@ -112,8 +110,8 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, OpenVPNCSOs]]:
+    client: AuthenticatedClient | Client,
+) -> Error | OpenVPNCSOs | None:
     """Get OpenVPN Client Specific Overrides
 
     Raises:
@@ -121,7 +119,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, OpenVPNCSOs]
+        Error | OpenVPNCSOs
     """
 
     return (

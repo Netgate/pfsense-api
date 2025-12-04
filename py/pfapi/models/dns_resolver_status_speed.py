@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,32 +16,32 @@ class DNSResolverStatusSpeed:
     """
     Attributes:
         server (str):
-        zone (Union[Unset, str]):
-        ttl (Union[Unset, int]):
-        expired (Union[Unset, bool]):
-        ping (Union[Unset, int]):
-        var (Union[Unset, int]):
-        rtt (Union[Unset, int]):
-        rto (Union[Unset, int]):
-        timeout_a (Union[Unset, int]):
-        timeout_aaaa (Union[Unset, int]):
-        timeout_other (Union[Unset, int]):
+        zone (str | Unset):
+        ttl (int | Unset):
+        expired (bool | Unset):
+        ping (int | Unset):
+        var (int | Unset):
+        rtt (int | Unset):
+        rto (int | Unset):
+        timeout_a (int | Unset):
+        timeout_aaaa (int | Unset):
+        timeout_other (int | Unset):
     """
 
     server: str
-    zone: Union[Unset, str] = UNSET
-    ttl: Union[Unset, int] = UNSET
-    expired: Union[Unset, bool] = UNSET
-    ping: Union[Unset, int] = UNSET
-    var: Union[Unset, int] = UNSET
-    rtt: Union[Unset, int] = UNSET
-    rto: Union[Unset, int] = UNSET
-    timeout_a: Union[Unset, int] = UNSET
-    timeout_aaaa: Union[Unset, int] = UNSET
-    timeout_other: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    zone: str | Unset = UNSET
+    ttl: int | Unset = UNSET
+    expired: bool | Unset = UNSET
+    ping: int | Unset = UNSET
+    var: int | Unset = UNSET
+    rtt: int | Unset = UNSET
+    rto: int | Unset = UNSET
+    timeout_a: int | Unset = UNSET
+    timeout_aaaa: int | Unset = UNSET
+    timeout_other: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         server = self.server
 
         zone = self.zone
@@ -61,7 +64,7 @@ class DNSResolverStatusSpeed:
 
         timeout_other = self.timeout_other
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -92,8 +95,8 @@ class DNSResolverStatusSpeed:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         server = d.pop("server")
 
         zone = d.pop("zone", UNSET)
@@ -134,7 +137,7 @@ class DNSResolverStatusSpeed:
         return dns_resolver_status_speed
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

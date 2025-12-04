@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,19 +15,19 @@ T = TypeVar("T", bound="StorageStats")
 class StorageStats:
     """
     Attributes:
-        volume (Union[Unset, str]): volume name or directory
-        device (Union[Unset, str]): device partition
-        capacity (Union[Unset, int]):
-        used (Union[Unset, int]):
+        volume (str | Unset): volume name or directory
+        device (str | Unset): device partition
+        capacity (int | Unset):
+        used (int | Unset):
     """
 
-    volume: Union[Unset, str] = UNSET
-    device: Union[Unset, str] = UNSET
-    capacity: Union[Unset, int] = UNSET
-    used: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    volume: str | Unset = UNSET
+    device: str | Unset = UNSET
+    capacity: int | Unset = UNSET
+    used: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         volume = self.volume
 
         device = self.device
@@ -33,7 +36,7 @@ class StorageStats:
 
         used = self.used
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if volume is not UNSET:
@@ -48,8 +51,8 @@ class StorageStats:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         volume = d.pop("volume", UNSET)
 
         device = d.pop("device", UNSET)
@@ -69,7 +72,7 @@ class StorageStats:
         return storage_stats
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,26 +20,26 @@ class NtpPps:
     """
     Attributes:
         port (str):
-        fudge1 (Union[Unset, float]):
-        stratum (Union[Unset, int]): 0-16
-        ppsminpoll (Union[Unset, str]): Empty for default, "omit" or number ranged from 3 to 17 based on pfsense
-            specific approach
-        ppsmaxpoll (Union[Unset, str]): Empty for default, "omit" or number ranged from 3 to 17 based on pfsense
-            specific approach
-        pps_flags (Union[Unset, NtpPpsFlags]):
-        refid (Union[Unset, str]):
+        fudge1 (float | Unset):
+        stratum (int | Unset): 0-16
+        ppsminpoll (str | Unset): Empty for default, "omit" or number ranged from 3 to 17 based on pfsense specific
+            approach
+        ppsmaxpoll (str | Unset): Empty for default, "omit" or number ranged from 3 to 17 based on pfsense specific
+            approach
+        pps_flags (NtpPpsFlags | Unset):
+        refid (str | Unset):
     """
 
     port: str
-    fudge1: Union[Unset, float] = UNSET
-    stratum: Union[Unset, int] = UNSET
-    ppsminpoll: Union[Unset, str] = UNSET
-    ppsmaxpoll: Union[Unset, str] = UNSET
-    pps_flags: Union[Unset, "NtpPpsFlags"] = UNSET
-    refid: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    fudge1: float | Unset = UNSET
+    stratum: int | Unset = UNSET
+    ppsminpoll: str | Unset = UNSET
+    ppsmaxpoll: str | Unset = UNSET
+    pps_flags: NtpPpsFlags | Unset = UNSET
+    refid: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         port = self.port
 
         fudge1 = self.fudge1
@@ -47,13 +50,13 @@ class NtpPps:
 
         ppsmaxpoll = self.ppsmaxpoll
 
-        pps_flags: Union[Unset, Dict[str, Any]] = UNSET
+        pps_flags: dict[str, Any] | Unset = UNSET
         if not isinstance(self.pps_flags, Unset):
             pps_flags = self.pps_flags.to_dict()
 
         refid = self.refid
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -76,10 +79,10 @@ class NtpPps:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ntp_pps_flags import NtpPpsFlags
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         port = d.pop("port")
 
         fudge1 = d.pop("fudge1", UNSET)
@@ -91,7 +94,7 @@ class NtpPps:
         ppsmaxpoll = d.pop("ppsmaxpoll", UNSET)
 
         _pps_flags = d.pop("pps_flags", UNSET)
-        pps_flags: Union[Unset, NtpPpsFlags]
+        pps_flags: NtpPpsFlags | Unset
         if isinstance(_pps_flags, Unset):
             pps_flags = UNSET
         else:
@@ -113,7 +116,7 @@ class NtpPps:
         return ntp_pps
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

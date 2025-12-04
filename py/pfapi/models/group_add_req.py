@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,21 +17,21 @@ class GroupAddReq:
     Attributes:
         name (str):
         scope (str):
-        description (Union[Unset, str]):
-        gid (Union[Unset, int]):
-        members (Union[Unset, List[int]]):
-        privs (Union[Unset, List[str]]):
+        description (str | Unset):
+        gid (int | Unset):
+        members (list[int] | Unset):
+        privs (list[str] | Unset):
     """
 
     name: str
     scope: str
-    description: Union[Unset, str] = UNSET
-    gid: Union[Unset, int] = UNSET
-    members: Union[Unset, List[int]] = UNSET
-    privs: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    description: str | Unset = UNSET
+    gid: int | Unset = UNSET
+    members: list[int] | Unset = UNSET
+    privs: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         scope = self.scope
@@ -37,15 +40,15 @@ class GroupAddReq:
 
         gid = self.gid
 
-        members: Union[Unset, List[int]] = UNSET
+        members: list[int] | Unset = UNSET
         if not isinstance(self.members, Unset):
             members = self.members
 
-        privs: Union[Unset, List[str]] = UNSET
+        privs: list[str] | Unset = UNSET
         if not isinstance(self.privs, Unset):
             privs = self.privs
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -65,8 +68,8 @@ class GroupAddReq:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name")
 
         scope = d.pop("scope")
@@ -75,9 +78,9 @@ class GroupAddReq:
 
         gid = d.pop("gid", UNSET)
 
-        members = cast(List[int], d.pop("members", UNSET))
+        members = cast(list[int], d.pop("members", UNSET))
 
-        privs = cast(List[str], d.pop("privs", UNSET))
+        privs = cast(list[str], d.pop("privs", UNSET))
 
         group_add_req = cls(
             name=name,
@@ -92,7 +95,7 @@ class GroupAddReq:
         return group_add_req
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,39 +21,38 @@ class PacketCaptureRequest:
     action = "start", "stop"
 
         Attributes:
-            action (Union[Unset, str]): start, stop
-            interface (Union[Unset, str]): assigned network interface name
-            promiscuous (Union[Unset, bool]):
-            count (Union[Unset, int]): how many packets to capture
-            snaplen (Union[Unset, int]): packet length
-            detail (Union[Unset, str]): level of detail - normal, medium, high, full
-            viewtype (Union[Unset, str]): interpret captured traffic as specified type:
+            action (str | Unset): start, stop
+            interface (str | Unset): assigned network interface name
+            promiscuous (bool | Unset):
+            count (int | Unset): how many packets to capture
+            snaplen (int | Unset): packet length
+            detail (str | Unset): level of detail - normal, medium, high, full
+            viewtype (str | Unset): interpret captured traffic as specified type:
                 default, aodv, carp, cnfp, lmp, pgm, pgm_zmtp1, resp, radius,
                 rpc, rtp, rtcp snmp, tftp, vat, wb, vxlan, zmtp1
-            dnsquery (Union[Unset, bool]): reverse DNS lookup
-            untagged_filter (Union[Unset, PacketCaptureFilter]): Additional packet capture filter. These are common options
-                for both
+            dnsquery (bool | Unset): reverse DNS lookup
+            untagged_filter (PacketCaptureFilter | Unset): Additional packet capture filter. These are common options for
+                both
                 tagged and untagged filters, with the exception of the vlan_*
                 values which are only used by the tagged_filter.
-            tagged_filter (Union[Unset, PacketCaptureFilter]): Additional packet capture filter. These are common options
-                for both
+            tagged_filter (PacketCaptureFilter | Unset): Additional packet capture filter. These are common options for both
                 tagged and untagged filters, with the exception of the vlan_*
                 values which are only used by the tagged_filter.
     """
 
-    action: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    promiscuous: Union[Unset, bool] = UNSET
-    count: Union[Unset, int] = UNSET
-    snaplen: Union[Unset, int] = UNSET
-    detail: Union[Unset, str] = UNSET
-    viewtype: Union[Unset, str] = UNSET
-    dnsquery: Union[Unset, bool] = UNSET
-    untagged_filter: Union[Unset, "PacketCaptureFilter"] = UNSET
-    tagged_filter: Union[Unset, "PacketCaptureFilter"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    action: str | Unset = UNSET
+    interface: str | Unset = UNSET
+    promiscuous: bool | Unset = UNSET
+    count: int | Unset = UNSET
+    snaplen: int | Unset = UNSET
+    detail: str | Unset = UNSET
+    viewtype: str | Unset = UNSET
+    dnsquery: bool | Unset = UNSET
+    untagged_filter: PacketCaptureFilter | Unset = UNSET
+    tagged_filter: PacketCaptureFilter | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         action = self.action
 
         interface = self.interface
@@ -67,15 +69,15 @@ class PacketCaptureRequest:
 
         dnsquery = self.dnsquery
 
-        untagged_filter: Union[Unset, Dict[str, Any]] = UNSET
+        untagged_filter: dict[str, Any] | Unset = UNSET
         if not isinstance(self.untagged_filter, Unset):
             untagged_filter = self.untagged_filter.to_dict()
 
-        tagged_filter: Union[Unset, Dict[str, Any]] = UNSET
+        tagged_filter: dict[str, Any] | Unset = UNSET
         if not isinstance(self.tagged_filter, Unset):
             tagged_filter = self.tagged_filter.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if action is not UNSET:
@@ -102,10 +104,10 @@ class PacketCaptureRequest:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.packet_capture_filter import PacketCaptureFilter
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         action = d.pop("action", UNSET)
 
         interface = d.pop("interface", UNSET)
@@ -123,14 +125,14 @@ class PacketCaptureRequest:
         dnsquery = d.pop("dnsquery", UNSET)
 
         _untagged_filter = d.pop("untagged_filter", UNSET)
-        untagged_filter: Union[Unset, PacketCaptureFilter]
+        untagged_filter: PacketCaptureFilter | Unset
         if isinstance(_untagged_filter, Unset):
             untagged_filter = UNSET
         else:
             untagged_filter = PacketCaptureFilter.from_dict(_untagged_filter)
 
         _tagged_filter = d.pop("tagged_filter", UNSET)
-        tagged_filter: Union[Unset, PacketCaptureFilter]
+        tagged_filter: PacketCaptureFilter | Unset
         if isinstance(_tagged_filter, Unset):
             tagged_filter = UNSET
         else:
@@ -153,7 +155,7 @@ class PacketCaptureRequest:
         return packet_capture_request
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

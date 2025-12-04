@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,19 +15,19 @@ T = TypeVar("T", bound="IPSecConnectReq")
 class IPSecConnectReq:
     """
     Attributes:
-        connect_p1 (Union[Unset, bool]):
-        p1_ikeid (Union[Unset, str]):
-        connect_p2 (Union[Unset, bool]):
-        p2_reqid (Union[Unset, str]):
+        connect_p1 (bool | Unset):
+        p1_ikeid (str | Unset):
+        connect_p2 (bool | Unset):
+        p2_reqid (str | Unset):
     """
 
-    connect_p1: Union[Unset, bool] = UNSET
-    p1_ikeid: Union[Unset, str] = UNSET
-    connect_p2: Union[Unset, bool] = UNSET
-    p2_reqid: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    connect_p1: bool | Unset = UNSET
+    p1_ikeid: str | Unset = UNSET
+    connect_p2: bool | Unset = UNSET
+    p2_reqid: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         connect_p1 = self.connect_p1
 
         p1_ikeid = self.p1_ikeid
@@ -33,7 +36,7 @@ class IPSecConnectReq:
 
         p2_reqid = self.p2_reqid
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if connect_p1 is not UNSET:
@@ -48,8 +51,8 @@ class IPSecConnectReq:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         connect_p1 = d.pop("connect_p1", UNSET)
 
         p1_ikeid = d.pop("p1_ikeid", UNSET)
@@ -69,7 +72,7 @@ class IPSecConnectReq:
         return ip_sec_connect_req
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

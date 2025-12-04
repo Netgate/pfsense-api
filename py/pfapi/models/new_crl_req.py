@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,32 +20,32 @@ T = TypeVar("T", bound="NewCRLReq")
 class NewCRLReq:
     """
     Attributes:
-        ca_refid (Union[Unset, str]): CA reference ID
-        descr (Union[Unset, str]): descriptive name
-        method_internal (Union[Unset, CRLMethodNew]):
-        method_x509 (Union[Unset, CRLMethodX509]):
+        ca_refid (str | Unset): CA reference ID
+        descr (str | Unset): descriptive name
+        method_internal (CRLMethodNew | Unset):
+        method_x509 (CRLMethodX509 | Unset):
     """
 
-    ca_refid: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    method_internal: Union[Unset, "CRLMethodNew"] = UNSET
-    method_x509: Union[Unset, "CRLMethodX509"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ca_refid: str | Unset = UNSET
+    descr: str | Unset = UNSET
+    method_internal: CRLMethodNew | Unset = UNSET
+    method_x509: CRLMethodX509 | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         ca_refid = self.ca_refid
 
         descr = self.descr
 
-        method_internal: Union[Unset, Dict[str, Any]] = UNSET
+        method_internal: dict[str, Any] | Unset = UNSET
         if not isinstance(self.method_internal, Unset):
             method_internal = self.method_internal.to_dict()
 
-        method_x509: Union[Unset, Dict[str, Any]] = UNSET
+        method_x509: dict[str, Any] | Unset = UNSET
         if not isinstance(self.method_x509, Unset):
             method_x509 = self.method_x509.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ca_refid is not UNSET:
@@ -57,24 +60,24 @@ class NewCRLReq:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.crl_method_new import CRLMethodNew
         from ..models.crl_method_x509 import CRLMethodX509
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         ca_refid = d.pop("ca_refid", UNSET)
 
         descr = d.pop("descr", UNSET)
 
         _method_internal = d.pop("method_internal", UNSET)
-        method_internal: Union[Unset, CRLMethodNew]
+        method_internal: CRLMethodNew | Unset
         if isinstance(_method_internal, Unset):
             method_internal = UNSET
         else:
             method_internal = CRLMethodNew.from_dict(_method_internal)
 
         _method_x509 = d.pop("method_x509", UNSET)
-        method_x509: Union[Unset, CRLMethodX509]
+        method_x509: CRLMethodX509 | Unset
         if isinstance(_method_x509, Unset):
             method_x509 = UNSET
         else:
@@ -91,7 +94,7 @@ class NewCRLReq:
         return new_crl_req
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

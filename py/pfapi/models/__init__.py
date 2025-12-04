@@ -333,6 +333,7 @@ from .interface_descriptors_info_physical import InterfaceDescriptorsInfoPhysica
 from .interface_descriptors_info_ppp import InterfaceDescriptorsInfoPpp
 from .interface_descriptors_info_qinq import InterfaceDescriptorsInfoQinq
 from .interface_descriptors_info_vlan import InterfaceDescriptorsInfoVlan
+from .interface_descriptors_info_vxlan import InterfaceDescriptorsInfoVxlan
 from .interface_event import InterfaceEvent
 from .interface_gateway_update import InterfaceGatewayUpdate
 from .interface_group import InterfaceGroup
@@ -392,6 +393,7 @@ from .lagg_interfaces import LAGGInterfaces
 from .ldap_auth_server import LdapAuthServer
 from .lease_interface import LeaseInterface
 from .license_feature import LicenseFeature
+from .license_key import LicenseKey
 from .limiter import Limiter
 from .limiter_aqm import LimiterAqm
 from .limiter_bandwidth import LimiterBandwidth
@@ -459,6 +461,7 @@ from .net_if_owner_host import NetIfOwnerHost
 from .net_if_owner_vm import NetIfOwnerVM
 from .net_if_owner_vpp import NetIfOwnerVPP
 from .net_ifs import NetIfs
+from .netif_status import NetifStatus
 from .new_ca_cert_req import NewCaCertReq
 from .new_cert_req import NewCertReq
 from .new_crl_req import NewCRLReq
@@ -650,6 +653,7 @@ from .users import Users
 from .users_config import UsersConfig
 from .users_config_generic import UsersConfigGeneric
 from .users_generic import UsersGeneric
+from .valid_ping_options import ValidPingOptions
 from .virtual_i_ps import VirtualIPs
 from .virtual_ip import VirtualIP
 from .virtual_ip_result import VirtualIPResult
@@ -658,6 +662,9 @@ from .vlan_interface import VLANInterface
 from .vlan_interfaces import VLANInterfaces
 from .voucher import Voucher
 from .voucher_roll import VoucherRoll
+from .vxlan_capable_interface import VXLANCapableInterface
+from .vxlan_interface import VXLANInterface
+from .vxlan_interfaces import VXLANInterfaces
 from .wg_config import WGConfig
 from .wg_peer import WGPeer
 from .wg_peers import WGPeers
@@ -1011,6 +1018,7 @@ __all__ = (
     "InterfaceDescriptorsInfoPpp",
     "InterfaceDescriptorsInfoQinq",
     "InterfaceDescriptorsInfoVlan",
+    "InterfaceDescriptorsInfoVxlan",
     "InterfaceEvent",
     "InterfaceGatewayUpdate",
     "InterfaceGroup",
@@ -1070,6 +1078,7 @@ __all__ = (
     "LdapAuthServer",
     "LeaseInterface",
     "LicenseFeature",
+    "LicenseKey",
     "Limiter",
     "LimiterAqm",
     "LimiterBandwidth",
@@ -1137,6 +1146,7 @@ __all__ = (
     "NetIfOwnerVM",
     "NetIfOwnerVPP",
     "NetIfs",
+    "NetifStatus",
     "NewCaCertReq",
     "NewCertReq",
     "NewCRLReq",
@@ -1328,6 +1338,7 @@ __all__ = (
     "UsersConfigGeneric",
     "UsersGeneric",
     "UserUpdateReq",
+    "ValidPingOptions",
     "VirtualIP",
     "VirtualIPResult",
     "VirtualIPs",
@@ -1336,6 +1347,9 @@ __all__ = (
     "VLANInterfaces",
     "Voucher",
     "VoucherRoll",
+    "VXLANCapableInterface",
+    "VXLANInterface",
+    "VXLANInterfaces",
     "WGConfig",
     "WGIPAddress",
     "WGPeer",

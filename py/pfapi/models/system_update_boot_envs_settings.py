@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,24 +15,24 @@ T = TypeVar("T", bound="SystemUpdateBootEnvsSettings")
 class SystemUpdateBootEnvsSettings:
     """
     Attributes:
-        deferred_boot (Union[Unset, bool]):
-        verify (Union[Unset, bool]):
-        verify_timeout (Union[Unset, int]):
+        deferred_boot (bool | Unset):
+        verify (bool | Unset):
+        verify_timeout (int | Unset):
     """
 
-    deferred_boot: Union[Unset, bool] = UNSET
-    verify: Union[Unset, bool] = UNSET
-    verify_timeout: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    deferred_boot: bool | Unset = UNSET
+    verify: bool | Unset = UNSET
+    verify_timeout: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         deferred_boot = self.deferred_boot
 
         verify = self.verify
 
         verify_timeout = self.verify_timeout
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if deferred_boot is not UNSET:
@@ -42,8 +45,8 @@ class SystemUpdateBootEnvsSettings:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         deferred_boot = d.pop("deferred_boot", UNSET)
 
         verify = d.pop("verify", UNSET)
@@ -60,7 +63,7 @@ class SystemUpdateBootEnvsSettings:
         return system_update_boot_envs_settings
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

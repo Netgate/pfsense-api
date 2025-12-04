@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,37 +15,37 @@ T = TypeVar("T", bound="VirtualIP")
 class VirtualIP:
     """
     Attributes:
-        mode (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        vhid (Union[Unset, int]):
-        advskew (Union[Unset, int]):
-        advbase (Union[Unset, int]):
-        password (Union[Unset, str]):
-        password_confirm (Union[Unset, str]):
-        uniqid (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        subnet (Union[Unset, str]):
-        id (Union[Unset, str]):
-        carp_mode (Union[Unset, str]):
-        carp_peer (Union[Unset, str]):
+        mode (str | Unset):
+        interface (str | Unset):
+        vhid (int | Unset):
+        advskew (int | Unset):
+        advbase (int | Unset):
+        password (str | Unset):
+        password_confirm (str | Unset):
+        uniqid (str | Unset):
+        descr (str | Unset):
+        subnet (str | Unset):
+        id (str | Unset):
+        carp_mode (str | Unset):
+        carp_peer (str | Unset):
     """
 
-    mode: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    vhid: Union[Unset, int] = UNSET
-    advskew: Union[Unset, int] = UNSET
-    advbase: Union[Unset, int] = UNSET
-    password: Union[Unset, str] = UNSET
-    password_confirm: Union[Unset, str] = UNSET
-    uniqid: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    subnet: Union[Unset, str] = UNSET
-    id: Union[Unset, str] = UNSET
-    carp_mode: Union[Unset, str] = UNSET
-    carp_peer: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    mode: str | Unset = UNSET
+    interface: str | Unset = UNSET
+    vhid: int | Unset = UNSET
+    advskew: int | Unset = UNSET
+    advbase: int | Unset = UNSET
+    password: str | Unset = UNSET
+    password_confirm: str | Unset = UNSET
+    uniqid: str | Unset = UNSET
+    descr: str | Unset = UNSET
+    subnet: str | Unset = UNSET
+    id: str | Unset = UNSET
+    carp_mode: str | Unset = UNSET
+    carp_peer: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         mode = self.mode
 
         interface = self.interface
@@ -69,7 +72,7 @@ class VirtualIP:
 
         carp_peer = self.carp_peer
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if mode is not UNSET:
@@ -102,8 +105,8 @@ class VirtualIP:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         mode = d.pop("mode", UNSET)
 
         interface = d.pop("interface", UNSET)
@@ -150,7 +153,7 @@ class VirtualIP:
         return virtual_ip
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

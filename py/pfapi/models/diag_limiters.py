@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,18 +19,18 @@ T = TypeVar("T", bound="DiagLimiters")
 class DiagLimiters:
     """
     Attributes:
-        limiters (Union[Unset, LimiterInfo]):
+        limiters (LimiterInfo | Unset):
     """
 
-    limiters: Union[Unset, "LimiterInfo"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    limiters: LimiterInfo | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        limiters: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        limiters: dict[str, Any] | Unset = UNSET
         if not isinstance(self.limiters, Unset):
             limiters = self.limiters.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if limiters is not UNSET:
@@ -36,12 +39,12 @@ class DiagLimiters:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.limiter_info import LimiterInfo
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _limiters = d.pop("limiters", UNSET)
-        limiters: Union[Unset, LimiterInfo]
+        limiters: LimiterInfo | Unset
         if isinstance(_limiters, Unset):
             limiters = UNSET
         else:
@@ -55,7 +58,7 @@ class DiagLimiters:
         return diag_limiters
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,30 +20,30 @@ T = TypeVar("T", bound="OpenVPNCSOs")
 class OpenVPNCSOs:
     """
     Attributes:
-        cscs (Union[Unset, List['OpenVPNCSOConfig']]):
-        removable_options (Union[Unset, List['TextValue']]):
+        cscs (list[OpenVPNCSOConfig] | Unset):
+        removable_options (list[TextValue] | Unset):
     """
 
-    cscs: Union[Unset, List["OpenVPNCSOConfig"]] = UNSET
-    removable_options: Union[Unset, List["TextValue"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    cscs: list[OpenVPNCSOConfig] | Unset = UNSET
+    removable_options: list[TextValue] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        cscs: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        cscs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.cscs, Unset):
             cscs = []
             for cscs_item_data in self.cscs:
                 cscs_item = cscs_item_data.to_dict()
                 cscs.append(cscs_item)
 
-        removable_options: Union[Unset, List[Dict[str, Any]]] = UNSET
+        removable_options: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.removable_options, Unset):
             removable_options = []
             for removable_options_item_data in self.removable_options:
                 removable_options_item = removable_options_item_data.to_dict()
                 removable_options.append(removable_options_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if cscs is not UNSET:
@@ -51,24 +54,28 @@ class OpenVPNCSOs:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.open_vpncso_config import OpenVPNCSOConfig
         from ..models.text_value import TextValue
 
-        d = src_dict.copy()
-        cscs = []
+        d = dict(src_dict)
         _cscs = d.pop("cscs", UNSET)
-        for cscs_item_data in _cscs or []:
-            cscs_item = OpenVPNCSOConfig.from_dict(cscs_item_data)
+        cscs: list[OpenVPNCSOConfig] | Unset = UNSET
+        if _cscs is not UNSET:
+            cscs = []
+            for cscs_item_data in _cscs:
+                cscs_item = OpenVPNCSOConfig.from_dict(cscs_item_data)
 
-            cscs.append(cscs_item)
+                cscs.append(cscs_item)
 
-        removable_options = []
         _removable_options = d.pop("removable_options", UNSET)
-        for removable_options_item_data in _removable_options or []:
-            removable_options_item = TextValue.from_dict(removable_options_item_data)
+        removable_options: list[TextValue] | Unset = UNSET
+        if _removable_options is not UNSET:
+            removable_options = []
+            for removable_options_item_data in _removable_options:
+                removable_options_item = TextValue.from_dict(removable_options_item_data)
 
-            removable_options.append(removable_options_item)
+                removable_options.append(removable_options_item)
 
         open_vpncs_os = cls(
             cscs=cscs,
@@ -79,7 +86,7 @@ class OpenVPNCSOs:
         return open_vpncs_os
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

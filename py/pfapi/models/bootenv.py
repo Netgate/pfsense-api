@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,61 +15,61 @@ T = TypeVar("T", bound="Bootenv")
 class Bootenv:
     """
     Attributes:
-        creation_nice (Union[Unset, str]):
-        used_nice (Union[Unset, int]):
-        version (Union[Unset, str]):
-        name (Union[Unset, str]):
-        mounted (Union[Unset, str]):
-        activate_title (Union[Unset, str]):
-        dataset (Union[Unset, str]):
-        prior (Union[Unset, str]):
-        creation (Union[Unset, str]):
-        usedrefreserv (Union[Unset, str]):
-        used (Union[Unset, str]):
-        upgrading (Union[Unset, bool]):
-        active (Union[Unset, bool]):
-        nextboot (Union[Unset, bool]):
-        activate_icon (Union[Unset, str]):
-        lastbooted_nice (Union[Unset, str]):
-        usedsnap (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        failed (Union[Unset, bool]):
-        referenced (Union[Unset, str]):
-        mountpoint (Union[Unset, str]):
-        bootonce (Union[Unset, bool]):
-        origin (Union[Unset, str]):
-        useds (Union[Unset, str]):
-        protect (Union[Unset, bool]):
+        creation_nice (str | Unset):
+        used_nice (int | Unset):
+        version (str | Unset):
+        name (str | Unset):
+        mounted (str | Unset):
+        activate_title (str | Unset):
+        dataset (str | Unset):
+        prior (str | Unset):
+        creation (str | Unset):
+        usedrefreserv (str | Unset):
+        used (str | Unset):
+        upgrading (bool | Unset):
+        active (bool | Unset):
+        nextboot (bool | Unset):
+        activate_icon (str | Unset):
+        lastbooted_nice (str | Unset):
+        usedsnap (str | Unset):
+        descr (str | Unset):
+        failed (bool | Unset):
+        referenced (str | Unset):
+        mountpoint (str | Unset):
+        bootonce (bool | Unset):
+        origin (str | Unset):
+        useds (str | Unset):
+        protect (bool | Unset):
     """
 
-    creation_nice: Union[Unset, str] = UNSET
-    used_nice: Union[Unset, int] = UNSET
-    version: Union[Unset, str] = UNSET
-    name: Union[Unset, str] = UNSET
-    mounted: Union[Unset, str] = UNSET
-    activate_title: Union[Unset, str] = UNSET
-    dataset: Union[Unset, str] = UNSET
-    prior: Union[Unset, str] = UNSET
-    creation: Union[Unset, str] = UNSET
-    usedrefreserv: Union[Unset, str] = UNSET
-    used: Union[Unset, str] = UNSET
-    upgrading: Union[Unset, bool] = UNSET
-    active: Union[Unset, bool] = UNSET
-    nextboot: Union[Unset, bool] = UNSET
-    activate_icon: Union[Unset, str] = UNSET
-    lastbooted_nice: Union[Unset, str] = UNSET
-    usedsnap: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    failed: Union[Unset, bool] = UNSET
-    referenced: Union[Unset, str] = UNSET
-    mountpoint: Union[Unset, str] = UNSET
-    bootonce: Union[Unset, bool] = UNSET
-    origin: Union[Unset, str] = UNSET
-    useds: Union[Unset, str] = UNSET
-    protect: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    creation_nice: str | Unset = UNSET
+    used_nice: int | Unset = UNSET
+    version: str | Unset = UNSET
+    name: str | Unset = UNSET
+    mounted: str | Unset = UNSET
+    activate_title: str | Unset = UNSET
+    dataset: str | Unset = UNSET
+    prior: str | Unset = UNSET
+    creation: str | Unset = UNSET
+    usedrefreserv: str | Unset = UNSET
+    used: str | Unset = UNSET
+    upgrading: bool | Unset = UNSET
+    active: bool | Unset = UNSET
+    nextboot: bool | Unset = UNSET
+    activate_icon: str | Unset = UNSET
+    lastbooted_nice: str | Unset = UNSET
+    usedsnap: str | Unset = UNSET
+    descr: str | Unset = UNSET
+    failed: bool | Unset = UNSET
+    referenced: str | Unset = UNSET
+    mountpoint: str | Unset = UNSET
+    bootonce: bool | Unset = UNSET
+    origin: str | Unset = UNSET
+    useds: str | Unset = UNSET
+    protect: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         creation_nice = self.creation_nice
 
         used_nice = self.used_nice
@@ -117,7 +120,7 @@ class Bootenv:
 
         protect = self.protect
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if creation_nice is not UNSET:
@@ -174,8 +177,8 @@ class Bootenv:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         creation_nice = d.pop("creation_nice", UNSET)
 
         used_nice = d.pop("used_nice", UNSET)
@@ -258,7 +261,7 @@ class Bootenv:
         return bootenv
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

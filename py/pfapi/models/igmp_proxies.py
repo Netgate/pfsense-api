@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,20 +20,20 @@ T = TypeVar("T", bound="IGMPProxies")
 class IGMPProxies:
     """
     Attributes:
-        igmpentries (Union[Unset, List['IGMPProxy']]):
-        enable (Union[Unset, bool]):
-        verbose (Union[Unset, bool]):
-        interfaces (Union[Unset, List['SimpleInterface']]):
+        igmpentries (list[IGMPProxy] | Unset):
+        enable (bool | Unset):
+        verbose (bool | Unset):
+        interfaces (list[SimpleInterface] | Unset):
     """
 
-    igmpentries: Union[Unset, List["IGMPProxy"]] = UNSET
-    enable: Union[Unset, bool] = UNSET
-    verbose: Union[Unset, bool] = UNSET
-    interfaces: Union[Unset, List["SimpleInterface"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    igmpentries: list[IGMPProxy] | Unset = UNSET
+    enable: bool | Unset = UNSET
+    verbose: bool | Unset = UNSET
+    interfaces: list[SimpleInterface] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        igmpentries: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        igmpentries: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.igmpentries, Unset):
             igmpentries = []
             for igmpentries_item_data in self.igmpentries:
@@ -41,14 +44,14 @@ class IGMPProxies:
 
         verbose = self.verbose
 
-        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
+        interfaces: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = []
             for interfaces_item_data in self.interfaces:
                 interfaces_item = interfaces_item_data.to_dict()
                 interfaces.append(interfaces_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if igmpentries is not UNSET:
@@ -63,28 +66,32 @@ class IGMPProxies:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.igmp_proxy import IGMPProxy
         from ..models.simple_interface import SimpleInterface
 
-        d = src_dict.copy()
-        igmpentries = []
+        d = dict(src_dict)
         _igmpentries = d.pop("igmpentries", UNSET)
-        for igmpentries_item_data in _igmpentries or []:
-            igmpentries_item = IGMPProxy.from_dict(igmpentries_item_data)
+        igmpentries: list[IGMPProxy] | Unset = UNSET
+        if _igmpentries is not UNSET:
+            igmpentries = []
+            for igmpentries_item_data in _igmpentries:
+                igmpentries_item = IGMPProxy.from_dict(igmpentries_item_data)
 
-            igmpentries.append(igmpentries_item)
+                igmpentries.append(igmpentries_item)
 
         enable = d.pop("enable", UNSET)
 
         verbose = d.pop("verbose", UNSET)
 
-        interfaces = []
         _interfaces = d.pop("interfaces", UNSET)
-        for interfaces_item_data in _interfaces or []:
-            interfaces_item = SimpleInterface.from_dict(interfaces_item_data)
+        interfaces: list[SimpleInterface] | Unset = UNSET
+        if _interfaces is not UNSET:
+            interfaces = []
+            for interfaces_item_data in _interfaces:
+                interfaces_item = SimpleInterface.from_dict(interfaces_item_data)
 
-            interfaces.append(interfaces_item)
+                interfaces.append(interfaces_item)
 
         igmp_proxies = cls(
             igmpentries=igmpentries,
@@ -97,7 +104,7 @@ class IGMPProxies:
         return igmp_proxies
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

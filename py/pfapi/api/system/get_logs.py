@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,11 +14,11 @@ from ...types import UNSET, Response, Unset
 def _get_kwargs(
     filename: str,
     *,
-    start: Union[Unset, str] = UNSET,
-    end: Union[Unset, str] = UNSET,
-    summary: Union[Unset, bool] = UNSET,
-) -> Dict[str, Any]:
-    params: Dict[str, Any] = {}
+    start: str | Unset = UNSET,
+    end: str | Unset = UNSET,
+    summary: bool | Unset = UNSET,
+) -> dict[str, Any]:
+    params: dict[str, Any] = {}
 
     params["start"] = start
 
@@ -27,35 +28,35 @@ def _get_kwargs(
 
     params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/system/logs/{filename}",
+        "url": "/system/logs/{filename}".format(
+            filename=quote(str(filename), safe=""),
+        ),
         "params": params,
     }
 
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, StdLogs]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | StdLogs | None:
     if response.status_code == 200:
         response_200 = StdLogs.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, StdLogs]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | StdLogs]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -67,11 +68,11 @@ def _build_response(
 def sync_detailed(
     filename: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    start: Union[Unset, str] = UNSET,
-    end: Union[Unset, str] = UNSET,
-    summary: Union[Unset, bool] = UNSET,
-) -> Response[Union[Error, StdLogs]]:
+    client: AuthenticatedClient | Client,
+    start: str | Unset = UNSET,
+    end: str | Unset = UNSET,
+    summary: bool | Unset = UNSET,
+) -> Response[Error | StdLogs]:
     r"""Get log file contents
 
      Regular log files are returned as a list of records in StdLogs.Logs. For
@@ -82,16 +83,16 @@ def sync_detailed(
 
     Args:
         filename (str):
-        start (Union[Unset, str]):
-        end (Union[Unset, str]):
-        summary (Union[Unset, bool]):
+        start (str | Unset):
+        end (str | Unset):
+        summary (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, StdLogs]]
+        Response[Error | StdLogs]
     """
 
     kwargs = _get_kwargs(
@@ -111,11 +112,11 @@ def sync_detailed(
 def sync(
     filename: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    start: Union[Unset, str] = UNSET,
-    end: Union[Unset, str] = UNSET,
-    summary: Union[Unset, bool] = UNSET,
-) -> Optional[Union[Error, StdLogs]]:
+    client: AuthenticatedClient | Client,
+    start: str | Unset = UNSET,
+    end: str | Unset = UNSET,
+    summary: bool | Unset = UNSET,
+) -> Error | StdLogs | None:
     r"""Get log file contents
 
      Regular log files are returned as a list of records in StdLogs.Logs. For
@@ -126,16 +127,16 @@ def sync(
 
     Args:
         filename (str):
-        start (Union[Unset, str]):
-        end (Union[Unset, str]):
-        summary (Union[Unset, bool]):
+        start (str | Unset):
+        end (str | Unset):
+        summary (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, StdLogs]
+        Error | StdLogs
     """
 
     return sync_detailed(
@@ -150,11 +151,11 @@ def sync(
 async def asyncio_detailed(
     filename: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    start: Union[Unset, str] = UNSET,
-    end: Union[Unset, str] = UNSET,
-    summary: Union[Unset, bool] = UNSET,
-) -> Response[Union[Error, StdLogs]]:
+    client: AuthenticatedClient | Client,
+    start: str | Unset = UNSET,
+    end: str | Unset = UNSET,
+    summary: bool | Unset = UNSET,
+) -> Response[Error | StdLogs]:
     r"""Get log file contents
 
      Regular log files are returned as a list of records in StdLogs.Logs. For
@@ -165,16 +166,16 @@ async def asyncio_detailed(
 
     Args:
         filename (str):
-        start (Union[Unset, str]):
-        end (Union[Unset, str]):
-        summary (Union[Unset, bool]):
+        start (str | Unset):
+        end (str | Unset):
+        summary (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, StdLogs]]
+        Response[Error | StdLogs]
     """
 
     kwargs = _get_kwargs(
@@ -192,11 +193,11 @@ async def asyncio_detailed(
 async def asyncio(
     filename: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-    start: Union[Unset, str] = UNSET,
-    end: Union[Unset, str] = UNSET,
-    summary: Union[Unset, bool] = UNSET,
-) -> Optional[Union[Error, StdLogs]]:
+    client: AuthenticatedClient | Client,
+    start: str | Unset = UNSET,
+    end: str | Unset = UNSET,
+    summary: bool | Unset = UNSET,
+) -> Error | StdLogs | None:
     r"""Get log file contents
 
      Regular log files are returned as a list of records in StdLogs.Logs. For
@@ -207,16 +208,16 @@ async def asyncio(
 
     Args:
         filename (str):
-        start (Union[Unset, str]):
-        end (Union[Unset, str]):
-        summary (Union[Unset, bool]):
+        start (str | Unset):
+        end (str | Unset):
+        summary (bool | Unset):
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, StdLogs]
+        Error | StdLogs
     """
 
     return (

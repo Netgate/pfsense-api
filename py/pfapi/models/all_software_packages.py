@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -38,18 +41,18 @@ class AllSoftwarePackages:
     }
 
         Attributes:
-            software_packages (Union[Unset, AllSoftwarePackagesSoftwarePackages]):
+            software_packages (AllSoftwarePackagesSoftwarePackages | Unset):
     """
 
-    software_packages: Union[Unset, "AllSoftwarePackagesSoftwarePackages"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    software_packages: AllSoftwarePackagesSoftwarePackages | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        software_packages: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        software_packages: dict[str, Any] | Unset = UNSET
         if not isinstance(self.software_packages, Unset):
             software_packages = self.software_packages.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if software_packages is not UNSET:
@@ -58,12 +61,12 @@ class AllSoftwarePackages:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.all_software_packages_software_packages import AllSoftwarePackagesSoftwarePackages
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _software_packages = d.pop("software_packages", UNSET)
-        software_packages: Union[Unset, AllSoftwarePackagesSoftwarePackages]
+        software_packages: AllSoftwarePackagesSoftwarePackages | Unset
         if isinstance(_software_packages, Unset):
             software_packages = UNSET
         else:
@@ -77,7 +80,7 @@ class AllSoftwarePackages:
         return all_software_packages
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

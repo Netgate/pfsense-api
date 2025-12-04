@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,39 +19,39 @@ T = TypeVar("T", bound="CARPStatus")
 class CARPStatus:
     """
     Attributes:
-        enabled (Union[Unset, bool]):
-        maintenancemode_enabled (Union[Unset, bool]):
-        my_hostid (Union[Unset, str]): this system's host-id
-        state_sync_hostids (Union[Unset, List[str]]):
-        vips (Union[Unset, List['CARPVIPStatus']]):
+        enabled (bool | Unset):
+        maintenancemode_enabled (bool | Unset):
+        my_hostid (str | Unset): this system's host-id
+        state_sync_hostids (list[str] | Unset):
+        vips (list[CARPVIPStatus] | Unset):
     """
 
-    enabled: Union[Unset, bool] = UNSET
-    maintenancemode_enabled: Union[Unset, bool] = UNSET
-    my_hostid: Union[Unset, str] = UNSET
-    state_sync_hostids: Union[Unset, List[str]] = UNSET
-    vips: Union[Unset, List["CARPVIPStatus"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    enabled: bool | Unset = UNSET
+    maintenancemode_enabled: bool | Unset = UNSET
+    my_hostid: str | Unset = UNSET
+    state_sync_hostids: list[str] | Unset = UNSET
+    vips: list[CARPVIPStatus] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enabled = self.enabled
 
         maintenancemode_enabled = self.maintenancemode_enabled
 
         my_hostid = self.my_hostid
 
-        state_sync_hostids: Union[Unset, List[str]] = UNSET
+        state_sync_hostids: list[str] | Unset = UNSET
         if not isinstance(self.state_sync_hostids, Unset):
             state_sync_hostids = self.state_sync_hostids
 
-        vips: Union[Unset, List[Dict[str, Any]]] = UNSET
+        vips: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.vips, Unset):
             vips = []
             for vips_item_data in self.vips:
                 vips_item = vips_item_data.to_dict()
                 vips.append(vips_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if enabled is not UNSET:
@@ -65,24 +68,26 @@ class CARPStatus:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.carpvip_status import CARPVIPStatus
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         enabled = d.pop("enabled", UNSET)
 
         maintenancemode_enabled = d.pop("maintenancemode_enabled", UNSET)
 
         my_hostid = d.pop("my_hostid", UNSET)
 
-        state_sync_hostids = cast(List[str], d.pop("state_sync_hostids", UNSET))
+        state_sync_hostids = cast(list[str], d.pop("state_sync_hostids", UNSET))
 
-        vips = []
         _vips = d.pop("vips", UNSET)
-        for vips_item_data in _vips or []:
-            vips_item = CARPVIPStatus.from_dict(vips_item_data)
+        vips: list[CARPVIPStatus] | Unset = UNSET
+        if _vips is not UNSET:
+            vips = []
+            for vips_item_data in _vips:
+                vips_item = CARPVIPStatus.from_dict(vips_item_data)
 
-            vips.append(vips_item)
+                vips.append(vips_item)
 
         carp_status = cls(
             enabled=enabled,
@@ -96,7 +101,7 @@ class CARPStatus:
         return carp_status
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,63 +16,63 @@ class DynDNSConfig:
     """
     Attributes:
         enable (bool):
-        type (str):
-        username (Union[Unset, str]):
-        password (Union[Unset, str]): base64 encoded
-        host (Union[Unset, str]):
-        domainname (Union[Unset, str]):
-        mx (Union[Unset, str]):
-        wildcard (Union[Unset, bool]):
-        verboselog (Union[Unset, bool]):
-        curl_ipresolve_v4 (Union[Unset, bool]):
-        curl_ssl_verifypeer (Union[Unset, bool]):
-        curl_proxy (Union[Unset, bool]):
-        maxcacheage (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        zoneid (Union[Unset, str]):
-        ttl (Union[Unset, str]):
-        updateurl (Union[Unset, str]):
-        resultmatch (Union[Unset, str]):
-        requestif (Union[Unset, str]):
-        proxied (Union[Unset, bool]):
-        descr (Union[Unset, str]):
-        id (Union[Unset, str]):
-        check_ip_mode (Union[Unset, str]): auto (default), always, never
-        status (Union[Unset, str]): failed or updated
-        ip (Union[Unset, str]): cached IP/IPv6
+        type_ (str):
+        username (str | Unset):
+        password (str | Unset): base64 encoded
+        host (str | Unset):
+        domainname (str | Unset):
+        mx (str | Unset):
+        wildcard (bool | Unset):
+        verboselog (bool | Unset):
+        curl_ipresolve_v4 (bool | Unset):
+        curl_ssl_verifypeer (bool | Unset):
+        curl_proxy (bool | Unset):
+        maxcacheage (str | Unset):
+        interface (str | Unset):
+        zoneid (str | Unset):
+        ttl (str | Unset):
+        updateurl (str | Unset):
+        resultmatch (str | Unset):
+        requestif (str | Unset):
+        proxied (bool | Unset):
+        descr (str | Unset):
+        id (str | Unset):
+        check_ip_mode (str | Unset): auto (default), always, never
+        status (str | Unset): failed or updated
+        ip (str | Unset): cached IP/IPv6
     """
 
     enable: bool
-    type: str
-    username: Union[Unset, str] = UNSET
-    password: Union[Unset, str] = UNSET
-    host: Union[Unset, str] = UNSET
-    domainname: Union[Unset, str] = UNSET
-    mx: Union[Unset, str] = UNSET
-    wildcard: Union[Unset, bool] = UNSET
-    verboselog: Union[Unset, bool] = UNSET
-    curl_ipresolve_v4: Union[Unset, bool] = UNSET
-    curl_ssl_verifypeer: Union[Unset, bool] = UNSET
-    curl_proxy: Union[Unset, bool] = UNSET
-    maxcacheage: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    zoneid: Union[Unset, str] = UNSET
-    ttl: Union[Unset, str] = UNSET
-    updateurl: Union[Unset, str] = UNSET
-    resultmatch: Union[Unset, str] = UNSET
-    requestif: Union[Unset, str] = UNSET
-    proxied: Union[Unset, bool] = UNSET
-    descr: Union[Unset, str] = UNSET
-    id: Union[Unset, str] = UNSET
-    check_ip_mode: Union[Unset, str] = UNSET
-    status: Union[Unset, str] = UNSET
-    ip: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    type_: str
+    username: str | Unset = UNSET
+    password: str | Unset = UNSET
+    host: str | Unset = UNSET
+    domainname: str | Unset = UNSET
+    mx: str | Unset = UNSET
+    wildcard: bool | Unset = UNSET
+    verboselog: bool | Unset = UNSET
+    curl_ipresolve_v4: bool | Unset = UNSET
+    curl_ssl_verifypeer: bool | Unset = UNSET
+    curl_proxy: bool | Unset = UNSET
+    maxcacheage: str | Unset = UNSET
+    interface: str | Unset = UNSET
+    zoneid: str | Unset = UNSET
+    ttl: str | Unset = UNSET
+    updateurl: str | Unset = UNSET
+    resultmatch: str | Unset = UNSET
+    requestif: str | Unset = UNSET
+    proxied: bool | Unset = UNSET
+    descr: str | Unset = UNSET
+    id: str | Unset = UNSET
+    check_ip_mode: str | Unset = UNSET
+    status: str | Unset = UNSET
+    ip: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enable = self.enable
 
-        type = self.type
+        type_ = self.type_
 
         username = self.username
 
@@ -117,12 +120,12 @@ class DynDNSConfig:
 
         ip = self.ip
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
                 "enable": enable,
-                "type": type,
+                "type": type_,
             }
         )
         if username is not UNSET:
@@ -175,11 +178,11 @@ class DynDNSConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         enable = d.pop("enable")
 
-        type = d.pop("type")
+        type_ = d.pop("type")
 
         username = d.pop("username", UNSET)
 
@@ -229,7 +232,7 @@ class DynDNSConfig:
 
         dyn_dns_config = cls(
             enable=enable,
-            type=type,
+            type_=type_,
             username=username,
             password=password,
             host=host,
@@ -259,7 +262,7 @@ class DynDNSConfig:
         return dyn_dns_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

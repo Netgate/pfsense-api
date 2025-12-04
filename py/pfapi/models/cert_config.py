@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,18 +19,18 @@ T = TypeVar("T", bound="CertConfig")
 class CertConfig:
     """
     Attributes:
-        cert (Union[Unset, CertificateDetailed]):
+        cert (CertificateDetailed | Unset):
     """
 
-    cert: Union[Unset, "CertificateDetailed"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    cert: CertificateDetailed | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        cert: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        cert: dict[str, Any] | Unset = UNSET
         if not isinstance(self.cert, Unset):
             cert = self.cert.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if cert is not UNSET:
@@ -36,12 +39,12 @@ class CertConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.certificate_detailed import CertificateDetailed
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _cert = d.pop("cert", UNSET)
-        cert: Union[Unset, CertificateDetailed]
+        cert: CertificateDetailed | Unset
         if isinstance(_cert, Unset):
             cert = UNSET
         else:
@@ -55,7 +58,7 @@ class CertConfig:
         return cert_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,72 +18,71 @@ class LdapAuthServer:
         name (str):
         host (str):
         base_dn (str): root base dn, e.g. dc=domain,dc=com
-        type (Union[Unset, str]):
-        version (Union[Unset, int]): protocol version (3 default)
-        port (Union[Unset, int]): 636 assumes "tls" encryption
-        transport (Union[Unset, str]): "starttls", "tls", "none"
-        timeout (Union[Unset, int]): seconds to timeout operation
-        search_scope (Union[Unset, str]): "one", "subtree"
-        auth_containers (Union[Unset, str]): semicolon separated list of search containers, prepended to base_dn
-        extended_query (Union[Unset, str]): optional extra restriction for filtering username query, e.g.:
+        type_ (str | Unset):
+        version (int | Unset): protocol version (3 default)
+        port (int | Unset): 636 assumes "tls" encryption
+        transport (str | Unset): "starttls", "tls", "none"
+        timeout (int | Unset): seconds to timeout operation
+        search_scope (str | Unset): "one", "subtree"
+        auth_containers (str | Unset): semicolon separated list of search containers, prepended to base_dn
+        extended_query (str | Unset): optional extra restriction for filtering username query, e.g.:
             - memberOf=CN=Pfnet,CN=Users,DC=example,DC=com
             - &(objectClass=posixGroup)(cn=Pfnet)(memberUid=*)
-        bind_user_dn (Union[Unset, str]): for authenticated binding, the user-DN
-        bind_password (Union[Unset, str]): for authenticated binding, the password (base64-encoded)
-        user_naming_attrib (Union[Unset, str]): user naming attribute, e.g. "uid"
-        group_naming_attrib (Union[Unset, str]): group naming attribute, e.g. "cn"
-        group_member_attrib (Union[Unset, str]): e.g. "memberOf", "member"
-        rfc2307 (Union[Unset, bool]): use RFC2307 style group membership
-        rfc2307_group_class (Union[Unset, str]): object class for groups in rfc2307 mode, e.g. groupOfNames, posixGroup,
-            group
-        rfc2307_use_userdn (Union[Unset, bool]): use user-DN for querying user record
-        shell_group_dn (Union[Unset, str]): group DN required for shell access
-        username_alterations (Union[Unset, bool]): "true" to keep username verbatim (unstripped user@host)
-        utf8_encode (Union[Unset, bool]): encodings are in utf-8
-        unauthenticated_bind (Union[Unset, bool]): bind without password
-        no_strip_at (Union[Unset, bool]): don't strip @<domain>
-        caref (Union[Unset, str]): server's CA, ref
-        certref (Union[Unset, str]): client certificate for secure transport
-        refid (Union[Unset, str]):
+        bind_user_dn (str | Unset): for authenticated binding, the user-DN
+        bind_password (str | Unset): for authenticated binding, the password (base64-encoded)
+        user_naming_attrib (str | Unset): user naming attribute, e.g. "uid"
+        group_naming_attrib (str | Unset): group naming attribute, e.g. "cn"
+        group_member_attrib (str | Unset): e.g. "memberOf", "member"
+        rfc2307 (bool | Unset): use RFC2307 style group membership
+        rfc2307_group_class (str | Unset): object class for groups in rfc2307 mode, e.g. groupOfNames, posixGroup, group
+        rfc2307_use_userdn (bool | Unset): use user-DN for querying user record
+        shell_group_dn (str | Unset): group DN required for shell access
+        username_alterations (bool | Unset): "true" to keep username verbatim (unstripped user@host)
+        utf8_encode (bool | Unset): encodings are in utf-8
+        unauthenticated_bind (bool | Unset): bind without password
+        no_strip_at (bool | Unset): don't strip @<domain>
+        caref (str | Unset): server's CA, ref
+        certref (str | Unset): client certificate for secure transport
+        refid (str | Unset):
     """
 
     name: str
     host: str
     base_dn: str
-    type: Union[Unset, str] = UNSET
-    version: Union[Unset, int] = UNSET
-    port: Union[Unset, int] = UNSET
-    transport: Union[Unset, str] = UNSET
-    timeout: Union[Unset, int] = UNSET
-    search_scope: Union[Unset, str] = UNSET
-    auth_containers: Union[Unset, str] = UNSET
-    extended_query: Union[Unset, str] = UNSET
-    bind_user_dn: Union[Unset, str] = UNSET
-    bind_password: Union[Unset, str] = UNSET
-    user_naming_attrib: Union[Unset, str] = UNSET
-    group_naming_attrib: Union[Unset, str] = UNSET
-    group_member_attrib: Union[Unset, str] = UNSET
-    rfc2307: Union[Unset, bool] = UNSET
-    rfc2307_group_class: Union[Unset, str] = UNSET
-    rfc2307_use_userdn: Union[Unset, bool] = UNSET
-    shell_group_dn: Union[Unset, str] = UNSET
-    username_alterations: Union[Unset, bool] = UNSET
-    utf8_encode: Union[Unset, bool] = UNSET
-    unauthenticated_bind: Union[Unset, bool] = UNSET
-    no_strip_at: Union[Unset, bool] = UNSET
-    caref: Union[Unset, str] = UNSET
-    certref: Union[Unset, str] = UNSET
-    refid: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    type_: str | Unset = UNSET
+    version: int | Unset = UNSET
+    port: int | Unset = UNSET
+    transport: str | Unset = UNSET
+    timeout: int | Unset = UNSET
+    search_scope: str | Unset = UNSET
+    auth_containers: str | Unset = UNSET
+    extended_query: str | Unset = UNSET
+    bind_user_dn: str | Unset = UNSET
+    bind_password: str | Unset = UNSET
+    user_naming_attrib: str | Unset = UNSET
+    group_naming_attrib: str | Unset = UNSET
+    group_member_attrib: str | Unset = UNSET
+    rfc2307: bool | Unset = UNSET
+    rfc2307_group_class: str | Unset = UNSET
+    rfc2307_use_userdn: bool | Unset = UNSET
+    shell_group_dn: str | Unset = UNSET
+    username_alterations: bool | Unset = UNSET
+    utf8_encode: bool | Unset = UNSET
+    unauthenticated_bind: bool | Unset = UNSET
+    no_strip_at: bool | Unset = UNSET
+    caref: str | Unset = UNSET
+    certref: str | Unset = UNSET
+    refid: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         host = self.host
 
         base_dn = self.base_dn
 
-        type = self.type
+        type_ = self.type_
 
         version = self.version
 
@@ -128,7 +130,7 @@ class LdapAuthServer:
 
         refid = self.refid
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -137,8 +139,8 @@ class LdapAuthServer:
                 "base_dn": base_dn,
             }
         )
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if version is not UNSET:
             field_dict["version"] = version
         if port is not UNSET:
@@ -189,15 +191,15 @@ class LdapAuthServer:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name")
 
         host = d.pop("host")
 
         base_dn = d.pop("base_dn")
 
-        type = d.pop("type", UNSET)
+        type_ = d.pop("type", UNSET)
 
         version = d.pop("version", UNSET)
 
@@ -249,7 +251,7 @@ class LdapAuthServer:
             name=name,
             host=host,
             base_dn=base_dn,
-            type=type,
+            type_=type_,
             version=version,
             port=port,
             transport=transport,
@@ -279,7 +281,7 @@ class LdapAuthServer:
         return ldap_auth_server
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

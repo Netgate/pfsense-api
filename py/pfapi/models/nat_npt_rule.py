@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,28 +19,28 @@ T = TypeVar("T", bound="NATNptRule")
 class NATNptRule:
     """
     Attributes:
-        descr (Union[Unset, str]):
-        disabled (Union[Unset, bool]):
-        destination (Union[Unset, NATNptAddr]):
-        id (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        source (Union[Unset, NATNptAddr]):
+        descr (str | Unset):
+        disabled (bool | Unset):
+        destination (NATNptAddr | Unset):
+        id (str | Unset):
+        interface (str | Unset):
+        source (NATNptAddr | Unset):
     """
 
-    descr: Union[Unset, str] = UNSET
-    disabled: Union[Unset, bool] = UNSET
-    destination: Union[Unset, "NATNptAddr"] = UNSET
-    id: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    source: Union[Unset, "NATNptAddr"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    descr: str | Unset = UNSET
+    disabled: bool | Unset = UNSET
+    destination: NATNptAddr | Unset = UNSET
+    id: str | Unset = UNSET
+    interface: str | Unset = UNSET
+    source: NATNptAddr | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         descr = self.descr
 
         disabled = self.disabled
 
-        destination: Union[Unset, Dict[str, Any]] = UNSET
+        destination: dict[str, Any] | Unset = UNSET
         if not isinstance(self.destination, Unset):
             destination = self.destination.to_dict()
 
@@ -45,11 +48,11 @@ class NATNptRule:
 
         interface = self.interface
 
-        source: Union[Unset, Dict[str, Any]] = UNSET
+        source: dict[str, Any] | Unset = UNSET
         if not isinstance(self.source, Unset):
             source = self.source.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if descr is not UNSET:
@@ -68,16 +71,16 @@ class NATNptRule:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.nat_npt_addr import NATNptAddr
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         descr = d.pop("descr", UNSET)
 
         disabled = d.pop("disabled", UNSET)
 
         _destination = d.pop("destination", UNSET)
-        destination: Union[Unset, NATNptAddr]
+        destination: NATNptAddr | Unset
         if isinstance(_destination, Unset):
             destination = UNSET
         else:
@@ -88,7 +91,7 @@ class NATNptRule:
         interface = d.pop("interface", UNSET)
 
         _source = d.pop("source", UNSET)
-        source: Union[Unset, NATNptAddr]
+        source: NATNptAddr | Unset
         if isinstance(_source, Unset):
             source = UNSET
         else:
@@ -107,7 +110,7 @@ class NATNptRule:
         return nat_npt_rule
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

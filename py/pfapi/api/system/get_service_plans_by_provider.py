@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,26 +14,31 @@ from ...types import Response
 def _get_kwargs(
     country: str,
     provider: str,
-) -> Dict[str, Any]:
-    _kwargs: Dict[str, Any] = {
+) -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/system/serviceproviders/{country}/{provider}",
+        "url": "/system/serviceproviders/{country}/{provider}".format(
+            country=quote(str(country), safe=""),
+            provider=quote(str(provider), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, ServiceProvider]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Error | ServiceProvider | None:
     if response.status_code == 200:
         response_200 = ServiceProvider.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -40,8 +46,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, ServiceProvider]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Error | ServiceProvider]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -54,8 +60,8 @@ def sync_detailed(
     country: str,
     provider: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, ServiceProvider]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Error | ServiceProvider]:
     """Get Service Provider by Provider
 
     Args:
@@ -67,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, ServiceProvider]]
+        Response[Error | ServiceProvider]
     """
 
     kwargs = _get_kwargs(
@@ -86,8 +92,8 @@ def sync(
     country: str,
     provider: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, ServiceProvider]]:
+    client: AuthenticatedClient | Client,
+) -> Error | ServiceProvider | None:
     """Get Service Provider by Provider
 
     Args:
@@ -99,7 +105,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, ServiceProvider]
+        Error | ServiceProvider
     """
 
     return sync_detailed(
@@ -113,8 +119,8 @@ async def asyncio_detailed(
     country: str,
     provider: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, ServiceProvider]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Error | ServiceProvider]:
     """Get Service Provider by Provider
 
     Args:
@@ -126,7 +132,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, ServiceProvider]]
+        Response[Error | ServiceProvider]
     """
 
     kwargs = _get_kwargs(
@@ -143,8 +149,8 @@ async def asyncio(
     country: str,
     provider: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, ServiceProvider]]:
+    client: AuthenticatedClient | Client,
+) -> Error | ServiceProvider | None:
     """Get Service Provider by Provider
 
     Args:
@@ -156,7 +162,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, ServiceProvider]
+        Error | ServiceProvider
     """
 
     return (

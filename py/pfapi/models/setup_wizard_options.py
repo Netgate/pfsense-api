@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,46 +20,46 @@ class SetupWizardOptions:
     """
     Attributes:
         hostname (str):
-        domain (Union[Unset, str]):
-        pridns (Union[Unset, str]):
-        secdns (Union[Unset, str]):
-        dnsoverride (Union[Unset, bool]):
-        tz (Union[Unset, str]):
-        timeservers (Union[Unset, str]):
-        wantype (Union[Unset, str]):
-        wanip (Union[Unset, str]):
-        gw (Union[Unset, str]):
-        spoofmac (Union[Unset, str]):
-        mtu (Union[Unset, str]):
-        mss (Union[Unset, str]):
-        dhcphost (Union[Unset, str]):
-        lanip (Union[Unset, str]):
-        bogons (Union[Unset, bool]):
-        rfc1918 (Union[Unset, bool]):
-        pppoe (Union[Unset, SetupPPPoECfg]):
+        domain (str | Unset):
+        pridns (str | Unset):
+        secdns (str | Unset):
+        dnsoverride (bool | Unset):
+        tz (str | Unset):
+        timeservers (str | Unset):
+        wantype (str | Unset):
+        wanip (str | Unset):
+        gw (str | Unset):
+        spoofmac (str | Unset):
+        mtu (str | Unset):
+        mss (str | Unset):
+        dhcphost (str | Unset):
+        lanip (str | Unset):
+        bogons (bool | Unset):
+        rfc1918 (bool | Unset):
+        pppoe (SetupPPPoECfg | Unset):
     """
 
     hostname: str
-    domain: Union[Unset, str] = UNSET
-    pridns: Union[Unset, str] = UNSET
-    secdns: Union[Unset, str] = UNSET
-    dnsoverride: Union[Unset, bool] = UNSET
-    tz: Union[Unset, str] = UNSET
-    timeservers: Union[Unset, str] = UNSET
-    wantype: Union[Unset, str] = UNSET
-    wanip: Union[Unset, str] = UNSET
-    gw: Union[Unset, str] = UNSET
-    spoofmac: Union[Unset, str] = UNSET
-    mtu: Union[Unset, str] = UNSET
-    mss: Union[Unset, str] = UNSET
-    dhcphost: Union[Unset, str] = UNSET
-    lanip: Union[Unset, str] = UNSET
-    bogons: Union[Unset, bool] = UNSET
-    rfc1918: Union[Unset, bool] = UNSET
-    pppoe: Union[Unset, "SetupPPPoECfg"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    domain: str | Unset = UNSET
+    pridns: str | Unset = UNSET
+    secdns: str | Unset = UNSET
+    dnsoverride: bool | Unset = UNSET
+    tz: str | Unset = UNSET
+    timeservers: str | Unset = UNSET
+    wantype: str | Unset = UNSET
+    wanip: str | Unset = UNSET
+    gw: str | Unset = UNSET
+    spoofmac: str | Unset = UNSET
+    mtu: str | Unset = UNSET
+    mss: str | Unset = UNSET
+    dhcphost: str | Unset = UNSET
+    lanip: str | Unset = UNSET
+    bogons: bool | Unset = UNSET
+    rfc1918: bool | Unset = UNSET
+    pppoe: SetupPPPoECfg | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         hostname = self.hostname
 
         domain = self.domain
@@ -91,11 +94,11 @@ class SetupWizardOptions:
 
         rfc1918 = self.rfc1918
 
-        pppoe: Union[Unset, Dict[str, Any]] = UNSET
+        pppoe: dict[str, Any] | Unset = UNSET
         if not isinstance(self.pppoe, Unset):
             pppoe = self.pppoe.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -140,10 +143,10 @@ class SetupWizardOptions:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.setup_pp_po_e_cfg import SetupPPPoECfg
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         hostname = d.pop("hostname")
 
         domain = d.pop("domain", UNSET)
@@ -179,7 +182,7 @@ class SetupWizardOptions:
         rfc1918 = d.pop("rfc1918", UNSET)
 
         _pppoe = d.pop("pppoe", UNSET)
-        pppoe: Union[Unset, SetupPPPoECfg]
+        pppoe: SetupPPPoECfg | Unset
         if isinstance(_pppoe, Unset):
             pppoe = UNSET
         else:
@@ -210,7 +213,7 @@ class SetupWizardOptions:
         return setup_wizard_options
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

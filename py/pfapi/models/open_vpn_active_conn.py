@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,49 +20,49 @@ T = TypeVar("T", bound="OpenVPNActiveConn")
 class OpenVPNActiveConn:
     """
     Attributes:
-        vpnid (Union[Unset, str]):
-        port (Union[Unset, str]):
-        mode (Union[Unset, str]):
-        name (Union[Unset, str]):
-        mgmt (Union[Unset, str]):
-        conns (Union[Unset, List['OpenVPNConn']]):
-        routes (Union[Unset, List['OpenVPNRoute']]):
-        connect_time (Union[Unset, str]):
-        state (Union[Unset, str]):
-        state_detail (Union[Unset, str]):
-        virtual_addr (Union[Unset, str]):
-        remote_host (Union[Unset, str]):
-        remote_port (Union[Unset, str]):
-        local_host (Union[Unset, str]):
-        local_port (Union[Unset, str]):
-        virtual_addr6 (Union[Unset, str]):
-        status (Union[Unset, str]):
-        bytes_recv (Union[Unset, str]):
-        bytes_sent (Union[Unset, str]):
+        vpnid (str | Unset):
+        port (str | Unset):
+        mode (str | Unset):
+        name (str | Unset):
+        mgmt (str | Unset):
+        conns (list[OpenVPNConn] | Unset):
+        routes (list[OpenVPNRoute] | Unset):
+        connect_time (str | Unset):
+        state (str | Unset):
+        state_detail (str | Unset):
+        virtual_addr (str | Unset):
+        remote_host (str | Unset):
+        remote_port (str | Unset):
+        local_host (str | Unset):
+        local_port (str | Unset):
+        virtual_addr6 (str | Unset):
+        status (str | Unset):
+        bytes_recv (str | Unset):
+        bytes_sent (str | Unset):
     """
 
-    vpnid: Union[Unset, str] = UNSET
-    port: Union[Unset, str] = UNSET
-    mode: Union[Unset, str] = UNSET
-    name: Union[Unset, str] = UNSET
-    mgmt: Union[Unset, str] = UNSET
-    conns: Union[Unset, List["OpenVPNConn"]] = UNSET
-    routes: Union[Unset, List["OpenVPNRoute"]] = UNSET
-    connect_time: Union[Unset, str] = UNSET
-    state: Union[Unset, str] = UNSET
-    state_detail: Union[Unset, str] = UNSET
-    virtual_addr: Union[Unset, str] = UNSET
-    remote_host: Union[Unset, str] = UNSET
-    remote_port: Union[Unset, str] = UNSET
-    local_host: Union[Unset, str] = UNSET
-    local_port: Union[Unset, str] = UNSET
-    virtual_addr6: Union[Unset, str] = UNSET
-    status: Union[Unset, str] = UNSET
-    bytes_recv: Union[Unset, str] = UNSET
-    bytes_sent: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    vpnid: str | Unset = UNSET
+    port: str | Unset = UNSET
+    mode: str | Unset = UNSET
+    name: str | Unset = UNSET
+    mgmt: str | Unset = UNSET
+    conns: list[OpenVPNConn] | Unset = UNSET
+    routes: list[OpenVPNRoute] | Unset = UNSET
+    connect_time: str | Unset = UNSET
+    state: str | Unset = UNSET
+    state_detail: str | Unset = UNSET
+    virtual_addr: str | Unset = UNSET
+    remote_host: str | Unset = UNSET
+    remote_port: str | Unset = UNSET
+    local_host: str | Unset = UNSET
+    local_port: str | Unset = UNSET
+    virtual_addr6: str | Unset = UNSET
+    status: str | Unset = UNSET
+    bytes_recv: str | Unset = UNSET
+    bytes_sent: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         vpnid = self.vpnid
 
         port = self.port
@@ -70,14 +73,14 @@ class OpenVPNActiveConn:
 
         mgmt = self.mgmt
 
-        conns: Union[Unset, List[Dict[str, Any]]] = UNSET
+        conns: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.conns, Unset):
             conns = []
             for conns_item_data in self.conns:
                 conns_item = conns_item_data.to_dict()
                 conns.append(conns_item)
 
-        routes: Union[Unset, List[Dict[str, Any]]] = UNSET
+        routes: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.routes, Unset):
             routes = []
             for routes_item_data in self.routes:
@@ -108,7 +111,7 @@ class OpenVPNActiveConn:
 
         bytes_sent = self.bytes_sent
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if vpnid is not UNSET:
@@ -153,11 +156,11 @@ class OpenVPNActiveConn:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.open_vpn_conn import OpenVPNConn
         from ..models.open_vpn_route import OpenVPNRoute
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         vpnid = d.pop("vpnid", UNSET)
 
         port = d.pop("port", UNSET)
@@ -168,19 +171,23 @@ class OpenVPNActiveConn:
 
         mgmt = d.pop("mgmt", UNSET)
 
-        conns = []
         _conns = d.pop("conns", UNSET)
-        for conns_item_data in _conns or []:
-            conns_item = OpenVPNConn.from_dict(conns_item_data)
+        conns: list[OpenVPNConn] | Unset = UNSET
+        if _conns is not UNSET:
+            conns = []
+            for conns_item_data in _conns:
+                conns_item = OpenVPNConn.from_dict(conns_item_data)
 
-            conns.append(conns_item)
+                conns.append(conns_item)
 
-        routes = []
         _routes = d.pop("routes", UNSET)
-        for routes_item_data in _routes or []:
-            routes_item = OpenVPNRoute.from_dict(routes_item_data)
+        routes: list[OpenVPNRoute] | Unset = UNSET
+        if _routes is not UNSET:
+            routes = []
+            for routes_item_data in _routes:
+                routes_item = OpenVPNRoute.from_dict(routes_item_data)
 
-            routes.append(routes_item)
+                routes.append(routes_item)
 
         connect_time = d.pop("connect_time", UNSET)
 
@@ -232,7 +239,7 @@ class OpenVPNActiveConn:
         return open_vpn_active_conn
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

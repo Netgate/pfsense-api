@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,37 +15,37 @@ T = TypeVar("T", bound="UserAuthSettings")
 class UserAuthSettings:
     """
     Attributes:
-        session_timeout (Union[Unset, str]): session timeout in minutes, empty string is default 240
-        authentication_server (Union[Unset, str]): current value
-        authentication_servers (Union[Unset, List[str]]):
-        password_hash (Union[Unset, str]): current value
-        password_hashes (Union[Unset, List[str]]):
-        shell_auth (Union[Unset, bool]): user is able to access shell
-        auth_refresh_time (Union[Unset, str]): duration to cache authentication results from remote auth servers in
-            seconds, empty string is default 30, max 3600
+        session_timeout (str | Unset): session timeout in minutes, empty string is default 240
+        authentication_server (str | Unset): current value
+        authentication_servers (list[str] | Unset):
+        password_hash (str | Unset): current value
+        password_hashes (list[str] | Unset):
+        shell_auth (bool | Unset): user is able to access shell
+        auth_refresh_time (str | Unset): duration to cache authentication results from remote auth servers in seconds,
+            empty string is default 30, max 3600
     """
 
-    session_timeout: Union[Unset, str] = UNSET
-    authentication_server: Union[Unset, str] = UNSET
-    authentication_servers: Union[Unset, List[str]] = UNSET
-    password_hash: Union[Unset, str] = UNSET
-    password_hashes: Union[Unset, List[str]] = UNSET
-    shell_auth: Union[Unset, bool] = UNSET
-    auth_refresh_time: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    session_timeout: str | Unset = UNSET
+    authentication_server: str | Unset = UNSET
+    authentication_servers: list[str] | Unset = UNSET
+    password_hash: str | Unset = UNSET
+    password_hashes: list[str] | Unset = UNSET
+    shell_auth: bool | Unset = UNSET
+    auth_refresh_time: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         session_timeout = self.session_timeout
 
         authentication_server = self.authentication_server
 
-        authentication_servers: Union[Unset, List[str]] = UNSET
+        authentication_servers: list[str] | Unset = UNSET
         if not isinstance(self.authentication_servers, Unset):
             authentication_servers = self.authentication_servers
 
         password_hash = self.password_hash
 
-        password_hashes: Union[Unset, List[str]] = UNSET
+        password_hashes: list[str] | Unset = UNSET
         if not isinstance(self.password_hashes, Unset):
             password_hashes = self.password_hashes
 
@@ -50,7 +53,7 @@ class UserAuthSettings:
 
         auth_refresh_time = self.auth_refresh_time
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if session_timeout is not UNSET:
@@ -71,17 +74,17 @@ class UserAuthSettings:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         session_timeout = d.pop("session_timeout", UNSET)
 
         authentication_server = d.pop("authentication_server", UNSET)
 
-        authentication_servers = cast(List[str], d.pop("authentication_servers", UNSET))
+        authentication_servers = cast(list[str], d.pop("authentication_servers", UNSET))
 
         password_hash = d.pop("password_hash", UNSET)
 
-        password_hashes = cast(List[str], d.pop("password_hashes", UNSET))
+        password_hashes = cast(list[str], d.pop("password_hashes", UNSET))
 
         shell_auth = d.pop("shell_auth", UNSET)
 
@@ -101,7 +104,7 @@ class UserAuthSettings:
         return user_auth_settings
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

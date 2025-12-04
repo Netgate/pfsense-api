@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,72 +20,72 @@ class Gateway:
     """
     Attributes:
         gateway (str):
-        name (Union[Unset, str]):
-        dynamic (Union[Unset, bool]):
-        disabled (Union[Unset, bool]):
-        ipprotocol (Union[Unset, str]):
-        gw_down_kill_states (Union[Unset, str]):
-        interface_device (Union[Unset, str]):
-        interface_identity (Union[Unset, str]):
-        interface_assigned (Union[Unset, str]):
-        interface (Union[Unset, str]): obsolete - use interface_device
-        friendlyiface (Union[Unset, str]): obsolete - use interface_identity
-        friendlyifdescr (Union[Unset, str]): obsolete - use interface_assigned
-        action_disable (Union[Unset, bool]):
-        attribute (Union[Unset, str]):
-        isdefaultgw (Union[Unset, bool]):
-        monitor (Union[Unset, str]):
-        monitor_disable (Union[Unset, bool]):
-        descr (Union[Unset, str]):
-        tiername (Union[Unset, str]):
-        weight (Union[Unset, int]):
-        data_payload (Union[Unset, int]):
-        interval (Union[Unset, int]):
-        latencylow (Union[Unset, int]):
-        latencyhigh (Union[Unset, int]):
-        losslow (Union[Unset, int]):
-        losshigh (Union[Unset, int]):
-        loss_interval (Union[Unset, int]):
-        time_period (Union[Unset, int]):
-        alert_interval (Union[Unset, int]):
-        nonlocalgateway (Union[Unset, bool]):
-        defaults (Union[Unset, GatewayDefaults]):
+        name (str | Unset):
+        dynamic (bool | Unset):
+        disabled (bool | Unset):
+        ipprotocol (str | Unset):
+        gw_down_kill_states (str | Unset):
+        interface_device (str | Unset):
+        interface_identity (str | Unset):
+        interface_assigned (str | Unset):
+        interface (str | Unset): obsolete - use interface_device
+        friendlyiface (str | Unset): obsolete - use interface_identity
+        friendlyifdescr (str | Unset): obsolete - use interface_assigned
+        action_disable (bool | Unset):
+        attribute (str | Unset):
+        isdefaultgw (bool | Unset):
+        monitor (str | Unset):
+        monitor_disable (bool | Unset):
+        descr (str | Unset):
+        tiername (str | Unset):
+        weight (int | Unset):
+        data_payload (int | Unset):
+        interval (int | Unset):
+        latencylow (int | Unset):
+        latencyhigh (int | Unset):
+        losslow (int | Unset):
+        losshigh (int | Unset):
+        loss_interval (int | Unset):
+        time_period (int | Unset):
+        alert_interval (int | Unset):
+        nonlocalgateway (bool | Unset):
+        defaults (GatewayDefaults | Unset):
     """
 
     gateway: str
-    name: Union[Unset, str] = UNSET
-    dynamic: Union[Unset, bool] = UNSET
-    disabled: Union[Unset, bool] = UNSET
-    ipprotocol: Union[Unset, str] = UNSET
-    gw_down_kill_states: Union[Unset, str] = UNSET
-    interface_device: Union[Unset, str] = UNSET
-    interface_identity: Union[Unset, str] = UNSET
-    interface_assigned: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    friendlyiface: Union[Unset, str] = UNSET
-    friendlyifdescr: Union[Unset, str] = UNSET
-    action_disable: Union[Unset, bool] = UNSET
-    attribute: Union[Unset, str] = UNSET
-    isdefaultgw: Union[Unset, bool] = UNSET
-    monitor: Union[Unset, str] = UNSET
-    monitor_disable: Union[Unset, bool] = UNSET
-    descr: Union[Unset, str] = UNSET
-    tiername: Union[Unset, str] = UNSET
-    weight: Union[Unset, int] = UNSET
-    data_payload: Union[Unset, int] = UNSET
-    interval: Union[Unset, int] = UNSET
-    latencylow: Union[Unset, int] = UNSET
-    latencyhigh: Union[Unset, int] = UNSET
-    losslow: Union[Unset, int] = UNSET
-    losshigh: Union[Unset, int] = UNSET
-    loss_interval: Union[Unset, int] = UNSET
-    time_period: Union[Unset, int] = UNSET
-    alert_interval: Union[Unset, int] = UNSET
-    nonlocalgateway: Union[Unset, bool] = UNSET
-    defaults: Union[Unset, "GatewayDefaults"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    dynamic: bool | Unset = UNSET
+    disabled: bool | Unset = UNSET
+    ipprotocol: str | Unset = UNSET
+    gw_down_kill_states: str | Unset = UNSET
+    interface_device: str | Unset = UNSET
+    interface_identity: str | Unset = UNSET
+    interface_assigned: str | Unset = UNSET
+    interface: str | Unset = UNSET
+    friendlyiface: str | Unset = UNSET
+    friendlyifdescr: str | Unset = UNSET
+    action_disable: bool | Unset = UNSET
+    attribute: str | Unset = UNSET
+    isdefaultgw: bool | Unset = UNSET
+    monitor: str | Unset = UNSET
+    monitor_disable: bool | Unset = UNSET
+    descr: str | Unset = UNSET
+    tiername: str | Unset = UNSET
+    weight: int | Unset = UNSET
+    data_payload: int | Unset = UNSET
+    interval: int | Unset = UNSET
+    latencylow: int | Unset = UNSET
+    latencyhigh: int | Unset = UNSET
+    losslow: int | Unset = UNSET
+    losshigh: int | Unset = UNSET
+    loss_interval: int | Unset = UNSET
+    time_period: int | Unset = UNSET
+    alert_interval: int | Unset = UNSET
+    nonlocalgateway: bool | Unset = UNSET
+    defaults: GatewayDefaults | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         gateway = self.gateway
 
         name = self.name
@@ -143,11 +146,11 @@ class Gateway:
 
         nonlocalgateway = self.nonlocalgateway
 
-        defaults: Union[Unset, Dict[str, Any]] = UNSET
+        defaults: dict[str, Any] | Unset = UNSET
         if not isinstance(self.defaults, Unset):
             defaults = self.defaults.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -218,10 +221,10 @@ class Gateway:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.gateway_defaults import GatewayDefaults
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         gateway = d.pop("gateway")
 
         name = d.pop("name", UNSET)
@@ -283,7 +286,7 @@ class Gateway:
         nonlocalgateway = d.pop("nonlocalgateway", UNSET)
 
         _defaults = d.pop("defaults", UNSET)
-        defaults: Union[Unset, GatewayDefaults]
+        defaults: GatewayDefaults | Unset
         if isinstance(_defaults, Unset):
             defaults = UNSET
         else:
@@ -327,7 +330,7 @@ class Gateway:
         return gateway
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

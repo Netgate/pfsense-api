@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,25 +15,25 @@ T = TypeVar("T", bound="Dhcpv6StaticMapping")
 class Dhcpv6StaticMapping:
     """
     Attributes:
-        id (Union[Unset, str]): read-only (index)
-        backend (Union[Unset, str]): read-only
-        duid (Union[Unset, str]):
-        ipv6_address (Union[Unset, str]):
-        hostname (Union[Unset, str]):
-        description (Union[Unset, str]):
-        early_dns_reg (Union[Unset, str]): default (track) | enable | disable
+        id (str | Unset): read-only (index)
+        backend (str | Unset): read-only
+        duid (str | Unset):
+        ipv6_address (str | Unset):
+        hostname (str | Unset):
+        description (str | Unset):
+        early_dns_reg (str | Unset): default (track) | enable | disable
     """
 
-    id: Union[Unset, str] = UNSET
-    backend: Union[Unset, str] = UNSET
-    duid: Union[Unset, str] = UNSET
-    ipv6_address: Union[Unset, str] = UNSET
-    hostname: Union[Unset, str] = UNSET
-    description: Union[Unset, str] = UNSET
-    early_dns_reg: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    id: str | Unset = UNSET
+    backend: str | Unset = UNSET
+    duid: str | Unset = UNSET
+    ipv6_address: str | Unset = UNSET
+    hostname: str | Unset = UNSET
+    description: str | Unset = UNSET
+    early_dns_reg: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         id = self.id
 
         backend = self.backend
@@ -45,7 +48,7 @@ class Dhcpv6StaticMapping:
 
         early_dns_reg = self.early_dns_reg
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if id is not UNSET:
@@ -66,8 +69,8 @@ class Dhcpv6StaticMapping:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         id = d.pop("id", UNSET)
 
         backend = d.pop("backend", UNSET)
@@ -96,7 +99,7 @@ class Dhcpv6StaticMapping:
         return dhcpv_6_static_mapping
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

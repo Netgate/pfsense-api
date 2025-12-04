@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -31,46 +34,46 @@ class DeviceIdentity:
     * controller_add:  curl command that can be used to add the device to the controller.
 
         Attributes:
-            name (Union[Unset, str]): name of device
-            alias (Union[Unset, str]): another alias for the device
-            device_type (Union[Unset, str]): device type, eg pfsense
-            type (Union[Unset, str]): alias to device_type
-            pubkey (Union[Unset, str]): public key identity of device
-            address (Union[Unset, str]): device's API URL, e.g. https://0.0.0.0:8443
-            vpn_pubkey (Union[Unset, str]): VPN public key
-            vpn_address (Union[Unset, str]): MIM VPN address
-            vpn_prefix (Union[Unset, str]): MIM VPN address subnet
-            vpn_netkey (Union[Unset, str]): MIM VPN netkey
-            vpn_listenaddr (Union[Unset, str]): MIM listening address:port
-            tags (Union[Unset, List[str]]):
-            devinfo (Union[Unset, ControlledDeviceInfo]): Additional information about the device
-            controller_add (Union[Unset, str]): API command that can be used to add the device to the controller
+            name (str | Unset): name of device
+            alias (str | Unset): another alias for the device
+            device_type (str | Unset): device type, eg pfsense
+            type_ (str | Unset): alias to device_type
+            pubkey (str | Unset): public key identity of device
+            address (str | Unset): device's API URL, e.g. https://0.0.0.0:8443
+            vpn_pubkey (str | Unset): VPN public key
+            vpn_address (str | Unset): MIM VPN address
+            vpn_prefix (str | Unset): MIM VPN address subnet
+            vpn_netkey (str | Unset): MIM VPN netkey
+            vpn_listenaddr (str | Unset): MIM listening address:port
+            tags (list[str] | Unset):
+            devinfo (ControlledDeviceInfo | Unset): Additional information about the device
+            controller_add (str | Unset): API command that can be used to add the device to the controller
     """
 
-    name: Union[Unset, str] = UNSET
-    alias: Union[Unset, str] = UNSET
-    device_type: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
-    pubkey: Union[Unset, str] = UNSET
-    address: Union[Unset, str] = UNSET
-    vpn_pubkey: Union[Unset, str] = UNSET
-    vpn_address: Union[Unset, str] = UNSET
-    vpn_prefix: Union[Unset, str] = UNSET
-    vpn_netkey: Union[Unset, str] = UNSET
-    vpn_listenaddr: Union[Unset, str] = UNSET
-    tags: Union[Unset, List[str]] = UNSET
-    devinfo: Union[Unset, "ControlledDeviceInfo"] = UNSET
-    controller_add: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    alias: str | Unset = UNSET
+    device_type: str | Unset = UNSET
+    type_: str | Unset = UNSET
+    pubkey: str | Unset = UNSET
+    address: str | Unset = UNSET
+    vpn_pubkey: str | Unset = UNSET
+    vpn_address: str | Unset = UNSET
+    vpn_prefix: str | Unset = UNSET
+    vpn_netkey: str | Unset = UNSET
+    vpn_listenaddr: str | Unset = UNSET
+    tags: list[str] | Unset = UNSET
+    devinfo: ControlledDeviceInfo | Unset = UNSET
+    controller_add: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         alias = self.alias
 
         device_type = self.device_type
 
-        type = self.type
+        type_ = self.type_
 
         pubkey = self.pubkey
 
@@ -86,17 +89,17 @@ class DeviceIdentity:
 
         vpn_listenaddr = self.vpn_listenaddr
 
-        tags: Union[Unset, List[str]] = UNSET
+        tags: list[str] | Unset = UNSET
         if not isinstance(self.tags, Unset):
             tags = self.tags
 
-        devinfo: Union[Unset, Dict[str, Any]] = UNSET
+        devinfo: dict[str, Any] | Unset = UNSET
         if not isinstance(self.devinfo, Unset):
             devinfo = self.devinfo.to_dict()
 
         controller_add = self.controller_add
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -105,8 +108,8 @@ class DeviceIdentity:
             field_dict["alias"] = alias
         if device_type is not UNSET:
             field_dict["device_type"] = device_type
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if pubkey is not UNSET:
             field_dict["pubkey"] = pubkey
         if address is not UNSET:
@@ -131,17 +134,17 @@ class DeviceIdentity:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.controlled_device_info import ControlledDeviceInfo
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         alias = d.pop("alias", UNSET)
 
         device_type = d.pop("device_type", UNSET)
 
-        type = d.pop("type", UNSET)
+        type_ = d.pop("type", UNSET)
 
         pubkey = d.pop("pubkey", UNSET)
 
@@ -157,10 +160,10 @@ class DeviceIdentity:
 
         vpn_listenaddr = d.pop("vpn_listenaddr", UNSET)
 
-        tags = cast(List[str], d.pop("tags", UNSET))
+        tags = cast(list[str], d.pop("tags", UNSET))
 
         _devinfo = d.pop("devinfo", UNSET)
-        devinfo: Union[Unset, ControlledDeviceInfo]
+        devinfo: ControlledDeviceInfo | Unset
         if isinstance(_devinfo, Unset):
             devinfo = UNSET
         else:
@@ -172,7 +175,7 @@ class DeviceIdentity:
             name=name,
             alias=alias,
             device_type=device_type,
-            type=type,
+            type_=type_,
             pubkey=pubkey,
             address=address,
             vpn_pubkey=vpn_pubkey,
@@ -189,7 +192,7 @@ class DeviceIdentity:
         return device_identity
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,25 +20,25 @@ class InstallPackagesResponse:
     """Current progress of package (re)installation. A transaction ID can be used to resume querying of status.
 
     Attributes:
-        transaction (Union[Unset, str]):
-        progress (Union[Unset, List['PackageInstallProgress']]):
+        transaction (str | Unset):
+        progress (list[PackageInstallProgress] | Unset):
     """
 
-    transaction: Union[Unset, str] = UNSET
-    progress: Union[Unset, List["PackageInstallProgress"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    transaction: str | Unset = UNSET
+    progress: list[PackageInstallProgress] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         transaction = self.transaction
 
-        progress: Union[Unset, List[Dict[str, Any]]] = UNSET
+        progress: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.progress, Unset):
             progress = []
             for progress_item_data in self.progress:
                 progress_item = progress_item_data.to_dict()
                 progress.append(progress_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if transaction is not UNSET:
@@ -46,18 +49,20 @@ class InstallPackagesResponse:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.package_install_progress import PackageInstallProgress
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         transaction = d.pop("transaction", UNSET)
 
-        progress = []
         _progress = d.pop("progress", UNSET)
-        for progress_item_data in _progress or []:
-            progress_item = PackageInstallProgress.from_dict(progress_item_data)
+        progress: list[PackageInstallProgress] | Unset = UNSET
+        if _progress is not UNSET:
+            progress = []
+            for progress_item_data in _progress:
+                progress_item = PackageInstallProgress.from_dict(progress_item_data)
 
-            progress.append(progress_item)
+                progress.append(progress_item)
 
         install_packages_response = cls(
             transaction=transaction,
@@ -68,7 +73,7 @@ class InstallPackagesResponse:
         return install_packages_response
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

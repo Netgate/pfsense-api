@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,25 +19,25 @@ T = TypeVar("T", bound="ProviderCountrySetting")
 class ProviderCountrySetting:
     """
     Attributes:
-        code (Union[Unset, str]):
-        provider (Union[Unset, List['ServiceProviderSetting']]):
+        code (str | Unset):
+        provider (list[ServiceProviderSetting] | Unset):
     """
 
-    code: Union[Unset, str] = UNSET
-    provider: Union[Unset, List["ServiceProviderSetting"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    code: str | Unset = UNSET
+    provider: list[ServiceProviderSetting] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         code = self.code
 
-        provider: Union[Unset, List[Dict[str, Any]]] = UNSET
+        provider: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.provider, Unset):
             provider = []
             for provider_item_data in self.provider:
                 provider_item = provider_item_data.to_dict()
                 provider.append(provider_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if code is not UNSET:
@@ -45,18 +48,20 @@ class ProviderCountrySetting:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.service_provider_setting import ServiceProviderSetting
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         code = d.pop("code", UNSET)
 
-        provider = []
         _provider = d.pop("provider", UNSET)
-        for provider_item_data in _provider or []:
-            provider_item = ServiceProviderSetting.from_dict(provider_item_data)
+        provider: list[ServiceProviderSetting] | Unset = UNSET
+        if _provider is not UNSET:
+            provider = []
+            for provider_item_data in _provider:
+                provider_item = ServiceProviderSetting.from_dict(provider_item_data)
 
-            provider.append(provider_item)
+                provider.append(provider_item)
 
         provider_country_setting = cls(
             code=code,
@@ -67,7 +72,7 @@ class ProviderCountrySetting:
         return provider_country_setting
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

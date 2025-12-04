@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,21 +15,21 @@ T = TypeVar("T", bound="FWScheduleRange")
 class FWScheduleRange:
     """
     Attributes:
-        position (Union[Unset, str]):
-        month (Union[Unset, str]):
-        day (Union[Unset, str]):
-        hour (Union[Unset, str]):
-        rangedescr (Union[Unset, str]):
+        position (str | Unset):
+        month (str | Unset):
+        day (str | Unset):
+        hour (str | Unset):
+        rangedescr (str | Unset):
     """
 
-    position: Union[Unset, str] = UNSET
-    month: Union[Unset, str] = UNSET
-    day: Union[Unset, str] = UNSET
-    hour: Union[Unset, str] = UNSET
-    rangedescr: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    position: str | Unset = UNSET
+    month: str | Unset = UNSET
+    day: str | Unset = UNSET
+    hour: str | Unset = UNSET
+    rangedescr: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         position = self.position
 
         month = self.month
@@ -37,7 +40,7 @@ class FWScheduleRange:
 
         rangedescr = self.rangedescr
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if position is not UNSET:
@@ -54,8 +57,8 @@ class FWScheduleRange:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         position = d.pop("position", UNSET)
 
         month = d.pop("month", UNSET)
@@ -78,7 +81,7 @@ class FWScheduleRange:
         return fw_schedule_range
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

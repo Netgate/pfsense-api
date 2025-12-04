@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,17 +17,17 @@ class CreateBootenv:
     Attributes:
         name (str):
         from_ (str):
-        descr (Union[Unset, str]):
-        protect (Union[Unset, bool]):
+        descr (str | Unset):
+        protect (bool | Unset):
     """
 
     name: str
     from_: str
-    descr: Union[Unset, str] = UNSET
-    protect: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    descr: str | Unset = UNSET
+    protect: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         from_ = self.from_
@@ -33,7 +36,7 @@ class CreateBootenv:
 
         protect = self.protect
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -49,8 +52,8 @@ class CreateBootenv:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name")
 
         from_ = d.pop("from")
@@ -70,7 +73,7 @@ class CreateBootenv:
         return create_bootenv
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

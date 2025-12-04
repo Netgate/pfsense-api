@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,33 +15,33 @@ T = TypeVar("T", bound="NetIfAddr")
 class NetIfAddr:
     """
     Attributes:
-        ipaddr (Union[Unset, str]):
-        gateway_ip (Union[Unset, str]):
-        gateway_name (Union[Unset, str]):
-        alias_address (Union[Unset, str]):
-        ipaddrv6 (Union[Unset, str]):
-        default_gw6 (Union[Unset, bool]):
-        gateway_ip6 (Union[Unset, str]):
-        gateway_descr6 (Union[Unset, str]):
-        gateway_name6 (Union[Unset, str]):
-        ipv6_usev4_iface (Union[Unset, bool]):
-        slaac_usev4_iface (Union[Unset, bool]):
+        ipaddr (str | Unset):
+        gateway_ip (str | Unset):
+        gateway_name (str | Unset):
+        alias_address (str | Unset):
+        ipaddrv6 (str | Unset):
+        default_gw6 (bool | Unset):
+        gateway_ip6 (str | Unset):
+        gateway_descr6 (str | Unset):
+        gateway_name6 (str | Unset):
+        ipv6_usev4_iface (bool | Unset):
+        slaac_usev4_iface (bool | Unset):
     """
 
-    ipaddr: Union[Unset, str] = UNSET
-    gateway_ip: Union[Unset, str] = UNSET
-    gateway_name: Union[Unset, str] = UNSET
-    alias_address: Union[Unset, str] = UNSET
-    ipaddrv6: Union[Unset, str] = UNSET
-    default_gw6: Union[Unset, bool] = UNSET
-    gateway_ip6: Union[Unset, str] = UNSET
-    gateway_descr6: Union[Unset, str] = UNSET
-    gateway_name6: Union[Unset, str] = UNSET
-    ipv6_usev4_iface: Union[Unset, bool] = UNSET
-    slaac_usev4_iface: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ipaddr: str | Unset = UNSET
+    gateway_ip: str | Unset = UNSET
+    gateway_name: str | Unset = UNSET
+    alias_address: str | Unset = UNSET
+    ipaddrv6: str | Unset = UNSET
+    default_gw6: bool | Unset = UNSET
+    gateway_ip6: str | Unset = UNSET
+    gateway_descr6: str | Unset = UNSET
+    gateway_name6: str | Unset = UNSET
+    ipv6_usev4_iface: bool | Unset = UNSET
+    slaac_usev4_iface: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         ipaddr = self.ipaddr
 
         gateway_ip = self.gateway_ip
@@ -61,7 +64,7 @@ class NetIfAddr:
 
         slaac_usev4_iface = self.slaac_usev4_iface
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ipaddr is not UNSET:
@@ -90,8 +93,8 @@ class NetIfAddr:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         ipaddr = d.pop("ipaddr", UNSET)
 
         gateway_ip = d.pop("gateway_ip", UNSET)
@@ -132,7 +135,7 @@ class NetIfAddr:
         return net_if_addr
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

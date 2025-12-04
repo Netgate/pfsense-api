@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,20 +15,20 @@ T = TypeVar("T", bound="FWFirewallInterfaces")
 class FWFirewallInterfaces:
     """
     Attributes:
-        interfaces (Union[Unset, List[str]]):
-        wan (Union[Unset, str]):
-        lan (Union[Unset, str]):
-        ethernet (Union[Unset, bool]): ethernet filter is enabled
+        interfaces (list[str] | Unset):
+        wan (str | Unset):
+        lan (str | Unset):
+        ethernet (bool | Unset): ethernet filter is enabled
     """
 
-    interfaces: Union[Unset, List[str]] = UNSET
-    wan: Union[Unset, str] = UNSET
-    lan: Union[Unset, str] = UNSET
-    ethernet: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    interfaces: list[str] | Unset = UNSET
+    wan: str | Unset = UNSET
+    lan: str | Unset = UNSET
+    ethernet: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        interfaces: Union[Unset, List[str]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        interfaces: list[str] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = self.interfaces
 
@@ -35,7 +38,7 @@ class FWFirewallInterfaces:
 
         ethernet = self.ethernet
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if interfaces is not UNSET:
@@ -50,9 +53,9 @@ class FWFirewallInterfaces:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
-        interfaces = cast(List[str], d.pop("interfaces", UNSET))
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        interfaces = cast(list[str], d.pop("interfaces", UNSET))
 
         wan = d.pop("wan", UNSET)
 
@@ -71,7 +74,7 @@ class FWFirewallInterfaces:
         return fw_firewall_interfaces
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

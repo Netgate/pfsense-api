@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,26 +16,26 @@ class VoucherRoll:
     """
     Attributes:
         zone (str):
-        number (Union[Unset, int]):
-        minutes (Union[Unset, int]):
-        descr (Union[Unset, str]):
-        count (Union[Unset, str]):
-        used (Union[Unset, str]):
-        active (Union[Unset, bool]):
-        lastsync (Union[Unset, int]):
+        number (int | Unset):
+        minutes (int | Unset):
+        descr (str | Unset):
+        count (str | Unset):
+        used (str | Unset):
+        active (bool | Unset):
+        lastsync (int | Unset):
     """
 
     zone: str
-    number: Union[Unset, int] = UNSET
-    minutes: Union[Unset, int] = UNSET
-    descr: Union[Unset, str] = UNSET
-    count: Union[Unset, str] = UNSET
-    used: Union[Unset, str] = UNSET
-    active: Union[Unset, bool] = UNSET
-    lastsync: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    number: int | Unset = UNSET
+    minutes: int | Unset = UNSET
+    descr: str | Unset = UNSET
+    count: str | Unset = UNSET
+    used: str | Unset = UNSET
+    active: bool | Unset = UNSET
+    lastsync: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         zone = self.zone
 
         number = self.number
@@ -49,7 +52,7 @@ class VoucherRoll:
 
         lastsync = self.lastsync
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -74,8 +77,8 @@ class VoucherRoll:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         zone = d.pop("zone")
 
         number = d.pop("number", UNSET)
@@ -107,7 +110,7 @@ class VoucherRoll:
         return voucher_roll
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,24 +15,24 @@ T = TypeVar("T", bound="SystemUpdateProgress")
 class SystemUpdateProgress:
     """
     Attributes:
-        messages (Union[Unset, List[str]]):
-        completed (Union[Unset, int]):
-        started_timestamp (Union[Unset, int]):
-        ended_timestamp (Union[Unset, int]):
-        started_time (Union[Unset, str]):
-        ended_time (Union[Unset, str]):
+        messages (list[str] | Unset):
+        completed (int | Unset):
+        started_timestamp (int | Unset):
+        ended_timestamp (int | Unset):
+        started_time (str | Unset):
+        ended_time (str | Unset):
     """
 
-    messages: Union[Unset, List[str]] = UNSET
-    completed: Union[Unset, int] = UNSET
-    started_timestamp: Union[Unset, int] = UNSET
-    ended_timestamp: Union[Unset, int] = UNSET
-    started_time: Union[Unset, str] = UNSET
-    ended_time: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    messages: list[str] | Unset = UNSET
+    completed: int | Unset = UNSET
+    started_timestamp: int | Unset = UNSET
+    ended_timestamp: int | Unset = UNSET
+    started_time: str | Unset = UNSET
+    ended_time: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        messages: Union[Unset, List[str]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        messages: list[str] | Unset = UNSET
         if not isinstance(self.messages, Unset):
             messages = self.messages
 
@@ -43,7 +46,7 @@ class SystemUpdateProgress:
 
         ended_time = self.ended_time
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if messages is not UNSET:
@@ -62,9 +65,9 @@ class SystemUpdateProgress:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
-        messages = cast(List[str], d.pop("messages", UNSET))
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        messages = cast(list[str], d.pop("messages", UNSET))
 
         completed = d.pop("completed", UNSET)
 
@@ -89,7 +92,7 @@ class SystemUpdateProgress:
         return system_update_progress
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

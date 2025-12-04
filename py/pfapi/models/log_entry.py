@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,26 +15,26 @@ T = TypeVar("T", bound="LogEntry")
 class LogEntry:
     """
     Attributes:
-        type (Union[Unset, str]):
-        timestamp (Union[Unset, int]):
-        timestr (Union[Unset, str]):
-        device_name (Union[Unset, str]):
-        device_address (Union[Unset, str]):
-        class_ (Union[Unset, str]):
-        message (Union[Unset, str]):
+        type_ (str | Unset):
+        timestamp (int | Unset):
+        timestr (str | Unset):
+        device_name (str | Unset):
+        device_address (str | Unset):
+        class_ (str | Unset):
+        message (str | Unset):
     """
 
-    type: Union[Unset, str] = UNSET
-    timestamp: Union[Unset, int] = UNSET
-    timestr: Union[Unset, str] = UNSET
-    device_name: Union[Unset, str] = UNSET
-    device_address: Union[Unset, str] = UNSET
-    class_: Union[Unset, str] = UNSET
-    message: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    type_: str | Unset = UNSET
+    timestamp: int | Unset = UNSET
+    timestr: str | Unset = UNSET
+    device_name: str | Unset = UNSET
+    device_address: str | Unset = UNSET
+    class_: str | Unset = UNSET
+    message: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        type = self.type
+    def to_dict(self) -> dict[str, Any]:
+        type_ = self.type_
 
         timestamp = self.timestamp
 
@@ -45,11 +48,11 @@ class LogEntry:
 
         message = self.message
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if timestamp is not UNSET:
             field_dict["timestamp"] = timestamp
         if timestr is not UNSET:
@@ -66,9 +69,9 @@ class LogEntry:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
-        type = d.pop("type", UNSET)
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        type_ = d.pop("type", UNSET)
 
         timestamp = d.pop("timestamp", UNSET)
 
@@ -83,7 +86,7 @@ class LogEntry:
         message = d.pop("message", UNSET)
 
         log_entry = cls(
-            type=type,
+            type_=type_,
             timestamp=timestamp,
             timestr=timestr,
             device_name=device_name,
@@ -96,7 +99,7 @@ class LogEntry:
         return log_entry
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

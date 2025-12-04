@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,31 +21,31 @@ class SNMPConfig:
     Attributes:
         rocommunity (str):
         enable (bool):
-        syslocation (Union[Unset, str]):
-        syscontact (Union[Unset, str]):
-        modules (Union[Unset, SNMPModules]):
-        pollport (Union[Unset, str]):
-        trapenable (Union[Unset, bool]):
-        trapserver (Union[Unset, str]):
-        trapserverport (Union[Unset, str]):
-        trapstring (Union[Unset, str]):
-        bindip (Union[Unset, str]):
+        syslocation (str | Unset):
+        syscontact (str | Unset):
+        modules (SNMPModules | Unset):
+        pollport (str | Unset):
+        trapenable (bool | Unset):
+        trapserver (str | Unset):
+        trapserverport (str | Unset):
+        trapstring (str | Unset):
+        bindip (str | Unset):
     """
 
     rocommunity: str
     enable: bool
-    syslocation: Union[Unset, str] = UNSET
-    syscontact: Union[Unset, str] = UNSET
-    modules: Union[Unset, "SNMPModules"] = UNSET
-    pollport: Union[Unset, str] = UNSET
-    trapenable: Union[Unset, bool] = UNSET
-    trapserver: Union[Unset, str] = UNSET
-    trapserverport: Union[Unset, str] = UNSET
-    trapstring: Union[Unset, str] = UNSET
-    bindip: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    syslocation: str | Unset = UNSET
+    syscontact: str | Unset = UNSET
+    modules: SNMPModules | Unset = UNSET
+    pollport: str | Unset = UNSET
+    trapenable: bool | Unset = UNSET
+    trapserver: str | Unset = UNSET
+    trapserverport: str | Unset = UNSET
+    trapstring: str | Unset = UNSET
+    bindip: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         rocommunity = self.rocommunity
 
         enable = self.enable
@@ -51,7 +54,7 @@ class SNMPConfig:
 
         syscontact = self.syscontact
 
-        modules: Union[Unset, Dict[str, Any]] = UNSET
+        modules: dict[str, Any] | Unset = UNSET
         if not isinstance(self.modules, Unset):
             modules = self.modules.to_dict()
 
@@ -67,7 +70,7 @@ class SNMPConfig:
 
         bindip = self.bindip
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -97,10 +100,10 @@ class SNMPConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.snmp_modules import SNMPModules
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         rocommunity = d.pop("rocommunity")
 
         enable = d.pop("enable")
@@ -110,7 +113,7 @@ class SNMPConfig:
         syscontact = d.pop("syscontact", UNSET)
 
         _modules = d.pop("modules", UNSET)
-        modules: Union[Unset, SNMPModules]
+        modules: SNMPModules | Unset
         if isinstance(_modules, Unset):
             modules = UNSET
         else:
@@ -146,7 +149,7 @@ class SNMPConfig:
         return snmp_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

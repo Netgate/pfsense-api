@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,25 +15,25 @@ T = TypeVar("T", bound="DiagTableDetailed")
 class DiagTableDetailed:
     """
     Attributes:
-        table_name (Union[Unset, str]): name of table
-        last_update (Union[Unset, str]): RFC3389/ISO-8601 timestamp of the latest data for the table if available
-        avail_action (Union[Unset, str]): available action on the table
-        action_descr (Union[Unset, str]): description of the action
-        action_prompt (Union[Unset, str]): prompt to display to user before applying action
-        entries (Union[Unset, List[str]]):
-        entries_removable (Union[Unset, bool]): if each entry can be individually removed
+        table_name (str | Unset): name of table
+        last_update (str | Unset): RFC3389/ISO-8601 timestamp of the latest data for the table if available
+        avail_action (str | Unset): available action on the table
+        action_descr (str | Unset): description of the action
+        action_prompt (str | Unset): prompt to display to user before applying action
+        entries (list[str] | Unset):
+        entries_removable (bool | Unset): if each entry can be individually removed
     """
 
-    table_name: Union[Unset, str] = UNSET
-    last_update: Union[Unset, str] = UNSET
-    avail_action: Union[Unset, str] = UNSET
-    action_descr: Union[Unset, str] = UNSET
-    action_prompt: Union[Unset, str] = UNSET
-    entries: Union[Unset, List[str]] = UNSET
-    entries_removable: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    table_name: str | Unset = UNSET
+    last_update: str | Unset = UNSET
+    avail_action: str | Unset = UNSET
+    action_descr: str | Unset = UNSET
+    action_prompt: str | Unset = UNSET
+    entries: list[str] | Unset = UNSET
+    entries_removable: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         table_name = self.table_name
 
         last_update = self.last_update
@@ -41,13 +44,13 @@ class DiagTableDetailed:
 
         action_prompt = self.action_prompt
 
-        entries: Union[Unset, List[str]] = UNSET
+        entries: list[str] | Unset = UNSET
         if not isinstance(self.entries, Unset):
             entries = self.entries
 
         entries_removable = self.entries_removable
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if table_name is not UNSET:
@@ -68,8 +71,8 @@ class DiagTableDetailed:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         table_name = d.pop("table_name", UNSET)
 
         last_update = d.pop("last_update", UNSET)
@@ -80,7 +83,7 @@ class DiagTableDetailed:
 
         action_prompt = d.pop("action_prompt", UNSET)
 
-        entries = cast(List[str], d.pop("entries", UNSET))
+        entries = cast(list[str], d.pop("entries", UNSET))
 
         entries_removable = d.pop("entries_removable", UNSET)
 
@@ -98,7 +101,7 @@ class DiagTableDetailed:
         return diag_table_detailed
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

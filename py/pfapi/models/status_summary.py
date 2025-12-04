@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,47 +22,47 @@ T = TypeVar("T", bound="StatusSummary")
 class StatusSummary:
     """
     Attributes:
-        status (Union[Unset, SystemStatus]):
-        timestamp (Union[Unset, int]): millisecond timestamp of the system
-        packages (Union[Unset, List['PackageStatus']]):
-        dirty (Union[Unset, DirtySubsystems]):
-        ui_features (Union[Unset, StatusSummaryUiFeatures]):
-        alerts (Union[Unset, str]):
+        status (SystemStatus | Unset):
+        timestamp (int | Unset): millisecond timestamp of the system
+        packages (list[PackageStatus] | Unset):
+        dirty (DirtySubsystems | Unset):
+        ui_features (StatusSummaryUiFeatures | Unset):
+        alerts (str | Unset):
     """
 
-    status: Union[Unset, "SystemStatus"] = UNSET
-    timestamp: Union[Unset, int] = UNSET
-    packages: Union[Unset, List["PackageStatus"]] = UNSET
-    dirty: Union[Unset, "DirtySubsystems"] = UNSET
-    ui_features: Union[Unset, "StatusSummaryUiFeatures"] = UNSET
-    alerts: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    status: SystemStatus | Unset = UNSET
+    timestamp: int | Unset = UNSET
+    packages: list[PackageStatus] | Unset = UNSET
+    dirty: DirtySubsystems | Unset = UNSET
+    ui_features: StatusSummaryUiFeatures | Unset = UNSET
+    alerts: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        status: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        status: dict[str, Any] | Unset = UNSET
         if not isinstance(self.status, Unset):
             status = self.status.to_dict()
 
         timestamp = self.timestamp
 
-        packages: Union[Unset, List[Dict[str, Any]]] = UNSET
+        packages: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.packages, Unset):
             packages = []
             for packages_item_data in self.packages:
                 packages_item = packages_item_data.to_dict()
                 packages.append(packages_item)
 
-        dirty: Union[Unset, Dict[str, Any]] = UNSET
+        dirty: dict[str, Any] | Unset = UNSET
         if not isinstance(self.dirty, Unset):
             dirty = self.dirty.to_dict()
 
-        ui_features: Union[Unset, Dict[str, Any]] = UNSET
+        ui_features: dict[str, Any] | Unset = UNSET
         if not isinstance(self.ui_features, Unset):
             ui_features = self.ui_features.to_dict()
 
         alerts = self.alerts
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if status is not UNSET:
@@ -78,15 +81,15 @@ class StatusSummary:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dirty_subsystems import DirtySubsystems
         from ..models.package_status import PackageStatus
         from ..models.status_summary_ui_features import StatusSummaryUiFeatures
         from ..models.system_status import SystemStatus
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _status = d.pop("status", UNSET)
-        status: Union[Unset, SystemStatus]
+        status: SystemStatus | Unset
         if isinstance(_status, Unset):
             status = UNSET
         else:
@@ -94,22 +97,24 @@ class StatusSummary:
 
         timestamp = d.pop("timestamp", UNSET)
 
-        packages = []
         _packages = d.pop("packages", UNSET)
-        for packages_item_data in _packages or []:
-            packages_item = PackageStatus.from_dict(packages_item_data)
+        packages: list[PackageStatus] | Unset = UNSET
+        if _packages is not UNSET:
+            packages = []
+            for packages_item_data in _packages:
+                packages_item = PackageStatus.from_dict(packages_item_data)
 
-            packages.append(packages_item)
+                packages.append(packages_item)
 
         _dirty = d.pop("dirty", UNSET)
-        dirty: Union[Unset, DirtySubsystems]
+        dirty: DirtySubsystems | Unset
         if isinstance(_dirty, Unset):
             dirty = UNSET
         else:
             dirty = DirtySubsystems.from_dict(_dirty)
 
         _ui_features = d.pop("ui_features", UNSET)
-        ui_features: Union[Unset, StatusSummaryUiFeatures]
+        ui_features: StatusSummaryUiFeatures | Unset
         if isinstance(_ui_features, Unset):
             ui_features = UNSET
         else:
@@ -130,7 +135,7 @@ class StatusSummary:
         return status_summary
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

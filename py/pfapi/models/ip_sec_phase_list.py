@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,39 +21,39 @@ T = TypeVar("T", bound="IPSecPhaseList")
 class IPSecPhaseList:
     """
     Attributes:
-        phase1 (Union[Unset, List['Phase1']]):
-        phase2 (Union[Unset, List['Phase2']]):
-        ipsec_capable_ifs (Union[Unset, List['IPSecCapableInterface']]):
+        phase1 (list[Phase1] | Unset):
+        phase2 (list[Phase2] | Unset):
+        ipsec_capable_ifs (list[IPSecCapableInterface] | Unset):
     """
 
-    phase1: Union[Unset, List["Phase1"]] = UNSET
-    phase2: Union[Unset, List["Phase2"]] = UNSET
-    ipsec_capable_ifs: Union[Unset, List["IPSecCapableInterface"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    phase1: list[Phase1] | Unset = UNSET
+    phase2: list[Phase2] | Unset = UNSET
+    ipsec_capable_ifs: list[IPSecCapableInterface] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        phase1: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        phase1: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.phase1, Unset):
             phase1 = []
             for phase1_item_data in self.phase1:
                 phase1_item = phase1_item_data.to_dict()
                 phase1.append(phase1_item)
 
-        phase2: Union[Unset, List[Dict[str, Any]]] = UNSET
+        phase2: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.phase2, Unset):
             phase2 = []
             for phase2_item_data in self.phase2:
                 phase2_item = phase2_item_data.to_dict()
                 phase2.append(phase2_item)
 
-        ipsec_capable_ifs: Union[Unset, List[Dict[str, Any]]] = UNSET
+        ipsec_capable_ifs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.ipsec_capable_ifs, Unset):
             ipsec_capable_ifs = []
             for ipsec_capable_ifs_item_data in self.ipsec_capable_ifs:
                 ipsec_capable_ifs_item = ipsec_capable_ifs_item_data.to_dict()
                 ipsec_capable_ifs.append(ipsec_capable_ifs_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if phase1 is not UNSET:
@@ -63,32 +66,38 @@ class IPSecPhaseList:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ip_sec_capable_interface import IPSecCapableInterface
         from ..models.phase_1 import Phase1
         from ..models.phase_2 import Phase2
 
-        d = src_dict.copy()
-        phase1 = []
+        d = dict(src_dict)
         _phase1 = d.pop("phase1", UNSET)
-        for phase1_item_data in _phase1 or []:
-            phase1_item = Phase1.from_dict(phase1_item_data)
+        phase1: list[Phase1] | Unset = UNSET
+        if _phase1 is not UNSET:
+            phase1 = []
+            for phase1_item_data in _phase1:
+                phase1_item = Phase1.from_dict(phase1_item_data)
 
-            phase1.append(phase1_item)
+                phase1.append(phase1_item)
 
-        phase2 = []
         _phase2 = d.pop("phase2", UNSET)
-        for phase2_item_data in _phase2 or []:
-            phase2_item = Phase2.from_dict(phase2_item_data)
+        phase2: list[Phase2] | Unset = UNSET
+        if _phase2 is not UNSET:
+            phase2 = []
+            for phase2_item_data in _phase2:
+                phase2_item = Phase2.from_dict(phase2_item_data)
 
-            phase2.append(phase2_item)
+                phase2.append(phase2_item)
 
-        ipsec_capable_ifs = []
         _ipsec_capable_ifs = d.pop("ipsec_capable_ifs", UNSET)
-        for ipsec_capable_ifs_item_data in _ipsec_capable_ifs or []:
-            ipsec_capable_ifs_item = IPSecCapableInterface.from_dict(ipsec_capable_ifs_item_data)
+        ipsec_capable_ifs: list[IPSecCapableInterface] | Unset = UNSET
+        if _ipsec_capable_ifs is not UNSET:
+            ipsec_capable_ifs = []
+            for ipsec_capable_ifs_item_data in _ipsec_capable_ifs:
+                ipsec_capable_ifs_item = IPSecCapableInterface.from_dict(ipsec_capable_ifs_item_data)
 
-            ipsec_capable_ifs.append(ipsec_capable_ifs_item)
+                ipsec_capable_ifs.append(ipsec_capable_ifs_item)
 
         ip_sec_phase_list = cls(
             phase1=phase1,
@@ -100,7 +109,7 @@ class IPSecPhaseList:
         return ip_sec_phase_list
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

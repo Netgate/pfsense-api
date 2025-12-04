@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,24 +15,24 @@ T = TypeVar("T", bound="FilterLogVersion6Info")
 class FilterLogVersion6Info:
     """
     Attributes:
-        class_ (Union[Unset, str]):
-        flow_label (Union[Unset, str]):
-        hlim (Union[Unset, str]):
+        class_ (str | Unset):
+        flow_label (str | Unset):
+        hlim (str | Unset):
     """
 
-    class_: Union[Unset, str] = UNSET
-    flow_label: Union[Unset, str] = UNSET
-    hlim: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    class_: str | Unset = UNSET
+    flow_label: str | Unset = UNSET
+    hlim: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         class_ = self.class_
 
         flow_label = self.flow_label
 
         hlim = self.hlim
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if class_ is not UNSET:
@@ -42,8 +45,8 @@ class FilterLogVersion6Info:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         class_ = d.pop("class", UNSET)
 
         flow_label = d.pop("flow_label", UNSET)
@@ -60,7 +63,7 @@ class FilterLogVersion6Info:
         return filter_log_version_6_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

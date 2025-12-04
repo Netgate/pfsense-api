@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,33 +18,33 @@ class ACBConfig:
     reverse = "yes", "no"
 
         Attributes:
-            encryption_password (Union[Unset, str]):
-            enable (Union[Unset, bool]):
-            hint (Union[Unset, str]):
-            frequency (Union[Unset, str]):
-            minute (Union[Unset, str]):
-            hour (Union[Unset, str]):
-            month (Union[Unset, str]):
-            day (Union[Unset, str]):
-            dow (Union[Unset, str]):
-            numman (Union[Unset, str]):
-            reverse (Union[Unset, str]):
+            encryption_password (str | Unset):
+            enable (bool | Unset):
+            hint (str | Unset):
+            frequency (str | Unset):
+            minute (str | Unset):
+            hour (str | Unset):
+            month (str | Unset):
+            day (str | Unset):
+            dow (str | Unset):
+            numman (str | Unset):
+            reverse (str | Unset):
     """
 
-    encryption_password: Union[Unset, str] = UNSET
-    enable: Union[Unset, bool] = UNSET
-    hint: Union[Unset, str] = UNSET
-    frequency: Union[Unset, str] = UNSET
-    minute: Union[Unset, str] = UNSET
-    hour: Union[Unset, str] = UNSET
-    month: Union[Unset, str] = UNSET
-    day: Union[Unset, str] = UNSET
-    dow: Union[Unset, str] = UNSET
-    numman: Union[Unset, str] = UNSET
-    reverse: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    encryption_password: str | Unset = UNSET
+    enable: bool | Unset = UNSET
+    hint: str | Unset = UNSET
+    frequency: str | Unset = UNSET
+    minute: str | Unset = UNSET
+    hour: str | Unset = UNSET
+    month: str | Unset = UNSET
+    day: str | Unset = UNSET
+    dow: str | Unset = UNSET
+    numman: str | Unset = UNSET
+    reverse: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         encryption_password = self.encryption_password
 
         enable = self.enable
@@ -64,7 +67,7 @@ class ACBConfig:
 
         reverse = self.reverse
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if encryption_password is not UNSET:
@@ -93,8 +96,8 @@ class ACBConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         encryption_password = d.pop("encryption_password", UNSET)
 
         enable = d.pop("enable", UNSET)
@@ -135,7 +138,7 @@ class ACBConfig:
         return acb_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

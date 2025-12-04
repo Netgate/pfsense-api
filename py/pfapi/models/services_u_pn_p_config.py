@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,24 +19,24 @@ T = TypeVar("T", bound="ServicesUPnPConfig")
 class ServicesUPnPConfig:
     """
     Attributes:
-        config (Union[Unset, UPnPConfig]):
-        interfaces (Union[Unset, List[str]]):
+        config (UPnPConfig | Unset):
+        interfaces (list[str] | Unset):
     """
 
-    config: Union[Unset, "UPnPConfig"] = UNSET
-    interfaces: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    config: UPnPConfig | Unset = UNSET
+    interfaces: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        config: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        config: dict[str, Any] | Unset = UNSET
         if not isinstance(self.config, Unset):
             config = self.config.to_dict()
 
-        interfaces: Union[Unset, List[str]] = UNSET
+        interfaces: list[str] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = self.interfaces
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if config is not UNSET:
@@ -44,18 +47,18 @@ class ServicesUPnPConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.u_pn_p_config import UPnPConfig
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _config = d.pop("config", UNSET)
-        config: Union[Unset, UPnPConfig]
+        config: UPnPConfig | Unset
         if isinstance(_config, Unset):
             config = UNSET
         else:
             config = UPnPConfig.from_dict(_config)
 
-        interfaces = cast(List[str], d.pop("interfaces", UNSET))
+        interfaces = cast(list[str], d.pop("interfaces", UNSET))
 
         services_u_pn_p_config = cls(
             config=config,
@@ -66,7 +69,7 @@ class ServicesUPnPConfig:
         return services_u_pn_p_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

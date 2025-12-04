@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,26 +16,26 @@ class PPPLinkInterface:
     """
     Attributes:
         if_device (str): device name of the interface used for the link
-        bandwidth (Union[Unset, int]):
-        mtu (Union[Unset, int]):
-        mru (Union[Unset, int]):
-        mrru (Union[Unset, int]):
-        localip (Union[Unset, str]): (type pptp and l2tp only) local ip address
-        subnet (Union[Unset, int]): (type pptp and l2tp only) local ip address subnet
-        gateway (Union[Unset, str]): (type pptp and l2tp only) gateway ip address or hostname
+        bandwidth (int | Unset):
+        mtu (int | Unset):
+        mru (int | Unset):
+        mrru (int | Unset):
+        localip (str | Unset): (type pptp and l2tp only) local ip address
+        subnet (int | Unset): (type pptp and l2tp only) local ip address subnet
+        gateway (str | Unset): (type pptp and l2tp only) gateway ip address or hostname
     """
 
     if_device: str
-    bandwidth: Union[Unset, int] = UNSET
-    mtu: Union[Unset, int] = UNSET
-    mru: Union[Unset, int] = UNSET
-    mrru: Union[Unset, int] = UNSET
-    localip: Union[Unset, str] = UNSET
-    subnet: Union[Unset, int] = UNSET
-    gateway: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    bandwidth: int | Unset = UNSET
+    mtu: int | Unset = UNSET
+    mru: int | Unset = UNSET
+    mrru: int | Unset = UNSET
+    localip: str | Unset = UNSET
+    subnet: int | Unset = UNSET
+    gateway: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         if_device = self.if_device
 
         bandwidth = self.bandwidth
@@ -49,7 +52,7 @@ class PPPLinkInterface:
 
         gateway = self.gateway
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -74,8 +77,8 @@ class PPPLinkInterface:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         if_device = d.pop("if_device")
 
         bandwidth = d.pop("bandwidth", UNSET)
@@ -107,7 +110,7 @@ class PPPLinkInterface:
         return ppp_link_interface
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

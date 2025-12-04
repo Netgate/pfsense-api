@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,41 +15,41 @@ T = TypeVar("T", bound="CaptivePortalUserInfo")
 class CaptivePortalUserInfo:
     """
     Attributes:
-        ip_address (Union[Unset, str]):
-        mac_address (Union[Unset, str]):
-        mac_manufacturer (Union[Unset, str]):
-        username (Union[Unset, str]):
-        session_id (Union[Unset, str]):
-        session_start_unix (Union[Unset, int]):
-        session_duration_seconds (Union[Unset, int]):
-        session_remaining_seconds (Union[Unset, int]):
-        idle_time_seconds (Union[Unset, int]):
-        bytes_sent (Union[Unset, int]):
-        bytes_received (Union[Unset, int]):
-        packets_sent (Union[Unset, int]):
-        packets_received (Union[Unset, int]):
-        last_activity (Union[Unset, int]):
-        zone (Union[Unset, str]):
+        ip_address (str | Unset):
+        mac_address (str | Unset):
+        mac_manufacturer (str | Unset):
+        username (str | Unset):
+        session_id (str | Unset):
+        session_start_unix (int | Unset):
+        session_duration_seconds (int | Unset):
+        session_remaining_seconds (int | Unset):
+        idle_time_seconds (int | Unset):
+        bytes_sent (int | Unset):
+        bytes_received (int | Unset):
+        packets_sent (int | Unset):
+        packets_received (int | Unset):
+        last_activity (int | Unset):
+        zone (str | Unset):
     """
 
-    ip_address: Union[Unset, str] = UNSET
-    mac_address: Union[Unset, str] = UNSET
-    mac_manufacturer: Union[Unset, str] = UNSET
-    username: Union[Unset, str] = UNSET
-    session_id: Union[Unset, str] = UNSET
-    session_start_unix: Union[Unset, int] = UNSET
-    session_duration_seconds: Union[Unset, int] = UNSET
-    session_remaining_seconds: Union[Unset, int] = UNSET
-    idle_time_seconds: Union[Unset, int] = UNSET
-    bytes_sent: Union[Unset, int] = UNSET
-    bytes_received: Union[Unset, int] = UNSET
-    packets_sent: Union[Unset, int] = UNSET
-    packets_received: Union[Unset, int] = UNSET
-    last_activity: Union[Unset, int] = UNSET
-    zone: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ip_address: str | Unset = UNSET
+    mac_address: str | Unset = UNSET
+    mac_manufacturer: str | Unset = UNSET
+    username: str | Unset = UNSET
+    session_id: str | Unset = UNSET
+    session_start_unix: int | Unset = UNSET
+    session_duration_seconds: int | Unset = UNSET
+    session_remaining_seconds: int | Unset = UNSET
+    idle_time_seconds: int | Unset = UNSET
+    bytes_sent: int | Unset = UNSET
+    bytes_received: int | Unset = UNSET
+    packets_sent: int | Unset = UNSET
+    packets_received: int | Unset = UNSET
+    last_activity: int | Unset = UNSET
+    zone: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         ip_address = self.ip_address
 
         mac_address = self.mac_address
@@ -77,7 +80,7 @@ class CaptivePortalUserInfo:
 
         zone = self.zone
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ip_address is not UNSET:
@@ -114,8 +117,8 @@ class CaptivePortalUserInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         ip_address = d.pop("ip_address", UNSET)
 
         mac_address = d.pop("mac_address", UNSET)
@@ -168,7 +171,7 @@ class CaptivePortalUserInfo:
         return captive_portal_user_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="ServicesStatusList")
 class ServicesStatusList:
     """
     Attributes:
-        services (Union[Unset, List['ServicesStatus']]):
+        services (list[ServicesStatus] | Unset):
     """
 
-    services: Union[Unset, List["ServicesStatus"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    services: list[ServicesStatus] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        services: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        services: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.services, Unset):
             services = []
             for services_item_data in self.services:
                 services_item = services_item_data.to_dict()
                 services.append(services_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if services is not UNSET:
@@ -39,16 +42,18 @@ class ServicesStatusList:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.services_status import ServicesStatus
 
-        d = src_dict.copy()
-        services = []
+        d = dict(src_dict)
         _services = d.pop("services", UNSET)
-        for services_item_data in _services or []:
-            services_item = ServicesStatus.from_dict(services_item_data)
+        services: list[ServicesStatus] | Unset = UNSET
+        if _services is not UNSET:
+            services = []
+            for services_item_data in _services:
+                services_item = ServicesStatus.from_dict(services_item_data)
 
-            services.append(services_item)
+                services.append(services_item)
 
         services_status_list = cls(
             services=services,
@@ -58,7 +63,7 @@ class ServicesStatusList:
         return services_status_list
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

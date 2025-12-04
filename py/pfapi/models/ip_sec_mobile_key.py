@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,28 +15,28 @@ T = TypeVar("T", bound="IPSecMobileKey")
 class IPSecMobileKey:
     """
     Attributes:
-        ident (Union[Unset, str]):
-        type (Union[Unset, str]):
-        pre_shared_key (Union[Unset, str]):
-        ident_type (Union[Unset, str]):
-        pool_address (Union[Unset, str]):
-        pool_netbits (Union[Unset, str]):
-        dns_address (Union[Unset, str]):
+        ident (str | Unset):
+        type_ (str | Unset):
+        pre_shared_key (str | Unset):
+        ident_type (str | Unset):
+        pool_address (str | Unset):
+        pool_netbits (str | Unset):
+        dns_address (str | Unset):
     """
 
-    ident: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
-    pre_shared_key: Union[Unset, str] = UNSET
-    ident_type: Union[Unset, str] = UNSET
-    pool_address: Union[Unset, str] = UNSET
-    pool_netbits: Union[Unset, str] = UNSET
-    dns_address: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ident: str | Unset = UNSET
+    type_: str | Unset = UNSET
+    pre_shared_key: str | Unset = UNSET
+    ident_type: str | Unset = UNSET
+    pool_address: str | Unset = UNSET
+    pool_netbits: str | Unset = UNSET
+    dns_address: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         ident = self.ident
 
-        type = self.type
+        type_ = self.type_
 
         pre_shared_key = self.pre_shared_key
 
@@ -45,13 +48,13 @@ class IPSecMobileKey:
 
         dns_address = self.dns_address
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ident is not UNSET:
             field_dict["ident"] = ident
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if pre_shared_key is not UNSET:
             field_dict["pre_shared_key"] = pre_shared_key
         if ident_type is not UNSET:
@@ -66,11 +69,11 @@ class IPSecMobileKey:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         ident = d.pop("ident", UNSET)
 
-        type = d.pop("type", UNSET)
+        type_ = d.pop("type", UNSET)
 
         pre_shared_key = d.pop("pre_shared_key", UNSET)
 
@@ -84,7 +87,7 @@ class IPSecMobileKey:
 
         ip_sec_mobile_key = cls(
             ident=ident,
-            type=type,
+            type_=type_,
             pre_shared_key=pre_shared_key,
             ident_type=ident_type,
             pool_address=pool_address,
@@ -96,7 +99,7 @@ class IPSecMobileKey:
         return ip_sec_mobile_key
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

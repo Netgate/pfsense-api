@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,33 +21,33 @@ T = TypeVar("T", bound="IPSecClientConfig")
 class IPSecClientConfig:
     """
     Attributes:
-        client (Union[Unset, IPSecClient]):
-        user_groups (Union[Unset, List['UserGroup']]):
-        auth_servers (Union[Unset, AuthServers]):
+        client (IPSecClient | Unset):
+        user_groups (list[UserGroup] | Unset):
+        auth_servers (AuthServers | Unset):
     """
 
-    client: Union[Unset, "IPSecClient"] = UNSET
-    user_groups: Union[Unset, List["UserGroup"]] = UNSET
-    auth_servers: Union[Unset, "AuthServers"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    client: IPSecClient | Unset = UNSET
+    user_groups: list[UserGroup] | Unset = UNSET
+    auth_servers: AuthServers | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        client: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        client: dict[str, Any] | Unset = UNSET
         if not isinstance(self.client, Unset):
             client = self.client.to_dict()
 
-        user_groups: Union[Unset, List[Dict[str, Any]]] = UNSET
+        user_groups: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.user_groups, Unset):
             user_groups = []
             for user_groups_item_data in self.user_groups:
                 user_groups_item = user_groups_item_data.to_dict()
                 user_groups.append(user_groups_item)
 
-        auth_servers: Union[Unset, Dict[str, Any]] = UNSET
+        auth_servers: dict[str, Any] | Unset = UNSET
         if not isinstance(self.auth_servers, Unset):
             auth_servers = self.auth_servers.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if client is not UNSET:
@@ -57,28 +60,30 @@ class IPSecClientConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.auth_servers import AuthServers
         from ..models.ip_sec_client import IPSecClient
         from ..models.user_group import UserGroup
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _client = d.pop("client", UNSET)
-        client: Union[Unset, IPSecClient]
+        client: IPSecClient | Unset
         if isinstance(_client, Unset):
             client = UNSET
         else:
             client = IPSecClient.from_dict(_client)
 
-        user_groups = []
         _user_groups = d.pop("user_groups", UNSET)
-        for user_groups_item_data in _user_groups or []:
-            user_groups_item = UserGroup.from_dict(user_groups_item_data)
+        user_groups: list[UserGroup] | Unset = UNSET
+        if _user_groups is not UNSET:
+            user_groups = []
+            for user_groups_item_data in _user_groups:
+                user_groups_item = UserGroup.from_dict(user_groups_item_data)
 
-            user_groups.append(user_groups_item)
+                user_groups.append(user_groups_item)
 
         _auth_servers = d.pop("auth_servers", UNSET)
-        auth_servers: Union[Unset, AuthServers]
+        auth_servers: AuthServers | Unset
         if isinstance(_auth_servers, Unset):
             auth_servers = UNSET
         else:
@@ -94,7 +99,7 @@ class IPSecClientConfig:
         return ip_sec_client_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

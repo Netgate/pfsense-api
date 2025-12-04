@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,30 +20,30 @@ T = TypeVar("T", bound="DhcpStaticMappings")
 class DhcpStaticMappings:
     """
     Attributes:
-        entries (Union[Unset, List['DhcpStaticMapping']]):
-        entriesv6 (Union[Unset, List['Dhcpv6StaticMapping']]):
+        entries (list[DhcpStaticMapping] | Unset):
+        entriesv6 (list[Dhcpv6StaticMapping] | Unset):
     """
 
-    entries: Union[Unset, List["DhcpStaticMapping"]] = UNSET
-    entriesv6: Union[Unset, List["Dhcpv6StaticMapping"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    entries: list[DhcpStaticMapping] | Unset = UNSET
+    entriesv6: list[Dhcpv6StaticMapping] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        entries: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        entries: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.entries, Unset):
             entries = []
             for entries_item_data in self.entries:
                 entries_item = entries_item_data.to_dict()
                 entries.append(entries_item)
 
-        entriesv6: Union[Unset, List[Dict[str, Any]]] = UNSET
+        entriesv6: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.entriesv6, Unset):
             entriesv6 = []
             for entriesv6_item_data in self.entriesv6:
                 entriesv6_item = entriesv6_item_data.to_dict()
                 entriesv6.append(entriesv6_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if entries is not UNSET:
@@ -51,24 +54,28 @@ class DhcpStaticMappings:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dhcp_static_mapping import DhcpStaticMapping
         from ..models.dhcpv_6_static_mapping import Dhcpv6StaticMapping
 
-        d = src_dict.copy()
-        entries = []
+        d = dict(src_dict)
         _entries = d.pop("entries", UNSET)
-        for entries_item_data in _entries or []:
-            entries_item = DhcpStaticMapping.from_dict(entries_item_data)
+        entries: list[DhcpStaticMapping] | Unset = UNSET
+        if _entries is not UNSET:
+            entries = []
+            for entries_item_data in _entries:
+                entries_item = DhcpStaticMapping.from_dict(entries_item_data)
 
-            entries.append(entries_item)
+                entries.append(entries_item)
 
-        entriesv6 = []
         _entriesv6 = d.pop("entriesv6", UNSET)
-        for entriesv6_item_data in _entriesv6 or []:
-            entriesv6_item = Dhcpv6StaticMapping.from_dict(entriesv6_item_data)
+        entriesv6: list[Dhcpv6StaticMapping] | Unset = UNSET
+        if _entriesv6 is not UNSET:
+            entriesv6 = []
+            for entriesv6_item_data in _entriesv6:
+                entriesv6_item = Dhcpv6StaticMapping.from_dict(entriesv6_item_data)
 
-            entriesv6.append(entriesv6_item)
+                entriesv6.append(entriesv6_item)
 
         dhcp_static_mappings = cls(
             entries=entries,
@@ -79,7 +86,7 @@ class DhcpStaticMappings:
         return dhcp_static_mappings
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

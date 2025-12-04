@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="DynDnsList")
 class DynDnsList:
     """
     Attributes:
-        dyndnses (Union[Unset, List['DynDNSConfig']]):
+        dyndnses (list[DynDNSConfig] | Unset):
     """
 
-    dyndnses: Union[Unset, List["DynDNSConfig"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    dyndnses: list[DynDNSConfig] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        dyndnses: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        dyndnses: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.dyndnses, Unset):
             dyndnses = []
             for dyndnses_item_data in self.dyndnses:
                 dyndnses_item = dyndnses_item_data.to_dict()
                 dyndnses.append(dyndnses_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if dyndnses is not UNSET:
@@ -39,16 +42,18 @@ class DynDnsList:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dyn_dns_config import DynDNSConfig
 
-        d = src_dict.copy()
-        dyndnses = []
+        d = dict(src_dict)
         _dyndnses = d.pop("dyndnses", UNSET)
-        for dyndnses_item_data in _dyndnses or []:
-            dyndnses_item = DynDNSConfig.from_dict(dyndnses_item_data)
+        dyndnses: list[DynDNSConfig] | Unset = UNSET
+        if _dyndnses is not UNSET:
+            dyndnses = []
+            for dyndnses_item_data in _dyndnses:
+                dyndnses_item = DynDNSConfig.from_dict(dyndnses_item_data)
 
-            dyndnses.append(dyndnses_item)
+                dyndnses.append(dyndnses_item)
 
         dyn_dns_list = cls(
             dyndnses=dyndnses,
@@ -58,7 +63,7 @@ class DynDnsList:
         return dyn_dns_list
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

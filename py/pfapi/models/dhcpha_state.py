@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,21 +16,21 @@ class DHCPHAState:
     """DHCP service high-availability status
 
     Attributes:
-        server_name (Union[Unset, str]): node name
-        where (Union[Unset, str]): node type - local or remote
-        role (Union[Unset, str]): primary or standby
-        last_heartbeat_sec (Union[Unset, int]): how long ago was the last heartbeat, -1 for none
-        state (Union[Unset, str]): node state - eg hot standby
+        server_name (str | Unset): node name
+        where (str | Unset): node type - local or remote
+        role (str | Unset): primary or standby
+        last_heartbeat_sec (int | Unset): how long ago was the last heartbeat, -1 for none
+        state (str | Unset): node state - eg hot standby
     """
 
-    server_name: Union[Unset, str] = UNSET
-    where: Union[Unset, str] = UNSET
-    role: Union[Unset, str] = UNSET
-    last_heartbeat_sec: Union[Unset, int] = UNSET
-    state: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    server_name: str | Unset = UNSET
+    where: str | Unset = UNSET
+    role: str | Unset = UNSET
+    last_heartbeat_sec: int | Unset = UNSET
+    state: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         server_name = self.server_name
 
         where = self.where
@@ -38,7 +41,7 @@ class DHCPHAState:
 
         state = self.state
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if server_name is not UNSET:
@@ -55,8 +58,8 @@ class DHCPHAState:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         server_name = d.pop("server_name", UNSET)
 
         where = d.pop("where", UNSET)
@@ -79,7 +82,7 @@ class DHCPHAState:
         return dhcpha_state
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,29 +15,29 @@ T = TypeVar("T", bound="AppMemStat")
 class AppMemStat:
     """
     Attributes:
-        mem_alloc (Union[Unset, int]): total allocated memory in use
-        heap_alloc (Union[Unset, int]):
-        heap_sys (Union[Unset, int]):
-        heap_inuse (Union[Unset, int]):
-        heap_idle (Union[Unset, int]):
-        num_gc (Union[Unset, int]): number of garbage collections
-        forced_gc (Union[Unset, int]): number of forced garbage collections
-        sys_mem (Union[Unset, int]): total bytes of memory obtained from the OS
-        last_gc_time (Union[Unset, str]):
+        mem_alloc (int | Unset): total allocated memory in use
+        heap_alloc (int | Unset):
+        heap_sys (int | Unset):
+        heap_inuse (int | Unset):
+        heap_idle (int | Unset):
+        num_gc (int | Unset): number of garbage collections
+        forced_gc (int | Unset): number of forced garbage collections
+        sys_mem (int | Unset): total bytes of memory obtained from the OS
+        last_gc_time (str | Unset):
     """
 
-    mem_alloc: Union[Unset, int] = UNSET
-    heap_alloc: Union[Unset, int] = UNSET
-    heap_sys: Union[Unset, int] = UNSET
-    heap_inuse: Union[Unset, int] = UNSET
-    heap_idle: Union[Unset, int] = UNSET
-    num_gc: Union[Unset, int] = UNSET
-    forced_gc: Union[Unset, int] = UNSET
-    sys_mem: Union[Unset, int] = UNSET
-    last_gc_time: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    mem_alloc: int | Unset = UNSET
+    heap_alloc: int | Unset = UNSET
+    heap_sys: int | Unset = UNSET
+    heap_inuse: int | Unset = UNSET
+    heap_idle: int | Unset = UNSET
+    num_gc: int | Unset = UNSET
+    forced_gc: int | Unset = UNSET
+    sys_mem: int | Unset = UNSET
+    last_gc_time: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         mem_alloc = self.mem_alloc
 
         heap_alloc = self.heap_alloc
@@ -53,7 +56,7 @@ class AppMemStat:
 
         last_gc_time = self.last_gc_time
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if mem_alloc is not UNSET:
@@ -78,8 +81,8 @@ class AppMemStat:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         mem_alloc = d.pop("mem_alloc", UNSET)
 
         heap_alloc = d.pop("heap_alloc", UNSET)
@@ -114,7 +117,7 @@ class AppMemStat:
         return app_mem_stat
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

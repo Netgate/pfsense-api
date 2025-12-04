@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,29 +21,29 @@ class CertAuthority:
     Attributes:
         name (str):
         refid (str):
-        internal (Union[Unset, bool]):
-        issuer (Union[Unset, str]):
-        certificates (Union[Unset, int]):
-        inuse (Union[Unset, List[str]]):
-        trust (Union[Unset, bool]):
-        randomize_serial (Union[Unset, bool]):
-        next_serial (Union[Unset, int]):
-        info (Union[Unset, CertInfo]):
+        internal (bool | Unset):
+        issuer (str | Unset):
+        certificates (int | Unset):
+        inuse (list[str] | Unset):
+        trust (bool | Unset):
+        randomize_serial (bool | Unset):
+        next_serial (int | Unset):
+        info (CertInfo | Unset):
     """
 
     name: str
     refid: str
-    internal: Union[Unset, bool] = UNSET
-    issuer: Union[Unset, str] = UNSET
-    certificates: Union[Unset, int] = UNSET
-    inuse: Union[Unset, List[str]] = UNSET
-    trust: Union[Unset, bool] = UNSET
-    randomize_serial: Union[Unset, bool] = UNSET
-    next_serial: Union[Unset, int] = UNSET
-    info: Union[Unset, "CertInfo"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    internal: bool | Unset = UNSET
+    issuer: str | Unset = UNSET
+    certificates: int | Unset = UNSET
+    inuse: list[str] | Unset = UNSET
+    trust: bool | Unset = UNSET
+    randomize_serial: bool | Unset = UNSET
+    next_serial: int | Unset = UNSET
+    info: CertInfo | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         refid = self.refid
@@ -51,7 +54,7 @@ class CertAuthority:
 
         certificates = self.certificates
 
-        inuse: Union[Unset, List[str]] = UNSET
+        inuse: list[str] | Unset = UNSET
         if not isinstance(self.inuse, Unset):
             inuse = self.inuse
 
@@ -61,11 +64,11 @@ class CertAuthority:
 
         next_serial = self.next_serial
 
-        info: Union[Unset, Dict[str, Any]] = UNSET
+        info: dict[str, Any] | Unset = UNSET
         if not isinstance(self.info, Unset):
             info = self.info.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -93,10 +96,10 @@ class CertAuthority:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.cert_info import CertInfo
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name")
 
         refid = d.pop("refid")
@@ -107,7 +110,7 @@ class CertAuthority:
 
         certificates = d.pop("certificates", UNSET)
 
-        inuse = cast(List[str], d.pop("inuse", UNSET))
+        inuse = cast(list[str], d.pop("inuse", UNSET))
 
         trust = d.pop("trust", UNSET)
 
@@ -116,7 +119,7 @@ class CertAuthority:
         next_serial = d.pop("next_serial", UNSET)
 
         _info = d.pop("info", UNSET)
-        info: Union[Unset, CertInfo]
+        info: CertInfo | Unset
         if isinstance(_info, Unset):
             info = UNSET
         else:
@@ -139,7 +142,7 @@ class CertAuthority:
         return cert_authority
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

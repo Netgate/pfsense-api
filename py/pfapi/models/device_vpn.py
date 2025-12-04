@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,29 +16,29 @@ class DeviceVpn:
     """The device's VPN settings
 
     Attributes:
-        vpn_listenaddr (Union[Unset, str]):
-        vpn_address (Union[Unset, str]):
-        vpn_pubkey (Union[Unset, str]):
-        vpn_netkey (Union[Unset, str]):
-        vpn_prefix (Union[Unset, str]):
-        vpn_state (Union[Unset, str]):
-        vpn_conn_start (Union[Unset, int]):
-        vpn_conn_stop (Union[Unset, int]):
-        vpn_conn_attempt (Union[Unset, int]):
+        vpn_listenaddr (str | Unset):
+        vpn_address (str | Unset):
+        vpn_pubkey (str | Unset):
+        vpn_netkey (str | Unset):
+        vpn_prefix (str | Unset):
+        vpn_state (str | Unset):
+        vpn_conn_start (int | Unset):
+        vpn_conn_stop (int | Unset):
+        vpn_conn_attempt (int | Unset):
     """
 
-    vpn_listenaddr: Union[Unset, str] = UNSET
-    vpn_address: Union[Unset, str] = UNSET
-    vpn_pubkey: Union[Unset, str] = UNSET
-    vpn_netkey: Union[Unset, str] = UNSET
-    vpn_prefix: Union[Unset, str] = UNSET
-    vpn_state: Union[Unset, str] = UNSET
-    vpn_conn_start: Union[Unset, int] = UNSET
-    vpn_conn_stop: Union[Unset, int] = UNSET
-    vpn_conn_attempt: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    vpn_listenaddr: str | Unset = UNSET
+    vpn_address: str | Unset = UNSET
+    vpn_pubkey: str | Unset = UNSET
+    vpn_netkey: str | Unset = UNSET
+    vpn_prefix: str | Unset = UNSET
+    vpn_state: str | Unset = UNSET
+    vpn_conn_start: int | Unset = UNSET
+    vpn_conn_stop: int | Unset = UNSET
+    vpn_conn_attempt: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         vpn_listenaddr = self.vpn_listenaddr
 
         vpn_address = self.vpn_address
@@ -54,7 +57,7 @@ class DeviceVpn:
 
         vpn_conn_attempt = self.vpn_conn_attempt
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if vpn_listenaddr is not UNSET:
@@ -79,8 +82,8 @@ class DeviceVpn:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         vpn_listenaddr = d.pop("vpn_listenaddr", UNSET)
 
         vpn_address = d.pop("vpn_address", UNSET)
@@ -115,7 +118,7 @@ class DeviceVpn:
         return device_vpn
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

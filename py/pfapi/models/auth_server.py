@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,24 +20,24 @@ T = TypeVar("T", bound="AuthServer")
 class AuthServer:
     """
     Attributes:
-        ldap (Union[Unset, LdapAuthServer]):
-        radius (Union[Unset, RadiusAuthServer]):
+        ldap (LdapAuthServer | Unset):
+        radius (RadiusAuthServer | Unset):
     """
 
-    ldap: Union[Unset, "LdapAuthServer"] = UNSET
-    radius: Union[Unset, "RadiusAuthServer"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ldap: LdapAuthServer | Unset = UNSET
+    radius: RadiusAuthServer | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        ldap: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        ldap: dict[str, Any] | Unset = UNSET
         if not isinstance(self.ldap, Unset):
             ldap = self.ldap.to_dict()
 
-        radius: Union[Unset, Dict[str, Any]] = UNSET
+        radius: dict[str, Any] | Unset = UNSET
         if not isinstance(self.radius, Unset):
             radius = self.radius.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ldap is not UNSET:
@@ -45,20 +48,20 @@ class AuthServer:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ldap_auth_server import LdapAuthServer
         from ..models.radius_auth_server import RadiusAuthServer
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _ldap = d.pop("ldap", UNSET)
-        ldap: Union[Unset, LdapAuthServer]
+        ldap: LdapAuthServer | Unset
         if isinstance(_ldap, Unset):
             ldap = UNSET
         else:
             ldap = LdapAuthServer.from_dict(_ldap)
 
         _radius = d.pop("radius", UNSET)
-        radius: Union[Unset, RadiusAuthServer]
+        radius: RadiusAuthServer | Unset
         if isinstance(_radius, Unset):
             radius = UNSET
         else:
@@ -73,7 +76,7 @@ class AuthServer:
         return auth_server
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

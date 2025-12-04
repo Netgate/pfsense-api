@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,37 +21,37 @@ class L2TPConfig:
     """
     Attributes:
         mode (str):
-        radius (Union[Unset, L2TPRadius]):
-        remoteip (Union[Unset, str]):
-        localip (Union[Unset, str]):
-        l2tp_subnet (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        n_l2tp_units (Union[Unset, str]):
-        secret (Union[Unset, str]):
-        paporchap (Union[Unset, str]):
-        dns1 (Union[Unset, str]):
-        dns2 (Union[Unset, str]):
-        user (Union[Unset, List['L2TPUser']]):
+        radius (L2TPRadius | Unset):
+        remoteip (str | Unset):
+        localip (str | Unset):
+        l2tp_subnet (str | Unset):
+        interface (str | Unset):
+        n_l2tp_units (str | Unset):
+        secret (str | Unset):
+        paporchap (str | Unset):
+        dns1 (str | Unset):
+        dns2 (str | Unset):
+        user (list[L2TPUser] | Unset):
     """
 
     mode: str
-    radius: Union[Unset, "L2TPRadius"] = UNSET
-    remoteip: Union[Unset, str] = UNSET
-    localip: Union[Unset, str] = UNSET
-    l2tp_subnet: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    n_l2tp_units: Union[Unset, str] = UNSET
-    secret: Union[Unset, str] = UNSET
-    paporchap: Union[Unset, str] = UNSET
-    dns1: Union[Unset, str] = UNSET
-    dns2: Union[Unset, str] = UNSET
-    user: Union[Unset, List["L2TPUser"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    radius: L2TPRadius | Unset = UNSET
+    remoteip: str | Unset = UNSET
+    localip: str | Unset = UNSET
+    l2tp_subnet: str | Unset = UNSET
+    interface: str | Unset = UNSET
+    n_l2tp_units: str | Unset = UNSET
+    secret: str | Unset = UNSET
+    paporchap: str | Unset = UNSET
+    dns1: str | Unset = UNSET
+    dns2: str | Unset = UNSET
+    user: list[L2TPUser] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         mode = self.mode
 
-        radius: Union[Unset, Dict[str, Any]] = UNSET
+        radius: dict[str, Any] | Unset = UNSET
         if not isinstance(self.radius, Unset):
             radius = self.radius.to_dict()
 
@@ -70,14 +73,14 @@ class L2TPConfig:
 
         dns2 = self.dns2
 
-        user: Union[Unset, List[Dict[str, Any]]] = UNSET
+        user: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.user, Unset):
             user = []
             for user_item_data in self.user:
                 user_item = user_item_data.to_dict()
                 user.append(user_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -110,15 +113,15 @@ class L2TPConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.l2tp_radius import L2TPRadius
         from ..models.l2tp_user import L2TPUser
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         mode = d.pop("mode")
 
         _radius = d.pop("radius", UNSET)
-        radius: Union[Unset, L2TPRadius]
+        radius: L2TPRadius | Unset
         if isinstance(_radius, Unset):
             radius = UNSET
         else:
@@ -142,12 +145,14 @@ class L2TPConfig:
 
         dns2 = d.pop("dns2", UNSET)
 
-        user = []
         _user = d.pop("user", UNSET)
-        for user_item_data in _user or []:
-            user_item = L2TPUser.from_dict(user_item_data)
+        user: list[L2TPUser] | Unset = UNSET
+        if _user is not UNSET:
+            user = []
+            for user_item_data in _user:
+                user_item = L2TPUser.from_dict(user_item_data)
 
-            user.append(user_item)
+                user.append(user_item)
 
         l2tp_config = cls(
             mode=mode,
@@ -168,7 +173,7 @@ class L2TPConfig:
         return l2tp_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,19 +15,19 @@ T = TypeVar("T", bound="ControlledDeviceAuth")
 class ControlledDeviceAuth:
     """
     Attributes:
-        vpn_pubkey (Union[Unset, str]): MIM public key of device
-        vpn_address (Union[Unset, str]): IPv6 VPN address of device
-        vpn_listenaddr (Union[Unset, str]): Listening addresses of device's VPN service
-        cert (Union[Unset, str]): certificate
+        vpn_pubkey (str | Unset): MIM public key of device
+        vpn_address (str | Unset): IPv6 VPN address of device
+        vpn_listenaddr (str | Unset): Listening addresses of device's VPN service
+        cert (str | Unset): certificate
     """
 
-    vpn_pubkey: Union[Unset, str] = UNSET
-    vpn_address: Union[Unset, str] = UNSET
-    vpn_listenaddr: Union[Unset, str] = UNSET
-    cert: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    vpn_pubkey: str | Unset = UNSET
+    vpn_address: str | Unset = UNSET
+    vpn_listenaddr: str | Unset = UNSET
+    cert: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         vpn_pubkey = self.vpn_pubkey
 
         vpn_address = self.vpn_address
@@ -33,7 +36,7 @@ class ControlledDeviceAuth:
 
         cert = self.cert
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if vpn_pubkey is not UNSET:
@@ -48,8 +51,8 @@ class ControlledDeviceAuth:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         vpn_pubkey = d.pop("vpn_pubkey", UNSET)
 
         vpn_address = d.pop("vpn_address", UNSET)
@@ -69,7 +72,7 @@ class ControlledDeviceAuth:
         return controlled_device_auth
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

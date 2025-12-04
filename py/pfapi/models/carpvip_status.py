@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,30 +15,30 @@ T = TypeVar("T", bound="CARPVIPStatus")
 class CARPVIPStatus:
     """
     Attributes:
-        interface (Union[Unset, str]):
-        virtual_ip (Union[Unset, str]):
-        virtual_aliases (Union[Unset, List[str]]):
-        mode (Union[Unset, str]):
-        peer (Union[Unset, str]):
-        description (Union[Unset, str]):
-        status (Union[Unset, str]):
+        interface (str | Unset):
+        virtual_ip (str | Unset):
+        virtual_aliases (list[str] | Unset):
+        mode (str | Unset):
+        peer (str | Unset):
+        description (str | Unset):
+        status (str | Unset):
     """
 
-    interface: Union[Unset, str] = UNSET
-    virtual_ip: Union[Unset, str] = UNSET
-    virtual_aliases: Union[Unset, List[str]] = UNSET
-    mode: Union[Unset, str] = UNSET
-    peer: Union[Unset, str] = UNSET
-    description: Union[Unset, str] = UNSET
-    status: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    interface: str | Unset = UNSET
+    virtual_ip: str | Unset = UNSET
+    virtual_aliases: list[str] | Unset = UNSET
+    mode: str | Unset = UNSET
+    peer: str | Unset = UNSET
+    description: str | Unset = UNSET
+    status: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         interface = self.interface
 
         virtual_ip = self.virtual_ip
 
-        virtual_aliases: Union[Unset, List[str]] = UNSET
+        virtual_aliases: list[str] | Unset = UNSET
         if not isinstance(self.virtual_aliases, Unset):
             virtual_aliases = self.virtual_aliases
 
@@ -47,7 +50,7 @@ class CARPVIPStatus:
 
         status = self.status
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if interface is not UNSET:
@@ -68,13 +71,13 @@ class CARPVIPStatus:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         interface = d.pop("interface", UNSET)
 
         virtual_ip = d.pop("virtual_ip", UNSET)
 
-        virtual_aliases = cast(List[str], d.pop("virtual_aliases", UNSET))
+        virtual_aliases = cast(list[str], d.pop("virtual_aliases", UNSET))
 
         mode = d.pop("mode", UNSET)
 
@@ -98,7 +101,7 @@ class CARPVIPStatus:
         return carpvip_status
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

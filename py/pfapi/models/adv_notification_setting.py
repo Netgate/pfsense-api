@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,77 +15,77 @@ T = TypeVar("T", bound="AdvNotificationSetting")
 class AdvNotificationSetting:
     """
     Attributes:
-        cert_enable_notify (Union[Unset, bool]):
-        disablebeep (Union[Unset, bool]):
-        disable_smtp (Union[Unset, bool]):
-        enable_pushover (Union[Unset, bool]):
-        enable_telegram (Union[Unset, bool]):
-        smtpssl (Union[Unset, bool]):
-        sslvalidate (Union[Unset, bool]):
-        api (Union[Unset, str]):
-        certexpiredays (Union[Unset, int]):
-        chatid (Union[Unset, str]):
-        pushoverapikey (Union[Unset, str]):
-        pushoverexpire (Union[Unset, int]):
-        pushoverpriority (Union[Unset, str]):
-        pushoverretry (Union[Unset, int]):
-        pushoversound (Union[Unset, str]):
-        pushoveruserkey (Union[Unset, str]):
-        smtpauthmech (Union[Unset, str]):
-        smtpfromaddress (Union[Unset, str]):
-        smtpipaddress (Union[Unset, str]):
-        smtpnotifyemailaddress (Union[Unset, str]):
-        smtppassword (Union[Unset, str]):
-        smtppassword_confirm (Union[Unset, str]):
-        smtpport (Union[Unset, str]):
-        smtptimeout (Union[Unset, int]):
-        smtpusername (Union[Unset, str]):
-        save (Union[Unset, bool]):
-        test_smtp (Union[Unset, bool]):
-        test_telegram (Union[Unset, bool]):
-        test_pushover (Union[Unset, bool]):
-        revoked_cert_ignore_notify (Union[Unset, bool]):
-        enable_slack (Union[Unset, bool]):
-        slack_api (Union[Unset, str]):
-        slack_channel (Union[Unset, str]):
+        cert_enable_notify (bool | Unset):
+        disablebeep (bool | Unset):
+        disable_smtp (bool | Unset):
+        enable_pushover (bool | Unset):
+        enable_telegram (bool | Unset):
+        smtpssl (bool | Unset):
+        sslvalidate (bool | Unset):
+        api (str | Unset):
+        certexpiredays (int | Unset):
+        chatid (str | Unset):
+        pushoverapikey (str | Unset):
+        pushoverexpire (int | Unset):
+        pushoverpriority (str | Unset):
+        pushoverretry (int | Unset):
+        pushoversound (str | Unset):
+        pushoveruserkey (str | Unset):
+        smtpauthmech (str | Unset):
+        smtpfromaddress (str | Unset):
+        smtpipaddress (str | Unset):
+        smtpnotifyemailaddress (str | Unset):
+        smtppassword (str | Unset):
+        smtppassword_confirm (str | Unset):
+        smtpport (str | Unset):
+        smtptimeout (int | Unset):
+        smtpusername (str | Unset):
+        save (bool | Unset):
+        test_smtp (bool | Unset):
+        test_telegram (bool | Unset):
+        test_pushover (bool | Unset):
+        revoked_cert_ignore_notify (bool | Unset):
+        enable_slack (bool | Unset):
+        slack_api (str | Unset):
+        slack_channel (str | Unset):
     """
 
-    cert_enable_notify: Union[Unset, bool] = UNSET
-    disablebeep: Union[Unset, bool] = UNSET
-    disable_smtp: Union[Unset, bool] = UNSET
-    enable_pushover: Union[Unset, bool] = UNSET
-    enable_telegram: Union[Unset, bool] = UNSET
-    smtpssl: Union[Unset, bool] = UNSET
-    sslvalidate: Union[Unset, bool] = UNSET
-    api: Union[Unset, str] = UNSET
-    certexpiredays: Union[Unset, int] = UNSET
-    chatid: Union[Unset, str] = UNSET
-    pushoverapikey: Union[Unset, str] = UNSET
-    pushoverexpire: Union[Unset, int] = UNSET
-    pushoverpriority: Union[Unset, str] = UNSET
-    pushoverretry: Union[Unset, int] = UNSET
-    pushoversound: Union[Unset, str] = UNSET
-    pushoveruserkey: Union[Unset, str] = UNSET
-    smtpauthmech: Union[Unset, str] = UNSET
-    smtpfromaddress: Union[Unset, str] = UNSET
-    smtpipaddress: Union[Unset, str] = UNSET
-    smtpnotifyemailaddress: Union[Unset, str] = UNSET
-    smtppassword: Union[Unset, str] = UNSET
-    smtppassword_confirm: Union[Unset, str] = UNSET
-    smtpport: Union[Unset, str] = UNSET
-    smtptimeout: Union[Unset, int] = UNSET
-    smtpusername: Union[Unset, str] = UNSET
-    save: Union[Unset, bool] = UNSET
-    test_smtp: Union[Unset, bool] = UNSET
-    test_telegram: Union[Unset, bool] = UNSET
-    test_pushover: Union[Unset, bool] = UNSET
-    revoked_cert_ignore_notify: Union[Unset, bool] = UNSET
-    enable_slack: Union[Unset, bool] = UNSET
-    slack_api: Union[Unset, str] = UNSET
-    slack_channel: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    cert_enable_notify: bool | Unset = UNSET
+    disablebeep: bool | Unset = UNSET
+    disable_smtp: bool | Unset = UNSET
+    enable_pushover: bool | Unset = UNSET
+    enable_telegram: bool | Unset = UNSET
+    smtpssl: bool | Unset = UNSET
+    sslvalidate: bool | Unset = UNSET
+    api: str | Unset = UNSET
+    certexpiredays: int | Unset = UNSET
+    chatid: str | Unset = UNSET
+    pushoverapikey: str | Unset = UNSET
+    pushoverexpire: int | Unset = UNSET
+    pushoverpriority: str | Unset = UNSET
+    pushoverretry: int | Unset = UNSET
+    pushoversound: str | Unset = UNSET
+    pushoveruserkey: str | Unset = UNSET
+    smtpauthmech: str | Unset = UNSET
+    smtpfromaddress: str | Unset = UNSET
+    smtpipaddress: str | Unset = UNSET
+    smtpnotifyemailaddress: str | Unset = UNSET
+    smtppassword: str | Unset = UNSET
+    smtppassword_confirm: str | Unset = UNSET
+    smtpport: str | Unset = UNSET
+    smtptimeout: int | Unset = UNSET
+    smtpusername: str | Unset = UNSET
+    save: bool | Unset = UNSET
+    test_smtp: bool | Unset = UNSET
+    test_telegram: bool | Unset = UNSET
+    test_pushover: bool | Unset = UNSET
+    revoked_cert_ignore_notify: bool | Unset = UNSET
+    enable_slack: bool | Unset = UNSET
+    slack_api: str | Unset = UNSET
+    slack_channel: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         cert_enable_notify = self.cert_enable_notify
 
         disablebeep = self.disablebeep
@@ -149,7 +152,7 @@ class AdvNotificationSetting:
 
         slack_channel = self.slack_channel
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if cert_enable_notify is not UNSET:
@@ -222,8 +225,8 @@ class AdvNotificationSetting:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         cert_enable_notify = d.pop("cert_enable_notify", UNSET)
 
         disablebeep = d.pop("disablebeep", UNSET)
@@ -330,7 +333,7 @@ class AdvNotificationSetting:
         return adv_notification_setting
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

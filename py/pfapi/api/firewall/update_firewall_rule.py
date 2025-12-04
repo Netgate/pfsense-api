@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -15,34 +16,36 @@ def _get_kwargs(
     id: str,
     *,
     body: FWFilterRule,
-) -> Dict[str, Any]:
-    headers: Dict[str, Any] = {}
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "patch",
-        "url": f"/firewall/rules/interface/{interface}/{id}",
+        "url": "/firewall/rules/interface/{interface}/{id}".format(
+            interface=quote(str(interface), safe=""),
+            id=quote(str(id), safe=""),
+        ),
     }
 
-    _body = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-    _kwargs["json"] = _body
     headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, FWFilterRule]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | FWFilterRule | None:
     if response.status_code == 200:
         response_200 = FWFilterRule.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -50,8 +53,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, FWFilterRule]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Error | FWFilterRule]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -64,9 +67,9 @@ def sync_detailed(
     interface: str,
     id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: FWFilterRule,
-) -> Response[Union[Error, FWFilterRule]]:
+) -> Response[Error | FWFilterRule]:
     """Update rule identified by id
 
     Args:
@@ -79,7 +82,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, FWFilterRule]]
+        Response[Error | FWFilterRule]
     """
 
     kwargs = _get_kwargs(
@@ -99,9 +102,9 @@ def sync(
     interface: str,
     id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: FWFilterRule,
-) -> Optional[Union[Error, FWFilterRule]]:
+) -> Error | FWFilterRule | None:
     """Update rule identified by id
 
     Args:
@@ -114,7 +117,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, FWFilterRule]
+        Error | FWFilterRule
     """
 
     return sync_detailed(
@@ -129,9 +132,9 @@ async def asyncio_detailed(
     interface: str,
     id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: FWFilterRule,
-) -> Response[Union[Error, FWFilterRule]]:
+) -> Response[Error | FWFilterRule]:
     """Update rule identified by id
 
     Args:
@@ -144,7 +147,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, FWFilterRule]]
+        Response[Error | FWFilterRule]
     """
 
     kwargs = _get_kwargs(
@@ -162,9 +165,9 @@ async def asyncio(
     interface: str,
     id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: FWFilterRule,
-) -> Optional[Union[Error, FWFilterRule]]:
+) -> Error | FWFilterRule | None:
     """Update rule identified by id
 
     Args:
@@ -177,7 +180,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, FWFilterRule]
+        Error | FWFilterRule
     """
 
     return (

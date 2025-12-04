@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,18 +19,18 @@ T = TypeVar("T", bound="ProviderCountry")
 class ProviderCountry:
     """
     Attributes:
-        country (Union[Unset, ProviderCountrySetting]):
+        country (ProviderCountrySetting | Unset):
     """
 
-    country: Union[Unset, "ProviderCountrySetting"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    country: ProviderCountrySetting | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        country: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        country: dict[str, Any] | Unset = UNSET
         if not isinstance(self.country, Unset):
             country = self.country.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if country is not UNSET:
@@ -36,12 +39,12 @@ class ProviderCountry:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.provider_country_setting import ProviderCountrySetting
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _country = d.pop("country", UNSET)
-        country: Union[Unset, ProviderCountrySetting]
+        country: ProviderCountrySetting | Unset
         if isinstance(_country, Unset):
             country = UNSET
         else:
@@ -55,7 +58,7 @@ class ProviderCountry:
         return provider_country
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

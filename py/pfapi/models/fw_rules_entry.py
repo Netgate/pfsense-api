@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,24 +20,24 @@ T = TypeVar("T", bound="FwRulesEntry")
 class FwRulesEntry:
     """
     Attributes:
-        rule (Union[Unset, FWFilterRule]):
-        separator (Union[Unset, FilterSeparator]):
+        rule (FWFilterRule | Unset):
+        separator (FilterSeparator | Unset):
     """
 
-    rule: Union[Unset, "FWFilterRule"] = UNSET
-    separator: Union[Unset, "FilterSeparator"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    rule: FWFilterRule | Unset = UNSET
+    separator: FilterSeparator | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        rule: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        rule: dict[str, Any] | Unset = UNSET
         if not isinstance(self.rule, Unset):
             rule = self.rule.to_dict()
 
-        separator: Union[Unset, Dict[str, Any]] = UNSET
+        separator: dict[str, Any] | Unset = UNSET
         if not isinstance(self.separator, Unset):
             separator = self.separator.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if rule is not UNSET:
@@ -45,20 +48,20 @@ class FwRulesEntry:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.filter_separator import FilterSeparator
         from ..models.fw_filter_rule import FWFilterRule
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _rule = d.pop("rule", UNSET)
-        rule: Union[Unset, FWFilterRule]
+        rule: FWFilterRule | Unset
         if isinstance(_rule, Unset):
             rule = UNSET
         else:
             rule = FWFilterRule.from_dict(_rule)
 
         _separator = d.pop("separator", UNSET)
-        separator: Union[Unset, FilterSeparator]
+        separator: FilterSeparator | Unset
         if isinstance(_separator, Unset):
             separator = UNSET
         else:
@@ -73,7 +76,7 @@ class FwRulesEntry:
         return fw_rules_entry
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

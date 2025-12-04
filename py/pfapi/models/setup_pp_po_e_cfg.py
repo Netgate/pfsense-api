@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,23 +17,23 @@ class SetupPPPoECfg:
     Attributes:
         service_name (str):
         username (str):
-        password (Union[Unset, str]):
-        dod (Union[Unset, bool]):
-        idletimeout (Union[Unset, str]):
-        provider (Union[Unset, str]):
-        localip (Union[Unset, str]):
+        password (str | Unset):
+        dod (bool | Unset):
+        idletimeout (str | Unset):
+        provider (str | Unset):
+        localip (str | Unset):
     """
 
     service_name: str
     username: str
-    password: Union[Unset, str] = UNSET
-    dod: Union[Unset, bool] = UNSET
-    idletimeout: Union[Unset, str] = UNSET
-    provider: Union[Unset, str] = UNSET
-    localip: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    password: str | Unset = UNSET
+    dod: bool | Unset = UNSET
+    idletimeout: str | Unset = UNSET
+    provider: str | Unset = UNSET
+    localip: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         service_name = self.service_name
 
         username = self.username
@@ -45,7 +48,7 @@ class SetupPPPoECfg:
 
         localip = self.localip
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -67,8 +70,8 @@ class SetupPPPoECfg:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         service_name = d.pop("service_name")
 
         username = d.pop("username")
@@ -97,7 +100,7 @@ class SetupPPPoECfg:
         return setup_pp_po_e_cfg
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

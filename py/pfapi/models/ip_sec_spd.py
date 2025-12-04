@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,29 +15,29 @@ T = TypeVar("T", bound="IPSecSPD")
 class IPSecSPD:
     """
     Attributes:
-        dir_ (Union[Unset, str]):
-        scope (Union[Unset, str]):
-        ifname (Union[Unset, str]):
-        srcid (Union[Unset, str]):
-        dstid (Union[Unset, str]):
-        proto (Union[Unset, str]):
-        src (Union[Unset, str]):
-        dst (Union[Unset, str]):
-        unique (Union[Unset, str]):
+        dir_ (str | Unset):
+        scope (str | Unset):
+        ifname (str | Unset):
+        srcid (str | Unset):
+        dstid (str | Unset):
+        proto (str | Unset):
+        src (str | Unset):
+        dst (str | Unset):
+        unique (str | Unset):
     """
 
-    dir_: Union[Unset, str] = UNSET
-    scope: Union[Unset, str] = UNSET
-    ifname: Union[Unset, str] = UNSET
-    srcid: Union[Unset, str] = UNSET
-    dstid: Union[Unset, str] = UNSET
-    proto: Union[Unset, str] = UNSET
-    src: Union[Unset, str] = UNSET
-    dst: Union[Unset, str] = UNSET
-    unique: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    dir_: str | Unset = UNSET
+    scope: str | Unset = UNSET
+    ifname: str | Unset = UNSET
+    srcid: str | Unset = UNSET
+    dstid: str | Unset = UNSET
+    proto: str | Unset = UNSET
+    src: str | Unset = UNSET
+    dst: str | Unset = UNSET
+    unique: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         dir_ = self.dir_
 
         scope = self.scope
@@ -53,7 +56,7 @@ class IPSecSPD:
 
         unique = self.unique
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if dir_ is not UNSET:
@@ -78,8 +81,8 @@ class IPSecSPD:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         dir_ = d.pop("dir", UNSET)
 
         scope = d.pop("scope", UNSET)
@@ -114,7 +117,7 @@ class IPSecSPD:
         return ip_sec_spd
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

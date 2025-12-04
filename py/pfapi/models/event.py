@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,46 +22,45 @@ T = TypeVar("T", bound="Event")
 class Event:
     """
     Attributes:
-        event_type (Union[Unset, str]):
-        event_id (Union[Unset, int]): ID is microsecond timestamp
-        firewall (Union[Unset, FirewallEvent]):
-        interface (Union[Unset, InterfaceEvent]):
-        system (Union[Unset, SystemEvent]): changes to the system that is informational or impacts operation
-        config (Union[Unset, ConfigEvent]): This event is sent when configuration changes have occurred, with an
-            indicator
+        event_type (str | Unset):
+        event_id (int | Unset): ID is microsecond timestamp
+        firewall (FirewallEvent | Unset):
+        interface (InterfaceEvent | Unset):
+        system (SystemEvent | Unset): changes to the system that is informational or impacts operation
+        config (ConfigEvent | Unset): This event is sent when configuration changes have occurred, with an indicator
             of whether there are dirty subsystems flagged, or if the system requires a reboot
     """
 
-    event_type: Union[Unset, str] = UNSET
-    event_id: Union[Unset, int] = UNSET
-    firewall: Union[Unset, "FirewallEvent"] = UNSET
-    interface: Union[Unset, "InterfaceEvent"] = UNSET
-    system: Union[Unset, "SystemEvent"] = UNSET
-    config: Union[Unset, "ConfigEvent"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    event_type: str | Unset = UNSET
+    event_id: int | Unset = UNSET
+    firewall: FirewallEvent | Unset = UNSET
+    interface: InterfaceEvent | Unset = UNSET
+    system: SystemEvent | Unset = UNSET
+    config: ConfigEvent | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         event_type = self.event_type
 
         event_id = self.event_id
 
-        firewall: Union[Unset, Dict[str, Any]] = UNSET
+        firewall: dict[str, Any] | Unset = UNSET
         if not isinstance(self.firewall, Unset):
             firewall = self.firewall.to_dict()
 
-        interface: Union[Unset, Dict[str, Any]] = UNSET
+        interface: dict[str, Any] | Unset = UNSET
         if not isinstance(self.interface, Unset):
             interface = self.interface.to_dict()
 
-        system: Union[Unset, Dict[str, Any]] = UNSET
+        system: dict[str, Any] | Unset = UNSET
         if not isinstance(self.system, Unset):
             system = self.system.to_dict()
 
-        config: Union[Unset, Dict[str, Any]] = UNSET
+        config: dict[str, Any] | Unset = UNSET
         if not isinstance(self.config, Unset):
             config = self.config.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if event_type is not UNSET:
@@ -77,40 +79,40 @@ class Event:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.config_event import ConfigEvent
         from ..models.firewall_event import FirewallEvent
         from ..models.interface_event import InterfaceEvent
         from ..models.system_event import SystemEvent
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         event_type = d.pop("event_type", UNSET)
 
         event_id = d.pop("event_id", UNSET)
 
         _firewall = d.pop("firewall", UNSET)
-        firewall: Union[Unset, FirewallEvent]
+        firewall: FirewallEvent | Unset
         if isinstance(_firewall, Unset):
             firewall = UNSET
         else:
             firewall = FirewallEvent.from_dict(_firewall)
 
         _interface = d.pop("interface", UNSET)
-        interface: Union[Unset, InterfaceEvent]
+        interface: InterfaceEvent | Unset
         if isinstance(_interface, Unset):
             interface = UNSET
         else:
             interface = InterfaceEvent.from_dict(_interface)
 
         _system = d.pop("system", UNSET)
-        system: Union[Unset, SystemEvent]
+        system: SystemEvent | Unset
         if isinstance(_system, Unset):
             system = UNSET
         else:
             system = SystemEvent.from_dict(_system)
 
         _config = d.pop("config", UNSET)
-        config: Union[Unset, ConfigEvent]
+        config: ConfigEvent | Unset
         if isinstance(_config, Unset):
             config = UNSET
         else:
@@ -129,7 +131,7 @@ class Event:
         return event
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

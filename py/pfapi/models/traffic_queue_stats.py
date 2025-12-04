@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,25 +19,25 @@ T = TypeVar("T", bound="TrafficQueueStats")
 class TrafficQueueStats:
     """
     Attributes:
-        timestamp (Union[Unset, float]):
-        interfacestats (Union[Unset, List['QueueStats']]):
+        timestamp (float | Unset):
+        interfacestats (list[QueueStats] | Unset):
     """
 
-    timestamp: Union[Unset, float] = UNSET
-    interfacestats: Union[Unset, List["QueueStats"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    timestamp: float | Unset = UNSET
+    interfacestats: list[QueueStats] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         timestamp = self.timestamp
 
-        interfacestats: Union[Unset, List[Dict[str, Any]]] = UNSET
+        interfacestats: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.interfacestats, Unset):
             interfacestats = []
             for interfacestats_item_data in self.interfacestats:
                 interfacestats_item = interfacestats_item_data.to_dict()
                 interfacestats.append(interfacestats_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if timestamp is not UNSET:
@@ -45,18 +48,20 @@ class TrafficQueueStats:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.queue_stats import QueueStats
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         timestamp = d.pop("timestamp", UNSET)
 
-        interfacestats = []
         _interfacestats = d.pop("interfacestats", UNSET)
-        for interfacestats_item_data in _interfacestats or []:
-            interfacestats_item = QueueStats.from_dict(interfacestats_item_data)
+        interfacestats: list[QueueStats] | Unset = UNSET
+        if _interfacestats is not UNSET:
+            interfacestats = []
+            for interfacestats_item_data in _interfacestats:
+                interfacestats_item = QueueStats.from_dict(interfacestats_item_data)
 
-            interfacestats.append(interfacestats_item)
+                interfacestats.append(interfacestats_item)
 
         traffic_queue_stats = cls(
             timestamp=timestamp,
@@ -67,7 +72,7 @@ class TrafficQueueStats:
         return traffic_queue_stats
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

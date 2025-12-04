@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,27 +15,27 @@ T = TypeVar("T", bound="DiagBackupRequest")
 class DiagBackupRequest:
     """
     Attributes:
-        area (Union[Unset, str]):
-        nopkg (Union[Unset, bool]):
-        norrd (Union[Unset, bool]):
-        enc (Union[Unset, bool]): file is encrypted
-        pwd (Union[Unset, str]): password to decrypt file
-        filename (Union[Unset, str]):
-        contents (Union[Unset, str]):
-        reboot (Union[Unset, bool]): reboot system on applying
+        area (str | Unset):
+        nopkg (bool | Unset):
+        norrd (bool | Unset):
+        enc (bool | Unset): file is encrypted
+        pwd (str | Unset): password to decrypt file
+        filename (str | Unset):
+        contents (str | Unset):
+        reboot (bool | Unset): reboot system on applying
     """
 
-    area: Union[Unset, str] = UNSET
-    nopkg: Union[Unset, bool] = UNSET
-    norrd: Union[Unset, bool] = UNSET
-    enc: Union[Unset, bool] = UNSET
-    pwd: Union[Unset, str] = UNSET
-    filename: Union[Unset, str] = UNSET
-    contents: Union[Unset, str] = UNSET
-    reboot: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    area: str | Unset = UNSET
+    nopkg: bool | Unset = UNSET
+    norrd: bool | Unset = UNSET
+    enc: bool | Unset = UNSET
+    pwd: str | Unset = UNSET
+    filename: str | Unset = UNSET
+    contents: str | Unset = UNSET
+    reboot: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         area = self.area
 
         nopkg = self.nopkg
@@ -49,7 +52,7 @@ class DiagBackupRequest:
 
         reboot = self.reboot
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if area is not UNSET:
@@ -72,8 +75,8 @@ class DiagBackupRequest:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         area = d.pop("area", UNSET)
 
         nopkg = d.pop("nopkg", UNSET)
@@ -105,7 +108,7 @@ class DiagBackupRequest:
         return diag_backup_request
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

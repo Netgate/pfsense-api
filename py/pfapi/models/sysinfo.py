@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,80 +22,80 @@ T = TypeVar("T", bound="Sysinfo")
 class Sysinfo:
     """
     Attributes:
-        hostname (Union[Unset, str]):
-        address (Union[Unset, List[str]]):
-        serial (Union[Unset, str]):
-        version (Union[Unset, str]): controller version
-        device_id (Union[Unset, str]):
-        crypto_id (Union[Unset, str]):
-        product (Union[Unset, str]):
-        product_version (Union[Unset, str]):
-        product_build (Union[Unset, str]):
-        os_name (Union[Unset, str]):
-        os_version (Union[Unset, str]):
-        bios_vendor (Union[Unset, str]):
-        bios_type (Union[Unset, str]):
-        bios_date (Union[Unset, str]):
-        bios_version (Union[Unset, str]):
-        cpu_model (Union[Unset, str]):
-        cpu_cores (Union[Unset, int]):
-        cpu_features (Union[Unset, str]):
-        cpu_load (Union[Unset, int]):
-        uptime (Union[Unset, int]):
-        time (Union[Unset, str]):
-        mem_total (Union[Unset, int]):
-        mem_used (Union[Unset, int]):
-        loadavg (Union[Unset, List[int]]):
-        vendor (Union[Unset, str]):
-        model (Union[Unset, str]):
-        hw_uuid (Union[Unset, str]):
-        filesystems (Union[Unset, List['SysinfoFs']]):
-        network_ports (Union[Unset, List['SysNetIf']]):
-        services (Union[Unset, List['DeviceServiceBasic']]):
-        mim_devices (Union[Unset, int]):
-        gateways (Union[Unset, List[str]]):
-        license_ (Union[Unset, SysinfoLicense]):
+        hostname (str | Unset):
+        address (list[str] | Unset):
+        serial (str | Unset):
+        version (str | Unset): controller version
+        device_id (str | Unset):
+        crypto_id (str | Unset):
+        product (str | Unset):
+        product_version (str | Unset):
+        product_build (str | Unset):
+        os_name (str | Unset):
+        os_version (str | Unset):
+        bios_vendor (str | Unset):
+        bios_type (str | Unset):
+        bios_date (str | Unset):
+        bios_version (str | Unset):
+        cpu_model (str | Unset):
+        cpu_cores (int | Unset):
+        cpu_features (str | Unset):
+        cpu_load (int | Unset):
+        uptime (int | Unset):
+        time (str | Unset):
+        mem_total (int | Unset):
+        mem_used (int | Unset):
+        loadavg (list[int] | Unset):
+        vendor (str | Unset):
+        model (str | Unset):
+        hw_uuid (str | Unset):
+        filesystems (list[SysinfoFs] | Unset):
+        network_ports (list[SysNetIf] | Unset):
+        services (list[DeviceServiceBasic] | Unset):
+        mim_devices (int | Unset):
+        gateways (list[str] | Unset):
+        license_ (SysinfoLicense | Unset):
     """
 
-    hostname: Union[Unset, str] = UNSET
-    address: Union[Unset, List[str]] = UNSET
-    serial: Union[Unset, str] = UNSET
-    version: Union[Unset, str] = UNSET
-    device_id: Union[Unset, str] = UNSET
-    crypto_id: Union[Unset, str] = UNSET
-    product: Union[Unset, str] = UNSET
-    product_version: Union[Unset, str] = UNSET
-    product_build: Union[Unset, str] = UNSET
-    os_name: Union[Unset, str] = UNSET
-    os_version: Union[Unset, str] = UNSET
-    bios_vendor: Union[Unset, str] = UNSET
-    bios_type: Union[Unset, str] = UNSET
-    bios_date: Union[Unset, str] = UNSET
-    bios_version: Union[Unset, str] = UNSET
-    cpu_model: Union[Unset, str] = UNSET
-    cpu_cores: Union[Unset, int] = UNSET
-    cpu_features: Union[Unset, str] = UNSET
-    cpu_load: Union[Unset, int] = UNSET
-    uptime: Union[Unset, int] = UNSET
-    time: Union[Unset, str] = UNSET
-    mem_total: Union[Unset, int] = UNSET
-    mem_used: Union[Unset, int] = UNSET
-    loadavg: Union[Unset, List[int]] = UNSET
-    vendor: Union[Unset, str] = UNSET
-    model: Union[Unset, str] = UNSET
-    hw_uuid: Union[Unset, str] = UNSET
-    filesystems: Union[Unset, List["SysinfoFs"]] = UNSET
-    network_ports: Union[Unset, List["SysNetIf"]] = UNSET
-    services: Union[Unset, List["DeviceServiceBasic"]] = UNSET
-    mim_devices: Union[Unset, int] = UNSET
-    gateways: Union[Unset, List[str]] = UNSET
-    license_: Union[Unset, "SysinfoLicense"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    hostname: str | Unset = UNSET
+    address: list[str] | Unset = UNSET
+    serial: str | Unset = UNSET
+    version: str | Unset = UNSET
+    device_id: str | Unset = UNSET
+    crypto_id: str | Unset = UNSET
+    product: str | Unset = UNSET
+    product_version: str | Unset = UNSET
+    product_build: str | Unset = UNSET
+    os_name: str | Unset = UNSET
+    os_version: str | Unset = UNSET
+    bios_vendor: str | Unset = UNSET
+    bios_type: str | Unset = UNSET
+    bios_date: str | Unset = UNSET
+    bios_version: str | Unset = UNSET
+    cpu_model: str | Unset = UNSET
+    cpu_cores: int | Unset = UNSET
+    cpu_features: str | Unset = UNSET
+    cpu_load: int | Unset = UNSET
+    uptime: int | Unset = UNSET
+    time: str | Unset = UNSET
+    mem_total: int | Unset = UNSET
+    mem_used: int | Unset = UNSET
+    loadavg: list[int] | Unset = UNSET
+    vendor: str | Unset = UNSET
+    model: str | Unset = UNSET
+    hw_uuid: str | Unset = UNSET
+    filesystems: list[SysinfoFs] | Unset = UNSET
+    network_ports: list[SysNetIf] | Unset = UNSET
+    services: list[DeviceServiceBasic] | Unset = UNSET
+    mim_devices: int | Unset = UNSET
+    gateways: list[str] | Unset = UNSET
+    license_: SysinfoLicense | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         hostname = self.hostname
 
-        address: Union[Unset, List[str]] = UNSET
+        address: list[str] | Unset = UNSET
         if not isinstance(self.address, Unset):
             address = self.address
 
@@ -138,7 +141,7 @@ class Sysinfo:
 
         mem_used = self.mem_used
 
-        loadavg: Union[Unset, List[int]] = UNSET
+        loadavg: list[int] | Unset = UNSET
         if not isinstance(self.loadavg, Unset):
             loadavg = self.loadavg
 
@@ -148,21 +151,21 @@ class Sysinfo:
 
         hw_uuid = self.hw_uuid
 
-        filesystems: Union[Unset, List[Dict[str, Any]]] = UNSET
+        filesystems: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.filesystems, Unset):
             filesystems = []
             for filesystems_item_data in self.filesystems:
                 filesystems_item = filesystems_item_data.to_dict()
                 filesystems.append(filesystems_item)
 
-        network_ports: Union[Unset, List[Dict[str, Any]]] = UNSET
+        network_ports: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.network_ports, Unset):
             network_ports = []
             for network_ports_item_data in self.network_ports:
                 network_ports_item = network_ports_item_data.to_dict()
                 network_ports.append(network_ports_item)
 
-        services: Union[Unset, List[Dict[str, Any]]] = UNSET
+        services: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.services, Unset):
             services = []
             for services_item_data in self.services:
@@ -171,15 +174,15 @@ class Sysinfo:
 
         mim_devices = self.mim_devices
 
-        gateways: Union[Unset, List[str]] = UNSET
+        gateways: list[str] | Unset = UNSET
         if not isinstance(self.gateways, Unset):
             gateways = self.gateways
 
-        license_: Union[Unset, Dict[str, Any]] = UNSET
+        license_: dict[str, Any] | Unset = UNSET
         if not isinstance(self.license_, Unset):
             license_ = self.license_.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if hostname is not UNSET:
@@ -252,16 +255,16 @@ class Sysinfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.device_service_basic import DeviceServiceBasic
         from ..models.sys_net_if import SysNetIf
         from ..models.sysinfo_fs import SysinfoFs
         from ..models.sysinfo_license import SysinfoLicense
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         hostname = d.pop("hostname", UNSET)
 
-        address = cast(List[str], d.pop("address", UNSET))
+        address = cast(list[str], d.pop("address", UNSET))
 
         serial = d.pop("serial", UNSET)
 
@@ -305,7 +308,7 @@ class Sysinfo:
 
         mem_used = d.pop("mem_used", UNSET)
 
-        loadavg = cast(List[int], d.pop("loadavg", UNSET))
+        loadavg = cast(list[int], d.pop("loadavg", UNSET))
 
         vendor = d.pop("vendor", UNSET)
 
@@ -313,33 +316,39 @@ class Sysinfo:
 
         hw_uuid = d.pop("hw_uuid", UNSET)
 
-        filesystems = []
         _filesystems = d.pop("filesystems", UNSET)
-        for filesystems_item_data in _filesystems or []:
-            filesystems_item = SysinfoFs.from_dict(filesystems_item_data)
+        filesystems: list[SysinfoFs] | Unset = UNSET
+        if _filesystems is not UNSET:
+            filesystems = []
+            for filesystems_item_data in _filesystems:
+                filesystems_item = SysinfoFs.from_dict(filesystems_item_data)
 
-            filesystems.append(filesystems_item)
+                filesystems.append(filesystems_item)
 
-        network_ports = []
         _network_ports = d.pop("network_ports", UNSET)
-        for network_ports_item_data in _network_ports or []:
-            network_ports_item = SysNetIf.from_dict(network_ports_item_data)
+        network_ports: list[SysNetIf] | Unset = UNSET
+        if _network_ports is not UNSET:
+            network_ports = []
+            for network_ports_item_data in _network_ports:
+                network_ports_item = SysNetIf.from_dict(network_ports_item_data)
 
-            network_ports.append(network_ports_item)
+                network_ports.append(network_ports_item)
 
-        services = []
         _services = d.pop("services", UNSET)
-        for services_item_data in _services or []:
-            services_item = DeviceServiceBasic.from_dict(services_item_data)
+        services: list[DeviceServiceBasic] | Unset = UNSET
+        if _services is not UNSET:
+            services = []
+            for services_item_data in _services:
+                services_item = DeviceServiceBasic.from_dict(services_item_data)
 
-            services.append(services_item)
+                services.append(services_item)
 
         mim_devices = d.pop("mim_devices", UNSET)
 
-        gateways = cast(List[str], d.pop("gateways", UNSET))
+        gateways = cast(list[str], d.pop("gateways", UNSET))
 
         _license_ = d.pop("license", UNSET)
-        license_: Union[Unset, SysinfoLicense]
+        license_: SysinfoLicense | Unset
         if isinstance(_license_, Unset):
             license_ = UNSET
         else:
@@ -385,7 +394,7 @@ class Sysinfo:
         return sysinfo
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

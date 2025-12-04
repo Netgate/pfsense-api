@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,40 +15,40 @@ T = TypeVar("T", bound="DHCPLease")
 class DHCPLease:
     """
     Attributes:
-        type (Union[Unset, str]): dynamic, static, ia-na, ia-pd, ia-ta
-        host (Union[Unset, str]):
-        lifetime (Union[Unset, int]):
-        ip (Union[Unset, str]):
-        mac (Union[Unset, str]):
-        cltt (Union[Unset, str]):
-        cid (Union[Unset, str]):
-        state (Union[Unset, str]):
-        start (Union[Unset, str]):
-        end (Union[Unset, str]):
-        iaid (Union[Unset, str]):
-        duid (Union[Unset, str]):
-        online_status (Union[Unset, str]):
-        descr (Union[Unset, str]):
+        type_ (str | Unset): dynamic, static, ia-na, ia-pd, ia-ta
+        host (str | Unset):
+        lifetime (int | Unset):
+        ip (str | Unset):
+        mac (str | Unset):
+        cltt (str | Unset):
+        cid (str | Unset):
+        state (str | Unset):
+        start (str | Unset):
+        end (str | Unset):
+        iaid (str | Unset):
+        duid (str | Unset):
+        online_status (str | Unset):
+        descr (str | Unset):
     """
 
-    type: Union[Unset, str] = UNSET
-    host: Union[Unset, str] = UNSET
-    lifetime: Union[Unset, int] = UNSET
-    ip: Union[Unset, str] = UNSET
-    mac: Union[Unset, str] = UNSET
-    cltt: Union[Unset, str] = UNSET
-    cid: Union[Unset, str] = UNSET
-    state: Union[Unset, str] = UNSET
-    start: Union[Unset, str] = UNSET
-    end: Union[Unset, str] = UNSET
-    iaid: Union[Unset, str] = UNSET
-    duid: Union[Unset, str] = UNSET
-    online_status: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    type_: str | Unset = UNSET
+    host: str | Unset = UNSET
+    lifetime: int | Unset = UNSET
+    ip: str | Unset = UNSET
+    mac: str | Unset = UNSET
+    cltt: str | Unset = UNSET
+    cid: str | Unset = UNSET
+    state: str | Unset = UNSET
+    start: str | Unset = UNSET
+    end: str | Unset = UNSET
+    iaid: str | Unset = UNSET
+    duid: str | Unset = UNSET
+    online_status: str | Unset = UNSET
+    descr: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        type = self.type
+    def to_dict(self) -> dict[str, Any]:
+        type_ = self.type_
 
         host = self.host
 
@@ -73,11 +76,11 @@ class DHCPLease:
 
         descr = self.descr
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if host is not UNSET:
             field_dict["host"] = host
         if lifetime is not UNSET:
@@ -108,9 +111,9 @@ class DHCPLease:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
-        type = d.pop("type", UNSET)
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        type_ = d.pop("type", UNSET)
 
         host = d.pop("host", UNSET)
 
@@ -139,7 +142,7 @@ class DHCPLease:
         descr = d.pop("descr", UNSET)
 
         dhcp_lease = cls(
-            type=type,
+            type_=type_,
             host=host,
             lifetime=lifetime,
             ip=ip,
@@ -159,7 +162,7 @@ class DHCPLease:
         return dhcp_lease
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

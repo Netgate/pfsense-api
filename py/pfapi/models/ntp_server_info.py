@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,33 +15,33 @@ T = TypeVar("T", bound="NtpServerInfo")
 class NtpServerInfo:
     """
     Attributes:
-        status (Union[Unset, str]):
-        server (Union[Unset, str]):
-        refid (Union[Unset, str]):
-        stratum (Union[Unset, str]):
-        type (Union[Unset, str]):
-        when (Union[Unset, str]):
-        poll (Union[Unset, str]):
-        reach (Union[Unset, str]):
-        delay (Union[Unset, str]):
-        offset (Union[Unset, str]):
-        jitter (Union[Unset, str]):
+        status (str | Unset):
+        server (str | Unset):
+        refid (str | Unset):
+        stratum (str | Unset):
+        type_ (str | Unset):
+        when (str | Unset):
+        poll (str | Unset):
+        reach (str | Unset):
+        delay (str | Unset):
+        offset (str | Unset):
+        jitter (str | Unset):
     """
 
-    status: Union[Unset, str] = UNSET
-    server: Union[Unset, str] = UNSET
-    refid: Union[Unset, str] = UNSET
-    stratum: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
-    when: Union[Unset, str] = UNSET
-    poll: Union[Unset, str] = UNSET
-    reach: Union[Unset, str] = UNSET
-    delay: Union[Unset, str] = UNSET
-    offset: Union[Unset, str] = UNSET
-    jitter: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    status: str | Unset = UNSET
+    server: str | Unset = UNSET
+    refid: str | Unset = UNSET
+    stratum: str | Unset = UNSET
+    type_: str | Unset = UNSET
+    when: str | Unset = UNSET
+    poll: str | Unset = UNSET
+    reach: str | Unset = UNSET
+    delay: str | Unset = UNSET
+    offset: str | Unset = UNSET
+    jitter: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         status = self.status
 
         server = self.server
@@ -47,7 +50,7 @@ class NtpServerInfo:
 
         stratum = self.stratum
 
-        type = self.type
+        type_ = self.type_
 
         when = self.when
 
@@ -61,7 +64,7 @@ class NtpServerInfo:
 
         jitter = self.jitter
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if status is not UNSET:
@@ -72,8 +75,8 @@ class NtpServerInfo:
             field_dict["refid"] = refid
         if stratum is not UNSET:
             field_dict["stratum"] = stratum
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if when is not UNSET:
             field_dict["when"] = when
         if poll is not UNSET:
@@ -90,8 +93,8 @@ class NtpServerInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         status = d.pop("status", UNSET)
 
         server = d.pop("server", UNSET)
@@ -100,7 +103,7 @@ class NtpServerInfo:
 
         stratum = d.pop("stratum", UNSET)
 
-        type = d.pop("type", UNSET)
+        type_ = d.pop("type", UNSET)
 
         when = d.pop("when", UNSET)
 
@@ -119,7 +122,7 @@ class NtpServerInfo:
             server=server,
             refid=refid,
             stratum=stratum,
-            type=type,
+            type_=type_,
             when=when,
             poll=poll,
             reach=reach,
@@ -132,7 +135,7 @@ class NtpServerInfo:
         return ntp_server_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

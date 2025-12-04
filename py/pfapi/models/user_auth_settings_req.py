@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,23 +16,23 @@ class UserAuthSettingsReq:
     """
     Attributes:
         authentication_server (str):
-        save_and_test (Union[Unset, bool]):
-        session_timeout (Union[Unset, str]): session timeout in minutes, empty string is default 240
-        password_hash (Union[Unset, str]):
-        shell_auth (Union[Unset, bool]):
-        auth_refresh_time (Union[Unset, str]): duration to cache authentication results from remote auth servers in
-            seconds, empty string is default 30, max 3600
+        save_and_test (bool | Unset):
+        session_timeout (str | Unset): session timeout in minutes, empty string is default 240
+        password_hash (str | Unset):
+        shell_auth (bool | Unset):
+        auth_refresh_time (str | Unset): duration to cache authentication results from remote auth servers in seconds,
+            empty string is default 30, max 3600
     """
 
     authentication_server: str
-    save_and_test: Union[Unset, bool] = UNSET
-    session_timeout: Union[Unset, str] = UNSET
-    password_hash: Union[Unset, str] = UNSET
-    shell_auth: Union[Unset, bool] = UNSET
-    auth_refresh_time: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    save_and_test: bool | Unset = UNSET
+    session_timeout: str | Unset = UNSET
+    password_hash: str | Unset = UNSET
+    shell_auth: bool | Unset = UNSET
+    auth_refresh_time: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         authentication_server = self.authentication_server
 
         save_and_test = self.save_and_test
@@ -42,7 +45,7 @@ class UserAuthSettingsReq:
 
         auth_refresh_time = self.auth_refresh_time
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -63,8 +66,8 @@ class UserAuthSettingsReq:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         authentication_server = d.pop("authentication_server")
 
         save_and_test = d.pop("save_and_test", UNSET)
@@ -90,7 +93,7 @@ class UserAuthSettingsReq:
         return user_auth_settings_req
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

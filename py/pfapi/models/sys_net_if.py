@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,37 +16,37 @@ class SysNetIf:
     """network interface on the device
 
     Attributes:
-        name (Union[Unset, str]): device name of the device
-        identity (Union[Unset, str]): interface identity, e.g. wan, lan, opt1
-        device (Union[Unset, str]): device driver name, e..g vtnet1
-        assigned (Union[Unset, str]): user assigned name of the device, WAN, LAN, LANOPT
-        link_speed (Union[Unset, int]): bps speed negotiated
-        phy_speed (Union[Unset, int]): bps max speed of port
-        state (Union[Unset, str]): on, off, error
-        vlan (Union[Unset, int]): vlan number, if VLAN
-        device_info (Union[Unset, str]): device hardware, model name
-        is_physical (Union[Unset, bool]): device is a physical port
-        is_switchport (Union[Unset, bool]): device is a port on an embedded NIC switch
-        addresses (Union[Unset, List[str]]):
-        label (Union[Unset, str]): description (user-defined name) of device
+        name (str | Unset): device name of the device
+        identity (str | Unset): interface identity, e.g. wan, lan, opt1
+        device (str | Unset): device driver name, e..g vtnet1
+        assigned (str | Unset): user assigned name of the device, WAN, LAN, LANOPT
+        link_speed (int | Unset): bps speed negotiated
+        phy_speed (int | Unset): bps max speed of port
+        state (str | Unset): on, off, error
+        vlan (int | Unset): vlan number, if VLAN
+        device_info (str | Unset): device hardware, model name
+        is_physical (bool | Unset): device is a physical port
+        is_switchport (bool | Unset): device is a port on an embedded NIC switch
+        addresses (list[str] | Unset):
+        label (str | Unset): description (user-defined name) of device
     """
 
-    name: Union[Unset, str] = UNSET
-    identity: Union[Unset, str] = UNSET
-    device: Union[Unset, str] = UNSET
-    assigned: Union[Unset, str] = UNSET
-    link_speed: Union[Unset, int] = UNSET
-    phy_speed: Union[Unset, int] = UNSET
-    state: Union[Unset, str] = UNSET
-    vlan: Union[Unset, int] = UNSET
-    device_info: Union[Unset, str] = UNSET
-    is_physical: Union[Unset, bool] = UNSET
-    is_switchport: Union[Unset, bool] = UNSET
-    addresses: Union[Unset, List[str]] = UNSET
-    label: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    identity: str | Unset = UNSET
+    device: str | Unset = UNSET
+    assigned: str | Unset = UNSET
+    link_speed: int | Unset = UNSET
+    phy_speed: int | Unset = UNSET
+    state: str | Unset = UNSET
+    vlan: int | Unset = UNSET
+    device_info: str | Unset = UNSET
+    is_physical: bool | Unset = UNSET
+    is_switchport: bool | Unset = UNSET
+    addresses: list[str] | Unset = UNSET
+    label: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         identity = self.identity
@@ -66,13 +69,13 @@ class SysNetIf:
 
         is_switchport = self.is_switchport
 
-        addresses: Union[Unset, List[str]] = UNSET
+        addresses: list[str] | Unset = UNSET
         if not isinstance(self.addresses, Unset):
             addresses = self.addresses
 
         label = self.label
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -105,8 +108,8 @@ class SysNetIf:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         identity = d.pop("identity", UNSET)
@@ -129,7 +132,7 @@ class SysNetIf:
 
         is_switchport = d.pop("is_switchport", UNSET)
 
-        addresses = cast(List[str], d.pop("addresses", UNSET))
+        addresses = cast(list[str], d.pop("addresses", UNSET))
 
         label = d.pop("label", UNSET)
 
@@ -153,7 +156,7 @@ class SysNetIf:
         return sys_net_if
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

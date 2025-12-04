@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,36 +15,36 @@ T = TypeVar("T", bound="CRLCert")
 class CRLCert:
     """
     Attributes:
-        refid (Union[Unset, str]):
-        ca_refid (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        type (Union[Unset, str]):
-        cert (Union[Unset, str]):
-        privkey (Union[Unset, str]):
-        serial (Union[Unset, int]):
-        reason (Union[Unset, str]):
-        revoke_time (Union[Unset, int]):
+        refid (str | Unset):
+        ca_refid (str | Unset):
+        descr (str | Unset):
+        type_ (str | Unset):
+        cert (str | Unset):
+        privkey (str | Unset):
+        serial (int | Unset):
+        reason (str | Unset):
+        revoke_time (int | Unset):
     """
 
-    refid: Union[Unset, str] = UNSET
-    ca_refid: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
-    cert: Union[Unset, str] = UNSET
-    privkey: Union[Unset, str] = UNSET
-    serial: Union[Unset, int] = UNSET
-    reason: Union[Unset, str] = UNSET
-    revoke_time: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    refid: str | Unset = UNSET
+    ca_refid: str | Unset = UNSET
+    descr: str | Unset = UNSET
+    type_: str | Unset = UNSET
+    cert: str | Unset = UNSET
+    privkey: str | Unset = UNSET
+    serial: int | Unset = UNSET
+    reason: str | Unset = UNSET
+    revoke_time: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         refid = self.refid
 
         ca_refid = self.ca_refid
 
         descr = self.descr
 
-        type = self.type
+        type_ = self.type_
 
         cert = self.cert
 
@@ -53,7 +56,7 @@ class CRLCert:
 
         revoke_time = self.revoke_time
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if refid is not UNSET:
@@ -62,8 +65,8 @@ class CRLCert:
             field_dict["ca_refid"] = ca_refid
         if descr is not UNSET:
             field_dict["descr"] = descr
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if cert is not UNSET:
             field_dict["cert"] = cert
         if privkey is not UNSET:
@@ -78,15 +81,15 @@ class CRLCert:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         refid = d.pop("refid", UNSET)
 
         ca_refid = d.pop("ca_refid", UNSET)
 
         descr = d.pop("descr", UNSET)
 
-        type = d.pop("type", UNSET)
+        type_ = d.pop("type", UNSET)
 
         cert = d.pop("cert", UNSET)
 
@@ -102,7 +105,7 @@ class CRLCert:
             refid=refid,
             ca_refid=ca_refid,
             descr=descr,
-            type=type,
+            type_=type_,
             cert=cert,
             privkey=privkey,
             serial=serial,
@@ -114,7 +117,7 @@ class CRLCert:
         return crl_cert
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

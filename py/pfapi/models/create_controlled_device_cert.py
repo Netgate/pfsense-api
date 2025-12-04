@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="CreateControlledDeviceCert")
 class CreateControlledDeviceCert:
     """
     Attributes:
-        name (Union[Unset, str]):
-        key (Union[Unset, str]):
-        cert (Union[Unset, str]):
-        ca_cert (Union[Unset, str]):
-        options (Union[Unset, ControlledDeviceCertOptions]):
+        name (str | Unset):
+        key (str | Unset):
+        cert (str | Unset):
+        ca_cert (str | Unset):
+        options (ControlledDeviceCertOptions | Unset):
     """
 
-    name: Union[Unset, str] = UNSET
-    key: Union[Unset, str] = UNSET
-    cert: Union[Unset, str] = UNSET
-    ca_cert: Union[Unset, str] = UNSET
-    options: Union[Unset, "ControlledDeviceCertOptions"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    key: str | Unset = UNSET
+    cert: str | Unset = UNSET
+    ca_cert: str | Unset = UNSET
+    options: ControlledDeviceCertOptions | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         key = self.key
@@ -39,11 +42,11 @@ class CreateControlledDeviceCert:
 
         ca_cert = self.ca_cert
 
-        options: Union[Unset, Dict[str, Any]] = UNSET
+        options: dict[str, Any] | Unset = UNSET
         if not isinstance(self.options, Unset):
             options = self.options.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -60,10 +63,10 @@ class CreateControlledDeviceCert:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.controlled_device_cert_options import ControlledDeviceCertOptions
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         key = d.pop("key", UNSET)
@@ -73,7 +76,7 @@ class CreateControlledDeviceCert:
         ca_cert = d.pop("ca_cert", UNSET)
 
         _options = d.pop("options", UNSET)
-        options: Union[Unset, ControlledDeviceCertOptions]
+        options: ControlledDeviceCertOptions | Unset
         if isinstance(_options, Unset):
             options = UNSET
         else:
@@ -91,7 +94,7 @@ class CreateControlledDeviceCert:
         return create_controlled_device_cert
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

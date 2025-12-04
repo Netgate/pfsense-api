@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,20 +15,20 @@ T = TypeVar("T", bound="TLSCertPath")
 class TLSCertPath:
     """
     Attributes:
-        cert_path (Union[Unset, str]):
-        key_path (Union[Unset, str]):
+        cert_path (str | Unset):
+        key_path (str | Unset):
     """
 
-    cert_path: Union[Unset, str] = UNSET
-    key_path: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    cert_path: str | Unset = UNSET
+    key_path: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         cert_path = self.cert_path
 
         key_path = self.key_path
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if cert_path is not UNSET:
@@ -36,8 +39,8 @@ class TLSCertPath:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         cert_path = d.pop("cert_path", UNSET)
 
         key_path = d.pop("key_path", UNSET)
@@ -51,7 +54,7 @@ class TLSCertPath:
         return tls_cert_path
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

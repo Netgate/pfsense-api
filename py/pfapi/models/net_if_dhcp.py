@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,44 +20,44 @@ T = TypeVar("T", bound="NetIfDhcp")
 class NetIfDhcp:
     """
     Attributes:
-        dhcp_hostname (Union[Unset, str]):
-        dhcp_reject_from (Union[Unset, List[str]]):
-        dhcp_vlan_enable (Union[Unset, bool]):
-        dhcp_vlan_priority (Union[Unset, int]):
-        dhcp6_usev4_iface (Union[Unset, bool]):
-        dhcp6_prefix_only (Union[Unset, bool]):
-        dhcp6_ia_pd_send_hint (Union[Unset, bool]):
-        dhcp6_debug (Union[Unset, bool]):
-        dhcp6_without_ra (Union[Unset, bool]):
-        dhcp6_no_release (Union[Unset, bool]):
-        dhcp6_vlan_priority (Union[Unset, int]):
-        enable_adv_opt (Union[Unset, bool]): enable DHCP v4 advanced options
-        enable_adv6_opt (Union[Unset, bool]): enable DHCP v6 advanced options
-        dhcp_advanced (Union[Unset, DhcpAdvancedOptions]):
-        dhcp6_advanced (Union[Unset, Dhcp6AdvancedOptions]):
+        dhcp_hostname (str | Unset):
+        dhcp_reject_from (list[str] | Unset):
+        dhcp_vlan_enable (bool | Unset):
+        dhcp_vlan_priority (int | Unset):
+        dhcp6_usev4_iface (bool | Unset):
+        dhcp6_prefix_only (bool | Unset):
+        dhcp6_ia_pd_send_hint (bool | Unset):
+        dhcp6_debug (bool | Unset):
+        dhcp6_without_ra (bool | Unset):
+        dhcp6_no_release (bool | Unset):
+        dhcp6_vlan_priority (int | Unset):
+        enable_adv_opt (bool | Unset): enable DHCP v4 advanced options
+        enable_adv6_opt (bool | Unset): enable DHCP v6 advanced options
+        dhcp_advanced (DhcpAdvancedOptions | Unset):
+        dhcp6_advanced (Dhcp6AdvancedOptions | Unset):
     """
 
-    dhcp_hostname: Union[Unset, str] = UNSET
-    dhcp_reject_from: Union[Unset, List[str]] = UNSET
-    dhcp_vlan_enable: Union[Unset, bool] = UNSET
-    dhcp_vlan_priority: Union[Unset, int] = UNSET
-    dhcp6_usev4_iface: Union[Unset, bool] = UNSET
-    dhcp6_prefix_only: Union[Unset, bool] = UNSET
-    dhcp6_ia_pd_send_hint: Union[Unset, bool] = UNSET
-    dhcp6_debug: Union[Unset, bool] = UNSET
-    dhcp6_without_ra: Union[Unset, bool] = UNSET
-    dhcp6_no_release: Union[Unset, bool] = UNSET
-    dhcp6_vlan_priority: Union[Unset, int] = UNSET
-    enable_adv_opt: Union[Unset, bool] = UNSET
-    enable_adv6_opt: Union[Unset, bool] = UNSET
-    dhcp_advanced: Union[Unset, "DhcpAdvancedOptions"] = UNSET
-    dhcp6_advanced: Union[Unset, "Dhcp6AdvancedOptions"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    dhcp_hostname: str | Unset = UNSET
+    dhcp_reject_from: list[str] | Unset = UNSET
+    dhcp_vlan_enable: bool | Unset = UNSET
+    dhcp_vlan_priority: int | Unset = UNSET
+    dhcp6_usev4_iface: bool | Unset = UNSET
+    dhcp6_prefix_only: bool | Unset = UNSET
+    dhcp6_ia_pd_send_hint: bool | Unset = UNSET
+    dhcp6_debug: bool | Unset = UNSET
+    dhcp6_without_ra: bool | Unset = UNSET
+    dhcp6_no_release: bool | Unset = UNSET
+    dhcp6_vlan_priority: int | Unset = UNSET
+    enable_adv_opt: bool | Unset = UNSET
+    enable_adv6_opt: bool | Unset = UNSET
+    dhcp_advanced: DhcpAdvancedOptions | Unset = UNSET
+    dhcp6_advanced: Dhcp6AdvancedOptions | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         dhcp_hostname = self.dhcp_hostname
 
-        dhcp_reject_from: Union[Unset, List[str]] = UNSET
+        dhcp_reject_from: list[str] | Unset = UNSET
         if not isinstance(self.dhcp_reject_from, Unset):
             dhcp_reject_from = self.dhcp_reject_from
 
@@ -80,15 +83,15 @@ class NetIfDhcp:
 
         enable_adv6_opt = self.enable_adv6_opt
 
-        dhcp_advanced: Union[Unset, Dict[str, Any]] = UNSET
+        dhcp_advanced: dict[str, Any] | Unset = UNSET
         if not isinstance(self.dhcp_advanced, Unset):
             dhcp_advanced = self.dhcp_advanced.to_dict()
 
-        dhcp6_advanced: Union[Unset, Dict[str, Any]] = UNSET
+        dhcp6_advanced: dict[str, Any] | Unset = UNSET
         if not isinstance(self.dhcp6_advanced, Unset):
             dhcp6_advanced = self.dhcp6_advanced.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if dhcp_hostname is not UNSET:
@@ -125,14 +128,14 @@ class NetIfDhcp:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dhcp_6_advanced_options import Dhcp6AdvancedOptions
         from ..models.dhcp_advanced_options import DhcpAdvancedOptions
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         dhcp_hostname = d.pop("dhcp_hostname", UNSET)
 
-        dhcp_reject_from = cast(List[str], d.pop("dhcp_reject_from", UNSET))
+        dhcp_reject_from = cast(list[str], d.pop("dhcp_reject_from", UNSET))
 
         dhcp_vlan_enable = d.pop("dhcp_vlan_enable", UNSET)
 
@@ -157,14 +160,14 @@ class NetIfDhcp:
         enable_adv6_opt = d.pop("enable_adv6_opt", UNSET)
 
         _dhcp_advanced = d.pop("dhcp_advanced", UNSET)
-        dhcp_advanced: Union[Unset, DhcpAdvancedOptions]
+        dhcp_advanced: DhcpAdvancedOptions | Unset
         if isinstance(_dhcp_advanced, Unset):
             dhcp_advanced = UNSET
         else:
             dhcp_advanced = DhcpAdvancedOptions.from_dict(_dhcp_advanced)
 
         _dhcp6_advanced = d.pop("dhcp6_advanced", UNSET)
-        dhcp6_advanced: Union[Unset, Dhcp6AdvancedOptions]
+        dhcp6_advanced: Dhcp6AdvancedOptions | Unset
         if isinstance(_dhcp6_advanced, Unset):
             dhcp6_advanced = UNSET
         else:
@@ -192,7 +195,7 @@ class NetIfDhcp:
         return net_if_dhcp
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

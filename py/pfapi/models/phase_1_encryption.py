@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="Phase1Encryption")
 class Phase1Encryption:
     """
     Attributes:
-        item (Union[Unset, List['Phase1Alg']]):
+        item (list[Phase1Alg] | Unset):
     """
 
-    item: Union[Unset, List["Phase1Alg"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    item: list[Phase1Alg] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        item: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        item: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.item, Unset):
             item = []
             for item_item_data in self.item:
                 item_item = item_item_data.to_dict()
                 item.append(item_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if item is not UNSET:
@@ -39,16 +42,18 @@ class Phase1Encryption:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.phase_1_alg import Phase1Alg
 
-        d = src_dict.copy()
-        item = []
+        d = dict(src_dict)
         _item = d.pop("item", UNSET)
-        for item_item_data in _item or []:
-            item_item = Phase1Alg.from_dict(item_item_data)
+        item: list[Phase1Alg] | Unset = UNSET
+        if _item is not UNSET:
+            item = []
+            for item_item_data in _item:
+                item_item = Phase1Alg.from_dict(item_item_data)
 
-            item.append(item_item)
+                item.append(item_item)
 
         phase_1_encryption = cls(
             item=item,
@@ -58,7 +63,7 @@ class Phase1Encryption:
         return phase_1_encryption
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

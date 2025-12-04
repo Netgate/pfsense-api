@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,24 +20,24 @@ T = TypeVar("T", bound="DirtySubsystems")
 class DirtySubsystems:
     """
     Attributes:
-        dirty_subsystems (Union[Unset, DirtySubsystemsDirtySubsystems]):
-        all_subsystems (Union[Unset, DirtySubsystemsAllSubsystems]):
+        dirty_subsystems (DirtySubsystemsDirtySubsystems | Unset):
+        all_subsystems (DirtySubsystemsAllSubsystems | Unset):
     """
 
-    dirty_subsystems: Union[Unset, "DirtySubsystemsDirtySubsystems"] = UNSET
-    all_subsystems: Union[Unset, "DirtySubsystemsAllSubsystems"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    dirty_subsystems: DirtySubsystemsDirtySubsystems | Unset = UNSET
+    all_subsystems: DirtySubsystemsAllSubsystems | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        dirty_subsystems: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        dirty_subsystems: dict[str, Any] | Unset = UNSET
         if not isinstance(self.dirty_subsystems, Unset):
             dirty_subsystems = self.dirty_subsystems.to_dict()
 
-        all_subsystems: Union[Unset, Dict[str, Any]] = UNSET
+        all_subsystems: dict[str, Any] | Unset = UNSET
         if not isinstance(self.all_subsystems, Unset):
             all_subsystems = self.all_subsystems.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if dirty_subsystems is not UNSET:
@@ -45,20 +48,20 @@ class DirtySubsystems:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dirty_subsystems_all_subsystems import DirtySubsystemsAllSubsystems
         from ..models.dirty_subsystems_dirty_subsystems import DirtySubsystemsDirtySubsystems
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _dirty_subsystems = d.pop("dirty_subsystems", UNSET)
-        dirty_subsystems: Union[Unset, DirtySubsystemsDirtySubsystems]
+        dirty_subsystems: DirtySubsystemsDirtySubsystems | Unset
         if isinstance(_dirty_subsystems, Unset):
             dirty_subsystems = UNSET
         else:
             dirty_subsystems = DirtySubsystemsDirtySubsystems.from_dict(_dirty_subsystems)
 
         _all_subsystems = d.pop("all_subsystems", UNSET)
-        all_subsystems: Union[Unset, DirtySubsystemsAllSubsystems]
+        all_subsystems: DirtySubsystemsAllSubsystems | Unset
         if isinstance(_all_subsystems, Unset):
             all_subsystems = UNSET
         else:
@@ -73,7 +76,7 @@ class DirtySubsystems:
         return dirty_subsystems
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

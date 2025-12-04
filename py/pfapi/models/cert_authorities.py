@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="CertAuthorities")
 class CertAuthorities:
     """
     Attributes:
-        cas (Union[Unset, List['CertAuthority']]):
+        cas (list[CertAuthority] | Unset):
     """
 
-    cas: Union[Unset, List["CertAuthority"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    cas: list[CertAuthority] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        cas: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        cas: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.cas, Unset):
             cas = []
             for cas_item_data in self.cas:
                 cas_item = cas_item_data.to_dict()
                 cas.append(cas_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if cas is not UNSET:
@@ -39,16 +42,18 @@ class CertAuthorities:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.cert_authority import CertAuthority
 
-        d = src_dict.copy()
-        cas = []
+        d = dict(src_dict)
         _cas = d.pop("cas", UNSET)
-        for cas_item_data in _cas or []:
-            cas_item = CertAuthority.from_dict(cas_item_data)
+        cas: list[CertAuthority] | Unset = UNSET
+        if _cas is not UNSET:
+            cas = []
+            for cas_item_data in _cas:
+                cas_item = CertAuthority.from_dict(cas_item_data)
 
-            cas.append(cas_item)
+                cas.append(cas_item)
 
         cert_authorities = cls(
             cas=cas,
@@ -58,7 +63,7 @@ class CertAuthorities:
         return cert_authorities
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

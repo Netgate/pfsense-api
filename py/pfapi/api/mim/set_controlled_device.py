@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -14,17 +15,18 @@ def _get_kwargs(
     device_id: str,
     *,
     body: ControlledDevice,
-) -> Dict[str, Any]:
-    headers: Dict[str, Any] = {}
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "patch",
-        "url": f"/mim/devices/device/{device_id}",
+        "url": "/mim/devices/device/{device_id}".format(
+            device_id=quote(str(device_id), safe=""),
+        ),
     }
 
-    _body = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-    _kwargs["json"] = _body
     headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
@@ -32,16 +34,18 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ControlledDevice, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ControlledDevice | Error | None:
     if response.status_code == 200:
         response_200 = ControlledDevice.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -49,8 +53,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ControlledDevice, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ControlledDevice | Error]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -62,9 +66,9 @@ def _build_response(
 def sync_detailed(
     device_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: ControlledDevice,
-) -> Response[Union[ControlledDevice, Error]]:
+) -> Response[ControlledDevice | Error]:
     """Update device's settings, which can include its VPN keys or tags.
     Only parameters provided will be updated
 
@@ -77,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ControlledDevice, Error]]
+        Response[ControlledDevice | Error]
     """
 
     kwargs = _get_kwargs(
@@ -95,9 +99,9 @@ def sync_detailed(
 def sync(
     device_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: ControlledDevice,
-) -> Optional[Union[ControlledDevice, Error]]:
+) -> ControlledDevice | Error | None:
     """Update device's settings, which can include its VPN keys or tags.
     Only parameters provided will be updated
 
@@ -110,7 +114,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ControlledDevice, Error]
+        ControlledDevice | Error
     """
 
     return sync_detailed(
@@ -123,9 +127,9 @@ def sync(
 async def asyncio_detailed(
     device_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: ControlledDevice,
-) -> Response[Union[ControlledDevice, Error]]:
+) -> Response[ControlledDevice | Error]:
     """Update device's settings, which can include its VPN keys or tags.
     Only parameters provided will be updated
 
@@ -138,7 +142,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ControlledDevice, Error]]
+        Response[ControlledDevice | Error]
     """
 
     kwargs = _get_kwargs(
@@ -154,9 +158,9 @@ async def asyncio_detailed(
 async def asyncio(
     device_id: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: ControlledDevice,
-) -> Optional[Union[ControlledDevice, Error]]:
+) -> ControlledDevice | Error | None:
     """Update device's settings, which can include its VPN keys or tags.
     Only parameters provided will be updated
 
@@ -169,7 +173,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ControlledDevice, Error]
+        ControlledDevice | Error
     """
 
     return (

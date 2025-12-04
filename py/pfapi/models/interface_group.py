@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,18 +15,18 @@ T = TypeVar("T", bound="InterfaceGroup")
 class InterfaceGroup:
     """
     Attributes:
-        members (Union[Unset, List[str]]):
-        descr (Union[Unset, str]):
-        ifname (Union[Unset, str]): interface group name
+        members (list[str] | Unset):
+        descr (str | Unset):
+        ifname (str | Unset): interface group name
     """
 
-    members: Union[Unset, List[str]] = UNSET
-    descr: Union[Unset, str] = UNSET
-    ifname: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    members: list[str] | Unset = UNSET
+    descr: str | Unset = UNSET
+    ifname: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        members: Union[Unset, List[str]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        members: list[str] | Unset = UNSET
         if not isinstance(self.members, Unset):
             members = self.members
 
@@ -31,7 +34,7 @@ class InterfaceGroup:
 
         ifname = self.ifname
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if members is not UNSET:
@@ -44,9 +47,9 @@ class InterfaceGroup:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
-        members = cast(List[str], d.pop("members", UNSET))
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        members = cast(list[str], d.pop("members", UNSET))
 
         descr = d.pop("descr", UNSET)
 
@@ -62,7 +65,7 @@ class InterfaceGroup:
         return interface_group
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

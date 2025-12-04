@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,27 +15,27 @@ T = TypeVar("T", bound="NtpGpsFlags")
 class NtpGpsFlags:
     """
     Attributes:
-        prefer_this_clock (Union[Unset, bool]):
-        do_not_select_this_clock (Union[Unset, bool]):
-        enable_pps_signal_processing (Union[Unset, bool]):
-        enable_falling_edge_pps_signal_processing (Union[Unset, bool]):
-        enable_kernel_pps_clock_disciple (Union[Unset, bool]):
-        obscure_location_in_timestamp (Union[Unset, bool]):
-        log_subsecond_received_timestamp (Union[Unset, bool]):
-        display_extended_gps_status (Union[Unset, bool]):
+        prefer_this_clock (bool | Unset):
+        do_not_select_this_clock (bool | Unset):
+        enable_pps_signal_processing (bool | Unset):
+        enable_falling_edge_pps_signal_processing (bool | Unset):
+        enable_kernel_pps_clock_disciple (bool | Unset):
+        obscure_location_in_timestamp (bool | Unset):
+        log_subsecond_received_timestamp (bool | Unset):
+        display_extended_gps_status (bool | Unset):
     """
 
-    prefer_this_clock: Union[Unset, bool] = UNSET
-    do_not_select_this_clock: Union[Unset, bool] = UNSET
-    enable_pps_signal_processing: Union[Unset, bool] = UNSET
-    enable_falling_edge_pps_signal_processing: Union[Unset, bool] = UNSET
-    enable_kernel_pps_clock_disciple: Union[Unset, bool] = UNSET
-    obscure_location_in_timestamp: Union[Unset, bool] = UNSET
-    log_subsecond_received_timestamp: Union[Unset, bool] = UNSET
-    display_extended_gps_status: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    prefer_this_clock: bool | Unset = UNSET
+    do_not_select_this_clock: bool | Unset = UNSET
+    enable_pps_signal_processing: bool | Unset = UNSET
+    enable_falling_edge_pps_signal_processing: bool | Unset = UNSET
+    enable_kernel_pps_clock_disciple: bool | Unset = UNSET
+    obscure_location_in_timestamp: bool | Unset = UNSET
+    log_subsecond_received_timestamp: bool | Unset = UNSET
+    display_extended_gps_status: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         prefer_this_clock = self.prefer_this_clock
 
         do_not_select_this_clock = self.do_not_select_this_clock
@@ -49,7 +52,7 @@ class NtpGpsFlags:
 
         display_extended_gps_status = self.display_extended_gps_status
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if prefer_this_clock is not UNSET:
@@ -72,8 +75,8 @@ class NtpGpsFlags:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         prefer_this_clock = d.pop("prefer_this_clock", UNSET)
 
         do_not_select_this_clock = d.pop("do_not_select_this_clock", UNSET)
@@ -105,7 +108,7 @@ class NtpGpsFlags:
         return ntp_gps_flags
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

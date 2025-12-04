@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,24 +21,24 @@ class GatewayPInfo:
     Attributes:
         name (str):
         gateway (str): gateway address
-        vaddress (Union[Unset, List['GatewayVAddress']]):
-        descr (Union[Unset, str]):
-        ipprotocol (Union[Unset, str]): inet or inet6
+        vaddress (list[GatewayVAddress] | Unset):
+        descr (str | Unset):
+        ipprotocol (str | Unset): inet or inet6
     """
 
     name: str
     gateway: str
-    vaddress: Union[Unset, List["GatewayVAddress"]] = UNSET
-    descr: Union[Unset, str] = UNSET
-    ipprotocol: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    vaddress: list[GatewayVAddress] | Unset = UNSET
+    descr: str | Unset = UNSET
+    ipprotocol: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         gateway = self.gateway
 
-        vaddress: Union[Unset, List[Dict[str, Any]]] = UNSET
+        vaddress: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.vaddress, Unset):
             vaddress = []
             for vaddress_item_data in self.vaddress:
@@ -46,7 +49,7 @@ class GatewayPInfo:
 
         ipprotocol = self.ipprotocol
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -64,20 +67,22 @@ class GatewayPInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.gateway_v_address import GatewayVAddress
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name")
 
         gateway = d.pop("gateway")
 
-        vaddress = []
         _vaddress = d.pop("vaddress", UNSET)
-        for vaddress_item_data in _vaddress or []:
-            vaddress_item = GatewayVAddress.from_dict(vaddress_item_data)
+        vaddress: list[GatewayVAddress] | Unset = UNSET
+        if _vaddress is not UNSET:
+            vaddress = []
+            for vaddress_item_data in _vaddress:
+                vaddress_item = GatewayVAddress.from_dict(vaddress_item_data)
 
-            vaddress.append(vaddress_item)
+                vaddress.append(vaddress_item)
 
         descr = d.pop("descr", UNSET)
 
@@ -95,7 +100,7 @@ class GatewayPInfo:
         return gateway_p_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,19 +15,19 @@ T = TypeVar("T", bound="ControllerUpgradeResult")
 class ControllerUpgradeResult:
     """
     Attributes:
-        active_version (Union[Unset, str]):
-        previous_version (Union[Unset, str]):
-        restart_time (Union[Unset, int]):
-        messages (Union[Unset, str]):
+        active_version (str | Unset):
+        previous_version (str | Unset):
+        restart_time (int | Unset):
+        messages (str | Unset):
     """
 
-    active_version: Union[Unset, str] = UNSET
-    previous_version: Union[Unset, str] = UNSET
-    restart_time: Union[Unset, int] = UNSET
-    messages: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    active_version: str | Unset = UNSET
+    previous_version: str | Unset = UNSET
+    restart_time: int | Unset = UNSET
+    messages: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         active_version = self.active_version
 
         previous_version = self.previous_version
@@ -33,7 +36,7 @@ class ControllerUpgradeResult:
 
         messages = self.messages
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if active_version is not UNSET:
@@ -48,8 +51,8 @@ class ControllerUpgradeResult:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         active_version = d.pop("active_version", UNSET)
 
         previous_version = d.pop("previous_version", UNSET)
@@ -69,7 +72,7 @@ class ControllerUpgradeResult:
         return controller_upgrade_result
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

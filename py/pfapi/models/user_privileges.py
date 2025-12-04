@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="UserPrivileges")
 class UserPrivileges:
     """
     Attributes:
-        privs (Union[Unset, List['UserPrivilege']]):
+        privs (list[UserPrivilege] | Unset):
     """
 
-    privs: Union[Unset, List["UserPrivilege"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    privs: list[UserPrivilege] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        privs: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        privs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.privs, Unset):
             privs = []
             for privs_item_data in self.privs:
                 privs_item = privs_item_data.to_dict()
                 privs.append(privs_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if privs is not UNSET:
@@ -39,16 +42,18 @@ class UserPrivileges:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.user_privilege import UserPrivilege
 
-        d = src_dict.copy()
-        privs = []
+        d = dict(src_dict)
         _privs = d.pop("privs", UNSET)
-        for privs_item_data in _privs or []:
-            privs_item = UserPrivilege.from_dict(privs_item_data)
+        privs: list[UserPrivilege] | Unset = UNSET
+        if _privs is not UNSET:
+            privs = []
+            for privs_item_data in _privs:
+                privs_item = UserPrivilege.from_dict(privs_item_data)
 
-            privs.append(privs_item)
+                privs.append(privs_item)
 
         user_privileges = cls(
             privs=privs,
@@ -58,7 +63,7 @@ class UserPrivileges:
         return user_privileges
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

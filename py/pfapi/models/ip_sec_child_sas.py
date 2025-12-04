@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,83 +15,83 @@ T = TypeVar("T", bound="IPSecChildSAS")
 class IPSecChildSAS:
     """
     Attributes:
-        name (Union[Unset, str]):
-        uniqueid (Union[Unset, str]):
-        reqid (Union[Unset, str]):
-        state (Union[Unset, str]):
-        mode (Union[Unset, str]):
-        protocol (Union[Unset, str]):
-        encap (Union[Unset, str]):
-        spi_in (Union[Unset, str]):
-        spi_out (Union[Unset, str]):
-        cpi_in (Union[Unset, str]):
-        cpi_out (Union[Unset, str]):
-        mark_in (Union[Unset, str]):
-        mark_mask_in (Union[Unset, str]):
-        mark_out (Union[Unset, str]):
-        mark_mask_out (Union[Unset, str]):
-        if_id_in (Union[Unset, str]):
-        if_id_out (Union[Unset, str]):
-        label (Union[Unset, str]):
-        encr_alg (Union[Unset, str]):
-        encr_keysize (Union[Unset, str]):
-        integ_alg (Union[Unset, str]):
-        integ_keysize (Union[Unset, str]):
-        prf_alg (Union[Unset, str]):
-        dh_group (Union[Unset, str]):
-        esn (Union[Unset, str]):
-        bytes_in (Union[Unset, int]):
-        packets_in (Union[Unset, int]):
-        use_in (Union[Unset, int]):
-        bytes_out (Union[Unset, int]):
-        packets_out (Union[Unset, int]):
-        use_out (Union[Unset, int]):
-        rekey_time (Union[Unset, int]):
-        life_time (Union[Unset, int]):
-        install_time (Union[Unset, int]):
-        local_ts (Union[Unset, List[str]]):
-        remote_ts (Union[Unset, List[str]]):
+        name (str | Unset):
+        uniqueid (str | Unset):
+        reqid (str | Unset):
+        state (str | Unset):
+        mode (str | Unset):
+        protocol (str | Unset):
+        encap (str | Unset):
+        spi_in (str | Unset):
+        spi_out (str | Unset):
+        cpi_in (str | Unset):
+        cpi_out (str | Unset):
+        mark_in (str | Unset):
+        mark_mask_in (str | Unset):
+        mark_out (str | Unset):
+        mark_mask_out (str | Unset):
+        if_id_in (str | Unset):
+        if_id_out (str | Unset):
+        label (str | Unset):
+        encr_alg (str | Unset):
+        encr_keysize (str | Unset):
+        integ_alg (str | Unset):
+        integ_keysize (str | Unset):
+        prf_alg (str | Unset):
+        dh_group (str | Unset):
+        esn (str | Unset):
+        bytes_in (int | Unset):
+        packets_in (int | Unset):
+        use_in (int | Unset):
+        bytes_out (int | Unset):
+        packets_out (int | Unset):
+        use_out (int | Unset):
+        rekey_time (int | Unset):
+        life_time (int | Unset):
+        install_time (int | Unset):
+        local_ts (list[str] | Unset):
+        remote_ts (list[str] | Unset):
     """
 
-    name: Union[Unset, str] = UNSET
-    uniqueid: Union[Unset, str] = UNSET
-    reqid: Union[Unset, str] = UNSET
-    state: Union[Unset, str] = UNSET
-    mode: Union[Unset, str] = UNSET
-    protocol: Union[Unset, str] = UNSET
-    encap: Union[Unset, str] = UNSET
-    spi_in: Union[Unset, str] = UNSET
-    spi_out: Union[Unset, str] = UNSET
-    cpi_in: Union[Unset, str] = UNSET
-    cpi_out: Union[Unset, str] = UNSET
-    mark_in: Union[Unset, str] = UNSET
-    mark_mask_in: Union[Unset, str] = UNSET
-    mark_out: Union[Unset, str] = UNSET
-    mark_mask_out: Union[Unset, str] = UNSET
-    if_id_in: Union[Unset, str] = UNSET
-    if_id_out: Union[Unset, str] = UNSET
-    label: Union[Unset, str] = UNSET
-    encr_alg: Union[Unset, str] = UNSET
-    encr_keysize: Union[Unset, str] = UNSET
-    integ_alg: Union[Unset, str] = UNSET
-    integ_keysize: Union[Unset, str] = UNSET
-    prf_alg: Union[Unset, str] = UNSET
-    dh_group: Union[Unset, str] = UNSET
-    esn: Union[Unset, str] = UNSET
-    bytes_in: Union[Unset, int] = UNSET
-    packets_in: Union[Unset, int] = UNSET
-    use_in: Union[Unset, int] = UNSET
-    bytes_out: Union[Unset, int] = UNSET
-    packets_out: Union[Unset, int] = UNSET
-    use_out: Union[Unset, int] = UNSET
-    rekey_time: Union[Unset, int] = UNSET
-    life_time: Union[Unset, int] = UNSET
-    install_time: Union[Unset, int] = UNSET
-    local_ts: Union[Unset, List[str]] = UNSET
-    remote_ts: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    uniqueid: str | Unset = UNSET
+    reqid: str | Unset = UNSET
+    state: str | Unset = UNSET
+    mode: str | Unset = UNSET
+    protocol: str | Unset = UNSET
+    encap: str | Unset = UNSET
+    spi_in: str | Unset = UNSET
+    spi_out: str | Unset = UNSET
+    cpi_in: str | Unset = UNSET
+    cpi_out: str | Unset = UNSET
+    mark_in: str | Unset = UNSET
+    mark_mask_in: str | Unset = UNSET
+    mark_out: str | Unset = UNSET
+    mark_mask_out: str | Unset = UNSET
+    if_id_in: str | Unset = UNSET
+    if_id_out: str | Unset = UNSET
+    label: str | Unset = UNSET
+    encr_alg: str | Unset = UNSET
+    encr_keysize: str | Unset = UNSET
+    integ_alg: str | Unset = UNSET
+    integ_keysize: str | Unset = UNSET
+    prf_alg: str | Unset = UNSET
+    dh_group: str | Unset = UNSET
+    esn: str | Unset = UNSET
+    bytes_in: int | Unset = UNSET
+    packets_in: int | Unset = UNSET
+    use_in: int | Unset = UNSET
+    bytes_out: int | Unset = UNSET
+    packets_out: int | Unset = UNSET
+    use_out: int | Unset = UNSET
+    rekey_time: int | Unset = UNSET
+    life_time: int | Unset = UNSET
+    install_time: int | Unset = UNSET
+    local_ts: list[str] | Unset = UNSET
+    remote_ts: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         uniqueid = self.uniqueid
@@ -157,15 +160,15 @@ class IPSecChildSAS:
 
         install_time = self.install_time
 
-        local_ts: Union[Unset, List[str]] = UNSET
+        local_ts: list[str] | Unset = UNSET
         if not isinstance(self.local_ts, Unset):
             local_ts = self.local_ts
 
-        remote_ts: Union[Unset, List[str]] = UNSET
+        remote_ts: list[str] | Unset = UNSET
         if not isinstance(self.remote_ts, Unset):
             remote_ts = self.remote_ts
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -244,8 +247,8 @@ class IPSecChildSAS:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         uniqueid = d.pop("uniqueid", UNSET)
@@ -314,9 +317,9 @@ class IPSecChildSAS:
 
         install_time = d.pop("install_time", UNSET)
 
-        local_ts = cast(List[str], d.pop("local_ts", UNSET))
+        local_ts = cast(list[str], d.pop("local_ts", UNSET))
 
-        remote_ts = cast(List[str], d.pop("remote_ts", UNSET))
+        remote_ts = cast(list[str], d.pop("remote_ts", UNSET))
 
         ip_sec_child_sas = cls(
             name=name,
@@ -361,7 +364,7 @@ class IPSecChildSAS:
         return ip_sec_child_sas
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

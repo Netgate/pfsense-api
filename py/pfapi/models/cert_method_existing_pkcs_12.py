@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,24 +18,24 @@ class CertMethodExistingPkcs12:
     it can be included as pkcs12_b64 directly within this structure.
 
         Attributes:
-            password (Union[Unset, str]): base64 encoded
-            intermediates (Union[Unset, bool]):
-            pkcs12_b64 (Union[Unset, str]):
+            password (str | Unset): base64 encoded
+            intermediates (bool | Unset):
+            pkcs12_b64 (str | Unset):
     """
 
-    password: Union[Unset, str] = UNSET
-    intermediates: Union[Unset, bool] = UNSET
-    pkcs12_b64: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    password: str | Unset = UNSET
+    intermediates: bool | Unset = UNSET
+    pkcs12_b64: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         password = self.password
 
         intermediates = self.intermediates
 
         pkcs12_b64 = self.pkcs12_b64
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if password is not UNSET:
@@ -45,8 +48,8 @@ class CertMethodExistingPkcs12:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         password = d.pop("password", UNSET)
 
         intermediates = d.pop("intermediates", UNSET)
@@ -63,7 +66,7 @@ class CertMethodExistingPkcs12:
         return cert_method_existing_pkcs_12
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

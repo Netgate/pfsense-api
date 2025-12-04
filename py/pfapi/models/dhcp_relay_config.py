@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,28 +19,28 @@ T = TypeVar("T", bound="DhcpRelayConfig")
 class DhcpRelayConfig:
     """
     Attributes:
-        enable (Union[Unset, bool]):
-        interfaces (Union[Unset, List[str]]):
-        carp_status_vip (Union[Unset, str]):
-        append_circuit_agent_ids (Union[Unset, bool]):
-        upstream_servers (Union[Unset, List[str]]):
-        carp_status_vip_entries (Union[Unset, List['TextValue']]):
-        interfaces_entries (Union[Unset, List['TextValue']]):
+        enable (bool | Unset):
+        interfaces (list[str] | Unset):
+        carp_status_vip (str | Unset):
+        append_circuit_agent_ids (bool | Unset):
+        upstream_servers (list[str] | Unset):
+        carp_status_vip_entries (list[TextValue] | Unset):
+        interfaces_entries (list[TextValue] | Unset):
     """
 
-    enable: Union[Unset, bool] = UNSET
-    interfaces: Union[Unset, List[str]] = UNSET
-    carp_status_vip: Union[Unset, str] = UNSET
-    append_circuit_agent_ids: Union[Unset, bool] = UNSET
-    upstream_servers: Union[Unset, List[str]] = UNSET
-    carp_status_vip_entries: Union[Unset, List["TextValue"]] = UNSET
-    interfaces_entries: Union[Unset, List["TextValue"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    enable: bool | Unset = UNSET
+    interfaces: list[str] | Unset = UNSET
+    carp_status_vip: str | Unset = UNSET
+    append_circuit_agent_ids: bool | Unset = UNSET
+    upstream_servers: list[str] | Unset = UNSET
+    carp_status_vip_entries: list[TextValue] | Unset = UNSET
+    interfaces_entries: list[TextValue] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enable = self.enable
 
-        interfaces: Union[Unset, List[str]] = UNSET
+        interfaces: list[str] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = self.interfaces
 
@@ -45,25 +48,25 @@ class DhcpRelayConfig:
 
         append_circuit_agent_ids = self.append_circuit_agent_ids
 
-        upstream_servers: Union[Unset, List[str]] = UNSET
+        upstream_servers: list[str] | Unset = UNSET
         if not isinstance(self.upstream_servers, Unset):
             upstream_servers = self.upstream_servers
 
-        carp_status_vip_entries: Union[Unset, List[Dict[str, Any]]] = UNSET
+        carp_status_vip_entries: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.carp_status_vip_entries, Unset):
             carp_status_vip_entries = []
             for carp_status_vip_entries_item_data in self.carp_status_vip_entries:
                 carp_status_vip_entries_item = carp_status_vip_entries_item_data.to_dict()
                 carp_status_vip_entries.append(carp_status_vip_entries_item)
 
-        interfaces_entries: Union[Unset, List[Dict[str, Any]]] = UNSET
+        interfaces_entries: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.interfaces_entries, Unset):
             interfaces_entries = []
             for interfaces_entries_item_data in self.interfaces_entries:
                 interfaces_entries_item = interfaces_entries_item_data.to_dict()
                 interfaces_entries.append(interfaces_entries_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if enable is not UNSET:
@@ -84,33 +87,37 @@ class DhcpRelayConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.text_value import TextValue
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         enable = d.pop("enable", UNSET)
 
-        interfaces = cast(List[str], d.pop("interfaces", UNSET))
+        interfaces = cast(list[str], d.pop("interfaces", UNSET))
 
         carp_status_vip = d.pop("carp_status_vip", UNSET)
 
         append_circuit_agent_ids = d.pop("append_circuit_agent_ids", UNSET)
 
-        upstream_servers = cast(List[str], d.pop("upstream_servers", UNSET))
+        upstream_servers = cast(list[str], d.pop("upstream_servers", UNSET))
 
-        carp_status_vip_entries = []
         _carp_status_vip_entries = d.pop("carp_status_vip_entries", UNSET)
-        for carp_status_vip_entries_item_data in _carp_status_vip_entries or []:
-            carp_status_vip_entries_item = TextValue.from_dict(carp_status_vip_entries_item_data)
+        carp_status_vip_entries: list[TextValue] | Unset = UNSET
+        if _carp_status_vip_entries is not UNSET:
+            carp_status_vip_entries = []
+            for carp_status_vip_entries_item_data in _carp_status_vip_entries:
+                carp_status_vip_entries_item = TextValue.from_dict(carp_status_vip_entries_item_data)
 
-            carp_status_vip_entries.append(carp_status_vip_entries_item)
+                carp_status_vip_entries.append(carp_status_vip_entries_item)
 
-        interfaces_entries = []
         _interfaces_entries = d.pop("interfaces_entries", UNSET)
-        for interfaces_entries_item_data in _interfaces_entries or []:
-            interfaces_entries_item = TextValue.from_dict(interfaces_entries_item_data)
+        interfaces_entries: list[TextValue] | Unset = UNSET
+        if _interfaces_entries is not UNSET:
+            interfaces_entries = []
+            for interfaces_entries_item_data in _interfaces_entries:
+                interfaces_entries_item = TextValue.from_dict(interfaces_entries_item_data)
 
-            interfaces_entries.append(interfaces_entries_item)
+                interfaces_entries.append(interfaces_entries_item)
 
         dhcp_relay_config = cls(
             enable=enable,
@@ -126,7 +133,7 @@ class DhcpRelayConfig:
         return dhcp_relay_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -13,26 +14,31 @@ from ...types import Response
 def _get_kwargs(
     version: str,
     iface: str,
-) -> Dict[str, Any]:
-    _kwargs: Dict[str, Any] = {
+) -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/services/dhcp-server/{version}/static-mappings/{iface}",
+        "url": "/services/dhcp-server/{version}/static-mappings/{iface}".format(
+            version=quote(str(version), safe=""),
+            iface=quote(str(iface), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[DhcpStaticMappings, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> DhcpStaticMappings | Error | None:
     if response.status_code == 200:
         response_200 = DhcpStaticMappings.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -40,8 +46,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[DhcpStaticMappings, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[DhcpStaticMappings | Error]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -54,8 +60,8 @@ def sync_detailed(
     version: str,
     iface: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[DhcpStaticMappings, Error]]:
+    client: AuthenticatedClient | Client,
+) -> Response[DhcpStaticMappings | Error]:
     """List all static mappings for an interface
 
     Args:
@@ -67,7 +73,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DhcpStaticMappings, Error]]
+        Response[DhcpStaticMappings | Error]
     """
 
     kwargs = _get_kwargs(
@@ -86,8 +92,8 @@ def sync(
     version: str,
     iface: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[DhcpStaticMappings, Error]]:
+    client: AuthenticatedClient | Client,
+) -> DhcpStaticMappings | Error | None:
     """List all static mappings for an interface
 
     Args:
@@ -99,7 +105,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DhcpStaticMappings, Error]
+        DhcpStaticMappings | Error
     """
 
     return sync_detailed(
@@ -113,8 +119,8 @@ async def asyncio_detailed(
     version: str,
     iface: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[DhcpStaticMappings, Error]]:
+    client: AuthenticatedClient | Client,
+) -> Response[DhcpStaticMappings | Error]:
     """List all static mappings for an interface
 
     Args:
@@ -126,7 +132,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DhcpStaticMappings, Error]]
+        Response[DhcpStaticMappings | Error]
     """
 
     kwargs = _get_kwargs(
@@ -143,8 +149,8 @@ async def asyncio(
     version: str,
     iface: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[DhcpStaticMappings, Error]]:
+    client: AuthenticatedClient | Client,
+) -> DhcpStaticMappings | Error | None:
     """List all static mappings for an interface
 
     Args:
@@ -156,7 +162,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DhcpStaticMappings, Error]
+        DhcpStaticMappings | Error
     """
 
     return (

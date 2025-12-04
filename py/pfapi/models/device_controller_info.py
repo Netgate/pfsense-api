@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,24 +16,24 @@ class DeviceControllerInfo:
     """brief information about the controller managing the device
 
     Attributes:
-        pubkey (Union[Unset, str]): base64 encoded public key of the controller
-        vpn_ep_address (Union[Unset, str]): list of MIM VPN listening addresses of the controller
-        vpn_addr (Union[Unset, str]): MIM vpn address
+        pubkey (str | Unset): base64 encoded public key of the controller
+        vpn_ep_address (str | Unset): list of MIM VPN listening addresses of the controller
+        vpn_addr (str | Unset): MIM vpn address
     """
 
-    pubkey: Union[Unset, str] = UNSET
-    vpn_ep_address: Union[Unset, str] = UNSET
-    vpn_addr: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    pubkey: str | Unset = UNSET
+    vpn_ep_address: str | Unset = UNSET
+    vpn_addr: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         pubkey = self.pubkey
 
         vpn_ep_address = self.vpn_ep_address
 
         vpn_addr = self.vpn_addr
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if pubkey is not UNSET:
@@ -43,8 +46,8 @@ class DeviceControllerInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         pubkey = d.pop("pubkey", UNSET)
 
         vpn_ep_address = d.pop("vpn_ep_address", UNSET)
@@ -61,7 +64,7 @@ class DeviceControllerInfo:
         return device_controller_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

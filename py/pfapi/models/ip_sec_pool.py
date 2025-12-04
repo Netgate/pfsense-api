@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,23 +19,23 @@ T = TypeVar("T", bound="IPSecPool")
 class IPSecPool:
     """
     Attributes:
-        name (Union[Unset, str]):
-        base (Union[Unset, str]):
-        online (Union[Unset, str]):
-        offline (Union[Unset, str]):
-        size (Union[Unset, str]):
-        lease (Union[Unset, List['IPSecPoolLease']]):
+        name (str | Unset):
+        base (str | Unset):
+        online (str | Unset):
+        offline (str | Unset):
+        size (str | Unset):
+        lease (list[IPSecPoolLease] | Unset):
     """
 
-    name: Union[Unset, str] = UNSET
-    base: Union[Unset, str] = UNSET
-    online: Union[Unset, str] = UNSET
-    offline: Union[Unset, str] = UNSET
-    size: Union[Unset, str] = UNSET
-    lease: Union[Unset, List["IPSecPoolLease"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    base: str | Unset = UNSET
+    online: str | Unset = UNSET
+    offline: str | Unset = UNSET
+    size: str | Unset = UNSET
+    lease: list[IPSecPoolLease] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         base = self.base
@@ -43,14 +46,14 @@ class IPSecPool:
 
         size = self.size
 
-        lease: Union[Unset, List[Dict[str, Any]]] = UNSET
+        lease: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.lease, Unset):
             lease = []
             for lease_item_data in self.lease:
                 lease_item = lease_item_data.to_dict()
                 lease.append(lease_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -69,10 +72,10 @@ class IPSecPool:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ip_sec_pool_lease import IPSecPoolLease
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         base = d.pop("base", UNSET)
@@ -83,12 +86,14 @@ class IPSecPool:
 
         size = d.pop("size", UNSET)
 
-        lease = []
         _lease = d.pop("lease", UNSET)
-        for lease_item_data in _lease or []:
-            lease_item = IPSecPoolLease.from_dict(lease_item_data)
+        lease: list[IPSecPoolLease] | Unset = UNSET
+        if _lease is not UNSET:
+            lease = []
+            for lease_item_data in _lease:
+                lease_item = IPSecPoolLease.from_dict(lease_item_data)
 
-            lease.append(lease_item)
+                lease.append(lease_item)
 
         ip_sec_pool = cls(
             name=name,
@@ -103,7 +108,7 @@ class IPSecPool:
         return ip_sec_pool
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

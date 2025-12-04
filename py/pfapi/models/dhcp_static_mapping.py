@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,53 +19,53 @@ T = TypeVar("T", bound="DhcpStaticMapping")
 class DhcpStaticMapping:
     """
     Attributes:
-        id (Union[Unset, str]):
-        mac_address (Union[Unset, str]):
-        client_identifier (Union[Unset, str]):
-        ip_address (Union[Unset, str]):
-        arp_table_static_entry (Union[Unset, bool]):
-        hostname (Union[Unset, str]):
-        description (Union[Unset, str]):
-        early_dns_reg (Union[Unset, str]):
-        wins_servers (Union[Unset, List[str]]):
-        dns_servers (Union[Unset, List[str]]):
-        gateway (Union[Unset, str]):
-        domain_name (Union[Unset, str]):
-        domain_search_list (Union[Unset, List[str]]):
-        ntp_servers (Union[Unset, List[str]]):
-        tftp_server (Union[Unset, str]):
-        ldap_server_uri (Union[Unset, str]):
-        network_booting (Union[Unset, DhcpNetworkBooting]):
-        duid (Union[Unset, str]):
-        ipv6_address (Union[Unset, str]):
-        filename (Union[Unset, str]):
-        rootpath (Union[Unset, str]):
+        id (str | Unset):
+        mac_address (str | Unset):
+        client_identifier (str | Unset):
+        ip_address (str | Unset):
+        arp_table_static_entry (bool | Unset):
+        hostname (str | Unset):
+        description (str | Unset):
+        early_dns_reg (str | Unset):
+        wins_servers (list[str] | Unset):
+        dns_servers (list[str] | Unset):
+        gateway (str | Unset):
+        domain_name (str | Unset):
+        domain_search_list (list[str] | Unset):
+        ntp_servers (list[str] | Unset):
+        tftp_server (str | Unset):
+        ldap_server_uri (str | Unset):
+        network_booting (DhcpNetworkBooting | Unset):
+        duid (str | Unset):
+        ipv6_address (str | Unset):
+        filename (str | Unset):
+        rootpath (str | Unset):
     """
 
-    id: Union[Unset, str] = UNSET
-    mac_address: Union[Unset, str] = UNSET
-    client_identifier: Union[Unset, str] = UNSET
-    ip_address: Union[Unset, str] = UNSET
-    arp_table_static_entry: Union[Unset, bool] = UNSET
-    hostname: Union[Unset, str] = UNSET
-    description: Union[Unset, str] = UNSET
-    early_dns_reg: Union[Unset, str] = UNSET
-    wins_servers: Union[Unset, List[str]] = UNSET
-    dns_servers: Union[Unset, List[str]] = UNSET
-    gateway: Union[Unset, str] = UNSET
-    domain_name: Union[Unset, str] = UNSET
-    domain_search_list: Union[Unset, List[str]] = UNSET
-    ntp_servers: Union[Unset, List[str]] = UNSET
-    tftp_server: Union[Unset, str] = UNSET
-    ldap_server_uri: Union[Unset, str] = UNSET
-    network_booting: Union[Unset, "DhcpNetworkBooting"] = UNSET
-    duid: Union[Unset, str] = UNSET
-    ipv6_address: Union[Unset, str] = UNSET
-    filename: Union[Unset, str] = UNSET
-    rootpath: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    id: str | Unset = UNSET
+    mac_address: str | Unset = UNSET
+    client_identifier: str | Unset = UNSET
+    ip_address: str | Unset = UNSET
+    arp_table_static_entry: bool | Unset = UNSET
+    hostname: str | Unset = UNSET
+    description: str | Unset = UNSET
+    early_dns_reg: str | Unset = UNSET
+    wins_servers: list[str] | Unset = UNSET
+    dns_servers: list[str] | Unset = UNSET
+    gateway: str | Unset = UNSET
+    domain_name: str | Unset = UNSET
+    domain_search_list: list[str] | Unset = UNSET
+    ntp_servers: list[str] | Unset = UNSET
+    tftp_server: str | Unset = UNSET
+    ldap_server_uri: str | Unset = UNSET
+    network_booting: DhcpNetworkBooting | Unset = UNSET
+    duid: str | Unset = UNSET
+    ipv6_address: str | Unset = UNSET
+    filename: str | Unset = UNSET
+    rootpath: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         id = self.id
 
         mac_address = self.mac_address
@@ -79,11 +82,11 @@ class DhcpStaticMapping:
 
         early_dns_reg = self.early_dns_reg
 
-        wins_servers: Union[Unset, List[str]] = UNSET
+        wins_servers: list[str] | Unset = UNSET
         if not isinstance(self.wins_servers, Unset):
             wins_servers = self.wins_servers
 
-        dns_servers: Union[Unset, List[str]] = UNSET
+        dns_servers: list[str] | Unset = UNSET
         if not isinstance(self.dns_servers, Unset):
             dns_servers = self.dns_servers
 
@@ -91,11 +94,11 @@ class DhcpStaticMapping:
 
         domain_name = self.domain_name
 
-        domain_search_list: Union[Unset, List[str]] = UNSET
+        domain_search_list: list[str] | Unset = UNSET
         if not isinstance(self.domain_search_list, Unset):
             domain_search_list = self.domain_search_list
 
-        ntp_servers: Union[Unset, List[str]] = UNSET
+        ntp_servers: list[str] | Unset = UNSET
         if not isinstance(self.ntp_servers, Unset):
             ntp_servers = self.ntp_servers
 
@@ -103,7 +106,7 @@ class DhcpStaticMapping:
 
         ldap_server_uri = self.ldap_server_uri
 
-        network_booting: Union[Unset, Dict[str, Any]] = UNSET
+        network_booting: dict[str, Any] | Unset = UNSET
         if not isinstance(self.network_booting, Unset):
             network_booting = self.network_booting.to_dict()
 
@@ -115,7 +118,7 @@ class DhcpStaticMapping:
 
         rootpath = self.rootpath
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if id is not UNSET:
@@ -164,10 +167,10 @@ class DhcpStaticMapping:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dhcp_network_booting import DhcpNetworkBooting
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         id = d.pop("id", UNSET)
 
         mac_address = d.pop("mac_address", UNSET)
@@ -184,24 +187,24 @@ class DhcpStaticMapping:
 
         early_dns_reg = d.pop("early_dns_reg", UNSET)
 
-        wins_servers = cast(List[str], d.pop("wins_servers", UNSET))
+        wins_servers = cast(list[str], d.pop("wins_servers", UNSET))
 
-        dns_servers = cast(List[str], d.pop("dns_servers", UNSET))
+        dns_servers = cast(list[str], d.pop("dns_servers", UNSET))
 
         gateway = d.pop("gateway", UNSET)
 
         domain_name = d.pop("domain_name", UNSET)
 
-        domain_search_list = cast(List[str], d.pop("domain_search_list", UNSET))
+        domain_search_list = cast(list[str], d.pop("domain_search_list", UNSET))
 
-        ntp_servers = cast(List[str], d.pop("ntp_servers", UNSET))
+        ntp_servers = cast(list[str], d.pop("ntp_servers", UNSET))
 
         tftp_server = d.pop("tftp_server", UNSET)
 
         ldap_server_uri = d.pop("ldap_server_uri", UNSET)
 
         _network_booting = d.pop("network_booting", UNSET)
-        network_booting: Union[Unset, DhcpNetworkBooting]
+        network_booting: DhcpNetworkBooting | Unset
         if isinstance(_network_booting, Unset):
             network_booting = UNSET
         else:
@@ -243,7 +246,7 @@ class DhcpStaticMapping:
         return dhcp_static_mapping
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

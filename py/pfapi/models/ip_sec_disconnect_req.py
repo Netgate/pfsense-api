@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,18 +16,18 @@ T = TypeVar("T", bound="IPSecDisconnectReq")
 class IPSecDisconnectReq:
     """
     Attributes:
-        phase (Union[Unset, IPSecDisconnectReqPhase]):
-        conid (Union[Unset, str]):
-        uniqueid (Union[Unset, str]):
+        phase (IPSecDisconnectReqPhase | Unset):
+        conid (str | Unset):
+        uniqueid (str | Unset):
     """
 
-    phase: Union[Unset, IPSecDisconnectReqPhase] = UNSET
-    conid: Union[Unset, str] = UNSET
-    uniqueid: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    phase: IPSecDisconnectReqPhase | Unset = UNSET
+    conid: str | Unset = UNSET
+    uniqueid: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        phase: Union[Unset, str] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        phase: str | Unset = UNSET
         if not isinstance(self.phase, Unset):
             phase = self.phase.value
 
@@ -32,7 +35,7 @@ class IPSecDisconnectReq:
 
         uniqueid = self.uniqueid
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if phase is not UNSET:
@@ -45,10 +48,10 @@ class IPSecDisconnectReq:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         _phase = d.pop("phase", UNSET)
-        phase: Union[Unset, IPSecDisconnectReqPhase]
+        phase: IPSecDisconnectReqPhase | Unset
         if isinstance(_phase, Unset):
             phase = UNSET
         else:
@@ -68,7 +71,7 @@ class IPSecDisconnectReq:
         return ip_sec_disconnect_req
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

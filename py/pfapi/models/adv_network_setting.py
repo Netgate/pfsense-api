@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,63 +15,63 @@ T = TypeVar("T", bound="AdvNetworkSetting")
 class AdvNetworkSetting:
     """
     Attributes:
-        disablechecksumoffloading (Union[Unset, bool]):
-        disablesegmentationoffloading (Union[Unset, bool]):
-        disablelargereceiveoffloading (Union[Unset, bool]):
-        dhcp6debug (Union[Unset, bool]):
-        dhcp6norelease (Union[Unset, bool]):
-        hnaltqenable (Union[Unset, bool]):
-        ignoreiscwarning (Union[Unset, bool]):
-        ip_change_kill_states (Union[Unset, bool]):
-        ipv6allow (Union[Unset, bool]):
-        ipv6dontcreatelocaldns (Union[Unset, bool]):
-        ipv6nat_enable (Union[Unset, bool]):
-        prefer_ipv4 (Union[Unset, bool]):
-        sharednet (Union[Unset, bool]):
-        radvddebug (Union[Unset, bool]):
-        duid (Union[Unset, str]):
-        global_v6duid (Union[Unset, str]):
-        ipv6duiden_en (Union[Unset, str]):
-        ipv6duiden_id (Union[Unset, str]):
-        ipv6duidll (Union[Unset, str]):
-        ipv6duidllt_ll (Union[Unset, str]):
-        ipv6duidllt_time (Union[Unset, str]):
-        ipv6duidtype (Union[Unset, str]):
-        ipv6duiduuid (Union[Unset, str]):
-        ipv6nat_ipaddr (Union[Unset, str]):
-        dhcpbackend (Union[Unset, str]):
-        use_if_pppoe (Union[Unset, bool]):
+        disablechecksumoffloading (bool | Unset):
+        disablesegmentationoffloading (bool | Unset):
+        disablelargereceiveoffloading (bool | Unset):
+        dhcp6debug (bool | Unset):
+        dhcp6norelease (bool | Unset):
+        hnaltqenable (bool | Unset):
+        ignoreiscwarning (bool | Unset):
+        ip_change_kill_states (bool | Unset):
+        ipv6allow (bool | Unset):
+        ipv6dontcreatelocaldns (bool | Unset):
+        ipv6nat_enable (bool | Unset):
+        prefer_ipv4 (bool | Unset):
+        sharednet (bool | Unset):
+        radvddebug (bool | Unset):
+        duid (str | Unset):
+        global_v6duid (str | Unset):
+        ipv6duiden_en (str | Unset):
+        ipv6duiden_id (str | Unset):
+        ipv6duidll (str | Unset):
+        ipv6duidllt_ll (str | Unset):
+        ipv6duidllt_time (str | Unset):
+        ipv6duidtype (str | Unset):
+        ipv6duiduuid (str | Unset):
+        ipv6nat_ipaddr (str | Unset):
+        dhcpbackend (str | Unset):
+        use_if_pppoe (bool | Unset):
     """
 
-    disablechecksumoffloading: Union[Unset, bool] = UNSET
-    disablesegmentationoffloading: Union[Unset, bool] = UNSET
-    disablelargereceiveoffloading: Union[Unset, bool] = UNSET
-    dhcp6debug: Union[Unset, bool] = UNSET
-    dhcp6norelease: Union[Unset, bool] = UNSET
-    hnaltqenable: Union[Unset, bool] = UNSET
-    ignoreiscwarning: Union[Unset, bool] = UNSET
-    ip_change_kill_states: Union[Unset, bool] = UNSET
-    ipv6allow: Union[Unset, bool] = UNSET
-    ipv6dontcreatelocaldns: Union[Unset, bool] = UNSET
-    ipv6nat_enable: Union[Unset, bool] = UNSET
-    prefer_ipv4: Union[Unset, bool] = UNSET
-    sharednet: Union[Unset, bool] = UNSET
-    radvddebug: Union[Unset, bool] = UNSET
-    duid: Union[Unset, str] = UNSET
-    global_v6duid: Union[Unset, str] = UNSET
-    ipv6duiden_en: Union[Unset, str] = UNSET
-    ipv6duiden_id: Union[Unset, str] = UNSET
-    ipv6duidll: Union[Unset, str] = UNSET
-    ipv6duidllt_ll: Union[Unset, str] = UNSET
-    ipv6duidllt_time: Union[Unset, str] = UNSET
-    ipv6duidtype: Union[Unset, str] = UNSET
-    ipv6duiduuid: Union[Unset, str] = UNSET
-    ipv6nat_ipaddr: Union[Unset, str] = UNSET
-    dhcpbackend: Union[Unset, str] = UNSET
-    use_if_pppoe: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    disablechecksumoffloading: bool | Unset = UNSET
+    disablesegmentationoffloading: bool | Unset = UNSET
+    disablelargereceiveoffloading: bool | Unset = UNSET
+    dhcp6debug: bool | Unset = UNSET
+    dhcp6norelease: bool | Unset = UNSET
+    hnaltqenable: bool | Unset = UNSET
+    ignoreiscwarning: bool | Unset = UNSET
+    ip_change_kill_states: bool | Unset = UNSET
+    ipv6allow: bool | Unset = UNSET
+    ipv6dontcreatelocaldns: bool | Unset = UNSET
+    ipv6nat_enable: bool | Unset = UNSET
+    prefer_ipv4: bool | Unset = UNSET
+    sharednet: bool | Unset = UNSET
+    radvddebug: bool | Unset = UNSET
+    duid: str | Unset = UNSET
+    global_v6duid: str | Unset = UNSET
+    ipv6duiden_en: str | Unset = UNSET
+    ipv6duiden_id: str | Unset = UNSET
+    ipv6duidll: str | Unset = UNSET
+    ipv6duidllt_ll: str | Unset = UNSET
+    ipv6duidllt_time: str | Unset = UNSET
+    ipv6duidtype: str | Unset = UNSET
+    ipv6duiduuid: str | Unset = UNSET
+    ipv6nat_ipaddr: str | Unset = UNSET
+    dhcpbackend: str | Unset = UNSET
+    use_if_pppoe: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         disablechecksumoffloading = self.disablechecksumoffloading
 
         disablesegmentationoffloading = self.disablesegmentationoffloading
@@ -121,7 +124,7 @@ class AdvNetworkSetting:
 
         use_if_pppoe = self.use_if_pppoe
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if disablechecksumoffloading is not UNSET:
@@ -180,8 +183,8 @@ class AdvNetworkSetting:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         disablechecksumoffloading = d.pop("disablechecksumoffloading", UNSET)
 
         disablesegmentationoffloading = d.pop("disablesegmentationoffloading", UNSET)
@@ -267,7 +270,7 @@ class AdvNetworkSetting:
         return adv_network_setting
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

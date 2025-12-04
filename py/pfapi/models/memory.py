@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,36 +21,36 @@ T = TypeVar("T", bound="Memory")
 class Memory:
     """
     Attributes:
-        memory_map (Union[Unset, List['MemoryMap']]):
-        dimms (Union[Unset, List['Dimm']]):
-        stats (Union[Unset, MemoryStat]):
+        memory_map (list[MemoryMap] | Unset):
+        dimms (list[Dimm] | Unset):
+        stats (MemoryStat | Unset):
     """
 
-    memory_map: Union[Unset, List["MemoryMap"]] = UNSET
-    dimms: Union[Unset, List["Dimm"]] = UNSET
-    stats: Union[Unset, "MemoryStat"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    memory_map: list[MemoryMap] | Unset = UNSET
+    dimms: list[Dimm] | Unset = UNSET
+    stats: MemoryStat | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        memory_map: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        memory_map: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.memory_map, Unset):
             memory_map = []
             for memory_map_item_data in self.memory_map:
                 memory_map_item = memory_map_item_data.to_dict()
                 memory_map.append(memory_map_item)
 
-        dimms: Union[Unset, List[Dict[str, Any]]] = UNSET
+        dimms: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.dimms, Unset):
             dimms = []
             for dimms_item_data in self.dimms:
                 dimms_item = dimms_item_data.to_dict()
                 dimms.append(dimms_item)
 
-        stats: Union[Unset, Dict[str, Any]] = UNSET
+        stats: dict[str, Any] | Unset = UNSET
         if not isinstance(self.stats, Unset):
             stats = self.stats.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if memory_map is not UNSET:
@@ -60,28 +63,32 @@ class Memory:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dimm import Dimm
         from ..models.memory_map import MemoryMap
         from ..models.memory_stat import MemoryStat
 
-        d = src_dict.copy()
-        memory_map = []
+        d = dict(src_dict)
         _memory_map = d.pop("memory_map", UNSET)
-        for memory_map_item_data in _memory_map or []:
-            memory_map_item = MemoryMap.from_dict(memory_map_item_data)
+        memory_map: list[MemoryMap] | Unset = UNSET
+        if _memory_map is not UNSET:
+            memory_map = []
+            for memory_map_item_data in _memory_map:
+                memory_map_item = MemoryMap.from_dict(memory_map_item_data)
 
-            memory_map.append(memory_map_item)
+                memory_map.append(memory_map_item)
 
-        dimms = []
         _dimms = d.pop("dimms", UNSET)
-        for dimms_item_data in _dimms or []:
-            dimms_item = Dimm.from_dict(dimms_item_data)
+        dimms: list[Dimm] | Unset = UNSET
+        if _dimms is not UNSET:
+            dimms = []
+            for dimms_item_data in _dimms:
+                dimms_item = Dimm.from_dict(dimms_item_data)
 
-            dimms.append(dimms_item)
+                dimms.append(dimms_item)
 
         _stats = d.pop("stats", UNSET)
-        stats: Union[Unset, MemoryStat]
+        stats: MemoryStat | Unset
         if isinstance(_stats, Unset):
             stats = UNSET
         else:
@@ -97,7 +104,7 @@ class Memory:
         return memory
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

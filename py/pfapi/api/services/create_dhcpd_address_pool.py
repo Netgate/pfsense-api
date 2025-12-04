@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -15,17 +16,19 @@ def _get_kwargs(
     iface: str,
     *,
     body: DhcpAddressPool,
-) -> Dict[str, Any]:
-    headers: Dict[str, Any] = {}
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "put",
-        "url": f"/services/dhcp-server/{version}/address-pools/{iface}",
+        "url": "/services/dhcp-server/{version}/address-pools/{iface}".format(
+            version=quote(str(version), safe=""),
+            iface=quote(str(iface), safe=""),
+        ),
     }
 
-    _body = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-    _kwargs["json"] = _body
     headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
@@ -33,16 +36,18 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[DhcpAddressPool, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> DhcpAddressPool | Error | None:
     if response.status_code == 200:
         response_200 = DhcpAddressPool.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -50,8 +55,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[DhcpAddressPool, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[DhcpAddressPool | Error]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -64,9 +69,9 @@ def sync_detailed(
     version: str,
     iface: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: DhcpAddressPool,
-) -> Response[Union[DhcpAddressPool, Error]]:
+) -> Response[DhcpAddressPool | Error]:
     """Create a address pool for a given interface
 
     Args:
@@ -79,7 +84,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DhcpAddressPool, Error]]
+        Response[DhcpAddressPool | Error]
     """
 
     kwargs = _get_kwargs(
@@ -99,9 +104,9 @@ def sync(
     version: str,
     iface: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: DhcpAddressPool,
-) -> Optional[Union[DhcpAddressPool, Error]]:
+) -> DhcpAddressPool | Error | None:
     """Create a address pool for a given interface
 
     Args:
@@ -114,7 +119,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DhcpAddressPool, Error]
+        DhcpAddressPool | Error
     """
 
     return sync_detailed(
@@ -129,9 +134,9 @@ async def asyncio_detailed(
     version: str,
     iface: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: DhcpAddressPool,
-) -> Response[Union[DhcpAddressPool, Error]]:
+) -> Response[DhcpAddressPool | Error]:
     """Create a address pool for a given interface
 
     Args:
@@ -144,7 +149,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DhcpAddressPool, Error]]
+        Response[DhcpAddressPool | Error]
     """
 
     kwargs = _get_kwargs(
@@ -162,9 +167,9 @@ async def asyncio(
     version: str,
     iface: str,
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: DhcpAddressPool,
-) -> Optional[Union[DhcpAddressPool, Error]]:
+) -> DhcpAddressPool | Error | None:
     """Create a address pool for a given interface
 
     Args:
@@ -177,7 +182,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DhcpAddressPool, Error]
+        DhcpAddressPool | Error
     """
 
     return (

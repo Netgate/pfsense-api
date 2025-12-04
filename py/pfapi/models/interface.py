@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,191 +16,191 @@ class Interface:
     """Detailed interface information
 
     Attributes:
-        name (Union[Unset, str]): alias to assigned name
-        if_ (Union[Unset, str]): alias to device_name
-        assigned_name (Union[Unset, str]): user assigned name, e.g. MYLAN
-        device_name (Union[Unset, str]): host device name, e.g. ix1
-        identity (Union[Unset, str]): unique identity of device, e.g. opt1
-        enable (Union[Unset, bool]):
-        blockbogons (Union[Unset, bool]):
-        pseudo (Union[Unset, bool]):
-        blockpriv (Union[Unset, bool]):
-        slaacusev4iface (Union[Unset, bool]):
-        descr (Union[Unset, str]):
-        type (Union[Unset, str]):
-        type6 (Union[Unset, str]):
-        mtu (Union[Unset, int]):
-        mss (Union[Unset, int]):
-        pcp (Union[Unset, int]):
-        promisc (Union[Unset, bool]):
-        ipaddr (Union[Unset, str]):
-        member (Union[Unset, str]):
-        media (Union[Unset, str]):
-        mac (Union[Unset, str]):
-        mediaopt (Union[Unset, str]):
-        spoofmac (Union[Unset, str]):
-        tag (Union[Unset, int]):
-        gateway (Union[Unset, str]):
-        ipaddrv6 (Union[Unset, str]):
-        ipv6usev4iface (Union[Unset, bool]):
-        gatewayv6 (Union[Unset, str]):
-        alias_address (Union[Unset, str]):
-        dhcphostname (Union[Unset, str]):
-        dhcprejectfrom (Union[Unset, str]):
-        dhcprejectfromarray (Union[Unset, List[str]]):
-        dhcpvlanenable (Union[Unset, bool]):
-        dhcp6usev4iface (Union[Unset, bool]):
-        dhcp6prefixonly (Union[Unset, bool]):
-        dhcp6_ia_pd_send_hint (Union[Unset, bool]):
-        dhcp6debug (Union[Unset, bool]):
-        dhcp6withoutra (Union[Unset, bool]):
-        dhcp6norelease (Union[Unset, bool]):
-        dhcpcvpt (Union[Unset, str]):
-        dhcp6cvpt (Union[Unset, str]):
-        prefix_6rd (Union[Unset, str]):
-        gateway_6rd (Union[Unset, str]):
-        dhcp6_ia_pd_len (Union[Unset, str]):
-        prefix_6rd_v4plen (Union[Unset, str]):
-        track6_interface (Union[Unset, str]):
-        track6_prefix_id (Union[Unset, str]):
-        adv_dhcp_config_advanced (Union[Unset, bool]):
-        adv_dhcp_config_file_override (Union[Unset, bool]):
-        adv_dhcp_pt_timeout (Union[Unset, str]):
-        adv_dhcp_pt_retry (Union[Unset, str]):
-        adv_dhcp_pt_select_timeout (Union[Unset, str]):
-        adv_dhcp_pt_reboot (Union[Unset, str]):
-        adv_dhcp_pt_backoff_cutoff (Union[Unset, str]):
-        adv_dhcp_pt_initial_interval (Union[Unset, str]):
-        adv_dhcp_pt_values (Union[Unset, str]):
-        adv_dhcp_config_file_override_path (Union[Unset, str]):
-        adv_dhcp_send_options (Union[Unset, str]):
-        adv_dhcp_request_options (Union[Unset, str]):
-        adv_dhcp_required_options (Union[Unset, str]):
-        adv_dhcp_option_modifiers (Union[Unset, str]):
-        adv_dhcp6_config_advanced (Union[Unset, bool]):
-        adv_dhcp6_config_file_override (Union[Unset, bool]):
-        adv_dhcp6_prefix_selected_interface (Union[Unset, str]):
-        adv_dhcp6_config_file_override_path (Union[Unset, str]):
-        adv_dhcp6_interface_statement_information_only_enable (Union[Unset, bool]):
-        adv_dhcp6_interface_statement_send_options (Union[Unset, str]):
-        adv_dhcp6_interface_statement_request_options (Union[Unset, str]):
-        adv_dhcp6_interface_statement_script (Union[Unset, str]):
-        adv_dhcp6_id_assoc_statement_address_enable (Union[Unset, bool]):
-        adv_dhcp6_id_assoc_statement_address_id (Union[Unset, str]):
-        adv_dhcp6_id_assoc_statement_address (Union[Unset, str]):
-        adv_dhcp6_id_assoc_statement_address_pltime (Union[Unset, str]):
-        adv_dhcp6_id_assoc_statement_address_vltime (Union[Unset, str]):
-        adv_dhcp6_id_assoc_statement_prefix_enable (Union[Unset, bool]):
-        adv_dhcp6_id_assoc_statement_prefix_id (Union[Unset, str]):
-        adv_dhcp6_id_assoc_statement_prefix (Union[Unset, str]):
-        adv_dhcp6_id_assoc_statement_prefix_pltime (Union[Unset, str]):
-        adv_dhcp6_id_assoc_statement_prefix_vltime (Union[Unset, str]):
-        adv_dhcp6_prefix_interface_statement_sla_id (Union[Unset, str]):
-        adv_dhcp6_prefix_interface_statement_sla_len (Union[Unset, str]):
-        adv_dhcp6_authentication_statement_authname (Union[Unset, str]):
-        adv_dhcp6_authentication_statement_protocol (Union[Unset, str]):
-        adv_dhcp6_authentication_statement_algorithm (Union[Unset, str]):
-        adv_dhcp6_authentication_statement_rdm (Union[Unset, str]):
-        adv_dhcp6_key_info_statement_keyname (Union[Unset, str]):
-        adv_dhcp6_key_info_statement_realm (Union[Unset, str]):
-        adv_dhcp6_key_info_statement_keyid (Union[Unset, str]):
-        adv_dhcp6_key_info_statement_secret (Union[Unset, str]):
-        adv_dhcp6_key_info_statement_expire (Union[Unset, str]):
+        name (str | Unset): alias to assigned name
+        if_ (str | Unset): alias to device_name
+        assigned_name (str | Unset): user assigned name, e.g. MYLAN
+        device_name (str | Unset): host device name, e.g. ix1
+        identity (str | Unset): unique identity of device, e.g. opt1
+        enable (bool | Unset):
+        blockbogons (bool | Unset):
+        pseudo (bool | Unset):
+        blockpriv (bool | Unset):
+        slaacusev4iface (bool | Unset):
+        descr (str | Unset):
+        type_ (str | Unset):
+        type6 (str | Unset):
+        mtu (int | Unset):
+        mss (int | Unset):
+        pcp (int | Unset):
+        promisc (bool | Unset):
+        ipaddr (str | Unset):
+        member (str | Unset):
+        media (str | Unset):
+        mac (str | Unset):
+        mediaopt (str | Unset):
+        spoofmac (str | Unset):
+        tag (int | Unset):
+        gateway (str | Unset):
+        ipaddrv6 (str | Unset):
+        ipv6usev4iface (bool | Unset):
+        gatewayv6 (str | Unset):
+        alias_address (str | Unset):
+        dhcphostname (str | Unset):
+        dhcprejectfrom (str | Unset):
+        dhcprejectfromarray (list[str] | Unset):
+        dhcpvlanenable (bool | Unset):
+        dhcp6usev4iface (bool | Unset):
+        dhcp6prefixonly (bool | Unset):
+        dhcp6_ia_pd_send_hint (bool | Unset):
+        dhcp6debug (bool | Unset):
+        dhcp6withoutra (bool | Unset):
+        dhcp6norelease (bool | Unset):
+        dhcpcvpt (str | Unset):
+        dhcp6cvpt (str | Unset):
+        prefix_6rd (str | Unset):
+        gateway_6rd (str | Unset):
+        dhcp6_ia_pd_len (str | Unset):
+        prefix_6rd_v4plen (str | Unset):
+        track6_interface (str | Unset):
+        track6_prefix_id (str | Unset):
+        adv_dhcp_config_advanced (bool | Unset):
+        adv_dhcp_config_file_override (bool | Unset):
+        adv_dhcp_pt_timeout (str | Unset):
+        adv_dhcp_pt_retry (str | Unset):
+        adv_dhcp_pt_select_timeout (str | Unset):
+        adv_dhcp_pt_reboot (str | Unset):
+        adv_dhcp_pt_backoff_cutoff (str | Unset):
+        adv_dhcp_pt_initial_interval (str | Unset):
+        adv_dhcp_pt_values (str | Unset):
+        adv_dhcp_config_file_override_path (str | Unset):
+        adv_dhcp_send_options (str | Unset):
+        adv_dhcp_request_options (str | Unset):
+        adv_dhcp_required_options (str | Unset):
+        adv_dhcp_option_modifiers (str | Unset):
+        adv_dhcp6_config_advanced (bool | Unset):
+        adv_dhcp6_config_file_override (bool | Unset):
+        adv_dhcp6_prefix_selected_interface (str | Unset):
+        adv_dhcp6_config_file_override_path (str | Unset):
+        adv_dhcp6_interface_statement_information_only_enable (bool | Unset):
+        adv_dhcp6_interface_statement_send_options (str | Unset):
+        adv_dhcp6_interface_statement_request_options (str | Unset):
+        adv_dhcp6_interface_statement_script (str | Unset):
+        adv_dhcp6_id_assoc_statement_address_enable (bool | Unset):
+        adv_dhcp6_id_assoc_statement_address_id (str | Unset):
+        adv_dhcp6_id_assoc_statement_address (str | Unset):
+        adv_dhcp6_id_assoc_statement_address_pltime (str | Unset):
+        adv_dhcp6_id_assoc_statement_address_vltime (str | Unset):
+        adv_dhcp6_id_assoc_statement_prefix_enable (bool | Unset):
+        adv_dhcp6_id_assoc_statement_prefix_id (str | Unset):
+        adv_dhcp6_id_assoc_statement_prefix (str | Unset):
+        adv_dhcp6_id_assoc_statement_prefix_pltime (str | Unset):
+        adv_dhcp6_id_assoc_statement_prefix_vltime (str | Unset):
+        adv_dhcp6_prefix_interface_statement_sla_id (str | Unset):
+        adv_dhcp6_prefix_interface_statement_sla_len (str | Unset):
+        adv_dhcp6_authentication_statement_authname (str | Unset):
+        adv_dhcp6_authentication_statement_protocol (str | Unset):
+        adv_dhcp6_authentication_statement_algorithm (str | Unset):
+        adv_dhcp6_authentication_statement_rdm (str | Unset):
+        adv_dhcp6_key_info_statement_keyname (str | Unset):
+        adv_dhcp6_key_info_statement_realm (str | Unset):
+        adv_dhcp6_key_info_statement_keyid (str | Unset):
+        adv_dhcp6_key_info_statement_secret (str | Unset):
+        adv_dhcp6_key_info_statement_expire (str | Unset):
     """
 
-    name: Union[Unset, str] = UNSET
-    if_: Union[Unset, str] = UNSET
-    assigned_name: Union[Unset, str] = UNSET
-    device_name: Union[Unset, str] = UNSET
-    identity: Union[Unset, str] = UNSET
-    enable: Union[Unset, bool] = UNSET
-    blockbogons: Union[Unset, bool] = UNSET
-    pseudo: Union[Unset, bool] = UNSET
-    blockpriv: Union[Unset, bool] = UNSET
-    slaacusev4iface: Union[Unset, bool] = UNSET
-    descr: Union[Unset, str] = UNSET
-    type: Union[Unset, str] = UNSET
-    type6: Union[Unset, str] = UNSET
-    mtu: Union[Unset, int] = UNSET
-    mss: Union[Unset, int] = UNSET
-    pcp: Union[Unset, int] = UNSET
-    promisc: Union[Unset, bool] = UNSET
-    ipaddr: Union[Unset, str] = UNSET
-    member: Union[Unset, str] = UNSET
-    media: Union[Unset, str] = UNSET
-    mac: Union[Unset, str] = UNSET
-    mediaopt: Union[Unset, str] = UNSET
-    spoofmac: Union[Unset, str] = UNSET
-    tag: Union[Unset, int] = UNSET
-    gateway: Union[Unset, str] = UNSET
-    ipaddrv6: Union[Unset, str] = UNSET
-    ipv6usev4iface: Union[Unset, bool] = UNSET
-    gatewayv6: Union[Unset, str] = UNSET
-    alias_address: Union[Unset, str] = UNSET
-    dhcphostname: Union[Unset, str] = UNSET
-    dhcprejectfrom: Union[Unset, str] = UNSET
-    dhcprejectfromarray: Union[Unset, List[str]] = UNSET
-    dhcpvlanenable: Union[Unset, bool] = UNSET
-    dhcp6usev4iface: Union[Unset, bool] = UNSET
-    dhcp6prefixonly: Union[Unset, bool] = UNSET
-    dhcp6_ia_pd_send_hint: Union[Unset, bool] = UNSET
-    dhcp6debug: Union[Unset, bool] = UNSET
-    dhcp6withoutra: Union[Unset, bool] = UNSET
-    dhcp6norelease: Union[Unset, bool] = UNSET
-    dhcpcvpt: Union[Unset, str] = UNSET
-    dhcp6cvpt: Union[Unset, str] = UNSET
-    prefix_6rd: Union[Unset, str] = UNSET
-    gateway_6rd: Union[Unset, str] = UNSET
-    dhcp6_ia_pd_len: Union[Unset, str] = UNSET
-    prefix_6rd_v4plen: Union[Unset, str] = UNSET
-    track6_interface: Union[Unset, str] = UNSET
-    track6_prefix_id: Union[Unset, str] = UNSET
-    adv_dhcp_config_advanced: Union[Unset, bool] = UNSET
-    adv_dhcp_config_file_override: Union[Unset, bool] = UNSET
-    adv_dhcp_pt_timeout: Union[Unset, str] = UNSET
-    adv_dhcp_pt_retry: Union[Unset, str] = UNSET
-    adv_dhcp_pt_select_timeout: Union[Unset, str] = UNSET
-    adv_dhcp_pt_reboot: Union[Unset, str] = UNSET
-    adv_dhcp_pt_backoff_cutoff: Union[Unset, str] = UNSET
-    adv_dhcp_pt_initial_interval: Union[Unset, str] = UNSET
-    adv_dhcp_pt_values: Union[Unset, str] = UNSET
-    adv_dhcp_config_file_override_path: Union[Unset, str] = UNSET
-    adv_dhcp_send_options: Union[Unset, str] = UNSET
-    adv_dhcp_request_options: Union[Unset, str] = UNSET
-    adv_dhcp_required_options: Union[Unset, str] = UNSET
-    adv_dhcp_option_modifiers: Union[Unset, str] = UNSET
-    adv_dhcp6_config_advanced: Union[Unset, bool] = UNSET
-    adv_dhcp6_config_file_override: Union[Unset, bool] = UNSET
-    adv_dhcp6_prefix_selected_interface: Union[Unset, str] = UNSET
-    adv_dhcp6_config_file_override_path: Union[Unset, str] = UNSET
-    adv_dhcp6_interface_statement_information_only_enable: Union[Unset, bool] = UNSET
-    adv_dhcp6_interface_statement_send_options: Union[Unset, str] = UNSET
-    adv_dhcp6_interface_statement_request_options: Union[Unset, str] = UNSET
-    adv_dhcp6_interface_statement_script: Union[Unset, str] = UNSET
-    adv_dhcp6_id_assoc_statement_address_enable: Union[Unset, bool] = UNSET
-    adv_dhcp6_id_assoc_statement_address_id: Union[Unset, str] = UNSET
-    adv_dhcp6_id_assoc_statement_address: Union[Unset, str] = UNSET
-    adv_dhcp6_id_assoc_statement_address_pltime: Union[Unset, str] = UNSET
-    adv_dhcp6_id_assoc_statement_address_vltime: Union[Unset, str] = UNSET
-    adv_dhcp6_id_assoc_statement_prefix_enable: Union[Unset, bool] = UNSET
-    adv_dhcp6_id_assoc_statement_prefix_id: Union[Unset, str] = UNSET
-    adv_dhcp6_id_assoc_statement_prefix: Union[Unset, str] = UNSET
-    adv_dhcp6_id_assoc_statement_prefix_pltime: Union[Unset, str] = UNSET
-    adv_dhcp6_id_assoc_statement_prefix_vltime: Union[Unset, str] = UNSET
-    adv_dhcp6_prefix_interface_statement_sla_id: Union[Unset, str] = UNSET
-    adv_dhcp6_prefix_interface_statement_sla_len: Union[Unset, str] = UNSET
-    adv_dhcp6_authentication_statement_authname: Union[Unset, str] = UNSET
-    adv_dhcp6_authentication_statement_protocol: Union[Unset, str] = UNSET
-    adv_dhcp6_authentication_statement_algorithm: Union[Unset, str] = UNSET
-    adv_dhcp6_authentication_statement_rdm: Union[Unset, str] = UNSET
-    adv_dhcp6_key_info_statement_keyname: Union[Unset, str] = UNSET
-    adv_dhcp6_key_info_statement_realm: Union[Unset, str] = UNSET
-    adv_dhcp6_key_info_statement_keyid: Union[Unset, str] = UNSET
-    adv_dhcp6_key_info_statement_secret: Union[Unset, str] = UNSET
-    adv_dhcp6_key_info_statement_expire: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    if_: str | Unset = UNSET
+    assigned_name: str | Unset = UNSET
+    device_name: str | Unset = UNSET
+    identity: str | Unset = UNSET
+    enable: bool | Unset = UNSET
+    blockbogons: bool | Unset = UNSET
+    pseudo: bool | Unset = UNSET
+    blockpriv: bool | Unset = UNSET
+    slaacusev4iface: bool | Unset = UNSET
+    descr: str | Unset = UNSET
+    type_: str | Unset = UNSET
+    type6: str | Unset = UNSET
+    mtu: int | Unset = UNSET
+    mss: int | Unset = UNSET
+    pcp: int | Unset = UNSET
+    promisc: bool | Unset = UNSET
+    ipaddr: str | Unset = UNSET
+    member: str | Unset = UNSET
+    media: str | Unset = UNSET
+    mac: str | Unset = UNSET
+    mediaopt: str | Unset = UNSET
+    spoofmac: str | Unset = UNSET
+    tag: int | Unset = UNSET
+    gateway: str | Unset = UNSET
+    ipaddrv6: str | Unset = UNSET
+    ipv6usev4iface: bool | Unset = UNSET
+    gatewayv6: str | Unset = UNSET
+    alias_address: str | Unset = UNSET
+    dhcphostname: str | Unset = UNSET
+    dhcprejectfrom: str | Unset = UNSET
+    dhcprejectfromarray: list[str] | Unset = UNSET
+    dhcpvlanenable: bool | Unset = UNSET
+    dhcp6usev4iface: bool | Unset = UNSET
+    dhcp6prefixonly: bool | Unset = UNSET
+    dhcp6_ia_pd_send_hint: bool | Unset = UNSET
+    dhcp6debug: bool | Unset = UNSET
+    dhcp6withoutra: bool | Unset = UNSET
+    dhcp6norelease: bool | Unset = UNSET
+    dhcpcvpt: str | Unset = UNSET
+    dhcp6cvpt: str | Unset = UNSET
+    prefix_6rd: str | Unset = UNSET
+    gateway_6rd: str | Unset = UNSET
+    dhcp6_ia_pd_len: str | Unset = UNSET
+    prefix_6rd_v4plen: str | Unset = UNSET
+    track6_interface: str | Unset = UNSET
+    track6_prefix_id: str | Unset = UNSET
+    adv_dhcp_config_advanced: bool | Unset = UNSET
+    adv_dhcp_config_file_override: bool | Unset = UNSET
+    adv_dhcp_pt_timeout: str | Unset = UNSET
+    adv_dhcp_pt_retry: str | Unset = UNSET
+    adv_dhcp_pt_select_timeout: str | Unset = UNSET
+    adv_dhcp_pt_reboot: str | Unset = UNSET
+    adv_dhcp_pt_backoff_cutoff: str | Unset = UNSET
+    adv_dhcp_pt_initial_interval: str | Unset = UNSET
+    adv_dhcp_pt_values: str | Unset = UNSET
+    adv_dhcp_config_file_override_path: str | Unset = UNSET
+    adv_dhcp_send_options: str | Unset = UNSET
+    adv_dhcp_request_options: str | Unset = UNSET
+    adv_dhcp_required_options: str | Unset = UNSET
+    adv_dhcp_option_modifiers: str | Unset = UNSET
+    adv_dhcp6_config_advanced: bool | Unset = UNSET
+    adv_dhcp6_config_file_override: bool | Unset = UNSET
+    adv_dhcp6_prefix_selected_interface: str | Unset = UNSET
+    adv_dhcp6_config_file_override_path: str | Unset = UNSET
+    adv_dhcp6_interface_statement_information_only_enable: bool | Unset = UNSET
+    adv_dhcp6_interface_statement_send_options: str | Unset = UNSET
+    adv_dhcp6_interface_statement_request_options: str | Unset = UNSET
+    adv_dhcp6_interface_statement_script: str | Unset = UNSET
+    adv_dhcp6_id_assoc_statement_address_enable: bool | Unset = UNSET
+    adv_dhcp6_id_assoc_statement_address_id: str | Unset = UNSET
+    adv_dhcp6_id_assoc_statement_address: str | Unset = UNSET
+    adv_dhcp6_id_assoc_statement_address_pltime: str | Unset = UNSET
+    adv_dhcp6_id_assoc_statement_address_vltime: str | Unset = UNSET
+    adv_dhcp6_id_assoc_statement_prefix_enable: bool | Unset = UNSET
+    adv_dhcp6_id_assoc_statement_prefix_id: str | Unset = UNSET
+    adv_dhcp6_id_assoc_statement_prefix: str | Unset = UNSET
+    adv_dhcp6_id_assoc_statement_prefix_pltime: str | Unset = UNSET
+    adv_dhcp6_id_assoc_statement_prefix_vltime: str | Unset = UNSET
+    adv_dhcp6_prefix_interface_statement_sla_id: str | Unset = UNSET
+    adv_dhcp6_prefix_interface_statement_sla_len: str | Unset = UNSET
+    adv_dhcp6_authentication_statement_authname: str | Unset = UNSET
+    adv_dhcp6_authentication_statement_protocol: str | Unset = UNSET
+    adv_dhcp6_authentication_statement_algorithm: str | Unset = UNSET
+    adv_dhcp6_authentication_statement_rdm: str | Unset = UNSET
+    adv_dhcp6_key_info_statement_keyname: str | Unset = UNSET
+    adv_dhcp6_key_info_statement_realm: str | Unset = UNSET
+    adv_dhcp6_key_info_statement_keyid: str | Unset = UNSET
+    adv_dhcp6_key_info_statement_secret: str | Unset = UNSET
+    adv_dhcp6_key_info_statement_expire: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         if_ = self.if_
@@ -220,7 +223,7 @@ class Interface:
 
         descr = self.descr
 
-        type = self.type
+        type_ = self.type_
 
         type6 = self.type6
 
@@ -260,7 +263,7 @@ class Interface:
 
         dhcprejectfrom = self.dhcprejectfrom
 
-        dhcprejectfromarray: Union[Unset, List[str]] = UNSET
+        dhcprejectfromarray: list[str] | Unset = UNSET
         if not isinstance(self.dhcprejectfromarray, Unset):
             dhcprejectfromarray = self.dhcprejectfromarray
 
@@ -382,7 +385,7 @@ class Interface:
 
         adv_dhcp6_key_info_statement_expire = self.adv_dhcp6_key_info_statement_expire
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -407,8 +410,8 @@ class Interface:
             field_dict["slaacusev4iface"] = slaacusev4iface
         if descr is not UNSET:
             field_dict["descr"] = descr
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if type6 is not UNSET:
             field_dict["type6"] = type6
         if mtu is not UNSET:
@@ -571,8 +574,8 @@ class Interface:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         if_ = d.pop("if", UNSET)
@@ -595,7 +598,7 @@ class Interface:
 
         descr = d.pop("descr", UNSET)
 
-        type = d.pop("type", UNSET)
+        type_ = d.pop("type", UNSET)
 
         type6 = d.pop("type6", UNSET)
 
@@ -635,7 +638,7 @@ class Interface:
 
         dhcprejectfrom = d.pop("dhcprejectfrom", UNSET)
 
-        dhcprejectfromarray = cast(List[str], d.pop("dhcprejectfromarray", UNSET))
+        dhcprejectfromarray = cast(list[str], d.pop("dhcprejectfromarray", UNSET))
 
         dhcpvlanenable = d.pop("dhcpvlanenable", UNSET)
 
@@ -767,7 +770,7 @@ class Interface:
             blockpriv=blockpriv,
             slaacusev4iface=slaacusev4iface,
             descr=descr,
-            type=type,
+            type_=type_,
             type6=type6,
             mtu=mtu,
             mss=mss,
@@ -852,7 +855,7 @@ class Interface:
         return interface
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

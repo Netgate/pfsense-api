@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,21 +21,20 @@ class DhcpServiceConfig:
     """Per IP version DHCP service setting
 
     Attributes:
-        high_availability (Union[Unset, DhcpHighAvailabilityConfig]): High-availability configuration for Kea DHCP
-            service.
-        dns_reg (Union[Unset, bool]):
-        early_dns_reg (Union[Unset, bool]):
-        interfaces (Union[Unset, DhcpServiceConfigInterfaces]):
+        high_availability (DhcpHighAvailabilityConfig | Unset): High-availability configuration for Kea DHCP service.
+        dns_reg (bool | Unset):
+        early_dns_reg (bool | Unset):
+        interfaces (DhcpServiceConfigInterfaces | Unset):
     """
 
-    high_availability: Union[Unset, "DhcpHighAvailabilityConfig"] = UNSET
-    dns_reg: Union[Unset, bool] = UNSET
-    early_dns_reg: Union[Unset, bool] = UNSET
-    interfaces: Union[Unset, "DhcpServiceConfigInterfaces"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    high_availability: DhcpHighAvailabilityConfig | Unset = UNSET
+    dns_reg: bool | Unset = UNSET
+    early_dns_reg: bool | Unset = UNSET
+    interfaces: DhcpServiceConfigInterfaces | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        high_availability: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        high_availability: dict[str, Any] | Unset = UNSET
         if not isinstance(self.high_availability, Unset):
             high_availability = self.high_availability.to_dict()
 
@@ -40,11 +42,11 @@ class DhcpServiceConfig:
 
         early_dns_reg = self.early_dns_reg
 
-        interfaces: Union[Unset, Dict[str, Any]] = UNSET
+        interfaces: dict[str, Any] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = self.interfaces.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if high_availability is not UNSET:
@@ -59,13 +61,13 @@ class DhcpServiceConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dhcp_high_availability_config import DhcpHighAvailabilityConfig
         from ..models.dhcp_service_config_interfaces import DhcpServiceConfigInterfaces
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _high_availability = d.pop("high_availability", UNSET)
-        high_availability: Union[Unset, DhcpHighAvailabilityConfig]
+        high_availability: DhcpHighAvailabilityConfig | Unset
         if isinstance(_high_availability, Unset):
             high_availability = UNSET
         else:
@@ -76,7 +78,7 @@ class DhcpServiceConfig:
         early_dns_reg = d.pop("early_dns_reg", UNSET)
 
         _interfaces = d.pop("interfaces", UNSET)
-        interfaces: Union[Unset, DhcpServiceConfigInterfaces]
+        interfaces: DhcpServiceConfigInterfaces | Unset
         if isinstance(_interfaces, Unset):
             interfaces = UNSET
         else:
@@ -93,7 +95,7 @@ class DhcpServiceConfig:
         return dhcp_service_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

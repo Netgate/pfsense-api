@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -12,26 +13,30 @@ from ...types import Response
 
 def _get_kwargs(
     name: str,
-) -> Dict[str, Any]:
-    _kwargs: Dict[str, Any] = {
+) -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "delete",
-        "url": f"/system/package/name/{name}",
+        "url": "/system/package/name/{name}".format(
+            name=quote(str(name), safe=""),
+        ),
     }
 
     return _kwargs
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, InstallPackagesResponse]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Error | InstallPackagesResponse | None:
     if response.status_code == 200:
         response_200 = InstallPackagesResponse.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -39,8 +44,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, InstallPackagesResponse]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[Error | InstallPackagesResponse]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -52,8 +57,8 @@ def _build_response(
 def sync_detailed(
     name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, InstallPackagesResponse]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Error | InstallPackagesResponse]:
     """Uninstall the named package. Returns the progress of the removal. Use GetInstallProgress to track
     live progress.
 
@@ -65,7 +70,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, InstallPackagesResponse]]
+        Response[Error | InstallPackagesResponse]
     """
 
     kwargs = _get_kwargs(
@@ -82,8 +87,8 @@ def sync_detailed(
 def sync(
     name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, InstallPackagesResponse]]:
+    client: AuthenticatedClient | Client,
+) -> Error | InstallPackagesResponse | None:
     """Uninstall the named package. Returns the progress of the removal. Use GetInstallProgress to track
     live progress.
 
@@ -95,7 +100,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, InstallPackagesResponse]
+        Error | InstallPackagesResponse
     """
 
     return sync_detailed(
@@ -107,8 +112,8 @@ def sync(
 async def asyncio_detailed(
     name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, InstallPackagesResponse]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Error | InstallPackagesResponse]:
     """Uninstall the named package. Returns the progress of the removal. Use GetInstallProgress to track
     live progress.
 
@@ -120,7 +125,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, InstallPackagesResponse]]
+        Response[Error | InstallPackagesResponse]
     """
 
     kwargs = _get_kwargs(
@@ -135,8 +140,8 @@ async def asyncio_detailed(
 async def asyncio(
     name: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, InstallPackagesResponse]]:
+    client: AuthenticatedClient | Client,
+) -> Error | InstallPackagesResponse | None:
     """Uninstall the named package. Returns the progress of the removal. Use GetInstallProgress to track
     live progress.
 
@@ -148,7 +153,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, InstallPackagesResponse]
+        Error | InstallPackagesResponse
     """
 
     return (

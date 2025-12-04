@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,22 +17,22 @@ class PhysicalInterface:
 
     Attributes:
         name (str):
-        mac (Union[Unset, str]):
-        up (Union[Unset, bool]):
-        ipaddr (Union[Unset, str]):
-        friendly (Union[Unset, str]):
-        dmesg (Union[Unset, str]):
+        mac (str | Unset):
+        up (bool | Unset):
+        ipaddr (str | Unset):
+        friendly (str | Unset):
+        dmesg (str | Unset):
     """
 
     name: str
-    mac: Union[Unset, str] = UNSET
-    up: Union[Unset, bool] = UNSET
-    ipaddr: Union[Unset, str] = UNSET
-    friendly: Union[Unset, str] = UNSET
-    dmesg: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    mac: str | Unset = UNSET
+    up: bool | Unset = UNSET
+    ipaddr: str | Unset = UNSET
+    friendly: str | Unset = UNSET
+    dmesg: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         mac = self.mac
@@ -42,7 +45,7 @@ class PhysicalInterface:
 
         dmesg = self.dmesg
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -63,8 +66,8 @@ class PhysicalInterface:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name")
 
         mac = d.pop("mac", UNSET)
@@ -90,7 +93,7 @@ class PhysicalInterface:
         return physical_interface
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

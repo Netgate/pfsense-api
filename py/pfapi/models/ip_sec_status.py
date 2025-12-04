@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,27 +20,27 @@ T = TypeVar("T", bound="IPSecStatus")
 class IPSecStatus:
     """
     Attributes:
-        list_sa (Union[Unset, List['IPSecIKESA']]):
-        phases (Union[Unset, IPSecPhaseList]):
+        list_sa (list[IPSecIKESA] | Unset):
+        phases (IPSecPhaseList | Unset):
     """
 
-    list_sa: Union[Unset, List["IPSecIKESA"]] = UNSET
-    phases: Union[Unset, "IPSecPhaseList"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    list_sa: list[IPSecIKESA] | Unset = UNSET
+    phases: IPSecPhaseList | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        list_sa: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        list_sa: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.list_sa, Unset):
             list_sa = []
             for list_sa_item_data in self.list_sa:
                 list_sa_item = list_sa_item_data.to_dict()
                 list_sa.append(list_sa_item)
 
-        phases: Union[Unset, Dict[str, Any]] = UNSET
+        phases: dict[str, Any] | Unset = UNSET
         if not isinstance(self.phases, Unset):
             phases = self.phases.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if list_sa is not UNSET:
@@ -48,20 +51,22 @@ class IPSecStatus:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ip_sec_ikesa import IPSecIKESA
         from ..models.ip_sec_phase_list import IPSecPhaseList
 
-        d = src_dict.copy()
-        list_sa = []
+        d = dict(src_dict)
         _list_sa = d.pop("list_sa", UNSET)
-        for list_sa_item_data in _list_sa or []:
-            list_sa_item = IPSecIKESA.from_dict(list_sa_item_data)
+        list_sa: list[IPSecIKESA] | Unset = UNSET
+        if _list_sa is not UNSET:
+            list_sa = []
+            for list_sa_item_data in _list_sa:
+                list_sa_item = IPSecIKESA.from_dict(list_sa_item_data)
 
-            list_sa.append(list_sa_item)
+                list_sa.append(list_sa_item)
 
         _phases = d.pop("phases", UNSET)
-        phases: Union[Unset, IPSecPhaseList]
+        phases: IPSecPhaseList | Unset
         if isinstance(_phases, Unset):
             phases = UNSET
         else:
@@ -76,7 +81,7 @@ class IPSecStatus:
         return ip_sec_status
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

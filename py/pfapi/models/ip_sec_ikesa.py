@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,57 +19,57 @@ T = TypeVar("T", bound="IPSecIKESA")
 class IPSecIKESA:
     """
     Attributes:
-        name (Union[Unset, str]):
-        uniqueid (Union[Unset, str]):
-        version (Union[Unset, int]):
-        state (Union[Unset, str]):
-        local_host (Union[Unset, str]):
-        local_port (Union[Unset, str]):
-        local_id (Union[Unset, str]):
-        remote_host (Union[Unset, str]):
-        remote_port (Union[Unset, str]):
-        remote_id (Union[Unset, str]):
-        initiator (Union[Unset, str]):
-        initiator_spi (Union[Unset, str]):
-        responder_spi (Union[Unset, str]):
-        encr_alg (Union[Unset, str]):
-        encr_keysize (Union[Unset, int]):
-        integ_alg (Union[Unset, str]):
-        integ_keysize (Union[Unset, int]):
-        prf_alg (Union[Unset, str]):
-        dh_group (Union[Unset, str]):
-        established (Union[Unset, int]):
-        rekey_time (Union[Unset, int]):
-        reauth_time (Union[Unset, int]):
-        childsas (Union[Unset, List['IPSecChildSAS']]):
+        name (str | Unset):
+        uniqueid (str | Unset):
+        version (int | Unset):
+        state (str | Unset):
+        local_host (str | Unset):
+        local_port (str | Unset):
+        local_id (str | Unset):
+        remote_host (str | Unset):
+        remote_port (str | Unset):
+        remote_id (str | Unset):
+        initiator (str | Unset):
+        initiator_spi (str | Unset):
+        responder_spi (str | Unset):
+        encr_alg (str | Unset):
+        encr_keysize (int | Unset):
+        integ_alg (str | Unset):
+        integ_keysize (int | Unset):
+        prf_alg (str | Unset):
+        dh_group (str | Unset):
+        established (int | Unset):
+        rekey_time (int | Unset):
+        reauth_time (int | Unset):
+        childsas (list[IPSecChildSAS] | Unset):
     """
 
-    name: Union[Unset, str] = UNSET
-    uniqueid: Union[Unset, str] = UNSET
-    version: Union[Unset, int] = UNSET
-    state: Union[Unset, str] = UNSET
-    local_host: Union[Unset, str] = UNSET
-    local_port: Union[Unset, str] = UNSET
-    local_id: Union[Unset, str] = UNSET
-    remote_host: Union[Unset, str] = UNSET
-    remote_port: Union[Unset, str] = UNSET
-    remote_id: Union[Unset, str] = UNSET
-    initiator: Union[Unset, str] = UNSET
-    initiator_spi: Union[Unset, str] = UNSET
-    responder_spi: Union[Unset, str] = UNSET
-    encr_alg: Union[Unset, str] = UNSET
-    encr_keysize: Union[Unset, int] = UNSET
-    integ_alg: Union[Unset, str] = UNSET
-    integ_keysize: Union[Unset, int] = UNSET
-    prf_alg: Union[Unset, str] = UNSET
-    dh_group: Union[Unset, str] = UNSET
-    established: Union[Unset, int] = UNSET
-    rekey_time: Union[Unset, int] = UNSET
-    reauth_time: Union[Unset, int] = UNSET
-    childsas: Union[Unset, List["IPSecChildSAS"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    uniqueid: str | Unset = UNSET
+    version: int | Unset = UNSET
+    state: str | Unset = UNSET
+    local_host: str | Unset = UNSET
+    local_port: str | Unset = UNSET
+    local_id: str | Unset = UNSET
+    remote_host: str | Unset = UNSET
+    remote_port: str | Unset = UNSET
+    remote_id: str | Unset = UNSET
+    initiator: str | Unset = UNSET
+    initiator_spi: str | Unset = UNSET
+    responder_spi: str | Unset = UNSET
+    encr_alg: str | Unset = UNSET
+    encr_keysize: int | Unset = UNSET
+    integ_alg: str | Unset = UNSET
+    integ_keysize: int | Unset = UNSET
+    prf_alg: str | Unset = UNSET
+    dh_group: str | Unset = UNSET
+    established: int | Unset = UNSET
+    rekey_time: int | Unset = UNSET
+    reauth_time: int | Unset = UNSET
+    childsas: list[IPSecChildSAS] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         uniqueid = self.uniqueid
@@ -111,14 +114,14 @@ class IPSecIKESA:
 
         reauth_time = self.reauth_time
 
-        childsas: Union[Unset, List[Dict[str, Any]]] = UNSET
+        childsas: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.childsas, Unset):
             childsas = []
             for childsas_item_data in self.childsas:
                 childsas_item = childsas_item_data.to_dict()
                 childsas.append(childsas_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -171,10 +174,10 @@ class IPSecIKESA:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ip_sec_child_sas import IPSecChildSAS
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         uniqueid = d.pop("uniqueid", UNSET)
@@ -219,12 +222,14 @@ class IPSecIKESA:
 
         reauth_time = d.pop("reauth_time", UNSET)
 
-        childsas = []
         _childsas = d.pop("childsas", UNSET)
-        for childsas_item_data in _childsas or []:
-            childsas_item = IPSecChildSAS.from_dict(childsas_item_data)
+        childsas: list[IPSecChildSAS] | Unset = UNSET
+        if _childsas is not UNSET:
+            childsas = []
+            for childsas_item_data in _childsas:
+                childsas_item = IPSecChildSAS.from_dict(childsas_item_data)
 
-            childsas.append(childsas_item)
+                childsas.append(childsas_item)
 
         ip_sec_ikesa = cls(
             name=name,
@@ -256,7 +261,7 @@ class IPSecIKESA:
         return ip_sec_ikesa
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

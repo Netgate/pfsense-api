@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -10,8 +10,8 @@ from ...models.error import Error
 from ...types import Response
 
 
-def _get_kwargs() -> Dict[str, Any]:
-    _kwargs: Dict[str, Any] = {
+def _get_kwargs() -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/mim/controller/identity",
     }
@@ -20,16 +20,18 @@ def _get_kwargs() -> Dict[str, Any]:
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[ControllerSummary, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> ControllerSummary | Error | None:
     if response.status_code == 200:
         response_200 = ControllerSummary.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -37,8 +39,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[ControllerSummary, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[ControllerSummary | Error]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -49,8 +51,8 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ControllerSummary, Error]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ControllerSummary | Error]:
     """Get this Controller's MIM identity, which is used to register it on the managed device.
 
      The Controller Summary payload which is provided to a remote pfSense device to
@@ -62,7 +64,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ControllerSummary, Error]]
+        Response[ControllerSummary | Error]
     """
 
     kwargs = _get_kwargs()
@@ -76,8 +78,8 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ControllerSummary, Error]]:
+    client: AuthenticatedClient | Client,
+) -> ControllerSummary | Error | None:
     """Get this Controller's MIM identity, which is used to register it on the managed device.
 
      The Controller Summary payload which is provided to a remote pfSense device to
@@ -89,7 +91,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ControllerSummary, Error]
+        ControllerSummary | Error
     """
 
     return sync_detailed(
@@ -99,8 +101,8 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[ControllerSummary, Error]]:
+    client: AuthenticatedClient | Client,
+) -> Response[ControllerSummary | Error]:
     """Get this Controller's MIM identity, which is used to register it on the managed device.
 
      The Controller Summary payload which is provided to a remote pfSense device to
@@ -112,7 +114,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[ControllerSummary, Error]]
+        Response[ControllerSummary | Error]
     """
 
     kwargs = _get_kwargs()
@@ -124,8 +126,8 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[ControllerSummary, Error]]:
+    client: AuthenticatedClient | Client,
+) -> ControllerSummary | Error | None:
     """Get this Controller's MIM identity, which is used to register it on the managed device.
 
      The Controller Summary payload which is provided to a remote pfSense device to
@@ -137,7 +139,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[ControllerSummary, Error]
+        ControllerSummary | Error
     """
 
     return (

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -19,57 +22,57 @@ class ControlledDeviceInfo:
     """Additional information about the device
 
     Attributes:
-        hostname (Union[Unset, str]):
-        uptime (Union[Unset, int]): number of seconds since the device started
-        network_ports (Union[Unset, List['DeviceNetworkPort']]):
-        services (Union[Unset, List['DeviceServiceBasic']]):
-        product (Union[Unset, str]): eg pfsense
-        product_version (Union[Unset, str]): eg 24.08
-        product_build (Union[Unset, str]):
-        os_name (Union[Unset, str]):
-        os_version (Union[Unset, str]):
-        cpu (Union[Unset, str]):
-        memory (Union[Unset, int]):
-        model (Union[Unset, str]):
-        vendor (Union[Unset, str]):
-        serial (Union[Unset, str]):
-        hw_uuid (Union[Unset, str]):
-        gateways (Union[Unset, List[str]]):
-        license_ (Union[Unset, SysinfoLicense]):
+        hostname (str | Unset):
+        uptime (int | Unset): number of seconds since the device started
+        network_ports (list[DeviceNetworkPort] | Unset):
+        services (list[DeviceServiceBasic] | Unset):
+        product (str | Unset): eg pfsense
+        product_version (str | Unset): eg 24.08
+        product_build (str | Unset):
+        os_name (str | Unset):
+        os_version (str | Unset):
+        cpu (str | Unset):
+        memory (int | Unset):
+        model (str | Unset):
+        vendor (str | Unset):
+        serial (str | Unset):
+        hw_uuid (str | Unset):
+        gateways (list[str] | Unset):
+        license_ (SysinfoLicense | Unset):
     """
 
-    hostname: Union[Unset, str] = UNSET
-    uptime: Union[Unset, int] = UNSET
-    network_ports: Union[Unset, List["DeviceNetworkPort"]] = UNSET
-    services: Union[Unset, List["DeviceServiceBasic"]] = UNSET
-    product: Union[Unset, str] = UNSET
-    product_version: Union[Unset, str] = UNSET
-    product_build: Union[Unset, str] = UNSET
-    os_name: Union[Unset, str] = UNSET
-    os_version: Union[Unset, str] = UNSET
-    cpu: Union[Unset, str] = UNSET
-    memory: Union[Unset, int] = UNSET
-    model: Union[Unset, str] = UNSET
-    vendor: Union[Unset, str] = UNSET
-    serial: Union[Unset, str] = UNSET
-    hw_uuid: Union[Unset, str] = UNSET
-    gateways: Union[Unset, List[str]] = UNSET
-    license_: Union[Unset, "SysinfoLicense"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    hostname: str | Unset = UNSET
+    uptime: int | Unset = UNSET
+    network_ports: list[DeviceNetworkPort] | Unset = UNSET
+    services: list[DeviceServiceBasic] | Unset = UNSET
+    product: str | Unset = UNSET
+    product_version: str | Unset = UNSET
+    product_build: str | Unset = UNSET
+    os_name: str | Unset = UNSET
+    os_version: str | Unset = UNSET
+    cpu: str | Unset = UNSET
+    memory: int | Unset = UNSET
+    model: str | Unset = UNSET
+    vendor: str | Unset = UNSET
+    serial: str | Unset = UNSET
+    hw_uuid: str | Unset = UNSET
+    gateways: list[str] | Unset = UNSET
+    license_: SysinfoLicense | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         hostname = self.hostname
 
         uptime = self.uptime
 
-        network_ports: Union[Unset, List[Dict[str, Any]]] = UNSET
+        network_ports: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.network_ports, Unset):
             network_ports = []
             for network_ports_item_data in self.network_ports:
                 network_ports_item = network_ports_item_data.to_dict()
                 network_ports.append(network_ports_item)
 
-        services: Union[Unset, List[Dict[str, Any]]] = UNSET
+        services: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.services, Unset):
             services = []
             for services_item_data in self.services:
@@ -98,15 +101,15 @@ class ControlledDeviceInfo:
 
         hw_uuid = self.hw_uuid
 
-        gateways: Union[Unset, List[str]] = UNSET
+        gateways: list[str] | Unset = UNSET
         if not isinstance(self.gateways, Unset):
             gateways = self.gateways
 
-        license_: Union[Unset, Dict[str, Any]] = UNSET
+        license_: dict[str, Any] | Unset = UNSET
         if not isinstance(self.license_, Unset):
             license_ = self.license_.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if hostname is not UNSET:
@@ -147,29 +150,33 @@ class ControlledDeviceInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.device_network_port import DeviceNetworkPort
         from ..models.device_service_basic import DeviceServiceBasic
         from ..models.sysinfo_license import SysinfoLicense
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         hostname = d.pop("hostname", UNSET)
 
         uptime = d.pop("uptime", UNSET)
 
-        network_ports = []
         _network_ports = d.pop("network_ports", UNSET)
-        for network_ports_item_data in _network_ports or []:
-            network_ports_item = DeviceNetworkPort.from_dict(network_ports_item_data)
+        network_ports: list[DeviceNetworkPort] | Unset = UNSET
+        if _network_ports is not UNSET:
+            network_ports = []
+            for network_ports_item_data in _network_ports:
+                network_ports_item = DeviceNetworkPort.from_dict(network_ports_item_data)
 
-            network_ports.append(network_ports_item)
+                network_ports.append(network_ports_item)
 
-        services = []
         _services = d.pop("services", UNSET)
-        for services_item_data in _services or []:
-            services_item = DeviceServiceBasic.from_dict(services_item_data)
+        services: list[DeviceServiceBasic] | Unset = UNSET
+        if _services is not UNSET:
+            services = []
+            for services_item_data in _services:
+                services_item = DeviceServiceBasic.from_dict(services_item_data)
 
-            services.append(services_item)
+                services.append(services_item)
 
         product = d.pop("product", UNSET)
 
@@ -193,10 +200,10 @@ class ControlledDeviceInfo:
 
         hw_uuid = d.pop("hw_uuid", UNSET)
 
-        gateways = cast(List[str], d.pop("gateways", UNSET))
+        gateways = cast(list[str], d.pop("gateways", UNSET))
 
         _license_ = d.pop("license", UNSET)
-        license_: Union[Unset, SysinfoLicense]
+        license_: SysinfoLicense | Unset
         if isinstance(_license_, Unset):
             license_ = UNSET
         else:
@@ -226,7 +233,7 @@ class ControlledDeviceInfo:
         return controlled_device_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

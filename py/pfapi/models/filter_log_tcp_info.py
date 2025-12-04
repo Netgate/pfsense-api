@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,23 +16,23 @@ class FilterLogTCPInfo:
     """proto_id = 6
 
     Attributes:
-        tcp_flags (Union[Unset, str]):
-        seq (Union[Unset, str]):
-        ack (Union[Unset, int]):
-        window (Union[Unset, int]):
-        urg (Union[Unset, int]):
-        options (Union[Unset, str]):
+        tcp_flags (str | Unset):
+        seq (str | Unset):
+        ack (int | Unset):
+        window (int | Unset):
+        urg (int | Unset):
+        options (str | Unset):
     """
 
-    tcp_flags: Union[Unset, str] = UNSET
-    seq: Union[Unset, str] = UNSET
-    ack: Union[Unset, int] = UNSET
-    window: Union[Unset, int] = UNSET
-    urg: Union[Unset, int] = UNSET
-    options: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    tcp_flags: str | Unset = UNSET
+    seq: str | Unset = UNSET
+    ack: int | Unset = UNSET
+    window: int | Unset = UNSET
+    urg: int | Unset = UNSET
+    options: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         tcp_flags = self.tcp_flags
 
         seq = self.seq
@@ -42,7 +45,7 @@ class FilterLogTCPInfo:
 
         options = self.options
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if tcp_flags is not UNSET:
@@ -61,8 +64,8 @@ class FilterLogTCPInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         tcp_flags = d.pop("tcp_flags", UNSET)
 
         seq = d.pop("seq", UNSET)
@@ -88,7 +91,7 @@ class FilterLogTCPInfo:
         return filter_log_tcp_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

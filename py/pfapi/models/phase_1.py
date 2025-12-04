@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,74 +20,74 @@ class Phase1:
     """
     Attributes:
         iketype (str):
-        ikeid (Union[Unset, str]):
-        interface (Union[Unset, str]):
-        remote_gateway (Union[Unset, str]):
-        protocol (Union[Unset, str]):
-        myid_type (Union[Unset, str]):
-        myid_data (Union[Unset, str]):
-        peerid_type (Union[Unset, str]):
-        peerid_data (Union[Unset, str]):
-        encryption (Union[Unset, Phase1Encryption]):
-        lifetime (Union[Unset, int]):
-        rekey_time (Union[Unset, int]):
-        reauth_time (Union[Unset, int]):
-        rand_time (Union[Unset, int]):
-        pre_shared_key (Union[Unset, str]):
-        private_key (Union[Unset, str]):
-        certref (Union[Unset, str]):
-        pkcs11certref (Union[Unset, str]):
-        pkcs11pin (Union[Unset, str]):
-        caref (Union[Unset, str]):
-        authentication_method (Union[Unset, str]):
-        descr (Union[Unset, str]):
-        nat_traversal (Union[Unset, str]):
-        mobike (Union[Unset, str]):
-        startaction (Union[Unset, str]):
-        closeaction (Union[Unset, str]):
-        dpd_delay (Union[Unset, int]):
-        dpd_maxfail (Union[Unset, int]):
-        prfselect_enable (Union[Unset, bool]):
-        gw_duplicates (Union[Unset, bool]):
-        mobile (Union[Unset, bool]):
-        disabled (Union[Unset, bool]):
+        ikeid (str | Unset):
+        interface (str | Unset):
+        remote_gateway (str | Unset):
+        protocol (str | Unset):
+        myid_type (str | Unset):
+        myid_data (str | Unset):
+        peerid_type (str | Unset):
+        peerid_data (str | Unset):
+        encryption (Phase1Encryption | Unset):
+        lifetime (int | Unset):
+        rekey_time (int | Unset):
+        reauth_time (int | Unset):
+        rand_time (int | Unset):
+        pre_shared_key (str | Unset):
+        private_key (str | Unset):
+        certref (str | Unset):
+        pkcs11certref (str | Unset):
+        pkcs11pin (str | Unset):
+        caref (str | Unset):
+        authentication_method (str | Unset):
+        descr (str | Unset):
+        nat_traversal (str | Unset):
+        mobike (str | Unset):
+        startaction (str | Unset):
+        closeaction (str | Unset):
+        dpd_delay (int | Unset):
+        dpd_maxfail (int | Unset):
+        prfselect_enable (bool | Unset):
+        gw_duplicates (bool | Unset):
+        mobile (bool | Unset):
+        disabled (bool | Unset):
     """
 
     iketype: str
-    ikeid: Union[Unset, str] = UNSET
-    interface: Union[Unset, str] = UNSET
-    remote_gateway: Union[Unset, str] = UNSET
-    protocol: Union[Unset, str] = UNSET
-    myid_type: Union[Unset, str] = UNSET
-    myid_data: Union[Unset, str] = UNSET
-    peerid_type: Union[Unset, str] = UNSET
-    peerid_data: Union[Unset, str] = UNSET
-    encryption: Union[Unset, "Phase1Encryption"] = UNSET
-    lifetime: Union[Unset, int] = UNSET
-    rekey_time: Union[Unset, int] = UNSET
-    reauth_time: Union[Unset, int] = UNSET
-    rand_time: Union[Unset, int] = UNSET
-    pre_shared_key: Union[Unset, str] = UNSET
-    private_key: Union[Unset, str] = UNSET
-    certref: Union[Unset, str] = UNSET
-    pkcs11certref: Union[Unset, str] = UNSET
-    pkcs11pin: Union[Unset, str] = UNSET
-    caref: Union[Unset, str] = UNSET
-    authentication_method: Union[Unset, str] = UNSET
-    descr: Union[Unset, str] = UNSET
-    nat_traversal: Union[Unset, str] = UNSET
-    mobike: Union[Unset, str] = UNSET
-    startaction: Union[Unset, str] = UNSET
-    closeaction: Union[Unset, str] = UNSET
-    dpd_delay: Union[Unset, int] = UNSET
-    dpd_maxfail: Union[Unset, int] = UNSET
-    prfselect_enable: Union[Unset, bool] = UNSET
-    gw_duplicates: Union[Unset, bool] = UNSET
-    mobile: Union[Unset, bool] = UNSET
-    disabled: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ikeid: str | Unset = UNSET
+    interface: str | Unset = UNSET
+    remote_gateway: str | Unset = UNSET
+    protocol: str | Unset = UNSET
+    myid_type: str | Unset = UNSET
+    myid_data: str | Unset = UNSET
+    peerid_type: str | Unset = UNSET
+    peerid_data: str | Unset = UNSET
+    encryption: Phase1Encryption | Unset = UNSET
+    lifetime: int | Unset = UNSET
+    rekey_time: int | Unset = UNSET
+    reauth_time: int | Unset = UNSET
+    rand_time: int | Unset = UNSET
+    pre_shared_key: str | Unset = UNSET
+    private_key: str | Unset = UNSET
+    certref: str | Unset = UNSET
+    pkcs11certref: str | Unset = UNSET
+    pkcs11pin: str | Unset = UNSET
+    caref: str | Unset = UNSET
+    authentication_method: str | Unset = UNSET
+    descr: str | Unset = UNSET
+    nat_traversal: str | Unset = UNSET
+    mobike: str | Unset = UNSET
+    startaction: str | Unset = UNSET
+    closeaction: str | Unset = UNSET
+    dpd_delay: int | Unset = UNSET
+    dpd_maxfail: int | Unset = UNSET
+    prfselect_enable: bool | Unset = UNSET
+    gw_duplicates: bool | Unset = UNSET
+    mobile: bool | Unset = UNSET
+    disabled: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         iketype = self.iketype
 
         ikeid = self.ikeid
@@ -103,7 +106,7 @@ class Phase1:
 
         peerid_data = self.peerid_data
 
-        encryption: Union[Unset, Dict[str, Any]] = UNSET
+        encryption: dict[str, Any] | Unset = UNSET
         if not isinstance(self.encryption, Unset):
             encryption = self.encryption.to_dict()
 
@@ -151,7 +154,7 @@ class Phase1:
 
         disabled = self.disabled
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -224,10 +227,10 @@ class Phase1:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.phase_1_encryption import Phase1Encryption
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         iketype = d.pop("iketype")
 
         ikeid = d.pop("ikeid", UNSET)
@@ -247,7 +250,7 @@ class Phase1:
         peerid_data = d.pop("peerid_data", UNSET)
 
         _encryption = d.pop("encryption", UNSET)
-        encryption: Union[Unset, Phase1Encryption]
+        encryption: Phase1Encryption | Unset
         if isinstance(_encryption, Unset):
             encryption = UNSET
         else:
@@ -336,7 +339,7 @@ class Phase1:
         return phase_1
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

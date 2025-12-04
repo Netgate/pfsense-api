@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,120 +21,120 @@ T = TypeVar("T", bound="DNSResolverConfig")
 class DNSResolverConfig:
     """
     Attributes:
-        enable (Union[Unset, bool]):
-        dnssec (Union[Unset, bool]):
-        active_interface (Union[Unset, List[str]]):
-        outgoing_interface (Union[Unset, List[str]]):
-        custom_options (Union[Unset, str]):
-        hideidentity (Union[Unset, bool]):
-        hideversion (Union[Unset, bool]):
-        dnssecstripped (Union[Unset, bool]):
-        drop_old_udp_pkts (Union[Unset, int]):
-        keep_probing (Union[Unset, bool]):
-        qname_minimisation (Union[Unset, bool]):
-        qname_minimisation_strict (Union[Unset, bool]):
-        prefetch (Union[Unset, bool]):
-        prefetchkey (Union[Unset, bool]):
-        dnsrecordcache (Union[Unset, bool]):
-        aggressivensec (Union[Unset, bool]):
-        msgcachesize (Union[Unset, str]):
-        outgoing_num_tcp (Union[Unset, str]):
-        incoming_num_tcp (Union[Unset, str]):
-        edns_buffer_size (Union[Unset, str]):
-        num_queries_per_thread (Union[Unset, str]):
-        jostle_timeout (Union[Unset, str]):
-        cache_max_ttl (Union[Unset, str]):
-        cache_min_ttl (Union[Unset, str]):
-        infra_host_ttl (Union[Unset, str]):
-        infra_cache_numhosts (Union[Unset, str]):
-        unwanted_reply_threshold (Union[Unset, str]):
-        log_verbosity (Union[Unset, str]):
-        disable_auto_added_access_control (Union[Unset, bool]):
-        disable_auto_added_host_entries (Union[Unset, bool]):
-        use_caps (Union[Unset, bool]):
-        dns64 (Union[Unset, bool]):
-        dns64prefix (Union[Unset, str]):
-        dns64netbits (Union[Unset, str]):
-        port (Union[Unset, int]):
-        sslport (Union[Unset, int]):
-        sslcertref (Union[Unset, str]):
-        system_domain_local_zone_type (Union[Unset, str]):
-        regdhcp (Union[Unset, bool]):
-        enablessl (Union[Unset, bool]):
-        python (Union[Unset, bool]):
-        python_order (Union[Unset, str]):
-        python_script (Union[Unset, str]):
-        forwarding (Union[Unset, bool]):
-        forward_tls_upstream (Union[Unset, bool]):
-        regdhcpstatic (Union[Unset, bool]):
-        regovpnclients (Union[Unset, bool]):
-        hosts (Union[Unset, List['DNSForwarderHost']]):
-        domainoverrides (Union[Unset, List['DNSResolverDomain']]):
-        acls (Union[Unset, List['DNSACL']]):
+        enable (bool | Unset):
+        dnssec (bool | Unset):
+        active_interface (list[str] | Unset):
+        outgoing_interface (list[str] | Unset):
+        custom_options (str | Unset):
+        hideidentity (bool | Unset):
+        hideversion (bool | Unset):
+        dnssecstripped (bool | Unset):
+        drop_old_udp_pkts (int | Unset):
+        keep_probing (bool | Unset):
+        qname_minimisation (bool | Unset):
+        qname_minimisation_strict (bool | Unset):
+        prefetch (bool | Unset):
+        prefetchkey (bool | Unset):
+        dnsrecordcache (bool | Unset):
+        aggressivensec (bool | Unset):
+        msgcachesize (str | Unset):
+        outgoing_num_tcp (str | Unset):
+        incoming_num_tcp (str | Unset):
+        edns_buffer_size (str | Unset):
+        num_queries_per_thread (str | Unset):
+        jostle_timeout (str | Unset):
+        cache_max_ttl (str | Unset):
+        cache_min_ttl (str | Unset):
+        infra_host_ttl (str | Unset):
+        infra_cache_numhosts (str | Unset):
+        unwanted_reply_threshold (str | Unset):
+        log_verbosity (str | Unset):
+        disable_auto_added_access_control (bool | Unset):
+        disable_auto_added_host_entries (bool | Unset):
+        use_caps (bool | Unset):
+        dns64 (bool | Unset):
+        dns64prefix (str | Unset):
+        dns64netbits (str | Unset):
+        port (int | Unset):
+        sslport (int | Unset):
+        sslcertref (str | Unset):
+        system_domain_local_zone_type (str | Unset):
+        regdhcp (bool | Unset):
+        enablessl (bool | Unset):
+        python (bool | Unset):
+        python_order (str | Unset):
+        python_script (str | Unset):
+        forwarding (bool | Unset):
+        forward_tls_upstream (bool | Unset):
+        regdhcpstatic (bool | Unset):
+        regovpnclients (bool | Unset):
+        hosts (list[DNSForwarderHost] | Unset):
+        domainoverrides (list[DNSResolverDomain] | Unset):
+        acls (list[DNSACL] | Unset):
     """
 
-    enable: Union[Unset, bool] = UNSET
-    dnssec: Union[Unset, bool] = UNSET
-    active_interface: Union[Unset, List[str]] = UNSET
-    outgoing_interface: Union[Unset, List[str]] = UNSET
-    custom_options: Union[Unset, str] = UNSET
-    hideidentity: Union[Unset, bool] = UNSET
-    hideversion: Union[Unset, bool] = UNSET
-    dnssecstripped: Union[Unset, bool] = UNSET
-    drop_old_udp_pkts: Union[Unset, int] = UNSET
-    keep_probing: Union[Unset, bool] = UNSET
-    qname_minimisation: Union[Unset, bool] = UNSET
-    qname_minimisation_strict: Union[Unset, bool] = UNSET
-    prefetch: Union[Unset, bool] = UNSET
-    prefetchkey: Union[Unset, bool] = UNSET
-    dnsrecordcache: Union[Unset, bool] = UNSET
-    aggressivensec: Union[Unset, bool] = UNSET
-    msgcachesize: Union[Unset, str] = UNSET
-    outgoing_num_tcp: Union[Unset, str] = UNSET
-    incoming_num_tcp: Union[Unset, str] = UNSET
-    edns_buffer_size: Union[Unset, str] = UNSET
-    num_queries_per_thread: Union[Unset, str] = UNSET
-    jostle_timeout: Union[Unset, str] = UNSET
-    cache_max_ttl: Union[Unset, str] = UNSET
-    cache_min_ttl: Union[Unset, str] = UNSET
-    infra_host_ttl: Union[Unset, str] = UNSET
-    infra_cache_numhosts: Union[Unset, str] = UNSET
-    unwanted_reply_threshold: Union[Unset, str] = UNSET
-    log_verbosity: Union[Unset, str] = UNSET
-    disable_auto_added_access_control: Union[Unset, bool] = UNSET
-    disable_auto_added_host_entries: Union[Unset, bool] = UNSET
-    use_caps: Union[Unset, bool] = UNSET
-    dns64: Union[Unset, bool] = UNSET
-    dns64prefix: Union[Unset, str] = UNSET
-    dns64netbits: Union[Unset, str] = UNSET
-    port: Union[Unset, int] = UNSET
-    sslport: Union[Unset, int] = UNSET
-    sslcertref: Union[Unset, str] = UNSET
-    system_domain_local_zone_type: Union[Unset, str] = UNSET
-    regdhcp: Union[Unset, bool] = UNSET
-    enablessl: Union[Unset, bool] = UNSET
-    python: Union[Unset, bool] = UNSET
-    python_order: Union[Unset, str] = UNSET
-    python_script: Union[Unset, str] = UNSET
-    forwarding: Union[Unset, bool] = UNSET
-    forward_tls_upstream: Union[Unset, bool] = UNSET
-    regdhcpstatic: Union[Unset, bool] = UNSET
-    regovpnclients: Union[Unset, bool] = UNSET
-    hosts: Union[Unset, List["DNSForwarderHost"]] = UNSET
-    domainoverrides: Union[Unset, List["DNSResolverDomain"]] = UNSET
-    acls: Union[Unset, List["DNSACL"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    enable: bool | Unset = UNSET
+    dnssec: bool | Unset = UNSET
+    active_interface: list[str] | Unset = UNSET
+    outgoing_interface: list[str] | Unset = UNSET
+    custom_options: str | Unset = UNSET
+    hideidentity: bool | Unset = UNSET
+    hideversion: bool | Unset = UNSET
+    dnssecstripped: bool | Unset = UNSET
+    drop_old_udp_pkts: int | Unset = UNSET
+    keep_probing: bool | Unset = UNSET
+    qname_minimisation: bool | Unset = UNSET
+    qname_minimisation_strict: bool | Unset = UNSET
+    prefetch: bool | Unset = UNSET
+    prefetchkey: bool | Unset = UNSET
+    dnsrecordcache: bool | Unset = UNSET
+    aggressivensec: bool | Unset = UNSET
+    msgcachesize: str | Unset = UNSET
+    outgoing_num_tcp: str | Unset = UNSET
+    incoming_num_tcp: str | Unset = UNSET
+    edns_buffer_size: str | Unset = UNSET
+    num_queries_per_thread: str | Unset = UNSET
+    jostle_timeout: str | Unset = UNSET
+    cache_max_ttl: str | Unset = UNSET
+    cache_min_ttl: str | Unset = UNSET
+    infra_host_ttl: str | Unset = UNSET
+    infra_cache_numhosts: str | Unset = UNSET
+    unwanted_reply_threshold: str | Unset = UNSET
+    log_verbosity: str | Unset = UNSET
+    disable_auto_added_access_control: bool | Unset = UNSET
+    disable_auto_added_host_entries: bool | Unset = UNSET
+    use_caps: bool | Unset = UNSET
+    dns64: bool | Unset = UNSET
+    dns64prefix: str | Unset = UNSET
+    dns64netbits: str | Unset = UNSET
+    port: int | Unset = UNSET
+    sslport: int | Unset = UNSET
+    sslcertref: str | Unset = UNSET
+    system_domain_local_zone_type: str | Unset = UNSET
+    regdhcp: bool | Unset = UNSET
+    enablessl: bool | Unset = UNSET
+    python: bool | Unset = UNSET
+    python_order: str | Unset = UNSET
+    python_script: str | Unset = UNSET
+    forwarding: bool | Unset = UNSET
+    forward_tls_upstream: bool | Unset = UNSET
+    regdhcpstatic: bool | Unset = UNSET
+    regovpnclients: bool | Unset = UNSET
+    hosts: list[DNSForwarderHost] | Unset = UNSET
+    domainoverrides: list[DNSResolverDomain] | Unset = UNSET
+    acls: list[DNSACL] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enable = self.enable
 
         dnssec = self.dnssec
 
-        active_interface: Union[Unset, List[str]] = UNSET
+        active_interface: list[str] | Unset = UNSET
         if not isinstance(self.active_interface, Unset):
             active_interface = self.active_interface
 
-        outgoing_interface: Union[Unset, List[str]] = UNSET
+        outgoing_interface: list[str] | Unset = UNSET
         if not isinstance(self.outgoing_interface, Unset):
             outgoing_interface = self.outgoing_interface
 
@@ -221,28 +224,28 @@ class DNSResolverConfig:
 
         regovpnclients = self.regovpnclients
 
-        hosts: Union[Unset, List[Dict[str, Any]]] = UNSET
+        hosts: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.hosts, Unset):
             hosts = []
             for hosts_item_data in self.hosts:
                 hosts_item = hosts_item_data.to_dict()
                 hosts.append(hosts_item)
 
-        domainoverrides: Union[Unset, List[Dict[str, Any]]] = UNSET
+        domainoverrides: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.domainoverrides, Unset):
             domainoverrides = []
             for domainoverrides_item_data in self.domainoverrides:
                 domainoverrides_item = domainoverrides_item_data.to_dict()
                 domainoverrides.append(domainoverrides_item)
 
-        acls: Union[Unset, List[Dict[str, Any]]] = UNSET
+        acls: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.acls, Unset):
             acls = []
             for acls_item_data in self.acls:
                 acls_item = acls_item_data.to_dict()
                 acls.append(acls_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if enable is not UNSET:
@@ -349,19 +352,19 @@ class DNSResolverConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dns_forwarder_host import DNSForwarderHost
         from ..models.dns_resolver_domain import DNSResolverDomain
         from ..models.dnsacl import DNSACL
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         enable = d.pop("enable", UNSET)
 
         dnssec = d.pop("dnssec", UNSET)
 
-        active_interface = cast(List[str], d.pop("active_interface", UNSET))
+        active_interface = cast(list[str], d.pop("active_interface", UNSET))
 
-        outgoing_interface = cast(List[str], d.pop("outgoing_interface", UNSET))
+        outgoing_interface = cast(list[str], d.pop("outgoing_interface", UNSET))
 
         custom_options = d.pop("custom_options", UNSET)
 
@@ -449,26 +452,32 @@ class DNSResolverConfig:
 
         regovpnclients = d.pop("regovpnclients", UNSET)
 
-        hosts = []
         _hosts = d.pop("hosts", UNSET)
-        for hosts_item_data in _hosts or []:
-            hosts_item = DNSForwarderHost.from_dict(hosts_item_data)
+        hosts: list[DNSForwarderHost] | Unset = UNSET
+        if _hosts is not UNSET:
+            hosts = []
+            for hosts_item_data in _hosts:
+                hosts_item = DNSForwarderHost.from_dict(hosts_item_data)
 
-            hosts.append(hosts_item)
+                hosts.append(hosts_item)
 
-        domainoverrides = []
         _domainoverrides = d.pop("domainoverrides", UNSET)
-        for domainoverrides_item_data in _domainoverrides or []:
-            domainoverrides_item = DNSResolverDomain.from_dict(domainoverrides_item_data)
+        domainoverrides: list[DNSResolverDomain] | Unset = UNSET
+        if _domainoverrides is not UNSET:
+            domainoverrides = []
+            for domainoverrides_item_data in _domainoverrides:
+                domainoverrides_item = DNSResolverDomain.from_dict(domainoverrides_item_data)
 
-            domainoverrides.append(domainoverrides_item)
+                domainoverrides.append(domainoverrides_item)
 
-        acls = []
         _acls = d.pop("acls", UNSET)
-        for acls_item_data in _acls or []:
-            acls_item = DNSACL.from_dict(acls_item_data)
+        acls: list[DNSACL] | Unset = UNSET
+        if _acls is not UNSET:
+            acls = []
+            for acls_item_data in _acls:
+                acls_item = DNSACL.from_dict(acls_item_data)
 
-            acls.append(acls_item)
+                acls.append(acls_item)
 
         dns_resolver_config = cls(
             enable=enable,
@@ -527,7 +536,7 @@ class DNSResolverConfig:
         return dns_resolver_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

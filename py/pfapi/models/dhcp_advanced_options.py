@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,37 +15,37 @@ T = TypeVar("T", bound="DhcpAdvancedOptions")
 class DhcpAdvancedOptions:
     """
     Attributes:
-        req_timeout (Union[Unset, str]): protocol timeout
-        req_retry (Union[Unset, str]): try again duration
-        req_select_timeout (Union[Unset, str]): offer selection timeout when multiple are received
-        req_restart (Union[Unset, str]): time before requiring new lease
-        req_backoff_cutoff (Union[Unset, str]): backoff algorithm duration
-        req_initial_interval (Union[Unset, str]): interval between initial requests
-        send_options (Union[Unset, str]): options to send to DHCP server
-        request_options (Union[Unset, str]): options wanting from DHCP server
-        required_options (Union[Unset, str]): options that must be received in the offer to be accepted
-        option_modifiers (Union[Unset, str]): modify options from offer received
-        enable_override_options (Union[Unset, bool]):
-        override_options (Union[Unset, str]): override options received
-        config_file_override_path (Union[Unset, str]):
+        req_timeout (str | Unset): protocol timeout
+        req_retry (str | Unset): try again duration
+        req_select_timeout (str | Unset): offer selection timeout when multiple are received
+        req_restart (str | Unset): time before requiring new lease
+        req_backoff_cutoff (str | Unset): backoff algorithm duration
+        req_initial_interval (str | Unset): interval between initial requests
+        send_options (str | Unset): options to send to DHCP server
+        request_options (str | Unset): options wanting from DHCP server
+        required_options (str | Unset): options that must be received in the offer to be accepted
+        option_modifiers (str | Unset): modify options from offer received
+        enable_override_options (bool | Unset):
+        override_options (str | Unset): override options received
+        config_file_override_path (str | Unset):
     """
 
-    req_timeout: Union[Unset, str] = UNSET
-    req_retry: Union[Unset, str] = UNSET
-    req_select_timeout: Union[Unset, str] = UNSET
-    req_restart: Union[Unset, str] = UNSET
-    req_backoff_cutoff: Union[Unset, str] = UNSET
-    req_initial_interval: Union[Unset, str] = UNSET
-    send_options: Union[Unset, str] = UNSET
-    request_options: Union[Unset, str] = UNSET
-    required_options: Union[Unset, str] = UNSET
-    option_modifiers: Union[Unset, str] = UNSET
-    enable_override_options: Union[Unset, bool] = UNSET
-    override_options: Union[Unset, str] = UNSET
-    config_file_override_path: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    req_timeout: str | Unset = UNSET
+    req_retry: str | Unset = UNSET
+    req_select_timeout: str | Unset = UNSET
+    req_restart: str | Unset = UNSET
+    req_backoff_cutoff: str | Unset = UNSET
+    req_initial_interval: str | Unset = UNSET
+    send_options: str | Unset = UNSET
+    request_options: str | Unset = UNSET
+    required_options: str | Unset = UNSET
+    option_modifiers: str | Unset = UNSET
+    enable_override_options: bool | Unset = UNSET
+    override_options: str | Unset = UNSET
+    config_file_override_path: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         req_timeout = self.req_timeout
 
         req_retry = self.req_retry
@@ -69,7 +72,7 @@ class DhcpAdvancedOptions:
 
         config_file_override_path = self.config_file_override_path
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if req_timeout is not UNSET:
@@ -102,8 +105,8 @@ class DhcpAdvancedOptions:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         req_timeout = d.pop("req_timeout", UNSET)
 
         req_retry = d.pop("req_retry", UNSET)
@@ -150,7 +153,7 @@ class DhcpAdvancedOptions:
         return dhcp_advanced_options
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

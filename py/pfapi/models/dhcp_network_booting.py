@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,30 +16,30 @@ class DhcpNetworkBooting:
     """
     Attributes:
         enable (bool):
-        next_server (Union[Unset, str]):
-        default_bios_name (Union[Unset, str]):
-        uefi_32_filename (Union[Unset, str]):
-        uefi_64_filename (Union[Unset, str]):
-        arm_32_filename (Union[Unset, str]):
-        arm_64_filename (Union[Unset, str]):
-        uefi_http_boot_url (Union[Unset, str]):
-        root_path (Union[Unset, str]):
-        bootfile_url (Union[Unset, str]):
+        next_server (str | Unset):
+        default_bios_name (str | Unset):
+        uefi_32_filename (str | Unset):
+        uefi_64_filename (str | Unset):
+        arm_32_filename (str | Unset):
+        arm_64_filename (str | Unset):
+        uefi_http_boot_url (str | Unset):
+        root_path (str | Unset):
+        bootfile_url (str | Unset):
     """
 
     enable: bool
-    next_server: Union[Unset, str] = UNSET
-    default_bios_name: Union[Unset, str] = UNSET
-    uefi_32_filename: Union[Unset, str] = UNSET
-    uefi_64_filename: Union[Unset, str] = UNSET
-    arm_32_filename: Union[Unset, str] = UNSET
-    arm_64_filename: Union[Unset, str] = UNSET
-    uefi_http_boot_url: Union[Unset, str] = UNSET
-    root_path: Union[Unset, str] = UNSET
-    bootfile_url: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    next_server: str | Unset = UNSET
+    default_bios_name: str | Unset = UNSET
+    uefi_32_filename: str | Unset = UNSET
+    uefi_64_filename: str | Unset = UNSET
+    arm_32_filename: str | Unset = UNSET
+    arm_64_filename: str | Unset = UNSET
+    uefi_http_boot_url: str | Unset = UNSET
+    root_path: str | Unset = UNSET
+    bootfile_url: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enable = self.enable
 
         next_server = self.next_server
@@ -57,7 +60,7 @@ class DhcpNetworkBooting:
 
         bootfile_url = self.bootfile_url
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -86,8 +89,8 @@ class DhcpNetworkBooting:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         enable = d.pop("enable")
 
         next_server = d.pop("next_server", UNSET)
@@ -125,7 +128,7 @@ class DhcpNetworkBooting:
         return dhcp_network_booting
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -7,54 +7,36 @@ from ... import errors
 from ...client import AuthenticatedClient, Client
 from ...models.error import Error
 from ...models.smart_result import SMARTResult
-from ...types import UNSET, Response, Unset
+from ...types import Response
 
 
-def _get_kwargs(
-    *,
-    drive: Union[Unset, str] = UNSET,
-    type: Union[Unset, str] = UNSET,
-    status: Union[Unset, str] = UNSET,
-) -> Dict[str, Any]:
-    params: Dict[str, Any] = {}
-
-    params["drive"] = drive
-
-    params["type"] = type
-
-    params["status"] = status
-
-    params = {k: v for k, v in params.items() if v is not UNSET and v is not None}
-
-    _kwargs: Dict[str, Any] = {
+def _get_kwargs() -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/diag/smart/test",
-        "params": params,
     }
 
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, SMARTResult]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | SMARTResult | None:
     if response.status_code == 200:
         response_200 = SMARTResult.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, SMARTResult]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | SMARTResult]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -65,31 +47,19 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    drive: Union[Unset, str] = UNSET,
-    type: Union[Unset, str] = UNSET,
-    status: Union[Unset, str] = UNSET,
-) -> Response[Union[Error, SMARTResult]]:
-    """Run SMART test
-
-    Args:
-        drive (Union[Unset, str]):
-        type (Union[Unset, str]):
-        status (Union[Unset, str]):
+    client: AuthenticatedClient | Client,
+) -> Response[Error | SMARTResult]:
+    """Get current SMART test status/result
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, SMARTResult]]
+        Response[Error | SMARTResult]
     """
 
-    kwargs = _get_kwargs(
-        drive=drive,
-        type=type,
-        status=status,
-    )
+    kwargs = _get_kwargs()
 
     response = client.get_httpx_client().request(
         **kwargs,
@@ -100,61 +70,38 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-    drive: Union[Unset, str] = UNSET,
-    type: Union[Unset, str] = UNSET,
-    status: Union[Unset, str] = UNSET,
-) -> Optional[Union[Error, SMARTResult]]:
-    """Run SMART test
-
-    Args:
-        drive (Union[Unset, str]):
-        type (Union[Unset, str]):
-        status (Union[Unset, str]):
+    client: AuthenticatedClient | Client,
+) -> Error | SMARTResult | None:
+    """Get current SMART test status/result
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, SMARTResult]
+        Error | SMARTResult
     """
 
     return sync_detailed(
         client=client,
-        drive=drive,
-        type=type,
-        status=status,
     ).parsed
 
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-    drive: Union[Unset, str] = UNSET,
-    type: Union[Unset, str] = UNSET,
-    status: Union[Unset, str] = UNSET,
-) -> Response[Union[Error, SMARTResult]]:
-    """Run SMART test
-
-    Args:
-        drive (Union[Unset, str]):
-        type (Union[Unset, str]):
-        status (Union[Unset, str]):
+    client: AuthenticatedClient | Client,
+) -> Response[Error | SMARTResult]:
+    """Get current SMART test status/result
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, SMARTResult]]
+        Response[Error | SMARTResult]
     """
 
-    kwargs = _get_kwargs(
-        drive=drive,
-        type=type,
-        status=status,
-    )
+    kwargs = _get_kwargs()
 
     response = await client.get_async_httpx_client().request(**kwargs)
 
@@ -163,31 +110,20 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-    drive: Union[Unset, str] = UNSET,
-    type: Union[Unset, str] = UNSET,
-    status: Union[Unset, str] = UNSET,
-) -> Optional[Union[Error, SMARTResult]]:
-    """Run SMART test
-
-    Args:
-        drive (Union[Unset, str]):
-        type (Union[Unset, str]):
-        status (Union[Unset, str]):
+    client: AuthenticatedClient | Client,
+) -> Error | SMARTResult | None:
+    """Get current SMART test status/result
 
     Raises:
         errors.UnexpectedStatus: If the server returns an undocumented status code and Client.raise_on_unexpected_status is True.
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, SMARTResult]
+        Error | SMARTResult
     """
 
     return (
         await asyncio_detailed(
             client=client,
-            drive=drive,
-            type=type,
-            status=status,
         )
     ).parsed

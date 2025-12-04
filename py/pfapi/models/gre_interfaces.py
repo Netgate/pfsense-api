@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,30 +20,30 @@ T = TypeVar("T", bound="GREInterfaces")
 class GREInterfaces:
     """
     Attributes:
-        interfaces (Union[Unset, List['GREInterface']]):
-        gre_capable_ifs (Union[Unset, List['GRECapableInterface']]):
+        interfaces (list[GREInterface] | Unset):
+        gre_capable_ifs (list[GRECapableInterface] | Unset):
     """
 
-    interfaces: Union[Unset, List["GREInterface"]] = UNSET
-    gre_capable_ifs: Union[Unset, List["GRECapableInterface"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    interfaces: list[GREInterface] | Unset = UNSET
+    gre_capable_ifs: list[GRECapableInterface] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        interfaces: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = []
             for interfaces_item_data in self.interfaces:
                 interfaces_item = interfaces_item_data.to_dict()
                 interfaces.append(interfaces_item)
 
-        gre_capable_ifs: Union[Unset, List[Dict[str, Any]]] = UNSET
+        gre_capable_ifs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.gre_capable_ifs, Unset):
             gre_capable_ifs = []
             for gre_capable_ifs_item_data in self.gre_capable_ifs:
                 gre_capable_ifs_item = gre_capable_ifs_item_data.to_dict()
                 gre_capable_ifs.append(gre_capable_ifs_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if interfaces is not UNSET:
@@ -51,24 +54,28 @@ class GREInterfaces:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.gre_capable_interface import GRECapableInterface
         from ..models.gre_interface import GREInterface
 
-        d = src_dict.copy()
-        interfaces = []
+        d = dict(src_dict)
         _interfaces = d.pop("interfaces", UNSET)
-        for interfaces_item_data in _interfaces or []:
-            interfaces_item = GREInterface.from_dict(interfaces_item_data)
+        interfaces: list[GREInterface] | Unset = UNSET
+        if _interfaces is not UNSET:
+            interfaces = []
+            for interfaces_item_data in _interfaces:
+                interfaces_item = GREInterface.from_dict(interfaces_item_data)
 
-            interfaces.append(interfaces_item)
+                interfaces.append(interfaces_item)
 
-        gre_capable_ifs = []
         _gre_capable_ifs = d.pop("gre_capable_ifs", UNSET)
-        for gre_capable_ifs_item_data in _gre_capable_ifs or []:
-            gre_capable_ifs_item = GRECapableInterface.from_dict(gre_capable_ifs_item_data)
+        gre_capable_ifs: list[GRECapableInterface] | Unset = UNSET
+        if _gre_capable_ifs is not UNSET:
+            gre_capable_ifs = []
+            for gre_capable_ifs_item_data in _gre_capable_ifs:
+                gre_capable_ifs_item = GRECapableInterface.from_dict(gre_capable_ifs_item_data)
 
-            gre_capable_ifs.append(gre_capable_ifs_item)
+                gre_capable_ifs.append(gre_capable_ifs_item)
 
         gre_interfaces = cls(
             interfaces=interfaces,
@@ -79,7 +86,7 @@ class GREInterfaces:
         return gre_interfaces
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,33 +15,33 @@ T = TypeVar("T", bound="NetIfOptions")
 class NetIfOptions:
     """
     Attributes:
-        blockbogons (Union[Unset, bool]):
-        blockpriv (Union[Unset, bool]):
-        mtu (Union[Unset, int]):
-        mss (Union[Unset, int]):
-        pcp (Union[Unset, int]):
-        promisc (Union[Unset, bool]):
-        member (Union[Unset, str]):
-        mac (Union[Unset, str]):
-        mediaopt (Union[Unset, str]):
-        spoofmac (Union[Unset, str]):
-        tag (Union[Unset, int]):
+        blockbogons (bool | Unset):
+        blockpriv (bool | Unset):
+        mtu (int | Unset):
+        mss (int | Unset):
+        pcp (int | Unset):
+        promisc (bool | Unset):
+        member (str | Unset):
+        mac (str | Unset):
+        mediaopt (str | Unset):
+        spoofmac (str | Unset):
+        tag (int | Unset):
     """
 
-    blockbogons: Union[Unset, bool] = UNSET
-    blockpriv: Union[Unset, bool] = UNSET
-    mtu: Union[Unset, int] = UNSET
-    mss: Union[Unset, int] = UNSET
-    pcp: Union[Unset, int] = UNSET
-    promisc: Union[Unset, bool] = UNSET
-    member: Union[Unset, str] = UNSET
-    mac: Union[Unset, str] = UNSET
-    mediaopt: Union[Unset, str] = UNSET
-    spoofmac: Union[Unset, str] = UNSET
-    tag: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    blockbogons: bool | Unset = UNSET
+    blockpriv: bool | Unset = UNSET
+    mtu: int | Unset = UNSET
+    mss: int | Unset = UNSET
+    pcp: int | Unset = UNSET
+    promisc: bool | Unset = UNSET
+    member: str | Unset = UNSET
+    mac: str | Unset = UNSET
+    mediaopt: str | Unset = UNSET
+    spoofmac: str | Unset = UNSET
+    tag: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         blockbogons = self.blockbogons
 
         blockpriv = self.blockpriv
@@ -61,7 +64,7 @@ class NetIfOptions:
 
         tag = self.tag
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if blockbogons is not UNSET:
@@ -90,8 +93,8 @@ class NetIfOptions:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         blockbogons = d.pop("blockbogons", UNSET)
 
         blockpriv = d.pop("blockpriv", UNSET)
@@ -132,7 +135,7 @@ class NetIfOptions:
         return net_if_options
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

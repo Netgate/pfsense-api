@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,27 +19,27 @@ T = TypeVar("T", bound="PPPoEConfig")
 class PPPoEConfig:
     """
     Attributes:
-        pppoe (Union[Unset, List['PPPoEServer']]):
-        interfaces (Union[Unset, List[str]]):
+        pppoe (list[PPPoEServer] | Unset):
+        interfaces (list[str] | Unset):
     """
 
-    pppoe: Union[Unset, List["PPPoEServer"]] = UNSET
-    interfaces: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    pppoe: list[PPPoEServer] | Unset = UNSET
+    interfaces: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        pppoe: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        pppoe: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.pppoe, Unset):
             pppoe = []
             for pppoe_item_data in self.pppoe:
                 pppoe_item = pppoe_item_data.to_dict()
                 pppoe.append(pppoe_item)
 
-        interfaces: Union[Unset, List[str]] = UNSET
+        interfaces: list[str] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = self.interfaces
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if pppoe is not UNSET:
@@ -47,18 +50,20 @@ class PPPoEConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.pp_po_e_server import PPPoEServer
 
-        d = src_dict.copy()
-        pppoe = []
+        d = dict(src_dict)
         _pppoe = d.pop("pppoe", UNSET)
-        for pppoe_item_data in _pppoe or []:
-            pppoe_item = PPPoEServer.from_dict(pppoe_item_data)
+        pppoe: list[PPPoEServer] | Unset = UNSET
+        if _pppoe is not UNSET:
+            pppoe = []
+            for pppoe_item_data in _pppoe:
+                pppoe_item = PPPoEServer.from_dict(pppoe_item_data)
 
-            pppoe.append(pppoe_item)
+                pppoe.append(pppoe_item)
 
-        interfaces = cast(List[str], d.pop("interfaces", UNSET))
+        interfaces = cast(list[str], d.pop("interfaces", UNSET))
 
         pp_po_e_config = cls(
             pppoe=pppoe,
@@ -69,7 +74,7 @@ class PPPoEConfig:
         return pp_po_e_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

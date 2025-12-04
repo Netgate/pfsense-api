@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,109 +15,109 @@ T = TypeVar("T", bound="AdvFirewall")
 class AdvFirewall:
     """
     Attributes:
-        adaptiveend (Union[Unset, str]):
-        adaptivestart (Union[Unset, str]):
-        aliasesresolveinterval (Union[Unset, str]):
-        bogonsinterval (Union[Unset, str]):
-        bypassstaticroutes (Union[Unset, bool]):
-        checkaliasesurlcert (Union[Unset, bool]):
-        disablefilter (Union[Unset, bool]):
-        disablenegate (Union[Unset, bool]):
-        disablereplyto (Union[Unset, bool]):
-        disablescrub (Union[Unset, bool]):
-        disablevpnrules (Union[Unset, bool]):
-        enablebinatreflection (Union[Unset, bool]):
-        enablenatreflectionhelper (Union[Unset, bool]):
-        enableethfilter (Union[Unset, bool]):
-        icmperrortimeout (Union[Unset, str]):
-        icmpfirsttimeout (Union[Unset, str]):
-        maximumfrags (Union[Unset, str]):
-        maximumstates (Union[Unset, str]):
-        maximumtableentries (Union[Unset, str]):
-        maxmss (Union[Unset, str]):
-        maxmss_enable (Union[Unset, bool]):
-        vpn_fragment_reassemble (Union[Unset, bool]):
-        natreflection (Union[Unset, str]):
-        no_apipa_block (Union[Unset, bool]):
-        optimization (Union[Unset, str]):
-        otherfirsttimeout (Union[Unset, str]):
-        othermultipletimeout (Union[Unset, str]):
-        othersingletimeout (Union[Unset, str]):
-        reflectiontimeout (Union[Unset, str]):
-        scrubnodf (Union[Unset, bool]):
-        scrubrnid (Union[Unset, bool]):
-        sctpfirsttimeout (Union[Unset, str]):
-        sctpopeningtimeout (Union[Unset, str]):
-        sctpestablishedtimeout (Union[Unset, str]):
-        sctpclosingtimeout (Union[Unset, str]):
-        sctpclosedtimeout (Union[Unset, str]):
-        statepolicy (Union[Unset, str]):
-        tcpclosedtimeout (Union[Unset, str]):
-        tcpclosingtimeout (Union[Unset, str]):
-        tcpestablishedtimeout (Union[Unset, str]):
-        tcpfinwaittimeout (Union[Unset, str]):
-        tcpfirsttimeout (Union[Unset, str]):
-        tcpopeningtimeout (Union[Unset, str]):
-        tcptsdifftimeout (Union[Unset, str]):
-        tftpinterface (Union[Unset, List[str]]):
-        udpfirsttimeout (Union[Unset, str]):
-        udpmultipletimeout (Union[Unset, str]):
-        udpsingletimeout (Union[Unset, str]):
-        allow_nat64_prefix_override (Union[Unset, bool]): Allow overriding the NAT64 prefix used in rules and services
+        adaptiveend (str | Unset):
+        adaptivestart (str | Unset):
+        aliasesresolveinterval (str | Unset):
+        bogonsinterval (str | Unset):
+        bypassstaticroutes (bool | Unset):
+        checkaliasesurlcert (bool | Unset):
+        disablefilter (bool | Unset):
+        disablenegate (bool | Unset):
+        disablereplyto (bool | Unset):
+        disablescrub (bool | Unset):
+        disablevpnrules (bool | Unset):
+        enablebinatreflection (bool | Unset):
+        enablenatreflectionhelper (bool | Unset):
+        enableethfilter (bool | Unset):
+        icmperrortimeout (str | Unset):
+        icmpfirsttimeout (str | Unset):
+        maximumfrags (str | Unset):
+        maximumstates (str | Unset):
+        maximumtableentries (str | Unset):
+        maxmss (str | Unset):
+        maxmss_enable (bool | Unset):
+        vpn_fragment_reassemble (bool | Unset):
+        natreflection (str | Unset):
+        no_apipa_block (bool | Unset):
+        optimization (str | Unset):
+        otherfirsttimeout (str | Unset):
+        othermultipletimeout (str | Unset):
+        othersingletimeout (str | Unset):
+        reflectiontimeout (str | Unset):
+        scrubnodf (bool | Unset):
+        scrubrnid (bool | Unset):
+        sctpfirsttimeout (str | Unset):
+        sctpopeningtimeout (str | Unset):
+        sctpestablishedtimeout (str | Unset):
+        sctpclosingtimeout (str | Unset):
+        sctpclosedtimeout (str | Unset):
+        statepolicy (str | Unset):
+        tcpclosedtimeout (str | Unset):
+        tcpclosingtimeout (str | Unset):
+        tcpestablishedtimeout (str | Unset):
+        tcpfinwaittimeout (str | Unset):
+        tcpfirsttimeout (str | Unset):
+        tcpopeningtimeout (str | Unset):
+        tcptsdifftimeout (str | Unset):
+        tftpinterface (list[str] | Unset):
+        udpfirsttimeout (str | Unset):
+        udpmultipletimeout (str | Unset):
+        udpsingletimeout (str | Unset):
+        allow_nat64_prefix_override (bool | Unset): Allow overriding the NAT64 prefix used in rules and services
     """
 
-    adaptiveend: Union[Unset, str] = UNSET
-    adaptivestart: Union[Unset, str] = UNSET
-    aliasesresolveinterval: Union[Unset, str] = UNSET
-    bogonsinterval: Union[Unset, str] = UNSET
-    bypassstaticroutes: Union[Unset, bool] = UNSET
-    checkaliasesurlcert: Union[Unset, bool] = UNSET
-    disablefilter: Union[Unset, bool] = UNSET
-    disablenegate: Union[Unset, bool] = UNSET
-    disablereplyto: Union[Unset, bool] = UNSET
-    disablescrub: Union[Unset, bool] = UNSET
-    disablevpnrules: Union[Unset, bool] = UNSET
-    enablebinatreflection: Union[Unset, bool] = UNSET
-    enablenatreflectionhelper: Union[Unset, bool] = UNSET
-    enableethfilter: Union[Unset, bool] = UNSET
-    icmperrortimeout: Union[Unset, str] = UNSET
-    icmpfirsttimeout: Union[Unset, str] = UNSET
-    maximumfrags: Union[Unset, str] = UNSET
-    maximumstates: Union[Unset, str] = UNSET
-    maximumtableentries: Union[Unset, str] = UNSET
-    maxmss: Union[Unset, str] = UNSET
-    maxmss_enable: Union[Unset, bool] = UNSET
-    vpn_fragment_reassemble: Union[Unset, bool] = UNSET
-    natreflection: Union[Unset, str] = UNSET
-    no_apipa_block: Union[Unset, bool] = UNSET
-    optimization: Union[Unset, str] = UNSET
-    otherfirsttimeout: Union[Unset, str] = UNSET
-    othermultipletimeout: Union[Unset, str] = UNSET
-    othersingletimeout: Union[Unset, str] = UNSET
-    reflectiontimeout: Union[Unset, str] = UNSET
-    scrubnodf: Union[Unset, bool] = UNSET
-    scrubrnid: Union[Unset, bool] = UNSET
-    sctpfirsttimeout: Union[Unset, str] = UNSET
-    sctpopeningtimeout: Union[Unset, str] = UNSET
-    sctpestablishedtimeout: Union[Unset, str] = UNSET
-    sctpclosingtimeout: Union[Unset, str] = UNSET
-    sctpclosedtimeout: Union[Unset, str] = UNSET
-    statepolicy: Union[Unset, str] = UNSET
-    tcpclosedtimeout: Union[Unset, str] = UNSET
-    tcpclosingtimeout: Union[Unset, str] = UNSET
-    tcpestablishedtimeout: Union[Unset, str] = UNSET
-    tcpfinwaittimeout: Union[Unset, str] = UNSET
-    tcpfirsttimeout: Union[Unset, str] = UNSET
-    tcpopeningtimeout: Union[Unset, str] = UNSET
-    tcptsdifftimeout: Union[Unset, str] = UNSET
-    tftpinterface: Union[Unset, List[str]] = UNSET
-    udpfirsttimeout: Union[Unset, str] = UNSET
-    udpmultipletimeout: Union[Unset, str] = UNSET
-    udpsingletimeout: Union[Unset, str] = UNSET
-    allow_nat64_prefix_override: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    adaptiveend: str | Unset = UNSET
+    adaptivestart: str | Unset = UNSET
+    aliasesresolveinterval: str | Unset = UNSET
+    bogonsinterval: str | Unset = UNSET
+    bypassstaticroutes: bool | Unset = UNSET
+    checkaliasesurlcert: bool | Unset = UNSET
+    disablefilter: bool | Unset = UNSET
+    disablenegate: bool | Unset = UNSET
+    disablereplyto: bool | Unset = UNSET
+    disablescrub: bool | Unset = UNSET
+    disablevpnrules: bool | Unset = UNSET
+    enablebinatreflection: bool | Unset = UNSET
+    enablenatreflectionhelper: bool | Unset = UNSET
+    enableethfilter: bool | Unset = UNSET
+    icmperrortimeout: str | Unset = UNSET
+    icmpfirsttimeout: str | Unset = UNSET
+    maximumfrags: str | Unset = UNSET
+    maximumstates: str | Unset = UNSET
+    maximumtableentries: str | Unset = UNSET
+    maxmss: str | Unset = UNSET
+    maxmss_enable: bool | Unset = UNSET
+    vpn_fragment_reassemble: bool | Unset = UNSET
+    natreflection: str | Unset = UNSET
+    no_apipa_block: bool | Unset = UNSET
+    optimization: str | Unset = UNSET
+    otherfirsttimeout: str | Unset = UNSET
+    othermultipletimeout: str | Unset = UNSET
+    othersingletimeout: str | Unset = UNSET
+    reflectiontimeout: str | Unset = UNSET
+    scrubnodf: bool | Unset = UNSET
+    scrubrnid: bool | Unset = UNSET
+    sctpfirsttimeout: str | Unset = UNSET
+    sctpopeningtimeout: str | Unset = UNSET
+    sctpestablishedtimeout: str | Unset = UNSET
+    sctpclosingtimeout: str | Unset = UNSET
+    sctpclosedtimeout: str | Unset = UNSET
+    statepolicy: str | Unset = UNSET
+    tcpclosedtimeout: str | Unset = UNSET
+    tcpclosingtimeout: str | Unset = UNSET
+    tcpestablishedtimeout: str | Unset = UNSET
+    tcpfinwaittimeout: str | Unset = UNSET
+    tcpfirsttimeout: str | Unset = UNSET
+    tcpopeningtimeout: str | Unset = UNSET
+    tcptsdifftimeout: str | Unset = UNSET
+    tftpinterface: list[str] | Unset = UNSET
+    udpfirsttimeout: str | Unset = UNSET
+    udpmultipletimeout: str | Unset = UNSET
+    udpsingletimeout: str | Unset = UNSET
+    allow_nat64_prefix_override: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         adaptiveend = self.adaptiveend
 
         adaptivestart = self.adaptivestart
@@ -203,7 +206,7 @@ class AdvFirewall:
 
         tcptsdifftimeout = self.tcptsdifftimeout
 
-        tftpinterface: Union[Unset, List[str]] = UNSET
+        tftpinterface: list[str] | Unset = UNSET
         if not isinstance(self.tftpinterface, Unset):
             tftpinterface = self.tftpinterface
 
@@ -215,7 +218,7 @@ class AdvFirewall:
 
         allow_nat64_prefix_override = self.allow_nat64_prefix_override
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if adaptiveend is not UNSET:
@@ -320,8 +323,8 @@ class AdvFirewall:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         adaptiveend = d.pop("adaptiveend", UNSET)
 
         adaptivestart = d.pop("adaptivestart", UNSET)
@@ -410,7 +413,7 @@ class AdvFirewall:
 
         tcptsdifftimeout = d.pop("tcptsdifftimeout", UNSET)
 
-        tftpinterface = cast(List[str], d.pop("tftpinterface", UNSET))
+        tftpinterface = cast(list[str], d.pop("tftpinterface", UNSET))
 
         udpfirsttimeout = d.pop("udpfirsttimeout", UNSET)
 
@@ -476,7 +479,7 @@ class AdvFirewall:
         return adv_firewall
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

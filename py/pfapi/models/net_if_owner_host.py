@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,20 +15,20 @@ T = TypeVar("T", bound="NetIfOwnerHost")
 class NetIfOwnerHost:
     """
     Attributes:
-        wol (Union[Unset, bool]):
-        hw_flags (Union[Unset, str]): comma-separated flags configured on interface, e.g. TSO, LRO, etc
+        wol (bool | Unset):
+        hw_flags (str | Unset): comma-separated flags configured on interface, e.g. TSO, LRO, etc
     """
 
-    wol: Union[Unset, bool] = UNSET
-    hw_flags: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    wol: bool | Unset = UNSET
+    hw_flags: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         wol = self.wol
 
         hw_flags = self.hw_flags
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if wol is not UNSET:
@@ -36,8 +39,8 @@ class NetIfOwnerHost:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         wol = d.pop("wol", UNSET)
 
         hw_flags = d.pop("hw_flags", UNSET)
@@ -51,7 +54,7 @@ class NetIfOwnerHost:
         return net_if_owner_host
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,33 +20,33 @@ T = TypeVar("T", bound="IPSecWidget")
 class IPSecWidget:
     """
     Attributes:
-        phase1s_active (Union[Unset, int]):
-        phase1s_total (Union[Unset, int]):
-        phase2s_active (Union[Unset, int]):
-        phase2s_total (Union[Unset, int]):
-        total_active (Union[Unset, int]):
-        total_inactive (Union[Unset, int]):
-        mobile_users (Union[Unset, int]):
-        mobile_active (Union[Unset, int]):
-        mobile_total (Union[Unset, int]):
-        tunnels (Union[Unset, List['IPSecWidgetTunnel']]):
-        mobile (Union[Unset, List['IPSecWidgetMobile']]):
+        phase1s_active (int | Unset):
+        phase1s_total (int | Unset):
+        phase2s_active (int | Unset):
+        phase2s_total (int | Unset):
+        total_active (int | Unset):
+        total_inactive (int | Unset):
+        mobile_users (int | Unset):
+        mobile_active (int | Unset):
+        mobile_total (int | Unset):
+        tunnels (list[IPSecWidgetTunnel] | Unset):
+        mobile (list[IPSecWidgetMobile] | Unset):
     """
 
-    phase1s_active: Union[Unset, int] = UNSET
-    phase1s_total: Union[Unset, int] = UNSET
-    phase2s_active: Union[Unset, int] = UNSET
-    phase2s_total: Union[Unset, int] = UNSET
-    total_active: Union[Unset, int] = UNSET
-    total_inactive: Union[Unset, int] = UNSET
-    mobile_users: Union[Unset, int] = UNSET
-    mobile_active: Union[Unset, int] = UNSET
-    mobile_total: Union[Unset, int] = UNSET
-    tunnels: Union[Unset, List["IPSecWidgetTunnel"]] = UNSET
-    mobile: Union[Unset, List["IPSecWidgetMobile"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    phase1s_active: int | Unset = UNSET
+    phase1s_total: int | Unset = UNSET
+    phase2s_active: int | Unset = UNSET
+    phase2s_total: int | Unset = UNSET
+    total_active: int | Unset = UNSET
+    total_inactive: int | Unset = UNSET
+    mobile_users: int | Unset = UNSET
+    mobile_active: int | Unset = UNSET
+    mobile_total: int | Unset = UNSET
+    tunnels: list[IPSecWidgetTunnel] | Unset = UNSET
+    mobile: list[IPSecWidgetMobile] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         phase1s_active = self.phase1s_active
 
         phase1s_total = self.phase1s_total
@@ -62,21 +65,21 @@ class IPSecWidget:
 
         mobile_total = self.mobile_total
 
-        tunnels: Union[Unset, List[Dict[str, Any]]] = UNSET
+        tunnels: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.tunnels, Unset):
             tunnels = []
             for tunnels_item_data in self.tunnels:
                 tunnels_item = tunnels_item_data.to_dict()
                 tunnels.append(tunnels_item)
 
-        mobile: Union[Unset, List[Dict[str, Any]]] = UNSET
+        mobile: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.mobile, Unset):
             mobile = []
             for mobile_item_data in self.mobile:
                 mobile_item = mobile_item_data.to_dict()
                 mobile.append(mobile_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if phase1s_active is not UNSET:
@@ -105,11 +108,11 @@ class IPSecWidget:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ip_sec_widget_mobile import IPSecWidgetMobile
         from ..models.ip_sec_widget_tunnel import IPSecWidgetTunnel
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         phase1s_active = d.pop("phase1s_active", UNSET)
 
         phase1s_total = d.pop("phase1s_total", UNSET)
@@ -128,19 +131,23 @@ class IPSecWidget:
 
         mobile_total = d.pop("mobile_total", UNSET)
 
-        tunnels = []
         _tunnels = d.pop("tunnels", UNSET)
-        for tunnels_item_data in _tunnels or []:
-            tunnels_item = IPSecWidgetTunnel.from_dict(tunnels_item_data)
+        tunnels: list[IPSecWidgetTunnel] | Unset = UNSET
+        if _tunnels is not UNSET:
+            tunnels = []
+            for tunnels_item_data in _tunnels:
+                tunnels_item = IPSecWidgetTunnel.from_dict(tunnels_item_data)
 
-            tunnels.append(tunnels_item)
+                tunnels.append(tunnels_item)
 
-        mobile = []
         _mobile = d.pop("mobile", UNSET)
-        for mobile_item_data in _mobile or []:
-            mobile_item = IPSecWidgetMobile.from_dict(mobile_item_data)
+        mobile: list[IPSecWidgetMobile] | Unset = UNSET
+        if _mobile is not UNSET:
+            mobile = []
+            for mobile_item_data in _mobile:
+                mobile_item = IPSecWidgetMobile.from_dict(mobile_item_data)
 
-            mobile.append(mobile_item)
+                mobile.append(mobile_item)
 
         ip_sec_widget = cls(
             phase1s_active=phase1s_active,
@@ -160,7 +167,7 @@ class IPSecWidget:
         return ip_sec_widget
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,21 +15,21 @@ T = TypeVar("T", bound="MonitoringDataRequest")
 class MonitoringDataRequest:
     """
     Attributes:
-        scope (Union[Unset, str]):
-        dataset (Union[Unset, str]):
-        start_time_unix_seconds (Union[Unset, int]):
-        end_time_unix_seconds (Union[Unset, int]):
-        resolution_seconds (Union[Unset, int]):
+        scope (str | Unset):
+        dataset (str | Unset):
+        start_time_unix_seconds (int | Unset):
+        end_time_unix_seconds (int | Unset):
+        resolution_seconds (int | Unset):
     """
 
-    scope: Union[Unset, str] = UNSET
-    dataset: Union[Unset, str] = UNSET
-    start_time_unix_seconds: Union[Unset, int] = UNSET
-    end_time_unix_seconds: Union[Unset, int] = UNSET
-    resolution_seconds: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    scope: str | Unset = UNSET
+    dataset: str | Unset = UNSET
+    start_time_unix_seconds: int | Unset = UNSET
+    end_time_unix_seconds: int | Unset = UNSET
+    resolution_seconds: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         scope = self.scope
 
         dataset = self.dataset
@@ -37,7 +40,7 @@ class MonitoringDataRequest:
 
         resolution_seconds = self.resolution_seconds
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if scope is not UNSET:
@@ -54,8 +57,8 @@ class MonitoringDataRequest:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         scope = d.pop("scope", UNSET)
 
         dataset = d.pop("dataset", UNSET)
@@ -78,7 +81,7 @@ class MonitoringDataRequest:
         return monitoring_data_request
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

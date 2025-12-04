@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,24 +16,24 @@ class ServicesStatus:
     """
     Attributes:
         name (str):
-        description (Union[Unset, str]):
-        vpnid (Union[Unset, str]): for openvpn service only
-        mode (Union[Unset, str]): for openvpn service only
-        zone (Union[Unset, str]): for captive portal service only
-        enabled (Union[Unset, bool]):
-        running (Union[Unset, bool]):
+        description (str | Unset):
+        vpnid (str | Unset): for openvpn service only
+        mode (str | Unset): for openvpn service only
+        zone (str | Unset): for captive portal service only
+        enabled (bool | Unset):
+        running (bool | Unset):
     """
 
     name: str
-    description: Union[Unset, str] = UNSET
-    vpnid: Union[Unset, str] = UNSET
-    mode: Union[Unset, str] = UNSET
-    zone: Union[Unset, str] = UNSET
-    enabled: Union[Unset, bool] = UNSET
-    running: Union[Unset, bool] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    description: str | Unset = UNSET
+    vpnid: str | Unset = UNSET
+    mode: str | Unset = UNSET
+    zone: str | Unset = UNSET
+    enabled: bool | Unset = UNSET
+    running: bool | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         description = self.description
@@ -45,7 +48,7 @@ class ServicesStatus:
 
         running = self.running
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -68,8 +71,8 @@ class ServicesStatus:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name")
 
         description = d.pop("description", UNSET)
@@ -98,7 +101,7 @@ class ServicesStatus:
         return services_status
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

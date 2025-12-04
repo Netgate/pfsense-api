@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,30 +20,30 @@ T = TypeVar("T", bound="GIFInterfaces")
 class GIFInterfaces:
     """
     Attributes:
-        interfaces (Union[Unset, List['GIFInterface']]):
-        gif_capable_ifs (Union[Unset, List['GIFCapableInterface']]):
+        interfaces (list[GIFInterface] | Unset):
+        gif_capable_ifs (list[GIFCapableInterface] | Unset):
     """
 
-    interfaces: Union[Unset, List["GIFInterface"]] = UNSET
-    gif_capable_ifs: Union[Unset, List["GIFCapableInterface"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    interfaces: list[GIFInterface] | Unset = UNSET
+    gif_capable_ifs: list[GIFCapableInterface] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        interfaces: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        interfaces: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
             interfaces = []
             for interfaces_item_data in self.interfaces:
                 interfaces_item = interfaces_item_data.to_dict()
                 interfaces.append(interfaces_item)
 
-        gif_capable_ifs: Union[Unset, List[Dict[str, Any]]] = UNSET
+        gif_capable_ifs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.gif_capable_ifs, Unset):
             gif_capable_ifs = []
             for gif_capable_ifs_item_data in self.gif_capable_ifs:
                 gif_capable_ifs_item = gif_capable_ifs_item_data.to_dict()
                 gif_capable_ifs.append(gif_capable_ifs_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if interfaces is not UNSET:
@@ -51,24 +54,28 @@ class GIFInterfaces:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.gif_capable_interface import GIFCapableInterface
         from ..models.gif_interface import GIFInterface
 
-        d = src_dict.copy()
-        interfaces = []
+        d = dict(src_dict)
         _interfaces = d.pop("interfaces", UNSET)
-        for interfaces_item_data in _interfaces or []:
-            interfaces_item = GIFInterface.from_dict(interfaces_item_data)
+        interfaces: list[GIFInterface] | Unset = UNSET
+        if _interfaces is not UNSET:
+            interfaces = []
+            for interfaces_item_data in _interfaces:
+                interfaces_item = GIFInterface.from_dict(interfaces_item_data)
 
-            interfaces.append(interfaces_item)
+                interfaces.append(interfaces_item)
 
-        gif_capable_ifs = []
         _gif_capable_ifs = d.pop("gif_capable_ifs", UNSET)
-        for gif_capable_ifs_item_data in _gif_capable_ifs or []:
-            gif_capable_ifs_item = GIFCapableInterface.from_dict(gif_capable_ifs_item_data)
+        gif_capable_ifs: list[GIFCapableInterface] | Unset = UNSET
+        if _gif_capable_ifs is not UNSET:
+            gif_capable_ifs = []
+            for gif_capable_ifs_item_data in _gif_capable_ifs:
+                gif_capable_ifs_item = GIFCapableInterface.from_dict(gif_capable_ifs_item_data)
 
-            gif_capable_ifs.append(gif_capable_ifs_item)
+                gif_capable_ifs.append(gif_capable_ifs_item)
 
         gif_interfaces = cls(
             interfaces=interfaces,
@@ -79,7 +86,7 @@ class GIFInterfaces:
         return gif_interfaces
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

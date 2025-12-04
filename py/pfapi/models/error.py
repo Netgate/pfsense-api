@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,30 +19,30 @@ T = TypeVar("T", bound="Error")
 class Error:
     """
     Attributes:
-        errcode (Union[Unset, int]): Error code
-        errlevel (Union[Unset, str]): Error level - debug, info, error (default)
-        errmsg (Union[Unset, str]): Error message
-        alerts (Union[Unset, PfsenseResult]):
+        errcode (int | Unset): Error code
+        errlevel (str | Unset): Error level - debug, info, error (default)
+        errmsg (str | Unset): Error message
+        alerts (PfsenseResult | Unset):
     """
 
-    errcode: Union[Unset, int] = UNSET
-    errlevel: Union[Unset, str] = UNSET
-    errmsg: Union[Unset, str] = UNSET
-    alerts: Union[Unset, "PfsenseResult"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    errcode: int | Unset = UNSET
+    errlevel: str | Unset = UNSET
+    errmsg: str | Unset = UNSET
+    alerts: PfsenseResult | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         errcode = self.errcode
 
         errlevel = self.errlevel
 
         errmsg = self.errmsg
 
-        alerts: Union[Unset, Dict[str, Any]] = UNSET
+        alerts: dict[str, Any] | Unset = UNSET
         if not isinstance(self.alerts, Unset):
             alerts = self.alerts.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if errcode is not UNSET:
@@ -54,10 +57,10 @@ class Error:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.pfsense_result import PfsenseResult
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         errcode = d.pop("errcode", UNSET)
 
         errlevel = d.pop("errlevel", UNSET)
@@ -65,7 +68,7 @@ class Error:
         errmsg = d.pop("errmsg", UNSET)
 
         _alerts = d.pop("alerts", UNSET)
-        alerts: Union[Unset, PfsenseResult]
+        alerts: PfsenseResult | Unset
         if isinstance(_alerts, Unset):
             alerts = UNSET
         else:
@@ -82,7 +85,7 @@ class Error:
         return error
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

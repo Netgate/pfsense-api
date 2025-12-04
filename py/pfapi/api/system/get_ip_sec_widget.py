@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -10,8 +10,8 @@ from ...models.ip_sec_widget import IPSecWidget
 from ...types import Response
 
 
-def _get_kwargs() -> Dict[str, Any]:
-    _kwargs: Dict[str, Any] = {
+def _get_kwargs() -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "get",
         "url": "/system/widgets/ipsec",
     }
@@ -19,26 +19,24 @@ def _get_kwargs() -> Dict[str, Any]:
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, IPSecWidget]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | IPSecWidget | None:
     if response.status_code == 200:
         response_200 = IPSecWidget.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, IPSecWidget]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | IPSecWidget]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -49,8 +47,8 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, IPSecWidget]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Error | IPSecWidget]:
     """Get IPSec widget
 
     Raises:
@@ -58,7 +56,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, IPSecWidget]]
+        Response[Error | IPSecWidget]
     """
 
     kwargs = _get_kwargs()
@@ -72,8 +70,8 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, IPSecWidget]]:
+    client: AuthenticatedClient | Client,
+) -> Error | IPSecWidget | None:
     """Get IPSec widget
 
     Raises:
@@ -81,7 +79,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, IPSecWidget]
+        Error | IPSecWidget
     """
 
     return sync_detailed(
@@ -91,8 +89,8 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, IPSecWidget]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Error | IPSecWidget]:
     """Get IPSec widget
 
     Raises:
@@ -100,7 +98,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, IPSecWidget]]
+        Response[Error | IPSecWidget]
     """
 
     kwargs = _get_kwargs()
@@ -112,8 +110,8 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, IPSecWidget]]:
+    client: AuthenticatedClient | Client,
+) -> Error | IPSecWidget | None:
     """Get IPSec widget
 
     Raises:
@@ -121,7 +119,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, IPSecWidget]
+        Error | IPSecWidget
     """
 
     return (

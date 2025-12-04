@@ -1,5 +1,6 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
+from urllib.parse import quote
 
 import httpx
 
@@ -12,35 +13,35 @@ from ...types import Response
 
 def _get_kwargs(
     interface: str,
-) -> Dict[str, Any]:
-    _kwargs: Dict[str, Any] = {
+) -> dict[str, Any]:
+    _kwargs: dict[str, Any] = {
         "method": "get",
-        "url": f"/firewall/rules/interface/{interface}/bogon",
+        "url": "/firewall/rules/interface/{interface}/bogon".format(
+            interface=quote(str(interface), safe=""),
+        ),
     }
 
     return _kwargs
 
 
-def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[Error, FWBogonRule]]:
+def _parse_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Error | FWBogonRule | None:
     if response.status_code == 200:
         response_200 = FWBogonRule.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
         return None
 
 
-def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[Error, FWBogonRule]]:
+def _build_response(*, client: AuthenticatedClient | Client, response: httpx.Response) -> Response[Error | FWBogonRule]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -52,8 +53,8 @@ def _build_response(
 def sync_detailed(
     interface: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, FWBogonRule]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Error | FWBogonRule]:
     """Get bogon rule for the specified interface
 
     Args:
@@ -64,7 +65,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, FWBogonRule]]
+        Response[Error | FWBogonRule]
     """
 
     kwargs = _get_kwargs(
@@ -81,8 +82,8 @@ def sync_detailed(
 def sync(
     interface: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, FWBogonRule]]:
+    client: AuthenticatedClient | Client,
+) -> Error | FWBogonRule | None:
     """Get bogon rule for the specified interface
 
     Args:
@@ -93,7 +94,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, FWBogonRule]
+        Error | FWBogonRule
     """
 
     return sync_detailed(
@@ -105,8 +106,8 @@ def sync(
 async def asyncio_detailed(
     interface: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Response[Union[Error, FWBogonRule]]:
+    client: AuthenticatedClient | Client,
+) -> Response[Error | FWBogonRule]:
     """Get bogon rule for the specified interface
 
     Args:
@@ -117,7 +118,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[Error, FWBogonRule]]
+        Response[Error | FWBogonRule]
     """
 
     kwargs = _get_kwargs(
@@ -132,8 +133,8 @@ async def asyncio_detailed(
 async def asyncio(
     interface: str,
     *,
-    client: Union[AuthenticatedClient, Client],
-) -> Optional[Union[Error, FWBogonRule]]:
+    client: AuthenticatedClient | Client,
+) -> Error | FWBogonRule | None:
     """Get bogon rule for the specified interface
 
     Args:
@@ -144,7 +145,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[Error, FWBogonRule]
+        Error | FWBogonRule
     """
 
     return (

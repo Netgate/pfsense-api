@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -14,27 +17,27 @@ class ControllerSummary:
     controller using Netgard.
 
         Attributes:
-            mode_active (Union[Unset, bool]): is controller mode active?
-            name (Union[Unset, str]):
-            key (Union[Unset, str]): Controller's identity key
-            vpn_pubkey (Union[Unset, str]): Negard public key of controller
-            vpn_listenaddr (Union[Unset, str]): Netgard listening address:port, space or comma separated list
-            vpn_address (Union[Unset, str]): VPN Address
-            vpn_prefix (Union[Unset, str]): IPv6 address prefix to use for management VPN
-            vpn_netkey (Union[Unset, str]):
+            mode_active (bool | Unset): is controller mode active?
+            name (str | Unset):
+            key (str | Unset): Controller's identity key
+            vpn_pubkey (str | Unset): Negard public key of controller
+            vpn_listenaddr (str | Unset): Netgard listening address:port, space or comma separated list
+            vpn_address (str | Unset): VPN Address
+            vpn_prefix (str | Unset): IPv6 address prefix to use for management VPN
+            vpn_netkey (str | Unset):
     """
 
-    mode_active: Union[Unset, bool] = UNSET
-    name: Union[Unset, str] = UNSET
-    key: Union[Unset, str] = UNSET
-    vpn_pubkey: Union[Unset, str] = UNSET
-    vpn_listenaddr: Union[Unset, str] = UNSET
-    vpn_address: Union[Unset, str] = UNSET
-    vpn_prefix: Union[Unset, str] = UNSET
-    vpn_netkey: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    mode_active: bool | Unset = UNSET
+    name: str | Unset = UNSET
+    key: str | Unset = UNSET
+    vpn_pubkey: str | Unset = UNSET
+    vpn_listenaddr: str | Unset = UNSET
+    vpn_address: str | Unset = UNSET
+    vpn_prefix: str | Unset = UNSET
+    vpn_netkey: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         mode_active = self.mode_active
 
         name = self.name
@@ -51,7 +54,7 @@ class ControllerSummary:
 
         vpn_netkey = self.vpn_netkey
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if mode_active is not UNSET:
@@ -74,8 +77,8 @@ class ControllerSummary:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         mode_active = d.pop("mode_active", UNSET)
 
         name = d.pop("name", UNSET)
@@ -107,7 +110,7 @@ class ControllerSummary:
         return controller_summary
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

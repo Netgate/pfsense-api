@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,16 +15,16 @@ T = TypeVar("T", bound="SetOpenVPNClientResponse")
 class SetOpenVPNClientResponse:
     """
     Attributes:
-        vpnid (Union[Unset, str]):
+        vpnid (str | Unset):
     """
 
-    vpnid: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    vpnid: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         vpnid = self.vpnid
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if vpnid is not UNSET:
@@ -30,8 +33,8 @@ class SetOpenVPNClientResponse:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         vpnid = d.pop("vpnid", UNSET)
 
         set_open_vpn_client_response = cls(
@@ -42,7 +45,7 @@ class SetOpenVPNClientResponse:
         return set_open_vpn_client_response
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,35 +18,35 @@ class RadiusAuthServer:
         name (str):
         host (str):
         protocol (str): pap, chap_md5, mschapv1, mschapv2
-        type (Union[Unset, str]):
-        nasip_attribute (Union[Unset, str]):
-        secret (Union[Unset, str]):
-        timeout (Union[Unset, int]):
-        auth_port (Union[Unset, int]):
-        acct_port (Union[Unset, int]):
-        refid (Union[Unset, str]):
+        type_ (str | Unset):
+        nasip_attribute (str | Unset):
+        secret (str | Unset):
+        timeout (int | Unset):
+        auth_port (int | Unset):
+        acct_port (int | Unset):
+        refid (str | Unset):
     """
 
     name: str
     host: str
     protocol: str
-    type: Union[Unset, str] = UNSET
-    nasip_attribute: Union[Unset, str] = UNSET
-    secret: Union[Unset, str] = UNSET
-    timeout: Union[Unset, int] = UNSET
-    auth_port: Union[Unset, int] = UNSET
-    acct_port: Union[Unset, int] = UNSET
-    refid: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    type_: str | Unset = UNSET
+    nasip_attribute: str | Unset = UNSET
+    secret: str | Unset = UNSET
+    timeout: int | Unset = UNSET
+    auth_port: int | Unset = UNSET
+    acct_port: int | Unset = UNSET
+    refid: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         host = self.host
 
         protocol = self.protocol
 
-        type = self.type
+        type_ = self.type_
 
         nasip_attribute = self.nasip_attribute
 
@@ -57,7 +60,7 @@ class RadiusAuthServer:
 
         refid = self.refid
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -66,8 +69,8 @@ class RadiusAuthServer:
                 "protocol": protocol,
             }
         )
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if nasip_attribute is not UNSET:
             field_dict["nasip_attribute"] = nasip_attribute
         if secret is not UNSET:
@@ -84,15 +87,15 @@ class RadiusAuthServer:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         name = d.pop("name")
 
         host = d.pop("host")
 
         protocol = d.pop("protocol")
 
-        type = d.pop("type", UNSET)
+        type_ = d.pop("type", UNSET)
 
         nasip_attribute = d.pop("nasip_attribute", UNSET)
 
@@ -110,7 +113,7 @@ class RadiusAuthServer:
             name=name,
             host=host,
             protocol=protocol,
-            type=type,
+            type_=type_,
             nasip_attribute=nasip_attribute,
             secret=secret,
             timeout=timeout,
@@ -123,7 +126,7 @@ class RadiusAuthServer:
         return radius_auth_server
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

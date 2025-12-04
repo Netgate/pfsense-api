@@ -1,5 +1,5 @@
 from http import HTTPStatus
-from typing import Any, Dict, Optional, Union
+from typing import Any
 
 import httpx
 
@@ -13,17 +13,16 @@ from ...types import Response
 def _get_kwargs(
     *,
     body: DevicePublicKeyOption,
-) -> Dict[str, Any]:
-    headers: Dict[str, Any] = {}
+) -> dict[str, Any]:
+    headers: dict[str, Any] = {}
 
-    _kwargs: Dict[str, Any] = {
+    _kwargs: dict[str, Any] = {
         "method": "post",
         "url": "/mim/device/pubkey",
     }
 
-    _body = body.to_dict()
+    _kwargs["json"] = body.to_dict()
 
-    _kwargs["json"] = _body
     headers["Content-Type"] = "application/json"
 
     _kwargs["headers"] = headers
@@ -31,16 +30,18 @@ def _get_kwargs(
 
 
 def _parse_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Optional[Union[DevicePublicKeyOption, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> DevicePublicKeyOption | Error | None:
     if response.status_code == 200:
         response_200 = DevicePublicKeyOption.from_dict(response.json())
 
         return response_200
+
     if response.status_code == 400:
         response_400 = Error.from_dict(response.json())
 
         return response_400
+
     if client.raise_on_unexpected_status:
         raise errors.UnexpectedStatus(response.status_code, response.content)
     else:
@@ -48,8 +49,8 @@ def _parse_response(
 
 
 def _build_response(
-    *, client: Union[AuthenticatedClient, Client], response: httpx.Response
-) -> Response[Union[DevicePublicKeyOption, Error]]:
+    *, client: AuthenticatedClient | Client, response: httpx.Response
+) -> Response[DevicePublicKeyOption | Error]:
     return Response(
         status_code=HTTPStatus(response.status_code),
         content=response.content,
@@ -60,9 +61,9 @@ def _build_response(
 
 def sync_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: DevicePublicKeyOption,
-) -> Response[Union[DevicePublicKeyOption, Error]]:
+) -> Response[DevicePublicKeyOption | Error]:
     """Sets the pfSense device's public key which is used by a controller to manage it.
 
      The ED25519 public key set to the device is used for secure Noise handshaking
@@ -80,7 +81,7 @@ def sync_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DevicePublicKeyOption, Error]]
+        Response[DevicePublicKeyOption | Error]
     """
 
     kwargs = _get_kwargs(
@@ -96,9 +97,9 @@ def sync_detailed(
 
 def sync(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: DevicePublicKeyOption,
-) -> Optional[Union[DevicePublicKeyOption, Error]]:
+) -> DevicePublicKeyOption | Error | None:
     """Sets the pfSense device's public key which is used by a controller to manage it.
 
      The ED25519 public key set to the device is used for secure Noise handshaking
@@ -116,7 +117,7 @@ def sync(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DevicePublicKeyOption, Error]
+        DevicePublicKeyOption | Error
     """
 
     return sync_detailed(
@@ -127,9 +128,9 @@ def sync(
 
 async def asyncio_detailed(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: DevicePublicKeyOption,
-) -> Response[Union[DevicePublicKeyOption, Error]]:
+) -> Response[DevicePublicKeyOption | Error]:
     """Sets the pfSense device's public key which is used by a controller to manage it.
 
      The ED25519 public key set to the device is used for secure Noise handshaking
@@ -147,7 +148,7 @@ async def asyncio_detailed(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Response[Union[DevicePublicKeyOption, Error]]
+        Response[DevicePublicKeyOption | Error]
     """
 
     kwargs = _get_kwargs(
@@ -161,9 +162,9 @@ async def asyncio_detailed(
 
 async def asyncio(
     *,
-    client: Union[AuthenticatedClient, Client],
+    client: AuthenticatedClient | Client,
     body: DevicePublicKeyOption,
-) -> Optional[Union[DevicePublicKeyOption, Error]]:
+) -> DevicePublicKeyOption | Error | None:
     """Sets the pfSense device's public key which is used by a controller to manage it.
 
      The ED25519 public key set to the device is used for secure Noise handshaking
@@ -181,7 +182,7 @@ async def asyncio(
         httpx.TimeoutException: If the request takes longer than Client.timeout.
 
     Returns:
-        Union[DevicePublicKeyOption, Error]
+        DevicePublicKeyOption | Error
     """
 
     return (

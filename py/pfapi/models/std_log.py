@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,19 +15,19 @@ T = TypeVar("T", bound="StdLog")
 class StdLog:
     """
     Attributes:
-        time (Union[Unset, str]):
-        proc (Union[Unset, str]):
-        pid (Union[Unset, str]):
-        msg (Union[Unset, str]):
+        time (str | Unset):
+        proc (str | Unset):
+        pid (str | Unset):
+        msg (str | Unset):
     """
 
-    time: Union[Unset, str] = UNSET
-    proc: Union[Unset, str] = UNSET
-    pid: Union[Unset, str] = UNSET
-    msg: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    time: str | Unset = UNSET
+    proc: str | Unset = UNSET
+    pid: str | Unset = UNSET
+    msg: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         time = self.time
 
         proc = self.proc
@@ -33,7 +36,7 @@ class StdLog:
 
         msg = self.msg
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if time is not UNSET:
@@ -48,8 +51,8 @@ class StdLog:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         time = d.pop("time", UNSET)
 
         proc = d.pop("proc", UNSET)
@@ -69,7 +72,7 @@ class StdLog:
         return std_log
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

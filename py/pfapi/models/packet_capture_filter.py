@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -15,40 +18,40 @@ class PacketCaptureFilter:
     values which are only used by the tagged_filter.
 
         Attributes:
-            exclude (Union[Unset, bool]): if false, then the other parameters operate as "include any of"
-            vlan_tag_op (Union[Unset, str]): any_of, none_of, or_any_of
-            vlan_tag (Union[Unset, str]): space or comma separated list of vlan tags
-            vlan_level (Union[Unset, int]): tag level - 1-9
-            host_addr_op (Union[Unset, str]): any_of, all_of, none_of, or_all_of, or_any_of
-            host_addr (Union[Unset, str]): list of host addresses or CIDR subnets
-            host_mac_op (Union[Unset, str]): any_of, all_of, none_of, or_all_of, or_any_of
-            host_mac (Union[Unset, str]): list of mac addresses
-            protocol_op (Union[Unset, str]): any_of, or_any_of, none_of, or name of protocol (ping, ipsec, tcp, udp, carp,
-                pfsync, ospf)
-            protocol (Union[Unset, str]): list of protocols numbers or names (if protocol_op is not a protocol name)
-            port_op (Union[Unset, str]): any_of, all_of, none_of, or_all_of, or_any_of
-            port (Union[Unset, str]): list of port numbers
-            ether_op (Union[Unset, str]): any_of, or_any_of, none_of, or name of ethernet protocol (ipv4, ipv6, arp)
-            ether (Union[Unset, str]): list of ethernet protocol names or hex values
+            exclude (bool | Unset): if false, then the other parameters operate as "include any of"
+            vlan_tag_op (str | Unset): any_of, none_of, or_any_of
+            vlan_tag (str | Unset): space or comma separated list of vlan tags
+            vlan_level (int | Unset): tag level - 1-9
+            host_addr_op (str | Unset): any_of, all_of, none_of, or_all_of, or_any_of
+            host_addr (str | Unset): list of host addresses or CIDR subnets
+            host_mac_op (str | Unset): any_of, all_of, none_of, or_all_of, or_any_of
+            host_mac (str | Unset): list of mac addresses
+            protocol_op (str | Unset): any_of, or_any_of, none_of, or name of protocol (ping, ipsec, tcp, udp, carp, pfsync,
+                ospf)
+            protocol (str | Unset): list of protocols numbers or names (if protocol_op is not a protocol name)
+            port_op (str | Unset): any_of, all_of, none_of, or_all_of, or_any_of
+            port (str | Unset): list of port numbers
+            ether_op (str | Unset): any_of, or_any_of, none_of, or name of ethernet protocol (ipv4, ipv6, arp)
+            ether (str | Unset): list of ethernet protocol names or hex values
     """
 
-    exclude: Union[Unset, bool] = UNSET
-    vlan_tag_op: Union[Unset, str] = UNSET
-    vlan_tag: Union[Unset, str] = UNSET
-    vlan_level: Union[Unset, int] = UNSET
-    host_addr_op: Union[Unset, str] = UNSET
-    host_addr: Union[Unset, str] = UNSET
-    host_mac_op: Union[Unset, str] = UNSET
-    host_mac: Union[Unset, str] = UNSET
-    protocol_op: Union[Unset, str] = UNSET
-    protocol: Union[Unset, str] = UNSET
-    port_op: Union[Unset, str] = UNSET
-    port: Union[Unset, str] = UNSET
-    ether_op: Union[Unset, str] = UNSET
-    ether: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    exclude: bool | Unset = UNSET
+    vlan_tag_op: str | Unset = UNSET
+    vlan_tag: str | Unset = UNSET
+    vlan_level: int | Unset = UNSET
+    host_addr_op: str | Unset = UNSET
+    host_addr: str | Unset = UNSET
+    host_mac_op: str | Unset = UNSET
+    host_mac: str | Unset = UNSET
+    protocol_op: str | Unset = UNSET
+    protocol: str | Unset = UNSET
+    port_op: str | Unset = UNSET
+    port: str | Unset = UNSET
+    ether_op: str | Unset = UNSET
+    ether: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         exclude = self.exclude
 
         vlan_tag_op = self.vlan_tag_op
@@ -77,7 +80,7 @@ class PacketCaptureFilter:
 
         ether = self.ether
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if exclude is not UNSET:
@@ -112,8 +115,8 @@ class PacketCaptureFilter:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         exclude = d.pop("exclude", UNSET)
 
         vlan_tag_op = d.pop("vlan_tag_op", UNSET)
@@ -163,7 +166,7 @@ class PacketCaptureFilter:
         return packet_capture_filter
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

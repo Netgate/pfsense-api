@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,36 +21,36 @@ class DhcpHighAvailabilityConfig:
 
     Attributes:
         enable (bool):
-        role (Union[Unset, str]): primary or standby
-        local_name (Union[Unset, str]):
-        local_address (Union[Unset, str]): address:port
-        remote_name (Union[Unset, str]):
-        remote_address (Union[Unset, str]): address:port
-        advance_options (Union[Unset, DhcpHighAvailabilityAdvanceConfig]):
-        enable_tls (Union[Unset, bool]):
-        tls_server_cert_refid (Union[Unset, str]):
-        enable_mutual_tls (Union[Unset, bool]):
-        mutual_client_cert_refid (Union[Unset, str]):
-        available_tls_server_certs (Union[Unset, List[str]]):
-        available_mutual_client_certs (Union[Unset, List[str]]):
+        role (str | Unset): primary or standby
+        local_name (str | Unset):
+        local_address (str | Unset): address:port
+        remote_name (str | Unset):
+        remote_address (str | Unset): address:port
+        advance_options (DhcpHighAvailabilityAdvanceConfig | Unset):
+        enable_tls (bool | Unset):
+        tls_server_cert_refid (str | Unset):
+        enable_mutual_tls (bool | Unset):
+        mutual_client_cert_refid (str | Unset):
+        available_tls_server_certs (list[str] | Unset):
+        available_mutual_client_certs (list[str] | Unset):
     """
 
     enable: bool
-    role: Union[Unset, str] = UNSET
-    local_name: Union[Unset, str] = UNSET
-    local_address: Union[Unset, str] = UNSET
-    remote_name: Union[Unset, str] = UNSET
-    remote_address: Union[Unset, str] = UNSET
-    advance_options: Union[Unset, "DhcpHighAvailabilityAdvanceConfig"] = UNSET
-    enable_tls: Union[Unset, bool] = UNSET
-    tls_server_cert_refid: Union[Unset, str] = UNSET
-    enable_mutual_tls: Union[Unset, bool] = UNSET
-    mutual_client_cert_refid: Union[Unset, str] = UNSET
-    available_tls_server_certs: Union[Unset, List[str]] = UNSET
-    available_mutual_client_certs: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    role: str | Unset = UNSET
+    local_name: str | Unset = UNSET
+    local_address: str | Unset = UNSET
+    remote_name: str | Unset = UNSET
+    remote_address: str | Unset = UNSET
+    advance_options: DhcpHighAvailabilityAdvanceConfig | Unset = UNSET
+    enable_tls: bool | Unset = UNSET
+    tls_server_cert_refid: str | Unset = UNSET
+    enable_mutual_tls: bool | Unset = UNSET
+    mutual_client_cert_refid: str | Unset = UNSET
+    available_tls_server_certs: list[str] | Unset = UNSET
+    available_mutual_client_certs: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enable = self.enable
 
         role = self.role
@@ -60,7 +63,7 @@ class DhcpHighAvailabilityConfig:
 
         remote_address = self.remote_address
 
-        advance_options: Union[Unset, Dict[str, Any]] = UNSET
+        advance_options: dict[str, Any] | Unset = UNSET
         if not isinstance(self.advance_options, Unset):
             advance_options = self.advance_options.to_dict()
 
@@ -72,15 +75,15 @@ class DhcpHighAvailabilityConfig:
 
         mutual_client_cert_refid = self.mutual_client_cert_refid
 
-        available_tls_server_certs: Union[Unset, List[str]] = UNSET
+        available_tls_server_certs: list[str] | Unset = UNSET
         if not isinstance(self.available_tls_server_certs, Unset):
             available_tls_server_certs = self.available_tls_server_certs
 
-        available_mutual_client_certs: Union[Unset, List[str]] = UNSET
+        available_mutual_client_certs: list[str] | Unset = UNSET
         if not isinstance(self.available_mutual_client_certs, Unset):
             available_mutual_client_certs = self.available_mutual_client_certs
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -115,10 +118,10 @@ class DhcpHighAvailabilityConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dhcp_high_availability_advance_config import DhcpHighAvailabilityAdvanceConfig
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         enable = d.pop("enable")
 
         role = d.pop("role", UNSET)
@@ -132,7 +135,7 @@ class DhcpHighAvailabilityConfig:
         remote_address = d.pop("remote_address", UNSET)
 
         _advance_options = d.pop("advance_options", UNSET)
-        advance_options: Union[Unset, DhcpHighAvailabilityAdvanceConfig]
+        advance_options: DhcpHighAvailabilityAdvanceConfig | Unset
         if isinstance(_advance_options, Unset):
             advance_options = UNSET
         else:
@@ -146,9 +149,9 @@ class DhcpHighAvailabilityConfig:
 
         mutual_client_cert_refid = d.pop("mutual_client_cert_refid", UNSET)
 
-        available_tls_server_certs = cast(List[str], d.pop("available_tls_server_certs", UNSET))
+        available_tls_server_certs = cast(list[str], d.pop("available_tls_server_certs", UNSET))
 
-        available_mutual_client_certs = cast(List[str], d.pop("available_mutual_client_certs", UNSET))
+        available_mutual_client_certs = cast(list[str], d.pop("available_mutual_client_certs", UNSET))
 
         dhcp_high_availability_config = cls(
             enable=enable,
@@ -170,7 +173,7 @@ class DhcpHighAvailabilityConfig:
         return dhcp_high_availability_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

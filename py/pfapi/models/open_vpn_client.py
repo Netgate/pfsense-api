@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,18 +19,18 @@ T = TypeVar("T", bound="OpenVPNClient")
 class OpenVPNClient:
     """
     Attributes:
-        client (Union[Unset, OpenVPNClientConfig]):
+        client (OpenVPNClientConfig | Unset):
     """
 
-    client: Union[Unset, "OpenVPNClientConfig"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    client: OpenVPNClientConfig | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        client: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        client: dict[str, Any] | Unset = UNSET
         if not isinstance(self.client, Unset):
             client = self.client.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if client is not UNSET:
@@ -36,12 +39,12 @@ class OpenVPNClient:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.open_vpn_client_config import OpenVPNClientConfig
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _client = d.pop("client", UNSET)
-        client: Union[Unset, OpenVPNClientConfig]
+        client: OpenVPNClientConfig | Unset
         if isinstance(_client, Unset):
             client = UNSET
         else:
@@ -55,7 +58,7 @@ class OpenVPNClient:
         return open_vpn_client
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

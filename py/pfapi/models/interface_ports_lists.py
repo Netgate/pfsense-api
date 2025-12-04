@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -24,96 +27,96 @@ T = TypeVar("T", bound="InterfacePortsLists")
 class InterfacePortsLists:
     """
     Attributes:
-        gres (Union[Unset, List['GREInterface']]):
-        gifs (Union[Unset, List['GIFInterface']]):
-        bridges (Union[Unset, List['BridgeInterface']]):
-        vlans (Union[Unset, List['VLANInterface']]):
-        ppps (Union[Unset, List['PPPInterface']]):
-        qinqs (Union[Unset, List['QinQInterface']]):
-        laggs (Union[Unset, List['LAGGInterface']]):
-        wan (Union[Unset, Interface]): Detailed interface information
-        lan (Union[Unset, Interface]): Detailed interface information
-        physical (Union[Unset, List['PhysicalInterface']]):
+        gres (list[GREInterface] | Unset):
+        gifs (list[GIFInterface] | Unset):
+        bridges (list[BridgeInterface] | Unset):
+        vlans (list[VLANInterface] | Unset):
+        ppps (list[PPPInterface] | Unset):
+        qinqs (list[QinQInterface] | Unset):
+        laggs (list[LAGGInterface] | Unset):
+        wan (Interface | Unset): Detailed interface information
+        lan (Interface | Unset): Detailed interface information
+        physical (list[PhysicalInterface] | Unset):
     """
 
-    gres: Union[Unset, List["GREInterface"]] = UNSET
-    gifs: Union[Unset, List["GIFInterface"]] = UNSET
-    bridges: Union[Unset, List["BridgeInterface"]] = UNSET
-    vlans: Union[Unset, List["VLANInterface"]] = UNSET
-    ppps: Union[Unset, List["PPPInterface"]] = UNSET
-    qinqs: Union[Unset, List["QinQInterface"]] = UNSET
-    laggs: Union[Unset, List["LAGGInterface"]] = UNSET
-    wan: Union[Unset, "Interface"] = UNSET
-    lan: Union[Unset, "Interface"] = UNSET
-    physical: Union[Unset, List["PhysicalInterface"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    gres: list[GREInterface] | Unset = UNSET
+    gifs: list[GIFInterface] | Unset = UNSET
+    bridges: list[BridgeInterface] | Unset = UNSET
+    vlans: list[VLANInterface] | Unset = UNSET
+    ppps: list[PPPInterface] | Unset = UNSET
+    qinqs: list[QinQInterface] | Unset = UNSET
+    laggs: list[LAGGInterface] | Unset = UNSET
+    wan: Interface | Unset = UNSET
+    lan: Interface | Unset = UNSET
+    physical: list[PhysicalInterface] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        gres: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        gres: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.gres, Unset):
             gres = []
             for gres_item_data in self.gres:
                 gres_item = gres_item_data.to_dict()
                 gres.append(gres_item)
 
-        gifs: Union[Unset, List[Dict[str, Any]]] = UNSET
+        gifs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.gifs, Unset):
             gifs = []
             for gifs_item_data in self.gifs:
                 gifs_item = gifs_item_data.to_dict()
                 gifs.append(gifs_item)
 
-        bridges: Union[Unset, List[Dict[str, Any]]] = UNSET
+        bridges: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.bridges, Unset):
             bridges = []
             for bridges_item_data in self.bridges:
                 bridges_item = bridges_item_data.to_dict()
                 bridges.append(bridges_item)
 
-        vlans: Union[Unset, List[Dict[str, Any]]] = UNSET
+        vlans: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.vlans, Unset):
             vlans = []
             for vlans_item_data in self.vlans:
                 vlans_item = vlans_item_data.to_dict()
                 vlans.append(vlans_item)
 
-        ppps: Union[Unset, List[Dict[str, Any]]] = UNSET
+        ppps: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.ppps, Unset):
             ppps = []
             for ppps_item_data in self.ppps:
                 ppps_item = ppps_item_data.to_dict()
                 ppps.append(ppps_item)
 
-        qinqs: Union[Unset, List[Dict[str, Any]]] = UNSET
+        qinqs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.qinqs, Unset):
             qinqs = []
             for qinqs_item_data in self.qinqs:
                 qinqs_item = qinqs_item_data.to_dict()
                 qinqs.append(qinqs_item)
 
-        laggs: Union[Unset, List[Dict[str, Any]]] = UNSET
+        laggs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.laggs, Unset):
             laggs = []
             for laggs_item_data in self.laggs:
                 laggs_item = laggs_item_data.to_dict()
                 laggs.append(laggs_item)
 
-        wan: Union[Unset, Dict[str, Any]] = UNSET
+        wan: dict[str, Any] | Unset = UNSET
         if not isinstance(self.wan, Unset):
             wan = self.wan.to_dict()
 
-        lan: Union[Unset, Dict[str, Any]] = UNSET
+        lan: dict[str, Any] | Unset = UNSET
         if not isinstance(self.lan, Unset):
             lan = self.lan.to_dict()
 
-        physical: Union[Unset, List[Dict[str, Any]]] = UNSET
+        physical: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.physical, Unset):
             physical = []
             for physical_item_data in self.physical:
                 physical_item = physical_item_data.to_dict()
                 physical.append(physical_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if gres is not UNSET:
@@ -140,7 +143,7 @@ class InterfacePortsLists:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.bridge_interface import BridgeInterface
         from ..models.gif_interface import GIFInterface
         from ..models.gre_interface import GREInterface
@@ -151,76 +154,92 @@ class InterfacePortsLists:
         from ..models.qin_q_interface import QinQInterface
         from ..models.vlan_interface import VLANInterface
 
-        d = src_dict.copy()
-        gres = []
+        d = dict(src_dict)
         _gres = d.pop("gres", UNSET)
-        for gres_item_data in _gres or []:
-            gres_item = GREInterface.from_dict(gres_item_data)
+        gres: list[GREInterface] | Unset = UNSET
+        if _gres is not UNSET:
+            gres = []
+            for gres_item_data in _gres:
+                gres_item = GREInterface.from_dict(gres_item_data)
 
-            gres.append(gres_item)
+                gres.append(gres_item)
 
-        gifs = []
         _gifs = d.pop("gifs", UNSET)
-        for gifs_item_data in _gifs or []:
-            gifs_item = GIFInterface.from_dict(gifs_item_data)
+        gifs: list[GIFInterface] | Unset = UNSET
+        if _gifs is not UNSET:
+            gifs = []
+            for gifs_item_data in _gifs:
+                gifs_item = GIFInterface.from_dict(gifs_item_data)
 
-            gifs.append(gifs_item)
+                gifs.append(gifs_item)
 
-        bridges = []
         _bridges = d.pop("bridges", UNSET)
-        for bridges_item_data in _bridges or []:
-            bridges_item = BridgeInterface.from_dict(bridges_item_data)
+        bridges: list[BridgeInterface] | Unset = UNSET
+        if _bridges is not UNSET:
+            bridges = []
+            for bridges_item_data in _bridges:
+                bridges_item = BridgeInterface.from_dict(bridges_item_data)
 
-            bridges.append(bridges_item)
+                bridges.append(bridges_item)
 
-        vlans = []
         _vlans = d.pop("vlans", UNSET)
-        for vlans_item_data in _vlans or []:
-            vlans_item = VLANInterface.from_dict(vlans_item_data)
+        vlans: list[VLANInterface] | Unset = UNSET
+        if _vlans is not UNSET:
+            vlans = []
+            for vlans_item_data in _vlans:
+                vlans_item = VLANInterface.from_dict(vlans_item_data)
 
-            vlans.append(vlans_item)
+                vlans.append(vlans_item)
 
-        ppps = []
         _ppps = d.pop("ppps", UNSET)
-        for ppps_item_data in _ppps or []:
-            ppps_item = PPPInterface.from_dict(ppps_item_data)
+        ppps: list[PPPInterface] | Unset = UNSET
+        if _ppps is not UNSET:
+            ppps = []
+            for ppps_item_data in _ppps:
+                ppps_item = PPPInterface.from_dict(ppps_item_data)
 
-            ppps.append(ppps_item)
+                ppps.append(ppps_item)
 
-        qinqs = []
         _qinqs = d.pop("qinqs", UNSET)
-        for qinqs_item_data in _qinqs or []:
-            qinqs_item = QinQInterface.from_dict(qinqs_item_data)
+        qinqs: list[QinQInterface] | Unset = UNSET
+        if _qinqs is not UNSET:
+            qinqs = []
+            for qinqs_item_data in _qinqs:
+                qinqs_item = QinQInterface.from_dict(qinqs_item_data)
 
-            qinqs.append(qinqs_item)
+                qinqs.append(qinqs_item)
 
-        laggs = []
         _laggs = d.pop("laggs", UNSET)
-        for laggs_item_data in _laggs or []:
-            laggs_item = LAGGInterface.from_dict(laggs_item_data)
+        laggs: list[LAGGInterface] | Unset = UNSET
+        if _laggs is not UNSET:
+            laggs = []
+            for laggs_item_data in _laggs:
+                laggs_item = LAGGInterface.from_dict(laggs_item_data)
 
-            laggs.append(laggs_item)
+                laggs.append(laggs_item)
 
         _wan = d.pop("wan", UNSET)
-        wan: Union[Unset, Interface]
+        wan: Interface | Unset
         if isinstance(_wan, Unset):
             wan = UNSET
         else:
             wan = Interface.from_dict(_wan)
 
         _lan = d.pop("lan", UNSET)
-        lan: Union[Unset, Interface]
+        lan: Interface | Unset
         if isinstance(_lan, Unset):
             lan = UNSET
         else:
             lan = Interface.from_dict(_lan)
 
-        physical = []
         _physical = d.pop("physical", UNSET)
-        for physical_item_data in _physical or []:
-            physical_item = PhysicalInterface.from_dict(physical_item_data)
+        physical: list[PhysicalInterface] | Unset = UNSET
+        if _physical is not UNSET:
+            physical = []
+            for physical_item_data in _physical:
+                physical_item = PhysicalInterface.from_dict(physical_item_data)
 
-            physical.append(physical_item)
+                physical.append(physical_item)
 
         interface_ports_lists = cls(
             gres=gres,
@@ -239,7 +258,7 @@ class InterfacePortsLists:
         return interface_ports_lists
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

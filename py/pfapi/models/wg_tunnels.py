@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="WGTunnels")
 class WGTunnels:
     """
     Attributes:
-        item (Union[Unset, List['WGTunnel']]):
+        item (list[WGTunnel] | Unset):
     """
 
-    item: Union[Unset, List["WGTunnel"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    item: list[WGTunnel] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        item: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        item: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.item, Unset):
             item = []
             for item_item_data in self.item:
                 item_item = item_item_data.to_dict()
                 item.append(item_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if item is not UNSET:
@@ -39,16 +42,18 @@ class WGTunnels:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.wg_tunnel import WGTunnel
 
-        d = src_dict.copy()
-        item = []
+        d = dict(src_dict)
         _item = d.pop("item", UNSET)
-        for item_item_data in _item or []:
-            item_item = WGTunnel.from_dict(item_item_data)
+        item: list[WGTunnel] | Unset = UNSET
+        if _item is not UNSET:
+            item = []
+            for item_item_data in _item:
+                item_item = WGTunnel.from_dict(item_item_data)
 
-            item.append(item_item)
+                item.append(item_item)
 
         wg_tunnels = cls(
             item=item,
@@ -58,7 +63,7 @@ class WGTunnels:
         return wg_tunnels
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,25 +15,25 @@ T = TypeVar("T", bound="LimiterBandwidth")
 class LimiterBandwidth:
     """
     Attributes:
-        bw (Union[Unset, int]): bandwidth value for the limiter
-        bwscale (Union[Unset, str]): units for the bw
+        bw (int | Unset): bandwidth value for the limiter
+        bwscale (str | Unset): units for the bw
             valid value = Kb, Mb, b
-        bwsched (Union[Unset, str]): schedule (Time Based Rules) to apply this bandwidth
+        bwsched (str | Unset): schedule (Time Based Rules) to apply this bandwidth
     """
 
-    bw: Union[Unset, int] = UNSET
-    bwscale: Union[Unset, str] = UNSET
-    bwsched: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    bw: int | Unset = UNSET
+    bwscale: str | Unset = UNSET
+    bwsched: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         bw = self.bw
 
         bwscale = self.bwscale
 
         bwsched = self.bwsched
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if bw is not UNSET:
@@ -43,8 +46,8 @@ class LimiterBandwidth:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         bw = d.pop("bw", UNSET)
 
         bwscale = d.pop("bwscale", UNSET)
@@ -61,7 +64,7 @@ class LimiterBandwidth:
         return limiter_bandwidth
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

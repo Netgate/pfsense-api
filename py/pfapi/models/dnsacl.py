@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,19 +21,19 @@ class DNSACL:
     Attributes:
         aclid (str):
         aclname (str):
-        aclaction (Union[Unset, str]):
-        description (Union[Unset, str]):
-        row (Union[Unset, List['DNSACLNetwork']]):
+        aclaction (str | Unset):
+        description (str | Unset):
+        row (list[DNSACLNetwork] | Unset):
     """
 
     aclid: str
     aclname: str
-    aclaction: Union[Unset, str] = UNSET
-    description: Union[Unset, str] = UNSET
-    row: Union[Unset, List["DNSACLNetwork"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    aclaction: str | Unset = UNSET
+    description: str | Unset = UNSET
+    row: list[DNSACLNetwork] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         aclid = self.aclid
 
         aclname = self.aclname
@@ -39,14 +42,14 @@ class DNSACL:
 
         description = self.description
 
-        row: Union[Unset, List[Dict[str, Any]]] = UNSET
+        row: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.row, Unset):
             row = []
             for row_item_data in self.row:
                 row_item = row_item_data.to_dict()
                 row.append(row_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -64,10 +67,10 @@ class DNSACL:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dnsacl_network import DNSACLNetwork
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         aclid = d.pop("aclid")
 
         aclname = d.pop("aclname")
@@ -76,12 +79,14 @@ class DNSACL:
 
         description = d.pop("description", UNSET)
 
-        row = []
         _row = d.pop("row", UNSET)
-        for row_item_data in _row or []:
-            row_item = DNSACLNetwork.from_dict(row_item_data)
+        row: list[DNSACLNetwork] | Unset = UNSET
+        if _row is not UNSET:
+            row = []
+            for row_item_data in _row:
+                row_item = DNSACLNetwork.from_dict(row_item_data)
 
-            row.append(row_item)
+                row.append(row_item)
 
         dnsacl = cls(
             aclid=aclid,
@@ -95,7 +100,7 @@ class DNSACL:
         return dnsacl
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

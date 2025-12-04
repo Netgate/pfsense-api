@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,37 +21,37 @@ T = TypeVar("T", bound="ControllerStats")
 class ControllerStats:
     """
     Attributes:
-        uptime (Union[Unset, int]): uptime in seconds
-        started (Union[Unset, int]): time controller was started/restarted
-        mem_total (Union[Unset, int]): host physical memory in bytes
-        mem_used (Union[Unset, int]): controller current memory usage
-        storage (Union[Unset, List['StorageStats']]):
-        cpu_load (Union[Unset, List[int]]):
-        admin_logins (Union[Unset, int]): number of logged in admins
-        systems_total (Union[Unset, int]): total number of systems being managed
-        systems_online (Union[Unset, int]): number of systems that are online
-        systems_failed (Union[Unset, int]): number of systems in failure/error state
-        mesh (Union[Unset, MeshStats]):
-        admin_sessions (Union[Unset, List['AdminLoginSession']]):
-        timestamp (Union[Unset, int]): current millisecond timestamp of the controller
+        uptime (int | Unset): uptime in seconds
+        started (int | Unset): time controller was started/restarted
+        mem_total (int | Unset): host physical memory in bytes
+        mem_used (int | Unset): controller current memory usage
+        storage (list[StorageStats] | Unset):
+        cpu_load (list[int] | Unset):
+        admin_logins (int | Unset): number of logged in admins
+        systems_total (int | Unset): total number of systems being managed
+        systems_online (int | Unset): number of systems that are online
+        systems_failed (int | Unset): number of systems in failure/error state
+        mesh (MeshStats | Unset):
+        admin_sessions (list[AdminLoginSession] | Unset):
+        timestamp (int | Unset): current millisecond timestamp of the controller
     """
 
-    uptime: Union[Unset, int] = UNSET
-    started: Union[Unset, int] = UNSET
-    mem_total: Union[Unset, int] = UNSET
-    mem_used: Union[Unset, int] = UNSET
-    storage: Union[Unset, List["StorageStats"]] = UNSET
-    cpu_load: Union[Unset, List[int]] = UNSET
-    admin_logins: Union[Unset, int] = UNSET
-    systems_total: Union[Unset, int] = UNSET
-    systems_online: Union[Unset, int] = UNSET
-    systems_failed: Union[Unset, int] = UNSET
-    mesh: Union[Unset, "MeshStats"] = UNSET
-    admin_sessions: Union[Unset, List["AdminLoginSession"]] = UNSET
-    timestamp: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    uptime: int | Unset = UNSET
+    started: int | Unset = UNSET
+    mem_total: int | Unset = UNSET
+    mem_used: int | Unset = UNSET
+    storage: list[StorageStats] | Unset = UNSET
+    cpu_load: list[int] | Unset = UNSET
+    admin_logins: int | Unset = UNSET
+    systems_total: int | Unset = UNSET
+    systems_online: int | Unset = UNSET
+    systems_failed: int | Unset = UNSET
+    mesh: MeshStats | Unset = UNSET
+    admin_sessions: list[AdminLoginSession] | Unset = UNSET
+    timestamp: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         uptime = self.uptime
 
         started = self.started
@@ -57,14 +60,14 @@ class ControllerStats:
 
         mem_used = self.mem_used
 
-        storage: Union[Unset, List[Dict[str, Any]]] = UNSET
+        storage: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.storage, Unset):
             storage = []
             for storage_item_data in self.storage:
                 storage_item = storage_item_data.to_dict()
                 storage.append(storage_item)
 
-        cpu_load: Union[Unset, List[int]] = UNSET
+        cpu_load: list[int] | Unset = UNSET
         if not isinstance(self.cpu_load, Unset):
             cpu_load = self.cpu_load
 
@@ -76,11 +79,11 @@ class ControllerStats:
 
         systems_failed = self.systems_failed
 
-        mesh: Union[Unset, Dict[str, Any]] = UNSET
+        mesh: dict[str, Any] | Unset = UNSET
         if not isinstance(self.mesh, Unset):
             mesh = self.mesh.to_dict()
 
-        admin_sessions: Union[Unset, List[Dict[str, Any]]] = UNSET
+        admin_sessions: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.admin_sessions, Unset):
             admin_sessions = []
             for admin_sessions_item_data in self.admin_sessions:
@@ -89,7 +92,7 @@ class ControllerStats:
 
         timestamp = self.timestamp
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if uptime is not UNSET:
@@ -122,12 +125,12 @@ class ControllerStats:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.admin_login_session import AdminLoginSession
         from ..models.mesh_stats import MeshStats
         from ..models.storage_stats import StorageStats
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         uptime = d.pop("uptime", UNSET)
 
         started = d.pop("started", UNSET)
@@ -136,14 +139,16 @@ class ControllerStats:
 
         mem_used = d.pop("mem_used", UNSET)
 
-        storage = []
         _storage = d.pop("storage", UNSET)
-        for storage_item_data in _storage or []:
-            storage_item = StorageStats.from_dict(storage_item_data)
+        storage: list[StorageStats] | Unset = UNSET
+        if _storage is not UNSET:
+            storage = []
+            for storage_item_data in _storage:
+                storage_item = StorageStats.from_dict(storage_item_data)
 
-            storage.append(storage_item)
+                storage.append(storage_item)
 
-        cpu_load = cast(List[int], d.pop("cpu_load", UNSET))
+        cpu_load = cast(list[int], d.pop("cpu_load", UNSET))
 
         admin_logins = d.pop("admin_logins", UNSET)
 
@@ -154,18 +159,20 @@ class ControllerStats:
         systems_failed = d.pop("systems_failed", UNSET)
 
         _mesh = d.pop("mesh", UNSET)
-        mesh: Union[Unset, MeshStats]
+        mesh: MeshStats | Unset
         if isinstance(_mesh, Unset):
             mesh = UNSET
         else:
             mesh = MeshStats.from_dict(_mesh)
 
-        admin_sessions = []
         _admin_sessions = d.pop("admin_sessions", UNSET)
-        for admin_sessions_item_data in _admin_sessions or []:
-            admin_sessions_item = AdminLoginSession.from_dict(admin_sessions_item_data)
+        admin_sessions: list[AdminLoginSession] | Unset = UNSET
+        if _admin_sessions is not UNSET:
+            admin_sessions = []
+            for admin_sessions_item_data in _admin_sessions:
+                admin_sessions_item = AdminLoginSession.from_dict(admin_sessions_item_data)
 
-            admin_sessions.append(admin_sessions_item)
+                admin_sessions.append(admin_sessions_item)
 
         timestamp = d.pop("timestamp", UNSET)
 
@@ -189,7 +196,7 @@ class ControllerStats:
         return controller_stats
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

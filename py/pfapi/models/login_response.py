@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,30 +15,30 @@ T = TypeVar("T", bound="LoginResponse")
 class LoginResponse:
     """
     Attributes:
-        token (Union[Unset, str]):
-        user (Union[Unset, str]):
-        version (Union[Unset, str]):
-        alerts (Union[Unset, List[str]]):
+        token (str | Unset):
+        user (str | Unset):
+        version (str | Unset):
+        alerts (list[str] | Unset):
     """
 
-    token: Union[Unset, str] = UNSET
-    user: Union[Unset, str] = UNSET
-    version: Union[Unset, str] = UNSET
-    alerts: Union[Unset, List[str]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    token: str | Unset = UNSET
+    user: str | Unset = UNSET
+    version: str | Unset = UNSET
+    alerts: list[str] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         token = self.token
 
         user = self.user
 
         version = self.version
 
-        alerts: Union[Unset, List[str]] = UNSET
+        alerts: list[str] | Unset = UNSET
         if not isinstance(self.alerts, Unset):
             alerts = self.alerts
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if token is not UNSET:
@@ -50,15 +53,15 @@ class LoginResponse:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         token = d.pop("token", UNSET)
 
         user = d.pop("user", UNSET)
 
         version = d.pop("version", UNSET)
 
-        alerts = cast(List[str], d.pop("alerts", UNSET))
+        alerts = cast(list[str], d.pop("alerts", UNSET))
 
         login_response = cls(
             token=token,
@@ -71,7 +74,7 @@ class LoginResponse:
         return login_response
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

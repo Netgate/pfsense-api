@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,24 +15,24 @@ T = TypeVar("T", bound="FilterLogCARPInfo")
 class FilterLogCARPInfo:
     """
     Attributes:
-        type (Union[Unset, str]):
-        ttl (Union[Unset, int]):
-        vhid (Union[Unset, int]):
-        version (Union[Unset, int]):
-        adv_skew (Union[Unset, int]):
-        adv_base (Union[Unset, int]):
+        type_ (str | Unset):
+        ttl (int | Unset):
+        vhid (int | Unset):
+        version (int | Unset):
+        adv_skew (int | Unset):
+        adv_base (int | Unset):
     """
 
-    type: Union[Unset, str] = UNSET
-    ttl: Union[Unset, int] = UNSET
-    vhid: Union[Unset, int] = UNSET
-    version: Union[Unset, int] = UNSET
-    adv_skew: Union[Unset, int] = UNSET
-    adv_base: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    type_: str | Unset = UNSET
+    ttl: int | Unset = UNSET
+    vhid: int | Unset = UNSET
+    version: int | Unset = UNSET
+    adv_skew: int | Unset = UNSET
+    adv_base: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        type = self.type
+    def to_dict(self) -> dict[str, Any]:
+        type_ = self.type_
 
         ttl = self.ttl
 
@@ -41,11 +44,11 @@ class FilterLogCARPInfo:
 
         adv_base = self.adv_base
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
-        if type is not UNSET:
-            field_dict["type"] = type
+        if type_ is not UNSET:
+            field_dict["type"] = type_
         if ttl is not UNSET:
             field_dict["ttl"] = ttl
         if vhid is not UNSET:
@@ -60,9 +63,9 @@ class FilterLogCARPInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
-        type = d.pop("type", UNSET)
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
+        type_ = d.pop("type", UNSET)
 
         ttl = d.pop("ttl", UNSET)
 
@@ -75,7 +78,7 @@ class FilterLogCARPInfo:
         adv_base = d.pop("adv_base", UNSET)
 
         filter_log_carp_info = cls(
-            type=type,
+            type_=type_,
             ttl=ttl,
             vhid=vhid,
             version=version,
@@ -87,7 +90,7 @@ class FilterLogCARPInfo:
         return filter_log_carp_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

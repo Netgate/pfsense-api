@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,33 +20,33 @@ class GatewayGroup:
     """
     Attributes:
         name (str):
-        idx (Union[Unset, int]):
-        descr (Union[Unset, str]):
-        gateway_priority (Union[Unset, List['GatewayGroupPriority']]):
-        keep_failover_states (Union[Unset, str]):
-        trigger (Union[Unset, str]):
-        trigger_descr (Union[Unset, str]):
-        keep_failover_states_descr (Union[Unset, str]):
+        idx (int | Unset):
+        descr (str | Unset):
+        gateway_priority (list[GatewayGroupPriority] | Unset):
+        keep_failover_states (str | Unset):
+        trigger (str | Unset):
+        trigger_descr (str | Unset):
+        keep_failover_states_descr (str | Unset):
     """
 
     name: str
-    idx: Union[Unset, int] = UNSET
-    descr: Union[Unset, str] = UNSET
-    gateway_priority: Union[Unset, List["GatewayGroupPriority"]] = UNSET
-    keep_failover_states: Union[Unset, str] = UNSET
-    trigger: Union[Unset, str] = UNSET
-    trigger_descr: Union[Unset, str] = UNSET
-    keep_failover_states_descr: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    idx: int | Unset = UNSET
+    descr: str | Unset = UNSET
+    gateway_priority: list[GatewayGroupPriority] | Unset = UNSET
+    keep_failover_states: str | Unset = UNSET
+    trigger: str | Unset = UNSET
+    trigger_descr: str | Unset = UNSET
+    keep_failover_states_descr: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         idx = self.idx
 
         descr = self.descr
 
-        gateway_priority: Union[Unset, List[Dict[str, Any]]] = UNSET
+        gateway_priority: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.gateway_priority, Unset):
             gateway_priority = []
             for gateway_priority_item_data in self.gateway_priority:
@@ -58,7 +61,7 @@ class GatewayGroup:
 
         keep_failover_states_descr = self.keep_failover_states_descr
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -83,22 +86,24 @@ class GatewayGroup:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.gateway_group_priority import GatewayGroupPriority
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name")
 
         idx = d.pop("idx", UNSET)
 
         descr = d.pop("descr", UNSET)
 
-        gateway_priority = []
         _gateway_priority = d.pop("gateway_priority", UNSET)
-        for gateway_priority_item_data in _gateway_priority or []:
-            gateway_priority_item = GatewayGroupPriority.from_dict(gateway_priority_item_data)
+        gateway_priority: list[GatewayGroupPriority] | Unset = UNSET
+        if _gateway_priority is not UNSET:
+            gateway_priority = []
+            for gateway_priority_item_data in _gateway_priority:
+                gateway_priority_item = GatewayGroupPriority.from_dict(gateway_priority_item_data)
 
-            gateway_priority.append(gateway_priority_item)
+                gateway_priority.append(gateway_priority_item)
 
         keep_failover_states = d.pop("keep_failover_states", UNSET)
 
@@ -123,7 +128,7 @@ class GatewayGroup:
         return gateway_group
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

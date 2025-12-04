@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,27 +15,27 @@ T = TypeVar("T", bound="WPASetting")
 class WPASetting:
     """
     Attributes:
-        macaddr_acl (Union[Unset, str]):
-        wpa_mode (Union[Unset, str]):
-        wpa_key_mgmt (Union[Unset, str]):
-        wpa_pairwise (Union[Unset, str]):
-        wpa_group_rekey (Union[Unset, str]):
-        wpa_gmk_rekey (Union[Unset, str]):
-        passphrase (Union[Unset, str]):
-        ext_wpa_sw (Union[Unset, str]):
+        macaddr_acl (str | Unset):
+        wpa_mode (str | Unset):
+        wpa_key_mgmt (str | Unset):
+        wpa_pairwise (str | Unset):
+        wpa_group_rekey (str | Unset):
+        wpa_gmk_rekey (str | Unset):
+        passphrase (str | Unset):
+        ext_wpa_sw (str | Unset):
     """
 
-    macaddr_acl: Union[Unset, str] = UNSET
-    wpa_mode: Union[Unset, str] = UNSET
-    wpa_key_mgmt: Union[Unset, str] = UNSET
-    wpa_pairwise: Union[Unset, str] = UNSET
-    wpa_group_rekey: Union[Unset, str] = UNSET
-    wpa_gmk_rekey: Union[Unset, str] = UNSET
-    passphrase: Union[Unset, str] = UNSET
-    ext_wpa_sw: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    macaddr_acl: str | Unset = UNSET
+    wpa_mode: str | Unset = UNSET
+    wpa_key_mgmt: str | Unset = UNSET
+    wpa_pairwise: str | Unset = UNSET
+    wpa_group_rekey: str | Unset = UNSET
+    wpa_gmk_rekey: str | Unset = UNSET
+    passphrase: str | Unset = UNSET
+    ext_wpa_sw: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         macaddr_acl = self.macaddr_acl
 
         wpa_mode = self.wpa_mode
@@ -49,7 +52,7 @@ class WPASetting:
 
         ext_wpa_sw = self.ext_wpa_sw
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if macaddr_acl is not UNSET:
@@ -72,8 +75,8 @@ class WPASetting:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         macaddr_acl = d.pop("macaddr_acl", UNSET)
 
         wpa_mode = d.pop("wpa_mode", UNSET)
@@ -105,7 +108,7 @@ class WPASetting:
         return wpa_setting
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

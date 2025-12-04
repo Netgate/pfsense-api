@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,35 +19,35 @@ T = TypeVar("T", bound="CertMethodSigningRequest")
 class CertMethodSigningRequest:
     """
     Attributes:
-        key_type (Union[Unset, str]): rsa, ecdsa
-        key_size (Union[Unset, int]): rsa key size
-        key_opt (Union[Unset, str]): key options, eg ecdsa curve
-        digest_alg (Union[Unset, str]): sha1, sha224, sha256, sha384, sha512
-        cn (Union[Unset, str]):
-        country_code (Union[Unset, str]):
-        state (Union[Unset, str]):
-        city (Union[Unset, str]):
-        org (Union[Unset, str]):
-        ou (Union[Unset, str]):
-        server_cert (Union[Unset, bool]): true = server cert, false = user cert
-        alt_names (Union[Unset, List['CertAltName']]):
+        key_type (str | Unset): rsa, ecdsa
+        key_size (int | Unset): rsa key size
+        key_opt (str | Unset): key options, eg ecdsa curve
+        digest_alg (str | Unset): sha1, sha224, sha256, sha384, sha512
+        cn (str | Unset):
+        country_code (str | Unset):
+        state (str | Unset):
+        city (str | Unset):
+        org (str | Unset):
+        ou (str | Unset):
+        server_cert (bool | Unset): true = server cert, false = user cert
+        alt_names (list[CertAltName] | Unset):
     """
 
-    key_type: Union[Unset, str] = UNSET
-    key_size: Union[Unset, int] = UNSET
-    key_opt: Union[Unset, str] = UNSET
-    digest_alg: Union[Unset, str] = UNSET
-    cn: Union[Unset, str] = UNSET
-    country_code: Union[Unset, str] = UNSET
-    state: Union[Unset, str] = UNSET
-    city: Union[Unset, str] = UNSET
-    org: Union[Unset, str] = UNSET
-    ou: Union[Unset, str] = UNSET
-    server_cert: Union[Unset, bool] = UNSET
-    alt_names: Union[Unset, List["CertAltName"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    key_type: str | Unset = UNSET
+    key_size: int | Unset = UNSET
+    key_opt: str | Unset = UNSET
+    digest_alg: str | Unset = UNSET
+    cn: str | Unset = UNSET
+    country_code: str | Unset = UNSET
+    state: str | Unset = UNSET
+    city: str | Unset = UNSET
+    org: str | Unset = UNSET
+    ou: str | Unset = UNSET
+    server_cert: bool | Unset = UNSET
+    alt_names: list[CertAltName] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         key_type = self.key_type
 
         key_size = self.key_size
@@ -67,14 +70,14 @@ class CertMethodSigningRequest:
 
         server_cert = self.server_cert
 
-        alt_names: Union[Unset, List[Dict[str, Any]]] = UNSET
+        alt_names: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.alt_names, Unset):
             alt_names = []
             for alt_names_item_data in self.alt_names:
                 alt_names_item = alt_names_item_data.to_dict()
                 alt_names.append(alt_names_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if key_type is not UNSET:
@@ -105,10 +108,10 @@ class CertMethodSigningRequest:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.cert_alt_name import CertAltName
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         key_type = d.pop("key_type", UNSET)
 
         key_size = d.pop("key_size", UNSET)
@@ -131,12 +134,14 @@ class CertMethodSigningRequest:
 
         server_cert = d.pop("server_cert", UNSET)
 
-        alt_names = []
         _alt_names = d.pop("alt_names", UNSET)
-        for alt_names_item_data in _alt_names or []:
-            alt_names_item = CertAltName.from_dict(alt_names_item_data)
+        alt_names: list[CertAltName] | Unset = UNSET
+        if _alt_names is not UNSET:
+            alt_names = []
+            for alt_names_item_data in _alt_names:
+                alt_names_item = CertAltName.from_dict(alt_names_item_data)
 
-            alt_names.append(alt_names_item)
+                alt_names.append(alt_names_item)
 
         cert_method_signing_request = cls(
             key_type=key_type,
@@ -157,7 +162,7 @@ class CertMethodSigningRequest:
         return cert_method_signing_request
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

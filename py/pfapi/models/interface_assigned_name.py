@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,24 +15,24 @@ T = TypeVar("T", bound="InterfaceAssignedName")
 class InterfaceAssignedName:
     """
     Attributes:
-        device (Union[Unset, str]): interface device, e.g. igbe0
-        ident (Union[Unset, str]): identity, e.g. wan, lan, opt1
-        assigned (Union[Unset, str]): user assigned name, e.g. WAN, LAN, MYLAN
+        device (str | Unset): interface device, e.g. igbe0
+        ident (str | Unset): identity, e.g. wan, lan, opt1
+        assigned (str | Unset): user assigned name, e.g. WAN, LAN, MYLAN
     """
 
-    device: Union[Unset, str] = UNSET
-    ident: Union[Unset, str] = UNSET
-    assigned: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    device: str | Unset = UNSET
+    ident: str | Unset = UNSET
+    assigned: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         device = self.device
 
         ident = self.ident
 
         assigned = self.assigned
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if device is not UNSET:
@@ -42,8 +45,8 @@ class InterfaceAssignedName:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         device = d.pop("device", UNSET)
 
         ident = d.pop("ident", UNSET)
@@ -60,7 +63,7 @@ class InterfaceAssignedName:
         return interface_assigned_name
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

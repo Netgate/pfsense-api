@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,26 +16,26 @@ class CheckIPService:
     """
     Attributes:
         enable (bool):
-        name (Union[Unset, str]):
-        url (Union[Unset, str]):
-        username (Union[Unset, str]):
-        password (Union[Unset, str]):
-        verifysslpeer (Union[Unset, bool]):
-        curl_proxy (Union[Unset, bool]):
-        descr (Union[Unset, str]):
+        name (str | Unset):
+        url (str | Unset):
+        username (str | Unset):
+        password (str | Unset):
+        verifysslpeer (bool | Unset):
+        curl_proxy (bool | Unset):
+        descr (str | Unset):
     """
 
     enable: bool
-    name: Union[Unset, str] = UNSET
-    url: Union[Unset, str] = UNSET
-    username: Union[Unset, str] = UNSET
-    password: Union[Unset, str] = UNSET
-    verifysslpeer: Union[Unset, bool] = UNSET
-    curl_proxy: Union[Unset, bool] = UNSET
-    descr: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    url: str | Unset = UNSET
+    username: str | Unset = UNSET
+    password: str | Unset = UNSET
+    verifysslpeer: bool | Unset = UNSET
+    curl_proxy: bool | Unset = UNSET
+    descr: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         enable = self.enable
 
         name = self.name
@@ -49,7 +52,7 @@ class CheckIPService:
 
         descr = self.descr
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -74,8 +77,8 @@ class CheckIPService:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         enable = d.pop("enable")
 
         name = d.pop("name", UNSET)
@@ -107,7 +110,7 @@ class CheckIPService:
         return check_ip_service
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

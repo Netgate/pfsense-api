@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="IPSecMobileKeys")
 class IPSecMobileKeys:
     """
     Attributes:
-        keys (Union[Unset, List['IPSecMobileKey']]):
+        keys (list[IPSecMobileKey] | Unset):
     """
 
-    keys: Union[Unset, List["IPSecMobileKey"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    keys: list[IPSecMobileKey] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        keys: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        keys: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.keys, Unset):
             keys = []
             for keys_item_data in self.keys:
                 keys_item = keys_item_data.to_dict()
                 keys.append(keys_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if keys is not UNSET:
@@ -39,16 +42,18 @@ class IPSecMobileKeys:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ip_sec_mobile_key import IPSecMobileKey
 
-        d = src_dict.copy()
-        keys = []
+        d = dict(src_dict)
         _keys = d.pop("keys", UNSET)
-        for keys_item_data in _keys or []:
-            keys_item = IPSecMobileKey.from_dict(keys_item_data)
+        keys: list[IPSecMobileKey] | Unset = UNSET
+        if _keys is not UNSET:
+            keys = []
+            for keys_item_data in _keys:
+                keys_item = IPSecMobileKey.from_dict(keys_item_data)
 
-            keys.append(keys_item)
+                keys.append(keys_item)
 
         ip_sec_mobile_keys = cls(
             keys=keys,
@@ -58,7 +63,7 @@ class IPSecMobileKeys:
         return ip_sec_mobile_keys
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

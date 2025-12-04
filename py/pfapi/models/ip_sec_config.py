@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,62 +20,62 @@ T = TypeVar("T", bound="IPSecConfig")
 class IPSecConfig:
     """
     Attributes:
-        logging (Union[Unset, IPSecLogging]):
-        async_crypto (Union[Unset, bool]):
-        uniqueids (Union[Unset, str]):
-        filtermode (Union[Unset, str]):
-        bypassrules (Union[Unset, IPSecBypassRules]):
-        pkcs11support (Union[Unset, bool]):
-        enableinterfacesuse (Union[Unset, bool]):
-        unityplugin (Union[Unset, bool]):
-        strictcrlpolicy (Union[Unset, bool]):
-        makebeforebreak (Union[Unset, bool]):
-        ipsecbypass (Union[Unset, bool]):
-        acceptunencryptedmainmode (Union[Unset, bool]):
-        maxexchange (Union[Unset, int]):
-        port_nat_t (Union[Unset, int]):
-        port (Union[Unset, int]):
-        compression (Union[Unset, bool]):
-        noshuntlaninterfaces (Union[Unset, bool]):
-        maxmss (Union[Unset, str]):
-        dns_interval (Union[Unset, int]):
-        ikev2_retransmit_enable (Union[Unset, bool]):
-        ikev2_retransmit_tries (Union[Unset, int]):
-        ikev2_retransmit_timeout (Union[Unset, int]):
-        ikev2_retransmit_base (Union[Unset, int]):
-        ikev2_retransmit_jitter (Union[Unset, int]):
-        ikev2_retransmit_limit (Union[Unset, int]):
+        logging (IPSecLogging | Unset):
+        async_crypto (bool | Unset):
+        uniqueids (str | Unset):
+        filtermode (str | Unset):
+        bypassrules (IPSecBypassRules | Unset):
+        pkcs11support (bool | Unset):
+        enableinterfacesuse (bool | Unset):
+        unityplugin (bool | Unset):
+        strictcrlpolicy (bool | Unset):
+        makebeforebreak (bool | Unset):
+        ipsecbypass (bool | Unset):
+        acceptunencryptedmainmode (bool | Unset):
+        maxexchange (int | Unset):
+        port_nat_t (int | Unset):
+        port (int | Unset):
+        compression (bool | Unset):
+        noshuntlaninterfaces (bool | Unset):
+        maxmss (str | Unset):
+        dns_interval (int | Unset):
+        ikev2_retransmit_enable (bool | Unset):
+        ikev2_retransmit_tries (int | Unset):
+        ikev2_retransmit_timeout (int | Unset):
+        ikev2_retransmit_base (int | Unset):
+        ikev2_retransmit_jitter (int | Unset):
+        ikev2_retransmit_limit (int | Unset):
     """
 
-    logging: Union[Unset, "IPSecLogging"] = UNSET
-    async_crypto: Union[Unset, bool] = UNSET
-    uniqueids: Union[Unset, str] = UNSET
-    filtermode: Union[Unset, str] = UNSET
-    bypassrules: Union[Unset, "IPSecBypassRules"] = UNSET
-    pkcs11support: Union[Unset, bool] = UNSET
-    enableinterfacesuse: Union[Unset, bool] = UNSET
-    unityplugin: Union[Unset, bool] = UNSET
-    strictcrlpolicy: Union[Unset, bool] = UNSET
-    makebeforebreak: Union[Unset, bool] = UNSET
-    ipsecbypass: Union[Unset, bool] = UNSET
-    acceptunencryptedmainmode: Union[Unset, bool] = UNSET
-    maxexchange: Union[Unset, int] = UNSET
-    port_nat_t: Union[Unset, int] = UNSET
-    port: Union[Unset, int] = UNSET
-    compression: Union[Unset, bool] = UNSET
-    noshuntlaninterfaces: Union[Unset, bool] = UNSET
-    maxmss: Union[Unset, str] = UNSET
-    dns_interval: Union[Unset, int] = UNSET
-    ikev2_retransmit_enable: Union[Unset, bool] = UNSET
-    ikev2_retransmit_tries: Union[Unset, int] = UNSET
-    ikev2_retransmit_timeout: Union[Unset, int] = UNSET
-    ikev2_retransmit_base: Union[Unset, int] = UNSET
-    ikev2_retransmit_jitter: Union[Unset, int] = UNSET
-    ikev2_retransmit_limit: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    logging: IPSecLogging | Unset = UNSET
+    async_crypto: bool | Unset = UNSET
+    uniqueids: str | Unset = UNSET
+    filtermode: str | Unset = UNSET
+    bypassrules: IPSecBypassRules | Unset = UNSET
+    pkcs11support: bool | Unset = UNSET
+    enableinterfacesuse: bool | Unset = UNSET
+    unityplugin: bool | Unset = UNSET
+    strictcrlpolicy: bool | Unset = UNSET
+    makebeforebreak: bool | Unset = UNSET
+    ipsecbypass: bool | Unset = UNSET
+    acceptunencryptedmainmode: bool | Unset = UNSET
+    maxexchange: int | Unset = UNSET
+    port_nat_t: int | Unset = UNSET
+    port: int | Unset = UNSET
+    compression: bool | Unset = UNSET
+    noshuntlaninterfaces: bool | Unset = UNSET
+    maxmss: str | Unset = UNSET
+    dns_interval: int | Unset = UNSET
+    ikev2_retransmit_enable: bool | Unset = UNSET
+    ikev2_retransmit_tries: int | Unset = UNSET
+    ikev2_retransmit_timeout: int | Unset = UNSET
+    ikev2_retransmit_base: int | Unset = UNSET
+    ikev2_retransmit_jitter: int | Unset = UNSET
+    ikev2_retransmit_limit: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        logging: Union[Unset, Dict[str, Any]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        logging: dict[str, Any] | Unset = UNSET
         if not isinstance(self.logging, Unset):
             logging = self.logging.to_dict()
 
@@ -82,7 +85,7 @@ class IPSecConfig:
 
         filtermode = self.filtermode
 
-        bypassrules: Union[Unset, Dict[str, Any]] = UNSET
+        bypassrules: dict[str, Any] | Unset = UNSET
         if not isinstance(self.bypassrules, Unset):
             bypassrules = self.bypassrules.to_dict()
 
@@ -126,7 +129,7 @@ class IPSecConfig:
 
         ikev2_retransmit_limit = self.ikev2_retransmit_limit
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if logging is not UNSET:
@@ -183,13 +186,13 @@ class IPSecConfig:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ip_sec_bypass_rules import IPSecBypassRules
         from ..models.ip_sec_logging import IPSecLogging
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         _logging = d.pop("logging", UNSET)
-        logging: Union[Unset, IPSecLogging]
+        logging: IPSecLogging | Unset
         if isinstance(_logging, Unset):
             logging = UNSET
         else:
@@ -202,7 +205,7 @@ class IPSecConfig:
         filtermode = d.pop("filtermode", UNSET)
 
         _bypassrules = d.pop("bypassrules", UNSET)
-        bypassrules: Union[Unset, IPSecBypassRules]
+        bypassrules: IPSecBypassRules | Unset
         if isinstance(_bypassrules, Unset):
             bypassrules = UNSET
         else:
@@ -280,7 +283,7 @@ class IPSecConfig:
         return ip_sec_config
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

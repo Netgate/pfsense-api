@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,27 +15,27 @@ T = TypeVar("T", bound="UPnPMapping")
 class UPnPMapping:
     """
     Attributes:
-        ext_interface (Union[Unset, str]):
-        ext_port (Union[Unset, str]):
-        int_ip (Union[Unset, str]):
-        int_port (Union[Unset, str]):
-        proto (Union[Unset, str]):
-        source_ip (Union[Unset, str]):
-        source_port (Union[Unset, str]):
-        desc (Union[Unset, str]):
+        ext_interface (str | Unset):
+        ext_port (str | Unset):
+        int_ip (str | Unset):
+        int_port (str | Unset):
+        proto (str | Unset):
+        source_ip (str | Unset):
+        source_port (str | Unset):
+        desc (str | Unset):
     """
 
-    ext_interface: Union[Unset, str] = UNSET
-    ext_port: Union[Unset, str] = UNSET
-    int_ip: Union[Unset, str] = UNSET
-    int_port: Union[Unset, str] = UNSET
-    proto: Union[Unset, str] = UNSET
-    source_ip: Union[Unset, str] = UNSET
-    source_port: Union[Unset, str] = UNSET
-    desc: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ext_interface: str | Unset = UNSET
+    ext_port: str | Unset = UNSET
+    int_ip: str | Unset = UNSET
+    int_port: str | Unset = UNSET
+    proto: str | Unset = UNSET
+    source_ip: str | Unset = UNSET
+    source_port: str | Unset = UNSET
+    desc: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         ext_interface = self.ext_interface
 
         ext_port = self.ext_port
@@ -49,7 +52,7 @@ class UPnPMapping:
 
         desc = self.desc
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ext_interface is not UNSET:
@@ -72,8 +75,8 @@ class UPnPMapping:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         ext_interface = d.pop("ext_interface", UNSET)
 
         ext_port = d.pop("ext_port", UNSET)
@@ -105,7 +108,7 @@ class UPnPMapping:
         return u_pn_p_mapping
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -18,33 +21,33 @@ T = TypeVar("T", bound="WireGuardSettings")
 class WireGuardSettings:
     """
     Attributes:
-        config (Union[Unset, List['WGConfig']]):
-        tunnels (Union[Unset, WGTunnels]):
-        peers (Union[Unset, WGPeers]):
+        config (list[WGConfig] | Unset):
+        tunnels (WGTunnels | Unset):
+        peers (WGPeers | Unset):
     """
 
-    config: Union[Unset, List["WGConfig"]] = UNSET
-    tunnels: Union[Unset, "WGTunnels"] = UNSET
-    peers: Union[Unset, "WGPeers"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    config: list[WGConfig] | Unset = UNSET
+    tunnels: WGTunnels | Unset = UNSET
+    peers: WGPeers | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        config: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        config: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.config, Unset):
             config = []
             for config_item_data in self.config:
                 config_item = config_item_data.to_dict()
                 config.append(config_item)
 
-        tunnels: Union[Unset, Dict[str, Any]] = UNSET
+        tunnels: dict[str, Any] | Unset = UNSET
         if not isinstance(self.tunnels, Unset):
             tunnels = self.tunnels.to_dict()
 
-        peers: Union[Unset, Dict[str, Any]] = UNSET
+        peers: dict[str, Any] | Unset = UNSET
         if not isinstance(self.peers, Unset):
             peers = self.peers.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if config is not UNSET:
@@ -57,28 +60,30 @@ class WireGuardSettings:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.wg_config import WGConfig
         from ..models.wg_peers import WGPeers
         from ..models.wg_tunnels import WGTunnels
 
-        d = src_dict.copy()
-        config = []
+        d = dict(src_dict)
         _config = d.pop("config", UNSET)
-        for config_item_data in _config or []:
-            config_item = WGConfig.from_dict(config_item_data)
+        config: list[WGConfig] | Unset = UNSET
+        if _config is not UNSET:
+            config = []
+            for config_item_data in _config:
+                config_item = WGConfig.from_dict(config_item_data)
 
-            config.append(config_item)
+                config.append(config_item)
 
         _tunnels = d.pop("tunnels", UNSET)
-        tunnels: Union[Unset, WGTunnels]
+        tunnels: WGTunnels | Unset
         if isinstance(_tunnels, Unset):
             tunnels = UNSET
         else:
             tunnels = WGTunnels.from_dict(_tunnels)
 
         _peers = d.pop("peers", UNSET)
-        peers: Union[Unset, WGPeers]
+        peers: WGPeers | Unset
         if isinstance(_peers, Unset):
             peers = UNSET
         else:
@@ -94,7 +99,7 @@ class WireGuardSettings:
         return wire_guard_settings
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

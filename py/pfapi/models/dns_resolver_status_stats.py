@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -13,30 +16,30 @@ class DNSResolverStatusStats:
     """
     Attributes:
         server (str):
-        zone (Union[Unset, str]):
-        expired (Union[Unset, bool]):
-        edns_lame_known (Union[Unset, int]):
-        edns_version (Union[Unset, int]):
-        probe_delay (Union[Unset, int]):
-        lame_dnssec (Union[Unset, int]):
-        lame_rec (Union[Unset, int]):
-        lame_a (Union[Unset, int]):
-        lame_other (Union[Unset, int]):
+        zone (str | Unset):
+        expired (bool | Unset):
+        edns_lame_known (int | Unset):
+        edns_version (int | Unset):
+        probe_delay (int | Unset):
+        lame_dnssec (int | Unset):
+        lame_rec (int | Unset):
+        lame_a (int | Unset):
+        lame_other (int | Unset):
     """
 
     server: str
-    zone: Union[Unset, str] = UNSET
-    expired: Union[Unset, bool] = UNSET
-    edns_lame_known: Union[Unset, int] = UNSET
-    edns_version: Union[Unset, int] = UNSET
-    probe_delay: Union[Unset, int] = UNSET
-    lame_dnssec: Union[Unset, int] = UNSET
-    lame_rec: Union[Unset, int] = UNSET
-    lame_a: Union[Unset, int] = UNSET
-    lame_other: Union[Unset, int] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    zone: str | Unset = UNSET
+    expired: bool | Unset = UNSET
+    edns_lame_known: int | Unset = UNSET
+    edns_version: int | Unset = UNSET
+    probe_delay: int | Unset = UNSET
+    lame_dnssec: int | Unset = UNSET
+    lame_rec: int | Unset = UNSET
+    lame_a: int | Unset = UNSET
+    lame_other: int | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         server = self.server
 
         zone = self.zone
@@ -57,7 +60,7 @@ class DNSResolverStatusStats:
 
         lame_other = self.lame_other
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
             {
@@ -86,8 +89,8 @@ class DNSResolverStatusStats:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         server = d.pop("server")
 
         zone = d.pop("zone", UNSET)
@@ -125,7 +128,7 @@ class DNSResolverStatusStats:
         return dns_resolver_status_stats
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

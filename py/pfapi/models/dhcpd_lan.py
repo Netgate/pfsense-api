@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,26 +19,26 @@ T = TypeVar("T", bound="DhcpdLan")
 class DhcpdLan:
     """
     Attributes:
-        text (Union[Unset, str]):
-        enable (Union[Unset, str]):
-        range_ (Union[Unset, DhcpRange]):
+        text (str | Unset):
+        enable (str | Unset):
+        range_ (DhcpRange | Unset):
     """
 
-    text: Union[Unset, str] = UNSET
-    enable: Union[Unset, str] = UNSET
-    range_: Union[Unset, "DhcpRange"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    text: str | Unset = UNSET
+    enable: str | Unset = UNSET
+    range_: DhcpRange | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         text = self.text
 
         enable = self.enable
 
-        range_: Union[Unset, Dict[str, Any]] = UNSET
+        range_: dict[str, Any] | Unset = UNSET
         if not isinstance(self.range_, Unset):
             range_ = self.range_.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if text is not UNSET:
@@ -48,16 +51,16 @@ class DhcpdLan:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.dhcp_range import DhcpRange
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         text = d.pop("text", UNSET)
 
         enable = d.pop("enable", UNSET)
 
         _range_ = d.pop("range", UNSET)
-        range_: Union[Unset, DhcpRange]
+        range_: DhcpRange | Unset
         if isinstance(_range_, Unset):
             range_ = UNSET
         else:
@@ -73,7 +76,7 @@ class DhcpdLan:
         return dhcpd_lan
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

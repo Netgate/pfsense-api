@@ -1,4 +1,7 @@
-from typing import Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -12,25 +15,25 @@ T = TypeVar("T", bound="NDPEntry")
 class NDPEntry:
     """
     Attributes:
-        ipv6 (Union[Unset, str]):
-        mac (Union[Unset, str]):
-        iface (Union[Unset, str]):
-        hostname (Union[Unset, str]):
-        exp (Union[Unset, str]):
-        status (Union[Unset, str]):
-        flags (Union[Unset, str]):
+        ipv6 (str | Unset):
+        mac (str | Unset):
+        iface (str | Unset):
+        hostname (str | Unset):
+        exp (str | Unset):
+        status (str | Unset):
+        flags (str | Unset):
     """
 
-    ipv6: Union[Unset, str] = UNSET
-    mac: Union[Unset, str] = UNSET
-    iface: Union[Unset, str] = UNSET
-    hostname: Union[Unset, str] = UNSET
-    exp: Union[Unset, str] = UNSET
-    status: Union[Unset, str] = UNSET
-    flags: Union[Unset, str] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    ipv6: str | Unset = UNSET
+    mac: str | Unset = UNSET
+    iface: str | Unset = UNSET
+    hostname: str | Unset = UNSET
+    exp: str | Unset = UNSET
+    status: str | Unset = UNSET
+    flags: str | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         ipv6 = self.ipv6
 
         mac = self.mac
@@ -45,7 +48,7 @@ class NDPEntry:
 
         flags = self.flags
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if ipv6 is not UNSET:
@@ -66,8 +69,8 @@ class NDPEntry:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
-        d = src_dict.copy()
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        d = dict(src_dict)
         ipv6 = d.pop("ipv6", UNSET)
 
         mac = d.pop("mac", UNSET)
@@ -96,7 +99,7 @@ class NDPEntry:
         return ndp_entry
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

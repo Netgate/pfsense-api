@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,35 +19,35 @@ T = TypeVar("T", bound="ControllerInfo")
 class ControllerInfo:
     """
     Attributes:
-        name (Union[Unset, str]):
-        key (Union[Unset, str]):
-        cert (Union[Unset, str]):
-        vpn_listenaddr (Union[Unset, str]):
-        vpn_address (Union[Unset, str]):
-        vpn_pubkey (Union[Unset, str]):
-        vpn_netkey (Union[Unset, str]):
-        vpn_prefix (Union[Unset, str]):
-        tag (Union[Unset, str]):
-        noise_secret (Union[Unset, str]):
-        device_pubkey (Union[Unset, str]):
-        device_vpn (Union[Unset, DeviceVpn]): The device's VPN settings
+        name (str | Unset):
+        key (str | Unset):
+        cert (str | Unset):
+        vpn_listenaddr (str | Unset):
+        vpn_address (str | Unset):
+        vpn_pubkey (str | Unset):
+        vpn_netkey (str | Unset):
+        vpn_prefix (str | Unset):
+        tag (str | Unset):
+        noise_secret (str | Unset):
+        device_pubkey (str | Unset):
+        device_vpn (DeviceVpn | Unset): The device's VPN settings
     """
 
-    name: Union[Unset, str] = UNSET
-    key: Union[Unset, str] = UNSET
-    cert: Union[Unset, str] = UNSET
-    vpn_listenaddr: Union[Unset, str] = UNSET
-    vpn_address: Union[Unset, str] = UNSET
-    vpn_pubkey: Union[Unset, str] = UNSET
-    vpn_netkey: Union[Unset, str] = UNSET
-    vpn_prefix: Union[Unset, str] = UNSET
-    tag: Union[Unset, str] = UNSET
-    noise_secret: Union[Unset, str] = UNSET
-    device_pubkey: Union[Unset, str] = UNSET
-    device_vpn: Union[Unset, "DeviceVpn"] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    name: str | Unset = UNSET
+    key: str | Unset = UNSET
+    cert: str | Unset = UNSET
+    vpn_listenaddr: str | Unset = UNSET
+    vpn_address: str | Unset = UNSET
+    vpn_pubkey: str | Unset = UNSET
+    vpn_netkey: str | Unset = UNSET
+    vpn_prefix: str | Unset = UNSET
+    tag: str | Unset = UNSET
+    noise_secret: str | Unset = UNSET
+    device_pubkey: str | Unset = UNSET
+    device_vpn: DeviceVpn | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
+    def to_dict(self) -> dict[str, Any]:
         name = self.name
 
         key = self.key
@@ -67,11 +70,11 @@ class ControllerInfo:
 
         device_pubkey = self.device_pubkey
 
-        device_vpn: Union[Unset, Dict[str, Any]] = UNSET
+        device_vpn: dict[str, Any] | Unset = UNSET
         if not isinstance(self.device_vpn, Unset):
             device_vpn = self.device_vpn.to_dict()
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if name is not UNSET:
@@ -102,10 +105,10 @@ class ControllerInfo:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.device_vpn import DeviceVpn
 
-        d = src_dict.copy()
+        d = dict(src_dict)
         name = d.pop("name", UNSET)
 
         key = d.pop("key", UNSET)
@@ -129,7 +132,7 @@ class ControllerInfo:
         device_pubkey = d.pop("device_pubkey", UNSET)
 
         _device_vpn = d.pop("device_vpn", UNSET)
-        device_vpn: Union[Unset, DeviceVpn]
+        device_vpn: DeviceVpn | Unset
         if isinstance(_device_vpn, Unset):
             device_vpn = UNSET
         else:
@@ -154,7 +157,7 @@ class ControllerInfo:
         return controller_info
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

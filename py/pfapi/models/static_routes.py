@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -16,21 +19,21 @@ T = TypeVar("T", bound="StaticRoutes")
 class StaticRoutes:
     """
     Attributes:
-        routes (Union[Unset, List['StaticRoute']]):
+        routes (list[StaticRoute] | Unset):
     """
 
-    routes: Union[Unset, List["StaticRoute"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    routes: list[StaticRoute] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        routes: Union[Unset, List[Dict[str, Any]]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        routes: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.routes, Unset):
             routes = []
             for routes_item_data in self.routes:
                 routes_item = routes_item_data.to_dict()
                 routes.append(routes_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if routes is not UNSET:
@@ -39,16 +42,18 @@ class StaticRoutes:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.static_route import StaticRoute
 
-        d = src_dict.copy()
-        routes = []
+        d = dict(src_dict)
         _routes = d.pop("routes", UNSET)
-        for routes_item_data in _routes or []:
-            routes_item = StaticRoute.from_dict(routes_item_data)
+        routes: list[StaticRoute] | Unset = UNSET
+        if _routes is not UNSET:
+            routes = []
+            for routes_item_data in _routes:
+                routes_item = StaticRoute.from_dict(routes_item_data)
 
-            routes.append(routes_item)
+                routes.append(routes_item)
 
         static_routes = cls(
             routes=routes,
@@ -58,7 +63,7 @@ class StaticRoutes:
         return static_routes
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:

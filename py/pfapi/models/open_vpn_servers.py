@@ -1,4 +1,7 @@
-from typing import TYPE_CHECKING, Any, Dict, List, Type, TypeVar, Union, cast
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -17,36 +20,36 @@ T = TypeVar("T", bound="OpenVPNServers")
 class OpenVPNServers:
     """
     Attributes:
-        authservers (Union[Unset, List[str]]):
-        servers (Union[Unset, List['OpenVPNServerConfig']]):
-        openvpn_capable_ifs (Union[Unset, List['OpenVPNCapableInterface']]):
+        authservers (list[str] | Unset):
+        servers (list[OpenVPNServerConfig] | Unset):
+        openvpn_capable_ifs (list[OpenVPNCapableInterface] | Unset):
     """
 
-    authservers: Union[Unset, List[str]] = UNSET
-    servers: Union[Unset, List["OpenVPNServerConfig"]] = UNSET
-    openvpn_capable_ifs: Union[Unset, List["OpenVPNCapableInterface"]] = UNSET
-    additional_properties: Dict[str, Any] = _attrs_field(init=False, factory=dict)
+    authservers: list[str] | Unset = UNSET
+    servers: list[OpenVPNServerConfig] | Unset = UNSET
+    openvpn_capable_ifs: list[OpenVPNCapableInterface] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
-    def to_dict(self) -> Dict[str, Any]:
-        authservers: Union[Unset, List[str]] = UNSET
+    def to_dict(self) -> dict[str, Any]:
+        authservers: list[str] | Unset = UNSET
         if not isinstance(self.authservers, Unset):
             authservers = self.authservers
 
-        servers: Union[Unset, List[Dict[str, Any]]] = UNSET
+        servers: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.servers, Unset):
             servers = []
             for servers_item_data in self.servers:
                 servers_item = servers_item_data.to_dict()
                 servers.append(servers_item)
 
-        openvpn_capable_ifs: Union[Unset, List[Dict[str, Any]]] = UNSET
+        openvpn_capable_ifs: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.openvpn_capable_ifs, Unset):
             openvpn_capable_ifs = []
             for openvpn_capable_ifs_item_data in self.openvpn_capable_ifs:
                 openvpn_capable_ifs_item = openvpn_capable_ifs_item_data.to_dict()
                 openvpn_capable_ifs.append(openvpn_capable_ifs_item)
 
-        field_dict: Dict[str, Any] = {}
+        field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if authservers is not UNSET:
@@ -59,26 +62,30 @@ class OpenVPNServers:
         return field_dict
 
     @classmethod
-    def from_dict(cls: Type[T], src_dict: Dict[str, Any]) -> T:
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.open_vpn_capable_interface import OpenVPNCapableInterface
         from ..models.open_vpn_server_config import OpenVPNServerConfig
 
-        d = src_dict.copy()
-        authservers = cast(List[str], d.pop("authservers", UNSET))
+        d = dict(src_dict)
+        authservers = cast(list[str], d.pop("authservers", UNSET))
 
-        servers = []
         _servers = d.pop("servers", UNSET)
-        for servers_item_data in _servers or []:
-            servers_item = OpenVPNServerConfig.from_dict(servers_item_data)
+        servers: list[OpenVPNServerConfig] | Unset = UNSET
+        if _servers is not UNSET:
+            servers = []
+            for servers_item_data in _servers:
+                servers_item = OpenVPNServerConfig.from_dict(servers_item_data)
 
-            servers.append(servers_item)
+                servers.append(servers_item)
 
-        openvpn_capable_ifs = []
         _openvpn_capable_ifs = d.pop("openvpn_capable_ifs", UNSET)
-        for openvpn_capable_ifs_item_data in _openvpn_capable_ifs or []:
-            openvpn_capable_ifs_item = OpenVPNCapableInterface.from_dict(openvpn_capable_ifs_item_data)
+        openvpn_capable_ifs: list[OpenVPNCapableInterface] | Unset = UNSET
+        if _openvpn_capable_ifs is not UNSET:
+            openvpn_capable_ifs = []
+            for openvpn_capable_ifs_item_data in _openvpn_capable_ifs:
+                openvpn_capable_ifs_item = OpenVPNCapableInterface.from_dict(openvpn_capable_ifs_item_data)
 
-            openvpn_capable_ifs.append(openvpn_capable_ifs_item)
+                openvpn_capable_ifs.append(openvpn_capable_ifs_item)
 
         open_vpn_servers = cls(
             authservers=authservers,
@@ -90,7 +97,7 @@ class OpenVPNServers:
         return open_vpn_servers
 
     @property
-    def additional_keys(self) -> List[str]:
+    def additional_keys(self) -> list[str]:
         return list(self.additional_properties.keys())
 
     def __getitem__(self, key: str) -> Any:
