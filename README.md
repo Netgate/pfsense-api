@@ -22,6 +22,7 @@ Two examples are provided to demonstrate the use of this API library.
 | example-add-devices.py | demonstrates how to register the Controller to each pfSense device<br>and add them to the Controller |
 | example.py             | authenticates with the Controller, iterates through each device,<br>queries them for their system update information and obtains their firewall aliases |
 | example-upgrade-devices.py | upgrade a set of devices by their tags |
+| example-upgrade-devices-async.py | same as example-upgrade-devices.py but upgrades performed concurrently in batches |
 | example-set-alias.py   | add an alias to a set of devices by their tags using async batch requests |
 
 #### Requirements
@@ -53,6 +54,11 @@ PYTHONPATH=py PASSWORD=controller_password python3 ./example.py
 # Modify:
 #   CONTROLLER_URL to the address of the MIM controller
 PYTHONPATH=py PASSWORD=controller_password python3 ./example-upgrade-devices.py tag1,tag2
+
+# example-set-alias.py and example-upgrade-devices-async.py support
+# -c <config_file> option.
+# Modify example.conf with your settings.
+PYTHONPATH=py python3 ./example-upgrade-devices-async.py -c example.conf tag1,tag2
 ```
 
 where the environment variables are:
