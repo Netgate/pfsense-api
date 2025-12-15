@@ -22,6 +22,7 @@ Two examples are provided to demonstrate the use of this API library.
 | example-add-devices.py | demonstrates how to register the Controller to each pfSense device<br>and add them to the Controller |
 | example.py             | authenticates with the Controller, iterates through each device,<br>queries them for their system update information and obtains their firewall aliases |
 | example-upgrade-devices.py | upgrade a set of devices by their tags |
+| example-set-alias.py   | add an alias to a set of devices by their tags using async batch requests |
 
 #### Requirements
 

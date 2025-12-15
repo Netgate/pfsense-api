@@ -140,8 +140,8 @@ for pfip in pfsense_addresses:
 		# renew the session token with the controller after 4 minutes
 		refreshResp = refresh_access_token.sync(client=client, body=RefreshTokenParam(username=username))
 		if isinstance(refreshResp, LoginResponse):
-			print("Refresh access token response:", resp.token)
-			client.token = resp.token
+			print("Refresh access token response:", refreshResp.token)
+			client.token = refreshResp.token
 		else:
 			print("Token refresh failed:", refreshResp)
 			sys.exit(1)
