@@ -45,6 +45,7 @@ class Sysinfo:
         time (str | Unset):
         mem_total (int | Unset):
         mem_used (int | Unset):
+        disk_used (int | Unset):
         loadavg (list[int] | Unset):
         vendor (str | Unset):
         model (str | Unset):
@@ -80,6 +81,7 @@ class Sysinfo:
     time: str | Unset = UNSET
     mem_total: int | Unset = UNSET
     mem_used: int | Unset = UNSET
+    disk_used: int | Unset = UNSET
     loadavg: list[int] | Unset = UNSET
     vendor: str | Unset = UNSET
     model: str | Unset = UNSET
@@ -140,6 +142,8 @@ class Sysinfo:
         mem_total = self.mem_total
 
         mem_used = self.mem_used
+
+        disk_used = self.disk_used
 
         loadavg: list[int] | Unset = UNSET
         if not isinstance(self.loadavg, Unset):
@@ -231,6 +235,8 @@ class Sysinfo:
             field_dict["mem_total"] = mem_total
         if mem_used is not UNSET:
             field_dict["mem_used"] = mem_used
+        if disk_used is not UNSET:
+            field_dict["disk_used"] = disk_used
         if loadavg is not UNSET:
             field_dict["loadavg"] = loadavg
         if vendor is not UNSET:
@@ -308,6 +314,8 @@ class Sysinfo:
 
         mem_used = d.pop("mem_used", UNSET)
 
+        disk_used = d.pop("disk_used", UNSET)
+
         loadavg = cast(list[int], d.pop("loadavg", UNSET))
 
         vendor = d.pop("vendor", UNSET)
@@ -378,6 +386,7 @@ class Sysinfo:
             time=time,
             mem_total=mem_total,
             mem_used=mem_used,
+            disk_used=disk_used,
             loadavg=loadavg,
             vendor=vendor,
             model=model,

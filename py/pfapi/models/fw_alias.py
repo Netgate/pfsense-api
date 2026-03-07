@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -28,6 +28,7 @@ class FWAlias:
         detail (str | Unset):
         updatefreq (str | Unset):
         truncated (bool | Unset):
+        display_values (list[str] | Unset):
     """
 
     name: str
@@ -38,6 +39,7 @@ class FWAlias:
     detail: str | Unset = UNSET
     updatefreq: str | Unset = UNSET
     truncated: bool | Unset = UNSET
+    display_values: list[str] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -64,6 +66,10 @@ class FWAlias:
 
         truncated = self.truncated
 
+        display_values: list[str] | Unset = UNSET
+        if not isinstance(self.display_values, Unset):
+            display_values = self.display_values
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -85,6 +91,8 @@ class FWAlias:
             field_dict["updatefreq"] = updatefreq
         if truncated is not UNSET:
             field_dict["truncated"] = truncated
+        if display_values is not UNSET:
+            field_dict["display_values"] = display_values
 
         return field_dict
 
@@ -121,6 +129,8 @@ class FWAlias:
 
         truncated = d.pop("truncated", UNSET)
 
+        display_values = cast(list[str], d.pop("display_values", UNSET))
+
         fw_alias = cls(
             name=name,
             address=address,
@@ -130,6 +140,7 @@ class FWAlias:
             detail=detail,
             updatefreq=updatefreq,
             truncated=truncated,
+            display_values=display_values,
         )
 
         fw_alias.additional_properties = d

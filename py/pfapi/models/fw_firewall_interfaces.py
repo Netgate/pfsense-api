@@ -1,12 +1,16 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar, cast
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
 
 from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.fw_firewall_interfaces_interface_mappings import FWFirewallInterfacesInterfaceMappings
+
 
 T = TypeVar("T", bound="FWFirewallInterfaces")
 
@@ -19,12 +23,14 @@ class FWFirewallInterfaces:
         wan (str | Unset):
         lan (str | Unset):
         ethernet (bool | Unset): ethernet filter is enabled
+        interface_mappings (FWFirewallInterfacesInterfaceMappings | Unset):
     """
 
     interfaces: list[str] | Unset = UNSET
     wan: str | Unset = UNSET
     lan: str | Unset = UNSET
     ethernet: bool | Unset = UNSET
+    interface_mappings: FWFirewallInterfacesInterfaceMappings | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -38,6 +44,10 @@ class FWFirewallInterfaces:
 
         ethernet = self.ethernet
 
+        interface_mappings: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.interface_mappings, Unset):
+            interface_mappings = self.interface_mappings.to_dict()
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -49,11 +59,15 @@ class FWFirewallInterfaces:
             field_dict["lan"] = lan
         if ethernet is not UNSET:
             field_dict["ethernet"] = ethernet
+        if interface_mappings is not UNSET:
+            field_dict["interface_mappings"] = interface_mappings
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.fw_firewall_interfaces_interface_mappings import FWFirewallInterfacesInterfaceMappings
+
         d = dict(src_dict)
         interfaces = cast(list[str], d.pop("interfaces", UNSET))
 
@@ -63,11 +77,19 @@ class FWFirewallInterfaces:
 
         ethernet = d.pop("ethernet", UNSET)
 
+        _interface_mappings = d.pop("interface_mappings", UNSET)
+        interface_mappings: FWFirewallInterfacesInterfaceMappings | Unset
+        if isinstance(_interface_mappings, Unset):
+            interface_mappings = UNSET
+        else:
+            interface_mappings = FWFirewallInterfacesInterfaceMappings.from_dict(_interface_mappings)
+
         fw_firewall_interfaces = cls(
             interfaces=interfaces,
             wan=wan,
             lan=lan,
             ethernet=ethernet,
+            interface_mappings=interface_mappings,
         )
 
         fw_firewall_interfaces.additional_properties = d

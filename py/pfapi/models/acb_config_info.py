@@ -22,7 +22,7 @@ class ACBConfigInfo:
         config (ACBConfig | Unset): valid values:
             frequency = "cron", "every"
             reverse = "yes", "no"
-        userkey (str | Unset):
+        userkey (str | Unset): hexidecimal encoded 32-byte random bytes
     """
 
     config: ACBConfig | Unset = UNSET

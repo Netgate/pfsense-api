@@ -19,18 +19,22 @@ class Dhcpv6StaticMapping:
         backend (str | Unset): read-only
         duid (str | Unset):
         ipv6_address (str | Unset):
+        delegated_prefix (str | Unset):
         hostname (str | Unset):
         description (str | Unset):
         early_dns_reg (str | Unset): default (track) | enable | disable
+        custom_kea_config (str | Unset): JSON custom Kea config for static mapping
     """
 
     id: str | Unset = UNSET
     backend: str | Unset = UNSET
     duid: str | Unset = UNSET
     ipv6_address: str | Unset = UNSET
+    delegated_prefix: str | Unset = UNSET
     hostname: str | Unset = UNSET
     description: str | Unset = UNSET
     early_dns_reg: str | Unset = UNSET
+    custom_kea_config: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -42,11 +46,15 @@ class Dhcpv6StaticMapping:
 
         ipv6_address = self.ipv6_address
 
+        delegated_prefix = self.delegated_prefix
+
         hostname = self.hostname
 
         description = self.description
 
         early_dns_reg = self.early_dns_reg
+
+        custom_kea_config = self.custom_kea_config
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -59,12 +67,16 @@ class Dhcpv6StaticMapping:
             field_dict["duid"] = duid
         if ipv6_address is not UNSET:
             field_dict["ipv6_address"] = ipv6_address
+        if delegated_prefix is not UNSET:
+            field_dict["delegated_prefix"] = delegated_prefix
         if hostname is not UNSET:
             field_dict["hostname"] = hostname
         if description is not UNSET:
             field_dict["description"] = description
         if early_dns_reg is not UNSET:
             field_dict["early_dns_reg"] = early_dns_reg
+        if custom_kea_config is not UNSET:
+            field_dict["custom_kea_config"] = custom_kea_config
 
         return field_dict
 
@@ -79,20 +91,26 @@ class Dhcpv6StaticMapping:
 
         ipv6_address = d.pop("ipv6_address", UNSET)
 
+        delegated_prefix = d.pop("delegated_prefix", UNSET)
+
         hostname = d.pop("hostname", UNSET)
 
         description = d.pop("description", UNSET)
 
         early_dns_reg = d.pop("early_dns_reg", UNSET)
 
+        custom_kea_config = d.pop("custom_kea_config", UNSET)
+
         dhcpv_6_static_mapping = cls(
             id=id,
             backend=backend,
             duid=duid,
             ipv6_address=ipv6_address,
+            delegated_prefix=delegated_prefix,
             hostname=hostname,
             description=description,
             early_dns_reg=early_dns_reg,
+            custom_kea_config=custom_kea_config,
         )
 
         dhcpv_6_static_mapping.additional_properties = d

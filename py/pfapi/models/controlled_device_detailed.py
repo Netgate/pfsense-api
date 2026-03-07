@@ -37,7 +37,9 @@ class ControlledDeviceDetailed:
         mim_path (list[str] | Unset):
         mim_depth (int | Unset): how many hops to reach device. 0 = this sytem, 1 = direct hop, etc
         mim_devices (int | Unset): if this device is a controller, how many devices are being managed by it
-        state (str | Unset): current device state: active, error, offline, rebooting, pending (pending auth)
+        state (str | Unset): current device state: active, error, offline, rebooting, pending (pending auth or license)
+        added_ts (int | Unset): uS timestamp of when device was added
+        added (str | Unset): RFC 3339 time string of when device was added
         device_cert (str | Unset): recorded value of device certificate
         sys_info (ControlledDeviceInfo | Unset): Additional information about the device
     """
@@ -58,6 +60,8 @@ class ControlledDeviceDetailed:
     mim_depth: int | Unset = UNSET
     mim_devices: int | Unset = UNSET
     state: str | Unset = UNSET
+    added_ts: int | Unset = UNSET
+    added: str | Unset = UNSET
     device_cert: str | Unset = UNSET
     sys_info: ControlledDeviceInfo | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -105,6 +109,10 @@ class ControlledDeviceDetailed:
 
         state = self.state
 
+        added_ts = self.added_ts
+
+        added = self.added
+
         device_cert = self.device_cert
 
         sys_info: dict[str, Any] | Unset = UNSET
@@ -146,6 +154,10 @@ class ControlledDeviceDetailed:
             field_dict["mim_devices"] = mim_devices
         if state is not UNSET:
             field_dict["state"] = state
+        if added_ts is not UNSET:
+            field_dict["added_ts"] = added_ts
+        if added is not UNSET:
+            field_dict["added"] = added
         if device_cert is not UNSET:
             field_dict["device_cert"] = device_cert
         if sys_info is not UNSET:
@@ -202,6 +214,10 @@ class ControlledDeviceDetailed:
 
         state = d.pop("state", UNSET)
 
+        added_ts = d.pop("added_ts", UNSET)
+
+        added = d.pop("added", UNSET)
+
         device_cert = d.pop("device_cert", UNSET)
 
         _sys_info = d.pop("sys_info", UNSET)
@@ -228,6 +244,8 @@ class ControlledDeviceDetailed:
             mim_depth=mim_depth,
             mim_devices=mim_devices,
             state=state,
+            added_ts=added_ts,
+            added=added,
             device_cert=device_cert,
             sys_info=sys_info,
         )

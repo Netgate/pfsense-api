@@ -15,12 +15,12 @@ T = TypeVar("T", bound="TracerouteRequest")
 class TracerouteRequest:
     """
     Attributes:
-        host (str | Unset):
-        hops (int | Unset):
-        icmp (bool | Unset):
-        proto (str | Unset):
-        rev (bool | Unset):
-        src (str | Unset):
+        host (str | Unset): destination host or IP
+        hops (int | Unset): maximum hops to trace
+        icmp (bool | Unset): use ICMP instead of UDP
+        proto (str | Unset): IP protocol (ipv4 or ipv6)
+        rev (bool | Unset): reverse address lookup
+        src (str | Unset): source IP, network interface or "any"
     """
 
     host: str | Unset = UNSET

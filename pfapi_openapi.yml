@@ -41,6 +41,12 @@ paths:
       summary: Get firewall aliases
       description: ""
       operationId: FirewallGetAliases
+      parameters:
+        - in: query
+          name: maxvalues
+          description: maximum number of values to return for each alias, default 5
+          schema:
+            type: integer
       responses:
         '200':
           description: ok
@@ -1578,6 +1584,25 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/TracerouteResponse'
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+    get:
+      tags:
+        - diag
+      summary: Get options for traceroute
+      description: ""
+      operationId: DiagTracerouteOptions
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/TracerouteOptions'
         '400':
           description: error
           content:
@@ -5262,6 +5287,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /mim/devices/diag/speedtest:
+    post:
+      tags:
+        - mim
+      summary: Perform a connection speed test between the Nexus controller and the device
+      description: ""
+      operationId: RunSpeedTest
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/SpeedTestRequest'
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/SpeedTestResult'
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /mim/devices/tag:
     get:
       tags:
@@ -5494,7 +5545,10 @@ paths:
       tags:
         - services
       summary: Save ACB config
-      description: ""
+      description: |
+        When updating ACB, if ACBConfigInfo.userkey is provided, then the device's key
+        will be updated and all future backups will use the new key. ACBConfigInfo.config
+        is optional if ACBConfigInfo.userkey is provided.
       operationId: SaveACBConfig
       requestBody:
         required: true
@@ -5799,6 +5853,32 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/CARPStatus'
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /services/data/oui:
+    get:
+      tags:
+        - services
+      summary: Obtain the list of available OUI prefixes as a gzip compressed CSV format
+      description: |
+        Fetch the list of available OUI prefixes as a gzip compressed CSV dataset, where:
+        - the first column is the OUI prefix, with colon separator
+        - the second column is the owner of the OUI
+        
+        If the OUI dataset is not available from the OS, then a short default list is returned
+      operationId: GetDataOUIs
+      responses:
+        '200':
+          description: ok
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
         '400':
           description: error
           content:
@@ -10688,6 +10768,59 @@ paths:
             application/json:
               schema:
                 $ref: '#/components/schemas/Error'
+  /vpn/ipsec/export:
+    get:
+      tags:
+        - vpn
+      summary: Get IPSec Export Settings
+      description: ""
+      operationId: GetIPSecExportSettings
+      responses:
+        '200':
+          description: ok
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/IPSecExportSettings'
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
+  /vpn/ipsec/export/{target}:
+    parameters:
+      - in: path
+        name: target
+        required: true
+        schema:
+          type: string
+    post:
+      tags:
+        - vpn
+      summary: Export IPSec Profile for specified target client/os
+      description: ""
+      operationId: ExportIPSecProfile
+      requestBody:
+        required: true
+        content:
+          application/json:
+            schema:
+              $ref: '#/components/schemas/IPSecProfileExportReq'
+      responses:
+        '200':
+          description: ok
+          content:
+            application/octet-stream:
+              schema:
+                type: string
+                format: binary
+        '400':
+          description: error
+          content:
+            application/json:
+              schema:
+                $ref: '#/components/schemas/Error'
   /vpn/ipsec/genpsk:
     get:
       tags:
@@ -11761,6 +11894,7 @@ components:
           $ref: '#/components/schemas/ACBConfig'
         userkey:
           type: string
+          description: hexidecimal encoded 32-byte random bytes
     ACBList:
       type: object
       properties:
@@ -12076,7 +12210,8 @@ components:
         dpinger_dont_add_static_routes:
           type: boolean
         gw_down_kill_states:
-          type: boolean
+          type: string
+          description: none (do not kill states), down (kill states for down gw), all (flush all states on gw failure)
         harddiskstandby:
           type: string
         hwpstate:
@@ -12122,6 +12257,11 @@ components:
           type: boolean
         remove_failover_states_default:
           type: string
+          description: |
+            default (don't kill states),
+            all (kill all states for lower-priority gw),
+            policy (only kill policy routing states),
+            addrfamily (only kill states with the same address family as the gateway group)
         schedule_states:
           type: boolean
         skip_rules_gw_down:
@@ -12140,6 +12280,18 @@ components:
           type: boolean
         watchdogd_timeout:
           type: string
+        rrdbackup:
+          type: integer
+          description: hourly backup interval (1-24) for RRD
+        dhcpbackup:
+          type: integer
+          description: hourly backup interval (1-24) for DHCP
+        logsbackup:
+          type: integer
+          description: hourly backup interval (1-24) for Logs
+        captiveportalbackup:
+          type: integer
+          description: hourly backup interval (1-24) for Captive Portal
     AdvMiscSetting:
       type: object
       properties:
@@ -13081,6 +13233,10 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/CaptivePortalName'
+        interfaces:
+          type: array
+          items:
+            $ref: '#/components/schemas/Interface'
     CertAltName:
       type: object
       description: |
@@ -13606,7 +13762,13 @@ components:
         state:
           type: string
           description: |
-            current device state: active, error, offline, rebooting, pending (pending auth)
+            current device state: active, error, offline, rebooting, pending (pending auth or license)
+        added_ts:
+          type: integer
+          description: uS timestamp of when device was added
+        added:
+          type: string
+          description: RFC 3339 time string of when device was added
         device_cert:
           type: string
           description: recorded value of device certificate
@@ -13643,7 +13805,13 @@ components:
           type: string
         cpu:
           type: string
+        cpu_usage:
+          type: integer
         memory:
+          type: integer
+        memory_usage:
+          type: integer
+        disk_usage:
           type: integer
         model:
           type: string
@@ -13853,7 +14021,7 @@ components:
           type: array
           items:
             type: integer
-            description: percentage CPU load used by controller
+            description: load average of the system per minute (multiplied by 100)
         admin_logins:
           type: integer
           description: number of logged in admins
@@ -14024,6 +14192,15 @@ components:
           type: string
         descr:
           type: string
+        assigned_intf:
+          type: string
+          description: assigned network interface name
+        routed_to:
+          type: string
+          description: PD next hop
+        dnsreg:
+          type: boolean
+          description: (readonly) if the host(name) was registered to the service
     DHCPLeases:
       type: object
       properties:
@@ -14108,12 +14285,15 @@ components:
           type: boolean
         no_private_reverse:
           type: boolean
+        no_system_dns:
+          type: boolean
         port:
           type: string
         interface:
           type: string
         strictbind:
           type: boolean
+          description: do not use system DNS servers. Custom DNS servers must be used.
         custom_options:
           type: string
           format: byte
@@ -14244,6 +14424,8 @@ components:
           type: string
         dns64netbits:
           type: string
+        allow_dns64_for_localhost:
+          type: boolean
         port:
           type: integer
         sslport:
@@ -14282,6 +14464,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/DNSACL'
+        strictout:
+          type: boolean
+          description: strict outgoing network interface binding
     DNSResolverConfigInfo:
       type: object
       properties:
@@ -14904,8 +15089,14 @@ components:
             type: string
         default_lease_time:
           type: integer
+          description: set as 0 to use default value (7200 seconds)
         maximum_lease_time:
           type: integer
+          description: set as 0 to use default value (86400 seconds)
+        staticarp:
+          type: boolean
+        failover_peerip:
+          type: string
         mac_allow:
           type: array
           items:
@@ -14932,6 +15123,15 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/Dhcpv6StaticMapping'
+        pdprefix:
+          type: string
+          description: IPv6 PD prefix (ipv6/mask CIDR)
+        pddellen:
+          type: integer
+          description: IPv6 PD delegated length
+        custom_kea_config:
+          type: string
+          description: JSON custom Kea config for interface
         subnet:
           type: string
         subnet_range_from:
@@ -15027,6 +15227,9 @@ components:
           type: object
           additionalProperties:
             $ref: '#/components/schemas/DhcpInterfaceConfig'
+        custom_kea_config:
+          type: string
+          description: JSON configuration for Kea service custom config
     DhcpStaticMapping:
       type: object
       properties:
@@ -15076,10 +15279,15 @@ components:
           type: string
         ipv6_address:
           type: string
+        delegated_prefix:
+          type: string
         filename:
           type: string
         rootpath:
           type: string
+        custom_kea_config:
+          type: string
+          description: JSON custom Kea config for static mapping
     DhcpStaticMappings:
       type: object
       properties:
@@ -15127,6 +15335,8 @@ components:
           type: string
         ipv6_address:
           type: string
+        delegated_prefix:
+          type: string
         hostname:
           type: string
         description:
@@ -15135,6 +15345,9 @@ components:
           type: string
           description: |
             default (track) | enable | disable
+        custom_kea_config:
+          type: string
+          description: JSON custom Kea config for static mapping
     DiagActivity:
       type: object
       properties:
@@ -15205,6 +15418,10 @@ components:
         nopkg:
           type: boolean
         norrd:
+          type: boolean
+        data:
+          type: boolean
+        ssh:
           type: boolean
         enc:
           type: boolean
@@ -15665,6 +15882,14 @@ components:
           type: string
         truncated:
           type: boolean
+        display_values:
+          type: array
+          items:
+            type: string
+            description: |
+              a comma separated table with the first row being the titles
+              and next rows with values e.g.
+              [ "value,descr"], [ "192.168.1.0/24,addr1" ], [ "fdc0::/64,addr2" ]
     FWAliasReq:
       type: object
       required: [name]
@@ -15690,6 +15915,14 @@ components:
           type: string
         truncated:
           type: boolean
+        display_values:
+          type: array
+          items:
+            type: string
+            description: |
+              a comma separated table with the first row being the titles
+              and next rows with values e.g.
+              [ "value,descr"], [ "192.168.1.0/24,addr1" ], [ "fdc0::/64,addr2" ]
     FWAliases:
       type: object
       properties:
@@ -15718,6 +15951,11 @@ components:
       properties:
         id:
           type: string
+          description: unique identifier for the rule
+        fwids:
+          type: string
+          description: |
+            system's identifier(s) for rule in its firewall
         disabled:
           type: boolean
         readonly:
@@ -15869,6 +16107,10 @@ components:
         ethernet:
           type: boolean
           description: ethernet filter is enabled
+        interface_mappings:
+          type: object
+          additionalProperties:
+            $ref: '#/components/schemas/InterfaceLabel'
     FWRuleItemOrder:
       type: object
       properties:
@@ -16024,6 +16266,14 @@ components:
           description: interface assigned name
         truncated:
           type: boolean
+        display_values:
+          type: array
+          items:
+            type: string
+            description: |
+              a comma separated table with the first row being the titles
+              and next rows with values e.g.
+              [ "value,descr"], [ "192.168.1.0/24,addr1" ], [ "fdc0::/64,addr2" ]
     FWTarget:
       type: object
       required: [name]
@@ -16064,6 +16314,14 @@ components:
           type: string
         truncated:
           type: boolean
+        display_values:
+          type: array
+          items:
+            type: string
+            description: |
+              a comma separated table with the first row being the titles
+              and next rows with values e.g.
+              [ "value,descr"], [ "192.168.1.0/24,addr1" ], [ "fdc0::/64,addr2" ]
     FWUserTimestamp:
       type: object
       properties:
@@ -16088,9 +16346,9 @@ components:
           type: string
         tracker:
           type: string
-        realint:
+        interface_assigned:
           type: string
-        friendly_interface:
+        interface_device:
           type: string
         reason:
           type: string
@@ -17150,6 +17408,34 @@ components:
           type: string
         uniqueid:
           type: string
+    IPSecExportSettings:
+      type: object
+      properties:
+        mobile_p1_exist:
+          type: boolean
+          description: is mobile phase 1 in the ipsec config
+        mobile_p2_exist:
+          type: boolean
+          description: is mobile phase 2 in the ipsec config
+        mobile_p2_is_tunnel:
+          type: boolean
+          description: are all mobile phase 2 in tunnel mode
+        mobile_p1_descr:
+          type: string
+        mobile_p1_authmethod:
+          type: string
+          description: only support eap authmethod for windows
+        system_hostname:
+          type: string
+        server_addresses:
+          type: array
+          items:
+            type: string
+            description: list of server addresses can be used by client
+        vpnclients:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextValue'
     IPSecIKESA:
       type: object
       properties:
@@ -17306,6 +17592,32 @@ components:
           type: string
         id:
           type: string
+    IPSecProfileExportReq:
+      type: object
+      properties:
+        name:
+          type: string
+          description: the name of the VPN
+        server_address:
+          type: string
+          description: the server address to be used by the client
+        server_hostname:
+          type: string
+          description: |
+            address to which clients will connect when server_address value is "Custom Hostname"
+        vpnclient:
+          type: string
+          description: (for target apple) the client to export
+        external_username:
+          type: string
+          description: |
+            (for target apple) this is the username when vpnclient value is "<external>"
+        user_certref:
+          type: string
+          description: (for target windows) the TLS client certificate to include in the download archive
+        download:
+          type: boolean
+          description: indicate whether response http header Content-Disposition is set as attachment for front-end to download the exported profile
     IPSecSAD:
       type: object
       properties:
@@ -17957,6 +18269,18 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/InterfaceInfo'
+    InterfaceLabel:
+      type: object
+      properties:
+        ident:
+          type: string
+        device:
+          type: string
+        assigned:
+          type: string
+        type:
+          type: string
+          description: interface type - device, group, vpn, other
     InterfaceLabelToName:
       type: object
       description: |
@@ -18393,6 +18717,26 @@ components:
           description: client certificate for secure transport
         refid:
           type: string
+        nexus_group_prefix:
+          type: string
+          description: |
+            LDAP group CN prefix for Nexus MIM roles (default "mim_").
+            The default group names used for Nexus MIM are defined
+            as "<prefix><role>_<permission>" names. We recommend having
+            an underscore (or non alphanumeric) separator between the prefix
+            and the role.
+            
+            A role is one of:
+            - view, logs, usermgmt, services, firewall, interfaces, devices, system, superuser
+            
+            Permission is (if unspecified is equivalent to allow-all):
+            - read, modify, delete
+            
+            Note view and superuser do not need permission to be specified.
+            
+            For example:
+            - mim_logs_read = can only view logs
+            - mim_logs      = can read, modify and delete logs
     LeaseInterface:
       type: object
       properties:
@@ -19166,6 +19510,8 @@ components:
           type: boolean
         nosync:
           type: boolean
+        eimnat:
+          type: boolean
         protocol:
           type: string
         poolopts:
@@ -19670,8 +20016,15 @@ components:
             type: string
         public_key:
           type: string
+          description: controller identity
+        vpn_pubkey:
+          type: string
+          description: public key used for MIM connection
         vpn_addr:
           type: string
+        mim_addr:
+          type: string
+          description: address of established MIM VPN connection
     NtpAccessRestrictions:
       type: object
       properties:
@@ -19801,6 +20154,13 @@ components:
           format: byte
         autocorrect_initcmd:
           type: boolean
+        processpgrmf:
+          type: boolean
+        default_initcmds:
+          type: object
+          additionalProperties:
+            type: string
+            description: (readonly) default base64-encoded strings for initcmd with the types as the keys
     NtpServer:
       type: object
       required: [addr, type]
@@ -19885,7 +20245,8 @@ components:
           type: boolean
         serverauthkey:
           type: string
-          format: byte
+        serverauthkeyid:
+          type: string
         serverauthalgo:
           type: string
           description: |
@@ -21463,6 +21824,9 @@ components:
           type: string
         bindip:
           type: string
+        ipprotocol:
+          type: string
+          description: inet4, inet6, or inet46
     SNMPInterface:
       type: object
       properties:
@@ -21558,6 +21922,11 @@ components:
           $ref: '#/components/schemas/NtpSerialGps'
         pps:
           $ref: '#/components/schemas/NtpPps'
+        avail_serial_ports:
+          type: array
+          items:
+            type: string
+            description: (readonly) list of available serial port devices on system
     ServicesSNMPConfig:
       type: object
       properties:
@@ -21791,6 +22160,41 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SoftwarePackage'
+    SpeedTestRequest:
+      type: object
+      properties:
+        device_id:
+          type: string
+          description: ID of device
+        duration:
+          type: integer
+          description: optional number of seconds to run each upload/download test for, default 10
+        upload_mb:
+          type: integer
+          description: optional number of MB to send to device, default 100. Duration has priority.
+        download_mb:
+          type: integer
+          description: optional number of MB to receive from device, default 10. Duration has priority.
+    SpeedTestResult:
+      type: object
+      properties:
+        errors:
+          type: string
+          description: if any errors
+        device_id:
+          type: string
+          description: ID of device
+        duration:
+          type: integer
+          description: number of seconds test ran for
+        upload_mps:
+          type: number
+          description: upload MB/s
+          format: double
+        download_mps:
+          type: number
+          description: download MB/s
+          format: double
     StaticRoute:
       type: object
       required: [network, gateway]
@@ -21863,6 +22267,13 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/FilterLog'
+        filter_rules:
+          type: object
+          additionalProperties:
+            type: array
+            items:
+              type: string
+              description: map of rule identifiers to the rule defined in the firewall
         filter_summary:
           $ref: '#/components/schemas/FilterLogSummary'
         alerts:
@@ -21999,6 +22410,8 @@ components:
           type: integer
         mem_used:
           type: integer
+        disk_used:
+          type: integer
         loadavg:
           type: array
           items:
@@ -22081,22 +22494,36 @@ components:
           description: formatted, raw
         lognginx:
           type: boolean
-        logdefaultblock:
-          type: boolean
-        logdefaultpass:
-          type: boolean
         logipoptions:
           type: boolean
+          description: log blocked packets due to IP options
+        logdefaultblock:
+          type: boolean
+          description: |
+            log default "block" rules
+        logdefaultpass:
+          type: boolean
+          description: |
+            log default "pass" rules
         logbogons:
           type: boolean
+          description: log Bogon Networks block rules
         logprivatenets:
           type: boolean
+          description: log Private Networks block rules
         loglinklocal4:
           type: boolean
-        logsnort2c:
+          description: log IPv4 link-local block rules
+        logids:
           type: boolean
-        filterdescriptions:
-          type: integer
+          description: log hosts blocked by IDS
+        showfilterdescrips:
+          type: string
+          description: |
+            where to show firewall rule descriptions:
+            * "disable" - don't show,
+            * "column"  - as column,
+            * "row"     - as second row
     SyslogConfiguration:
       type: object
       properties:
@@ -22112,69 +22539,123 @@ components:
         format:
           type: string
           description: rfc3164, rfc5424
+        default_log_level:
+          type: string
+          description: refer to options in syslog_levels
         rotatecount:
           type: integer
+        enable_remote:
+          type: boolean
         remoteserver:
           type: string
+          description: |
+            ip:port of remote server
         remoteserver2:
           type: string
+          description: |
+            ip:port of second remote server
         remoteserver3:
           type: string
+          description: |
+            ip:port of third remote server
         sourceip:
           type: string
+          description: source network interface for binding to
         ipproto:
           type: string
           description: ipv4, ipv6
-        filter:
-          type: boolean
-        dhcp:
-          type: boolean
-        auth:
-          type: boolean
-        portalauth:
-          type: boolean
-        vpn:
-          type: boolean
-        dpinger:
-          type: boolean
-        hostapd:
-          type: boolean
         logall:
           type: boolean
+          description: remote log everything
+        filter:
+          type: boolean
+          description: remote log firewall events
+        dhcp:
+          type: boolean
+          description: remote log DHCP events
+        auth:
+          type: boolean
+          description: remote log authentication events
+        portalauth:
+          type: boolean
+          description: remtoe log captive portal events
+        vpn:
+          type: boolean
+          description: remote log vpn events
+        dpinger:
+          type: boolean
+          description: remote log gateway monitor events
+        hostapd:
+          type: boolean
+          description: remote log wireless events
         system:
           type: boolean
+          description: remote log system events
         pfnet_controller:
           type: boolean
+          description: remote log Nexus events
         resolver:
           type: boolean
+          description: remote log DNS events
         ppp:
           type: boolean
+          description: remote log PPP events
         routing:
           type: boolean
+          description: remote log routing daemon events
         ntpd:
           type: boolean
+          description: remote log NTP events
         disablelocallogging:
           type: boolean
-        logconfigchanges:
-          type: boolean
-        enable:
-          type: boolean
-        logdefaultblock:
-          type: boolean
-        logipoptions:
-          type: boolean
-        logdefaultpass:
-          type: boolean
-        logbogons:
-          type: boolean
-        logprivatenets:
-          type: boolean
-        lognginx:
-          type: boolean
+          description: disable local logging
         rawfilter:
           type: boolean
-        filterdescriptions:
-          type: integer
+          description: show raw filter logs
+        showfilterdescrips:
+          type: string
+          description: |
+            where to show firewall rule descriptions:
+            * "disable" - don't show,
+            * "column"  - as column,
+            * "row"     - as second row
+        logipoptions:
+          type: boolean
+          description: log blocked packets due to IP options
+        logdefaultblock:
+          type: boolean
+          description: |
+            log default "block" rules
+        logdefaultpass:
+          type: boolean
+          description: |
+            log default "pass" rules
+        logbogons:
+          type: boolean
+          description: log Bogon Networks block rules
+        logprivatenets:
+          type: boolean
+          description: log Private Networks block rules
+        loglinklocal4:
+          type: boolean
+          description: log IPv4 link-local block rules
+        logids:
+          type: boolean
+          description: log hosts blocked by IDS
+        lognginx:
+          type: boolean
+          description: log web server
+        logconfigchanges:
+          type: boolean
+          description: log configuration changes
+        source_addresses:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextValue'
+        syslog_levels:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextValue'
     SystemAdvAdmin:
       type: object
       properties:
@@ -22239,6 +22720,9 @@ components:
           type: array
           items:
             $ref: '#/components/schemas/SystemCert'
+        enableserial_force:
+          type: boolean
+          description: (readonly) forced enable serial
     SystemAdvAdminSetting:
       type: object
       properties:
@@ -22523,21 +23007,40 @@ components:
       properties:
         enable:
           type: boolean
+    TracerouteOptions:
+      type: object
+      description: Values for traceroute command options
+      properties:
+        src:
+          type: array
+          items:
+            $ref: '#/components/schemas/TextValue'
+        proto:
+          type: array
+          items:
+            type: string
     TracerouteRequest:
       type: object
       properties:
         host:
           type: string
+          description: destination host or IP
         hops:
           type: integer
+          description: maximum hops to trace
         icmp:
           type: boolean
+          description: use ICMP instead of UDP
         proto:
           type: string
+          description: IP protocol (ipv4 or ipv6)
         rev:
           type: boolean
+          description: reverse address lookup
         src:
           type: string
+          description: |
+            source IP, network interface or "any"
     TracerouteResponse:
       type: object
       properties:
@@ -23077,7 +23580,7 @@ components:
           maximum: 4094
         tag_type:
           type: string
-          description: C-tag or S-tag
+          description: ctag or stag
         pcp:
           type: integer
           description: 802.1Q VLAN Priority (between 0 and 7)

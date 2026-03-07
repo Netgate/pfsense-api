@@ -55,6 +55,7 @@ class DNSResolverConfig:
         dns64 (bool | Unset):
         dns64prefix (str | Unset):
         dns64netbits (str | Unset):
+        allow_dns64_for_localhost (bool | Unset):
         port (int | Unset):
         sslport (int | Unset):
         sslcertref (str | Unset):
@@ -71,6 +72,7 @@ class DNSResolverConfig:
         hosts (list[DNSForwarderHost] | Unset):
         domainoverrides (list[DNSResolverDomain] | Unset):
         acls (list[DNSACL] | Unset):
+        strictout (bool | Unset): strict outgoing network interface binding
     """
 
     enable: bool | Unset = UNSET
@@ -107,6 +109,7 @@ class DNSResolverConfig:
     dns64: bool | Unset = UNSET
     dns64prefix: str | Unset = UNSET
     dns64netbits: str | Unset = UNSET
+    allow_dns64_for_localhost: bool | Unset = UNSET
     port: int | Unset = UNSET
     sslport: int | Unset = UNSET
     sslcertref: str | Unset = UNSET
@@ -123,6 +126,7 @@ class DNSResolverConfig:
     hosts: list[DNSForwarderHost] | Unset = UNSET
     domainoverrides: list[DNSResolverDomain] | Unset = UNSET
     acls: list[DNSACL] | Unset = UNSET
+    strictout: bool | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -198,6 +202,8 @@ class DNSResolverConfig:
 
         dns64netbits = self.dns64netbits
 
+        allow_dns64_for_localhost = self.allow_dns64_for_localhost
+
         port = self.port
 
         sslport = self.sslport
@@ -244,6 +250,8 @@ class DNSResolverConfig:
             for acls_item_data in self.acls:
                 acls_item = acls_item_data.to_dict()
                 acls.append(acls_item)
+
+        strictout = self.strictout
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -316,6 +324,8 @@ class DNSResolverConfig:
             field_dict["dns64prefix"] = dns64prefix
         if dns64netbits is not UNSET:
             field_dict["dns64netbits"] = dns64netbits
+        if allow_dns64_for_localhost is not UNSET:
+            field_dict["allow_dns64_for_localhost"] = allow_dns64_for_localhost
         if port is not UNSET:
             field_dict["port"] = port
         if sslport is not UNSET:
@@ -348,6 +358,8 @@ class DNSResolverConfig:
             field_dict["domainoverrides"] = domainoverrides
         if acls is not UNSET:
             field_dict["acls"] = acls
+        if strictout is not UNSET:
+            field_dict["strictout"] = strictout
 
         return field_dict
 
@@ -426,6 +438,8 @@ class DNSResolverConfig:
 
         dns64netbits = d.pop("dns64netbits", UNSET)
 
+        allow_dns64_for_localhost = d.pop("allow_dns64_for_localhost", UNSET)
+
         port = d.pop("port", UNSET)
 
         sslport = d.pop("sslport", UNSET)
@@ -479,6 +493,8 @@ class DNSResolverConfig:
 
                 acls.append(acls_item)
 
+        strictout = d.pop("strictout", UNSET)
+
         dns_resolver_config = cls(
             enable=enable,
             dnssec=dnssec,
@@ -514,6 +530,7 @@ class DNSResolverConfig:
             dns64=dns64,
             dns64prefix=dns64prefix,
             dns64netbits=dns64netbits,
+            allow_dns64_for_localhost=allow_dns64_for_localhost,
             port=port,
             sslport=sslport,
             sslcertref=sslcertref,
@@ -530,6 +547,7 @@ class DNSResolverConfig:
             hosts=hosts,
             domainoverrides=domainoverrides,
             acls=acls,
+            strictout=strictout,
         )
 
         dns_resolver_config.additional_properties = d

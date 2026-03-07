@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import TYPE_CHECKING, Any, TypeVar
+from typing import TYPE_CHECKING, Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -26,12 +26,14 @@ class ServicesNtpConfig:
         acls (NtpAcls | Unset):
         serial_gps (NtpSerialGps | Unset):
         pps (NtpPps | Unset):
+        avail_serial_ports (list[str] | Unset):
     """
 
     settings: NtpSettings | Unset = UNSET
     acls: NtpAcls | Unset = UNSET
     serial_gps: NtpSerialGps | Unset = UNSET
     pps: NtpPps | Unset = UNSET
+    avail_serial_ports: list[str] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -51,6 +53,10 @@ class ServicesNtpConfig:
         if not isinstance(self.pps, Unset):
             pps = self.pps.to_dict()
 
+        avail_serial_ports: list[str] | Unset = UNSET
+        if not isinstance(self.avail_serial_ports, Unset):
+            avail_serial_ports = self.avail_serial_ports
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -62,6 +68,8 @@ class ServicesNtpConfig:
             field_dict["serial_gps"] = serial_gps
         if pps is not UNSET:
             field_dict["pps"] = pps
+        if avail_serial_ports is not UNSET:
+            field_dict["avail_serial_ports"] = avail_serial_ports
 
         return field_dict
 
@@ -101,11 +109,14 @@ class ServicesNtpConfig:
         else:
             pps = NtpPps.from_dict(_pps)
 
+        avail_serial_ports = cast(list[str], d.pop("avail_serial_ports", UNSET))
+
         services_ntp_config = cls(
             settings=settings,
             acls=acls,
             serial_gps=serial_gps,
             pps=pps,
+            avail_serial_ports=avail_serial_ports,
         )
 
         services_ntp_config.additional_properties = d

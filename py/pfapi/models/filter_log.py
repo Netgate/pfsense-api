@@ -30,8 +30,8 @@ class FilterLog:
         anchor (str | Unset):
         rule_descr (str | Unset):
         tracker (str | Unset):
-        realint (str | Unset):
-        friendly_interface (str | Unset):
+        interface_assigned (str | Unset):
+        interface_device (str | Unset):
         reason (str | Unset):
         action (str | Unset):
         direction (str | Unset):
@@ -59,8 +59,8 @@ class FilterLog:
     anchor: str | Unset = UNSET
     rule_descr: str | Unset = UNSET
     tracker: str | Unset = UNSET
-    realint: str | Unset = UNSET
-    friendly_interface: str | Unset = UNSET
+    interface_assigned: str | Unset = UNSET
+    interface_device: str | Unset = UNSET
     reason: str | Unset = UNSET
     action: str | Unset = UNSET
     direction: str | Unset = UNSET
@@ -96,9 +96,9 @@ class FilterLog:
 
         tracker = self.tracker
 
-        realint = self.realint
+        interface_assigned = self.interface_assigned
 
-        friendly_interface = self.friendly_interface
+        interface_device = self.interface_device
 
         reason = self.reason
 
@@ -163,10 +163,10 @@ class FilterLog:
             field_dict["rule_descr"] = rule_descr
         if tracker is not UNSET:
             field_dict["tracker"] = tracker
-        if realint is not UNSET:
-            field_dict["realint"] = realint
-        if friendly_interface is not UNSET:
-            field_dict["friendly_interface"] = friendly_interface
+        if interface_assigned is not UNSET:
+            field_dict["interface_assigned"] = interface_assigned
+        if interface_device is not UNSET:
+            field_dict["interface_device"] = interface_device
         if reason is not UNSET:
             field_dict["reason"] = reason
         if action is not UNSET:
@@ -229,9 +229,9 @@ class FilterLog:
 
         tracker = d.pop("tracker", UNSET)
 
-        realint = d.pop("realint", UNSET)
+        interface_assigned = d.pop("interface_assigned", UNSET)
 
-        friendly_interface = d.pop("friendly_interface", UNSET)
+        interface_device = d.pop("interface_device", UNSET)
 
         reason = d.pop("reason", UNSET)
 
@@ -302,8 +302,8 @@ class FilterLog:
             anchor=anchor,
             rule_descr=rule_descr,
             tracker=tracker,
-            realint=realint,
-            friendly_interface=friendly_interface,
+            interface_assigned=interface_assigned,
+            interface_device=interface_device,
             reason=reason,
             action=action,
             direction=direction,

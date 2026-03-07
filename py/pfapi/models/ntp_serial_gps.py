@@ -10,6 +10,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.ntp_gps_flags import NtpGpsFlags
+    from ..models.ntp_serial_gps_default_initcmds import NtpSerialGpsDefaultInitcmds
 
 
 T = TypeVar("T", bound="NtpSerialGps")
@@ -35,6 +36,8 @@ class NtpSerialGps:
         refid (str | Unset):
         initcmd (str | Unset):
         autocorrect_initcmd (bool | Unset):
+        processpgrmf (bool | Unset):
+        default_initcmds (NtpSerialGpsDefaultInitcmds | Unset):
     """
 
     type_: str | Unset = UNSET
@@ -51,6 +54,8 @@ class NtpSerialGps:
     refid: str | Unset = UNSET
     initcmd: str | Unset = UNSET
     autocorrect_initcmd: bool | Unset = UNSET
+    processpgrmf: bool | Unset = UNSET
+    default_initcmds: NtpSerialGpsDefaultInitcmds | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -84,6 +89,12 @@ class NtpSerialGps:
 
         autocorrect_initcmd = self.autocorrect_initcmd
 
+        processpgrmf = self.processpgrmf
+
+        default_initcmds: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.default_initcmds, Unset):
+            default_initcmds = self.default_initcmds.to_dict()
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -115,12 +126,17 @@ class NtpSerialGps:
             field_dict["initcmd"] = initcmd
         if autocorrect_initcmd is not UNSET:
             field_dict["autocorrect_initcmd"] = autocorrect_initcmd
+        if processpgrmf is not UNSET:
+            field_dict["processpgrmf"] = processpgrmf
+        if default_initcmds is not UNSET:
+            field_dict["default_initcmds"] = default_initcmds
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ntp_gps_flags import NtpGpsFlags
+        from ..models.ntp_serial_gps_default_initcmds import NtpSerialGpsDefaultInitcmds
 
         d = dict(src_dict)
         type_ = d.pop("type", UNSET)
@@ -156,6 +172,15 @@ class NtpSerialGps:
 
         autocorrect_initcmd = d.pop("autocorrect_initcmd", UNSET)
 
+        processpgrmf = d.pop("processpgrmf", UNSET)
+
+        _default_initcmds = d.pop("default_initcmds", UNSET)
+        default_initcmds: NtpSerialGpsDefaultInitcmds | Unset
+        if isinstance(_default_initcmds, Unset):
+            default_initcmds = UNSET
+        else:
+            default_initcmds = NtpSerialGpsDefaultInitcmds.from_dict(_default_initcmds)
+
         ntp_serial_gps = cls(
             type_=type_,
             port=port,
@@ -171,6 +196,8 @@ class NtpSerialGps:
             refid=refid,
             initcmd=initcmd,
             autocorrect_initcmd=autocorrect_initcmd,
+            processpgrmf=processpgrmf,
+            default_initcmds=default_initcmds,
         )
 
         ntp_serial_gps.additional_properties = d

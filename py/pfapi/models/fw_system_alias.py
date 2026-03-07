@@ -1,7 +1,7 @@
 from __future__ import annotations
 
 from collections.abc import Mapping
-from typing import Any, TypeVar
+from typing import Any, TypeVar, cast
 
 from attrs import define as _attrs_define
 from attrs import field as _attrs_field
@@ -24,6 +24,7 @@ class FWSystemAlias:
         if_ident (str | Unset): interface identity
         if_assigned_name (str | Unset): interface assigned name
         truncated (bool | Unset):
+        display_values (list[str] | Unset):
     """
 
     name: str
@@ -35,6 +36,7 @@ class FWSystemAlias:
     if_ident: str | Unset = UNSET
     if_assigned_name: str | Unset = UNSET
     truncated: bool | Unset = UNSET
+    display_values: list[str] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -55,6 +57,10 @@ class FWSystemAlias:
         if_assigned_name = self.if_assigned_name
 
         truncated = self.truncated
+
+        display_values: list[str] | Unset = UNSET
+        if not isinstance(self.display_values, Unset):
+            display_values = self.display_values
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -78,6 +84,8 @@ class FWSystemAlias:
             field_dict["if_assigned_name"] = if_assigned_name
         if truncated is not UNSET:
             field_dict["truncated"] = truncated
+        if display_values is not UNSET:
+            field_dict["display_values"] = display_values
 
         return field_dict
 
@@ -102,6 +110,8 @@ class FWSystemAlias:
 
         truncated = d.pop("truncated", UNSET)
 
+        display_values = cast(list[str], d.pop("display_values", UNSET))
+
         fw_system_alias = cls(
             name=name,
             type_=type_,
@@ -112,6 +122,7 @@ class FWSystemAlias:
             if_ident=if_ident,
             if_assigned_name=if_assigned_name,
             truncated=truncated,
+            display_values=display_values,
         )
 
         fw_system_alias.additional_properties = d

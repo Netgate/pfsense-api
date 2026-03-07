@@ -37,8 +37,10 @@ class DhcpInterfaceConfig:
         gateway (str | Unset):
         domain_name (str | Unset):
         domain_search_list (list[str] | Unset):
-        default_lease_time (int | Unset):
-        maximum_lease_time (int | Unset):
+        default_lease_time (int | Unset): set as 0 to use default value (7200 seconds)
+        maximum_lease_time (int | Unset): set as 0 to use default value (86400 seconds)
+        staticarp (bool | Unset):
+        failover_peerip (str | Unset):
         mac_allow (list[str] | Unset):
         mac_deny (list[str] | Unset):
         ntp_servers (list[str] | Unset):
@@ -47,6 +49,9 @@ class DhcpInterfaceConfig:
         network_booting (DhcpNetworkBooting | Unset):
         static_mappings (list[DhcpStaticMapping] | Unset):
         static_mappings_v6 (list[Dhcpv6StaticMapping] | Unset):
+        pdprefix (str | Unset): IPv6 PD prefix (ipv6/mask CIDR)
+        pddellen (int | Unset): IPv6 PD delegated length
+        custom_kea_config (str | Unset): JSON custom Kea config for interface
         subnet (str | Unset):
         subnet_range_from (str | Unset):
         subnet_range_to (str | Unset):
@@ -70,6 +75,8 @@ class DhcpInterfaceConfig:
     domain_search_list: list[str] | Unset = UNSET
     default_lease_time: int | Unset = UNSET
     maximum_lease_time: int | Unset = UNSET
+    staticarp: bool | Unset = UNSET
+    failover_peerip: str | Unset = UNSET
     mac_allow: list[str] | Unset = UNSET
     mac_deny: list[str] | Unset = UNSET
     ntp_servers: list[str] | Unset = UNSET
@@ -78,6 +85,9 @@ class DhcpInterfaceConfig:
     network_booting: DhcpNetworkBooting | Unset = UNSET
     static_mappings: list[DhcpStaticMapping] | Unset = UNSET
     static_mappings_v6: list[Dhcpv6StaticMapping] | Unset = UNSET
+    pdprefix: str | Unset = UNSET
+    pddellen: int | Unset = UNSET
+    custom_kea_config: str | Unset = UNSET
     subnet: str | Unset = UNSET
     subnet_range_from: str | Unset = UNSET
     subnet_range_to: str | Unset = UNSET
@@ -130,6 +140,10 @@ class DhcpInterfaceConfig:
 
         maximum_lease_time = self.maximum_lease_time
 
+        staticarp = self.staticarp
+
+        failover_peerip = self.failover_peerip
+
         mac_allow: list[str] | Unset = UNSET
         if not isinstance(self.mac_allow, Unset):
             mac_allow = self.mac_allow
@@ -163,6 +177,12 @@ class DhcpInterfaceConfig:
             for static_mappings_v6_item_data in self.static_mappings_v6:
                 static_mappings_v6_item = static_mappings_v6_item_data.to_dict()
                 static_mappings_v6.append(static_mappings_v6_item)
+
+        pdprefix = self.pdprefix
+
+        pddellen = self.pddellen
+
+        custom_kea_config = self.custom_kea_config
 
         subnet = self.subnet
 
@@ -209,6 +229,10 @@ class DhcpInterfaceConfig:
             field_dict["default_lease_time"] = default_lease_time
         if maximum_lease_time is not UNSET:
             field_dict["maximum_lease_time"] = maximum_lease_time
+        if staticarp is not UNSET:
+            field_dict["staticarp"] = staticarp
+        if failover_peerip is not UNSET:
+            field_dict["failover_peerip"] = failover_peerip
         if mac_allow is not UNSET:
             field_dict["mac_allow"] = mac_allow
         if mac_deny is not UNSET:
@@ -225,6 +249,12 @@ class DhcpInterfaceConfig:
             field_dict["static_mappings"] = static_mappings
         if static_mappings_v6 is not UNSET:
             field_dict["static_mappings_v6"] = static_mappings_v6
+        if pdprefix is not UNSET:
+            field_dict["pdprefix"] = pdprefix
+        if pddellen is not UNSET:
+            field_dict["pddellen"] = pddellen
+        if custom_kea_config is not UNSET:
+            field_dict["custom_kea_config"] = custom_kea_config
         if subnet is not UNSET:
             field_dict["subnet"] = subnet
         if subnet_range_from is not UNSET:
@@ -285,6 +315,10 @@ class DhcpInterfaceConfig:
 
         maximum_lease_time = d.pop("maximum_lease_time", UNSET)
 
+        staticarp = d.pop("staticarp", UNSET)
+
+        failover_peerip = d.pop("failover_peerip", UNSET)
+
         mac_allow = cast(list[str], d.pop("mac_allow", UNSET))
 
         mac_deny = cast(list[str], d.pop("mac_deny", UNSET))
@@ -320,6 +354,12 @@ class DhcpInterfaceConfig:
 
                 static_mappings_v6.append(static_mappings_v6_item)
 
+        pdprefix = d.pop("pdprefix", UNSET)
+
+        pddellen = d.pop("pddellen", UNSET)
+
+        custom_kea_config = d.pop("custom_kea_config", UNSET)
+
         subnet = d.pop("subnet", UNSET)
 
         subnet_range_from = d.pop("subnet_range_from", UNSET)
@@ -346,6 +386,8 @@ class DhcpInterfaceConfig:
             domain_search_list=domain_search_list,
             default_lease_time=default_lease_time,
             maximum_lease_time=maximum_lease_time,
+            staticarp=staticarp,
+            failover_peerip=failover_peerip,
             mac_allow=mac_allow,
             mac_deny=mac_deny,
             ntp_servers=ntp_servers,
@@ -354,6 +396,9 @@ class DhcpInterfaceConfig:
             network_booting=network_booting,
             static_mappings=static_mappings,
             static_mappings_v6=static_mappings_v6,
+            pdprefix=pdprefix,
+            pddellen=pddellen,
+            custom_kea_config=custom_kea_config,
             subnet=subnet,
             subnet_range_from=subnet_range_from,
             subnet_range_to=subnet_range_to,

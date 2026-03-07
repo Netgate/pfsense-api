@@ -259,6 +259,7 @@ from .fw_bulk_toggle import FwBulkToggle
 from .fw_filter_rule import FWFilterRule
 from .fw_filter_rule_nat import FWFilterRuleNAT
 from .fw_firewall_interfaces import FWFirewallInterfaces
+from .fw_firewall_interfaces_interface_mappings import FWFirewallInterfacesInterfaceMappings
 from .fw_rule_item_order import FWRuleItemOrder
 from .fw_rule_list import FWRuleList
 from .fw_rule_state import FWRuleState
@@ -340,6 +341,7 @@ from .interface_group import InterfaceGroup
 from .interface_groups import InterfaceGroups
 from .interface_info import InterfaceInfo
 from .interface_info_list import InterfaceInfoList
+from .interface_label import InterfaceLabel
 from .interface_label_to_name import InterfaceLabelToName
 from .interface_ports import InterfacePorts
 from .interface_ports_lists import InterfacePortsLists
@@ -365,6 +367,7 @@ from .ip_sec_config import IPSecConfig
 from .ip_sec_connect_req import IPSecConnectReq
 from .ip_sec_disconnect_req import IPSecDisconnectReq
 from .ip_sec_disconnect_req_phase import IPSecDisconnectReqPhase
+from .ip_sec_export_settings import IPSecExportSettings
 from .ip_sec_ikesa import IPSecIKESA
 from .ip_sec_logging import IPSecLogging
 from .ip_sec_mobile_key import IPSecMobileKey
@@ -372,6 +375,7 @@ from .ip_sec_mobile_keys import IPSecMobileKeys
 from .ip_sec_phase_list import IPSecPhaseList
 from .ip_sec_pool import IPSecPool
 from .ip_sec_pool_lease import IPSecPoolLease
+from .ip_sec_profile_export_req import IPSecProfileExportReq
 from .ip_sec_psk import IPSecPSK
 from .ip_sec_sad import IPSecSAD
 from .ip_sec_spd import IPSecSPD
@@ -474,6 +478,7 @@ from .ntp_network_access_restriction import NtpNetworkAccessRestriction
 from .ntp_pps import NtpPps
 from .ntp_pps_flags import NtpPpsFlags
 from .ntp_serial_gps import NtpSerialGps
+from .ntp_serial_gps_default_initcmds import NtpSerialGpsDefaultInitcmds
 from .ntp_server import NtpServer
 from .ntp_server_info import NtpServerInfo
 from .ntp_settings import NtpSettings
@@ -583,12 +588,15 @@ from .snmp_interface import SNMPInterface
 from .snmp_modules import SNMPModules
 from .software_package import SoftwarePackage
 from .software_package_list import SoftwarePackageList
+from .speed_test_request import SpeedTestRequest
+from .speed_test_result import SpeedTestResult
 from .static_route import StaticRoute
 from .static_routes import StaticRoutes
 from .status_summary import StatusSummary
 from .status_summary_ui_features import StatusSummaryUiFeatures
 from .std_log import StdLog
 from .std_logs import StdLogs
+from .std_logs_filter_rules import StdLogsFilterRules
 from .storage_stats import StorageStats
 from .sys_firmware_info import SysFirmwareInfo
 from .sys_firmware_upgrade_opt import SysFirmwareUpgradeOpt
@@ -623,6 +631,7 @@ from .tier import Tier
 from .tls_cert_path import TLSCertPath
 from .toggle_resp_status import ToggleRespStatus
 from .toggle_upnp import ToggleUPNP
+from .traceroute_options import TracerouteOptions
 from .traceroute_request import TracerouteRequest
 from .traceroute_response import TracerouteResponse
 from .traffic_queue_stats import TrafficQueueStats
@@ -944,6 +953,7 @@ __all__ = (
     "FWFilterRule",
     "FWFilterRuleNAT",
     "FWFirewallInterfaces",
+    "FWFirewallInterfacesInterfaceMappings",
     "FWRuleItemOrder",
     "FWRuleList",
     "FWRules",
@@ -1025,6 +1035,7 @@ __all__ = (
     "InterfaceGroups",
     "InterfaceInfo",
     "InterfaceInfoList",
+    "InterfaceLabel",
     "InterfaceLabelToName",
     "InterfacePorts",
     "InterfacePortsLists",
@@ -1050,6 +1061,7 @@ __all__ = (
     "IPSecConnectReq",
     "IPSecDisconnectReq",
     "IPSecDisconnectReqPhase",
+    "IPSecExportSettings",
     "IPSecIKESA",
     "IPSecLogging",
     "IPSecMobileKey",
@@ -1057,6 +1069,7 @@ __all__ = (
     "IPSecPhaseList",
     "IPSecPool",
     "IPSecPoolLease",
+    "IPSecProfileExportReq",
     "IPSecPSK",
     "IPSecSAD",
     "IPSecSPD",
@@ -1159,6 +1172,7 @@ __all__ = (
     "NtpPps",
     "NtpPpsFlags",
     "NtpSerialGps",
+    "NtpSerialGpsDefaultInitcmds",
     "NtpServer",
     "NtpServerInfo",
     "NtpSettings",
@@ -1268,12 +1282,15 @@ __all__ = (
     "SNMPModules",
     "SoftwarePackage",
     "SoftwarePackageList",
+    "SpeedTestRequest",
+    "SpeedTestResult",
     "StaticRoute",
     "StaticRoutes",
     "StatusSummary",
     "StatusSummaryUiFeatures",
     "StdLog",
     "StdLogs",
+    "StdLogsFilterRules",
     "StorageStats",
     "SysFirmwareInfo",
     "SysFirmwareUpgradeOpt",
@@ -1308,6 +1325,7 @@ __all__ = (
     "TLSCertPath",
     "ToggleRespStatus",
     "ToggleUPNP",
+    "TracerouteOptions",
     "TracerouteRequest",
     "TracerouteResponse",
     "TrafficQueueStats",

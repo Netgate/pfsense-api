@@ -16,13 +16,17 @@ class NexusControllerInfo:
     """
     Attributes:
         addresses (list[str] | Unset):
-        public_key (str | Unset):
+        public_key (str | Unset): controller identity
+        vpn_pubkey (str | Unset): public key used for MIM connection
         vpn_addr (str | Unset):
+        mim_addr (str | Unset): address of established MIM VPN connection
     """
 
     addresses: list[str] | Unset = UNSET
     public_key: str | Unset = UNSET
+    vpn_pubkey: str | Unset = UNSET
     vpn_addr: str | Unset = UNSET
+    mim_addr: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -32,7 +36,11 @@ class NexusControllerInfo:
 
         public_key = self.public_key
 
+        vpn_pubkey = self.vpn_pubkey
+
         vpn_addr = self.vpn_addr
+
+        mim_addr = self.mim_addr
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -41,8 +49,12 @@ class NexusControllerInfo:
             field_dict["addresses"] = addresses
         if public_key is not UNSET:
             field_dict["public_key"] = public_key
+        if vpn_pubkey is not UNSET:
+            field_dict["vpn_pubkey"] = vpn_pubkey
         if vpn_addr is not UNSET:
             field_dict["vpn_addr"] = vpn_addr
+        if mim_addr is not UNSET:
+            field_dict["mim_addr"] = mim_addr
 
         return field_dict
 
@@ -53,12 +65,18 @@ class NexusControllerInfo:
 
         public_key = d.pop("public_key", UNSET)
 
+        vpn_pubkey = d.pop("vpn_pubkey", UNSET)
+
         vpn_addr = d.pop("vpn_addr", UNSET)
+
+        mim_addr = d.pop("mim_addr", UNSET)
 
         nexus_controller_info = cls(
             addresses=addresses,
             public_key=public_key,
+            vpn_pubkey=vpn_pubkey,
             vpn_addr=vpn_addr,
+            mim_addr=mim_addr,
         )
 
         nexus_controller_info.additional_properties = d

@@ -63,6 +63,10 @@ def sync_detailed(
 ) -> Response[Error | Result]:
     """Save ACB config
 
+     When updating ACB, if ACBConfigInfo.userkey is provided, then the device's key
+    will be updated and all future backups will use the new key. ACBConfigInfo.config
+    is optional if ACBConfigInfo.userkey is provided.
+
     Args:
         body (ACBConfigInfo):
 
@@ -92,6 +96,10 @@ def sync(
 ) -> Error | Result | None:
     """Save ACB config
 
+     When updating ACB, if ACBConfigInfo.userkey is provided, then the device's key
+    will be updated and all future backups will use the new key. ACBConfigInfo.config
+    is optional if ACBConfigInfo.userkey is provided.
+
     Args:
         body (ACBConfigInfo):
 
@@ -115,6 +123,10 @@ async def asyncio_detailed(
     body: ACBConfigInfo,
 ) -> Response[Error | Result]:
     """Save ACB config
+
+     When updating ACB, if ACBConfigInfo.userkey is provided, then the device's key
+    will be updated and all future backups will use the new key. ACBConfigInfo.config
+    is optional if ACBConfigInfo.userkey is provided.
 
     Args:
         body (ACBConfigInfo):
@@ -142,6 +154,10 @@ async def asyncio(
     body: ACBConfigInfo,
 ) -> Error | Result | None:
     """Save ACB config
+
+     When updating ACB, if ACBConfigInfo.userkey is provided, then the device's key
+    will be updated and all future backups will use the new key. ACBConfigInfo.config
+    is optional if ACBConfigInfo.userkey is provided.
 
     Args:
         body (ACBConfigInfo):

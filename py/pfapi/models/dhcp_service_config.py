@@ -25,12 +25,14 @@ class DhcpServiceConfig:
         dns_reg (bool | Unset):
         early_dns_reg (bool | Unset):
         interfaces (DhcpServiceConfigInterfaces | Unset):
+        custom_kea_config (str | Unset): JSON configuration for Kea service custom config
     """
 
     high_availability: DhcpHighAvailabilityConfig | Unset = UNSET
     dns_reg: bool | Unset = UNSET
     early_dns_reg: bool | Unset = UNSET
     interfaces: DhcpServiceConfigInterfaces | Unset = UNSET
+    custom_kea_config: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -46,6 +48,8 @@ class DhcpServiceConfig:
         if not isinstance(self.interfaces, Unset):
             interfaces = self.interfaces.to_dict()
 
+        custom_kea_config = self.custom_kea_config
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -57,6 +61,8 @@ class DhcpServiceConfig:
             field_dict["early_dns_reg"] = early_dns_reg
         if interfaces is not UNSET:
             field_dict["interfaces"] = interfaces
+        if custom_kea_config is not UNSET:
+            field_dict["custom_kea_config"] = custom_kea_config
 
         return field_dict
 
@@ -84,11 +90,14 @@ class DhcpServiceConfig:
         else:
             interfaces = DhcpServiceConfigInterfaces.from_dict(_interfaces)
 
+        custom_kea_config = d.pop("custom_kea_config", UNSET)
+
         dhcp_service_config = cls(
             high_availability=high_availability,
             dns_reg=dns_reg,
             early_dns_reg=early_dns_reg,
             interfaces=interfaces,
+            custom_kea_config=custom_kea_config,
         )
 
         dhcp_service_config.additional_properties = d

@@ -44,6 +44,23 @@ class LdapAuthServer:
         caref (str | Unset): server's CA, ref
         certref (str | Unset): client certificate for secure transport
         refid (str | Unset):
+        nexus_group_prefix (str | Unset): LDAP group CN prefix for Nexus MIM roles (default "mim_").
+            The default group names used for Nexus MIM are defined
+            as "<prefix><role>_<permission>" names. We recommend having
+            an underscore (or non alphanumeric) separator between the prefix
+            and the role.
+
+            A role is one of:
+            - view, logs, usermgmt, services, firewall, interfaces, devices, system, superuser
+
+            Permission is (if unspecified is equivalent to allow-all):
+            - read, modify, delete
+
+            Note view and superuser do not need permission to be specified.
+
+            For example:
+            - mim_logs_read = can only view logs
+            - mim_logs      = can read, modify and delete logs
     """
 
     name: str
@@ -73,6 +90,7 @@ class LdapAuthServer:
     caref: str | Unset = UNSET
     certref: str | Unset = UNSET
     refid: str | Unset = UNSET
+    nexus_group_prefix: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -129,6 +147,8 @@ class LdapAuthServer:
         certref = self.certref
 
         refid = self.refid
+
+        nexus_group_prefix = self.nexus_group_prefix
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -187,6 +207,8 @@ class LdapAuthServer:
             field_dict["certref"] = certref
         if refid is not UNSET:
             field_dict["refid"] = refid
+        if nexus_group_prefix is not UNSET:
+            field_dict["nexus_group_prefix"] = nexus_group_prefix
 
         return field_dict
 
@@ -247,6 +269,8 @@ class LdapAuthServer:
 
         refid = d.pop("refid", UNSET)
 
+        nexus_group_prefix = d.pop("nexus_group_prefix", UNSET)
+
         ldap_auth_server = cls(
             name=name,
             host=host,
@@ -275,6 +299,7 @@ class LdapAuthServer:
             caref=caref,
             certref=certref,
             refid=refid,
+            nexus_group_prefix=nexus_group_prefix,
         )
 
         ldap_auth_server.additional_properties = d

@@ -32,7 +32,10 @@ class ControlledDeviceInfo:
         os_name (str | Unset):
         os_version (str | Unset):
         cpu (str | Unset):
+        cpu_usage (int | Unset):
         memory (int | Unset):
+        memory_usage (int | Unset):
+        disk_usage (int | Unset):
         model (str | Unset):
         vendor (str | Unset):
         serial (str | Unset):
@@ -51,7 +54,10 @@ class ControlledDeviceInfo:
     os_name: str | Unset = UNSET
     os_version: str | Unset = UNSET
     cpu: str | Unset = UNSET
+    cpu_usage: int | Unset = UNSET
     memory: int | Unset = UNSET
+    memory_usage: int | Unset = UNSET
+    disk_usage: int | Unset = UNSET
     model: str | Unset = UNSET
     vendor: str | Unset = UNSET
     serial: str | Unset = UNSET
@@ -91,7 +97,13 @@ class ControlledDeviceInfo:
 
         cpu = self.cpu
 
+        cpu_usage = self.cpu_usage
+
         memory = self.memory
+
+        memory_usage = self.memory_usage
+
+        disk_usage = self.disk_usage
 
         model = self.model
 
@@ -132,8 +144,14 @@ class ControlledDeviceInfo:
             field_dict["os_version"] = os_version
         if cpu is not UNSET:
             field_dict["cpu"] = cpu
+        if cpu_usage is not UNSET:
+            field_dict["cpu_usage"] = cpu_usage
         if memory is not UNSET:
             field_dict["memory"] = memory
+        if memory_usage is not UNSET:
+            field_dict["memory_usage"] = memory_usage
+        if disk_usage is not UNSET:
+            field_dict["disk_usage"] = disk_usage
         if model is not UNSET:
             field_dict["model"] = model
         if vendor is not UNSET:
@@ -190,7 +208,13 @@ class ControlledDeviceInfo:
 
         cpu = d.pop("cpu", UNSET)
 
+        cpu_usage = d.pop("cpu_usage", UNSET)
+
         memory = d.pop("memory", UNSET)
+
+        memory_usage = d.pop("memory_usage", UNSET)
+
+        disk_usage = d.pop("disk_usage", UNSET)
 
         model = d.pop("model", UNSET)
 
@@ -220,7 +244,10 @@ class ControlledDeviceInfo:
             os_name=os_name,
             os_version=os_version,
             cpu=cpu,
+            cpu_usage=cpu_usage,
             memory=memory,
+            memory_usage=memory_usage,
+            disk_usage=disk_usage,
             model=model,
             vendor=vendor,
             serial=serial,

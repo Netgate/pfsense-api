@@ -21,14 +21,17 @@ class SyslogConfigOverride:
         rotatecount (int | Unset):
         format_ (str | Unset): formatted, raw
         lognginx (bool | Unset):
-        logdefaultblock (bool | Unset):
-        logdefaultpass (bool | Unset):
-        logipoptions (bool | Unset):
-        logbogons (bool | Unset):
-        logprivatenets (bool | Unset):
-        loglinklocal4 (bool | Unset):
-        logsnort2c (bool | Unset):
-        filterdescriptions (int | Unset):
+        logipoptions (bool | Unset): log blocked packets due to IP options
+        logdefaultblock (bool | Unset): log default "block" rules
+        logdefaultpass (bool | Unset): log default "pass" rules
+        logbogons (bool | Unset): log Bogon Networks block rules
+        logprivatenets (bool | Unset): log Private Networks block rules
+        loglinklocal4 (bool | Unset): log IPv4 link-local block rules
+        logids (bool | Unset): log hosts blocked by IDS
+        showfilterdescrips (str | Unset): where to show firewall rule descriptions:
+            * "disable" - don't show,
+            * "column"  - as column,
+            * "row"     - as second row
     """
 
     cronorder: str | Unset = UNSET
@@ -37,14 +40,14 @@ class SyslogConfigOverride:
     rotatecount: int | Unset = UNSET
     format_: str | Unset = UNSET
     lognginx: bool | Unset = UNSET
+    logipoptions: bool | Unset = UNSET
     logdefaultblock: bool | Unset = UNSET
     logdefaultpass: bool | Unset = UNSET
-    logipoptions: bool | Unset = UNSET
     logbogons: bool | Unset = UNSET
     logprivatenets: bool | Unset = UNSET
     loglinklocal4: bool | Unset = UNSET
-    logsnort2c: bool | Unset = UNSET
-    filterdescriptions: int | Unset = UNSET
+    logids: bool | Unset = UNSET
+    showfilterdescrips: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -60,11 +63,11 @@ class SyslogConfigOverride:
 
         lognginx = self.lognginx
 
+        logipoptions = self.logipoptions
+
         logdefaultblock = self.logdefaultblock
 
         logdefaultpass = self.logdefaultpass
-
-        logipoptions = self.logipoptions
 
         logbogons = self.logbogons
 
@@ -72,9 +75,9 @@ class SyslogConfigOverride:
 
         loglinklocal4 = self.loglinklocal4
 
-        logsnort2c = self.logsnort2c
+        logids = self.logids
 
-        filterdescriptions = self.filterdescriptions
+        showfilterdescrips = self.showfilterdescrips
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -91,22 +94,22 @@ class SyslogConfigOverride:
             field_dict["format"] = format_
         if lognginx is not UNSET:
             field_dict["lognginx"] = lognginx
+        if logipoptions is not UNSET:
+            field_dict["logipoptions"] = logipoptions
         if logdefaultblock is not UNSET:
             field_dict["logdefaultblock"] = logdefaultblock
         if logdefaultpass is not UNSET:
             field_dict["logdefaultpass"] = logdefaultpass
-        if logipoptions is not UNSET:
-            field_dict["logipoptions"] = logipoptions
         if logbogons is not UNSET:
             field_dict["logbogons"] = logbogons
         if logprivatenets is not UNSET:
             field_dict["logprivatenets"] = logprivatenets
         if loglinklocal4 is not UNSET:
             field_dict["loglinklocal4"] = loglinklocal4
-        if logsnort2c is not UNSET:
-            field_dict["logsnort2c"] = logsnort2c
-        if filterdescriptions is not UNSET:
-            field_dict["filterdescriptions"] = filterdescriptions
+        if logids is not UNSET:
+            field_dict["logids"] = logids
+        if showfilterdescrips is not UNSET:
+            field_dict["showfilterdescrips"] = showfilterdescrips
 
         return field_dict
 
@@ -125,11 +128,11 @@ class SyslogConfigOverride:
 
         lognginx = d.pop("lognginx", UNSET)
 
+        logipoptions = d.pop("logipoptions", UNSET)
+
         logdefaultblock = d.pop("logdefaultblock", UNSET)
 
         logdefaultpass = d.pop("logdefaultpass", UNSET)
-
-        logipoptions = d.pop("logipoptions", UNSET)
 
         logbogons = d.pop("logbogons", UNSET)
 
@@ -137,9 +140,9 @@ class SyslogConfigOverride:
 
         loglinklocal4 = d.pop("loglinklocal4", UNSET)
 
-        logsnort2c = d.pop("logsnort2c", UNSET)
+        logids = d.pop("logids", UNSET)
 
-        filterdescriptions = d.pop("filterdescriptions", UNSET)
+        showfilterdescrips = d.pop("showfilterdescrips", UNSET)
 
         syslog_config_override = cls(
             cronorder=cronorder,
@@ -148,14 +151,14 @@ class SyslogConfigOverride:
             rotatecount=rotatecount,
             format_=format_,
             lognginx=lognginx,
+            logipoptions=logipoptions,
             logdefaultblock=logdefaultblock,
             logdefaultpass=logdefaultpass,
-            logipoptions=logipoptions,
             logbogons=logbogons,
             logprivatenets=logprivatenets,
             loglinklocal4=loglinklocal4,
-            logsnort2c=logsnort2c,
-            filterdescriptions=filterdescriptions,
+            logids=logids,
+            showfilterdescrips=showfilterdescrips,
         )
 
         syslog_config_override.additional_properties = d

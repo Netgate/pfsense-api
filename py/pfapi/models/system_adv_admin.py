@@ -48,6 +48,7 @@ class SystemAdvAdmin:
         ssl_certref (str | Unset):
         certsavailable (bool | Unset):
         certlist (list[SystemCert] | Unset):
+        enableserial_force (bool | Unset): (readonly) forced enable serial
     """
 
     webguiproto: str | Unset = UNSET
@@ -79,6 +80,7 @@ class SystemAdvAdmin:
     ssl_certref: str | Unset = UNSET
     certsavailable: bool | Unset = UNSET
     certlist: list[SystemCert] | Unset = UNSET
+    enableserial_force: bool | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -145,6 +147,8 @@ class SystemAdvAdmin:
                 certlist_item = certlist_item_data.to_dict()
                 certlist.append(certlist_item)
 
+        enableserial_force = self.enableserial_force
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -206,6 +210,8 @@ class SystemAdvAdmin:
             field_dict["certsavailable"] = certsavailable
         if certlist is not UNSET:
             field_dict["certlist"] = certlist
+        if enableserial_force is not UNSET:
+            field_dict["enableserial_force"] = enableserial_force
 
         return field_dict
 
@@ -279,6 +285,8 @@ class SystemAdvAdmin:
 
                 certlist.append(certlist_item)
 
+        enableserial_force = d.pop("enableserial_force", UNSET)
+
         system_adv_admin = cls(
             webguiproto=webguiproto,
             webguiport=webguiport,
@@ -309,6 +317,7 @@ class SystemAdvAdmin:
             ssl_certref=ssl_certref,
             certsavailable=certsavailable,
             certlist=certlist,
+            enableserial_force=enableserial_force,
         )
 
         system_adv_admin.additional_properties = d

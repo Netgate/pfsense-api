@@ -13,6 +13,7 @@ if TYPE_CHECKING:
     from ..models.filter_log_summary import FilterLogSummary
     from ..models.result import Result
     from ..models.std_log import StdLog
+    from ..models.std_logs_filter_rules import StdLogsFilterRules
 
 
 T = TypeVar("T", bound="StdLogs")
@@ -25,6 +26,7 @@ class StdLogs:
         logfile (str | Unset):
         logs (list[StdLog] | Unset):
         filter_logs (list[FilterLog] | Unset):
+        filter_rules (StdLogsFilterRules | Unset):
         filter_summary (FilterLogSummary | Unset): Summary of filter log entries. These are dictionaries of keys to
             counts
         alerts (Result | Unset):
@@ -33,6 +35,7 @@ class StdLogs:
     logfile: str | Unset = UNSET
     logs: list[StdLog] | Unset = UNSET
     filter_logs: list[FilterLog] | Unset = UNSET
+    filter_rules: StdLogsFilterRules | Unset = UNSET
     filter_summary: FilterLogSummary | Unset = UNSET
     alerts: Result | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -54,6 +57,10 @@ class StdLogs:
                 filter_logs_item = filter_logs_item_data.to_dict()
                 filter_logs.append(filter_logs_item)
 
+        filter_rules: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.filter_rules, Unset):
+            filter_rules = self.filter_rules.to_dict()
+
         filter_summary: dict[str, Any] | Unset = UNSET
         if not isinstance(self.filter_summary, Unset):
             filter_summary = self.filter_summary.to_dict()
@@ -71,6 +78,8 @@ class StdLogs:
             field_dict["logs"] = logs
         if filter_logs is not UNSET:
             field_dict["filter_logs"] = filter_logs
+        if filter_rules is not UNSET:
+            field_dict["filter_rules"] = filter_rules
         if filter_summary is not UNSET:
             field_dict["filter_summary"] = filter_summary
         if alerts is not UNSET:
@@ -84,6 +93,7 @@ class StdLogs:
         from ..models.filter_log_summary import FilterLogSummary
         from ..models.result import Result
         from ..models.std_log import StdLog
+        from ..models.std_logs_filter_rules import StdLogsFilterRules
 
         d = dict(src_dict)
         logfile = d.pop("logfile", UNSET)
@@ -106,6 +116,13 @@ class StdLogs:
 
                 filter_logs.append(filter_logs_item)
 
+        _filter_rules = d.pop("filter_rules", UNSET)
+        filter_rules: StdLogsFilterRules | Unset
+        if isinstance(_filter_rules, Unset):
+            filter_rules = UNSET
+        else:
+            filter_rules = StdLogsFilterRules.from_dict(_filter_rules)
+
         _filter_summary = d.pop("filter_summary", UNSET)
         filter_summary: FilterLogSummary | Unset
         if isinstance(_filter_summary, Unset):
@@ -124,6 +141,7 @@ class StdLogs:
             logfile=logfile,
             logs=logs,
             filter_logs=filter_logs,
+            filter_rules=filter_rules,
             filter_summary=filter_summary,
             alerts=alerts,
         )

@@ -38,8 +38,10 @@ class DhcpStaticMapping:
         network_booting (DhcpNetworkBooting | Unset):
         duid (str | Unset):
         ipv6_address (str | Unset):
+        delegated_prefix (str | Unset):
         filename (str | Unset):
         rootpath (str | Unset):
+        custom_kea_config (str | Unset): JSON custom Kea config for static mapping
     """
 
     id: str | Unset = UNSET
@@ -61,8 +63,10 @@ class DhcpStaticMapping:
     network_booting: DhcpNetworkBooting | Unset = UNSET
     duid: str | Unset = UNSET
     ipv6_address: str | Unset = UNSET
+    delegated_prefix: str | Unset = UNSET
     filename: str | Unset = UNSET
     rootpath: str | Unset = UNSET
+    custom_kea_config: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -114,9 +118,13 @@ class DhcpStaticMapping:
 
         ipv6_address = self.ipv6_address
 
+        delegated_prefix = self.delegated_prefix
+
         filename = self.filename
 
         rootpath = self.rootpath
+
+        custom_kea_config = self.custom_kea_config
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -159,10 +167,14 @@ class DhcpStaticMapping:
             field_dict["duid"] = duid
         if ipv6_address is not UNSET:
             field_dict["ipv6_address"] = ipv6_address
+        if delegated_prefix is not UNSET:
+            field_dict["delegated_prefix"] = delegated_prefix
         if filename is not UNSET:
             field_dict["filename"] = filename
         if rootpath is not UNSET:
             field_dict["rootpath"] = rootpath
+        if custom_kea_config is not UNSET:
+            field_dict["custom_kea_config"] = custom_kea_config
 
         return field_dict
 
@@ -214,9 +226,13 @@ class DhcpStaticMapping:
 
         ipv6_address = d.pop("ipv6_address", UNSET)
 
+        delegated_prefix = d.pop("delegated_prefix", UNSET)
+
         filename = d.pop("filename", UNSET)
 
         rootpath = d.pop("rootpath", UNSET)
+
+        custom_kea_config = d.pop("custom_kea_config", UNSET)
 
         dhcp_static_mapping = cls(
             id=id,
@@ -238,8 +254,10 @@ class DhcpStaticMapping:
             network_booting=network_booting,
             duid=duid,
             ipv6_address=ipv6_address,
+            delegated_prefix=delegated_prefix,
             filename=filename,
             rootpath=rootpath,
+            custom_kea_config=custom_kea_config,
         )
 
         dhcp_static_mapping.additional_properties = d

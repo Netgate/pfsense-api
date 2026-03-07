@@ -10,6 +10,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.captive_portal_name import CaptivePortalName
+    from ..models.interface import Interface
 
 
 T = TypeVar("T", bound="CaptivePortals")
@@ -20,9 +21,11 @@ class CaptivePortals:
     """
     Attributes:
         config (list[CaptivePortalName] | Unset):
+        interfaces (list[Interface] | Unset):
     """
 
     config: list[CaptivePortalName] | Unset = UNSET
+    interfaces: list[Interface] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -33,17 +36,27 @@ class CaptivePortals:
                 config_item = config_item_data.to_dict()
                 config.append(config_item)
 
+        interfaces: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.interfaces, Unset):
+            interfaces = []
+            for interfaces_item_data in self.interfaces:
+                interfaces_item = interfaces_item_data.to_dict()
+                interfaces.append(interfaces_item)
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
         if config is not UNSET:
             field_dict["config"] = config
+        if interfaces is not UNSET:
+            field_dict["interfaces"] = interfaces
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.captive_portal_name import CaptivePortalName
+        from ..models.interface import Interface
 
         d = dict(src_dict)
         _config = d.pop("config", UNSET)
@@ -55,8 +68,18 @@ class CaptivePortals:
 
                 config.append(config_item)
 
+        _interfaces = d.pop("interfaces", UNSET)
+        interfaces: list[Interface] | Unset = UNSET
+        if _interfaces is not UNSET:
+            interfaces = []
+            for interfaces_item_data in _interfaces:
+                interfaces_item = Interface.from_dict(interfaces_item_data)
+
+                interfaces.append(interfaces_item)
+
         captive_portals = cls(
             config=config,
+            interfaces=interfaces,
         )
 
         captive_portals.additional_properties = d

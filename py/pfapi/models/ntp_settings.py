@@ -37,6 +37,7 @@ class NtpSettings:
         dnsresolv (str | Unset): auto | inet | inet6
         serverauth (bool | Unset):
         serverauthkey (str | Unset):
+        serverauthkeyid (str | Unset):
         serverauthalgo (str | Unset): md5 (length 1 to 20) | sha1 (length 40) | sha256 (length 64)
     """
 
@@ -55,6 +56,7 @@ class NtpSettings:
     dnsresolv: str | Unset = UNSET
     serverauth: bool | Unset = UNSET
     serverauthkey: str | Unset = UNSET
+    serverauthkeyid: str | Unset = UNSET
     serverauthalgo: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -98,6 +100,8 @@ class NtpSettings:
 
         serverauthkey = self.serverauthkey
 
+        serverauthkeyid = self.serverauthkeyid
+
         serverauthalgo = self.serverauthalgo
 
         field_dict: dict[str, Any] = {}
@@ -135,6 +139,8 @@ class NtpSettings:
             field_dict["serverauth"] = serverauth
         if serverauthkey is not UNSET:
             field_dict["serverauthkey"] = serverauthkey
+        if serverauthkeyid is not UNSET:
+            field_dict["serverauthkeyid"] = serverauthkeyid
         if serverauthalgo is not UNSET:
             field_dict["serverauthalgo"] = serverauthalgo
 
@@ -188,6 +194,8 @@ class NtpSettings:
 
         serverauthkey = d.pop("serverauthkey", UNSET)
 
+        serverauthkeyid = d.pop("serverauthkeyid", UNSET)
+
         serverauthalgo = d.pop("serverauthalgo", UNSET)
 
         ntp_settings = cls(
@@ -206,6 +214,7 @@ class NtpSettings:
             dnsresolv=dnsresolv,
             serverauth=serverauth,
             serverauthkey=serverauthkey,
+            serverauthkeyid=serverauthkeyid,
             serverauthalgo=serverauthalgo,
         )
 

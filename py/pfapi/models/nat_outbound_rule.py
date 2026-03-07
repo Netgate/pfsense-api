@@ -29,6 +29,7 @@ class NATOutboundRule:
         ipprotocol (str | Unset):
         nonat (bool | Unset):
         nosync (bool | Unset):
+        eimnat (bool | Unset):
         protocol (str | Unset):
         poolopts (str | Unset):
         source (NATAddrPort | Unset):
@@ -47,6 +48,7 @@ class NATOutboundRule:
     ipprotocol: str | Unset = UNSET
     nonat: bool | Unset = UNSET
     nosync: bool | Unset = UNSET
+    eimnat: bool | Unset = UNSET
     protocol: str | Unset = UNSET
     poolopts: str | Unset = UNSET
     source: NATAddrPort | Unset = UNSET
@@ -78,6 +80,8 @@ class NATOutboundRule:
         nonat = self.nonat
 
         nosync = self.nosync
+
+        eimnat = self.eimnat
 
         protocol = self.protocol
 
@@ -120,6 +124,8 @@ class NATOutboundRule:
             field_dict["nonat"] = nonat
         if nosync is not UNSET:
             field_dict["nosync"] = nosync
+        if eimnat is not UNSET:
+            field_dict["eimnat"] = eimnat
         if protocol is not UNSET:
             field_dict["protocol"] = protocol
         if poolopts is not UNSET:
@@ -171,6 +177,8 @@ class NATOutboundRule:
 
         nosync = d.pop("nosync", UNSET)
 
+        eimnat = d.pop("eimnat", UNSET)
+
         protocol = d.pop("protocol", UNSET)
 
         poolopts = d.pop("poolopts", UNSET)
@@ -210,6 +218,7 @@ class NATOutboundRule:
             ipprotocol=ipprotocol,
             nonat=nonat,
             nosync=nosync,
+            eimnat=eimnat,
             protocol=protocol,
             poolopts=poolopts,
             source=source,

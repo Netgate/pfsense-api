@@ -20,7 +20,8 @@ class AdvMisc:
         crypto_hardware (str | Unset):
         do_not_send_uniqueid (bool | Unset):
         dpinger_dont_add_static_routes (bool | Unset):
-        gw_down_kill_states (bool | Unset):
+        gw_down_kill_states (str | Unset): none (do not kill states), down (kill states for down gw), all (flush all
+            states on gw failure)
         harddiskstandby (str | Unset):
         hwpstate (bool | Unset):
         hwpstate_control_level (str | Unset):
@@ -43,7 +44,10 @@ class AdvMisc:
         proxyuser (str | Unset):
         pti (str | Unset):
         pti_disabled (bool | Unset):
-        remove_failover_states_default (str | Unset):
+        remove_failover_states_default (str | Unset): default (don't kill states),
+            all (kill all states for lower-priority gw),
+            policy (only kill policy routing states),
+            addrfamily (only kill states with the same address family as the gateway group)
         schedule_states (bool | Unset):
         skip_rules_gw_down (bool | Unset):
         srctrack (str | Unset):
@@ -53,6 +57,10 @@ class AdvMisc:
         use_mfs_var_size (int | Unset):
         watchdogd_enable (bool | Unset):
         watchdogd_timeout (str | Unset):
+        rrdbackup (int | Unset): hourly backup interval (1-24) for RRD
+        dhcpbackup (int | Unset): hourly backup interval (1-24) for DHCP
+        logsbackup (int | Unset): hourly backup interval (1-24) for Logs
+        captiveportalbackup (int | Unset): hourly backup interval (1-24) for Captive Portal
     """
 
     available_kernel_memory: int | Unset = UNSET
@@ -60,7 +68,7 @@ class AdvMisc:
     crypto_hardware: str | Unset = UNSET
     do_not_send_uniqueid: bool | Unset = UNSET
     dpinger_dont_add_static_routes: bool | Unset = UNSET
-    gw_down_kill_states: bool | Unset = UNSET
+    gw_down_kill_states: str | Unset = UNSET
     harddiskstandby: str | Unset = UNSET
     hwpstate: bool | Unset = UNSET
     hwpstate_control_level: str | Unset = UNSET
@@ -92,6 +100,10 @@ class AdvMisc:
     use_mfs_var_size: int | Unset = UNSET
     watchdogd_enable: bool | Unset = UNSET
     watchdogd_timeout: str | Unset = UNSET
+    rrdbackup: int | Unset = UNSET
+    dhcpbackup: int | Unset = UNSET
+    logsbackup: int | Unset = UNSET
+    captiveportalbackup: int | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -168,6 +180,14 @@ class AdvMisc:
         watchdogd_enable = self.watchdogd_enable
 
         watchdogd_timeout = self.watchdogd_timeout
+
+        rrdbackup = self.rrdbackup
+
+        dhcpbackup = self.dhcpbackup
+
+        logsbackup = self.logsbackup
+
+        captiveportalbackup = self.captiveportalbackup
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -246,6 +266,14 @@ class AdvMisc:
             field_dict["watchdogd_enable"] = watchdogd_enable
         if watchdogd_timeout is not UNSET:
             field_dict["watchdogd_timeout"] = watchdogd_timeout
+        if rrdbackup is not UNSET:
+            field_dict["rrdbackup"] = rrdbackup
+        if dhcpbackup is not UNSET:
+            field_dict["dhcpbackup"] = dhcpbackup
+        if logsbackup is not UNSET:
+            field_dict["logsbackup"] = logsbackup
+        if captiveportalbackup is not UNSET:
+            field_dict["captiveportalbackup"] = captiveportalbackup
 
         return field_dict
 
@@ -326,6 +354,14 @@ class AdvMisc:
 
         watchdogd_timeout = d.pop("watchdogd_timeout", UNSET)
 
+        rrdbackup = d.pop("rrdbackup", UNSET)
+
+        dhcpbackup = d.pop("dhcpbackup", UNSET)
+
+        logsbackup = d.pop("logsbackup", UNSET)
+
+        captiveportalbackup = d.pop("captiveportalbackup", UNSET)
+
         adv_misc = cls(
             available_kernel_memory=available_kernel_memory,
             block_external_services=block_external_services,
@@ -364,6 +400,10 @@ class AdvMisc:
             use_mfs_var_size=use_mfs_var_size,
             watchdogd_enable=watchdogd_enable,
             watchdogd_timeout=watchdogd_timeout,
+            rrdbackup=rrdbackup,
+            dhcpbackup=dhcpbackup,
+            logsbackup=logsbackup,
+            captiveportalbackup=captiveportalbackup,
         )
 
         adv_misc.additional_properties = d

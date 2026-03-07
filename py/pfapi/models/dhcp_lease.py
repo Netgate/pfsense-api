@@ -29,6 +29,9 @@ class DHCPLease:
         duid (str | Unset):
         online_status (str | Unset):
         descr (str | Unset):
+        assigned_intf (str | Unset): assigned network interface name
+        routed_to (str | Unset): PD next hop
+        dnsreg (bool | Unset): (readonly) if the host(name) was registered to the service
     """
 
     type_: str | Unset = UNSET
@@ -45,6 +48,9 @@ class DHCPLease:
     duid: str | Unset = UNSET
     online_status: str | Unset = UNSET
     descr: str | Unset = UNSET
+    assigned_intf: str | Unset = UNSET
+    routed_to: str | Unset = UNSET
+    dnsreg: bool | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -75,6 +81,12 @@ class DHCPLease:
         online_status = self.online_status
 
         descr = self.descr
+
+        assigned_intf = self.assigned_intf
+
+        routed_to = self.routed_to
+
+        dnsreg = self.dnsreg
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -107,6 +119,12 @@ class DHCPLease:
             field_dict["online_status"] = online_status
         if descr is not UNSET:
             field_dict["descr"] = descr
+        if assigned_intf is not UNSET:
+            field_dict["assigned_intf"] = assigned_intf
+        if routed_to is not UNSET:
+            field_dict["routed_to"] = routed_to
+        if dnsreg is not UNSET:
+            field_dict["dnsreg"] = dnsreg
 
         return field_dict
 
@@ -141,6 +159,12 @@ class DHCPLease:
 
         descr = d.pop("descr", UNSET)
 
+        assigned_intf = d.pop("assigned_intf", UNSET)
+
+        routed_to = d.pop("routed_to", UNSET)
+
+        dnsreg = d.pop("dnsreg", UNSET)
+
         dhcp_lease = cls(
             type_=type_,
             host=host,
@@ -156,6 +180,9 @@ class DHCPLease:
             duid=duid,
             online_status=online_status,
             descr=descr,
+            assigned_intf=assigned_intf,
+            routed_to=routed_to,
+            dnsreg=dnsreg,
         )
 
         dhcp_lease.additional_properties = d

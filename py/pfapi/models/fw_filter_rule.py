@@ -23,7 +23,8 @@ T = TypeVar("T", bound="FWFilterRule")
 class FWFilterRule:
     """
     Attributes:
-        id (str | Unset):
+        id (str | Unset): unique identifier for the rule
+        fwids (str | Unset): system's identifier(s) for rule in its firewall
         disabled (bool | Unset):
         readonly (bool | Unset):
         floating (bool | Unset): floating rule
@@ -83,6 +84,7 @@ class FWFilterRule:
     """
 
     id: str | Unset = UNSET
+    fwids: str | Unset = UNSET
     disabled: bool | Unset = UNSET
     readonly: bool | Unset = UNSET
     floating: bool | Unset = UNSET
@@ -143,6 +145,8 @@ class FWFilterRule:
 
     def to_dict(self) -> dict[str, Any]:
         id = self.id
+
+        fwids = self.fwids
 
         disabled = self.disabled
 
@@ -277,6 +281,8 @@ class FWFilterRule:
         field_dict.update({})
         if id is not UNSET:
             field_dict["id"] = id
+        if fwids is not UNSET:
+            field_dict["fwids"] = fwids
         if disabled is not UNSET:
             field_dict["disabled"] = disabled
         if readonly is not UNSET:
@@ -402,6 +408,8 @@ class FWFilterRule:
 
         d = dict(src_dict)
         id = d.pop("id", UNSET)
+
+        fwids = d.pop("fwids", UNSET)
 
         disabled = d.pop("disabled", UNSET)
 
@@ -557,6 +565,7 @@ class FWFilterRule:
 
         fw_filter_rule = cls(
             id=id,
+            fwids=fwids,
             disabled=disabled,
             readonly=readonly,
             floating=floating,

@@ -30,6 +30,7 @@ class SNMPConfig:
         trapserverport (str | Unset):
         trapstring (str | Unset):
         bindip (str | Unset):
+        ipprotocol (str | Unset): inet4, inet6, or inet46
     """
 
     rocommunity: str
@@ -43,6 +44,7 @@ class SNMPConfig:
     trapserverport: str | Unset = UNSET
     trapstring: str | Unset = UNSET
     bindip: str | Unset = UNSET
+    ipprotocol: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -70,6 +72,8 @@ class SNMPConfig:
 
         bindip = self.bindip
 
+        ipprotocol = self.ipprotocol
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update(
@@ -96,6 +100,8 @@ class SNMPConfig:
             field_dict["trapstring"] = trapstring
         if bindip is not UNSET:
             field_dict["bindip"] = bindip
+        if ipprotocol is not UNSET:
+            field_dict["ipprotocol"] = ipprotocol
 
         return field_dict
 
@@ -131,6 +137,8 @@ class SNMPConfig:
 
         bindip = d.pop("bindip", UNSET)
 
+        ipprotocol = d.pop("ipprotocol", UNSET)
+
         snmp_config = cls(
             rocommunity=rocommunity,
             enable=enable,
@@ -143,6 +151,7 @@ class SNMPConfig:
             trapserverport=trapserverport,
             trapstring=trapstring,
             bindip=bindip,
+            ipprotocol=ipprotocol,
         )
 
         snmp_config.additional_properties = d

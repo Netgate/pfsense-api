@@ -18,6 +18,8 @@ class DiagBackupRequest:
         area (str | Unset):
         nopkg (bool | Unset):
         norrd (bool | Unset):
+        data (bool | Unset):
+        ssh (bool | Unset):
         enc (bool | Unset): file is encrypted
         pwd (str | Unset): password to decrypt file
         filename (str | Unset):
@@ -28,6 +30,8 @@ class DiagBackupRequest:
     area: str | Unset = UNSET
     nopkg: bool | Unset = UNSET
     norrd: bool | Unset = UNSET
+    data: bool | Unset = UNSET
+    ssh: bool | Unset = UNSET
     enc: bool | Unset = UNSET
     pwd: str | Unset = UNSET
     filename: str | Unset = UNSET
@@ -41,6 +45,10 @@ class DiagBackupRequest:
         nopkg = self.nopkg
 
         norrd = self.norrd
+
+        data = self.data
+
+        ssh = self.ssh
 
         enc = self.enc
 
@@ -61,6 +69,10 @@ class DiagBackupRequest:
             field_dict["nopkg"] = nopkg
         if norrd is not UNSET:
             field_dict["norrd"] = norrd
+        if data is not UNSET:
+            field_dict["data"] = data
+        if ssh is not UNSET:
+            field_dict["ssh"] = ssh
         if enc is not UNSET:
             field_dict["enc"] = enc
         if pwd is not UNSET:
@@ -83,6 +95,10 @@ class DiagBackupRequest:
 
         norrd = d.pop("norrd", UNSET)
 
+        data = d.pop("data", UNSET)
+
+        ssh = d.pop("ssh", UNSET)
+
         enc = d.pop("enc", UNSET)
 
         pwd = d.pop("pwd", UNSET)
@@ -97,6 +113,8 @@ class DiagBackupRequest:
             area=area,
             nopkg=nopkg,
             norrd=norrd,
+            data=data,
+            ssh=ssh,
             enc=enc,
             pwd=pwd,
             filename=filename,

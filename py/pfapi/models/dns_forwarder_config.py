@@ -27,9 +27,10 @@ class DNSForwarderConfig:
         strict_order (bool | Unset):
         domain_needed (bool | Unset):
         no_private_reverse (bool | Unset):
+        no_system_dns (bool | Unset):
         port (str | Unset):
         interface (str | Unset):
-        strictbind (bool | Unset):
+        strictbind (bool | Unset): do not use system DNS servers. Custom DNS servers must be used.
         custom_options (str | Unset):
         hosts (list[DNSForwarderHost] | Unset):
         domainoverrides (list[DNSForwarderDomain] | Unset):
@@ -42,6 +43,7 @@ class DNSForwarderConfig:
     strict_order: bool | Unset = UNSET
     domain_needed: bool | Unset = UNSET
     no_private_reverse: bool | Unset = UNSET
+    no_system_dns: bool | Unset = UNSET
     port: str | Unset = UNSET
     interface: str | Unset = UNSET
     strictbind: bool | Unset = UNSET
@@ -64,6 +66,8 @@ class DNSForwarderConfig:
         domain_needed = self.domain_needed
 
         no_private_reverse = self.no_private_reverse
+
+        no_system_dns = self.no_system_dns
 
         port = self.port
 
@@ -106,6 +110,8 @@ class DNSForwarderConfig:
             field_dict["domain_needed"] = domain_needed
         if no_private_reverse is not UNSET:
             field_dict["no_private_reverse"] = no_private_reverse
+        if no_system_dns is not UNSET:
+            field_dict["no_system_dns"] = no_system_dns
         if port is not UNSET:
             field_dict["port"] = port
         if interface is not UNSET:
@@ -141,6 +147,8 @@ class DNSForwarderConfig:
 
         no_private_reverse = d.pop("no_private_reverse", UNSET)
 
+        no_system_dns = d.pop("no_system_dns", UNSET)
+
         port = d.pop("port", UNSET)
 
         interface = d.pop("interface", UNSET)
@@ -175,6 +183,7 @@ class DNSForwarderConfig:
             strict_order=strict_order,
             domain_needed=domain_needed,
             no_private_reverse=no_private_reverse,
+            no_system_dns=no_system_dns,
             port=port,
             interface=interface,
             strictbind=strictbind,
