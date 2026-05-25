@@ -28,6 +28,7 @@ class LdapAuthServer:
         extended_query (str | Unset): optional extra restriction for filtering username query, e.g.:
             - memberOf=CN=Pfnet,CN=Users,DC=example,DC=com
             - &(objectClass=posixGroup)(cn=Pfnet)(memberUid=*)
+        extended_enabled (bool | Unset): enable extended query
         bind_user_dn (str | Unset): for authenticated binding, the user-DN
         bind_password (str | Unset): for authenticated binding, the password (base64-encoded)
         user_naming_attrib (str | Unset): user naming attribute, e.g. "uid"
@@ -36,12 +37,13 @@ class LdapAuthServer:
         rfc2307 (bool | Unset): use RFC2307 style group membership
         rfc2307_group_class (str | Unset): object class for groups in rfc2307 mode, e.g. groupOfNames, posixGroup, group
         rfc2307_use_userdn (bool | Unset): use user-DN for querying user record
+        rfc2307_group_use_basedn (bool | Unset): use Base DN for group search
         shell_group_dn (str | Unset): group DN required for shell access
         username_alterations (bool | Unset): "true" to keep username verbatim (unstripped user@host)
         utf8_encode (bool | Unset): encodings are in utf-8
         unauthenticated_bind (bool | Unset): bind without password
         no_strip_at (bool | Unset): don't strip @<domain>
-        caref (str | Unset): server's CA, ref
+        caref (str | Unset): server's CA - refid or "global" for Global Root CA List
         certref (str | Unset): client certificate for secure transport
         refid (str | Unset):
         nexus_group_prefix (str | Unset): LDAP group CN prefix for Nexus MIM roles (default "mim_").
@@ -74,6 +76,7 @@ class LdapAuthServer:
     search_scope: str | Unset = UNSET
     auth_containers: str | Unset = UNSET
     extended_query: str | Unset = UNSET
+    extended_enabled: bool | Unset = UNSET
     bind_user_dn: str | Unset = UNSET
     bind_password: str | Unset = UNSET
     user_naming_attrib: str | Unset = UNSET
@@ -82,6 +85,7 @@ class LdapAuthServer:
     rfc2307: bool | Unset = UNSET
     rfc2307_group_class: str | Unset = UNSET
     rfc2307_use_userdn: bool | Unset = UNSET
+    rfc2307_group_use_basedn: bool | Unset = UNSET
     shell_group_dn: str | Unset = UNSET
     username_alterations: bool | Unset = UNSET
     utf8_encode: bool | Unset = UNSET
@@ -116,6 +120,8 @@ class LdapAuthServer:
 
         extended_query = self.extended_query
 
+        extended_enabled = self.extended_enabled
+
         bind_user_dn = self.bind_user_dn
 
         bind_password = self.bind_password
@@ -131,6 +137,8 @@ class LdapAuthServer:
         rfc2307_group_class = self.rfc2307_group_class
 
         rfc2307_use_userdn = self.rfc2307_use_userdn
+
+        rfc2307_group_use_basedn = self.rfc2307_group_use_basedn
 
         shell_group_dn = self.shell_group_dn
 
@@ -175,6 +183,8 @@ class LdapAuthServer:
             field_dict["auth_containers"] = auth_containers
         if extended_query is not UNSET:
             field_dict["extended_query"] = extended_query
+        if extended_enabled is not UNSET:
+            field_dict["extended_enabled"] = extended_enabled
         if bind_user_dn is not UNSET:
             field_dict["bind_user_dn"] = bind_user_dn
         if bind_password is not UNSET:
@@ -191,6 +201,8 @@ class LdapAuthServer:
             field_dict["rfc2307_group_class"] = rfc2307_group_class
         if rfc2307_use_userdn is not UNSET:
             field_dict["rfc2307_use_userdn"] = rfc2307_use_userdn
+        if rfc2307_group_use_basedn is not UNSET:
+            field_dict["rfc2307_group_use_basedn"] = rfc2307_group_use_basedn
         if shell_group_dn is not UNSET:
             field_dict["shell_group_dn"] = shell_group_dn
         if username_alterations is not UNSET:
@@ -237,6 +249,8 @@ class LdapAuthServer:
 
         extended_query = d.pop("extended_query", UNSET)
 
+        extended_enabled = d.pop("extended_enabled", UNSET)
+
         bind_user_dn = d.pop("bind_user_dn", UNSET)
 
         bind_password = d.pop("bind_password", UNSET)
@@ -252,6 +266,8 @@ class LdapAuthServer:
         rfc2307_group_class = d.pop("rfc2307_group_class", UNSET)
 
         rfc2307_use_userdn = d.pop("rfc2307_use_userdn", UNSET)
+
+        rfc2307_group_use_basedn = d.pop("rfc2307_group_use_basedn", UNSET)
 
         shell_group_dn = d.pop("shell_group_dn", UNSET)
 
@@ -283,6 +299,7 @@ class LdapAuthServer:
             search_scope=search_scope,
             auth_containers=auth_containers,
             extended_query=extended_query,
+            extended_enabled=extended_enabled,
             bind_user_dn=bind_user_dn,
             bind_password=bind_password,
             user_naming_attrib=user_naming_attrib,
@@ -291,6 +308,7 @@ class LdapAuthServer:
             rfc2307=rfc2307,
             rfc2307_group_class=rfc2307_group_class,
             rfc2307_use_userdn=rfc2307_use_userdn,
+            rfc2307_group_use_basedn=rfc2307_group_use_basedn,
             shell_group_dn=shell_group_dn,
             username_alterations=username_alterations,
             utf8_encode=utf8_encode,

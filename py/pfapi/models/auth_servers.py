@@ -12,6 +12,7 @@ if TYPE_CHECKING:
     from ..models.ldap_auth_server import LdapAuthServer
     from ..models.local_server import LocalServer
     from ..models.radius_auth_server import RadiusAuthServer
+    from ..models.saml_server import SamlServer
     from ..models.text_value import TextValue
 
 
@@ -26,6 +27,7 @@ class AuthServers:
         active_name (str | Unset):
         ldap (list[LdapAuthServer] | Unset):
         radius (list[RadiusAuthServer] | Unset):
+        saml (list[SamlServer] | Unset):
         local (LocalServer | Unset):
         radius_nas_list (list[TextValue] | Unset):
     """
@@ -34,6 +36,7 @@ class AuthServers:
     active_name: str | Unset = UNSET
     ldap: list[LdapAuthServer] | Unset = UNSET
     radius: list[RadiusAuthServer] | Unset = UNSET
+    saml: list[SamlServer] | Unset = UNSET
     local: LocalServer | Unset = UNSET
     radius_nas_list: list[TextValue] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -57,6 +60,13 @@ class AuthServers:
                 radius_item = radius_item_data.to_dict()
                 radius.append(radius_item)
 
+        saml: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.saml, Unset):
+            saml = []
+            for saml_item_data in self.saml:
+                saml_item = saml_item_data.to_dict()
+                saml.append(saml_item)
+
         local: dict[str, Any] | Unset = UNSET
         if not isinstance(self.local, Unset):
             local = self.local.to_dict()
@@ -79,6 +89,8 @@ class AuthServers:
             field_dict["ldap"] = ldap
         if radius is not UNSET:
             field_dict["radius"] = radius
+        if saml is not UNSET:
+            field_dict["saml"] = saml
         if local is not UNSET:
             field_dict["local"] = local
         if radius_nas_list is not UNSET:
@@ -91,6 +103,7 @@ class AuthServers:
         from ..models.ldap_auth_server import LdapAuthServer
         from ..models.local_server import LocalServer
         from ..models.radius_auth_server import RadiusAuthServer
+        from ..models.saml_server import SamlServer
         from ..models.text_value import TextValue
 
         d = dict(src_dict)
@@ -116,6 +129,15 @@ class AuthServers:
 
                 radius.append(radius_item)
 
+        _saml = d.pop("saml", UNSET)
+        saml: list[SamlServer] | Unset = UNSET
+        if _saml is not UNSET:
+            saml = []
+            for saml_item_data in _saml:
+                saml_item = SamlServer.from_dict(saml_item_data)
+
+                saml.append(saml_item)
+
         _local = d.pop("local", UNSET)
         local: LocalServer | Unset
         if isinstance(_local, Unset):
@@ -137,6 +159,7 @@ class AuthServers:
             active_name=active_name,
             ldap=ldap,
             radius=radius,
+            saml=saml,
             local=local,
             radius_nas_list=radius_nas_list,
         )

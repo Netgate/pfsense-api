@@ -28,6 +28,7 @@ class OpenVPNServerConfig:
         tls_type (str | Unset): "auth" or "crypt"
         certref (str | Unset):
         caref (str | Unset):
+        crlref (str | Unset): Certificate revocation list reference
         dh_length (str | Unset):
         data_ciphers (list[str] | Unset):
         data_ciphers_fallback (str | Unset):
@@ -116,6 +117,7 @@ class OpenVPNServerConfig:
     tls_type: str | Unset = UNSET
     certref: str | Unset = UNSET
     caref: str | Unset = UNSET
+    crlref: str | Unset = UNSET
     dh_length: str | Unset = UNSET
     data_ciphers: list[str] | Unset = UNSET
     data_ciphers_fallback: str | Unset = UNSET
@@ -219,6 +221,8 @@ class OpenVPNServerConfig:
         certref = self.certref
 
         caref = self.caref
+
+        crlref = self.crlref
 
         dh_length = self.dh_length
 
@@ -397,6 +401,8 @@ class OpenVPNServerConfig:
             field_dict["certref"] = certref
         if caref is not UNSET:
             field_dict["caref"] = caref
+        if crlref is not UNSET:
+            field_dict["crlref"] = crlref
         if dh_length is not UNSET:
             field_dict["dh_length"] = dh_length
         if data_ciphers is not UNSET:
@@ -575,6 +581,8 @@ class OpenVPNServerConfig:
 
         caref = d.pop("caref", UNSET)
 
+        crlref = d.pop("crlref", UNSET)
+
         dh_length = d.pop("dh_length", UNSET)
 
         data_ciphers = cast(list[str], d.pop("data_ciphers", UNSET))
@@ -735,6 +743,7 @@ class OpenVPNServerConfig:
             tls_type=tls_type,
             certref=certref,
             caref=caref,
+            crlref=crlref,
             dh_length=dh_length,
             data_ciphers=data_ciphers,
             data_ciphers_fallback=data_ciphers_fallback,

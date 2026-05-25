@@ -17,12 +17,12 @@ class CaptiveElement:
     Attributes:
         name (str | Unset):
         size (str | Unset):
-        nocontent (str | Unset):
+        nocontent (bool | Unset):
     """
 
     name: str | Unset = UNSET
     size: str | Unset = UNSET
-    nocontent: str | Unset = UNSET
+    nocontent: bool | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:

@@ -19,6 +19,7 @@ T = TypeVar("T", bound="IPSecExportSettings")
 class IPSecExportSettings:
     """
     Attributes:
+        installed (bool | Unset): is ipsec-profile-wizard package installed
         mobile_p1_exist (bool | Unset): is mobile phase 1 in the ipsec config
         mobile_p2_exist (bool | Unset): is mobile phase 2 in the ipsec config
         mobile_p2_is_tunnel (bool | Unset): are all mobile phase 2 in tunnel mode
@@ -29,6 +30,7 @@ class IPSecExportSettings:
         vpnclients (list[TextValue] | Unset):
     """
 
+    installed: bool | Unset = UNSET
     mobile_p1_exist: bool | Unset = UNSET
     mobile_p2_exist: bool | Unset = UNSET
     mobile_p2_is_tunnel: bool | Unset = UNSET
@@ -40,6 +42,8 @@ class IPSecExportSettings:
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
+        installed = self.installed
+
         mobile_p1_exist = self.mobile_p1_exist
 
         mobile_p2_exist = self.mobile_p2_exist
@@ -66,6 +70,8 @@ class IPSecExportSettings:
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
+        if installed is not UNSET:
+            field_dict["installed"] = installed
         if mobile_p1_exist is not UNSET:
             field_dict["mobile_p1_exist"] = mobile_p1_exist
         if mobile_p2_exist is not UNSET:
@@ -90,6 +96,8 @@ class IPSecExportSettings:
         from ..models.text_value import TextValue
 
         d = dict(src_dict)
+        installed = d.pop("installed", UNSET)
+
         mobile_p1_exist = d.pop("mobile_p1_exist", UNSET)
 
         mobile_p2_exist = d.pop("mobile_p2_exist", UNSET)
@@ -114,6 +122,7 @@ class IPSecExportSettings:
                 vpnclients.append(vpnclients_item)
 
         ip_sec_export_settings = cls(
+            installed=installed,
             mobile_p1_exist=mobile_p1_exist,
             mobile_p2_exist=mobile_p2_exist,
             mobile_p2_is_tunnel=mobile_p2_is_tunnel,

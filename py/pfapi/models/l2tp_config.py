@@ -31,6 +31,7 @@ class L2TPConfig:
         paporchap (str | Unset):
         dns1 (str | Unset):
         dns2 (str | Unset):
+        mtu (int | Unset): defaults to 1500 in most cases if not provided (valid values 576-9000)
         user (list[L2TPUser] | Unset):
     """
 
@@ -45,6 +46,7 @@ class L2TPConfig:
     paporchap: str | Unset = UNSET
     dns1: str | Unset = UNSET
     dns2: str | Unset = UNSET
+    mtu: int | Unset = UNSET
     user: list[L2TPUser] | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
@@ -72,6 +74,8 @@ class L2TPConfig:
         dns1 = self.dns1
 
         dns2 = self.dns2
+
+        mtu = self.mtu
 
         user: list[dict[str, Any]] | Unset = UNSET
         if not isinstance(self.user, Unset):
@@ -107,6 +111,8 @@ class L2TPConfig:
             field_dict["dns1"] = dns1
         if dns2 is not UNSET:
             field_dict["dns2"] = dns2
+        if mtu is not UNSET:
+            field_dict["mtu"] = mtu
         if user is not UNSET:
             field_dict["user"] = user
 
@@ -145,6 +151,8 @@ class L2TPConfig:
 
         dns2 = d.pop("dns2", UNSET)
 
+        mtu = d.pop("mtu", UNSET)
+
         _user = d.pop("user", UNSET)
         user: list[L2TPUser] | Unset = UNSET
         if _user is not UNSET:
@@ -166,6 +174,7 @@ class L2TPConfig:
             paporchap=paporchap,
             dns1=dns1,
             dns2=dns2,
+            mtu=mtu,
             user=user,
         )
 

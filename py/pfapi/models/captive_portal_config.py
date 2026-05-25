@@ -64,10 +64,14 @@ class CaptivePortalConfig:
         radmac_format (str | Unset):
         radiusnasid (str | Unset):
         customlogo (bool | Unset):
+        customlogo_image (str | Unset): base64 encoded jpeg/gif/png/webp logo image
         custombg (bool | Unset):
-        customhtml (bool | Unset):
+        custombg_image (str | Unset): base64 encoded jpeg/gif/png/webp background image
+        customhtml (bool | Unset): if enabled, the provided customhtml_* page(s) are used
+        customhtml_html (str | Unset): custom portal HTML page
+        customhtml_err (str | Unset): custom error page
+        customhtml_logout (str | Unset): custom logout page
         termsconditions (str | Unset):
-        page (str | Unset):
         noconcurrentlogins (str | Unset):
         peruserbw (bool | Unset):
         bwdefaultdn (str | Unset):
@@ -124,10 +128,14 @@ class CaptivePortalConfig:
     radmac_format: str | Unset = UNSET
     radiusnasid: str | Unset = UNSET
     customlogo: bool | Unset = UNSET
+    customlogo_image: str | Unset = UNSET
     custombg: bool | Unset = UNSET
+    custombg_image: str | Unset = UNSET
     customhtml: bool | Unset = UNSET
+    customhtml_html: str | Unset = UNSET
+    customhtml_err: str | Unset = UNSET
+    customhtml_logout: str | Unset = UNSET
     termsconditions: str | Unset = UNSET
-    page: str | Unset = UNSET
     noconcurrentlogins: str | Unset = UNSET
     peruserbw: bool | Unset = UNSET
     bwdefaultdn: str | Unset = UNSET
@@ -227,13 +235,21 @@ class CaptivePortalConfig:
 
         customlogo = self.customlogo
 
+        customlogo_image = self.customlogo_image
+
         custombg = self.custombg
+
+        custombg_image = self.custombg_image
 
         customhtml = self.customhtml
 
-        termsconditions = self.termsconditions
+        customhtml_html = self.customhtml_html
 
-        page = self.page
+        customhtml_err = self.customhtml_err
+
+        customhtml_logout = self.customhtml_logout
+
+        termsconditions = self.termsconditions
 
         noconcurrentlogins = self.noconcurrentlogins
 
@@ -368,14 +384,22 @@ class CaptivePortalConfig:
             field_dict["radiusnasid"] = radiusnasid
         if customlogo is not UNSET:
             field_dict["customlogo"] = customlogo
+        if customlogo_image is not UNSET:
+            field_dict["customlogo_image"] = customlogo_image
         if custombg is not UNSET:
             field_dict["custombg"] = custombg
+        if custombg_image is not UNSET:
+            field_dict["custombg_image"] = custombg_image
         if customhtml is not UNSET:
             field_dict["customhtml"] = customhtml
+        if customhtml_html is not UNSET:
+            field_dict["customhtml_html"] = customhtml_html
+        if customhtml_err is not UNSET:
+            field_dict["customhtml_err"] = customhtml_err
+        if customhtml_logout is not UNSET:
+            field_dict["customhtml_logout"] = customhtml_logout
         if termsconditions is not UNSET:
             field_dict["termsconditions"] = termsconditions
-        if page is not UNSET:
-            field_dict["page"] = page
         if noconcurrentlogins is not UNSET:
             field_dict["noconcurrentlogins"] = noconcurrentlogins
         if peruserbw is not UNSET:
@@ -495,13 +519,21 @@ class CaptivePortalConfig:
 
         customlogo = d.pop("customlogo", UNSET)
 
+        customlogo_image = d.pop("customlogo_image", UNSET)
+
         custombg = d.pop("custombg", UNSET)
+
+        custombg_image = d.pop("custombg_image", UNSET)
 
         customhtml = d.pop("customhtml", UNSET)
 
-        termsconditions = d.pop("termsconditions", UNSET)
+        customhtml_html = d.pop("customhtml_html", UNSET)
 
-        page = d.pop("page", UNSET)
+        customhtml_err = d.pop("customhtml_err", UNSET)
+
+        customhtml_logout = d.pop("customhtml_logout", UNSET)
+
+        termsconditions = d.pop("termsconditions", UNSET)
 
         noconcurrentlogins = d.pop("noconcurrentlogins", UNSET)
 
@@ -598,10 +630,14 @@ class CaptivePortalConfig:
             radmac_format=radmac_format,
             radiusnasid=radiusnasid,
             customlogo=customlogo,
+            customlogo_image=customlogo_image,
             custombg=custombg,
+            custombg_image=custombg_image,
             customhtml=customhtml,
+            customhtml_html=customhtml_html,
+            customhtml_err=customhtml_err,
+            customhtml_logout=customhtml_logout,
             termsconditions=termsconditions,
-            page=page,
             noconcurrentlogins=noconcurrentlogins,
             peruserbw=peruserbw,
             bwdefaultdn=bwdefaultdn,

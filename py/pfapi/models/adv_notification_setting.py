@@ -41,6 +41,7 @@ class AdvNotificationSetting:
         smtptimeout (int | Unset):
         smtpusername (str | Unset):
         save (bool | Unset):
+        test_slack (bool | Unset):
         test_smtp (bool | Unset):
         test_telegram (bool | Unset):
         test_pushover (bool | Unset):
@@ -76,6 +77,7 @@ class AdvNotificationSetting:
     smtptimeout: int | Unset = UNSET
     smtpusername: str | Unset = UNSET
     save: bool | Unset = UNSET
+    test_slack: bool | Unset = UNSET
     test_smtp: bool | Unset = UNSET
     test_telegram: bool | Unset = UNSET
     test_pushover: bool | Unset = UNSET
@@ -137,6 +139,8 @@ class AdvNotificationSetting:
         smtpusername = self.smtpusername
 
         save = self.save
+
+        test_slack = self.test_slack
 
         test_smtp = self.test_smtp
 
@@ -207,6 +211,8 @@ class AdvNotificationSetting:
             field_dict["smtpusername"] = smtpusername
         if save is not UNSET:
             field_dict["save"] = save
+        if test_slack is not UNSET:
+            field_dict["test_slack"] = test_slack
         if test_smtp is not UNSET:
             field_dict["test_smtp"] = test_smtp
         if test_telegram is not UNSET:
@@ -279,6 +285,8 @@ class AdvNotificationSetting:
 
         save = d.pop("save", UNSET)
 
+        test_slack = d.pop("test_slack", UNSET)
+
         test_smtp = d.pop("test_smtp", UNSET)
 
         test_telegram = d.pop("test_telegram", UNSET)
@@ -320,6 +328,7 @@ class AdvNotificationSetting:
             smtptimeout=smtptimeout,
             smtpusername=smtpusername,
             save=save,
+            test_slack=test_slack,
             test_smtp=test_smtp,
             test_telegram=test_telegram,
             test_pushover=test_pushover,

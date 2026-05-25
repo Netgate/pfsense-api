@@ -21,6 +21,7 @@ class FWAlias:
     """
     Attributes:
         name (str):
+        tags (str | Unset):
         address (str | Unset): space separated list of addresses
         targets (list[FWTarget] | Unset):
         descr (str | Unset):
@@ -32,6 +33,7 @@ class FWAlias:
     """
 
     name: str
+    tags: str | Unset = UNSET
     address: str | Unset = UNSET
     targets: list[FWTarget] | Unset = UNSET
     descr: str | Unset = UNSET
@@ -44,6 +46,8 @@ class FWAlias:
 
     def to_dict(self) -> dict[str, Any]:
         name = self.name
+
+        tags = self.tags
 
         address = self.address
 
@@ -77,6 +81,8 @@ class FWAlias:
                 "name": name,
             }
         )
+        if tags is not UNSET:
+            field_dict["tags"] = tags
         if address is not UNSET:
             field_dict["address"] = address
         if targets is not UNSET:
@@ -102,6 +108,8 @@ class FWAlias:
 
         d = dict(src_dict)
         name = d.pop("name")
+
+        tags = d.pop("tags", UNSET)
 
         address = d.pop("address", UNSET)
 
@@ -133,6 +141,7 @@ class FWAlias:
 
         fw_alias = cls(
             name=name,
+            tags=tags,
             address=address,
             targets=targets,
             descr=descr,

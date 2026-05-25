@@ -52,6 +52,7 @@ class AdvFirewall:
         sctpclosingtimeout (str | Unset):
         sctpclosedtimeout (str | Unset):
         statepolicy (str | Unset):
+        disable_auto_floating_states (bool | Unset): allow IPsec rules to automatically use floating states where needed
         tcpclosedtimeout (str | Unset):
         tcpclosingtimeout (str | Unset):
         tcpestablishedtimeout (str | Unset):
@@ -103,6 +104,7 @@ class AdvFirewall:
     sctpclosingtimeout: str | Unset = UNSET
     sctpclosedtimeout: str | Unset = UNSET
     statepolicy: str | Unset = UNSET
+    disable_auto_floating_states: bool | Unset = UNSET
     tcpclosedtimeout: str | Unset = UNSET
     tcpclosingtimeout: str | Unset = UNSET
     tcpestablishedtimeout: str | Unset = UNSET
@@ -191,6 +193,8 @@ class AdvFirewall:
         sctpclosedtimeout = self.sctpclosedtimeout
 
         statepolicy = self.statepolicy
+
+        disable_auto_floating_states = self.disable_auto_floating_states
 
         tcpclosedtimeout = self.tcpclosedtimeout
 
@@ -295,6 +299,8 @@ class AdvFirewall:
             field_dict["sctpclosedtimeout"] = sctpclosedtimeout
         if statepolicy is not UNSET:
             field_dict["statepolicy"] = statepolicy
+        if disable_auto_floating_states is not UNSET:
+            field_dict["disable_auto_floating_states"] = disable_auto_floating_states
         if tcpclosedtimeout is not UNSET:
             field_dict["tcpclosedtimeout"] = tcpclosedtimeout
         if tcpclosingtimeout is not UNSET:
@@ -399,6 +405,8 @@ class AdvFirewall:
 
         statepolicy = d.pop("statepolicy", UNSET)
 
+        disable_auto_floating_states = d.pop("disable_auto_floating_states", UNSET)
+
         tcpclosedtimeout = d.pop("tcpclosedtimeout", UNSET)
 
         tcpclosingtimeout = d.pop("tcpclosingtimeout", UNSET)
@@ -461,6 +469,7 @@ class AdvFirewall:
             sctpclosingtimeout=sctpclosingtimeout,
             sctpclosedtimeout=sctpclosedtimeout,
             statepolicy=statepolicy,
+            disable_auto_floating_states=disable_auto_floating_states,
             tcpclosedtimeout=tcpclosedtimeout,
             tcpclosingtimeout=tcpclosingtimeout,
             tcpestablishedtimeout=tcpestablishedtimeout,

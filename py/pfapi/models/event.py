@@ -10,6 +10,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.config_event import ConfigEvent
+    from ..models.device_resource_alert import DeviceResourceAlert
     from ..models.firewall_event import FirewallEvent
     from ..models.interface_event import InterfaceEvent
     from ..models.system_event import SystemEvent
@@ -29,6 +30,10 @@ class Event:
         system (SystemEvent | Unset): changes to the system that is informational or impacts operation
         config (ConfigEvent | Unset): This event is sent when configuration changes have occurred, with an indicator
             of whether there are dirty subsystems flagged, or if the system requires a reboot
+        resource_alert (DeviceResourceAlert | Unset): Alert from a controlled device that one or more system resources
+            have
+            crossed their high-usage thresholds. Forwarded to the event queue when
+            the controller receives a resource_alert via /devevt.
     """
 
     event_type: str | Unset = UNSET
@@ -37,6 +42,7 @@ class Event:
     interface: InterfaceEvent | Unset = UNSET
     system: SystemEvent | Unset = UNSET
     config: ConfigEvent | Unset = UNSET
+    resource_alert: DeviceResourceAlert | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -60,6 +66,10 @@ class Event:
         if not isinstance(self.config, Unset):
             config = self.config.to_dict()
 
+        resource_alert: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.resource_alert, Unset):
+            resource_alert = self.resource_alert.to_dict()
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -75,12 +85,15 @@ class Event:
             field_dict["system"] = system
         if config is not UNSET:
             field_dict["config"] = config
+        if resource_alert is not UNSET:
+            field_dict["resource_alert"] = resource_alert
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.config_event import ConfigEvent
+        from ..models.device_resource_alert import DeviceResourceAlert
         from ..models.firewall_event import FirewallEvent
         from ..models.interface_event import InterfaceEvent
         from ..models.system_event import SystemEvent
@@ -118,6 +131,13 @@ class Event:
         else:
             config = ConfigEvent.from_dict(_config)
 
+        _resource_alert = d.pop("resource_alert", UNSET)
+        resource_alert: DeviceResourceAlert | Unset
+        if isinstance(_resource_alert, Unset):
+            resource_alert = UNSET
+        else:
+            resource_alert = DeviceResourceAlert.from_dict(_resource_alert)
+
         event = cls(
             event_type=event_type,
             event_id=event_id,
@@ -125,6 +145,7 @@ class Event:
             interface=interface,
             system=system,
             config=config,
+            resource_alert=resource_alert,
         )
 
         event.additional_properties = d

@@ -24,6 +24,8 @@ class DhcpServiceConfig:
         high_availability (DhcpHighAvailabilityConfig | Unset): High-availability configuration for Kea DHCP service.
         dns_reg (bool | Unset):
         early_dns_reg (bool | Unset):
+        loglevel (str | Unset): Kea service log level (default, debug, info, warn, error, fatal)
+        loglevel_leases (str | Unset): Leases log level (default, debug, info, warn, error, fatal)
         interfaces (DhcpServiceConfigInterfaces | Unset):
         custom_kea_config (str | Unset): JSON configuration for Kea service custom config
     """
@@ -31,6 +33,8 @@ class DhcpServiceConfig:
     high_availability: DhcpHighAvailabilityConfig | Unset = UNSET
     dns_reg: bool | Unset = UNSET
     early_dns_reg: bool | Unset = UNSET
+    loglevel: str | Unset = UNSET
+    loglevel_leases: str | Unset = UNSET
     interfaces: DhcpServiceConfigInterfaces | Unset = UNSET
     custom_kea_config: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
@@ -43,6 +47,10 @@ class DhcpServiceConfig:
         dns_reg = self.dns_reg
 
         early_dns_reg = self.early_dns_reg
+
+        loglevel = self.loglevel
+
+        loglevel_leases = self.loglevel_leases
 
         interfaces: dict[str, Any] | Unset = UNSET
         if not isinstance(self.interfaces, Unset):
@@ -59,6 +67,10 @@ class DhcpServiceConfig:
             field_dict["dns_reg"] = dns_reg
         if early_dns_reg is not UNSET:
             field_dict["early_dns_reg"] = early_dns_reg
+        if loglevel is not UNSET:
+            field_dict["loglevel"] = loglevel
+        if loglevel_leases is not UNSET:
+            field_dict["loglevel_leases"] = loglevel_leases
         if interfaces is not UNSET:
             field_dict["interfaces"] = interfaces
         if custom_kea_config is not UNSET:
@@ -83,6 +95,10 @@ class DhcpServiceConfig:
 
         early_dns_reg = d.pop("early_dns_reg", UNSET)
 
+        loglevel = d.pop("loglevel", UNSET)
+
+        loglevel_leases = d.pop("loglevel_leases", UNSET)
+
         _interfaces = d.pop("interfaces", UNSET)
         interfaces: DhcpServiceConfigInterfaces | Unset
         if isinstance(_interfaces, Unset):
@@ -96,6 +112,8 @@ class DhcpServiceConfig:
             high_availability=high_availability,
             dns_reg=dns_reg,
             early_dns_reg=early_dns_reg,
+            loglevel=loglevel,
+            loglevel_leases=loglevel_leases,
             interfaces=interfaces,
             custom_kea_config=custom_kea_config,
         )

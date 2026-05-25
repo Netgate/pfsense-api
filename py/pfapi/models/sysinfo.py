@@ -56,6 +56,7 @@ class Sysinfo:
         mim_devices (int | Unset):
         gateways (list[str] | Unset):
         license_ (SysinfoLicense | Unset):
+        ndi (str | Unset):
     """
 
     hostname: str | Unset = UNSET
@@ -92,6 +93,7 @@ class Sysinfo:
     mim_devices: int | Unset = UNSET
     gateways: list[str] | Unset = UNSET
     license_: SysinfoLicense | Unset = UNSET
+    ndi: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -186,6 +188,8 @@ class Sysinfo:
         if not isinstance(self.license_, Unset):
             license_ = self.license_.to_dict()
 
+        ndi = self.ndi
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -257,6 +261,8 @@ class Sysinfo:
             field_dict["gateways"] = gateways
         if license_ is not UNSET:
             field_dict["license"] = license_
+        if ndi is not UNSET:
+            field_dict["ndi"] = ndi
 
         return field_dict
 
@@ -362,6 +368,8 @@ class Sysinfo:
         else:
             license_ = SysinfoLicense.from_dict(_license_)
 
+        ndi = d.pop("ndi", UNSET)
+
         sysinfo = cls(
             hostname=hostname,
             address=address,
@@ -397,6 +405,7 @@ class Sysinfo:
             mim_devices=mim_devices,
             gateways=gateways,
             license_=license_,
+            ndi=ndi,
         )
 
         sysinfo.additional_properties = d

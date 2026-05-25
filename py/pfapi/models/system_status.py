@@ -38,6 +38,8 @@ class SystemStatus:
         timestamp (str | Unset):
         apiver (str | Unset):
         vpn_addr (str | Unset):
+        ndi (str | Unset):
+        license_ (str | Unset): license ID
         alerts (str | Unset):
         net_interfaces (list[NetifStatus] | Unset):
         nexus_controllers (list[NexusControllerInfo] | Unset):
@@ -61,6 +63,8 @@ class SystemStatus:
     timestamp: str | Unset = UNSET
     apiver: str | Unset = UNSET
     vpn_addr: str | Unset = UNSET
+    ndi: str | Unset = UNSET
+    license_: str | Unset = UNSET
     alerts: str | Unset = UNSET
     net_interfaces: list[NetifStatus] | Unset = UNSET
     nexus_controllers: list[NexusControllerInfo] | Unset = UNSET
@@ -102,6 +106,10 @@ class SystemStatus:
         apiver = self.apiver
 
         vpn_addr = self.vpn_addr
+
+        ndi = self.ndi
+
+        license_ = self.license_
 
         alerts = self.alerts
 
@@ -158,6 +166,10 @@ class SystemStatus:
             field_dict["apiver"] = apiver
         if vpn_addr is not UNSET:
             field_dict["vpn_addr"] = vpn_addr
+        if ndi is not UNSET:
+            field_dict["ndi"] = ndi
+        if license_ is not UNSET:
+            field_dict["license"] = license_
         if alerts is not UNSET:
             field_dict["alerts"] = alerts
         if net_interfaces is not UNSET:
@@ -209,6 +221,10 @@ class SystemStatus:
 
         vpn_addr = d.pop("vpn_addr", UNSET)
 
+        ndi = d.pop("ndi", UNSET)
+
+        license_ = d.pop("license", UNSET)
+
         alerts = d.pop("alerts", UNSET)
 
         _net_interfaces = d.pop("net_interfaces", UNSET)
@@ -248,6 +264,8 @@ class SystemStatus:
             timestamp=timestamp,
             apiver=apiver,
             vpn_addr=vpn_addr,
+            ndi=ndi,
+            license_=license_,
             alerts=alerts,
             net_interfaces=net_interfaces,
             nexus_controllers=nexus_controllers,

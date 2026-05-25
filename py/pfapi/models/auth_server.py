@@ -11,6 +11,7 @@ from ..types import UNSET, Unset
 if TYPE_CHECKING:
     from ..models.ldap_auth_server import LdapAuthServer
     from ..models.radius_auth_server import RadiusAuthServer
+    from ..models.saml_server import SamlServer
 
 
 T = TypeVar("T", bound="AuthServer")
@@ -22,10 +23,12 @@ class AuthServer:
     Attributes:
         ldap (LdapAuthServer | Unset):
         radius (RadiusAuthServer | Unset):
+        saml (SamlServer | Unset):
     """
 
     ldap: LdapAuthServer | Unset = UNSET
     radius: RadiusAuthServer | Unset = UNSET
+    saml: SamlServer | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -37,6 +40,10 @@ class AuthServer:
         if not isinstance(self.radius, Unset):
             radius = self.radius.to_dict()
 
+        saml: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.saml, Unset):
+            saml = self.saml.to_dict()
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -44,6 +51,8 @@ class AuthServer:
             field_dict["ldap"] = ldap
         if radius is not UNSET:
             field_dict["radius"] = radius
+        if saml is not UNSET:
+            field_dict["saml"] = saml
 
         return field_dict
 
@@ -51,6 +60,7 @@ class AuthServer:
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.ldap_auth_server import LdapAuthServer
         from ..models.radius_auth_server import RadiusAuthServer
+        from ..models.saml_server import SamlServer
 
         d = dict(src_dict)
         _ldap = d.pop("ldap", UNSET)
@@ -67,9 +77,17 @@ class AuthServer:
         else:
             radius = RadiusAuthServer.from_dict(_radius)
 
+        _saml = d.pop("saml", UNSET)
+        saml: SamlServer | Unset
+        if isinstance(_saml, Unset):
+            saml = UNSET
+        else:
+            saml = SamlServer.from_dict(_saml)
+
         auth_server = cls(
             ldap=ldap,
             radius=radius,
+            saml=saml,
         )
 
         auth_server.additional_properties = d

@@ -10,6 +10,7 @@ from ..types import UNSET, Unset
 
 if TYPE_CHECKING:
     from ..models.fw_firewall_interfaces_interface_mappings import FWFirewallInterfacesInterfaceMappings
+    from ..models.fw_firewall_interfaces_traffic_sources import FWFirewallInterfacesTrafficSources
 
 
 T = TypeVar("T", bound="FWFirewallInterfaces")
@@ -24,6 +25,7 @@ class FWFirewallInterfaces:
         lan (str | Unset):
         ethernet (bool | Unset): ethernet filter is enabled
         interface_mappings (FWFirewallInterfacesInterfaceMappings | Unset):
+        traffic_sources (FWFirewallInterfacesTrafficSources | Unset):
     """
 
     interfaces: list[str] | Unset = UNSET
@@ -31,6 +33,7 @@ class FWFirewallInterfaces:
     lan: str | Unset = UNSET
     ethernet: bool | Unset = UNSET
     interface_mappings: FWFirewallInterfacesInterfaceMappings | Unset = UNSET
+    traffic_sources: FWFirewallInterfacesTrafficSources | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -48,6 +51,10 @@ class FWFirewallInterfaces:
         if not isinstance(self.interface_mappings, Unset):
             interface_mappings = self.interface_mappings.to_dict()
 
+        traffic_sources: dict[str, Any] | Unset = UNSET
+        if not isinstance(self.traffic_sources, Unset):
+            traffic_sources = self.traffic_sources.to_dict()
+
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
         field_dict.update({})
@@ -61,12 +68,15 @@ class FWFirewallInterfaces:
             field_dict["ethernet"] = ethernet
         if interface_mappings is not UNSET:
             field_dict["interface_mappings"] = interface_mappings
+        if traffic_sources is not UNSET:
+            field_dict["traffic_sources"] = traffic_sources
 
         return field_dict
 
     @classmethod
     def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
         from ..models.fw_firewall_interfaces_interface_mappings import FWFirewallInterfacesInterfaceMappings
+        from ..models.fw_firewall_interfaces_traffic_sources import FWFirewallInterfacesTrafficSources
 
         d = dict(src_dict)
         interfaces = cast(list[str], d.pop("interfaces", UNSET))
@@ -84,12 +94,20 @@ class FWFirewallInterfaces:
         else:
             interface_mappings = FWFirewallInterfacesInterfaceMappings.from_dict(_interface_mappings)
 
+        _traffic_sources = d.pop("traffic_sources", UNSET)
+        traffic_sources: FWFirewallInterfacesTrafficSources | Unset
+        if isinstance(_traffic_sources, Unset):
+            traffic_sources = UNSET
+        else:
+            traffic_sources = FWFirewallInterfacesTrafficSources.from_dict(_traffic_sources)
+
         fw_firewall_interfaces = cls(
             interfaces=interfaces,
             wan=wan,
             lan=lan,
             ethernet=ethernet,
             interface_mappings=interface_mappings,
+            traffic_sources=traffic_sources,
         )
 
         fw_firewall_interfaces.additional_properties = d

@@ -26,6 +26,9 @@ class NtpServerInfo:
         delay (str | Unset):
         offset (str | Unset):
         jitter (str | Unset):
+        assid (str | Unset):
+        status_word (str | Unset):
+        auth (str | Unset):
     """
 
     status: str | Unset = UNSET
@@ -39,6 +42,9 @@ class NtpServerInfo:
     delay: str | Unset = UNSET
     offset: str | Unset = UNSET
     jitter: str | Unset = UNSET
+    assid: str | Unset = UNSET
+    status_word: str | Unset = UNSET
+    auth: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -63,6 +69,12 @@ class NtpServerInfo:
         offset = self.offset
 
         jitter = self.jitter
+
+        assid = self.assid
+
+        status_word = self.status_word
+
+        auth = self.auth
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -89,6 +101,12 @@ class NtpServerInfo:
             field_dict["offset"] = offset
         if jitter is not UNSET:
             field_dict["jitter"] = jitter
+        if assid is not UNSET:
+            field_dict["assid"] = assid
+        if status_word is not UNSET:
+            field_dict["status_word"] = status_word
+        if auth is not UNSET:
+            field_dict["auth"] = auth
 
         return field_dict
 
@@ -117,6 +135,12 @@ class NtpServerInfo:
 
         jitter = d.pop("jitter", UNSET)
 
+        assid = d.pop("assid", UNSET)
+
+        status_word = d.pop("status_word", UNSET)
+
+        auth = d.pop("auth", UNSET)
+
         ntp_server_info = cls(
             status=status,
             server=server,
@@ -129,6 +153,9 @@ class NtpServerInfo:
             delay=delay,
             offset=offset,
             jitter=jitter,
+            assid=assid,
+            status_word=status_word,
+            auth=auth,
         )
 
         ntp_server_info.additional_properties = d

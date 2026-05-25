@@ -1,0 +1,102 @@
+from __future__ import annotations
+
+from collections.abc import Mapping
+from typing import TYPE_CHECKING, Any, TypeVar
+
+from attrs import define as _attrs_define
+from attrs import field as _attrs_field
+
+from ..types import UNSET, Unset
+
+if TYPE_CHECKING:
+    from ..models.open_vpn_capable_interface import OpenVPNCapableInterface
+    from ..models.text_value import TextValue
+
+
+T = TypeVar("T", bound="OpenVPNClientImport")
+
+
+@_attrs_define
+class OpenVPNClientImport:
+    """
+    Attributes:
+        server_modes (list[TextValue] | Unset):
+        openvpn_capable_ifs (list[OpenVPNCapableInterface] | Unset):
+    """
+
+    server_modes: list[TextValue] | Unset = UNSET
+    openvpn_capable_ifs: list[OpenVPNCapableInterface] | Unset = UNSET
+    additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
+
+    def to_dict(self) -> dict[str, Any]:
+        server_modes: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.server_modes, Unset):
+            server_modes = []
+            for server_modes_item_data in self.server_modes:
+                server_modes_item = server_modes_item_data.to_dict()
+                server_modes.append(server_modes_item)
+
+        openvpn_capable_ifs: list[dict[str, Any]] | Unset = UNSET
+        if not isinstance(self.openvpn_capable_ifs, Unset):
+            openvpn_capable_ifs = []
+            for openvpn_capable_ifs_item_data in self.openvpn_capable_ifs:
+                openvpn_capable_ifs_item = openvpn_capable_ifs_item_data.to_dict()
+                openvpn_capable_ifs.append(openvpn_capable_ifs_item)
+
+        field_dict: dict[str, Any] = {}
+        field_dict.update(self.additional_properties)
+        field_dict.update({})
+        if server_modes is not UNSET:
+            field_dict["server_modes"] = server_modes
+        if openvpn_capable_ifs is not UNSET:
+            field_dict["openvpn_capable_ifs"] = openvpn_capable_ifs
+
+        return field_dict
+
+    @classmethod
+    def from_dict(cls: type[T], src_dict: Mapping[str, Any]) -> T:
+        from ..models.open_vpn_capable_interface import OpenVPNCapableInterface
+        from ..models.text_value import TextValue
+
+        d = dict(src_dict)
+        _server_modes = d.pop("server_modes", UNSET)
+        server_modes: list[TextValue] | Unset = UNSET
+        if _server_modes is not UNSET:
+            server_modes = []
+            for server_modes_item_data in _server_modes:
+                server_modes_item = TextValue.from_dict(server_modes_item_data)
+
+                server_modes.append(server_modes_item)
+
+        _openvpn_capable_ifs = d.pop("openvpn_capable_ifs", UNSET)
+        openvpn_capable_ifs: list[OpenVPNCapableInterface] | Unset = UNSET
+        if _openvpn_capable_ifs is not UNSET:
+            openvpn_capable_ifs = []
+            for openvpn_capable_ifs_item_data in _openvpn_capable_ifs:
+                openvpn_capable_ifs_item = OpenVPNCapableInterface.from_dict(openvpn_capable_ifs_item_data)
+
+                openvpn_capable_ifs.append(openvpn_capable_ifs_item)
+
+        open_vpn_client_import = cls(
+            server_modes=server_modes,
+            openvpn_capable_ifs=openvpn_capable_ifs,
+        )
+
+        open_vpn_client_import.additional_properties = d
+        return open_vpn_client_import
+
+    @property
+    def additional_keys(self) -> list[str]:
+        return list(self.additional_properties.keys())
+
+    def __getitem__(self, key: str) -> Any:
+        return self.additional_properties[key]
+
+    def __setitem__(self, key: str, value: Any) -> None:
+        self.additional_properties[key] = value
+
+    def __delitem__(self, key: str) -> None:
+        del self.additional_properties[key]
+
+    def __contains__(self, key: str) -> bool:
+        return key in self.additional_properties

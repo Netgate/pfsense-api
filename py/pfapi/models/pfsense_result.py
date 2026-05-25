@@ -15,14 +15,15 @@ T = TypeVar("T", bound="PfsenseResult")
 class PfsenseResult:
     """
     Attributes:
-        msg (str):
-        alrt (bool | Unset):
+        msg (str): result message
+        alrt (bool | Unset): raise alert
         sb (bool | Unset):
-        alrtoln (bool | Unset):
-        alrtclr (str | Unset):
+        alrtoln (bool | Unset): outline
+        alrtclr (str | Unset): color
         auth (bool | Unset):
         status (str | Unset):
         message (str | Unset):
+        result (str | Unset): duplicate of msg, to be compatible with Result
     """
 
     msg: str
@@ -33,6 +34,7 @@ class PfsenseResult:
     auth: bool | Unset = UNSET
     status: str | Unset = UNSET
     message: str | Unset = UNSET
+    result: str | Unset = UNSET
     additional_properties: dict[str, Any] = _attrs_field(init=False, factory=dict)
 
     def to_dict(self) -> dict[str, Any]:
@@ -51,6 +53,8 @@ class PfsenseResult:
         status = self.status
 
         message = self.message
+
+        result = self.result
 
         field_dict: dict[str, Any] = {}
         field_dict.update(self.additional_properties)
@@ -73,6 +77,8 @@ class PfsenseResult:
             field_dict["status"] = status
         if message is not UNSET:
             field_dict["message"] = message
+        if result is not UNSET:
+            field_dict["result"] = result
 
         return field_dict
 
@@ -95,6 +101,8 @@ class PfsenseResult:
 
         message = d.pop("message", UNSET)
 
+        result = d.pop("result", UNSET)
+
         pfsense_result = cls(
             msg=msg,
             alrt=alrt,
@@ -104,6 +112,7 @@ class PfsenseResult:
             auth=auth,
             status=status,
             message=message,
+            result=result,
         )
 
         pfsense_result.additional_properties = d

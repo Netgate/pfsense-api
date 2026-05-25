@@ -6,6 +6,25 @@ from .acb_config_info import ACBConfigInfo
 from .acb_list import ACBList
 from .acb_manual_backup_request import ACBManualBackupRequest
 from .acb_restore_request import ACBRestoreRequest
+from .acme_account_key import ACMEAccountKey
+from .acme_account_key_key_type import ACMEAccountKeyKeyType
+from .acme_action import ACMEAction
+from .acme_certificate import ACMECertificate
+from .acme_certificate_key_type import ACMECertificateKeyType
+from .acme_config import ACMEConfig
+from .acme_domain import ACMEDomain
+from .acme_issued_cert import ACMEIssuedCert
+from .acme_private_key import ACMEPrivateKey
+from .acme_private_key_req import ACMEPrivateKeyReq
+from .acme_private_key_req_key_type import ACMEPrivateKeyReqKeyType
+from .acme_registration import ACMERegistration
+from .acme_server import ACMEServer
+from .acme_settings import ACMESettings
+from .acme_validation_method_config import ACMEValidationMethodConfig
+from .acme_validation_method_config_additional import ACMEValidationMethodConfigAdditional
+from .acme_validation_method_config_credentials import ACMEValidationMethodConfigCredentials
+from .acme_validation_methods import ACMEValidationMethods
+from .acme_validation_methods_methods import ACMEValidationMethodsMethods
 from .activate_bootenv import ActivateBootenv
 from .admin_login_session import AdminLoginSession
 from .adv_firewall import AdvFirewall
@@ -28,11 +47,33 @@ from .altq_root_queues import ALTQRootQueues
 from .app_mem_stat import AppMemStat
 from .apply_dirty_config_request import ApplyDirtyConfigRequest
 from .arp_table_entry import ArpTableEntry
+from .arping_interfaces import ArpingInterfaces
+from .arping_request import ArpingRequest
+from .arping_response import ArpingResponse
+from .arpmon_interface_action import ArpmonInterfaceAction
+from .arpmon_interface_state import ArpmonInterfaceState
+from .arpmon_interface_state_macs import ArpmonInterfaceStateMacs
+from .arpmon_mac_state import ArpmonMacState
+from .arpmon_state import ArpmonState
+from .arpmon_state_interfaces import ArpmonStateInterfaces
+from .arpmon_timed_address import ArpmonTimedAddress
 from .auth_server import AuthServer
 from .auth_servers import AuthServers
 from .auth_servers_list import AuthServersList
 from .auth_test_credentials import AuthTestCredentials
 from .auth_test_result import AuthTestResult
+from .aws_wizard_create_tunnels_req import AwsWizardCreateTunnelsReq
+from .aws_wizard_create_tunnels_req_routing import AwsWizardCreateTunnelsReqRouting
+from .aws_wizard_create_vpn_req import AwsWizardCreateVpnReq
+from .aws_wizard_create_vpn_req_routing import AwsWizardCreateVpnReqRouting
+from .aws_wizard_cred import AwsWizardCred
+from .aws_wizard_cred_partition import AwsWizardCredPartition
+from .aws_wizard_regions import AwsWizardRegions
+from .aws_wizard_select_vpc_req import AwsWizardSelectVpcReq
+from .aws_wizard_vp_gateway import AwsWizardVPGateway
+from .aws_wizard_vpc import AwsWizardVpc
+from .aws_wizard_vpcs import AwsWizardVpcs
+from .aws_wizard_vpn import AwsWizardVpn
 from .boot_envs import BootEnvs
 from .boot_envs_envs import BootEnvsEnvs
 from .bootenv import Bootenv
@@ -108,6 +149,10 @@ from .controller_upgrade_info import ControllerUpgradeInfo
 from .controller_upgrade_request import ControllerUpgradeRequest
 from .controller_upgrade_result import ControllerUpgradeResult
 from .controllers_list import ControllersList
+from .coredns_configuration import CorednsConfiguration
+from .coredns_configuration_groups import CorednsConfigurationGroups
+from .coredns_easy_setup_reason import CorednsEasySetupReason
+from .coredns_easy_setup_result import CorednsEasySetupResult
 from .create_bootenv import CreateBootenv
 from .create_controlled_device_cert import CreateControlledDeviceCert
 from .create_u_pn_pacl import CreateUPnPACL
@@ -135,6 +180,7 @@ from .device_pkg_uninstall_result import DevicePkgUninstallResult
 from .device_pkg_uninstall_results import DevicePkgUninstallResults
 from .device_pkg_uninstall_results_devices import DevicePkgUninstallResultsDevices
 from .device_public_key_option import DevicePublicKeyOption
+from .device_resource_alert import DeviceResourceAlert
 from .device_service_basic import DeviceServiceBasic
 from .device_tag_option import DeviceTagOption
 from .device_vpn import DeviceVpn
@@ -199,6 +245,7 @@ from .dirty_subsystem import DirtySubsystem
 from .dirty_subsystems import DirtySubsystems
 from .dirty_subsystems_all_subsystems import DirtySubsystemsAllSubsystems
 from .dirty_subsystems_dirty_subsystems import DirtySubsystemsDirtySubsystems
+from .disk_usage import DiskUsage
 from .disks import Disks
 from .dns_alias_request import DnsAliasRequest
 from .dns_forwarder_alias import DNSForwarderAlias
@@ -226,6 +273,7 @@ from .encryption_algorithm import EncryptionAlgorithm
 from .error import Error
 from .event import Event
 from .events import Events
+from .export_open_vpn_client_req import ExportOpenVPNClientReq
 from .filter_log import FilterLog
 from .filter_log_carp_info import FilterLogCARPInfo
 from .filter_log_icmp_info import FilterLogICMPInfo
@@ -244,6 +292,81 @@ from .filter_log_version_6_info import FilterLogVersion6Info
 from .filter_reload_status import FilterReloadStatus
 from .filter_separator import FilterSeparator
 from .firewall_event import FirewallEvent
+from .forward import Forward
+from .freeradius import Freeradius
+from .freeradius_authorizedmacs_list import FreeradiusAuthorizedmacsList
+from .freeradius_clients_list import FreeradiusClientsList
+from .freeradius_configs import FreeradiusConfigs
+from .freeradius_interfaces_list import FreeradiusInterfacesList
+from .freeradius_users import FreeradiusUsers
+from .freeradiusauthorizedmac import Freeradiusauthorizedmac
+from .freeradiusclient import Freeradiusclient
+from .freeradiuseapconf import Freeradiuseapconf
+from .freeradiusinterface import Freeradiusinterface
+from .freeradiusmodulesldap import Freeradiusmodulesldap
+from .freeradiussettings import Freeradiussettings
+from .freeradiussqlconf import Freeradiussqlconf
+from .freeradiussync import Freeradiussync
+from .freeradiussync_row import FreeradiussyncRow
+from .frr import Frr
+from .frr_bfd import FrrBfd
+from .frr_bfd_peer import FrrBfdPeer
+from .frr_bfd_profile import FrrBfdProfile
+from .frr_bfd_profiles_list import FrrBfdProfilesList
+from .frr_bgp import FrrBgp
+from .frr_bgp_aspath import FrrBgpAspath
+from .frr_bgp_aspaths_list import FrrBgpAspathsList
+from .frr_bgp_aspaths_row import FrrBgpAspathsRow
+from .frr_bgp_communities_list import FrrBgpCommunitiesList
+from .frr_bgp_communities_row import FrrBgpCommunitiesRow
+from .frr_bgp_community import FrrBgpCommunity
+from .frr_bgp_neighbor import FrrBgpNeighbor
+from .frr_bgp_neighbors_list import FrrBgpNeighborsList
+from .frr_bgp_row import FrrBgpRow
+from .frr_bgp_rpki_cache_server import FrrBgpRpkiCacheServer
+from .frr_bgp_rpki_cache_servers_list import FrrBgpRpkiCacheServersList
+from .frr_bgpadvanced import FrrBgpadvanced
+from .frr_bgpadvanced_row import FrrBgpadvancedRow
+from .frr_config_files import FrrConfigFiles
+from .frr_config_files_files import FrrConfigFilesFiles
+from .frr_daemon_status import FrrDaemonStatus
+from .frr_daemon_status_states import FrrDaemonStatusStates
+from .frr_global_acl import FrrGlobalAcl
+from .frr_global_acls_list import FrrGlobalAclsList
+from .frr_global_acls_row import FrrGlobalAclsRow
+from .frr_global_prefix import FrrGlobalPrefix
+from .frr_global_prefix_row import FrrGlobalPrefixRow
+from .frr_global_prefixes_list import FrrGlobalPrefixesList
+from .frr_global_raw import FrrGlobalRaw
+from .frr_global_routemap import FrrGlobalRoutemap
+from .frr_global_routemaps_list import FrrGlobalRoutemapsList
+from .frr_global_tcp_md_5_peer import FrrGlobalTcpMd5Peer
+from .frr_ospf_6d import FrrOspf6D
+from .frr_ospf_6d_interface import FrrOspf6DInterface
+from .frr_ospf_6d_interfaces_list import FrrOspf6DInterfacesList
+from .frr_ospf_6d_row import FrrOspf6DRow
+from .frr_ospfd import FrrOspfd
+from .frr_ospfd_6_area import FrrOspfd6Area
+from .frr_ospfd_6_areas_list import FrrOspfd6AreasList
+from .frr_ospfd_6_areas_row import FrrOspfd6AreasRow
+from .frr_ospfd_area import FrrOspfdArea
+from .frr_ospfd_areas_list import FrrOspfdAreasList
+from .frr_ospfd_areas_row import FrrOspfdAreasRow
+from .frr_ospfd_interface import FrrOspfdInterface
+from .frr_ospfd_interfaces_list import FrrOspfdInterfacesList
+from .frr_ospfd_neighbor import FrrOspfdNeighbor
+from .frr_ospfd_neighbors_list import FrrOspfdNeighborsList
+from .frr_ospfd_row import FrrOspfdRow
+from .frr_peers_list import FrrPeersList
+from .frr_ripd import FrrRipd
+from .frr_ripd_interface import FrrRipdInterface
+from .frr_ripd_interfaces_list import FrrRipdInterfacesList
+from .frr_ripd_neighbor import FrrRipdNeighbor
+from .frr_ripd_neighbors_list import FrrRipdNeighborsList
+from .frr_ripd_row import FrrRipdRow
+from .frr_row import FrrRow
+from .frr_service_action_request import FrrServiceActionRequest
+from .frr_service_status import FrrServiceStatus
 from .fw_addr_alias import FWAddrAlias
 from .fw_addr_port import FWAddrPort
 from .fw_alias import FWAlias
@@ -260,6 +383,7 @@ from .fw_filter_rule import FWFilterRule
 from .fw_filter_rule_nat import FWFilterRuleNAT
 from .fw_firewall_interfaces import FWFirewallInterfaces
 from .fw_firewall_interfaces_interface_mappings import FWFirewallInterfacesInterfaceMappings
+from .fw_firewall_interfaces_traffic_sources import FWFirewallInterfacesTrafficSources
 from .fw_rule_item_order import FWRuleItemOrder
 from .fw_rule_list import FWRuleList
 from .fw_rule_state import FWRuleState
@@ -303,6 +427,39 @@ from .group_status import GroupStatus
 from .group_update_req import GroupUpdateReq
 from .ha_pfsync import HAPfsync
 from .ha_sync_opts import HASyncOpts
+from .haproxy_acl import HaproxyAcl
+from .haproxy_action import HaproxyAction
+from .haproxy_apply_result import HaproxyApplyResult
+from .haproxy_backend_stat import HaproxyBackendStat
+from .haproxy_bind_address import HaproxyBindAddress
+from .haproxy_certificate import HaproxyCertificate
+from .haproxy_client_ca import HaproxyClientCa
+from .haproxy_client_crl import HaproxyClientCrl
+from .haproxy_config_files import HaproxyConfigFiles
+from .haproxy_config_files_files import HaproxyConfigFilesFiles
+from .haproxy_error_file import HaproxyErrorFile
+from .haproxy_file import HaproxyFile
+from .haproxy_file_list import HaproxyFileList
+from .haproxy_frontend import HaproxyFrontend
+from .haproxy_frontend_list import HaproxyFrontendList
+from .haproxy_frontend_stat import HaproxyFrontendStat
+from .haproxy_global import HaproxyGlobal
+from .haproxy_mailer import HaproxyMailer
+from .haproxy_mailer_list import HaproxyMailerList
+from .haproxy_pool import HaproxyPool
+from .haproxy_pool_list import HaproxyPoolList
+from .haproxy_resolver import HaproxyResolver
+from .haproxy_resolver_list import HaproxyResolverList
+from .haproxy_resolver_stats_result import HaproxyResolverStatsResult
+from .haproxy_server import HaproxyServer
+from .haproxy_server_stat import HaproxyServerStat
+from .haproxy_service_action_request import HaproxyServiceActionRequest
+from .haproxy_service_status import HaproxyServiceStatus
+from .haproxy_session import HaproxySession
+from .haproxy_session_list import HaproxySessionList
+from .haproxy_stats import HaproxyStats
+from .haproxy_stick_table import HaproxyStickTable
+from .haproxy_stick_table_list import HaproxyStickTableList
 from .haxmlrpc_sync import HAXMLRPCSync
 from .hw_device import HWDevice
 from .hw_devices import HWDevices
@@ -414,7 +571,13 @@ from .log_entries import LogEntries
 from .log_entry import LogEntry
 from .log_stats import LogStats
 from .login_credentials import LoginCredentials
+from .login_notices import LoginNotices
 from .login_response import LoginResponse
+from .mdns_config import MDNSConfig
+from .mdns_publishing import MDNSPublishing
+from .mdns_record import MDNSRecord
+from .mdns_records import MDNSRecords
+from .mdns_state import MDNSState
 from .memory import Memory
 from .memory_map import MemoryMap
 from .memory_stat import MemoryStat
@@ -452,8 +615,6 @@ from .ndp_entry import NDPEntry
 from .ndp_table import NDPTable
 from .net_if import NetIf
 from .net_if_addr import NetIfAddr
-from .net_if_assign_owner_req import NetIfAssignOwnerReq
-from .net_if_assign_owner_req_owner_type import NetIfAssignOwnerReqOwnerType
 from .net_if_dev_config import NetIfDevConfig
 from .net_if_dhcp import NetIfDhcp
 from .net_if_info import NetIfInfo
@@ -471,6 +632,11 @@ from .new_cert_req import NewCertReq
 from .new_crl_req import NewCRLReq
 from .new_interface_result import NewInterfaceResult
 from .nexus_controller_info import NexusControllerInfo
+from .nmap_interfaces import NmapInterfaces
+from .nmap_request import NmapRequest
+from .nmap_response import NmapResponse
+from .ntopng import Ntopng
+from .ntopng_localnet import NtopngLocalnet
 from .ntp_access_restrictions import NtpAccessRestrictions
 from .ntp_acls import NtpAcls
 from .ntp_gps_flags import NtpGpsFlags
@@ -487,9 +653,18 @@ from .open_vpn_active_conn import OpenVPNActiveConn
 from .open_vpn_capable_interface import OpenVPNCapableInterface
 from .open_vpn_client import OpenVPNClient
 from .open_vpn_client_config import OpenVPNClientConfig
+from .open_vpn_client_export_config import OpenVPNClientExportConfig
+from .open_vpn_client_export_config_bindmode import OpenVPNClientExportConfigBindmode
+from .open_vpn_client_export_config_p12_encryption import OpenVPNClientExportConfigP12Encryption
+from .open_vpn_client_export_config_verifyservercn import OpenVPNClientExportConfigVerifyservercn
+from .open_vpn_client_export_configs import OpenVPNClientExportConfigs
+from .open_vpn_client_export_user_info import OpenVPNClientExportUserInfo
+from .open_vpn_client_import import OpenVPNClientImport
+from .open_vpn_client_import_req import OpenVPNClientImportReq
 from .open_vpn_clients import OpenVPNClients
 from .open_vpn_conn import OpenVPNConn
 from .open_vpn_next_port import OpenVPNNextPort
+from .open_vpn_remote_access_server import OpenVPNRemoteAccessServer
 from .open_vpn_route import OpenVPNRoute
 from .open_vpn_server import OpenVPNServer
 from .open_vpn_server_config import OpenVPNServerConfig
@@ -506,6 +681,7 @@ from .p_flow_global_options import PFlowGlobalOptions
 from .p_flow_global_options_src_ip_address import PFlowGlobalOptionsSrcIpAddress
 from .p_flow_options import PFlowOptions
 from .package import Package
+from .package_dependency import PackageDependency
 from .package_install_progress import PackageInstallProgress
 from .package_status import PackageStatus
 from .packages import Packages
@@ -525,6 +701,16 @@ from .phase_2 import Phase2
 from .phase_2_local_id import Phase2LocalId
 from .phase_2_remote_id import Phase2RemoteId
 from .physical_interface import PhysicalInterface
+from .pimd import Pimd
+from .pimd_bsr_candidate import PimdBsrCandidate
+from .pimd_bsr_candidates import PimdBsrCandidates
+from .pimd_interface import PimdInterface
+from .pimd_interfaces import PimdInterfaces
+from .pimd_rp_address import PimdRpAddress
+from .pimd_rp_addresses import PimdRpAddresses
+from .pimd_rp_candidate import PimdRpCandidate
+from .pimd_rp_candidates import PimdRpCandidates
+from .pimd_status import PimdStatus
 from .pp_po_e_config import PPPoEConfig
 from .pp_po_e_config_req import PPPoEConfigReq
 from .pp_po_e_server import PPPoEServer
@@ -548,15 +734,24 @@ from .radius import Radius
 from .radius_auth_server import RadiusAuthServer
 from .radius_server import RadiusServer
 from .refresh_token_param import RefreshTokenParam
+from .renew_acme_certificate_req import RenewACMECertificateReq
 from .renew_cert_options import RenewCertOptions
+from .resolve import Resolve
+from .resource_alert import ResourceAlert
+from .resource_alert_condition import ResourceAlertCondition
 from .result import Result
 from .retrieved_backup import RetrievedBackup
+from .rexdns_group import RexdnsGroup
+from .rexdns_group_forward import RexdnsGroupForward
+from .rexdns_group_resolve import RexdnsGroupResolve
 from .rfc_item import RFCItem
 from .rfc_item_list import RFCItemList
 from .route_record import RouteRecord
 from .router_adv_settings import RouterAdvSettings
 from .routes_apply_request import RoutesApplyRequest
 from .routes_dirty_state import RoutesDirtyState
+from .saml_server import SamlServer
+from .saml_server_group_map import SamlServerGroupMap
 from .separator import Separator
 from .service_certificate import ServiceCertificate
 from .service_provider import ServiceProvider
@@ -575,21 +770,176 @@ from .set_adv_networking_response import SetAdvNetworkingResponse
 from .set_open_vpn_client_response import SetOpenVPNClientResponse
 from .set_open_vpn_server_response import SetOpenVPNServerResponse
 from .set_open_vpncso_response import SetOpenVPNCSOResponse
+from .set_snort_address_list_body import SetSnortAddressListBody
 from .setup_dns_setting import SetupDNSSetting
 from .setup_pp_po_e_cfg import SetupPPPoECfg
 from .setup_settings import SetupSettings
 from .setup_wizard import SetupWizard
 from .setup_wizard_options import SetupWizardOptions
+from .shellcmd_list import ShellcmdList
+from .shellcmdsettings import Shellcmdsettings
 from .simple_interface import SimpleInterface
+from .siproxd_apply_result import SiproxdApplyResult
+from .siproxd_config_files import SiproxdConfigFiles
+from .siproxd_config_files_files import SiproxdConfigFilesFiles
+from .siproxd_list import SiproxdList
+from .siproxd_phone import SiproxdPhone
+from .siproxd_phone_endpoint import SiproxdPhoneEndpoint
+from .siproxd_phone_list import SiproxdPhoneList
+from .siproxd_service_action_request import SiproxdServiceActionRequest
+from .siproxd_service_status import SiproxdServiceStatus
+from .siproxdsettings import Siproxdsettings
+from .siproxdusers import Siproxdusers
 from .smart_devices import SMARTDevices
 from .smart_result import SMARTResult
 from .snmp_config import SNMPConfig
 from .snmp_interface import SNMPInterface
 from .snmp_modules import SNMPModules
+from .snort_address_list import SnortAddressList
+from .snort_address_lists import SnortAddressLists
+from .snort_alert import SnortAlert
+from .snort_alerts import SnortAlerts
+from .snort_blocked_host import SnortBlockedHost
+from .snort_blocked_hosts import SnortBlockedHosts
+from .snort_conf_interface_list import SnortConfInterfaceList
+from .snort_config import SnortConfig
+from .snort_download_action import SnortDownloadAction
+from .snort_download_action_action import SnortDownloadActionAction
+from .snort_download_progress import SnortDownloadProgress
+from .snort_download_services import SnortDownloadServices
+from .snort_insp_appid import SnortInspAppid
+from .snort_insp_appid_listener import SnortInspAppidListener
+from .snort_insp_arp_spoof import SnortInspArpSpoof
+from .snort_insp_arp_spoof_hosts import SnortInspArpSpoofHosts
+from .snort_insp_binder import SnortInspBinder
+from .snort_insp_binder_l_use import SnortInspBinderLUse
+from .snort_insp_binder_l_when import SnortInspBinderLWhen
+from .snort_insp_cip import SnortInspCip
+from .snort_insp_data_log import SnortInspDataLog
+from .snort_insp_dce_smb import SnortInspDceSmb
+from .snort_insp_dce_tcp import SnortInspDceTcp
+from .snort_insp_dce_udp import SnortInspDceUdp
+from .snort_insp_dnp_3 import SnortInspDnp3
+from .snort_insp_dns import SnortInspDns
+from .snort_insp_domain_filter import SnortInspDomainFilter
+from .snort_insp_dpx import SnortInspDpx
+from .snort_insp_extractor import SnortInspExtractor
+from .snort_insp_extractor_protocols import SnortInspExtractorProtocols
+from .snort_insp_file_id import SnortInspFileId
+from .snort_insp_file_log import SnortInspFileLog
+from .snort_insp_ftp_client import SnortInspFtpClient
+from .snort_insp_ftp_client_bounce_to import SnortInspFtpClientBounceTo
+from .snort_insp_ftp_server import SnortInspFtpServer
+from .snort_insp_ftp_server_cmd_validity import SnortInspFtpServerCmdValidity
+from .snort_insp_ftp_server_directory_cmds import SnortInspFtpServerDirectoryCmds
+from .snort_insp_gtp_inspect import SnortInspGtpInspect
+from .snort_insp_gtp_inspect_l_infos import SnortInspGtpInspectLInfos
+from .snort_insp_gtp_inspect_l_messages import SnortInspGtpInspectLMessages
+from .snort_insp_http_2_inspect import SnortInspHttp2Inspect
+from .snort_insp_http_inspect import SnortInspHttpInspect
+from .snort_insp_imap import SnortInspImap
+from .snort_insp_netflow import SnortInspNetflow
+from .snort_insp_netflow_rules import SnortInspNetflowRules
+from .snort_insp_normalizer import SnortInspNormalizer
+from .snort_insp_normalizer_ip_4 import SnortInspNormalizerIp4
+from .snort_insp_normalizer_tcp import SnortInspNormalizerTcp
+from .snort_insp_packet_capture import SnortInspPacketCapture
+from .snort_insp_perf_monitor import SnortInspPerfMonitor
+from .snort_insp_perf_monitor_modules import SnortInspPerfMonitorModules
+from .snort_insp_pop import SnortInspPop
+from .snort_insp_port_scan import SnortInspPortScan
+from .snort_insp_port_scan_icmp_sweep import SnortInspPortScanIcmpSweep
+from .snort_insp_port_scan_ip_decoy import SnortInspPortScanIpDecoy
+from .snort_insp_port_scan_ip_dist import SnortInspPortScanIpDist
+from .snort_insp_port_scan_ip_proto import SnortInspPortScanIpProto
+from .snort_insp_port_scan_ip_sweep import SnortInspPortScanIpSweep
+from .snort_insp_port_scan_tcp_decoy import SnortInspPortScanTcpDecoy
+from .snort_insp_port_scan_tcp_dist import SnortInspPortScanTcpDist
+from .snort_insp_port_scan_tcp_ports import SnortInspPortScanTcpPorts
+from .snort_insp_port_scan_tcp_sweep import SnortInspPortScanTcpSweep
+from .snort_insp_port_scan_udp_decoy import SnortInspPortScanUdpDecoy
+from .snort_insp_port_scan_udp_dist import SnortInspPortScanUdpDist
+from .snort_insp_port_scan_udp_ports import SnortInspPortScanUdpPorts
+from .snort_insp_port_scan_udp_sweep import SnortInspPortScanUdpSweep
+from .snort_insp_reputation import SnortInspReputation
+from .snort_insp_rna import SnortInspRna
+from .snort_insp_rna_smb_fingerprints import SnortInspRnaSmbFingerprints
+from .snort_insp_rna_smb_fingerprints_l_user_agent import SnortInspRnaSmbFingerprintsLUserAgent
+from .snort_insp_rna_tcp_fingerprints import SnortInspRnaTcpFingerprints
+from .snort_insp_rna_tcp_fingerprints_l_user_agent import SnortInspRnaTcpFingerprintsLUserAgent
+from .snort_insp_rna_ua_fingerprints import SnortInspRnaUaFingerprints
+from .snort_insp_rna_ua_fingerprints_l_user_agent import SnortInspRnaUaFingerprintsLUserAgent
+from .snort_insp_rna_udp_fingerprints import SnortInspRnaUdpFingerprints
+from .snort_insp_rna_udp_fingerprints_l_user_agent import SnortInspRnaUdpFingerprintsLUserAgent
+from .snort_insp_sip import SnortInspSip
+from .snort_insp_smtp import SnortInspSmtp
+from .snort_insp_smtp_alt_max_command_line_len import SnortInspSmtpAltMaxCommandLineLen
+from .snort_insp_snort_ml import SnortInspSnortMl
+from .snort_insp_snort_ml_engine import SnortInspSnortMlEngine
+from .snort_insp_ssh import SnortInspSsh
+from .snort_insp_ssl import SnortInspSsl
+from .snort_insp_stream import SnortInspStream
+from .snort_insp_stream_allowlist_cache import SnortInspStreamAllowlistCache
+from .snort_insp_stream_file import SnortInspStreamFile
+from .snort_insp_stream_file_cache import SnortInspStreamFileCache
+from .snort_insp_stream_icmp import SnortInspStreamIcmp
+from .snort_insp_stream_icmp_cache import SnortInspStreamIcmpCache
+from .snort_insp_stream_ip import SnortInspStreamIp
+from .snort_insp_stream_ip_cache import SnortInspStreamIpCache
+from .snort_insp_stream_tcp import SnortInspStreamTcp
+from .snort_insp_stream_tcp_cache import SnortInspStreamTcpCache
+from .snort_insp_stream_tcp_queue_limit import SnortInspStreamTcpQueueLimit
+from .snort_insp_stream_tcp_small_segments import SnortInspStreamTcpSmallSegments
+from .snort_insp_stream_udp import SnortInspStreamUdp
+from .snort_insp_stream_udp_cache import SnortInspStreamUdpCache
+from .snort_insp_stream_user import SnortInspStreamUser
+from .snort_insp_stream_user_cache import SnortInspStreamUserCache
+from .snort_insp_telnet import SnortInspTelnet
+from .snort_insp_tlv_pdu import SnortInspTlvPdu
+from .snort_insp_wizard import SnortInspWizard
+from .snort_insp_wizard_hexes import SnortInspWizardHexes
+from .snort_insp_wizard_hexes_l_to_client import SnortInspWizardHexesLToClient
+from .snort_insp_wizard_hexes_l_to_server import SnortInspWizardHexesLToServer
+from .snort_insp_wizard_spells import SnortInspWizardSpells
+from .snort_insp_wizard_spells_l_to_client import SnortInspWizardSpellsLToClient
+from .snort_insp_wizard_spells_l_to_server import SnortInspWizardSpellsLToServer
+from .snort_inspectors import SnortInspectors
+from .snort_interface_action import SnortInterfaceAction
+from .snort_interface_config import SnortInterfaceConfig
+from .snort_interface_config_block_addr_opt import SnortInterfaceConfigBlockAddrOpt
+from .snort_interface_config_detection_method import SnortInterfaceConfigDetectionMethod
+from .snort_interface_rulesets_opt import SnortInterfaceRulesetsOpt
+from .snort_intf_ruleset import SnortIntfRuleset
+from .snort_intf_ruleset_opt import SnortIntfRulesetOpt
+from .snort_intf_rulesets import SnortIntfRulesets
+from .snort_ips_state_rule import SnortIpsStateRule
+from .snort_overrides import SnortOverrides
+from .snort_pass_list import SnortPassList
+from .snort_pass_lists import SnortPassLists
+from .snort_reputation_config import SnortReputationConfig
+from .snort_rule import SnortRule
+from .snort_rule_download_service import SnortRuleDownloadService
+from .snort_rule_file_contents import SnortRuleFileContents
+from .snort_rule_toggle_entry import SnortRuleToggleEntry
+from .snort_rule_toggles import SnortRuleToggles
+from .snort_rule_update_settings import SnortRuleUpdateSettings
+from .snort_rules_archive import SnortRulesArchive
+from .snort_rules_upload_req import SnortRulesUploadReq
+from .snort_ruleset import SnortRuleset
+from .snort_ruleset_ips_states import SnortRulesetIpsStates
+from .snort_ruleset_rules import SnortRulesetRules
+from .snort_ruleset_so_ips_states import SnortRulesetSoIpsStates
+from .snort_ruleset_so_rules import SnortRulesetSoRules
+from .snort_rulesets import SnortRulesets
+from .snort_suppress_list import SnortSuppressList
+from .snort_suppress_list_basic import SnortSuppressListBasic
+from .snort_suppress_lists_basic import SnortSuppressListsBasic
 from .software_package import SoftwarePackage
 from .software_package_list import SoftwarePackageList
 from .speed_test_request import SpeedTestRequest
 from .speed_test_result import SpeedTestResult
+from .sso_service import SSOService
+from .sso_services import SSOServices
 from .static_route import StaticRoute
 from .static_routes import StaticRoutes
 from .status_summary import StatusSummary
@@ -598,12 +948,14 @@ from .std_log import StdLog
 from .std_logs import StdLogs
 from .std_logs_filter_rules import StdLogsFilterRules
 from .storage_stats import StorageStats
+from .store_snort_ruleset_body import StoreSnortRulesetBody
 from .sys_firmware_info import SysFirmwareInfo
 from .sys_firmware_upgrade_opt import SysFirmwareUpgradeOpt
 from .sys_net_if import SysNetIf
 from .sysinfo import Sysinfo
 from .sysinfo_fs import SysinfoFs
 from .sysinfo_license import SysinfoLicense
+from .sysinfo_telemetry import SysinfoTelemetry
 from .sysinfo_update import SysinfoUpdate
 from .syslog_config_override import SyslogConfigOverride
 from .syslog_configuration import SyslogConfiguration
@@ -627,6 +979,16 @@ from .test_port_request import TestPortRequest
 from .test_port_response import TestPortResponse
 from .test_port_sources import TestPortSources
 from .text_value import TextValue
+from .threat_class import ThreatClass
+from .threat_gate_background_messages import ThreatGateBackgroundMessages
+from .threat_gate_configuration import ThreatGateConfiguration
+from .threat_gate_information import ThreatGateInformation
+from .threat_gate_max_mind import ThreatGateMaxMind
+from .threat_gate_remote_feed import ThreatGateRemoteFeed
+from .threat_gate_remote_feed_headers import ThreatGateRemoteFeedHeaders
+from .threat_gate_remote_feeds_array import ThreatGateRemoteFeedsArray
+from .threat_gate_user_defined_feed import ThreatGateUserDefinedFeed
+from .threat_gate_user_defined_feed_array import ThreatGateUserDefinedFeedArray
 from .tier import Tier
 from .tls_cert_path import TLSCertPath
 from .toggle_resp_status import ToggleRespStatus
@@ -674,6 +1036,9 @@ from .voucher_roll import VoucherRoll
 from .vxlan_capable_interface import VXLANCapableInterface
 from .vxlan_interface import VXLANInterface
 from .vxlan_interfaces import VXLANInterfaces
+from .watchdog_list import WatchdogList
+from .watchdog_service import WatchdogService
+from .watchdog_watch_service import WatchdogWatchService
 from .wg_config import WGConfig
 from .wg_peer import WGPeer
 from .wg_peers import WGPeers
@@ -700,6 +1065,25 @@ __all__ = (
     "ACBList",
     "ACBManualBackupRequest",
     "ACBRestoreRequest",
+    "ACMEAccountKey",
+    "ACMEAccountKeyKeyType",
+    "ACMEAction",
+    "ACMECertificate",
+    "ACMECertificateKeyType",
+    "ACMEConfig",
+    "ACMEDomain",
+    "ACMEIssuedCert",
+    "ACMEPrivateKey",
+    "ACMEPrivateKeyReq",
+    "ACMEPrivateKeyReqKeyType",
+    "ACMERegistration",
+    "ACMEServer",
+    "ACMESettings",
+    "ACMEValidationMethodConfig",
+    "ACMEValidationMethodConfigAdditional",
+    "ACMEValidationMethodConfigCredentials",
+    "ACMEValidationMethods",
+    "ACMEValidationMethodsMethods",
     "ActivateBootenv",
     "AdminLoginSession",
     "AdvFirewall",
@@ -721,12 +1105,34 @@ __all__ = (
     "ALTQRootQueueScheduler",
     "ApplyDirtyConfigRequest",
     "AppMemStat",
+    "ArpingInterfaces",
+    "ArpingRequest",
+    "ArpingResponse",
+    "ArpmonInterfaceAction",
+    "ArpmonInterfaceState",
+    "ArpmonInterfaceStateMacs",
+    "ArpmonMacState",
+    "ArpmonState",
+    "ArpmonStateInterfaces",
+    "ArpmonTimedAddress",
     "ArpTableEntry",
     "AuthServer",
     "AuthServers",
     "AuthServersList",
     "AuthTestCredentials",
     "AuthTestResult",
+    "AwsWizardCreateTunnelsReq",
+    "AwsWizardCreateTunnelsReqRouting",
+    "AwsWizardCreateVpnReq",
+    "AwsWizardCreateVpnReqRouting",
+    "AwsWizardCred",
+    "AwsWizardCredPartition",
+    "AwsWizardRegions",
+    "AwsWizardSelectVpcReq",
+    "AwsWizardVpc",
+    "AwsWizardVpcs",
+    "AwsWizardVPGateway",
+    "AwsWizardVpn",
     "Bootenv",
     "BootEnvs",
     "BootEnvsEnvs",
@@ -802,6 +1208,10 @@ __all__ = (
     "ControllerUpgradeInfo",
     "ControllerUpgradeRequest",
     "ControllerUpgradeResult",
+    "CorednsConfiguration",
+    "CorednsConfigurationGroups",
+    "CorednsEasySetupReason",
+    "CorednsEasySetupResult",
     "CreateBootenv",
     "CreateControlledDeviceCert",
     "CreateUPnPACL",
@@ -829,6 +1239,7 @@ __all__ = (
     "DevicePkgUninstallResults",
     "DevicePkgUninstallResultsDevices",
     "DevicePublicKeyOption",
+    "DeviceResourceAlert",
     "DeviceServiceBasic",
     "DeviceTagOption",
     "DeviceVpn",
@@ -894,6 +1305,7 @@ __all__ = (
     "DirtySubsystemsAllSubsystems",
     "DirtySubsystemsDirtySubsystems",
     "Disks",
+    "DiskUsage",
     "DNSACL",
     "DNSACLNetwork",
     "DnsAliasRequest",
@@ -920,6 +1332,7 @@ __all__ = (
     "Error",
     "Event",
     "Events",
+    "ExportOpenVPNClientReq",
     "FilterLog",
     "FilterLogCARPInfo",
     "FilterLogICMPInfo",
@@ -938,6 +1351,81 @@ __all__ = (
     "FilterReloadStatus",
     "FilterSeparator",
     "FirewallEvent",
+    "Forward",
+    "Freeradius",
+    "Freeradiusauthorizedmac",
+    "FreeradiusAuthorizedmacsList",
+    "Freeradiusclient",
+    "FreeradiusClientsList",
+    "FreeradiusConfigs",
+    "Freeradiuseapconf",
+    "Freeradiusinterface",
+    "FreeradiusInterfacesList",
+    "Freeradiusmodulesldap",
+    "Freeradiussettings",
+    "Freeradiussqlconf",
+    "Freeradiussync",
+    "FreeradiussyncRow",
+    "FreeradiusUsers",
+    "Frr",
+    "FrrBfd",
+    "FrrBfdPeer",
+    "FrrBfdProfile",
+    "FrrBfdProfilesList",
+    "FrrBgp",
+    "FrrBgpadvanced",
+    "FrrBgpadvancedRow",
+    "FrrBgpAspath",
+    "FrrBgpAspathsList",
+    "FrrBgpAspathsRow",
+    "FrrBgpCommunitiesList",
+    "FrrBgpCommunitiesRow",
+    "FrrBgpCommunity",
+    "FrrBgpNeighbor",
+    "FrrBgpNeighborsList",
+    "FrrBgpRow",
+    "FrrBgpRpkiCacheServer",
+    "FrrBgpRpkiCacheServersList",
+    "FrrConfigFiles",
+    "FrrConfigFilesFiles",
+    "FrrDaemonStatus",
+    "FrrDaemonStatusStates",
+    "FrrGlobalAcl",
+    "FrrGlobalAclsList",
+    "FrrGlobalAclsRow",
+    "FrrGlobalPrefix",
+    "FrrGlobalPrefixesList",
+    "FrrGlobalPrefixRow",
+    "FrrGlobalRaw",
+    "FrrGlobalRoutemap",
+    "FrrGlobalRoutemapsList",
+    "FrrGlobalTcpMd5Peer",
+    "FrrOspf6D",
+    "FrrOspf6DInterface",
+    "FrrOspf6DInterfacesList",
+    "FrrOspf6DRow",
+    "FrrOspfd",
+    "FrrOspfd6Area",
+    "FrrOspfd6AreasList",
+    "FrrOspfd6AreasRow",
+    "FrrOspfdArea",
+    "FrrOspfdAreasList",
+    "FrrOspfdAreasRow",
+    "FrrOspfdInterface",
+    "FrrOspfdInterfacesList",
+    "FrrOspfdNeighbor",
+    "FrrOspfdNeighborsList",
+    "FrrOspfdRow",
+    "FrrPeersList",
+    "FrrRipd",
+    "FrrRipdInterface",
+    "FrrRipdInterfacesList",
+    "FrrRipdNeighbor",
+    "FrrRipdNeighborsList",
+    "FrrRipdRow",
+    "FrrRow",
+    "FrrServiceActionRequest",
+    "FrrServiceStatus",
     "FWAddrAlias",
     "FWAddrPort",
     "FWAlias",
@@ -954,6 +1442,7 @@ __all__ = (
     "FWFilterRuleNAT",
     "FWFirewallInterfaces",
     "FWFirewallInterfacesInterfaceMappings",
+    "FWFirewallInterfacesTrafficSources",
     "FWRuleItemOrder",
     "FWRuleList",
     "FWRules",
@@ -996,6 +1485,39 @@ __all__ = (
     "GroupStatus",
     "GroupUpdateReq",
     "HAPfsync",
+    "HaproxyAcl",
+    "HaproxyAction",
+    "HaproxyApplyResult",
+    "HaproxyBackendStat",
+    "HaproxyBindAddress",
+    "HaproxyCertificate",
+    "HaproxyClientCa",
+    "HaproxyClientCrl",
+    "HaproxyConfigFiles",
+    "HaproxyConfigFilesFiles",
+    "HaproxyErrorFile",
+    "HaproxyFile",
+    "HaproxyFileList",
+    "HaproxyFrontend",
+    "HaproxyFrontendList",
+    "HaproxyFrontendStat",
+    "HaproxyGlobal",
+    "HaproxyMailer",
+    "HaproxyMailerList",
+    "HaproxyPool",
+    "HaproxyPoolList",
+    "HaproxyResolver",
+    "HaproxyResolverList",
+    "HaproxyResolverStatsResult",
+    "HaproxyServer",
+    "HaproxyServerStat",
+    "HaproxyServiceActionRequest",
+    "HaproxyServiceStatus",
+    "HaproxySession",
+    "HaproxySessionList",
+    "HaproxyStats",
+    "HaproxyStickTable",
+    "HaproxyStickTableList",
     "HASyncOpts",
     "HAXMLRPCSync",
     "HWDevice",
@@ -1107,8 +1629,14 @@ __all__ = (
     "LogEntries",
     "LogEntry",
     "LoginCredentials",
+    "LoginNotices",
     "LoginResponse",
     "LogStats",
+    "MDNSConfig",
+    "MDNSPublishing",
+    "MDNSRecord",
+    "MDNSRecords",
+    "MDNSState",
     "Memory",
     "MemoryMap",
     "MemoryStat",
@@ -1146,8 +1674,6 @@ __all__ = (
     "NDPTable",
     "NetIf",
     "NetIfAddr",
-    "NetIfAssignOwnerReq",
-    "NetIfAssignOwnerReqOwnerType",
     "NetIfDevConfig",
     "NetIfDhcp",
     "NetIfInfo",
@@ -1165,6 +1691,11 @@ __all__ = (
     "NewCRLReq",
     "NewInterfaceResult",
     "NexusControllerInfo",
+    "NmapInterfaces",
+    "NmapRequest",
+    "NmapResponse",
+    "Ntopng",
+    "NtopngLocalnet",
     "NtpAccessRestrictions",
     "NtpAcls",
     "NtpGpsFlags",
@@ -1181,12 +1712,21 @@ __all__ = (
     "OpenVPNCapableInterface",
     "OpenVPNClient",
     "OpenVPNClientConfig",
+    "OpenVPNClientExportConfig",
+    "OpenVPNClientExportConfigBindmode",
+    "OpenVPNClientExportConfigP12Encryption",
+    "OpenVPNClientExportConfigs",
+    "OpenVPNClientExportConfigVerifyservercn",
+    "OpenVPNClientExportUserInfo",
+    "OpenVPNClientImport",
+    "OpenVPNClientImportReq",
     "OpenVPNClients",
     "OpenVPNConn",
     "OpenVPNCSO",
     "OpenVPNCSOConfig",
     "OpenVPNCSOs",
     "OpenVPNNextPort",
+    "OpenVPNRemoteAccessServer",
     "OpenVPNRoute",
     "OpenVPNServer",
     "OpenVPNServerConfig",
@@ -1196,6 +1736,7 @@ __all__ = (
     "OsSocketList",
     "OSSoftwarePackages",
     "Package",
+    "PackageDependency",
     "PackageInstallProgress",
     "Packages",
     "PackageStatus",
@@ -1219,6 +1760,16 @@ __all__ = (
     "Phase2LocalId",
     "Phase2RemoteId",
     "PhysicalInterface",
+    "Pimd",
+    "PimdBsrCandidate",
+    "PimdBsrCandidates",
+    "PimdInterface",
+    "PimdInterfaces",
+    "PimdRpAddress",
+    "PimdRpAddresses",
+    "PimdRpCandidate",
+    "PimdRpCandidates",
+    "PimdStatus",
     "PPPCapableInterface",
     "PPPCapableInterfaces",
     "PPPInterface",
@@ -1242,15 +1793,24 @@ __all__ = (
     "RadiusAuthServer",
     "RadiusServer",
     "RefreshTokenParam",
+    "RenewACMECertificateReq",
     "RenewCertOptions",
+    "Resolve",
+    "ResourceAlert",
+    "ResourceAlertCondition",
     "Result",
     "RetrievedBackup",
+    "RexdnsGroup",
+    "RexdnsGroupForward",
+    "RexdnsGroupResolve",
     "RFCItem",
     "RFCItemList",
     "RouterAdvSettings",
     "RouteRecord",
     "RoutesApplyRequest",
     "RoutesDirtyState",
+    "SamlServer",
+    "SamlServerGroupMap",
     "Separator",
     "ServiceCertificate",
     "ServiceProvider",
@@ -1269,21 +1829,176 @@ __all__ = (
     "SetOpenVPNClientResponse",
     "SetOpenVPNCSOResponse",
     "SetOpenVPNServerResponse",
+    "SetSnortAddressListBody",
     "SetupDNSSetting",
     "SetupPPPoECfg",
     "SetupSettings",
     "SetupWizard",
     "SetupWizardOptions",
+    "ShellcmdList",
+    "Shellcmdsettings",
     "SimpleInterface",
+    "SiproxdApplyResult",
+    "SiproxdConfigFiles",
+    "SiproxdConfigFilesFiles",
+    "SiproxdList",
+    "SiproxdPhone",
+    "SiproxdPhoneEndpoint",
+    "SiproxdPhoneList",
+    "SiproxdServiceActionRequest",
+    "SiproxdServiceStatus",
+    "Siproxdsettings",
+    "Siproxdusers",
     "SMARTDevices",
     "SMARTResult",
     "SNMPConfig",
     "SNMPInterface",
     "SNMPModules",
+    "SnortAddressList",
+    "SnortAddressLists",
+    "SnortAlert",
+    "SnortAlerts",
+    "SnortBlockedHost",
+    "SnortBlockedHosts",
+    "SnortConfig",
+    "SnortConfInterfaceList",
+    "SnortDownloadAction",
+    "SnortDownloadActionAction",
+    "SnortDownloadProgress",
+    "SnortDownloadServices",
+    "SnortInspAppid",
+    "SnortInspAppidListener",
+    "SnortInspArpSpoof",
+    "SnortInspArpSpoofHosts",
+    "SnortInspBinder",
+    "SnortInspBinderLUse",
+    "SnortInspBinderLWhen",
+    "SnortInspCip",
+    "SnortInspDataLog",
+    "SnortInspDceSmb",
+    "SnortInspDceTcp",
+    "SnortInspDceUdp",
+    "SnortInspDnp3",
+    "SnortInspDns",
+    "SnortInspDomainFilter",
+    "SnortInspDpx",
+    "SnortInspectors",
+    "SnortInspExtractor",
+    "SnortInspExtractorProtocols",
+    "SnortInspFileId",
+    "SnortInspFileLog",
+    "SnortInspFtpClient",
+    "SnortInspFtpClientBounceTo",
+    "SnortInspFtpServer",
+    "SnortInspFtpServerCmdValidity",
+    "SnortInspFtpServerDirectoryCmds",
+    "SnortInspGtpInspect",
+    "SnortInspGtpInspectLInfos",
+    "SnortInspGtpInspectLMessages",
+    "SnortInspHttp2Inspect",
+    "SnortInspHttpInspect",
+    "SnortInspImap",
+    "SnortInspNetflow",
+    "SnortInspNetflowRules",
+    "SnortInspNormalizer",
+    "SnortInspNormalizerIp4",
+    "SnortInspNormalizerTcp",
+    "SnortInspPacketCapture",
+    "SnortInspPerfMonitor",
+    "SnortInspPerfMonitorModules",
+    "SnortInspPop",
+    "SnortInspPortScan",
+    "SnortInspPortScanIcmpSweep",
+    "SnortInspPortScanIpDecoy",
+    "SnortInspPortScanIpDist",
+    "SnortInspPortScanIpProto",
+    "SnortInspPortScanIpSweep",
+    "SnortInspPortScanTcpDecoy",
+    "SnortInspPortScanTcpDist",
+    "SnortInspPortScanTcpPorts",
+    "SnortInspPortScanTcpSweep",
+    "SnortInspPortScanUdpDecoy",
+    "SnortInspPortScanUdpDist",
+    "SnortInspPortScanUdpPorts",
+    "SnortInspPortScanUdpSweep",
+    "SnortInspReputation",
+    "SnortInspRna",
+    "SnortInspRnaSmbFingerprints",
+    "SnortInspRnaSmbFingerprintsLUserAgent",
+    "SnortInspRnaTcpFingerprints",
+    "SnortInspRnaTcpFingerprintsLUserAgent",
+    "SnortInspRnaUaFingerprints",
+    "SnortInspRnaUaFingerprintsLUserAgent",
+    "SnortInspRnaUdpFingerprints",
+    "SnortInspRnaUdpFingerprintsLUserAgent",
+    "SnortInspSip",
+    "SnortInspSmtp",
+    "SnortInspSmtpAltMaxCommandLineLen",
+    "SnortInspSnortMl",
+    "SnortInspSnortMlEngine",
+    "SnortInspSsh",
+    "SnortInspSsl",
+    "SnortInspStream",
+    "SnortInspStreamAllowlistCache",
+    "SnortInspStreamFile",
+    "SnortInspStreamFileCache",
+    "SnortInspStreamIcmp",
+    "SnortInspStreamIcmpCache",
+    "SnortInspStreamIp",
+    "SnortInspStreamIpCache",
+    "SnortInspStreamTcp",
+    "SnortInspStreamTcpCache",
+    "SnortInspStreamTcpQueueLimit",
+    "SnortInspStreamTcpSmallSegments",
+    "SnortInspStreamUdp",
+    "SnortInspStreamUdpCache",
+    "SnortInspStreamUser",
+    "SnortInspStreamUserCache",
+    "SnortInspTelnet",
+    "SnortInspTlvPdu",
+    "SnortInspWizard",
+    "SnortInspWizardHexes",
+    "SnortInspWizardHexesLToClient",
+    "SnortInspWizardHexesLToServer",
+    "SnortInspWizardSpells",
+    "SnortInspWizardSpellsLToClient",
+    "SnortInspWizardSpellsLToServer",
+    "SnortInterfaceAction",
+    "SnortInterfaceConfig",
+    "SnortInterfaceConfigBlockAddrOpt",
+    "SnortInterfaceConfigDetectionMethod",
+    "SnortInterfaceRulesetsOpt",
+    "SnortIntfRuleset",
+    "SnortIntfRulesetOpt",
+    "SnortIntfRulesets",
+    "SnortIpsStateRule",
+    "SnortOverrides",
+    "SnortPassList",
+    "SnortPassLists",
+    "SnortReputationConfig",
+    "SnortRule",
+    "SnortRuleDownloadService",
+    "SnortRuleFileContents",
+    "SnortRulesArchive",
+    "SnortRuleset",
+    "SnortRulesetIpsStates",
+    "SnortRulesetRules",
+    "SnortRulesets",
+    "SnortRulesetSoIpsStates",
+    "SnortRulesetSoRules",
+    "SnortRulesUploadReq",
+    "SnortRuleToggleEntry",
+    "SnortRuleToggles",
+    "SnortRuleUpdateSettings",
+    "SnortSuppressList",
+    "SnortSuppressListBasic",
+    "SnortSuppressListsBasic",
     "SoftwarePackage",
     "SoftwarePackageList",
     "SpeedTestRequest",
     "SpeedTestResult",
+    "SSOService",
+    "SSOServices",
     "StaticRoute",
     "StaticRoutes",
     "StatusSummary",
@@ -1292,11 +2007,13 @@ __all__ = (
     "StdLogs",
     "StdLogsFilterRules",
     "StorageStats",
+    "StoreSnortRulesetBody",
     "SysFirmwareInfo",
     "SysFirmwareUpgradeOpt",
     "Sysinfo",
     "SysinfoFs",
     "SysinfoLicense",
+    "SysinfoTelemetry",
     "SysinfoUpdate",
     "SyslogConfigOverride",
     "SyslogConfiguration",
@@ -1321,6 +2038,16 @@ __all__ = (
     "TestPortResponse",
     "TestPortSources",
     "TextValue",
+    "ThreatClass",
+    "ThreatGateBackgroundMessages",
+    "ThreatGateConfiguration",
+    "ThreatGateInformation",
+    "ThreatGateMaxMind",
+    "ThreatGateRemoteFeed",
+    "ThreatGateRemoteFeedHeaders",
+    "ThreatGateRemoteFeedsArray",
+    "ThreatGateUserDefinedFeed",
+    "ThreatGateUserDefinedFeedArray",
     "Tier",
     "TLSCertPath",
     "ToggleRespStatus",
@@ -1368,6 +2095,9 @@ __all__ = (
     "VXLANCapableInterface",
     "VXLANInterface",
     "VXLANInterfaces",
+    "WatchdogList",
+    "WatchdogService",
+    "WatchdogWatchService",
     "WGConfig",
     "WGIPAddress",
     "WGPeer",
